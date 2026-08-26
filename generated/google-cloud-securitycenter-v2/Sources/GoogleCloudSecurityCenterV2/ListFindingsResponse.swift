@@ -16,10 +16,10 @@
 
 import Foundation
 @_spi(GoogleCloudInternal) import GoogleCloudGax
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response message for listing findings.
-public struct ListFindingsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ListFindingsResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable
 {
@@ -50,7 +50,7 @@ public struct ListFindingsResponse: Codable, Equatable, GoogleCloudWkt._AnyPacka
   }
 
   /// Result containing the Finding.
-  public struct ListFindingsResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ListFindingsResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Finding matching the search request.
@@ -77,7 +77,7 @@ public struct ListFindingsResponse: Codable, Equatable, GoogleCloudWkt._AnyPacka
 
     /// Information related to the Google Cloud resource that is
     /// associated with this finding.
-    public struct Resource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Resource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The full resource name of the resource. See:
@@ -222,11 +222,11 @@ public struct ListFindingsResponse: Codable, Equatable, GoogleCloudWkt._AnyPacka
         return
           "type.googleapis.com/google.cloud.securitycenter.v2.ListFindingsResponse.ListFindingsResult.Resource"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -234,22 +234,22 @@ public struct ListFindingsResponse: Codable, Equatable, GoogleCloudWkt._AnyPacka
       return
         "type.googleapis.com/google.cloud.securitycenter.v2.ListFindingsResponse.ListFindingsResult"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.ListFindingsResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 
   public func _getPaginatedItems() -> [ListFindingsResponse.ListFindingsResult] {

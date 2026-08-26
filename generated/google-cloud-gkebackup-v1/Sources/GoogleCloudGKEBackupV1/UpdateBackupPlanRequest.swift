@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for UpdateBackupPlan.
-public struct UpdateBackupPlanRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateBackupPlanRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. A new version of the BackupPlan resource that contains updated
@@ -34,7 +34,7 @@ public struct UpdateBackupPlanRequest: Codable, Equatable, GoogleCloudWkt._AnyPa
   /// written to the target BackupPlan resource.
   /// Note that OUTPUT_ONLY and IMMUTABLE fields in `backup_plan` are ignored
   /// and are not used to update the target BackupPlan.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `UpdateBackupPlanRequest`.
   public init() {}
@@ -55,10 +55,10 @@ public struct UpdateBackupPlanRequest: Codable, Equatable, GoogleCloudWkt._AnyPa
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkebackup.v1.UpdateBackupPlanRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

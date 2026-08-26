@@ -16,7 +16,7 @@
 
 #if DatasetService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Assigns the input data to training, validation, and test sets as per the
   /// given fractions. Any of `training_fraction`, `validation_fraction` and
@@ -24,7 +24,7 @@
   /// provided ones sum to less than 1, the remainder is assigned to sets as
   /// decided by Vertex AI. If none of the fractions are set, by default roughly
   /// 80% of data is used for training, 10% for validation, and 10% for test.
-  public struct ExportFractionSplit: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ExportFractionSplit: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The fraction of the input data that is to be used to train the Model.
@@ -55,11 +55,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.ExportFractionSplit"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

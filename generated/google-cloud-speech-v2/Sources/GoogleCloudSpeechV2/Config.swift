@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Message representing the config for the Speech-to-Text API. This includes an
 /// optional [KMS key](https://cloud.google.com/kms/docs/resource-hierarchy#keys)
 /// with which incoming data will be encrypted.
-public struct Config: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Config: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Identifier. The name of the config resource. There is exactly
@@ -37,7 +37,7 @@ public struct Config: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var kmsKeyName: Swift.String = Swift.String()
 
   /// Output only. The most recent time this resource was modified.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `Config`.
   public init() {}
@@ -58,10 +58,10 @@ public struct Config: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.speech.v2.Config"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

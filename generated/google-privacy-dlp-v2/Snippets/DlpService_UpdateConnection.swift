@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudDLPV2
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: DlpServiceClient, projectId: String, locationId: String, connectionId: String)
   async throws
@@ -29,7 +29,7 @@ func sample(client: DlpServiceClient, projectId: String, locationId: String, con
         $0.connection = Connection().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/connections/\(connectionId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

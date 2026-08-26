@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// PredictionResult is the result of using a model to create predictions.
-public struct PredictionResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct PredictionResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The resource name of the PredictionResult.
@@ -27,10 +27,10 @@ public struct PredictionResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Output only. The timestamp of creation of this resource.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The timestamp of the most recent update of this resource.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Labels
   public var labels: [Swift.String: Swift.String] = [:]
@@ -55,7 +55,7 @@ public struct PredictionResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// dataset.
   ///
   /// [google.cloud.financialservices.v1.Dataset.date_range]: <doc:Dataset/dateRange>
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The number of consecutive months to produce predictions for, ending with
   /// the last full month prior to
@@ -89,7 +89,7 @@ public struct PredictionResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Outputs is a list of places where the operation will write results.
-  public struct Outputs: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Outputs: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The location to output the predictions.
@@ -118,11 +118,11 @@ public struct PredictionResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.financialservices.v1.PredictionResult.Outputs"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -248,10 +248,10 @@ public struct PredictionResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.financialservices.v1.PredictionResult"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

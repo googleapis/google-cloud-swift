@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The metric specification that defines the target resource utilization
 /// (CPU utilization, accelerator's duty cycle, and so on) for calculating the
 /// desired replica count.
-public struct AutoscalingMetricSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AutoscalingMetricSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The resource metric name.
@@ -56,10 +56,10 @@ public struct AutoscalingMetricSpec: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.AutoscalingMetricSpec"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// A ProductSet contains Products. A ProductSet can contain a maximum of 1
 /// million reference images. If the limit is exceeded, periodic indexing will
 /// fail.
-public struct ProductSet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ProductSet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The resource name of the ProductSet.
@@ -42,7 +42,7 @@ public struct ProductSet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// "1970-01-01T00:00:00Z".
   ///
   /// This field is ignored when creating a ProductSet.
-  public var indexTime: GoogleCloudWkt.Timestamp? = nil
+  public var indexTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. If there was an error with indexing the product set, the field
   /// is populated.
@@ -69,10 +69,10 @@ public struct ProductSet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vision.v1.ProductSet"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleCloudGax
 
@@ -267,7 +267,7 @@
       /// See `GeneratorsClient.updateGenerator`.
       func updateGenerator(
         generator: Generator?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudDialogflowCXV3.Generator
 
       /// See `GeneratorsClient.deleteGenerator`.
@@ -473,7 +473,7 @@
 
     public func updateGenerator(
       generator: Generator?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.Generator {
       let request = UpdateGeneratorRequest().with {
         $0.generator = generator

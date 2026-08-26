@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleIdentityAccessContextManagerV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc

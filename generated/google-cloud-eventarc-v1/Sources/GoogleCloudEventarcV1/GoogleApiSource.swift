@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A GoogleApiSource represents a subscription of 1P events from a MessageBus.
-public struct GoogleApiSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct GoogleApiSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. Resource name of the form
@@ -36,10 +36,10 @@ public struct GoogleApiSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var etag: Swift.String = Swift.String()
 
   /// Output only. The creation time.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The last-modified time.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Resource labels.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -110,9 +110,9 @@ public struct GoogleApiSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.uid = try container.decode(Swift.String.self, forKey: .uid)
     self.etag = try container.decode(Swift.String.self, forKey: .etag)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
     self.annotations = try container.decode([Swift.String: Swift.String].self, forKey: .annotations)
     self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
@@ -168,7 +168,7 @@ public struct GoogleApiSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Config to enable subscribing to all events from a list of projects.
-  public struct ProjectSubscriptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ProjectSubscriptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. A list of projects to receive events from.
@@ -198,16 +198,16 @@ public struct GoogleApiSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.eventarc.v1.GoogleApiSource.ProjectSubscriptions"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Config to enabled subscribing to events from other projects in the org.
-  public struct OrganizationSubscription: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct OrganizationSubscription: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Enable org level subscription.
@@ -232,11 +232,11 @@ public struct GoogleApiSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.eventarc.v1.GoogleApiSource.OrganizationSubscription"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -258,10 +258,10 @@ public struct GoogleApiSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.eventarc.v1.GoogleApiSource"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

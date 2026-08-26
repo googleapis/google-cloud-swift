@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// ConnectionSchemaMetadata is the singleton resource of each connection.
 /// It includes the entity and action names of runtime resources exposed
 /// by a connection backend.
-public struct ConnectionSchemaMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ConnectionSchemaMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. List of entity names.
@@ -35,11 +35,11 @@ public struct ConnectionSchemaMetadata: Codable, Equatable, GoogleCloudWkt._AnyP
   public var name: Swift.String = Swift.String()
 
   /// Output only. Timestamp when the connection runtime schema was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Timestamp when the connection runtime schema refresh was
   /// triggered.
-  public var refreshTime: GoogleCloudWkt.Timestamp? = nil
+  public var refreshTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The current state of runtime schema.
   public var state: ConnectionSchemaMetadata.State = ConnectionSchemaMetadata.State()
@@ -168,10 +168,10 @@ public struct ConnectionSchemaMetadata: Codable, Equatable, GoogleCloudWkt._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.connectors.v1.ConnectionSchemaMetadata"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

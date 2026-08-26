@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Encapsulates progress related information for a Cloud Bigtable long
 /// running operation.
-public struct OperationProgress: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct OperationProgress: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Percent completion of the operation.
@@ -27,11 +27,11 @@ public struct OperationProgress: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public var progressPercent: Swift.Int32 = Swift.Int32()
 
   /// Time the request was received.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// If set, the time at which this operation failed or was completed
   /// successfully.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `OperationProgress`.
   public init() {}
@@ -52,10 +52,10 @@ public struct OperationProgress: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.bigtable.admin.v2.OperationProgress"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

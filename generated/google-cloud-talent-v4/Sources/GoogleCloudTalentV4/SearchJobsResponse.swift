@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response for SearchJob method.
-public struct SearchJobsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SearchJobsResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The Job entities that match the specified
@@ -87,7 +87,7 @@ public struct SearchJobsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   /// [SearchJobsResponse][google.cloud.talent.v4.SearchJobsResponse].
   ///
   /// [google.cloud.talent.v4.SearchJobsResponse]: <doc:SearchJobsResponse>
-  public struct MatchingJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MatchingJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Job resource that matches the specified
@@ -142,16 +142,16 @@ public struct SearchJobsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.talent.v4.SearchJobsResponse.MatchingJob"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Commute details related to this job.
-  public struct CommuteInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CommuteInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Location used as the destination in the commute calculation.
@@ -161,7 +161,7 @@ public struct SearchJobsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     /// query location. A duration of 0 seconds indicates that the job isn't
     /// reachable within the requested duration, but was returned as part of an
     /// expanded query.
-    public var travelDuration: GoogleCloudWkt.Duration? = nil
+    public var travelDuration: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `CommuteInfo`.
     public init() {}
@@ -182,21 +182,21 @@ public struct SearchJobsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.talent.v4.SearchJobsResponse.CommuteInfo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.talent.v4.SearchJobsResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

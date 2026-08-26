@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudDomainsV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleType

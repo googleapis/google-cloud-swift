@@ -16,13 +16,13 @@
 
 #if VpnTunnels
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   extension VpnTunnelsClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.vpnTunnels.aggregatedList] method.
     ///
     /// [google.cloud.compute.v1.vpnTunnels.aggregatedList]: <doc:VpnTunnelsClient/aggregatedList(request:options:)>
-    public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// A filter expression that filters resources listed in the response. Most
@@ -153,18 +153,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.vpnTunnels.aggregatedListRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.vpnTunnels.delete] method.
     ///
     /// [google.cloud.compute.v1.vpnTunnels.delete]: <doc:VpnTunnelsClient/delete(request:options:)>
-    public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DeleteRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Project ID for this request.
@@ -210,18 +210,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.vpnTunnels.deleteRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.vpnTunnels.get] method.
     ///
     /// [google.cloud.compute.v1.vpnTunnels.get]: <doc:VpnTunnelsClient/`get`(request:options:)>
-    public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GetRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Project ID for this request.
@@ -252,18 +252,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.vpnTunnels.getRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.vpnTunnels.insert] method.
     ///
     /// [google.cloud.compute.v1.vpnTunnels.insert]: <doc:VpnTunnelsClient/insert(request:options:)>
-    public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct InsertRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Project ID for this request.
@@ -311,18 +311,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.vpnTunnels.insertRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.vpnTunnels.list] method.
     ///
     /// [google.cloud.compute.v1.vpnTunnels.list]: <doc:VpnTunnelsClient/list(request:options:)>
-    public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ListRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// A filter expression that filters resources listed in the response. Most
@@ -443,18 +443,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.vpnTunnels.listRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [setLabels()][google.cloud.compute.v1.vpnTunnels.setLabels] method.
     ///
     /// [google.cloud.compute.v1.vpnTunnels.setLabels]: <doc:VpnTunnelsClient/setLabels(request:options:)>
-    public struct SetLabelsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SetLabelsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Project ID for this request.
@@ -505,11 +505,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.vpnTunnels.setLabelsRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
   }

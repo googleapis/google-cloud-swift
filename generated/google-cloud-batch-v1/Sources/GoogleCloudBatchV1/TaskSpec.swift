@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Spec of a task
-public struct TaskSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TaskSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The sequence of one or more runnables (executable scripts,
@@ -45,7 +45,7 @@ public struct TaskSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// the actual maximum run time for a job will be limited to the maximum run
   /// time for a job listed at
   /// https://cloud.google.com/batch/quotas#max-job-duration.
-  public var maxRunDuration: GoogleCloudWkt.Duration? = nil
+  public var maxRunDuration: GoogleCloudWKT.Duration? = nil
 
   /// Maximum number of retries on failures.
   /// The default, 0, which means never retry.
@@ -91,10 +91,10 @@ public struct TaskSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.batch.v1.TaskSpec"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

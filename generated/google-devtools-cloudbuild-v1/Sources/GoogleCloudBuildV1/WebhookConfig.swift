@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// WebhookConfig describes the configuration of a trigger that
 /// creates a build whenever a webhook is sent to a trigger's webhook URL.
-public struct WebhookConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct WebhookConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Potential issues with the underlying Pub/Sub subscription configuration.
@@ -197,10 +197,10 @@ public struct WebhookConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.devtools.cloudbuild.v1.WebhookConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

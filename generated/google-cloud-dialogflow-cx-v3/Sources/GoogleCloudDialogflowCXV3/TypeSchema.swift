@@ -16,11 +16,11 @@
 
 #if Flows || Playbooks || Sessions || TestCases
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Encapsulates different type schema variations: either a reference to an
   /// a schema that's already defined by a tool, or an inline definition.
-  public struct TypeSchema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TypeSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The encapsulated schema.
@@ -86,7 +86,7 @@
     }
 
     /// A reference to the schema of an existing tool.
-    public struct SchemaReference: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SchemaReference: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The tool that contains this schema definition.
@@ -116,11 +116,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.TypeSchema.SchemaReference"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -135,11 +135,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.TypeSchema"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The root node in the resource hierarchy to which a particular entity's
 /// (a company, for example) resources belong.
-public struct Organization: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Organization: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The resource name of the organization. This is the
@@ -37,13 +37,13 @@ public struct Organization: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var state: Organization.State = Organization.State()
 
   /// Output only. Timestamp when the Organization was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Timestamp when the Organization was last modified.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Timestamp when the Organization was requested for deletion.
-  public var deleteTime: GoogleCloudWkt.Timestamp? = nil
+  public var deleteTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. A checksum computed by the server based on the current value
   /// of the Organization resource. This may be sent on update and delete
@@ -91,11 +91,11 @@ public struct Organization: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
     self.state = try container.decode(Organization.State.self, forKey: .state)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.deleteTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .deleteTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .deleteTime)
     self.etag = try container.decode(Swift.String.self, forKey: .etag)
 
     var owner: OneOf_Owner? = nil
@@ -253,10 +253,10 @@ public struct Organization: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.resourcemanager.v3.Organization"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

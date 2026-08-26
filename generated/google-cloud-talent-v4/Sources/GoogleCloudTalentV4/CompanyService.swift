@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleCloudGax
 
@@ -141,7 +141,7 @@ extension Clients {
     /// See `CompanyServiceClient.updateCompany`.
     func updateCompany(
       company: Company?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudTalentV4.Company
 
     /// See `CompanyServiceClient.deleteCompany`.
@@ -256,7 +256,7 @@ extension Clients.CompanyServiceProtocol {
 
   public func updateCompany(
     company: Company?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudTalentV4.Company {
     let request = UpdateCompanyRequest().with {
       $0.company = company

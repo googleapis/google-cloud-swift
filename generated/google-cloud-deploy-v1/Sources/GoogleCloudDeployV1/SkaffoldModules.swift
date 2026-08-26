@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Skaffold Config modules and their remote source.
-public struct SkaffoldModules: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SkaffoldModules: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. The Skaffold Config modules to use from the specified source.
@@ -99,7 +99,7 @@ public struct SkaffoldModules: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Git repository containing Skaffold Config modules.
-  public struct SkaffoldGitSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SkaffoldGitSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Git repository the package should be cloned from.
@@ -130,16 +130,16 @@ public struct SkaffoldModules: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.deploy.v1.SkaffoldModules.SkaffoldGitSource"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Cloud Storage bucket containing Skaffold Config modules.
-  public struct SkaffoldGCSSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SkaffoldGCSSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Cloud Storage source paths to copy recursively. For example,
@@ -169,16 +169,16 @@ public struct SkaffoldModules: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.deploy.v1.SkaffoldModules.SkaffoldGCSSource"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Cloud Build V2 Repository containing Skaffold Configs.
-  public struct SkaffoldGCBRepoSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SkaffoldGCBRepoSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Name of the Cloud Build V2 Repository.
@@ -212,11 +212,11 @@ public struct SkaffoldModules: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.deploy.v1.SkaffoldModules.SkaffoldGCBRepoSource"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -234,10 +234,10 @@ public struct SkaffoldModules: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.deploy.v1.SkaffoldModules"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

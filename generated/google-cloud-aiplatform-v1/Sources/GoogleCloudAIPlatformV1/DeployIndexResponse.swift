@@ -16,13 +16,13 @@
 
 #if IndexEndpointService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Response message for
   /// [IndexEndpointService.DeployIndex][google.cloud.aiplatform.v1.IndexEndpointService.DeployIndex].
   ///
   /// [google.cloud.aiplatform.v1.IndexEndpointService.DeployIndex]: <doc:IndexEndpointServiceClient/deployIndex(request:options:)>
-  public struct DeployIndexResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DeployIndexResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The DeployedIndex that had been deployed in the IndexEndpoint.
@@ -47,11 +47,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.DeployIndexResponse"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

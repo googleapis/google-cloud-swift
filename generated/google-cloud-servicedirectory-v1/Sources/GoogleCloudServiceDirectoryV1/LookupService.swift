@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleCloudGax
 
 /// Service Directory API for looking up service data at runtime.

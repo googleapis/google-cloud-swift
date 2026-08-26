@@ -16,10 +16,10 @@
 
 #if DatasetService || DeploymentResourcePoolService || EndpointService || JobService || ModelService || PipelineService || PredictionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Parameters to configure explaining for Model's predictions.
-  public struct ExplanationParameters: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ExplanationParameters: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// If populated, returns attributions for top K indices of outputs
@@ -43,7 +43,7 @@
     ///
     /// [google.cloud.aiplatform.v1.Attribution.output_index]: <doc:Attribution/outputIndex>
     /// [google.cloud.aiplatform.v1.ExplanationParameters.top_k]: <doc:ExplanationParameters/topK>
-    public var outputIndices: GoogleCloudWkt.ListValue? = nil
+    public var outputIndices: GoogleCloudWKT.ListValue? = nil
 
     public var method: OneOf_Method? = nil
 
@@ -76,7 +76,7 @@
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.topK = try container.decode(Swift.Int32.self, forKey: .topK)
       self.outputIndices = try container.decodeIfPresent(
-        GoogleCloudWkt.ListValue.self, forKey: .outputIndices)
+        GoogleCloudWKT.ListValue.self, forKey: .outputIndices)
 
       var method: OneOf_Method? = nil
       let methodCheckAndSet = {
@@ -156,11 +156,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.ExplanationParameters"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

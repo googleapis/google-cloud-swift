@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The option enables the Kubernetes NUMA-aware Memory Manager feature.
 /// Detailed description about the feature can be found
 /// [here](https://kubernetes.io/docs/tasks/administer-cluster/memory-manager/).
-public struct MemoryManager: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MemoryManager: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Controls the memory management policy on the Node.
@@ -52,10 +52,10 @@ public struct MemoryManager: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.MemoryManager"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -387,7 +387,7 @@ extension Clients {
     /// See `DataprocMetastoreFederationClient.updateFederation`.
     func updateFederation(
       federation: Federation?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Federation>
 
     /// See `DataprocMetastoreFederationClient.deleteFederation`.
@@ -685,7 +685,7 @@ extension Clients.DataprocMetastoreFederationProtocol {
 
   public func updateFederation(
     federation: Federation?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Federation> {
     let request = UpdateFederationRequest().with {
       $0.federation = federation

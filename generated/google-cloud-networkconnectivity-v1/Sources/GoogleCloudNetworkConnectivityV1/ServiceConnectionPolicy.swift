@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// The ServiceConnectionPolicy resource.
-public struct ServiceConnectionPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ServiceConnectionPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Immutable. The name of a ServiceConnectionPolicy.
@@ -29,10 +29,10 @@ public struct ServiceConnectionPolicy: Codable, Equatable, GoogleCloudWkt._AnyPa
   public var name: Swift.String = Swift.String()
 
   /// Output only. Time when the ServiceConnectionPolicy was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Time when the ServiceConnectionPolicy was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// User-defined labels.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -88,7 +88,7 @@ public struct ServiceConnectionPolicy: Codable, Equatable, GoogleCloudWkt._AnyPa
 
   /// Configuration used for Private Service Connect connections. Used when
   /// Infrastructure is PSC.
-  public struct PscConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PscConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The resource paths of subnetworks to use for IP address management.
@@ -248,16 +248,16 @@ public struct ServiceConnectionPolicy: Codable, Equatable, GoogleCloudWkt._AnyPa
       return
         "type.googleapis.com/google.cloud.networkconnectivity.v1.ServiceConnectionPolicy.PscConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Information about a specific Private Service Connect connection.
-  public struct PscConnection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PscConnection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// State of the PSC Connection
@@ -333,11 +333,11 @@ public struct ServiceConnectionPolicy: Codable, Equatable, GoogleCloudWkt._AnyPa
       return
         "type.googleapis.com/google.cloud.networkconnectivity.v1.ServiceConnectionPolicy.PscConnection"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -483,10 +483,10 @@ public struct ServiceConnectionPolicy: Codable, Equatable, GoogleCloudWkt._AnyPa
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkconnectivity.v1.ServiceConnectionPolicy"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

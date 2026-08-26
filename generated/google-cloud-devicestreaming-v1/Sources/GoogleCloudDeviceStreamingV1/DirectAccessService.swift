@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleCloudGax
 
 /// A service for allocating Android devices and interacting with the
@@ -167,7 +167,7 @@ extension Clients {
     /// See `DirectAccessServiceClient.updateDeviceSession`.
     func updateDeviceSession(
       deviceSession: DeviceSession?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDeviceStreamingV1.DeviceSession
 
     /// See `DirectAccessServiceClient.createDeviceSession`.
@@ -312,7 +312,7 @@ extension Clients.DirectAccessServiceProtocol {
 
   public func updateDeviceSession(
     deviceSession: DeviceSession?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudDeviceStreamingV1.DeviceSession {
     let request = UpdateDeviceSessionRequest().with {
       $0.deviceSession = deviceSession

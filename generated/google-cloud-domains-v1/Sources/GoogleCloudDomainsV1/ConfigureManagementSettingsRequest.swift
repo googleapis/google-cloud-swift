@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request for the `ConfigureManagementSettings` method.
-public struct ConfigureManagementSettingsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ConfigureManagementSettingsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The name of the `Registration` whose management settings are being updated,
@@ -31,7 +31,7 @@ public struct ConfigureManagementSettingsRequest: Codable, Equatable, GoogleClou
   /// Required. The field mask describing which fields to update as a comma-separated list.
   /// For example, if only the transfer lock is being updated, the `update_mask`
   /// is `"transfer_lock_state"`.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `ConfigureManagementSettingsRequest`.
   public init() {}
@@ -52,10 +52,10 @@ public struct ConfigureManagementSettingsRequest: Codable, Equatable, GoogleClou
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.domains.v1.ConfigureManagementSettingsRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

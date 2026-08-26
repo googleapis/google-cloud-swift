@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Note kind that represents a logical attestation "role" or "authority". For
 /// example, an organization might have one `Authority` for "QA" and one for
@@ -25,7 +25,7 @@ import Foundation
 /// to attach an occurrence to a given note. It also provides a single point of
 /// lookup to find all attached attestation occurrences, even if they don't all
 /// live in the same project.
-public struct AttestationNote: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AttestationNote: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Hint hints at the purpose of the attestation authority.
@@ -54,7 +54,7 @@ public struct AttestationNote: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// output. Note that these hints should not be used to look up authorities in
   /// security sensitive contexts, such as when looking up attestations to
   /// verify.
-  public struct Hint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Hint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The human readable name of this attestation authority, for
@@ -80,21 +80,21 @@ public struct AttestationNote: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/grafeas.v1.AttestationNote.Hint"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/grafeas.v1.AttestationNote"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

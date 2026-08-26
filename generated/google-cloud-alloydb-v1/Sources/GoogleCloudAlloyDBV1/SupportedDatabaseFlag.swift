@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// SupportedDatabaseFlag gives general information about a database flag,
 /// like type and allowed values. This is a static value that is defined
 /// on the server side, and it cannot be modified by callers.
 /// To set the Database flags on a particular Instance, a caller should modify
 /// the Instance.database_flags field.
-public struct SupportedDatabaseFlag: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SupportedDatabaseFlag: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The name of the flag resource, following Google Cloud conventions, e.g.:
@@ -138,7 +138,7 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleCloudWkt._AnyPack
       try recommendedValueCheckAndSet(.recommendedStringValue(recommendedStringValue))
     }
     if let recommendedIntegerValue = try container.decodeIfPresent(
-      GoogleCloudWkt.Int64Value?.self, forKey: .recommendedIntegerValue)
+      GoogleCloudWKT.Int64Value?.self, forKey: .recommendedIntegerValue)
     {
       try recommendedValueCheckAndSet(.recommendedIntegerValue(recommendedIntegerValue))
     }
@@ -175,7 +175,7 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleCloudWkt._AnyPack
   }
 
   /// Restrictions on STRING type values
-  public struct StringRestrictions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct StringRestrictions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The list of allowed values, if bounded. This field will be empty
@@ -201,23 +201,23 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleCloudWkt._AnyPack
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.alloydb.v1.SupportedDatabaseFlag.StringRestrictions"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Restrictions on INTEGER type values.
-  public struct IntegerRestrictions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct IntegerRestrictions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The minimum value that can be specified, if applicable.
-    public var minValue: GoogleCloudWkt.Int64Value? = nil
+    public var minValue: GoogleCloudWKT.Int64Value? = nil
 
     /// The maximum value that can be specified, if applicable.
-    public var maxValue: GoogleCloudWkt.Int64Value? = nil
+    public var maxValue: GoogleCloudWKT.Int64Value? = nil
 
     /// Initialize a new instance of `IntegerRestrictions`.
     public init() {}
@@ -238,11 +238,11 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleCloudWkt._AnyPack
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.alloydb.v1.SupportedDatabaseFlag.IntegerRestrictions"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -485,16 +485,16 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleCloudWkt._AnyPack
     /// The recommended value for a STRING flag.
     case recommendedStringValue(Swift.String)
     /// The recommended value for an INTEGER flag.
-    indirect case recommendedIntegerValue(GoogleCloudWkt.Int64Value?)
+    indirect case recommendedIntegerValue(GoogleCloudWKT.Int64Value?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.alloydb.v1.SupportedDatabaseFlag"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

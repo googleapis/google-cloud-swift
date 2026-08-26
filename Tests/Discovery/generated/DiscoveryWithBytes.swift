@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A message with byte data.
-public struct DiscoveryWithBytes: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DiscoveryWithBytes: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// An map field.
@@ -57,7 +57,7 @@ public struct DiscoveryWithBytes: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     do {
       let strings = try container.decode([Swift.String: Swift.String].self, forKey: .map)
       self.map = try strings.mapValues {
-        guard let v = GoogleCloudWkt._DiscoveryBase64.decode($0) else {
+        guard let v = GoogleCloudWKT._DiscoveryBase64.decode($0) else {
           throw DecodingError.dataCorrupted(
             DecodingError.Context(
               codingPath: decoder.codingPath, debugDescription: "Expected url-safe encoded value")
@@ -67,7 +67,7 @@ public struct DiscoveryWithBytes: Codable, Equatable, GoogleCloudWkt._AnyPackabl
       }
     }
     if let s = try container.decodeIfPresent(Swift.String.self, forKey: .`optional`) {
-      guard let v = GoogleCloudWkt._DiscoveryBase64.decode(s) else {
+      guard let v = GoogleCloudWKT._DiscoveryBase64.decode(s) else {
         throw DecodingError.dataCorrupted(
           DecodingError.Context(
             codingPath: decoder.codingPath, debugDescription: "Expected url-safe encoded value")
@@ -78,7 +78,7 @@ public struct DiscoveryWithBytes: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     do {
       let strings = try container.decode([Swift.String].self, forKey: .repeated)
       self.repeated = try strings.map {
-        guard let v = GoogleCloudWkt._DiscoveryBase64.decode($0) else {
+        guard let v = GoogleCloudWKT._DiscoveryBase64.decode($0) else {
           throw DecodingError.dataCorrupted(
             DecodingError.Context(
               codingPath: decoder.codingPath, debugDescription: "Expected url-safe encoded value")
@@ -93,27 +93,27 @@ public struct DiscoveryWithBytes: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     var container = encoder.container(keyedBy: CodingKeys.self)
     do {
       let transformed = self.map.mapValues {
-        GoogleCloudWkt._DiscoveryBase64.encode($0)
+        GoogleCloudWKT._DiscoveryBase64.encode($0)
       }
       try container.encode(transformed, forKey: .map)
     }
     if let v = `optional` {
       try container.encode(
-        GoogleCloudWkt._DiscoveryBase64.encode(v), forKey: .`optional`
+        GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .`optional`
       )
     }
     try container.encode(
-      repeated.map { GoogleCloudWkt._DiscoveryBase64.encode($0) }, forKey: .repeated
+      repeated.map { GoogleCloudWKT._DiscoveryBase64.encode($0) }, forKey: .repeated
     )
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/.DiscoveryWithBytes"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -16,20 +16,20 @@
 
 #if TransitionRouteGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The request message for
   /// [TransitionRouteGroups.UpdateTransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroups.UpdateTransitionRouteGroup].
   ///
   /// [google.cloud.dialogflow.cx.v3.TransitionRouteGroups.UpdateTransitionRouteGroup]: <doc:TransitionRouteGroupsClient/updateTransitionRouteGroup(request:options:)>
-  public struct UpdateTransitionRouteGroupRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct UpdateTransitionRouteGroupRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The transition route group to update.
     public var transitionRouteGroup: TransitionRouteGroup? = nil
 
     /// The mask to control which fields get updated.
-    public var updateMask: GoogleCloudWkt.FieldMask? = nil
+    public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
     /// The language of the following fields in `TransitionRouteGroup`:
     ///
@@ -63,11 +63,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.UpdateTransitionRouteGroupRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

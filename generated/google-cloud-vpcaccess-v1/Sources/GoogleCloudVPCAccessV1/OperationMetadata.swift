@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Metadata for google.longrunning.Operation.
-public struct OperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct OperationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Method that initiated the operation e.g.
@@ -26,10 +26,10 @@ public struct OperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public var method: Swift.String = Swift.String()
 
   /// Output only. Time when the operation was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Time when the operation completed.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Name of the resource that this operation is acting on e.g.
   /// projects/my-project/locations/us-central1/connectors/v1.
@@ -54,10 +54,10 @@ public struct OperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vpcaccess.v1.OperationMetadata"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

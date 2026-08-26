@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Azure metadata associated with the resource, only applicable if the finding's
 /// cloud provider is Microsoft Azure.
-public struct AzureMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AzureMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A list of Azure management groups associated with the resource, ordered
@@ -52,7 +52,7 @@ public struct AzureMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Represents an Azure management group.
-  public struct AzureManagementGroup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AzureManagementGroup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The UUID of the Azure management group, for example,
@@ -81,16 +81,16 @@ public struct AzureMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.securitycenter.v2.AzureMetadata.AzureManagementGroup"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Represents an Azure subscription.
-  public struct AzureSubscription: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AzureSubscription: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The UUID of the Azure subscription, for example,
@@ -119,16 +119,16 @@ public struct AzureMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.securitycenter.v2.AzureMetadata.AzureSubscription"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Represents an Azure resource group.
-  public struct AzureResourceGroup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AzureResourceGroup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The ID of the Azure resource group.
@@ -156,16 +156,16 @@ public struct AzureMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.securitycenter.v2.AzureMetadata.AzureResourceGroup"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Represents a Microsoft Entra tenant.
-  public struct AzureTenant: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AzureTenant: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The ID of the Microsoft Entra tenant, for example,
@@ -194,21 +194,21 @@ public struct AzureMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.securitycenter.v2.AzureMetadata.AzureTenant"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.AzureMetadata"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

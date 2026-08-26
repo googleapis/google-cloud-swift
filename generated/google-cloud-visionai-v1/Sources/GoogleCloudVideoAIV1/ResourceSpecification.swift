@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// ResourceSpec collects a set of resources that can
 /// be used to specify requests and requirements.
@@ -23,7 +23,7 @@ import Foundation
 /// Note: Highly experimental as this can be runtime dependent.
 /// Can use the "extras" field to experiment first before trying
 /// to abstract it.
-public struct ResourceSpecification: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ResourceSpecification: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// CPU specification.
@@ -97,10 +97,10 @@ public struct ResourceSpecification: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.ResourceSpecification"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The analysis resource.
-public struct Analysis: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Analysis: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Immutable. The resource name of the analysis.
@@ -27,11 +27,11 @@ public struct Analysis: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Output only. The time at which the analysis was requested.
-  public var requestTime: GoogleCloudWkt.Timestamp? = nil
+  public var requestTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time at which the analysis was created, which occurs when
   /// the long-running operation completes.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The result of the analysis, which is populated when the
   /// analysis finishes.
@@ -60,10 +60,10 @@ public struct Analysis: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.contactcenterinsights.v1.Analysis"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

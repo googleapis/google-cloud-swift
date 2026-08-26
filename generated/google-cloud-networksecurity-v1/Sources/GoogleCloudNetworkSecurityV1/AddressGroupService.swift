@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -542,7 +542,7 @@ extension Clients {
     /// See `AddressGroupServiceClient.updateAddressGroup`.
     func updateAddressGroup(
       addressGroup: AddressGroup?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<AddressGroup>
 
     /// See `AddressGroupServiceClient.addAddressGroupItems`.
@@ -943,7 +943,7 @@ extension Clients.AddressGroupServiceProtocol {
 
   public func updateAddressGroup(
     addressGroup: AddressGroup?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<AddressGroup> {
     let request = UpdateAddressGroupRequest().with {
       $0.addressGroup = addressGroup

@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A session is a suite of tests, generally being made in the context
 /// of testing code generation.
 ///
 /// A session defines tests it may expect, based on which version of the
 /// code generation spec is in use.
-public struct Session: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Session: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The name of the session. The ID must conform to ^[a-z]+$
@@ -157,10 +157,10 @@ public struct Session: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.showcase.v1beta1.Session"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

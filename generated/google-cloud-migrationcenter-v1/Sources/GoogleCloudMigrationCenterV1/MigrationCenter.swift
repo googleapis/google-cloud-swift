@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -1342,7 +1342,7 @@ extension Clients {
     /// See `MigrationCenterClient.updateAsset`.
     func updateAsset(
       asset: Asset?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudMigrationCenterV1.Asset
 
     /// See `MigrationCenterClient.batchUpdateAssets`.
@@ -1442,7 +1442,7 @@ extension Clients {
     /// See `MigrationCenterClient.updateImportJob`.
     func updateImportJob(
       importJob: ImportJob?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<ImportJob>
 
     /// See `MigrationCenterClient.validateImportJob`.
@@ -1567,7 +1567,7 @@ extension Clients {
     /// See `MigrationCenterClient.updateGroup`.
     func updateGroup(
       group: Group?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Group>
 
     /// See `MigrationCenterClient.deleteGroup`.
@@ -1677,7 +1677,7 @@ extension Clients {
     /// See `MigrationCenterClient.updateSource`.
     func updateSource(
       source: Source?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Source>
 
     /// See `MigrationCenterClient.deleteSource`.
@@ -1741,7 +1741,7 @@ extension Clients {
     /// See `MigrationCenterClient.updatePreferenceSet`.
     func updatePreferenceSet(
       preferenceSet: PreferenceSet?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<PreferenceSet>
 
     /// See `MigrationCenterClient.deletePreferenceSet`.
@@ -1776,7 +1776,7 @@ extension Clients {
     /// See `MigrationCenterClient.updateSettings`.
     func updateSettings(
       settings: Settings?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Settings>
 
     /// See `MigrationCenterClient.createReportConfig`.
@@ -2432,7 +2432,7 @@ extension Clients.MigrationCenterProtocol {
 
   public func updateAsset(
     asset: Asset?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudMigrationCenterV1.Asset {
     let request = UpdateAssetRequest().with {
       $0.asset = asset
@@ -2694,7 +2694,7 @@ extension Clients.MigrationCenterProtocol {
 
   public func updateImportJob(
     importJob: ImportJob?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<ImportJob> {
     let request = UpdateImportJobRequest().with {
       $0.importJob = importJob
@@ -3037,7 +3037,7 @@ extension Clients.MigrationCenterProtocol {
 
   public func updateGroup(
     group: Group?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Group> {
     let request = UpdateGroupRequest().with {
       $0.group = group
@@ -3340,7 +3340,7 @@ extension Clients.MigrationCenterProtocol {
 
   public func updateSource(
     source: Source?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Source> {
     let request = UpdateSourceRequest().with {
       $0.source = source
@@ -3515,7 +3515,7 @@ extension Clients.MigrationCenterProtocol {
 
   public func updatePreferenceSet(
     preferenceSet: PreferenceSet?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<PreferenceSet> {
     let request = UpdatePreferenceSetRequest().with {
       $0.preferenceSet = preferenceSet
@@ -3612,7 +3612,7 @@ extension Clients.MigrationCenterProtocol {
 
   public func updateSettings(
     settings: Settings?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Settings> {
     let request = UpdateSettingsRequest().with {
       $0.settings = settings

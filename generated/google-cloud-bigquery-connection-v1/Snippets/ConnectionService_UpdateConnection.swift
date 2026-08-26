@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleBigQueryConnectionV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 
 func sample(
@@ -30,7 +30,7 @@ func sample(
         $0.connection = Connection().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/connections/\(connectionId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

@@ -16,7 +16,7 @@
 
 #if Environments
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents an environment for an agent. You can create multiple versions
   /// of your agent and publish them to separate environments. When you edit an
@@ -26,7 +26,7 @@
   /// you create agent versions, you can publish them to custom environments. You
   /// can create a variety of custom environments for testing, development,
   /// production, etc.
-  public struct Environment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Environment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The name of the environment.
@@ -51,7 +51,7 @@
     public var versionConfigs: [Environment.VersionConfig] = []
 
     /// Output only. Update time of this environment.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// The test cases config for continuous tests of this environment.
     public var testCasesConfig: Environment.TestCasesConfig? = nil
@@ -76,7 +76,7 @@
     }
 
     /// Configuration for the version.
-    public struct VersionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct VersionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. Flow, playbook and tool versions are supported.
@@ -107,16 +107,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Environment.VersionConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// The configuration for continuous tests.
-    public struct TestCasesConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct TestCasesConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// A list of test case names to run. They should be under the same agent.
@@ -157,16 +157,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Environment.TestCasesConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Configuration for webhooks.
-    public struct WebhookConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct WebhookConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The list of webhooks to override for the agent environment. The webhook
@@ -198,22 +198,22 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Environment.WebhookConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Environment"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

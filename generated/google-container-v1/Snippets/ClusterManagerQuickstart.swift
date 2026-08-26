@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudContainerV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample() async throws {
   let client = try GoogleCloudContainerV1.ClusterManagerClient()

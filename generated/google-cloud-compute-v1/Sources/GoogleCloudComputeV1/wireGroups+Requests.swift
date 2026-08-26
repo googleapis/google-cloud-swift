@@ -16,13 +16,13 @@
 
 #if WireGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   extension WireGroupsClient {
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.wireGroups.delete] method.
     ///
     /// [google.cloud.compute.v1.wireGroups.delete]: <doc:WireGroupsClient/delete(request:options:)>
-    public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DeleteRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       public var crossSiteNetwork: Swift.String = Swift.String()
@@ -68,18 +68,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.wireGroups.deleteRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.wireGroups.get] method.
     ///
     /// [google.cloud.compute.v1.wireGroups.get]: <doc:WireGroupsClient/`get`(request:options:)>
-    public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GetRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       public var crossSiteNetwork: Swift.String = Swift.String()
@@ -109,18 +109,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.wireGroups.getRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.wireGroups.insert] method.
     ///
     /// [google.cloud.compute.v1.wireGroups.insert]: <doc:WireGroupsClient/insert(request:options:)>
-    public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct InsertRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       public var crossSiteNetwork: Swift.String = Swift.String()
@@ -171,18 +171,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.wireGroups.insertRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.wireGroups.list] method.
     ///
     /// [google.cloud.compute.v1.wireGroups.list]: <doc:WireGroupsClient/list(request:options:)>
-    public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ListRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       public var crossSiteNetwork: Swift.String = Swift.String()
@@ -302,18 +302,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.wireGroups.listRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.wireGroups.patch] method.
     ///
     /// [google.cloud.compute.v1.wireGroups.patch]: <doc:WireGroupsClient/patch(request:options:)>
-    public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct PatchRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       public var crossSiteNetwork: Swift.String = Swift.String()
@@ -338,7 +338,7 @@
       public var requestId: Swift.String? = nil
 
       /// update_mask indicates fields to be updated as part of this request.
-      public var updateMask: GoogleCloudWkt.FieldMask? = nil
+      public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
       /// [Input Only] Validate the new configuration, but don't update it.
       public var validateOnly: Swift.Bool? = nil
@@ -370,11 +370,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.wireGroups.patchRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
   }

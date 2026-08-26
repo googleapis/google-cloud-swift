@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response from a discover request.
-public struct DiscoverConnectionProfileResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DiscoverConnectionProfileResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The data object that has been enriched by the discover API call.
@@ -131,10 +131,10 @@ public struct DiscoverConnectionProfileResponse: Codable, Equatable, GoogleCloud
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datastream.v1.DiscoverConnectionProfileResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

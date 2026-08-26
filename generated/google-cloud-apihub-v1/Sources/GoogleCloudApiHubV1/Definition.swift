@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents a definition for example schema, request, response definitions
 /// contained in an API version.
@@ -24,7 +24,7 @@ import Foundation
 /// definition will be created only corresponding to OpenAPI spec as parsing is
 /// supported for OpenAPI spec. Also, within OpenAPI spec, only `schema` object
 /// is supported.
-public struct Definition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Definition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The name of the definition.
@@ -42,10 +42,10 @@ public struct Definition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var type: Definition.Type_ = Definition.Type_()
 
   /// Output only. The time at which the definition was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time at which the definition was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. The list of user defined attributes associated with the
   /// definition resource. The key is the attribute name. It will be of the
@@ -87,9 +87,9 @@ public struct Definition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.spec = try container.decode(Swift.String.self, forKey: .spec)
     self.type = try container.decode(Definition.Type_.self, forKey: .type)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.attributes = try container.decode(
       [Swift.String: AttributeValues].self, forKey: .attributes)
 
@@ -232,10 +232,10 @@ public struct Definition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.apihub.v1.Definition"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

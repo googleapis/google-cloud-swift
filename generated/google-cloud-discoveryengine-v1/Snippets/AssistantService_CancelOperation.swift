@@ -19,7 +19,7 @@
   // snippet.show
   import Foundation
   import GoogleCloudDiscoveryEngineV1
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
 
   func sample(client: AssistantServiceClient) async throws {

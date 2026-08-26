@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Entry metadata.
 /// A Data Catalog entry represents another resource in Google
@@ -29,7 +29,7 @@ import Foundation
 /// [Tag][google.cloud.datacatalog.v1.Tag].
 ///
 /// [google.cloud.datacatalog.v1.Tag]: <doc:Tag>
-public struct Entry: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Entry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Identifier. The resource name of an entry in URL format.
@@ -520,10 +520,10 @@ public struct Entry: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datacatalog.v1.Entry"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

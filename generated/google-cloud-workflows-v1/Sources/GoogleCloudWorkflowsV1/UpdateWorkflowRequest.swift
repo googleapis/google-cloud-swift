@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request for the
 /// [UpdateWorkflow][google.cloud.workflows.v1.Workflows.UpdateWorkflow]
 /// method.
 ///
 /// [google.cloud.workflows.v1.Workflows.UpdateWorkflow]: <doc:WorkflowsClient/updateWorkflow(request:options:)>
-public struct UpdateWorkflowRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateWorkflowRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Workflow to be updated.
@@ -30,7 +30,7 @@ public struct UpdateWorkflowRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
 
   /// List of fields to be updated. If not present, the entire workflow
   /// will be updated.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `UpdateWorkflowRequest`.
   public init() {}
@@ -51,10 +51,10 @@ public struct UpdateWorkflowRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.workflows.v1.UpdateWorkflowRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// Channel resource represents the processor that does a user-defined
@@ -23,7 +23,7 @@ import GoogleRpc
 /// input, transcoding it to multiple renditions, and publishing output live
 /// streams in certain formats (for example, HLS or DASH) to the specified
 /// location.
-public struct Channel: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Channel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The resource name of the channel, in the form of:
@@ -31,10 +31,10 @@ public struct Channel: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Output only. The creation time.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The update time.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// User-defined key/value metadata.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -133,7 +133,7 @@ public struct Channel: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Location of output file(s) in a Google Cloud Storage bucket.
-  public struct Output: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Output: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// URI for the output file(s). For example, `gs://my-bucket/outputs/`.
@@ -158,11 +158,11 @@ public struct Channel: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.video.livestream.v1.Channel.Output"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -314,10 +314,10 @@ public struct Channel: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.video.livestream.v1.Channel"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 

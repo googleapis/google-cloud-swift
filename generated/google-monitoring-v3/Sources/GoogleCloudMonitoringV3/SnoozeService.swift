@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleCloudGax
 
 /// The SnoozeService API is used to temporarily prevent an alert policy from
@@ -140,7 +140,7 @@ extension Clients {
     /// See `SnoozeServiceClient.updateSnooze`.
     func updateSnooze(
       snooze: Snooze?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudMonitoringV3.Snooze
 
     /// See `SnoozeServiceClient.createSnooze`.
@@ -265,7 +265,7 @@ extension Clients.SnoozeServiceProtocol {
 
   public func updateSnooze(
     snooze: Snooze?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudMonitoringV3.Snooze {
     let request = UpdateSnoozeRequest().with {
       $0.snooze = snooze

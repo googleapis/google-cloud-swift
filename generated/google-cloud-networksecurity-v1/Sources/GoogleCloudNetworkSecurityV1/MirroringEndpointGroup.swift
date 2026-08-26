@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An endpoint group is a consumer frontend for a deployment group (backend).
 /// In order to configure mirroring for a network, consumers must create:
 /// - An association between their network and the endpoint group.
 /// - A security profile that points to the endpoint group.
 /// - A mirroring rule that references the security profile (group).
-public struct MirroringEndpointGroup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MirroringEndpointGroup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Immutable. Identifier. The resource name of this endpoint group, for
@@ -33,11 +33,11 @@ public struct MirroringEndpointGroup: Codable, Equatable, GoogleCloudWkt._AnyPac
 
   /// Output only. The timestamp when the resource was created.
   /// See https://google.aip.dev/148#timestamps.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The timestamp when the resource was most recently updated.
   /// See https://google.aip.dev/148#timestamps.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Labels are key/value pairs that help to organize and filter
   /// resources.
@@ -91,7 +91,7 @@ public struct MirroringEndpointGroup: Codable, Equatable, GoogleCloudWkt._AnyPac
   }
 
   /// The endpoint group's view of a connected deployment group.
-  public struct ConnectedDeploymentGroup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ConnectedDeploymentGroup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The connected deployment group's resource name, for example:
@@ -122,16 +122,16 @@ public struct MirroringEndpointGroup: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.cloud.networksecurity.v1.MirroringEndpointGroup.ConnectedDeploymentGroup"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The endpoint group's view of a connected association.
-  public struct AssociationDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AssociationDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The connected association's resource name, for example:
@@ -168,11 +168,11 @@ public struct MirroringEndpointGroup: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.cloud.networksecurity.v1.MirroringEndpointGroup.AssociationDetails"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -417,10 +417,10 @@ public struct MirroringEndpointGroup: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networksecurity.v1.MirroringEndpointGroup"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

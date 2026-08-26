@@ -32,7 +32,7 @@ let package = Package(
     .target(
       name: "GoogleCloudAIPlatformV1SchemaPredictPrediction",
       dependencies: [
-        .product(name: "GoogleCloudWkt", package: "wkt")
+        .product(name: "GoogleCloudWKT", package: "wkt")
       ],
     )
   ]

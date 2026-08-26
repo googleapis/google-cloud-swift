@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A YARN application created by a job. Application information is a subset of
 /// <code>org.apache.hadoop.yarn.proto.YarnProtos.ApplicationReportProto</code>.
 ///
 /// **Beta Feature**: This report is available for testing purposes only. It may
 /// be changed before final release.
-public struct YarnApplication: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct YarnApplication: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The application name.
@@ -215,10 +215,10 @@ public struct YarnApplication: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataproc.v1.YarnApplication"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

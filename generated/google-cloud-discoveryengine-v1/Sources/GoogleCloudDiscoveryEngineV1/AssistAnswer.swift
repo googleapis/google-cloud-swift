@@ -16,11 +16,11 @@
 
 #if AssistantService || ConversationalSearchService || SessionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// AssistAnswer resource, main part of
   /// [AssistResponse][google.cloud.discoveryengine.v1.AssistResponse].
-  public struct AssistAnswer: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AssistAnswer: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Immutable. Resource name of the `AssistAnswer`.
@@ -57,7 +57,7 @@
     }
 
     /// One part of the multi-part response of the assist call.
-    public struct Reply: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Reply: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Alternatives for the assistant reply.
@@ -124,11 +124,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.AssistAnswer.Reply"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -362,11 +362,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.AssistAnswer"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

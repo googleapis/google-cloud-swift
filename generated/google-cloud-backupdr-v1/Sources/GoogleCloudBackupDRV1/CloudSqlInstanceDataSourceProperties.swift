@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// CloudSqlInstanceDataSourceProperties represents the properties of a
 /// Cloud SQL resource that are stored in the DataSource.
-public struct CloudSqlInstanceDataSourceProperties: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CloudSqlInstanceDataSourceProperties: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Name of the Cloud SQL instance backed up by the datasource.
@@ -31,7 +31,7 @@ public struct CloudSqlInstanceDataSourceProperties: Codable, Equatable, GoogleCl
   public var databaseInstalledVersion: Swift.String = Swift.String()
 
   /// Output only. The instance creation timestamp.
-  public var instanceCreateTime: GoogleCloudWkt.Timestamp? = nil
+  public var instanceCreateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The tier (or machine type) for this instance. Example:
   /// `db-custom-1-3840`
@@ -56,10 +56,10 @@ public struct CloudSqlInstanceDataSourceProperties: Codable, Equatable, GoogleCl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.backupdr.v1.CloudSqlInstanceDataSourceProperties"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

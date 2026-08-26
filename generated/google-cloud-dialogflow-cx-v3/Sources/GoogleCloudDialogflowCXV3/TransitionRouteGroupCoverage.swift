@@ -16,12 +16,12 @@
 
 #if TestCases
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Transition route group coverage represents the percentage of all possible
   /// transition routes present within any of a parent's test cases. The results
   /// are grouped by the transition route group.
-  public struct TransitionRouteGroupCoverage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TransitionRouteGroupCoverage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Transition route group coverages.
@@ -48,7 +48,7 @@
     }
 
     /// Coverage result message for one transition route group.
-    public struct Coverage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Coverage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Transition route group metadata. Only name and displayName will be set.
@@ -78,7 +78,7 @@
       }
 
       /// A transition coverage in a transition route group.
-      public struct Transition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Transition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Intent route or condition route.
@@ -108,11 +108,11 @@
           return
             "type.googleapis.com/google.cloud.dialogflow.cx.v3.TransitionRouteGroupCoverage.Coverage.Transition"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -120,22 +120,22 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.cx.v3.TransitionRouteGroupCoverage.Coverage"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.TransitionRouteGroupCoverage"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

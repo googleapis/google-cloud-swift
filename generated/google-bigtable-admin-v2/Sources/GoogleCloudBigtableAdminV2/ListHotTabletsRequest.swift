@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for BigtableInstanceAdmin.ListHotTablets.
-public struct ListHotTabletsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ListHotTabletsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The cluster name to list hot tablets.
@@ -32,10 +32,10 @@ public struct ListHotTabletsRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
   /// it is unset. The start time should be less than the end time, and the
   /// maximum allowed time range between start time and end time is 48 hours.
   /// Start time and end time should have values between Now and Now - 14 days.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The end time to list hot tablets.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Maximum number of results per page.
   ///
@@ -70,10 +70,10 @@ public struct ListHotTabletsRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.bigtable.admin.v2.ListHotTabletsRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

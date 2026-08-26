@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An agent acts as the fundamental building block that provides instructions to
 /// the Large Language Model (LLM) for executing specific tasks.
-public struct Agent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Agent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The unique identifier of the agent.
@@ -87,10 +87,10 @@ public struct Agent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var afterToolCallbacks: [Callback] = []
 
   /// Output only. Timestamp when the agent was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Timestamp when the agent was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. List of guardrails for the agent.
   /// Format:
@@ -178,9 +178,9 @@ public struct Agent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.beforeToolCallbacks = try container.decode([Callback].self, forKey: .beforeToolCallbacks)
     self.afterToolCallbacks = try container.decode([Callback].self, forKey: .afterToolCallbacks)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.guardrails = try container.decode([Swift.String].self, forKey: .guardrails)
     self.etag = try container.decode(Swift.String.self, forKey: .etag)
     self.toolsets = try container.decode([Agent.AgentToolset].self, forKey: .toolsets)
@@ -245,7 +245,7 @@ public struct Agent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Default agent type. The agent uses instructions and callbacks specified in
   /// the agent to perform the task using a large language model.
-  public struct LlmAgent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct LlmAgent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `LlmAgent`.
@@ -267,11 +267,11 @@ public struct Agent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ces.v1.Agent.LlmAgent"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -281,7 +281,7 @@ public struct Agent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// The Dialogflow agent will process subsequent user queries until the session
   /// ends or flow ends, and the control is transferred back to the parent CES
   /// agent.
-  public struct RemoteDialogflowAgent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RemoteDialogflowAgent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The
@@ -341,16 +341,16 @@ public struct Agent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ces.v1.Agent.RemoteDialogflowAgent"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A toolset with a selection of its tools.
-  public struct AgentToolset: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AgentToolset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The resource name of the toolset.
@@ -380,11 +380,11 @@ public struct Agent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ces.v1.Agent.AgentToolset"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -406,10 +406,10 @@ public struct Agent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.Agent"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

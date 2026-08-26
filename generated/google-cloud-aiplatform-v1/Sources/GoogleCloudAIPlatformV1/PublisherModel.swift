@@ -16,10 +16,10 @@
 
 #if ModelGardenService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A Model Garden Publisher Model.
-  public struct PublisherModel: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PublisherModel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The resource name of the PublisherModel.
@@ -76,7 +76,7 @@
     }
 
     /// Reference to a resource.
-    public struct ResourceReference: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ResourceReference: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       public var reference: OneOf_Reference? = nil
@@ -168,16 +168,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.PublisherModel.ResourceReference"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// A named piece of documentation.
-    public struct Documentation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Documentation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. E.g., OVERVIEW, USE CASES, DOCUMENTATION, SDK & SAMPLES, JAVA,
@@ -206,16 +206,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.PublisherModel.Documentation"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Actions could take on this Publisher Model.
-    public struct CallToAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct CallToAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. To view Rest API docs.
@@ -279,7 +279,7 @@
 
       /// The regional resource name or the URI. Key is region, e.g.,
       /// us-central1, europe-west2, global, etc..
-      public struct RegionalResourceReferences: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct RegionalResourceReferences: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required.
@@ -317,16 +317,16 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.PublisherModel.CallToAction.RegionalResourceReferences"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Rest API docs.
-      public struct ViewRestApi: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct ViewRestApi: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required.
@@ -355,16 +355,16 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.PublisherModel.CallToAction.ViewRestApi"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Open notebooks.
-      public struct OpenNotebooks: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct OpenNotebooks: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. Regional resource references to notebooks.
@@ -390,16 +390,16 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.PublisherModel.CallToAction.OpenNotebooks"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Open fine tuning pipelines.
-      public struct OpenFineTuningPipelines: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct OpenFineTuningPipelines: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. Regional resource references to fine tuning pipelines.
@@ -426,17 +426,17 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.PublisherModel.CallToAction.OpenFineTuningPipelines"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Model metadata that is needed for UploadModel or
       /// DeployModel/CreateEndpoint requests.
-      public struct Deploy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Deploy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. Default model display name.
@@ -571,7 +571,7 @@
 
         /// Metadata information about the deployment for managing deployment
         /// config.
-        public struct DeployMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct DeployMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Optional. Labels for the deployment. For managing deployment config
@@ -601,11 +601,11 @@
             return
               "type.googleapis.com/google.cloud.aiplatform.v1.PublisherModel.CallToAction.Deploy.DeployMetadata"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
@@ -627,16 +627,16 @@
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.cloud.aiplatform.v1.PublisherModel.CallToAction.Deploy"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Configurations for PublisherModel GKE deployment
-      public struct DeployGke: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct DeployGke: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. GKE deployment configuration in yaml format.
@@ -662,22 +662,22 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.PublisherModel.CallToAction.DeployGke"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.PublisherModel.CallToAction"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -1046,11 +1046,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.PublisherModel"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Stored in the
 /// [google.longrunning.Operation.metadata][google.longrunning.Operation.metadata]
 /// field returned by UpdateGlossary.
 ///
 /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
-public struct UpdateGlossaryMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateGlossaryMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The updated glossary object.
@@ -33,7 +33,7 @@ public struct UpdateGlossaryMetadata: Codable, Equatable, GoogleCloudWkt._AnyPac
   public var state: UpdateGlossaryMetadata.State = UpdateGlossaryMetadata.State()
 
   /// The time when the operation was submitted to the server.
-  public var submitTime: GoogleCloudWkt.Timestamp? = nil
+  public var submitTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `UpdateGlossaryMetadata`.
   public init() {}
@@ -181,10 +181,10 @@ public struct UpdateGlossaryMetadata: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.translation.v3.UpdateGlossaryMetadata"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

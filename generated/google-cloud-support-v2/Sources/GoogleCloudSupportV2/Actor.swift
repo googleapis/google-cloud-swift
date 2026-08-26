@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An Actor represents an entity that performed an action. For example, an actor
 /// could be a user who posted a comment on a support case, a user who
 /// uploaded an attachment, or a service account that created a support case.
-public struct Actor: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Actor: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The name to display for the actor. If not provided, it is inferred from
@@ -67,10 +67,10 @@ public struct Actor: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.support.v2.Actor"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

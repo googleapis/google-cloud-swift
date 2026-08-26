@@ -19,7 +19,7 @@
   // snippet.show
   import Foundation
   import GoogleCloudComputeV1
-  import GoogleCloudWkt
+  import GoogleCloudWKT
 
   func sample() async throws {
     let client = try GoogleCloudComputeV1.GlobalNetworkEndpointGroupsClient()

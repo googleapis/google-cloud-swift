@@ -16,13 +16,13 @@
 
 import Foundation
 @_spi(GoogleCloudInternal) import GoogleCloudGax
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The response message for
 /// [AssetService.AnalyzeOrgPolicies][google.cloud.asset.v1.AssetService.AnalyzeOrgPolicies].
 ///
 /// [google.cloud.asset.v1.AssetService.AnalyzeOrgPolicies]: <doc:AssetServiceClient/analyzeOrgPolicies(request:options:)>
-public struct AnalyzeOrgPoliciesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AnalyzeOrgPoliciesResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable
 {
@@ -61,7 +61,7 @@ public struct AnalyzeOrgPoliciesResponse: Codable, Equatable, GoogleCloudWkt._An
   }
 
   /// The organization policy result to the query.
-  public struct OrgPolicyResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct OrgPolicyResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The consolidated organization policy for the analyzed resource. The
@@ -117,22 +117,22 @@ public struct AnalyzeOrgPoliciesResponse: Codable, Equatable, GoogleCloudWkt._An
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.asset.v1.AnalyzeOrgPoliciesResponse.OrgPolicyResult"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.asset.v1.AnalyzeOrgPoliciesResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 
   public func _getPaginatedItems() -> [AnalyzeOrgPoliciesResponse.OrgPolicyResult] {

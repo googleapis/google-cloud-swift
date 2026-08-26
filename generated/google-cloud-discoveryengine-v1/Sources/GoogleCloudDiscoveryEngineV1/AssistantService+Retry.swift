@@ -19,7 +19,7 @@
   #if canImport(FoundationNetworking)
     import FoundationNetworking
   #endif
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   @_spi(GoogleCloudInternal) import GoogleCloudGax
 

@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response message for
 /// [AgentService.RestoreAppVersion][google.cloud.ces.v1.AgentService.RestoreAppVersion]
 ///
 /// [google.cloud.ces.v1.AgentService.RestoreAppVersion]: <doc:AgentServiceClient/restoreAppVersion(request:options:)>
-public struct RestoreAppVersionResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RestoreAppVersionResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Initialize a new instance of `RestoreAppVersionResponse`.
@@ -43,10 +43,10 @@ public struct RestoreAppVersionResponse: Codable, Equatable, GoogleCloudWkt._Any
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.RestoreAppVersionResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

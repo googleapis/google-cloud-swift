@@ -16,10 +16,10 @@
 
 #if ConversationModels
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents a conversation model.
-  public struct ConversationModel: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ConversationModel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// ConversationModel resource name. Format:
@@ -30,7 +30,7 @@
     public var displayName: Swift.String = Swift.String()
 
     /// Output only. Creation time of this model.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Required. Datasets used to create model.
     public var datasets: [InputDataset] = []
@@ -93,7 +93,7 @@
       self.name = try container.decode(Swift.String.self, forKey: .name)
       self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
       self.createTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
       self.datasets = try container.decode([InputDataset].self, forKey: .datasets)
       self.state = try container.decode(ConversationModel.State.self, forKey: .state)
       self.languageCode = try container.decode(Swift.String.self, forKey: .languageCode)
@@ -412,11 +412,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.ConversationModel"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

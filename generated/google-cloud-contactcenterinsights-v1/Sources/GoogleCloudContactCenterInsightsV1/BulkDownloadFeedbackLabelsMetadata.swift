@@ -15,18 +15,18 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// Metadata for the BulkDownloadFeedbackLabel endpoint.
-public struct BulkDownloadFeedbackLabelsMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BulkDownloadFeedbackLabelsMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The time the operation was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time the operation finished running.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The original request for download.
   public var request: BulkDownloadFeedbackLabelsRequest? = nil
@@ -55,7 +55,7 @@ public struct BulkDownloadFeedbackLabelsMetadata: Codable, Equatable, GoogleClou
   }
 
   /// Statistics for BulkDownloadFeedbackLabels operation.
-  public struct DownloadStats: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DownloadStats: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The number of objects processed during the download operation.
@@ -92,11 +92,11 @@ public struct BulkDownloadFeedbackLabelsMetadata: Codable, Equatable, GoogleClou
       return
         "type.googleapis.com/google.cloud.contactcenterinsights.v1.BulkDownloadFeedbackLabelsMetadata.DownloadStats"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -104,10 +104,10 @@ public struct BulkDownloadFeedbackLabelsMetadata: Codable, Equatable, GoogleClou
     return
       "type.googleapis.com/google.cloud.contactcenterinsights.v1.BulkDownloadFeedbackLabelsMetadata"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

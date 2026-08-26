@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An OS policy defines the desired state configuration for a VM.
-public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct OSPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The id of the OS policy with the following restrictions:
@@ -70,7 +70,7 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Filtering criteria to select VMs based on inventory details.
-  public struct InventoryFilter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct InventoryFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The OS short name
@@ -104,11 +104,11 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.osconfig.v1.OSPolicy.InventoryFilter"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -118,7 +118,7 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   /// The system ensures that resources are always in their desired state by
   /// taking necessary actions if they have drifted from their desired state.
-  public struct Resource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Resource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The id of the resource with the following restrictions:
@@ -213,7 +213,7 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// A remote or local file.
-    public struct File: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct File: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Defaults to false. When false, files are subject to validations
@@ -294,7 +294,7 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       }
 
       /// Specifies a file available via some URI.
-      public struct Remote: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Remote: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. URI from which to fetch the object. It should contain both
@@ -323,16 +323,16 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.cloud.osconfig.v1.OSPolicy.Resource.File.Remote"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Specifies a file available as a Cloud Storage Object.
-      public struct Gcs: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Gcs: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. Bucket of the Cloud Storage object.
@@ -363,11 +363,11 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.cloud.osconfig.v1.OSPolicy.Resource.File.Gcs"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -384,16 +384,16 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.osconfig.v1.OSPolicy.Resource.File"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// A resource that manages a system package.
-    public struct PackageResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct PackageResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The desired state the agent should maintain for this package.
@@ -508,7 +508,7 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       }
 
       /// A deb package file. dpkg packages only support INSTALLED state.
-      public struct Deb: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Deb: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. A deb package.
@@ -540,18 +540,18 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.osconfig.v1.OSPolicy.Resource.PackageResource.Deb"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// A package managed by APT.
       /// - install: `apt-get update && apt-get -y install [name]`
       /// - remove: `apt-get -y remove [name]`
-      public struct APT: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct APT: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. Package name.
@@ -577,16 +577,16 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.osconfig.v1.OSPolicy.Resource.PackageResource.APT"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// An RPM package file. RPM packages only support INSTALLED state.
-      public struct RPM: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct RPM: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. An rpm package.
@@ -618,18 +618,18 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.osconfig.v1.OSPolicy.Resource.PackageResource.RPM"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// A package managed by YUM.
       /// - install: `yum -y install package`
       /// - remove: `yum -y remove package`
-      public struct YUM: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct YUM: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. Package name.
@@ -655,18 +655,18 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.osconfig.v1.OSPolicy.Resource.PackageResource.YUM"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// A package managed by Zypper.
       /// - install: `zypper -y install package`
       /// - remove: `zypper -y rm package`
-      public struct Zypper: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Zypper: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. Package name.
@@ -692,18 +692,18 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.osconfig.v1.OSPolicy.Resource.PackageResource.Zypper"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// A package managed by GooGet.
       /// - install: `googet -noconfirm install package`
       /// - remove: `googet -noconfirm remove package`
-      public struct GooGet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct GooGet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. Package name.
@@ -729,16 +729,16 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.osconfig.v1.OSPolicy.Resource.PackageResource.GooGet"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// An MSI package. MSI packages only support INSTALLED state.
-      public struct MSI: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct MSI: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. The MSI package.
@@ -770,11 +770,11 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.osconfig.v1.OSPolicy.Resource.PackageResource.MSI"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -905,16 +905,16 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.osconfig.v1.OSPolicy.Resource.PackageResource"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// A resource that manages a package repository.
-    public struct RepositoryResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct RepositoryResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// A specific type of repository.
@@ -999,7 +999,7 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       /// Represents a single apt package repository. These will be added to
       /// a repo file that will be managed at
       /// `/etc/apt/sources.list.d/google_osconfig.list`.
-      public struct AptRepository: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct AptRepository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. Type of archive files in this repository.
@@ -1145,18 +1145,18 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.osconfig.v1.OSPolicy.Resource.RepositoryResource.AptRepository"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Represents a single yum package repository. These are added to a
       /// repo file that is managed at
       /// `/etc/yum.repos.d/google_osconfig.repo`.
-      public struct YumRepository: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct YumRepository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. A one word, unique name for this repository. This is  the
@@ -1194,18 +1194,18 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.osconfig.v1.OSPolicy.Resource.RepositoryResource.YumRepository"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Represents a single zypper package repository. These are added to a
       /// repo file that is managed at
       /// `/etc/zypp/repos.d/google_osconfig.repo`.
-      public struct ZypperRepository: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct ZypperRepository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. A one word, unique name for this repository. This is the
@@ -1243,18 +1243,18 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.osconfig.v1.OSPolicy.Resource.RepositoryResource.ZypperRepository"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Represents a Goo package repository. These are added to a repo file
       /// that is managed at
       /// `C:/ProgramData/GooGet/repos/google_osconfig.repo`.
-      public struct GooRepository: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct GooRepository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. The name of the repository.
@@ -1283,11 +1283,11 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.osconfig.v1.OSPolicy.Resource.RepositoryResource.GooRepository"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -1306,11 +1306,11 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.osconfig.v1.OSPolicy.Resource.RepositoryResource"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -1340,7 +1340,7 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// code of `0` unless an `exit` statement is provided in the script. So, for
     /// reasons of consistency and being explicit, exit codes `100` and `101`
     /// were chosen.
-    public struct ExecResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ExecResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. What to run to validate this resource is in the desired
@@ -1371,7 +1371,7 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       }
 
       /// A file or script to execute.
-      public struct Exec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Exec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional arguments to pass to the source during execution.
@@ -1587,27 +1587,27 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.cloud.osconfig.v1.OSPolicy.Resource.ExecResource.Exec"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.osconfig.v1.OSPolicy.Resource.ExecResource"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// A resource that manages the state of a file.
-    public struct FileResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct FileResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The absolute path of the file within the VM.
@@ -1826,11 +1826,11 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.osconfig.v1.OSPolicy.Resource.FileResource"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -1849,11 +1849,11 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.osconfig.v1.OSPolicy.Resource"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -1865,7 +1865,7 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// When the OS policy is applied to a target VM, the appropriate resource
   /// group within the OS policy is selected based on the `OSFilter` specified
   /// within the resource group.
-  public struct ResourceGroup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ResourceGroup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// List of inventory filters for the resource group.
@@ -1906,11 +1906,11 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.osconfig.v1.OSPolicy.ResourceGroup"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -2025,10 +2025,10 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.osconfig.v1.OSPolicy"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

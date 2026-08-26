@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleCloudGax
 
 /// The AlertPolicyService API is used to manage (list, create, delete,
@@ -175,7 +175,7 @@ extension Clients {
 
     /// See `AlertPolicyServiceClient.updateAlertPolicy`.
     func updateAlertPolicy(
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
       alertPolicy: AlertPolicy?,
     ) async throws -> GoogleCloudMonitoringV3.AlertPolicy
 
@@ -326,7 +326,7 @@ extension Clients.AlertPolicyServiceProtocol {
   }
 
   public func updateAlertPolicy(
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
     alertPolicy: AlertPolicy?,
   ) async throws -> GoogleCloudMonitoringV3.AlertPolicy {
     let request = UpdateAlertPolicyRequest().with {

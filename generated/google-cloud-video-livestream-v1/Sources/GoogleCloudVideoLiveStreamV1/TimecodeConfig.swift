@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleType
 
 /// Timecode configuration.
-public struct TimecodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TimecodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The source of the timecode that will later be used in outputs/manifests.
@@ -69,7 +69,7 @@ public struct TimecodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       timeOffset = $0
     }
     if let utcOffset = try container.decodeIfPresent(
-      GoogleCloudWkt.Duration?.self, forKey: .utcOffset)
+      GoogleCloudWKT.Duration?.self, forKey: .utcOffset)
     {
       try timeOffsetCheckAndSet(.utcOffset(utcOffset))
     }
@@ -203,7 +203,7 @@ public struct TimecodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// and no date). We assume all inputs are live.
   public enum OneOf_TimeOffset: Codable, Equatable, Sendable {
     /// UTC offset. Must be whole seconds, between -18 hours and +18 hours.
-    indirect case utcOffset(GoogleCloudWkt.Duration?)
+    indirect case utcOffset(GoogleCloudWKT.Duration?)
     /// Time zone e.g. "America/Los_Angeles".
     indirect case timeZone(GoogleType.TimeZone?)
   }
@@ -211,10 +211,10 @@ public struct TimecodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.video.livestream.v1.TimecodeConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

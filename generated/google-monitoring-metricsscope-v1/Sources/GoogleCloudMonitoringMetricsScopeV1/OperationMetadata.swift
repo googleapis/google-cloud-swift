@@ -15,21 +15,21 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Contains metadata for longrunning operation for the edit Metrics Scope
 /// endpoints.
-public struct OperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct OperationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Current state of the batch operation.
   public var state: OperationMetadata.State = OperationMetadata.State()
 
   /// The time when the batch request was received.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The time when the operation result was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `OperationMetadata`.
   public init() {}
@@ -169,10 +169,10 @@ public struct OperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.metricsscope.v1.OperationMetadata"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

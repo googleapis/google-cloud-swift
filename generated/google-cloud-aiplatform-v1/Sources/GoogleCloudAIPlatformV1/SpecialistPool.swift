@@ -16,7 +16,7 @@
 
 #if SpecialistPoolService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// SpecialistPool represents customers' own workforce to work on their data
   /// labeling jobs. It includes a group of specialist managers and workers.
@@ -24,7 +24,7 @@
   /// customers' data labeling jobs associated with this pool. Customers create
   /// specialist pool as well as start data labeling jobs on Cloud, managers and
   /// workers handle the jobs using CrowdCompute console.
-  public struct SpecialistPool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SpecialistPool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The resource name of the SpecialistPool.
@@ -67,11 +67,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.SpecialistPool"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

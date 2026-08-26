@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleCloudGax
 
@@ -208,7 +208,7 @@ extension Clients {
     /// See `CmEnrollmentServiceClient.updateCmEnrollment`.
     func updateCmEnrollment(
       cmEnrollment: CmEnrollment?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudSecurityComplianceV1.CmEnrollment
 
     /// See `CmEnrollmentServiceClient.calculateEffectiveCmEnrollment`.
@@ -327,7 +327,7 @@ extension Clients.CmEnrollmentServiceProtocol {
 
   public func updateCmEnrollment(
     cmEnrollment: CmEnrollment?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudSecurityComplianceV1.CmEnrollment {
     let request = UpdateCmEnrollmentRequest().with {
       $0.cmEnrollment = cmEnrollment

@@ -16,12 +16,12 @@
 
 #if InterconnectGroups || Interconnects
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Diagnostics information about the Interconnect connection, which contains
   /// detailed and current technical information about Google's side of the
   /// connection.
-  public struct InterconnectDiagnostics: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct InterconnectDiagnostics: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// A list of InterconnectDiagnostics.ARPEntry objects,
@@ -268,11 +268,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.InterconnectDiagnostics"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

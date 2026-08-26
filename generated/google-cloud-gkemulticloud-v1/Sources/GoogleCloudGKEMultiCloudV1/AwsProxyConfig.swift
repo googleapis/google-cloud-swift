@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Details of a proxy config stored in AWS Secret Manager.
 @available(*, deprecated)
-public struct AwsProxyConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AwsProxyConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The ARN of the AWS Secret Manager secret that contains the HTTP(S) proxy
@@ -53,10 +53,10 @@ public struct AwsProxyConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkemulticloud.v1.AwsProxyConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

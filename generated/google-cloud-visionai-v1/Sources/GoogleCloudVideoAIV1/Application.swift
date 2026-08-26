@@ -15,20 +15,20 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Message describing Application object
-public struct Application: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Application: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// name of resource
   public var name: Swift.String = Swift.String()
 
   /// Output only. [Output only] Create timestamp
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. [Output only] Update timestamp
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Labels as key value pairs
   public var labels: [Swift.String: Swift.String] = [:]
@@ -69,11 +69,11 @@ public struct Application: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Message storing the runtime information of the application.
-  public struct ApplicationRuntimeInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ApplicationRuntimeInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Timestamp when the engine be deployed
-    public var deployTime: GoogleCloudWkt.Timestamp? = nil
+    public var deployTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Globally created resources like warehouse dataschemas.
     public var globalOutputResources: [Application.ApplicationRuntimeInfo.GlobalOutputResource] = []
@@ -98,7 +98,7 @@ public struct Application: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Message about output resources from application.
-    public struct GlobalOutputResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GlobalOutputResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The full resource name of the outputted resources.
@@ -136,16 +136,16 @@ public struct Application: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.visionai.v1.Application.ApplicationRuntimeInfo.GlobalOutputResource"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Monitoring-related configuration for an application.
-    public struct MonitoringConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct MonitoringConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Whether this application has monitoring enabled.
@@ -171,22 +171,22 @@ public struct Application: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.visionai.v1.Application.ApplicationRuntimeInfo.MonitoringConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.Application.ApplicationRuntimeInfo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -459,10 +459,10 @@ public struct Application: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.Application"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

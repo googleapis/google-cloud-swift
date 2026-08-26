@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The base entity type for all the database related entities.
 /// The message contains the entity name, the name of its parent, the entity
 /// type, and the specific details per entity type.
-public struct DatabaseEntity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DatabaseEntity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The short name (e.g. table name) of the entity.
@@ -335,10 +335,10 @@ public struct DatabaseEntity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.clouddms.v1.DatabaseEntity"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

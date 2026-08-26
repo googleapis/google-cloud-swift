@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleCloudGax
 
 /// [Google Quota Control API](https://cloud.google.com/service-control/overview)

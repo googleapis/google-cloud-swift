@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Defines TLS certificate.
-public struct Certificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Certificate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A user-defined name of the certificate. Certificate names must be unique
@@ -29,10 +29,10 @@ public struct Certificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var description: Swift.String = Swift.String()
 
   /// Output only. The creation timestamp of a Certificate.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The last update timestamp of a Certificate.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Set of labels associated with a Certificate.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -47,7 +47,7 @@ public struct Certificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var pemCertificate: Swift.String = Swift.String()
 
   /// Output only. The expiry timestamp of a Certificate.
-  public var expireTime: GoogleCloudWkt.Timestamp? = nil
+  public var expireTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Immutable. The scope of the certificate.
   public var scope: Certificate.Scope = Certificate.Scope()
@@ -89,14 +89,14 @@ public struct Certificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.description = try container.decode(Swift.String.self, forKey: .description)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
     self.sanDnsnames = try container.decode([Swift.String].self, forKey: .sanDnsnames)
     self.pemCertificate = try container.decode(Swift.String.self, forKey: .pemCertificate)
     self.expireTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .expireTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .expireTime)
     self.scope = try container.decode(Certificate.Scope.self, forKey: .scope)
 
     var type: OneOf_Type? = nil
@@ -147,7 +147,7 @@ public struct Certificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Certificate data for a SelfManaged Certificate.
   /// SelfManaged Certificates are uploaded by the user. Updating such
   /// certificates before they expire remains the user's responsibility.
-  public struct SelfManagedCertificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SelfManagedCertificate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Input only. The PEM-encoded certificate chain.
@@ -177,18 +177,18 @@ public struct Certificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.certificatemanager.v1.Certificate.SelfManagedCertificate"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configuration and state of a Managed Certificate.
   /// Certificate Manager provisions and renews Managed Certificates
   /// automatically, for as long as it's authorized to do so.
-  public struct ManagedCertificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ManagedCertificate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Immutable. The domains for which a managed SSL certificate will be
@@ -240,7 +240,7 @@ public struct Certificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Information about issues with provisioning a Managed Certificate.
-    public struct ProvisioningIssue: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ProvisioningIssue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. Reason for provisioning failures.
@@ -381,17 +381,17 @@ public struct Certificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.ProvisioningIssue"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// State of the latest attempt to authorize a domain for certificate
     /// issuance.
-    public struct AuthorizationAttemptInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AuthorizationAttemptInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Domain name of the authorization attempt.
@@ -662,11 +662,11 @@ public struct Certificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.AuthorizationAttemptInfo"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -791,11 +791,11 @@ public struct Certificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.certificatemanager.v1.Certificate.ManagedCertificate"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -918,10 +918,10 @@ public struct Certificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.certificatemanager.v1.Certificate"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

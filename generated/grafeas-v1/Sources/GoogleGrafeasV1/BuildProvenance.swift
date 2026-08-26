@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Provenance of a build. Contains all information needed to verify the full
 /// details about the build from source to completion.
-public struct BuildProvenance: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BuildProvenance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Unique identifier of the build.
@@ -35,13 +35,13 @@ public struct BuildProvenance: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var builtArtifacts: [Artifact] = []
 
   /// Time at which the build was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Time at which execution of the build was started.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Time at which execution of the build was finished.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// E-mail address of the user who initiated this build. Note that this was the
   /// user's e-mail address at the time the build was initiated; this address may
@@ -83,10 +83,10 @@ public struct BuildProvenance: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/grafeas.v1.BuildProvenance"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -19,7 +19,7 @@
 import Foundation
 import GoogleBigQueryDataTransferV1
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: DataTransferServiceClient, projectId: String, transferConfigId: String)
   async throws
@@ -30,7 +30,7 @@ func sample(client: DataTransferServiceClient, projectId: String, transferConfig
         $0.transferConfig = TransferConfig().with {
           $0.name = "projects/\(projectId)/transferConfigs/\(transferConfigId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Aggregated metrics for
 /// [ShipmentRoute][google.cloud.optimization.v1.ShipmentRoute] (resp. for
@@ -28,7 +28,7 @@ import Foundation
 /// [google.cloud.optimization.v1.ShipmentRoute]: <doc:ShipmentRoute>
 /// [google.cloud.optimization.v1.ShipmentRoute.Transition]: <doc:ShipmentRoute/Transition>
 /// [google.cloud.optimization.v1.ShipmentRoute.Visit]: <doc:ShipmentRoute/Visit>
-public struct AggregatedMetrics: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AggregatedMetrics: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Number of shipments performed. Note that a pickup and delivery pair only
@@ -36,19 +36,19 @@ public struct AggregatedMetrics: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public var performedShipmentCount: Swift.Int32 = Swift.Int32()
 
   /// Total travel duration for a route or a solution.
-  public var travelDuration: GoogleCloudWkt.Duration? = nil
+  public var travelDuration: GoogleCloudWKT.Duration? = nil
 
   /// Total wait duration for a route or a solution.
-  public var waitDuration: GoogleCloudWkt.Duration? = nil
+  public var waitDuration: GoogleCloudWKT.Duration? = nil
 
   /// Total delay duration for a route or a solution.
-  public var delayDuration: GoogleCloudWkt.Duration? = nil
+  public var delayDuration: GoogleCloudWKT.Duration? = nil
 
   /// Total break duration for a route or a solution.
-  public var breakDuration: GoogleCloudWkt.Duration? = nil
+  public var breakDuration: GoogleCloudWKT.Duration? = nil
 
   /// Total visit duration for a route or a solution.
-  public var visitDuration: GoogleCloudWkt.Duration? = nil
+  public var visitDuration: GoogleCloudWKT.Duration? = nil
 
   /// The total duration should be equal to the sum of all durations above.
   /// For routes, it also corresponds to:
@@ -58,7 +58,7 @@ public struct AggregatedMetrics: Codable, Equatable, GoogleCloudWkt._AnyPackable
   ///
   /// [google.cloud.optimization.v1.ShipmentRoute.vehicle_end_time]: <doc:ShipmentRoute/vehicleEndTime>
   /// [google.cloud.optimization.v1.ShipmentRoute.vehicle_start_time]: <doc:ShipmentRoute/vehicleStartTime>
-  public var totalDuration: GoogleCloudWkt.Duration? = nil
+  public var totalDuration: GoogleCloudWKT.Duration? = nil
 
   /// Total travel distance for a route or a solution.
   public var travelDistanceMeters: Swift.Double = Swift.Double()
@@ -115,10 +115,10 @@ public struct AggregatedMetrics: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.optimization.v1.AggregatedMetrics"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

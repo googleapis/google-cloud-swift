@@ -19,7 +19,7 @@
   #if canImport(FoundationNetworking)
     import FoundationNetworking
   #endif
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleCloudGax
 
@@ -119,7 +119,7 @@
       /// See `ServingConfigServiceClient.updateServingConfig`.
       func updateServingConfig(
         servingConfig: ServingConfig?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudDiscoveryEngineV1.ServingConfig
 
       /// See `ServingConfigServiceClient.listOperations`.
@@ -183,7 +183,7 @@
 
     public func updateServingConfig(
       servingConfig: ServingConfig?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDiscoveryEngineV1.ServingConfig {
       let request = UpdateServingConfigRequest().with {
         $0.servingConfig = servingConfig

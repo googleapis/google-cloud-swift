@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The source of the asset.
-public struct AssetSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AssetSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   public var sourceForm: OneOf_SourceForm? = nil
@@ -84,7 +84,7 @@ public struct AssetSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// The asset source is from Cloud Storage.
-  public struct AssetGcsSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AssetGcsSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Cloud storage uri.
@@ -109,16 +109,16 @@ public struct AssetSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.AssetSource.AssetGcsSource"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The content of the asset.
-  public struct AssetContentData: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AssetContentData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var assetContentData: Foundation.Data = Foundation.Data()
@@ -142,11 +142,11 @@ public struct AssetSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.AssetSource.AssetContentData"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -160,10 +160,10 @@ public struct AssetSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.AssetSource"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

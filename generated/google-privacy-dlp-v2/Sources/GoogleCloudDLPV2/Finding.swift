@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents a piece of potentially sensitive content.
-public struct Finding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Finding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Resource name in format
@@ -44,7 +44,7 @@ public struct Finding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var location: Location? = nil
 
   /// Timestamp when finding was detected.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Contains data parsed from quotes. Only populated if include_quote was set
   /// to true and a supported infoType was requested. Currently supported
@@ -74,7 +74,7 @@ public struct Finding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var labels: [Swift.String: Swift.String] = [:]
 
   /// Time the job started that produced this finding.
-  public var jobCreateTime: GoogleCloudWkt.Timestamp? = nil
+  public var jobCreateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The job that stored the finding.
   public var jobName: Swift.String = Swift.String()
@@ -101,10 +101,10 @@ public struct Finding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.Finding"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

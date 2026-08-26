@@ -16,10 +16,10 @@
 
 import Foundation
 import GoogleCloudDocumentAIV1
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Defines the structure for content warehouse document proto.
-public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Document: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The resource name of the document.
@@ -58,10 +58,10 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var properties: [Property] = []
 
   /// Output only. The time when the document is last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time when the document is created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// This is used when DocAI was not used to load the document and parsing/
   /// extracting is needed for the inline_raw_document.  For example, if
@@ -91,7 +91,7 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Output only. If linked to a Collection with RetentionPolicy, the date when
   /// the document becomes mutable.
-  public var dispositionTime: GoogleCloudWkt.Timestamp? = nil
+  public var dispositionTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Indicates if the document has a legal hold on it.
   public var legalHold: Swift.Bool = Swift.Bool()
@@ -155,9 +155,9 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Swift.String.self, forKey: .structuredContentUri)
     self.properties = try container.decode([Property].self, forKey: .properties)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.rawDocumentFileType = try container.decode(
       RawDocumentFileType.self, forKey: .rawDocumentFileType)
     self.asyncEnabled = try container.decode(Swift.Bool.self, forKey: .asyncEnabled)
@@ -169,7 +169,7 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.creator = try container.decode(Swift.String.self, forKey: .creator)
     self.updater = try container.decode(Swift.String.self, forKey: .updater)
     self.dispositionTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .dispositionTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .dispositionTime)
     self.legalHold = try container.decode(Swift.Bool.self, forKey: .legalHold)
 
     var structuredContent: OneOf_StructuredContent? = nil
@@ -274,10 +274,10 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.contentwarehouse.v1.Document"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

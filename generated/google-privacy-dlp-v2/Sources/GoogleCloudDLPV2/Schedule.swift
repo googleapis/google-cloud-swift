@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Schedule for inspect job triggers.
-public struct Schedule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Schedule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Type of schedule.
@@ -58,7 +58,7 @@ public struct Schedule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       option = $0
     }
     if let recurrencePeriodDuration = try container.decodeIfPresent(
-      GoogleCloudWkt.Duration?.self, forKey: .recurrencePeriodDuration)
+      GoogleCloudWKT.Duration?.self, forKey: .recurrencePeriodDuration)
     {
       try optionCheckAndSet(.recurrencePeriodDuration(recurrencePeriodDuration))
     }
@@ -86,16 +86,16 @@ public struct Schedule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     ///
     /// This value must be set to a time duration greater than or equal
     /// to 1 day and can be no longer than 60 days.
-    indirect case recurrencePeriodDuration(GoogleCloudWkt.Duration?)
+    indirect case recurrencePeriodDuration(GoogleCloudWKT.Duration?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.Schedule"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

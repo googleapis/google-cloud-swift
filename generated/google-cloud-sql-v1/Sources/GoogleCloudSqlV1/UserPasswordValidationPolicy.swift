@@ -16,17 +16,17 @@
 
 #if SqlUsersService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// User level password validation policy.
-  public struct UserPasswordValidationPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct UserPasswordValidationPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Number of failed login attempts allowed before user get locked.
     public var allowedFailedAttempts: Swift.Int32 = Swift.Int32()
 
     /// Expiration duration after password is updated.
-    public var passwordExpirationDuration: GoogleCloudWkt.Duration? = nil
+    public var passwordExpirationDuration: GoogleCloudWKT.Duration? = nil
 
     /// If true, failed login attempts check will be enabled.
     public var enableFailedAttemptsCheck: Swift.Bool = Swift.Bool()
@@ -57,11 +57,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.UserPasswordValidationPolicy"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

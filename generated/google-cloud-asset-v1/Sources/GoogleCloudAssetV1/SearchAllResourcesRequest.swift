@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Search all resources request.
-public struct SearchAllResourcesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SearchAllResourcesRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. A scope can be a project, a folder, or an organization. The
@@ -196,7 +196,7 @@ public struct SearchAllResourcesRequest: Codable, Equatable, GoogleCloudWkt._Any
   /// are returned.
   /// Examples: `"name,location"`, `"name,versionedResources"`, `"*"`.
   /// Any invalid field path will trigger INVALID_ARGUMENT error.
-  public var readMask: GoogleCloudWkt.FieldMask? = nil
+  public var readMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `SearchAllResourcesRequest`.
   public init() {}
@@ -217,10 +217,10 @@ public struct SearchAllResourcesRequest: Codable, Equatable, GoogleCloudWkt._Any
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.asset.v1.SearchAllResourcesRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

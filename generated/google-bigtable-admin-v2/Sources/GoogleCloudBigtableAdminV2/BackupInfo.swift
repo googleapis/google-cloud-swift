@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Information about a backup.
-public struct BackupInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BackupInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Name of the backup.
@@ -26,11 +26,11 @@ public struct BackupInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Output only. The time that the backup was started. Row data in the backup
   /// will be no older than this timestamp.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. This time that the backup was finished. Row data in the
   /// backup will be no newer than this timestamp.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Name of the table the backup was created from.
   public var sourceTable: Swift.String = Swift.String()
@@ -60,10 +60,10 @@ public struct BackupInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.bigtable.admin.v2.BackupInfo"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

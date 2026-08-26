@@ -16,10 +16,10 @@
 
 #if GenAiTuningService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The spec for a pre-defined metric.
-  public struct PredefinedMetricSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PredefinedMetricSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The name of a pre-defined metric, such as
@@ -27,7 +27,7 @@
     public var metricSpecName: Swift.String = Swift.String()
 
     /// Optional. The parameters needed to run the pre-defined metric.
-    public var metricSpecParameters: GoogleCloudWkt.Struct? = nil
+    public var metricSpecParameters: GoogleCloudWKT.Struct? = nil
 
     /// Initialize a new instance of `PredefinedMetricSpec`.
     public init() {}
@@ -48,11 +48,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.PredefinedMetricSpec"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

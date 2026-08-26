@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Configuration for all of the cluster's control plane endpoints.
-public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// DNS endpoint configuration.
@@ -44,7 +44,7 @@ public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleCloudWkt._A
   }
 
   /// Describes the configuration of a DNS endpoint.
-  public struct DNSEndpointConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DNSEndpointConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The cluster's DNS endpoint configuration.
@@ -111,16 +111,16 @@ public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleCloudWkt._A
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.ControlPlaneEndpointsConfig.DNSEndpointConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// IP endpoints configuration.
-  public struct IPEndpointsConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct IPEndpointsConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Controls whether to allow direct IP access.
@@ -182,21 +182,21 @@ public struct ControlPlaneEndpointsConfig: Codable, Equatable, GoogleCloudWkt._A
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.ControlPlaneEndpointsConfig.IPEndpointsConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.ControlPlaneEndpointsConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

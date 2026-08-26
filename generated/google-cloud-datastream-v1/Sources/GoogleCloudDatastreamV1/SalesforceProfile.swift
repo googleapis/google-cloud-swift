@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Salesforce profile
-public struct SalesforceProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SalesforceProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Domain endpoint for the Salesforce connection.
@@ -91,7 +91,7 @@ public struct SalesforceProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable
   }
 
   /// Username-password credentials.
-  public struct UserCredentials: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct UserCredentials: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Username for the Salesforce connection.
@@ -134,16 +134,16 @@ public struct SalesforceProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.datastream.v1.SalesforceProfile.UserCredentials"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// OAuth2 Client Credentials.
-  public struct Oauth2ClientCredentials: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Oauth2ClientCredentials: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Client ID for Salesforce OAuth2 Client Credentials.
@@ -178,11 +178,11 @@ public struct SalesforceProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable
       return
         "type.googleapis.com/google.cloud.datastream.v1.SalesforceProfile.Oauth2ClientCredentials"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -197,10 +197,10 @@ public struct SalesforceProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datastream.v1.SalesforceProfile"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

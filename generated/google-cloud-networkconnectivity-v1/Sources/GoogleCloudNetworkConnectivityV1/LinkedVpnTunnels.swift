@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A collection of Cloud VPN tunnel resources. These resources should be
 /// redundant HA VPN tunnels that all advertise the same prefixes to Google
 /// Cloud. Alternatively, in a passive/active configuration, all tunnels
 /// should be capable of advertising the same prefixes.
-public struct LinkedVpnTunnels: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct LinkedVpnTunnels: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The URIs of linked VPN tunnel resources.
@@ -59,10 +59,10 @@ public struct LinkedVpnTunnels: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkconnectivity.v1.LinkedVpnTunnels"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

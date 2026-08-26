@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Contains a configuration to make API calls on a repeating basis.
 /// See
 /// https://cloud.google.com/sensitive-data-protection/docs/concepts-job-triggers
 /// to learn more.
-public struct JobTrigger: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct JobTrigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Unique resource name for the triggeredJob, assigned by the service when the
@@ -47,13 +47,13 @@ public struct JobTrigger: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var errors: [Error] = []
 
   /// Output only. The creation timestamp of a triggeredJob.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The last update timestamp of a triggeredJob.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The timestamp of the last time this trigger executed.
-  public var lastRunTime: GoogleCloudWkt.Timestamp? = nil
+  public var lastRunTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Required. A status for this trigger.
   public var status: JobTrigger.Status = JobTrigger.Status()
@@ -98,11 +98,11 @@ public struct JobTrigger: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.triggers = try container.decode([JobTrigger.Trigger].self, forKey: .triggers)
     self.errors = try container.decode([Error].self, forKey: .errors)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.lastRunTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .lastRunTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .lastRunTime)
     self.status = try container.decode(JobTrigger.Status.self, forKey: .status)
 
     var job: OneOf_Job? = nil
@@ -142,7 +142,7 @@ public struct JobTrigger: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// What event needs to occur for a new job to be started.
-  public struct Trigger: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Trigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// What event needs to occur for a new job to be started.
@@ -215,11 +215,11 @@ public struct JobTrigger: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.JobTrigger.Trigger"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -347,10 +347,10 @@ public struct JobTrigger: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.JobTrigger"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

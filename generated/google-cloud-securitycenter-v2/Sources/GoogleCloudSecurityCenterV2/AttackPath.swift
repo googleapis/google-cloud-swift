@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A path that an attacker could take to reach an exposed resource.
-public struct AttackPath: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AttackPath: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The attack path name, for example,
@@ -48,7 +48,7 @@ public struct AttackPath: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Represents one point that an attacker passes through in this attack path.
-  public struct AttackPathNode: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AttackPathNode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The name of the resource at this point in the attack path.
@@ -90,7 +90,7 @@ public struct AttackPath: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// A finding that is associated with this node in the attack path.
-    public struct PathNodeAssociatedFinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct PathNodeAssociatedFinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Canonical name of the associated findings. Example:
@@ -123,16 +123,16 @@ public struct AttackPath: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.securitycenter.v2.AttackPath.AttackPathNode.PathNodeAssociatedFinding"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Detailed steps the attack can take between path nodes.
-    public struct AttackStepNode: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AttackStepNode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Unique ID for one Node
@@ -170,11 +170,11 @@ public struct AttackPath: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.securitycenter.v2.AttackPath.AttackPathNode.AttackStepNode"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -300,17 +300,17 @@ public struct AttackPath: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.securitycenter.v2.AttackPath.AttackPathNode"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Represents a connection between a source node and a destination node in
   /// this attack path.
-  public struct AttackPathEdge: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AttackPathEdge: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The attack node uuid of the source node.
@@ -338,21 +338,21 @@ public struct AttackPath: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.securitycenter.v2.AttackPath.AttackPathEdge"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.AttackPath"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

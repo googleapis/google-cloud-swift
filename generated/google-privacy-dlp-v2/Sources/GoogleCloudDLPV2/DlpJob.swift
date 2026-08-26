@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Combines all of the information about a DLP job.
-public struct DlpJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DlpJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The server-assigned name.
@@ -31,16 +31,16 @@ public struct DlpJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var state: DlpJob.JobState = DlpJob.JobState()
 
   /// Time when the job was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Time when the job started.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Time when the job finished.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Time when the job was last modified by the system.
-  public var lastModified: GoogleCloudWkt.Timestamp? = nil
+  public var lastModified: GoogleCloudWKT.Timestamp? = nil
 
   /// If created by a job trigger, the resource name of the trigger that
   /// instantiated the job.
@@ -92,12 +92,12 @@ public struct DlpJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.type = try container.decode(DlpJobType.self, forKey: .type)
     self.state = try container.decode(DlpJob.JobState.self, forKey: .state)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.startTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .startTime)
-    self.endTime = try container.decodeIfPresent(GoogleCloudWkt.Timestamp.self, forKey: .endTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
     self.lastModified = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .lastModified)
+      GoogleCloudWKT.Timestamp.self, forKey: .lastModified)
     self.jobTriggerName = try container.decode(Swift.String.self, forKey: .jobTriggerName)
     self.errors = try container.decode([Error].self, forKey: .errors)
     self.actionDetails = try container.decode([ActionDetails].self, forKey: .actionDetails)
@@ -296,10 +296,10 @@ public struct DlpJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.DlpJob"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

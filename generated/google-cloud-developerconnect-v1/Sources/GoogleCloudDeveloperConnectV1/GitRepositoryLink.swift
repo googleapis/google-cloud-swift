@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Message describing the GitRepositoryLink object
-public struct GitRepositoryLink: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct GitRepositoryLink: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. Resource name of the repository, in the format
@@ -29,13 +29,13 @@ public struct GitRepositoryLink: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public var cloneUri: Swift.String = Swift.String()
 
   /// Output only. [Output only] Create timestamp
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. [Output only] Update timestamp
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. [Output only] Delete timestamp
-  public var deleteTime: GoogleCloudWkt.Timestamp? = nil
+  public var deleteTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Labels as key value pairs
   public var labels: [Swift.String: Swift.String] = [:]
@@ -82,10 +82,10 @@ public struct GitRepositoryLink: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.developerconnect.v1.GitRepositoryLink"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

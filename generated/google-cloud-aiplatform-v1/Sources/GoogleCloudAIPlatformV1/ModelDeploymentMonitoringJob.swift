@@ -16,13 +16,13 @@
 
 #if JobService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
   import GoogleRpc
 
   /// Represents a job that runs periodically to monitor the deployed models in an
   /// endpoint. It will analyze the logged training & prediction data to detect any
   /// abnormal behaviors.
-  public struct ModelDeploymentMonitoringJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ModelDeploymentMonitoringJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Resource name of a ModelDeploymentMonitoringJob.
@@ -83,7 +83,7 @@
     ///
     /// [google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob.predict_instance_schema_uri]: <doc:ModelDeploymentMonitoringJob/predictInstanceSchemaUri>
     /// [google.cloud.aiplatform.v1.PredictRequest.instances]: <doc:PredictRequest/instances>
-    public var samplePredictInstance: GoogleCloudWkt.Value? = nil
+    public var samplePredictInstance: GoogleCloudWKT.Value? = nil
 
     /// YAML schema file uri describing the format of a single instance that you
     /// want Tensorflow Data Validation (TFDV) to analyze.
@@ -110,7 +110,7 @@
     /// The TTL of BigQuery tables in user projects which stores logs.
     /// A day is the basic unit of the TTL and we take the ceil of TTL/86400(a
     /// day). e.g. { second: 3600} indicates ttl = 1 day.
-    public var logTtl: GoogleCloudWkt.Duration? = nil
+    public var logTtl: GoogleCloudWKT.Duration? = nil
 
     /// The labels with user-defined metadata to organize your
     /// ModelDeploymentMonitoringJob.
@@ -123,15 +123,15 @@
     public var labels: [Swift.String: Swift.String] = [:]
 
     /// Output only. Timestamp when this ModelDeploymentMonitoringJob was created.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Timestamp when this ModelDeploymentMonitoringJob was updated
     /// most recently.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Timestamp when this monitoring pipeline will be scheduled to
     /// run for the next round.
-    public var nextScheduleTime: GoogleCloudWkt.Timestamp? = nil
+    public var nextScheduleTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Stats anomalies base folder path.
     public var statsAnomaliesBaseDirectory: GcsDestination? = nil
@@ -174,12 +174,12 @@
     }
 
     /// All metadata of most recent monitoring pipelines.
-    public struct LatestMonitoringPipelineMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct LatestMonitoringPipelineMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The time that most recent monitoring pipelines that is related to this
       /// run.
-      public var runTime: GoogleCloudWkt.Timestamp? = nil
+      public var runTime: GoogleCloudWKT.Timestamp? = nil
 
       /// The status of the most recent monitoring pipeline.
       public var status: GoogleRpc.Status? = nil
@@ -204,11 +204,11 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob.LatestMonitoringPipelineMetadata"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -327,11 +327,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

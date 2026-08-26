@@ -16,13 +16,13 @@
 
 #if Intents
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The request message for
   /// [Intents.UpdateIntent][google.cloud.dialogflow.v2.Intents.UpdateIntent].
   ///
   /// [google.cloud.dialogflow.v2.Intents.UpdateIntent]: <doc:IntentsClient/updateIntent(request:options:)>
-  public struct UpdateIntentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct UpdateIntentRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The intent to update.
@@ -36,7 +36,7 @@
     public var languageCode: Swift.String = Swift.String()
 
     /// Optional. The mask to control which fields get updated.
-    public var updateMask: GoogleCloudWkt.FieldMask? = nil
+    public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
     /// Optional. The resource view to apply to the returned intent.
     public var intentView: IntentView = IntentView()
@@ -60,11 +60,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.UpdateIntentRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

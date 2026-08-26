@@ -16,10 +16,10 @@
 
 #if UserEventService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request message for the ImportUserEvents request.
-  public struct ImportUserEventsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ImportUserEventsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Parent DataStore resource name, of the form
@@ -106,7 +106,7 @@
     }
 
     /// The inline source for the input config for ImportUserEvents method.
-    public struct InlineSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct InlineSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. A list of user events to import. Recommended max of 10k items.
@@ -132,11 +132,11 @@
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.ImportUserEventsRequest.InlineSource"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -153,11 +153,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.ImportUserEventsRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

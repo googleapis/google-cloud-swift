@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Specification that applies to
 /// all entries that are part of `CLOUD_BIGTABLE` system
 /// (user_specified_type)
-public struct CloudBigtableSystemSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CloudBigtableSystemSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Display name of the Instance. This is user specified and different from
@@ -46,10 +46,10 @@ public struct CloudBigtableSystemSpec: Codable, Equatable, GoogleCloudWkt._AnyPa
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datacatalog.v1.CloudBigtableSystemSpec"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

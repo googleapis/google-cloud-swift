@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A chart that displays data on a 2D (X and Y axes) plane.
-public struct XyChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct XyChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The data displayed in this chart.
@@ -29,7 +29,7 @@ public struct XyChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// (e.g., week-over-week metrics).
   /// The duration must be positive, and it can only be applied to charts with
   /// data sets of LINE plot type.
-  public var timeshiftDuration: GoogleCloudWkt.Duration? = nil
+  public var timeshiftDuration: GoogleCloudWKT.Duration? = nil
 
   /// Threshold lines drawn horizontally across the chart.
   public var thresholds: [Threshold] = []
@@ -63,7 +63,7 @@ public struct XyChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Groups a time series query definition with charting options.
-  public struct DataSet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DataSet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Fields for querying time series data from the
@@ -83,7 +83,7 @@ public struct XyChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// series query For example, if the data is published once every 10 minutes,
     /// the `min_alignment_period` should be at least 10 minutes. It would not
     /// make sense to fetch and align data at one minute intervals.
-    public var minAlignmentPeriod: GoogleCloudWkt.Duration? = nil
+    public var minAlignmentPeriod: GoogleCloudWKT.Duration? = nil
 
     /// Optional. The target axis to use for plotting the metric.
     public var targetAxis: XyChart.DataSet.TargetAxis = XyChart.DataSet.TargetAxis()
@@ -340,16 +340,16 @@ public struct XyChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.dashboard.v1.XyChart.DataSet"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A chart axis.
-  public struct Axis: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Axis: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The label of the axis.
@@ -482,21 +482,21 @@ public struct XyChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.dashboard.v1.XyChart.Axis"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.dashboard.v1.XyChart"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

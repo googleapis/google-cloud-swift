@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Options to configure rule type SingleEntityRename.
 /// The rule is used to rename an entity.
@@ -25,7 +25,7 @@ import Foundation
 /// The rule scope can be one of: Database, Schema, Table, Column, Constraint,
 /// Index, View, Function, Stored Procedure, Materialized View, Sequence, UDT,
 /// Synonym
-public struct SingleEntityRename: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SingleEntityRename: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The new name of the destination entity
@@ -50,10 +50,10 @@ public struct SingleEntityRename: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.clouddms.v1.SingleEntityRename"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

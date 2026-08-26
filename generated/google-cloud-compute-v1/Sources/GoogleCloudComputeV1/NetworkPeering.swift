@@ -16,12 +16,12 @@
 
 #if Networks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A network peering attached to a network resource. The message includes the
   /// peering name, peer network, peering state, and a flag indicating whether
   /// Google Compute Engine should automatically create routes for the peering.
-  public struct NetworkPeering: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct NetworkPeering: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// This field will be deprecated soon. Use theexchange_subnet_routes field instead.
@@ -432,11 +432,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.NetworkPeering"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A request message for
 /// [AssetService.AnalyzeOrgPolicyGovernedContainers][google.cloud.asset.v1.AssetService.AnalyzeOrgPolicyGovernedContainers].
 ///
 /// [google.cloud.asset.v1.AssetService.AnalyzeOrgPolicyGovernedContainers]: <doc:AssetServiceClient/analyzeOrgPolicyGovernedContainers(request:options:)>
-public struct AnalyzeOrgPolicyGovernedContainersRequest: Codable, Equatable, GoogleCloudWkt
+public struct AnalyzeOrgPolicyGovernedContainersRequest: Codable, Equatable, GoogleCloudWKT
     ._AnyPackable,
   Sendable
 {
@@ -82,10 +82,10 @@ public struct AnalyzeOrgPolicyGovernedContainersRequest: Codable, Equatable, Goo
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.asset.v1.AnalyzeOrgPolicyGovernedContainersRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Model represents a trained model.
-public struct Model: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Model: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The resource name of the Model.
@@ -27,10 +27,10 @@ public struct Model: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Output only. The timestamp of creation of this resource.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The timestamp of the most recent update of this resource.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Labels
   public var labels: [Swift.String: Swift.String] = [:]
@@ -56,7 +56,7 @@ public struct Model: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Required. End_time specifies the latest time from which labels are used and
   /// from which data is used to generate features for training.  End_time should
   /// be no later than the end of the date_range of the dataset.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The line of business (Retail/Commercial) this model is used
   /// for. Determined by EngineConfig, cannot be set by user.
@@ -200,10 +200,10 @@ public struct Model: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.financialservices.v1.Model"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

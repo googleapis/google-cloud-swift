@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// DvrSession is a sub-resource under channel. Each DvrSession represents a DVR
 /// recording of the live stream for a specific time range.
-public struct DvrSession: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DvrSession: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The resource name of the DVR session, in the following format:
@@ -33,10 +33,10 @@ public struct DvrSession: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Output only. The creation time.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The update time.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. User-defined key/value metadata.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -73,7 +73,7 @@ public struct DvrSession: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// DvrManifest identifies a source manifest and specifies a file name for the
   /// generated DVR manifest.
-  public struct DvrManifest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DvrManifest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. A unique key that identifies a manifest config in the parent
@@ -107,16 +107,16 @@ public struct DvrSession: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.video.livestream.v1.DvrSession.DvrManifest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// DvrWindow represents a DVR window.
-  public struct DvrWindow: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DvrWindow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The allowlist forms of a DVR window.
@@ -182,11 +182,11 @@ public struct DvrSession: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.video.livestream.v1.DvrSession.DvrWindow"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -365,10 +365,10 @@ public struct DvrSession: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.video.livestream.v1.DvrSession"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for `AwsClusters.UpdateAwsNodePool` method.
 @available(*, deprecated)
-public struct UpdateAwsNodePoolRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateAwsNodePoolRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
@@ -67,7 +67,7 @@ public struct UpdateAwsNodePoolRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   ///  *   `update_settings.surge_settings.max_unavailable`.
   ///
   /// [google.cloud.gkemulticloud.v1.AwsNodePool]: <doc:AwsNodePool>
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `UpdateAwsNodePoolRequest`.
   public init() {}
@@ -88,10 +88,10 @@ public struct UpdateAwsNodePoolRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkemulticloud.v1.UpdateAwsNodePoolRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

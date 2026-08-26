@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudTalentV4
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 
 func sample(client: TenantServiceClient, projectId: String, tenantId: String) async throws {
@@ -28,7 +28,7 @@ func sample(client: TenantServiceClient, projectId: String, tenantId: String) as
         $0.tenant = Tenant().with {
           $0.name = "projects/\(projectId)/tenants/\(tenantId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

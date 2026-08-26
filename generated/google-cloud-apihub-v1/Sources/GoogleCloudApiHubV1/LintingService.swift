@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleCloudGax
 
@@ -194,7 +194,7 @@ extension Clients {
     /// See `LintingServiceClient.updateStyleGuide`.
     func updateStyleGuide(
       styleGuide: StyleGuide?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudApiHubV1.StyleGuide
 
     /// See `LintingServiceClient.getStyleGuideContents`.
@@ -347,7 +347,7 @@ extension Clients.LintingServiceProtocol {
 
   public func updateStyleGuide(
     styleGuide: StyleGuide?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudApiHubV1.StyleGuide {
     let request = UpdateStyleGuideRequest().with {
       $0.styleGuide = styleGuide

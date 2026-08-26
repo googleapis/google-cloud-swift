@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// BackupConfigDetails has information about how the resource is configured
 /// for backups and about the most recent backup taken for this configuration.
-public struct BackupConfigDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BackupConfigDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The full resource name of the backup config source resource.
@@ -44,7 +44,7 @@ public struct BackupConfigDetails: Codable, Equatable, GoogleCloudWkt._AnyPackab
 
   /// Output only. Timestamp of the latest successful backup created via this
   /// backup configuration.
-  public var latestSuccessfulBackupTime: GoogleCloudWkt.Timestamp? = nil
+  public var latestSuccessfulBackupTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The [full resource
   /// name](https://cloud.google.com/asset-inventory/docs/resource-name-format)
@@ -112,7 +112,7 @@ public struct BackupConfigDetails: Codable, Equatable, GoogleCloudWkt._AnyPackab
     self.state = try container.decode(BackupConfigDetails.State.self, forKey: .state)
     self.pitrSettings = try container.decodeIfPresent(PitrSettings.self, forKey: .pitrSettings)
     self.latestSuccessfulBackupTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .latestSuccessfulBackupTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .latestSuccessfulBackupTime)
     self.applicableResource = try container.decode(Swift.String.self, forKey: .applicableResource)
     self.backupVault = try container.decode(Swift.String.self, forKey: .backupVault)
     self.backupLocations = try container.decode([BackupLocation].self, forKey: .backupLocations)
@@ -417,10 +417,10 @@ public struct BackupConfigDetails: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.backupdr.v1.BackupConfigDetails"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

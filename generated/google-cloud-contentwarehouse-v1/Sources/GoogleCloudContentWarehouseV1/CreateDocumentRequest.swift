@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleIAMV1
 
 /// Request message for DocumentService.CreateDocument.
-public struct CreateDocumentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CreateDocumentRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The parent name.
@@ -50,7 +50,7 @@ public struct CreateDocumentRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
   /// For the `FieldMask` definition,
   /// see
   /// https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.
-  public var createMask: GoogleCloudWkt.FieldMask? = nil
+  public var createMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `CreateDocumentRequest`.
   public init() {}
@@ -71,10 +71,10 @@ public struct CreateDocumentRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.contentwarehouse.v1.CreateDocumentRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

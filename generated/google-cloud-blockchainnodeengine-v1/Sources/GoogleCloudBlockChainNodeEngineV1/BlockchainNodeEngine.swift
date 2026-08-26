@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -336,7 +336,7 @@ extension Clients {
     /// See `BlockchainNodeEngineClient.updateBlockchainNode`.
     func updateBlockchainNode(
       blockchainNode: BlockchainNode?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<BlockchainNode>
 
     /// See `BlockchainNodeEngineClient.deleteBlockchainNode`.
@@ -610,7 +610,7 @@ extension Clients.BlockchainNodeEngineProtocol {
 
   public func updateBlockchainNode(
     blockchainNode: BlockchainNode?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<BlockchainNode> {
     let request = UpdateBlockchainNodeRequest().with {
       $0.blockchainNode = blockchainNode

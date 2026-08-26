@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The translation config to capture necessary settings for a translation task
 /// and subtask.
-public struct TranslationConfigDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TranslationConfigDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The dialect of the input files.
@@ -187,10 +187,10 @@ public struct TranslationConfigDetails: Codable, Equatable, GoogleCloudWkt._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.migration.v2.TranslationConfigDetails"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

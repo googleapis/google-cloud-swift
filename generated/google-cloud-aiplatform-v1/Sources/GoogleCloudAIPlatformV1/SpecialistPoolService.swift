@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleIAMV1
   import GoogleLongRunning
   import GoogleRpc
@@ -402,7 +402,7 @@
       /// See `SpecialistPoolServiceClient.updateSpecialistPool`.
       func updateSpecialistPool(
         specialistPool: SpecialistPool?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> any GoogleCloudGax.PollableOperation<SpecialistPool>
 
       /// See `SpecialistPoolServiceClient.listLocations`.
@@ -731,7 +731,7 @@
 
     public func updateSpecialistPool(
       specialistPool: SpecialistPool?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<SpecialistPool> {
       let request = UpdateSpecialistPoolRequest().with {
         $0.specialistPool = specialistPool

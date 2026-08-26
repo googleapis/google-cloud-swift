@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -416,7 +416,7 @@ extension Clients {
     /// See `AppConnectionsServiceClient.updateAppConnection`.
     func updateAppConnection(
       appConnection: AppConnection?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<AppConnection>
 
     /// See `AppConnectionsServiceClient.deleteAppConnection`.
@@ -739,7 +739,7 @@ extension Clients.AppConnectionsServiceProtocol {
 
   public func updateAppConnection(
     appConnection: AppConnection?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<AppConnection> {
     let request = UpdateAppConnectionRequest().with {
       $0.appConnection = appConnection

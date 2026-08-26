@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleCloudGax
@@ -222,7 +222,7 @@ extension Clients {
     /// See `AutokeyAdminClient.updateAutokeyConfig`.
     func updateAutokeyConfig(
       autokeyConfig: AutokeyConfig?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudKMSV1.AutokeyConfig
 
     /// See `AutokeyAdminClient.getAutokeyConfig`.
@@ -329,7 +329,7 @@ extension Clients.AutokeyAdminProtocol {
 
   public func updateAutokeyConfig(
     autokeyConfig: AutokeyConfig?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudKMSV1.AutokeyConfig {
     let request = UpdateAutokeyConfigRequest().with {
       $0.autokeyConfig = autokeyConfig

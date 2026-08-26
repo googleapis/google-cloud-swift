@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -667,7 +667,7 @@ extension Clients {
     /// See `EdgeContainerClient.updateCluster`.
     func updateCluster(
       cluster: Cluster?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Cluster>
 
     /// See `EdgeContainerClient.upgradeCluster`.
@@ -761,7 +761,7 @@ extension Clients {
     /// See `EdgeContainerClient.updateNodePool`.
     func updateNodePool(
       nodePool: NodePool?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<NodePool>
 
     /// See `EdgeContainerClient.deleteNodePool`.
@@ -1235,7 +1235,7 @@ extension Clients.EdgeContainerProtocol {
 
   public func updateCluster(
     cluster: Cluster?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Cluster> {
     let request = UpdateClusterRequest().with {
       $0.cluster = cluster
@@ -1493,7 +1493,7 @@ extension Clients.EdgeContainerProtocol {
 
   public func updateNodePool(
     nodePool: NodePool?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<NodePool> {
     let request = UpdateNodePoolRequest().with {
       $0.nodePool = nodePool

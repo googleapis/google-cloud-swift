@@ -32,7 +32,7 @@ let package = Package(
     .target(
       name: "GoogleCloudGKEHubMultiClusterIngressV1",
       dependencies: [
-        .product(name: "GoogleCloudWkt", package: "wkt")
+        .product(name: "GoogleCloudWKT", package: "wkt")
       ],
     )
   ]

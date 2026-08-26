@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Application defines the governance boundary for App Hub entities that
 /// perform a logical end-to-end business function.
 /// App Hub supports application level IAM permission to align with governance
 /// requirements.
-public struct Application: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Application: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The resource name of an Application. Format:
@@ -40,10 +40,10 @@ public struct Application: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var attributes: Attributes? = nil
 
   /// Output only. Create time.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Update time.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Required. Immutable. Defines what data can be included into this
   /// Application. Limits which Services and Workloads can be registered.
@@ -187,10 +187,10 @@ public struct Application: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.apphub.v1.Application"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

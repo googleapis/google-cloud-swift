@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// StoragePool is a container for volumes with a service level and capacity.
 /// Volumes can be created in a pool of sufficient available capacity.
 /// StoragePool capacity is what you are billed for.
-public struct StoragePool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct StoragePool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. Name of the storage pool
@@ -45,7 +45,7 @@ public struct StoragePool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var stateDetails: Swift.String = Swift.String()
 
   /// Output only. Create time of the storage pool
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Description of the storage pool
   public var description: Swift.String = Swift.String()
@@ -307,10 +307,10 @@ public struct StoragePool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.netapp.v1.StoragePool"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

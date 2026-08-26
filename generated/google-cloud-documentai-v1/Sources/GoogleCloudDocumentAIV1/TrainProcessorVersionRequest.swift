@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for the
 /// [TrainProcessorVersion][google.cloud.documentai.v1.DocumentProcessorService.TrainProcessorVersion]
 /// method.
 ///
 /// [google.cloud.documentai.v1.DocumentProcessorService.TrainProcessorVersion]: <doc:DocumentProcessorServiceClient/trainProcessorVersion(request:options:)>
-public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The parent (project, location and processor) to create the new
@@ -135,7 +135,7 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleCloudWkt._
   /// [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
   ///
   /// [google.cloud.documentai.v1.ProcessorVersion]: <doc:ProcessorVersion>
-  public struct InputData: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct InputData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The documents used for training the new version.
@@ -163,17 +163,17 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleCloudWkt._
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.documentai.v1.TrainProcessorVersionRequest.InputData"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Options to control the training of the Custom Document Extraction (CDE)
   /// Processor.
-  public struct CustomDocumentExtractionOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CustomDocumentExtractionOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Training method to use for CDE training.
@@ -304,16 +304,16 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleCloudWkt._
       return
         "type.googleapis.com/google.cloud.documentai.v1.TrainProcessorVersionRequest.CustomDocumentExtractionOptions"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Options to control foundation model tuning of the processor.
-  public struct FoundationModelTuningOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FoundationModelTuningOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The number of steps to run for model tuning. Valid values are
@@ -345,11 +345,11 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleCloudWkt._
       return
         "type.googleapis.com/google.cloud.documentai.v1.TrainProcessorVersionRequest.FoundationModelTuningOptions"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -365,10 +365,10 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleCloudWkt._
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.documentai.v1.TrainProcessorVersionRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

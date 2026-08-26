@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [ProductService.AddLocalInventories][google.cloud.retail.v2.ProductService.AddLocalInventories]
 /// method.
 ///
 /// [google.cloud.retail.v2.ProductService.AddLocalInventories]: <doc:ProductServiceClient/addLocalInventories(request:options:)>
-public struct AddLocalInventoriesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AddLocalInventoriesRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Full resource name of [Product][google.cloud.retail.v2.Product],
@@ -58,12 +58,12 @@ public struct AddLocalInventoriesRequest: Codable, Equatable, GoogleCloudWkt._An
   /// is returned and the entire update will be ignored.
   ///
   /// [google.cloud.retail.v2.LocalInventory]: <doc:LocalInventory>
-  public var addMask: GoogleCloudWkt.FieldMask? = nil
+  public var addMask: GoogleCloudWKT.FieldMask? = nil
 
   /// The time when the inventory updates are issued. Used to prevent
   /// out-of-order updates on local inventory fields. If not provided, the
   /// internal system time will be used.
-  public var addTime: GoogleCloudWkt.Timestamp? = nil
+  public var addTime: GoogleCloudWKT.Timestamp? = nil
 
   /// If set to true, and the [Product][google.cloud.retail.v2.Product] is not
   /// found, the local inventory will still be processed and retained for at most
@@ -93,10 +93,10 @@ public struct AddLocalInventoriesRequest: Codable, Equatable, GoogleCloudWkt._An
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.retail.v2.AddLocalInventoriesRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

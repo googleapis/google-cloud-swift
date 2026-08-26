@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Trigger is not used as an independent entity, it is retrieved as part of a
 /// Table entity.
-public struct TriggerEntity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TriggerEntity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The name of the trigger.
@@ -37,7 +37,7 @@ public struct TriggerEntity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var sqlCode: Swift.String = Swift.String()
 
   /// Custom engine specific features.
-  public var customFeatures: GoogleCloudWkt.Struct? = nil
+  public var customFeatures: GoogleCloudWKT.Struct? = nil
 
   /// Initialize a new instance of `TriggerEntity`.
   public init() {}
@@ -58,10 +58,10 @@ public struct TriggerEntity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.clouddms.v1.TriggerEntity"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

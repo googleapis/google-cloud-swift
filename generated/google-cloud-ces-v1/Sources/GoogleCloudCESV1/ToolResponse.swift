@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The execution result of a specific tool from the client or the agent.
-public struct ToolResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ToolResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. The matching ID of the [tool call][google.cloud.ces.v1.ToolCall]
@@ -34,7 +34,7 @@ public struct ToolResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Use "output" key to specify tool response and "error" key to specify
   /// error details (if any). If "output" and "error" keys are not specified,
   /// then whole "response" is treated as tool execution result.
-  public var response: GoogleCloudWkt.Struct? = nil
+  public var response: GoogleCloudWKT.Struct? = nil
 
   /// The identifier of the tool that got executed. It could be either a
   /// persisted tool or a tool from a toolset.
@@ -68,7 +68,7 @@ public struct ToolResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.id = try container.decode(Swift.String.self, forKey: .id)
     self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.response = try container.decodeIfPresent(GoogleCloudWkt.Struct.self, forKey: .response)
+    self.response = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .response)
 
     var toolIdentifier: OneOf_ToolIdentifier? = nil
     let toolIdentifierCheckAndSet = {
@@ -118,10 +118,10 @@ public struct ToolResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.ToolResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

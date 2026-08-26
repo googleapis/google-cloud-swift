@@ -16,10 +16,10 @@
 
 #if VertexRagService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Relevant contexts for one query.
-  public struct RagContexts: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RagContexts: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// All its contexts.
@@ -42,7 +42,7 @@
     }
 
     /// A context of the query.
-    public struct Context: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Context: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// If the file is imported from Cloud Storage or Google Drive, source_uri
@@ -88,22 +88,22 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.RagContexts.Context"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.RagContexts"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

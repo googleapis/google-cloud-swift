@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Options to configure rule type SetTablePrimaryKey.
 /// The rule is used to specify the columns and name to configure/alter the
@@ -24,7 +24,7 @@ import Foundation
 /// The rule filter field can refer to one entity.
 ///
 /// The rule scope can be one of: Table.
-public struct SetTablePrimaryKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SetTablePrimaryKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. List of column names for the primary key
@@ -52,10 +52,10 @@ public struct SetTablePrimaryKey: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.clouddms.v1.SetTablePrimaryKey"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

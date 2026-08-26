@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Metadata that is used to define a condition that triggers an action.
 /// A valid condition must specify at least one of 'query_terms' or
@@ -23,7 +23,7 @@ import Foundation
 /// all the fields are satisfied e.g. if a set of query terms and product_filter
 /// are set, then only items matching the product_filter for requests with a
 /// query matching the query terms wil get boosted.
-public struct Condition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Condition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A list (up to 10 entries) of terms to match the query on. If not
@@ -61,7 +61,7 @@ public struct Condition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Query terms that we want to match on.
-  public struct QueryTerm: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct QueryTerm: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The value of the term to match on.
@@ -94,24 +94,24 @@ public struct Condition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.retail.v2.Condition.QueryTerm"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Used for time-dependent conditions.
   /// Example: Want to have rule applied for week long sale.
-  public struct TimeRange: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TimeRange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Start of time range. Range is inclusive.
-    public var startTime: GoogleCloudWkt.Timestamp? = nil
+    public var startTime: GoogleCloudWKT.Timestamp? = nil
 
     /// End of time range. Range is inclusive.
-    public var endTime: GoogleCloudWkt.Timestamp? = nil
+    public var endTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `TimeRange`.
     public init() {}
@@ -132,21 +132,21 @@ public struct Condition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.retail.v2.Condition.TimeRange"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.retail.v2.Condition"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

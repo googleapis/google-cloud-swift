@@ -16,11 +16,11 @@
 
 #if DatasetService || DeploymentResourcePoolService || EndpointService || FeatureOnlineStoreAdminService || FeatureRegistryService || FeaturestoreService || GenAiTuningService || IndexEndpointService || IndexService || JobService || MetadataService || MigrationService || ModelGardenService || ModelService || NotebookService || PersistentResourceService || PipelineService || ReasoningEngineExecutionService || ReasoningEngineService || ScheduleService || SessionService || SpecialistPoolService || TensorboardService || VertexRagDataService || VertexRagService || VizierService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
   import GoogleRpc
 
   /// Generic Metadata shared by all operations.
-  public struct GenericOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GenericOperationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Partial failures encountered.
@@ -30,12 +30,12 @@
     public var partialFailures: [GoogleRpc.Status] = []
 
     /// Output only. Time when the operation was created.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Time when the operation was updated for the last time.
     /// If the operation has finished (successfully or not), this is the finish
     /// time.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `GenericOperationMetadata`.
     public init() {}
@@ -56,11 +56,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.GenericOperationMetadata"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

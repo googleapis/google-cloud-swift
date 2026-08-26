@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Metadata for Datastore to Firestore migration operations.
 ///
@@ -25,7 +25,7 @@ import Foundation
 ///
 /// This singleton resource can be accessed at:
 /// "projects/{project_id}/operations/datastore-firestore-migration"
-public struct DatastoreFirestoreMigrationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DatastoreFirestoreMigrationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The current state of migration from Cloud Datastore to Cloud Firestore in
@@ -55,10 +55,10 @@ public struct DatastoreFirestoreMigrationMetadata: Codable, Equatable, GoogleClo
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.datastore.admin.v1.DatastoreFirestoreMigrationMetadata"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

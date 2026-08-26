@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleCloudGax
 
 /// [Grafeas](https://grafeas.io) API.
@@ -293,7 +293,7 @@ extension Clients {
     func updateOccurrence(
       name: Swift.String,
       occurrence: Occurrence?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleGrafeasV1.Occurrence
 
     /// See `GrafeasClient.getOccurrenceNote`.
@@ -361,7 +361,7 @@ extension Clients {
     func updateNote(
       name: Swift.String,
       note: Note?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleGrafeasV1.Note
 
     /// See `GrafeasClient.listNoteOccurrences`.
@@ -607,7 +607,7 @@ extension Clients.GrafeasProtocol {
   public func updateOccurrence(
     name: Swift.String,
     occurrence: Occurrence?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleGrafeasV1.Occurrence {
     let request = UpdateOccurrenceRequest().with {
       $0.name = name
@@ -772,7 +772,7 @@ extension Clients.GrafeasProtocol {
   public func updateNote(
     name: Swift.String,
     note: Note?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleGrafeasV1.Note {
     let request = UpdateNoteRequest().with {
       $0.name = name

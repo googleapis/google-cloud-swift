@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleBigQueryBigLakeV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleBigQueryBigLakeV1.MetastoreServiceClient()

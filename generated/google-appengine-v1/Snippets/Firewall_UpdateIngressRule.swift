@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleAppEngineV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 
 func sample(client: FirewallClient) async throws {

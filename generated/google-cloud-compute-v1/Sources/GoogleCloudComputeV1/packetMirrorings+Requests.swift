@@ -16,13 +16,13 @@
 
 #if PacketMirrorings
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   extension PacketMirroringsClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.packetMirrorings.aggregatedList] method.
     ///
     /// [google.cloud.compute.v1.packetMirrorings.aggregatedList]: <doc:PacketMirroringsClient/aggregatedList(request:options:)>
-    public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// A filter expression that filters resources listed in the response. Most
@@ -153,18 +153,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.packetMirrorings.aggregatedListRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.packetMirrorings.delete] method.
     ///
     /// [google.cloud.compute.v1.packetMirrorings.delete]: <doc:PacketMirroringsClient/delete(request:options:)>
-    public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DeleteRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Name of the PacketMirroring resource to delete.
@@ -210,18 +210,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.packetMirrorings.deleteRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.packetMirrorings.get] method.
     ///
     /// [google.cloud.compute.v1.packetMirrorings.get]: <doc:PacketMirroringsClient/`get`(request:options:)>
-    public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GetRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Name of the PacketMirroring resource to return.
@@ -252,18 +252,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.packetMirrorings.getRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.packetMirrorings.insert] method.
     ///
     /// [google.cloud.compute.v1.packetMirrorings.insert]: <doc:PacketMirroringsClient/insert(request:options:)>
-    public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct InsertRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Project ID for this request.
@@ -311,18 +311,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.packetMirrorings.insertRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.packetMirrorings.list] method.
     ///
     /// [google.cloud.compute.v1.packetMirrorings.list]: <doc:PacketMirroringsClient/list(request:options:)>
-    public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ListRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// A filter expression that filters resources listed in the response. Most
@@ -443,18 +443,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.packetMirrorings.listRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.packetMirrorings.patch] method.
     ///
     /// [google.cloud.compute.v1.packetMirrorings.patch]: <doc:PacketMirroringsClient/patch(request:options:)>
-    public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct PatchRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Name of the PacketMirroring resource to patch.
@@ -505,18 +505,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.packetMirrorings.patchRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.packetMirrorings.testIamPermissions] method.
     ///
     /// [google.cloud.compute.v1.packetMirrorings.testIamPermissions]: <doc:PacketMirroringsClient/testIamPermissions(request:options:)>
-    public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Project ID for this request.
@@ -553,11 +553,11 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.packetMirrorings.testIamPermissionsRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
   }

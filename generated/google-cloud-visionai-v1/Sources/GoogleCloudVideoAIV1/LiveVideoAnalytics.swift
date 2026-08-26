@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -702,7 +702,7 @@ extension Clients {
     /// See `LiveVideoAnalyticsClient.updateOperator`.
     func updateOperator(
       `operator`: Operator?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Operator>
 
     /// See `LiveVideoAnalyticsClient.deleteOperator`.
@@ -763,7 +763,7 @@ extension Clients {
     /// See `LiveVideoAnalyticsClient.updateAnalysis`.
     func updateAnalysis(
       analysis: Analysis?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Analysis>
 
     /// See `LiveVideoAnalyticsClient.deleteAnalysis`.
@@ -824,7 +824,7 @@ extension Clients {
     /// See `LiveVideoAnalyticsClient.updateProcess`.
     func updateProcess(
       process: Process?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Process>
 
     /// See `LiveVideoAnalyticsClient.deleteProcess`.
@@ -1284,7 +1284,7 @@ extension Clients.LiveVideoAnalyticsProtocol {
 
   public func updateOperator(
     `operator`: Operator?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Operator> {
     let request = UpdateOperatorRequest().with {
       $0.`operator` = `operator`
@@ -1458,7 +1458,7 @@ extension Clients.LiveVideoAnalyticsProtocol {
 
   public func updateAnalysis(
     analysis: Analysis?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Analysis> {
     let request = UpdateAnalysisRequest().with {
       $0.analysis = analysis
@@ -1631,7 +1631,7 @@ extension Clients.LiveVideoAnalyticsProtocol {
 
   public func updateProcess(
     process: Process?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Process> {
     let request = UpdateProcessRequest().with {
       $0.process = process

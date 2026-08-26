@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Update job request.
-public struct UpdateJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateJobRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The Job to be updated.
@@ -37,7 +37,7 @@ public struct UpdateJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [google.cloud.talent.v4.Job]: <doc:Job>
   /// [google.cloud.talent.v4.UpdateJobRequest.job]: <doc:UpdateJobRequest/job>
   /// [google.cloud.talent.v4.UpdateJobRequest.update_mask]: <doc:UpdateJobRequest/updateMask>
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `UpdateJobRequest`.
   public init() {}
@@ -58,10 +58,10 @@ public struct UpdateJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.talent.v4.UpdateJobRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

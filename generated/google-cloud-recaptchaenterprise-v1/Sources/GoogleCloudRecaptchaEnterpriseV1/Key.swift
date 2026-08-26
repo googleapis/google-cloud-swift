@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A key used to identify and configure applications (web and/or mobile) that
 /// use reCAPTCHA Enterprise.
-public struct Key: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Key: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The resource name for the Key in the format
@@ -34,7 +34,7 @@ public struct Key: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var labels: [Swift.String: Swift.String] = [:]
 
   /// Output only. The timestamp corresponding to the creation of this key.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Options for user acceptance testing.
   public var testingOptions: TestingOptions? = nil
@@ -82,7 +82,7 @@ public struct Key: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
     self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.testingOptions = try container.decodeIfPresent(
       TestingOptions.self, forKey: .testingOptions)
     self.wafSettings = try container.decodeIfPresent(WafSettings.self, forKey: .wafSettings)
@@ -164,10 +164,10 @@ public struct Key: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.recaptchaenterprise.v1.Key"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

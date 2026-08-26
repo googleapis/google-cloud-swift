@@ -15,23 +15,23 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A test message for Struct.
-public struct MessageWithStruct: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MessageWithStruct: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A singular field.
-  public var singular: GoogleCloudWkt.Struct? = nil
+  public var singular: GoogleCloudWKT.Struct? = nil
 
   /// An optional field.
-  public var `optional`: GoogleCloudWkt.Struct? = nil
+  public var `optional`: GoogleCloudWKT.Struct? = nil
 
   /// A repeated field.
-  public var repeated: [GoogleCloudWkt.Struct] = []
+  public var repeated: [GoogleCloudWKT.Struct] = []
 
   /// A map field, messages cannot be keys.
-  public var map: [Swift.String: GoogleCloudWkt.Struct] = [:]
+  public var map: [Swift.String: GoogleCloudWKT.Struct] = [:]
 
   /// Initialize a new instance of `MessageWithStruct`.
   public init() {}
@@ -58,10 +58,10 @@ public struct MessageWithStruct: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.singular = try container.decodeIfPresent(GoogleCloudWkt.Struct.self, forKey: .singular)
-    self.`optional` = try container.decodeIfPresent(GoogleCloudWkt.Struct.self, forKey: .`optional`)
-    self.repeated = try container.decode([GoogleCloudWkt.Struct].self, forKey: .repeated)
-    self.map = try container.decode([Swift.String: GoogleCloudWkt.Struct].self, forKey: .map)
+    self.singular = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .singular)
+    self.`optional` = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .`optional`)
+    self.repeated = try container.decode([GoogleCloudWKT.Struct].self, forKey: .repeated)
+    self.map = try container.decode([Swift.String: GoogleCloudWKT.Struct].self, forKey: .map)
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -75,10 +75,10 @@ public struct MessageWithStruct: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.swift.sdk.test.MessageWithStruct"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

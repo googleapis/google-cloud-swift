@@ -16,10 +16,10 @@
 
 import Foundation
 @_spi(GoogleCloudInternal) import GoogleCloudGax
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The `ListServiceLevelObjectives` response.
-public struct ListServiceLevelObjectivesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ListServiceLevelObjectivesResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable
 {
@@ -50,11 +50,11 @@ public struct ListServiceLevelObjectivesResponse: Codable, Equatable, GoogleClou
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.v3.ListServiceLevelObjectivesResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 
   public func _getPaginatedItems() -> [ServiceLevelObjective] {

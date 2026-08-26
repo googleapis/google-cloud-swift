@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// DLP resources used for redaction while ingesting conversations.
 /// DLP settings are applied to conversations ingested from the
@@ -24,7 +24,7 @@ import Foundation
 /// ingested from the `CreateConversation` endpoint or the Dialogflow / Agent
 /// Assist runtime integrations. When using Dialogflow / Agent Assist runtime
 /// integrations, redaction should be performed in Dialogflow / Agent Assist.
-public struct RedactionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RedactionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The fully-qualified DLP deidentify template resource name.
@@ -56,10 +56,10 @@ public struct RedactionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.contactcenterinsights.v1.RedactionConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

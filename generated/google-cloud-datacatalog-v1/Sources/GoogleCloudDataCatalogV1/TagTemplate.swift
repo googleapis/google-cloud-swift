@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A tag template defines a tag that can have one or more typed fields.
 ///
@@ -26,7 +26,7 @@ import Foundation
 /// see the [TagTemplate User]
 /// (https://cloud.google.com/data-catalog/docs/how-to/template-user) role
 /// that includes a permission to use the tag template to tag resources.
-public struct TagTemplate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TagTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The resource name of the tag template in URL format.
@@ -199,10 +199,10 @@ public struct TagTemplate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datacatalog.v1.TagTemplate"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

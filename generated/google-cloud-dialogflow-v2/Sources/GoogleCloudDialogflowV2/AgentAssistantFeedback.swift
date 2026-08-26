@@ -16,10 +16,10 @@
 
 #if AnswerRecords
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Detail feedback of Agent Assist result.
-  public struct AgentAssistantFeedback: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AgentAssistantFeedback: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Whether or not the suggested answer is relevant.
@@ -89,14 +89,14 @@
     }
 
     /// Feedback for conversation summarization.
-    public struct SummarizationFeedback: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SummarizationFeedback: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Timestamp when composing of the summary starts.
-      public var startTime: GoogleCloudWkt.Timestamp? = nil
+      public var startTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Timestamp when the summary was submitted.
-      public var submitTime: GoogleCloudWkt.Timestamp? = nil
+      public var submitTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Text of actual submitted summary.
       public var summaryText: Swift.String = Swift.String()
@@ -124,16 +124,16 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.AgentAssistantFeedback.SummarizationFeedback"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Feedback for knowledge search.
-    public struct KnowledgeSearchFeedback: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct KnowledgeSearchFeedback: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Whether the answer was copied by the human agent or not.
@@ -174,16 +174,16 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.AgentAssistantFeedback.KnowledgeSearchFeedback"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Feedback for knowledge assist.
-    public struct KnowledgeAssistFeedback: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct KnowledgeAssistFeedback: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Whether the suggested answer was copied by the human agent.
@@ -223,11 +223,11 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.AgentAssistantFeedback.KnowledgeAssistFeedback"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -549,11 +549,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.AgentAssistantFeedback"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for restoring from a Backup.
-public struct RestoreBackupRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RestoreBackupRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The resource name of the Backup instance, in the format
@@ -52,7 +52,7 @@ public struct RestoreBackupRequest: Codable, Equatable, GoogleCloudWkt._AnyPacka
   /// - Compute Instance Disks:
   /// `compute_instance_restore_properties.disks.*.disk_encryption_key`
   /// - Single Disk: `disk_restore_properties.disk_encryption_key`
-  public var clearOverridesFieldMask: GoogleCloudWkt.FieldMask? = nil
+  public var clearOverridesFieldMask: GoogleCloudWKT.FieldMask? = nil
 
   /// The target environment for the restore operation.
   public var targetEnvironment: OneOf_TargetEnvironment? = nil
@@ -92,7 +92,7 @@ public struct RestoreBackupRequest: Codable, Equatable, GoogleCloudWkt._AnyPacka
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.requestId = try container.decode(Swift.String.self, forKey: .requestId)
     self.clearOverridesFieldMask = try container.decodeIfPresent(
-      GoogleCloudWkt.FieldMask.self, forKey: .clearOverridesFieldMask)
+      GoogleCloudWKT.FieldMask.self, forKey: .clearOverridesFieldMask)
 
     var targetEnvironment: OneOf_TargetEnvironment? = nil
     let targetEnvironmentCheckAndSet = {
@@ -194,10 +194,10 @@ public struct RestoreBackupRequest: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.backupdr.v1.RestoreBackupRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

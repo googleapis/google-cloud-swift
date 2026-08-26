@@ -16,10 +16,10 @@
 
 #if FeatureRegistryService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Vertex AI Feature Group.
-  public struct FeatureGroup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FeatureGroup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Identifier. Name of the FeatureGroup. Format:
@@ -27,10 +27,10 @@
     public var name: Swift.String = Swift.String()
 
     /// Output only. Timestamp when this FeatureGroup was created.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Timestamp when this FeatureGroup was last updated.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Optional. Used to perform consistent read-modify-write updates. If not set,
     /// a blind "overwrite" update happens.
@@ -84,9 +84,9 @@
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.name = try container.decode(Swift.String.self, forKey: .name)
       self.createTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
       self.updateTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
       self.etag = try container.decode(Swift.String.self, forKey: .etag)
       self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
       self.description = try container.decode(Swift.String.self, forKey: .description)
@@ -127,7 +127,7 @@
     }
 
     /// Input source type for BigQuery Tables and Views.
-    public struct BigQuery: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct BigQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. Immutable. The BigQuery source URI that points to either a
@@ -179,7 +179,7 @@
         return copy
       }
 
-      public struct TimeSeries: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct TimeSeries: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. Column hosting timestamp values for a time-series source.
@@ -207,22 +207,22 @@
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.cloud.aiplatform.v1.FeatureGroup.BigQuery.TimeSeries"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.FeatureGroup.BigQuery"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -237,11 +237,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.FeatureGroup"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

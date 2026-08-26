@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Input resource represents the endpoint from which the channel ingests
 /// the input stream.
-public struct Input: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Input: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The resource name of the input, in the form of:
@@ -27,10 +27,10 @@ public struct Input: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Output only. The creation time.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The update time.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// User-defined key/value metadata.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -83,7 +83,7 @@ public struct Input: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Security rules for access control. Each field represents one security rule.
   /// Only when the source of the input stream satisfies all the fields, this
   /// input stream can be accepted.
-  public struct SecurityRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SecurityRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// At least one ip range must match unless none specified. The IP range is
@@ -110,11 +110,11 @@ public struct Input: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.video.livestream.v1.Input.SecurityRule"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -359,10 +359,10 @@ public struct Input: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.video.livestream.v1.Input"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

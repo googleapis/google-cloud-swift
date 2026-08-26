@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An EffectiveTag represents a tag that applies to a resource during policy
 /// evaluation. Tags can be either directly bound to a resource or inherited from
 /// its ancestor. EffectiveTag contains the name and
 /// namespaced_name of the tag value and tag key, with additional fields of
 /// `inherited` to indicate the inheritance status of the effective tag.
-public struct EffectiveTag: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct EffectiveTag: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Resource name for TagValue in the format `tagValues/456`.
@@ -74,10 +74,10 @@ public struct EffectiveTag: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.resourcemanager.v3.EffectiveTag"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

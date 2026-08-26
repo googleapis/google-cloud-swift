@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Common Vulnerability Scoring System version 3.
 /// For details, see https://www.first.org/cvss/specification-document
-public struct CVSSv3: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CVSSv3: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The base score is a function of the base metric scores.
@@ -697,10 +697,10 @@ public struct CVSSv3: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/grafeas.v1.CVSSv3"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

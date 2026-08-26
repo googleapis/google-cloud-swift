@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Describes a budget amount targeted to the last
 /// [Filter.calendar_period][google.cloud.billing.budgets.v1.Filter.calendar_period]
@@ -27,7 +27,7 @@ import Foundation
 ///
 /// [google.cloud.billing.budgets.v1.Filter.calendar_period]: <doc:Filter/OneOf_UsagePeriod/calendarPeriod(_:)>
 /// [google.cloud.billing.budgets.v1.Filter.custom_period]: <doc:Filter/OneOf_UsagePeriod/customPeriod(_:)>
-public struct LastPeriodAmount: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct LastPeriodAmount: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Initialize a new instance of `LastPeriodAmount`.
@@ -49,10 +49,10 @@ public struct LastPeriodAmount: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.billing.budgets.v1.LastPeriodAmount"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

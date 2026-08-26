@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [ProcessOpenLineageRunEvent][google.cloud.datacatalog.lineage.v1.Lineage.ProcessOpenLineageRunEvent].
 ///
 /// [google.cloud.datacatalog.lineage.v1.Lineage.ProcessOpenLineageRunEvent]: <doc:LineageClient/processOpenLineageRunEvent(request:options:)>
-public struct ProcessOpenLineageRunEventRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ProcessOpenLineageRunEventRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The name of the project and its location that should own the
@@ -30,7 +30,7 @@ public struct ProcessOpenLineageRunEventRequest: Codable, Equatable, GoogleCloud
 
   /// Required. OpenLineage message following OpenLineage format:
   /// https://github.com/OpenLineage/OpenLineage/blob/main/spec/OpenLineage.json
-  public var openLineage: GoogleCloudWkt.Struct? = nil
+  public var openLineage: GoogleCloudWKT.Struct? = nil
 
   /// Optional. A unique identifier for this request. Restricted to 36 ASCII
   /// characters. A random UUID is recommended. This request is idempotent only
@@ -57,10 +57,10 @@ public struct ProcessOpenLineageRunEventRequest: Codable, Equatable, GoogleCloud
     return
       "type.googleapis.com/google.cloud.datacatalog.lineage.v1.ProcessOpenLineageRunEventRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

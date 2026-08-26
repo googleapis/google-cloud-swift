@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for GenerateConfigReport method.
-public struct GenerateConfigReportRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct GenerateConfigReportRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Service configuration for which we want to generate the report.
@@ -30,7 +30,7 @@ public struct GenerateConfigReportRequest: Codable, Equatable, GoogleCloudWkt._A
   /// [google.api.Service]: https://www.google.com/search?q=Swift+google.api+GoogleApi.Service
   /// [google.api.servicemanagement.v1.ConfigRef]: <doc:ConfigRef>
   /// [google.api.servicemanagement.v1.ConfigSource]: <doc:ConfigSource>
-  public var newConfig: GoogleCloudWkt.`Any`? = nil
+  public var newConfig: GoogleCloudWKT.`Any`? = nil
 
   /// Optional. Service configuration against which the comparison will be done.
   /// For this version of API, the supported types are
@@ -41,7 +41,7 @@ public struct GenerateConfigReportRequest: Codable, Equatable, GoogleCloudWkt._A
   /// [google.api.Service]: https://www.google.com/search?q=Swift+google.api+GoogleApi.Service
   /// [google.api.servicemanagement.v1.ConfigRef]: <doc:ConfigRef>
   /// [google.api.servicemanagement.v1.ConfigSource]: <doc:ConfigSource>
-  public var oldConfig: GoogleCloudWkt.`Any`? = nil
+  public var oldConfig: GoogleCloudWKT.`Any`? = nil
 
   /// Initialize a new instance of `GenerateConfigReportRequest`.
   public init() {}
@@ -62,10 +62,10 @@ public struct GenerateConfigReportRequest: Codable, Equatable, GoogleCloudWkt._A
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.servicemanagement.v1.GenerateConfigReportRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

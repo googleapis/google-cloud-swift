@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The source database will allow incoming connections from the public IP of the
 /// destination database. You can retrieve the public IP of the Cloud SQL
 /// instance from the Cloud SQL console or using Cloud SQL APIs. No additional
 /// configuration is required.
-public struct StaticIpConnectivity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct StaticIpConnectivity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Initialize a new instance of `StaticIpConnectivity`.
@@ -43,10 +43,10 @@ public struct StaticIpConnectivity: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.clouddms.v1.StaticIpConnectivity"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -16,13 +16,13 @@
 
 #if Rollouts
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   extension RolloutsClient {
     /// Synthetic request message for the [advance()][google.cloud.compute.v1.rollouts.advance] method.
     ///
     /// [google.cloud.compute.v1.rollouts.advance]: <doc:RolloutsClient/advance(request:options:)>
-    public struct AdvanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AdvanceRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. Wave number of the current wave.
@@ -68,18 +68,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.rollouts.advanceRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [cancel()][google.cloud.compute.v1.rollouts.cancel] method.
     ///
     /// [google.cloud.compute.v1.rollouts.cancel]: <doc:RolloutsClient/cancel(request:options:)>
-    public struct CancelRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct CancelRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Project ID for this request.
@@ -128,18 +128,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.rollouts.cancelRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.rollouts.delete] method.
     ///
     /// [google.cloud.compute.v1.rollouts.delete]: <doc:RolloutsClient/delete(request:options:)>
-    public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DeleteRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Project ID for this request.
@@ -182,18 +182,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.rollouts.deleteRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.rollouts.get] method.
     ///
     /// [google.cloud.compute.v1.rollouts.get]: <doc:RolloutsClient/`get`(request:options:)>
-    public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GetRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Project ID for this request.
@@ -221,18 +221,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.rollouts.getRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.rollouts.list] method.
     ///
     /// [google.cloud.compute.v1.rollouts.list]: <doc:RolloutsClient/list(request:options:)>
-    public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ListRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// A filter expression that filters resources listed in the response. Most
@@ -350,18 +350,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.rollouts.listRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [pause()][google.cloud.compute.v1.rollouts.pause] method.
     ///
     /// [google.cloud.compute.v1.rollouts.pause]: <doc:RolloutsClient/pause(request:options:)>
-    public struct PauseRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct PauseRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The etag of the Rollout.
@@ -409,18 +409,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.rollouts.pauseRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [resume()][google.cloud.compute.v1.rollouts.resume] method.
     ///
     /// [google.cloud.compute.v1.rollouts.resume]: <doc:RolloutsClient/resume(request:options:)>
-    public struct ResumeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ResumeRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The etag of the Rollout.
@@ -468,11 +468,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.rollouts.resumeRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
   }

@@ -40,7 +40,7 @@ let package = Package(
         .product(name: "GoogleApi", package: "google-api"),
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),
-        .product(name: "GoogleCloudWkt", package: "wkt"),
+        .product(name: "GoogleCloudWKT", package: "wkt"),
         .product(name: "GoogleLongRunning", package: "google-longrunning"),
         .product(name: "GoogleRpc", package: "google-rpc"),
         .product(name: "GoogleType", package: "google-type"),

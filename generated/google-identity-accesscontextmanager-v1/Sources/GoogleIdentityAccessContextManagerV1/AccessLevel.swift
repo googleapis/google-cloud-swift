@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An `AccessLevel` is a label that can be applied to requests to Google Cloud
 /// services, along with a list of requirements necessary for the label to be
 /// applied.
-public struct AccessLevel: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AccessLevel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Resource name for the Access Level. The `short_name` component
@@ -36,10 +36,10 @@ public struct AccessLevel: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var description: Swift.String = Swift.String()
 
   /// Output only. Time the `AccessLevel` was created in UTC.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Time the `AccessLevel` was updated in UTC.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Required. Describes the necessary conditions for the level to apply.
   public var level: OneOf_Level? = nil
@@ -76,9 +76,9 @@ public struct AccessLevel: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.title = try container.decode(Swift.String.self, forKey: .title)
     self.description = try container.decode(Swift.String.self, forKey: .description)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
 
     var level: OneOf_Level? = nil
     let levelCheckAndSet = {
@@ -128,10 +128,10 @@ public struct AccessLevel: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.identity.accesscontextmanager.v1.AccessLevel"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

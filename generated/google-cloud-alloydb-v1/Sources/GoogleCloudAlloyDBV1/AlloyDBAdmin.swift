@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -1218,7 +1218,7 @@ extension Clients {
     /// See `AlloyDBAdminClient.updateCluster`.
     func updateCluster(
       cluster: Cluster?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Cluster>
 
     /// See `AlloyDBAdminClient.exportCluster`.
@@ -1393,7 +1393,7 @@ extension Clients {
     /// See `AlloyDBAdminClient.updateInstance`.
     func updateInstance(
       instance: Instance?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Instance>
 
     /// See `AlloyDBAdminClient.deleteInstance`.
@@ -1506,7 +1506,7 @@ extension Clients {
     /// See `AlloyDBAdminClient.updateBackup`.
     func updateBackup(
       backup: Backup?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Backup>
 
     /// See `AlloyDBAdminClient.deleteBackup`.
@@ -1590,7 +1590,7 @@ extension Clients {
     /// See `AlloyDBAdminClient.updateUser`.
     func updateUser(
       user: User?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudAlloyDBV1.User
 
     /// See `AlloyDBAdminClient.deleteUser`.
@@ -2145,7 +2145,7 @@ extension Clients.AlloyDBAdminProtocol {
 
   public func updateCluster(
     cluster: Cluster?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Cluster> {
     let request = UpdateClusterRequest().with {
       $0.cluster = cluster
@@ -2663,7 +2663,7 @@ extension Clients.AlloyDBAdminProtocol {
 
   public func updateInstance(
     instance: Instance?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Instance> {
     let request = UpdateInstanceRequest().with {
       $0.instance = instance
@@ -2974,7 +2974,7 @@ extension Clients.AlloyDBAdminProtocol {
 
   public func updateBackup(
     backup: Backup?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Backup> {
     let request = UpdateBackupRequest().with {
       $0.backup = backup
@@ -3189,7 +3189,7 @@ extension Clients.AlloyDBAdminProtocol {
 
   public func updateUser(
     user: User?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudAlloyDBV1.User {
     let request = UpdateUserRequest().with {
       $0.user = user

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A Connectivity Test for a network reachability analysis.
-public struct ConnectivityTest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ConnectivityTest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. Unique name of the resource using the form:
@@ -63,10 +63,10 @@ public struct ConnectivityTest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var labels: [Swift.String: Swift.String] = [:]
 
   /// Output only. The time the test was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time the test's configuration was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The reachability details of this test from the latest run.
   /// The details are updated when creating a new test, updating an
@@ -137,9 +137,9 @@ public struct ConnectivityTest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
     self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.reachabilityDetails = try container.decodeIfPresent(
       ReachabilityDetails.self, forKey: .reachabilityDetails)
     self.probingDetails = try container.decodeIfPresent(
@@ -172,10 +172,10 @@ public struct ConnectivityTest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkmanagement.v1.ConnectivityTest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

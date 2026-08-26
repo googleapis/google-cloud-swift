@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -572,7 +572,7 @@ extension Clients {
     /// See `ApiGatewayServiceClient.updateGateway`.
     func updateGateway(
       gateway: Gateway?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Gateway>
 
     /// See `ApiGatewayServiceClient.deleteGateway`.
@@ -632,7 +632,7 @@ extension Clients {
     /// See `ApiGatewayServiceClient.updateApi`.
     func updateApi(
       api: Api?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Api>
 
     /// See `ApiGatewayServiceClient.deleteApi`.
@@ -696,7 +696,7 @@ extension Clients {
     /// See `ApiGatewayServiceClient.updateApiConfig`.
     func updateApiConfig(
       apiConfig: ApiConfig?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<ApiConfig>
 
     /// See `ApiGatewayServiceClient.deleteApiConfig`.
@@ -1030,7 +1030,7 @@ extension Clients.ApiGatewayServiceProtocol {
 
   public func updateGateway(
     gateway: Gateway?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Gateway> {
     let request = UpdateGatewayRequest().with {
       $0.gateway = gateway
@@ -1199,7 +1199,7 @@ extension Clients.ApiGatewayServiceProtocol {
 
   public func updateApi(
     api: Api?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Api> {
     let request = UpdateApiRequest().with {
       $0.api = api
@@ -1372,7 +1372,7 @@ extension Clients.ApiGatewayServiceProtocol {
 
   public func updateApiConfig(
     apiConfig: ApiConfig?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<ApiConfig> {
     let request = UpdateApiConfigRequest().with {
       $0.apiConfig = apiConfig

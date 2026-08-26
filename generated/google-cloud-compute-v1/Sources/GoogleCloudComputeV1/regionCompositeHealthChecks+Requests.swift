@@ -16,13 +16,13 @@
 
 #if RegionCompositeHealthChecks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   extension RegionCompositeHealthChecksClient {
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.regionCompositeHealthChecks.aggregatedList] method.
     ///
     /// [google.cloud.compute.v1.regionCompositeHealthChecks.aggregatedList]: <doc:RegionCompositeHealthChecksClient/aggregatedList(request:options:)>
-    public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// A filter expression that filters resources listed in the response. Most
@@ -154,18 +154,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.regionCompositeHealthChecks.aggregatedListRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.regionCompositeHealthChecks.delete] method.
     ///
     /// [google.cloud.compute.v1.regionCompositeHealthChecks.delete]: <doc:RegionCompositeHealthChecksClient/delete(request:options:)>
-    public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DeleteRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Name of the CompositeHealthCheck resource to delete.
@@ -212,18 +212,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.regionCompositeHealthChecks.deleteRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionCompositeHealthChecks.get] method.
     ///
     /// [google.cloud.compute.v1.regionCompositeHealthChecks.get]: <doc:RegionCompositeHealthChecksClient/`get`(request:options:)>
-    public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GetRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Name of the CompositeHealthCheck resource to return.
@@ -254,18 +254,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.regionCompositeHealthChecks.getRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [getHealth()][google.cloud.compute.v1.regionCompositeHealthChecks.getHealth] method.
     ///
     /// [google.cloud.compute.v1.regionCompositeHealthChecks.getHealth]: <doc:RegionCompositeHealthChecksClient/getHealth(request:options:)>
-    public struct GetHealthRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GetHealthRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Name of the CompositeHealthCheck resource to get health for.
@@ -297,18 +297,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.regionCompositeHealthChecks.getHealthRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.regionCompositeHealthChecks.insert] method.
     ///
     /// [google.cloud.compute.v1.regionCompositeHealthChecks.insert]: <doc:RegionCompositeHealthChecksClient/insert(request:options:)>
-    public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct InsertRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Project ID for this request.
@@ -357,18 +357,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.regionCompositeHealthChecks.insertRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.regionCompositeHealthChecks.list] method.
     ///
     /// [google.cloud.compute.v1.regionCompositeHealthChecks.list]: <doc:RegionCompositeHealthChecksClient/list(request:options:)>
-    public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ListRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// A filter expression that filters resources listed in the response. Most
@@ -489,18 +489,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.regionCompositeHealthChecks.listRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.regionCompositeHealthChecks.patch] method.
     ///
     /// [google.cloud.compute.v1.regionCompositeHealthChecks.patch]: <doc:RegionCompositeHealthChecksClient/patch(request:options:)>
-    public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct PatchRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Name of the CompositeHealthCheck to update. The name
@@ -553,18 +553,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.regionCompositeHealthChecks.patchRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.regionCompositeHealthChecks.testIamPermissions] method.
     ///
     /// [google.cloud.compute.v1.regionCompositeHealthChecks.testIamPermissions]: <doc:RegionCompositeHealthChecksClient/testIamPermissions(request:options:)>
-    public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Project ID for this request.
@@ -601,11 +601,11 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.regionCompositeHealthChecks.testIamPermissionsRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
   }

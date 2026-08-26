@@ -16,11 +16,11 @@
 
 #if GenAiCacheService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A resource used in LLM queries for users to explicitly specify what to cache
   /// and how to cache.
-  public struct CachedContent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CachedContent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Immutable. Identifier. The server-generated resource name of the cached
@@ -53,10 +53,10 @@
     public var toolConfig: ToolConfig? = nil
 
     /// Output only. Creation time of the cache entry.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. When the cache entry was last updated in UTC time.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Metadata on the usage of the cached content.
     public var usageMetadata: CachedContent.UsageMetadata? = nil
@@ -112,9 +112,9 @@
       self.tools = try container.decode([Tool].self, forKey: .tools)
       self.toolConfig = try container.decodeIfPresent(ToolConfig.self, forKey: .toolConfig)
       self.createTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
       self.updateTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
       self.usageMetadata = try container.decodeIfPresent(
         CachedContent.UsageMetadata.self, forKey: .usageMetadata)
       self.encryptionSpec = try container.decodeIfPresent(
@@ -131,11 +131,11 @@
         expiration = $0
       }
       if let expireTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp?.self, forKey: .expireTime)
+        GoogleCloudWKT.Timestamp?.self, forKey: .expireTime)
       {
         try expirationCheckAndSet(.expireTime(expireTime))
       }
-      if let ttl = try container.decodeIfPresent(GoogleCloudWkt.Duration?.self, forKey: .ttl) {
+      if let ttl = try container.decodeIfPresent(GoogleCloudWKT.Duration?.self, forKey: .ttl) {
         try expirationCheckAndSet(.ttl(ttl))
       }
       self.expiration = expiration
@@ -166,7 +166,7 @@
     }
 
     /// Metadata on the usage of the cached content.
-    public struct UsageMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct UsageMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Total number of tokens that the cached content consumes.
@@ -203,11 +203,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.CachedContent.UsageMetadata"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -216,20 +216,20 @@
       /// Timestamp of when this resource is considered expired.
       /// This is *always* provided on output, regardless of what was sent
       /// on input.
-      indirect case expireTime(GoogleCloudWkt.Timestamp?)
+      indirect case expireTime(GoogleCloudWKT.Timestamp?)
       /// Input only. The TTL for this resource. The expiration time is computed:
       /// now + TTL.
-      indirect case ttl(GoogleCloudWkt.Duration?)
+      indirect case ttl(GoogleCloudWKT.Duration?)
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.CachedContent"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

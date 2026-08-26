@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// Logged during the processing of an event published to a message bus.
-public struct MessageBusActivity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MessageBusActivity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The unique system generated ID when a message bus receives an event. This
@@ -30,7 +30,7 @@ public struct MessageBusActivity: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public var attributes: [Swift.String: Swift.String] = [:]
 
   /// The point in time when the activity occurred.
-  public var activityTime: GoogleCloudWkt.Timestamp? = nil
+  public var activityTime: GoogleCloudWKT.Timestamp? = nil
 
   /// One of the activities that can be logged during the processing of an event
   /// published to a message bus.
@@ -64,7 +64,7 @@ public struct MessageBusActivity: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     self.messageUid = try container.decode(Swift.String.self, forKey: .messageUid)
     self.attributes = try container.decode([Swift.String: Swift.String].self, forKey: .attributes)
     self.activityTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .activityTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .activityTime)
 
     var activity: OneOf_Activity? = nil
     let activityCheckAndSet = {
@@ -100,7 +100,7 @@ public struct MessageBusActivity: Codable, Equatable, GoogleCloudWkt._AnyPackabl
 
   /// Structured log message that is emitted when an event is received by a
   /// message bus.
-  public struct Received: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Received: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Informational details about the event received.
@@ -128,11 +128,11 @@ public struct MessageBusActivity: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.eventarc.logging.v1.MessageBusActivity.Received"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -146,10 +146,10 @@ public struct MessageBusActivity: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.eventarc.logging.v1.MessageBusActivity"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

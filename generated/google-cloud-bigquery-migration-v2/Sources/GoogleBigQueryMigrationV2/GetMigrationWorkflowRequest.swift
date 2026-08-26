@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A request to get a previously created migration workflow.
-public struct GetMigrationWorkflowRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct GetMigrationWorkflowRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The unique identifier for the migration workflow.
@@ -26,7 +26,7 @@ public struct GetMigrationWorkflowRequest: Codable, Equatable, GoogleCloudWkt._A
   public var name: Swift.String = Swift.String()
 
   /// The list of fields to be retrieved.
-  public var readMask: GoogleCloudWkt.FieldMask? = nil
+  public var readMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `GetMigrationWorkflowRequest`.
   public init() {}
@@ -47,10 +47,10 @@ public struct GetMigrationWorkflowRequest: Codable, Equatable, GoogleCloudWkt._A
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.migration.v2.GetMigrationWorkflowRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

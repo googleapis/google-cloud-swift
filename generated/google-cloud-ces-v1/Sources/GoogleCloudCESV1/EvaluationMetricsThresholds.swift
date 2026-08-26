@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Threshold settings for metrics in an Evaluation.
-public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. The golden evaluation metrics thresholds.
@@ -58,7 +58,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleCloudWkt._A
   }
 
   /// Settings for golden evaluations.
-  public struct GoldenEvaluationMetricsThresholds: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GoldenEvaluationMetricsThresholds: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The turn level metrics thresholds.
@@ -93,7 +93,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleCloudWkt._A
     }
 
     /// Turn level metrics thresholds.
-    public struct TurnLevelMetricsThresholds: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct TurnLevelMetricsThresholds: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. The success threshold for semantic similarity. Must be an
@@ -235,16 +235,16 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleCloudWkt._A
         return
           "type.googleapis.com/google.cloud.ces.v1.EvaluationMetricsThresholds.GoldenEvaluationMetricsThresholds.TurnLevelMetricsThresholds"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Expectation level metrics thresholds.
-    public struct ExpectationLevelMetricsThresholds: Codable, Equatable, GoogleCloudWkt
+    public struct ExpectationLevelMetricsThresholds: Codable, Equatable, GoogleCloudWKT
         ._AnyPackable,
       Sendable
     {
@@ -272,11 +272,11 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleCloudWkt._A
         return
           "type.googleapis.com/google.cloud.ces.v1.EvaluationMetricsThresholds.GoldenEvaluationMetricsThresholds.ExpectationLevelMetricsThresholds"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -284,16 +284,16 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleCloudWkt._A
       return
         "type.googleapis.com/google.cloud.ces.v1.EvaluationMetricsThresholds.GoldenEvaluationMetricsThresholds"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Settings for matching tool calls.
-  public struct ToolMatchingSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ToolMatchingSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Behavior for extra tool calls.
@@ -429,11 +429,11 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleCloudWkt._A
       return
         "type.googleapis.com/google.cloud.ces.v1.EvaluationMetricsThresholds.ToolMatchingSettings"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -547,10 +547,10 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleCloudWkt._A
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.EvaluationMetricsThresholds"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

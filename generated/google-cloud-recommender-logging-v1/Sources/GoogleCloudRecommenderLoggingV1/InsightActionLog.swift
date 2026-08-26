@@ -16,10 +16,10 @@
 
 import Foundation
 import GoogleCloudRecommenderV1
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Log content of an action on an insight. This includes Mark* actions.
-public struct InsightActionLog: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct InsightActionLog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. User that executed this action. Eg, foo@gmail.com
@@ -55,10 +55,10 @@ public struct InsightActionLog: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.recommender.logging.v1.InsightActionLog"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

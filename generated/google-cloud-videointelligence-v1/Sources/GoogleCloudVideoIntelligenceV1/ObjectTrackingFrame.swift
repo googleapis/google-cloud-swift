@@ -15,18 +15,18 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Video frame level annotations for object detection and tracking. This field
 /// stores per frame location, time offset, and confidence.
-public struct ObjectTrackingFrame: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ObjectTrackingFrame: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The normalized bounding box location of this object track for the frame.
   public var normalizedBoundingBox: NormalizedBoundingBox? = nil
 
   /// The timestamp of the frame in microseconds.
-  public var timeOffset: GoogleCloudWkt.Duration? = nil
+  public var timeOffset: GoogleCloudWKT.Duration? = nil
 
   /// Initialize a new instance of `ObjectTrackingFrame`.
   public init() {}
@@ -47,10 +47,10 @@ public struct ObjectTrackingFrame: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.videointelligence.v1.ObjectTrackingFrame"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

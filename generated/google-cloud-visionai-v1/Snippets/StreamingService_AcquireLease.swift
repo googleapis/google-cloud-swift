@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudVideoAIV1
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 
 func sample(client: StreamingServiceClient) async throws {

@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -1068,7 +1068,7 @@ extension Clients {
     /// See `AccessContextManagerClient.updateAccessPolicy`.
     func updateAccessPolicy(
       policy: AccessPolicy?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<AccessPolicy>
 
     /// See `AccessContextManagerClient.deleteAccessPolicy`.
@@ -1132,7 +1132,7 @@ extension Clients {
     /// See `AccessContextManagerClient.updateAccessLevel`.
     func updateAccessLevel(
       accessLevel: AccessLevel?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<AccessLevel>
 
     /// See `AccessContextManagerClient.deleteAccessLevel`.
@@ -1204,7 +1204,7 @@ extension Clients {
     /// See `AccessContextManagerClient.updateServicePerimeter`.
     func updateServicePerimeter(
       servicePerimeter: ServicePerimeter?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<ServicePerimeter>
 
     /// See `AccessContextManagerClient.deleteServicePerimeter`.
@@ -1284,7 +1284,7 @@ extension Clients {
     /// See `AccessContextManagerClient.updateGcpUserAccessBinding`.
     func updateGcpUserAccessBinding(
       gcpUserAccessBinding: GcpUserAccessBinding?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<GcpUserAccessBinding>
 
     /// See `AccessContextManagerClient.deleteGcpUserAccessBinding`.
@@ -1646,7 +1646,7 @@ extension Clients.AccessContextManagerProtocol {
 
   public func updateAccessPolicy(
     policy: AccessPolicy?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<AccessPolicy> {
     let request = UpdateAccessPolicyRequest().with {
       $0.policy = policy
@@ -1820,7 +1820,7 @@ extension Clients.AccessContextManagerProtocol {
 
   public func updateAccessLevel(
     accessLevel: AccessLevel?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<AccessLevel> {
     let request = UpdateAccessLevelRequest().with {
       $0.accessLevel = accessLevel
@@ -2023,7 +2023,7 @@ extension Clients.AccessContextManagerProtocol {
 
   public func updateServicePerimeter(
     servicePerimeter: ServicePerimeter?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<ServicePerimeter> {
     let request = UpdateServicePerimeterRequest().with {
       $0.servicePerimeter = servicePerimeter
@@ -2259,7 +2259,7 @@ extension Clients.AccessContextManagerProtocol {
 
   public func updateGcpUserAccessBinding(
     gcpUserAccessBinding: GcpUserAccessBinding?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<GcpUserAccessBinding> {
     let request = UpdateGcpUserAccessBindingRequest().with {
       $0.gcpUserAccessBinding = gcpUserAccessBinding

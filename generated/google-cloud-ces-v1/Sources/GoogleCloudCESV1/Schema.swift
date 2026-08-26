@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents a select subset of an OpenAPI 3.0 schema object.
-public struct Schema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Schema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The type of the data.
@@ -34,7 +34,7 @@ public struct Schema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var description: Swift.String = Swift.String()
 
   /// Optional. Schema of the elements of Type.ARRAY.
-  public var items: GoogleCloudWkt.Recursive<Schema>? = nil
+  public var items: GoogleCloudWKT.Recursive<Schema>? = nil
 
   /// Optional. Indicates if the value may be null.
   public var nullable: Swift.Bool = Swift.Bool()
@@ -48,7 +48,7 @@ public struct Schema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Optional. Can either be a boolean or an object, controls the presence of
   /// additional properties.
-  public var additionalProperties: GoogleCloudWkt.Recursive<Schema>? = nil
+  public var additionalProperties: GoogleCloudWKT.Recursive<Schema>? = nil
 
   /// Optional. The value should be validated against any (one or more) of the
   /// subschemas in the list.
@@ -63,7 +63,7 @@ public struct Schema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var `enum`: [Swift.String] = []
 
   /// Optional. Default value of the data.
-  public var `default`: GoogleCloudWkt.Value? = nil
+  public var `default`: GoogleCloudWKT.Value? = nil
 
   /// Optional. Allows indirect references between schema nodes. The value should
   /// be a valid reference to a child of the root `defs`.
@@ -154,15 +154,15 @@ public struct Schema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.`required` = try container.decode([Swift.String].self, forKey: .`required`)
     self.description = try container.decode(Swift.String.self, forKey: .description)
     self.items = try container.decodeIfPresent(
-      GoogleCloudWkt.Recursive<Schema>.self, forKey: .items)
+      GoogleCloudWKT.Recursive<Schema>.self, forKey: .items)
     self.nullable = try container.decode(Swift.Bool.self, forKey: .nullable)
     self.uniqueItems = try container.decode(Swift.Bool.self, forKey: .uniqueItems)
     self.prefixItems = try container.decode([Schema].self, forKey: .prefixItems)
     self.additionalProperties = try container.decodeIfPresent(
-      GoogleCloudWkt.Recursive<Schema>.self, forKey: .additionalProperties)
+      GoogleCloudWKT.Recursive<Schema>.self, forKey: .additionalProperties)
     self.anyOf = try container.decode([Schema].self, forKey: .anyOf)
     self.`enum` = try container.decode([Swift.String].self, forKey: .`enum`)
-    self.`default` = try container.decodeIfPresent(GoogleCloudWkt.Value.self, forKey: .`default`)
+    self.`default` = try container.decodeIfPresent(GoogleCloudWKT.Value.self, forKey: .`default`)
     self.ref = try container.decode(Swift.String.self, forKey: .ref)
     self.defs = try container.decode([Swift.String: Schema].self, forKey: .defs)
     self.title = try container.decode(Swift.String.self, forKey: .title)
@@ -331,10 +331,10 @@ public struct Schema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.Schema"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

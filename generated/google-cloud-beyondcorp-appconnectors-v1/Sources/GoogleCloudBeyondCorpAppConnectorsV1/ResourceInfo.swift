@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// ResourceInfo represents the information/status of an app connector resource.
 /// Such as:
@@ -27,7 +27,7 @@ import Foundation
 ///         - appconnection
 ///           - tunnel
 ///       - logagent
-public struct ResourceInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ResourceInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Unique Id for the resource.
@@ -38,11 +38,11 @@ public struct ResourceInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var status: HealthStatus = HealthStatus()
 
   /// Specific details for the resource. This is for internal use only.
-  public var resource: GoogleCloudWkt.`Any`? = nil
+  public var resource: GoogleCloudWKT.`Any`? = nil
 
   /// The timestamp to collect the info. It is suggested to be set by
   /// the topmost level resource only.
-  public var time: GoogleCloudWkt.Timestamp? = nil
+  public var time: GoogleCloudWKT.Timestamp? = nil
 
   /// List of Info for the sub level resources.
   public var sub: [ResourceInfo] = []
@@ -66,10 +66,10 @@ public struct ResourceInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.beyondcorp.appconnectors.v1.ResourceInfo"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

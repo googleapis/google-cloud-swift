@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Describes a change made to a configuration.
-public struct MutationRecord: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MutationRecord: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// When the change occurred.
-  public var mutateTime: GoogleCloudWkt.Timestamp? = nil
+  public var mutateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The email address of the user making the change.
   public var mutatedBy: Swift.String = Swift.String()
@@ -46,10 +46,10 @@ public struct MutationRecord: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.v3.MutationRecord"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The output of a data discovery scan.
-public struct DataDiscoveryResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DataDiscoveryResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Configuration for metadata publishing.
@@ -44,7 +44,7 @@ public struct DataDiscoveryResult: Codable, Equatable, GoogleCloudWkt._AnyPackab
   }
 
   /// Describes BigQuery publishing configurations.
-  public struct BigQueryPublishing: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct BigQueryPublishing: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The BigQuery dataset the discovered tables are published to.
@@ -72,16 +72,16 @@ public struct DataDiscoveryResult: Codable, Equatable, GoogleCloudWkt._AnyPackab
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.DataDiscoveryResult.BigQueryPublishing"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Describes result statistics of a data scan discovery job.
-  public struct ScanStatistics: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ScanStatistics: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The number of files scanned.
@@ -130,21 +130,21 @@ public struct DataDiscoveryResult: Codable, Equatable, GoogleCloudWkt._AnyPackab
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.DataDiscoveryResult.ScanStatistics"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataplex.v1.DataDiscoveryResult"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Automatic scaling is based on request rate, response latencies, and other
 /// application metrics.
-public struct AutomaticScaling: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AutomaticScaling: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The time period that the
@@ -28,7 +28,7 @@ public struct AutomaticScaling: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// This prevents the autoscaler from collecting information when the instance
   /// is initializing, during which the collected usage would not be reliable.
   /// Only applicable in the App Engine flexible environment.
-  public var coolDownPeriod: GoogleCloudWkt.Duration? = nil
+  public var coolDownPeriod: GoogleCloudWKT.Duration? = nil
 
   /// Target scaling by CPU usage.
   public var cpuUtilization: CpuUtilization? = nil
@@ -49,7 +49,7 @@ public struct AutomaticScaling: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Maximum amount of time that a request should wait in the pending queue
   /// before starting a new instance to handle it.
-  public var maxPendingLatency: GoogleCloudWkt.Duration? = nil
+  public var maxPendingLatency: GoogleCloudWKT.Duration? = nil
 
   /// Minimum number of idle instances that should be maintained for
   /// this version. Only applicable for the default version of a service.
@@ -61,7 +61,7 @@ public struct AutomaticScaling: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Minimum amount of time a request should wait in the pending queue before
   /// starting a new instance to handle it.
-  public var minPendingLatency: GoogleCloudWkt.Duration? = nil
+  public var minPendingLatency: GoogleCloudWKT.Duration? = nil
 
   /// Target scaling by request utilization.
   public var requestUtilization: RequestUtilization? = nil
@@ -94,10 +94,10 @@ public struct AutomaticScaling: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.appengine.v1.AutomaticScaling"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// `Type` represents the type of data that is written to, read from, or stored
 /// in Bigtable. It is heavily based on the GoogleSQL standard to help maintain
@@ -39,7 +39,7 @@ import Foundation
 /// modes. For example, when encoding INT64 as a numeric STRING, negative numbers
 /// cannot be encoded in sorted mode. This is because `INT64(1) > INT64(-1)`, but
 /// `STRING("-00001") > STRING("00001")`.
-public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Type_: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The kind of type that this represents.
@@ -179,7 +179,7 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Bytes
   /// Values of type `Bytes` are stored in `Value.bytes_value`.
-  public struct Bytes: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Bytes: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The encoding to use when converting to or from lower level types.
@@ -202,7 +202,7 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Rules used to convert to or from lower level types.
-    public struct Encoding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Encoding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Which encoding to use.
@@ -263,7 +263,7 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       /// Sorted mode: all values are supported.
       ///
       /// Distinct mode: all values are supported.
-      public struct Raw: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Raw: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Initialize a new instance of `Raw`.
@@ -285,11 +285,11 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.bigtable.admin.v2.Type.Bytes.Encoding.Raw"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -302,28 +302,28 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.bigtable.admin.v2.Type.Bytes.Encoding"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.bigtable.admin.v2.Type.Bytes"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// String
   /// Values of type `String` are stored in `Value.string_value`.
-  public struct String: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct String: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The encoding to use when converting to or from lower level types.
@@ -346,7 +346,7 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Rules used to convert to or from lower level types.
-    public struct Encoding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Encoding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Which encoding to use.
@@ -414,7 +414,7 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Deprecated: prefer the equivalent `Utf8Bytes`.
       @available(*, deprecated)
-      public struct Utf8Raw: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Utf8Raw: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Initialize a new instance of `Utf8Raw`.
@@ -436,11 +436,11 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.bigtable.admin.v2.Type.String.Encoding.Utf8Raw"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -457,7 +457,7 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       ///  - BigQuery `TEXT` encoding
       ///  - HBase `Bytes.toBytes`
       ///  - Java `String#getBytes(StandardCharsets.UTF_8)`
-      public struct Utf8Bytes: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Utf8Bytes: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Initialize a new instance of `Utf8Bytes`.
@@ -479,11 +479,11 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.bigtable.admin.v2.Type.String.Encoding.Utf8Bytes"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -499,28 +499,28 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.bigtable.admin.v2.Type.String.Encoding"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.bigtable.admin.v2.Type.String"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Int64
   /// Values of type `Int64` are stored in `Value.int_value`.
-  public struct Int64: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Int64: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The encoding to use when converting to or from lower level types.
@@ -543,7 +543,7 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Rules used to convert to or from lower level types.
-    public struct Encoding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Encoding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Which encoding to use.
@@ -620,7 +620,7 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       ///  - BigQuery `BINARY` encoding
       ///  - HBase `Bytes.toBytes`
       ///  - Java `ByteBuffer.putLong()` with `ByteOrder.BIG_ENDIAN`
-      public struct BigEndianBytes: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct BigEndianBytes: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Deprecated: ignored if set.
@@ -646,11 +646,11 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.bigtable.admin.v2.Type.Int64.Encoding.BigEndianBytes"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -660,7 +660,7 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       /// Sorted mode: all values are supported.
       ///
       /// Distinct mode: all values are supported.
-      public struct OrderedCodeBytes: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct OrderedCodeBytes: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Initialize a new instance of `OrderedCodeBytes`.
@@ -682,11 +682,11 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.bigtable.admin.v2.Type.Int64.Encoding.OrderedCodeBytes"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -701,28 +701,28 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.bigtable.admin.v2.Type.Int64.Encoding"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.bigtable.admin.v2.Type.Int64"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// bool
   /// Values of type `Bool` are stored in `Value.bool_value`.
-  public struct Bool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Bool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `Bool`.
@@ -744,17 +744,17 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.bigtable.admin.v2.Type.Bool"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Float32
   /// Values of type `Float32` are stored in `Value.float_value`.
-  public struct Float32: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Float32: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `Float32`.
@@ -776,17 +776,17 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.bigtable.admin.v2.Type.Float32"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Float64
   /// Values of type `Float64` are stored in `Value.float_value`.
-  public struct Float64: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Float64: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `Float64`.
@@ -808,17 +808,17 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.bigtable.admin.v2.Type.Float64"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Timestamp
   /// Values of type `Timestamp` are stored in `Value.timestamp_value`.
-  public struct Timestamp: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Timestamp: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The encoding to use when converting to or from lower level types.
@@ -841,7 +841,7 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Rules used to convert to or from lower level types.
-    public struct Encoding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Encoding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Which encoding to use.
@@ -913,28 +913,28 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.bigtable.admin.v2.Type.Timestamp.Encoding"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.bigtable.admin.v2.Type.Timestamp"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Date
   /// Values of type `Date` are stored in `Value.date_value`.
-  public struct Date: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Date: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `Date`.
@@ -956,11 +956,11 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.bigtable.admin.v2.Type.Date"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -968,7 +968,7 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// typed values.
   /// Values of type `Struct` are stored in `Value.array_value` where entries are
   /// in the same order and number as `field_types`.
-  public struct Struct: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Struct: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The names and types of the fields in this struct.
@@ -994,7 +994,7 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// A struct field and its type.
-    public struct Field: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Field: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The field name (optional). Fields without a `field_name` are considered
@@ -1002,7 +1002,7 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public var fieldName: Swift.String = Swift.String()
 
       /// The type of values in this field.
-      public var type: GoogleCloudWkt.Recursive<Type_>? = nil
+      public var type: GoogleCloudWKT.Recursive<Type_>? = nil
 
       /// Initialize a new instance of `Field`.
       public init() {}
@@ -1023,16 +1023,16 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.bigtable.admin.v2.Type.Struct.Field"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Rules used to convert to or from lower level types.
-    public struct Encoding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Encoding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Which encoding to use.
@@ -1108,7 +1108,7 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// Uses the encoding of `fields[0].type` as-is.
       /// Only valid if `fields.size == 1`.
-      public struct Singleton: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Singleton: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Initialize a new instance of `Singleton`.
@@ -1130,11 +1130,11 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.bigtable.admin.v2.Type.Struct.Encoding.Singleton"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -1154,7 +1154,7 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       ///
       ///  - Fields are encoded in distinct mode.
       ///  - Encoded field values must not contain `delimiter[0]`.
-      public struct DelimitedBytes: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct DelimitedBytes: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Byte sequence used to delimit concatenated fields. The delimiter must
@@ -1180,11 +1180,11 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.bigtable.admin.v2.Type.Struct.Encoding.DelimitedBytes"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -1229,7 +1229,7 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       ///
       ///  - Fields are encoded in distinct mode.
       ///  - All values supported by the field encodings are allowed.
-      public struct OrderedCodeBytes: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct OrderedCodeBytes: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Initialize a new instance of `OrderedCodeBytes`.
@@ -1252,11 +1252,11 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.bigtable.admin.v2.Type.Struct.Encoding.OrderedCodeBytes"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -1273,28 +1273,28 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.bigtable.admin.v2.Type.Struct.Encoding"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.bigtable.admin.v2.Type.Struct"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A protobuf message type.
   /// Values of type `Proto` are stored in `Value.bytes_value`.
-  public struct Proto: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Proto: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The ID of the schema bundle that this proto is defined in.
@@ -1323,17 +1323,17 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.bigtable.admin.v2.Type.Proto"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A protobuf enum type.
   /// Values of type `Enum` are stored in `Value.int_value`.
-  public struct Enum: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Enum: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The ID of the schema bundle that this enum is defined in.
@@ -1362,21 +1362,21 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.bigtable.admin.v2.Type.Enum"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// An ordered list of elements of a given type.
   /// Values of type `Array` are stored in `Value.array_value`.
-  public struct Array: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Array: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The type of the elements in the array. This must not be `Array`.
-    public var elementType: GoogleCloudWkt.Recursive<Type_>? = nil
+    public var elementType: GoogleCloudWKT.Recursive<Type_>? = nil
 
     /// Initialize a new instance of `Array`.
     public init() {}
@@ -1397,11 +1397,11 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.bigtable.admin.v2.Type.Array"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -1412,15 +1412,15 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Normally encoded Map values won't have repeated keys, however, clients are
   /// expected to handle the case in which they do. If the same key appears
   /// multiple times, the _last_ value takes precedence.
-  public struct Map: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Map: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The type of a map key.
     /// Only `Bytes`, `String`, and `Int64` are allowed as key types.
-    public var keyType: GoogleCloudWkt.Recursive<Type_>? = nil
+    public var keyType: GoogleCloudWKT.Recursive<Type_>? = nil
 
     /// The type of the values in a map.
-    public var valueType: GoogleCloudWkt.Recursive<Type_>? = nil
+    public var valueType: GoogleCloudWKT.Recursive<Type_>? = nil
 
     /// Initialize a new instance of `Map`.
     public init() {}
@@ -1441,11 +1441,11 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.bigtable.admin.v2.Type.Map"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -1454,18 +1454,18 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Data is never directly written or read using type `Aggregate`. Writes will
   /// provide either the `input_type` or `state_type`, and reads will always
   /// return the `state_type` .
-  public struct Aggregate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Aggregate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Type of the inputs that are accumulated by this `Aggregate`, which must
     /// specify a full encoding.
     /// Use `AddInput` mutations to accumulate new inputs.
-    public var inputType: GoogleCloudWkt.Recursive<Type_>? = nil
+    public var inputType: GoogleCloudWKT.Recursive<Type_>? = nil
 
     /// Output only. Type that holds the internal accumulator state for the
     /// `Aggregate`. This is a function of the `input_type` and `aggregator`
     /// chosen, and will always specify a full encoding.
-    public var stateType: GoogleCloudWkt.Recursive<Type_>? = nil
+    public var stateType: GoogleCloudWKT.Recursive<Type_>? = nil
 
     /// Which aggregator function to use. The configured types must match.
     public var aggregator: OneOf_Aggregator? = nil
@@ -1498,9 +1498,9 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.inputType = try container.decodeIfPresent(
-        GoogleCloudWkt.Recursive<Type_>.self, forKey: .inputType)
+        GoogleCloudWKT.Recursive<Type_>.self, forKey: .inputType)
       self.stateType = try container.decodeIfPresent(
-        GoogleCloudWkt.Recursive<Type_>.self, forKey: .stateType)
+        GoogleCloudWKT.Recursive<Type_>.self, forKey: .stateType)
 
       var aggregator: OneOf_Aggregator? = nil
       let aggregatorCheckAndSet = {
@@ -1551,7 +1551,7 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// Computes the sum of the input values.
     /// Allowed input: `Int64`
     /// State: same as input
-    public struct Sum: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Sum: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Initialize a new instance of `Sum`.
@@ -1573,18 +1573,18 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.bigtable.admin.v2.Type.Aggregate.Sum"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Computes the max of the input values.
     /// Allowed input: `Int64`
     /// State: same as input
-    public struct Max: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Max: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Initialize a new instance of `Max`.
@@ -1606,18 +1606,18 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.bigtable.admin.v2.Type.Aggregate.Max"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Computes the min of the input values.
     /// Allowed input: `Int64`
     /// State: same as input
-    public struct Min: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Min: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Initialize a new instance of `Min`.
@@ -1639,11 +1639,11 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.bigtable.admin.v2.Type.Aggregate.Min"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -1654,7 +1654,7 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// Input: Any, or omit for Raw
     /// State: TBD
     /// Special state conversions: `Int64` (the unique count estimate)
-    public struct HyperLogLogPlusPlusUniqueCount: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct HyperLogLogPlusPlusUniqueCount: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Initialize a new instance of `HyperLogLogPlusPlusUniqueCount`.
@@ -1677,11 +1677,11 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.bigtable.admin.v2.Type.Aggregate.HyperLogLogPlusPlusUniqueCount"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -1700,11 +1700,11 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.bigtable.admin.v2.Type.Aggregate"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -1743,10 +1743,10 @@ public struct Type_: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.bigtable.admin.v2.Type"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A storage volume logical unit number (LUN).
-public struct Lun: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Lun: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The name of the LUN.
@@ -54,7 +54,7 @@ public struct Lun: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Output only. Time after which LUN will be fully deleted.
   /// It is filled only for LUNs in COOL_OFF state.
-  public var expireTime: GoogleCloudWkt.Timestamp? = nil
+  public var expireTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Instances this Lun is attached to.
   public var instances: [Swift.String] = []
@@ -407,10 +407,10 @@ public struct Lun: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.baremetalsolution.v2.Lun"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

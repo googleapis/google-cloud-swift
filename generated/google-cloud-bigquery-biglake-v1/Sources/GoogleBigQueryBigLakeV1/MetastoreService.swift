@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleCloudGax
 
 /// BigLake Metastore is a serverless, highly available, multi-tenant runtime
@@ -303,7 +303,7 @@ extension Clients {
     /// See `MetastoreServiceClient.updateDatabase`.
     func updateDatabase(
       database: Database?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleBigQueryBigLakeV1.Database
 
     /// See `MetastoreServiceClient.getDatabase`.
@@ -352,7 +352,7 @@ extension Clients {
     /// See `MetastoreServiceClient.updateTable`.
     func updateTable(
       table: Table?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleBigQueryBigLakeV1.Table
 
     /// See `MetastoreServiceClient.renameTable`.
@@ -643,7 +643,7 @@ extension Clients.MetastoreServiceProtocol {
 
   public func updateDatabase(
     database: Database?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleBigQueryBigLakeV1.Database {
     let request = UpdateDatabaseRequest().with {
       $0.database = database
@@ -767,7 +767,7 @@ extension Clients.MetastoreServiceProtocol {
 
   public func updateTable(
     table: Table?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleBigQueryBigLakeV1.Table {
     let request = UpdateTableRequest().with {
       $0.table = table

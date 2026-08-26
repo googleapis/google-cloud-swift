@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// When set in a
 /// [StorageResourceConfig][google.cloud.hypercomputecluster.v1.StorageResourceConfig],
@@ -23,7 +23,7 @@ import Foundation
 /// instance should be imported.
 ///
 /// [google.cloud.hypercomputecluster.v1.StorageResourceConfig]: <doc:StorageResourceConfig>
-public struct ExistingFilestoreConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ExistingFilestoreConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Immutable. Name of the Filestore instance to import, in the
@@ -49,10 +49,10 @@ public struct ExistingFilestoreConfig: Codable, Equatable, GoogleCloudWkt._AnyPa
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.hypercomputecluster.v1.ExistingFilestoreConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

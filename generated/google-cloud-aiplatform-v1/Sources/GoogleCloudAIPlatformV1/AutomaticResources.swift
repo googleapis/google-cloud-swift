@@ -16,12 +16,12 @@
 
 #if DeploymentResourcePoolService || EndpointService || FeatureOnlineStoreAdminService || IndexEndpointService || ModelGardenService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A description of resources that to large degree are decided by Vertex AI,
   /// and require only a modest additional configuration.
   /// Each Model supporting these resources documents its specific guidelines.
-  public struct AutomaticResources: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AutomaticResources: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Immutable. The minimum number of replicas that will be always deployed on.
@@ -63,11 +63,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.AutomaticResources"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

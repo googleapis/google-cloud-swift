@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleRpc
   import GoogleCloudGax
@@ -573,7 +573,7 @@
       /// See `TestCasesClient.updateTestCase`.
       func updateTestCase(
         testCase: TestCase?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudDialogflowCXV3.TestCase
 
       /// See `TestCasesClient.runTestCase`.
@@ -908,7 +908,7 @@
 
     public func updateTestCase(
       testCase: TestCase?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.TestCase {
       let request = UpdateTestCaseRequest().with {
         $0.testCase = testCase

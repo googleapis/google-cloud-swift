@@ -16,7 +16,7 @@
 
 #if AnswerRecords || Conversations || Participants || Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The result of sentiment analysis. Sentiment analysis inspects user input
   /// and identifies the prevailing subjective opinion, especially to determine a
@@ -35,7 +35,7 @@
   /// [google.cloud.dialogflow.v2.ConversationProfile.human_agent_assistant_config]: <doc:ConversationProfile/humanAgentAssistantConfig>
   /// [google.cloud.dialogflow.v2.Participants.AnalyzeContent]: <doc:ParticipantsClient/analyzeContent(request:options:)>
   /// [google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent]: <doc:ParticipantsClient/streamingAnalyzeContent(request:options:)>
-  public struct SentimentAnalysisResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SentimentAnalysisResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The sentiment analysis result for `query_text`.
@@ -60,11 +60,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.SentimentAnalysisResult"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

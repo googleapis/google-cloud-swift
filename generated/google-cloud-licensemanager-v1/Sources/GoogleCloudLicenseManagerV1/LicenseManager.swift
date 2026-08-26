@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -503,7 +503,7 @@ extension Clients {
     /// See `LicenseManagerClient.updateConfiguration`.
     func updateConfiguration(
       configuration: Configuration?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Configuration>
 
     /// See `LicenseManagerClient.deleteConfiguration`.
@@ -575,8 +575,8 @@ extension Clients {
     /// See `LicenseManagerClient.queryConfigurationLicenseUsage`.
     func queryConfigurationLicenseUsage(
       name: Swift.String,
-      startTime: GoogleCloudWkt.Timestamp?,
-      endTime: GoogleCloudWkt.Timestamp?,
+      startTime: GoogleCloudWKT.Timestamp?,
+      endTime: GoogleCloudWKT.Timestamp?,
     ) async throws -> GoogleCloudLicenseManagerV1.QueryConfigurationLicenseUsageResponse
 
     /// See `LicenseManagerClient.aggregateUsage`.
@@ -591,8 +591,8 @@ extension Clients {
     /// See `LicenseManagerClient.aggregateUsage`.
     func aggregateUsage(
       name: Swift.String,
-      startTime: GoogleCloudWkt.Timestamp?,
-      endTime: GoogleCloudWkt.Timestamp?,
+      startTime: GoogleCloudWKT.Timestamp?,
+      endTime: GoogleCloudWKT.Timestamp?,
     ) throws -> any AsyncSequence<Usage, Swift.Error>
 
     /// See `LicenseManagerClient.listProducts`.
@@ -940,7 +940,7 @@ extension Clients.LicenseManagerProtocol {
 
   public func updateConfiguration(
     configuration: Configuration?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Configuration> {
     let request = UpdateConfigurationRequest().with {
       $0.configuration = configuration
@@ -1132,8 +1132,8 @@ extension Clients.LicenseManagerProtocol {
 
   public func queryConfigurationLicenseUsage(
     name: Swift.String,
-    startTime: GoogleCloudWkt.Timestamp?,
-    endTime: GoogleCloudWkt.Timestamp?,
+    startTime: GoogleCloudWKT.Timestamp?,
+    endTime: GoogleCloudWKT.Timestamp?,
   ) async throws -> GoogleCloudLicenseManagerV1.QueryConfigurationLicenseUsageResponse {
     let request = QueryConfigurationLicenseUsageRequest().with {
       $0.name = name
@@ -1173,8 +1173,8 @@ extension Clients.LicenseManagerProtocol {
 
   public func aggregateUsage(
     name: Swift.String,
-    startTime: GoogleCloudWkt.Timestamp?,
-    endTime: GoogleCloudWkt.Timestamp?,
+    startTime: GoogleCloudWKT.Timestamp?,
+    endTime: GoogleCloudWKT.Timestamp?,
   ) throws -> any AsyncSequence<Usage, Swift.Error> {
     let request = AggregateUsageRequest().with {
       $0.name = name

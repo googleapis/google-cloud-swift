@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// DiagnoseNetworkResponse contains the current status for a specific network.
-public struct DiagnoseNetworkResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DiagnoseNetworkResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The time when the network status was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The network status of a specific network.
   public var result: DiagnoseNetworkResponse.NetworkStatus? = nil
@@ -45,7 +45,7 @@ public struct DiagnoseNetworkResponse: Codable, Equatable, GoogleCloudWkt._AnyPa
 
   /// NetworkStatus has a list of status for the subnets under the current
   /// network.
-  public struct NetworkStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct NetworkStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// A list of status for the subnets under the current network.
@@ -179,21 +179,21 @@ public struct DiagnoseNetworkResponse: Codable, Equatable, GoogleCloudWkt._AnyPa
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.edgenetwork.v1.DiagnoseNetworkResponse.NetworkStatus"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.edgenetwork.v1.DiagnoseNetworkResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

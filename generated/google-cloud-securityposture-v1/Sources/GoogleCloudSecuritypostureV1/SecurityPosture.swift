@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -636,7 +636,7 @@ extension Clients {
     /// See `SecurityPostureClient.updatePosture`.
     func updatePosture(
       posture: Posture?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Posture>
 
     /// See `SecurityPostureClient.deletePosture`.
@@ -714,7 +714,7 @@ extension Clients {
     /// See `SecurityPostureClient.updatePostureDeployment`.
     func updatePostureDeployment(
       postureDeployment: PostureDeployment?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<PostureDeployment>
 
     /// See `SecurityPostureClient.deletePostureDeployment`.
@@ -1119,7 +1119,7 @@ extension Clients.SecurityPostureProtocol {
 
   public func updatePosture(
     posture: Posture?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Posture> {
     let request = UpdatePostureRequest().with {
       $0.posture = posture
@@ -1338,7 +1338,7 @@ extension Clients.SecurityPostureProtocol {
 
   public func updatePostureDeployment(
     postureDeployment: PostureDeployment?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<PostureDeployment> {
     let request = UpdatePostureDeploymentRequest().with {
       $0.postureDeployment = postureDeployment

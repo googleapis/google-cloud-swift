@@ -16,12 +16,12 @@
 
 #if TensorboardService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Tensorboard is a physical database that stores users' training metrics.
   /// A default Tensorboard is provided in each region of a Google Cloud project.
   /// If needed users can also create extra Tensorboards in their projects.
-  public struct Tensorboard: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Tensorboard: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Name of the Tensorboard.
@@ -48,10 +48,10 @@
     public var runCount: Swift.Int32 = Swift.Int32()
 
     /// Output only. Timestamp when this Tensorboard was created.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Timestamp when this Tensorboard was last updated.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// The labels with user-defined metadata to organize your Tensorboards.
     ///
@@ -102,11 +102,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.Tensorboard"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

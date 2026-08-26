@@ -16,10 +16,10 @@
 
 #if DatasetService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Describes the dataset version.
-  public struct DatasetVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DatasetVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Identifier. The resource name of the DatasetVersion.
@@ -28,10 +28,10 @@
     public var name: Swift.String = Swift.String()
 
     /// Output only. Timestamp when this DatasetVersion was created.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Timestamp when this DatasetVersion was last updated.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Used to perform consistent read-modify-write updates. If not set, a blind
     /// "overwrite" update happens.
@@ -46,7 +46,7 @@
     public var displayName: Swift.String = Swift.String()
 
     /// Required. Output only. Additional information about the DatasetVersion.
-    public var metadata: GoogleCloudWkt.Value? = nil
+    public var metadata: GoogleCloudWKT.Value? = nil
 
     /// Output only. Reference to the public base model last used by the dataset
     /// version. Only set for prompt dataset versions.
@@ -77,11 +77,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.DatasetVersion"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -16,17 +16,17 @@
 
 #if ReliabilityRisks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Detailed insights for a global DNS reliability risk.
-  public struct RiskDetailsGlobalDnsInsight: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RiskDetailsGlobalDnsInsight: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Indicates whether the project's default DNS setting is global DNS.
     public var projectDefaultIsGlobalDns: Swift.Bool? = nil
 
     /// The observation window for the query counts.
-    public var queryObservationWindow: GoogleCloudWkt.Duration? = nil
+    public var queryObservationWindow: GoogleCloudWKT.Duration? = nil
 
     /// The number of queries that are risky. This is always less than or
     /// equal to total_query_count.
@@ -54,11 +54,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.RiskDetailsGlobalDnsInsight"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

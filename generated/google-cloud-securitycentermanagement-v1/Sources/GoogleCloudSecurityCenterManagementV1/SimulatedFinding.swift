@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The minimum set of fields needed to represent a simulated finding from a
 /// Security Health Analytics custom module.
-public struct SimulatedFinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SimulatedFinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The [relative resource name](https://google.aip.dev/122) of the
@@ -55,7 +55,7 @@ public struct SimulatedFinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// that writes the finding. The key names must be between 1 and 255
   /// characters; they must start with a letter and contain alphanumeric
   /// characters or underscores only.
-  public var sourceProperties: [Swift.String: GoogleCloudWkt.Value] = [:]
+  public var sourceProperties: [Swift.String: GoogleCloudWKT.Value] = [:]
 
   /// The time the finding was first detected. If an existing finding is updated,
   /// then this is the time the update occurred. If the finding is later
@@ -67,7 +67,7 @@ public struct SimulatedFinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   /// The event time must not be set to a value greater than the current
   /// timestamp.
-  public var eventTime: GoogleCloudWkt.Timestamp? = nil
+  public var eventTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The severity of the finding. This field is managed by the source that
   /// writes the finding.
@@ -501,10 +501,10 @@ public struct SimulatedFinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycentermanagement.v1.SimulatedFinding"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

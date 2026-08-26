@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An Application resource contains the top-level configuration of an App
 /// Engine application.
-public struct Application: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Application: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Full path to the Application resource in the API.
@@ -63,7 +63,7 @@ public struct Application: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var codeBucket: Swift.String = Swift.String()
 
   /// Cookie expiration policy for this application.
-  public var defaultCookieExpiration: GoogleCloudWkt.Duration? = nil
+  public var defaultCookieExpiration: GoogleCloudWKT.Duration? = nil
 
   /// Serving status of this application.
   public var servingStatus: Application.ServingStatus = Application.ServingStatus()
@@ -114,7 +114,7 @@ public struct Application: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Identity-Aware Proxy
-  public struct IdentityAwareProxy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct IdentityAwareProxy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Whether the serving infrastructure will authenticate and
@@ -160,17 +160,17 @@ public struct Application: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.appengine.v1.Application.IdentityAwareProxy"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The feature specific settings to be used in the application. These define
   /// behaviors that are user configurable.
-  public struct FeatureSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FeatureSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Boolean value indicating if split health checks should be used instead
@@ -204,11 +204,11 @@ public struct Application: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.appengine.v1.Application.FeatureSettings"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -437,10 +437,10 @@ public struct Application: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.appengine.v1.Application"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

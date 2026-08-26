@@ -16,13 +16,13 @@
 
 #if ServingConfigService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Configures metadata that is used to generate serving time results (e.g.
   /// search results or recommendation predictions).
   /// The ServingConfig is passed in the search and predict request and generates
   /// results.
-  public struct ServingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ServingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Immutable. Fully qualified name
@@ -105,10 +105,10 @@
     public var rankingExpression: Swift.String = Swift.String()
 
     /// Output only. ServingConfig created timestamp.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. ServingConfig updated timestamp.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Filter controls to use in serving path.
     /// All triggered filter controls will be applied.
@@ -247,9 +247,9 @@
       self.diversityLevel = try container.decode(Swift.String.self, forKey: .diversityLevel)
       self.rankingExpression = try container.decode(Swift.String.self, forKey: .rankingExpression)
       self.createTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
       self.updateTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
       self.filterControlIds = try container.decode([Swift.String].self, forKey: .filterControlIds)
       self.boostControlIds = try container.decode([Swift.String].self, forKey: .boostControlIds)
       self.redirectControlIds = try container.decode(
@@ -336,7 +336,7 @@
     ///
     /// [google.cloud.discoveryengine.v1.SolutionType]: <doc:SolutionType>
     /// [google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_RECOMMENDATION]: <doc:SolutionType/recommendation>
-    public struct MediaConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct MediaConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Specifies the event type used for demoting recommendation result.
@@ -453,11 +453,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.ServingConfig.MediaConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -465,7 +465,7 @@
     /// support:
     ///
     /// * `content_search_spec`: configuration for generic content search.
-    public struct GenericConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GenericConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Specifies the expected behavior of content search.
@@ -491,11 +491,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.ServingConfig.GenericConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -510,11 +510,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.ServingConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

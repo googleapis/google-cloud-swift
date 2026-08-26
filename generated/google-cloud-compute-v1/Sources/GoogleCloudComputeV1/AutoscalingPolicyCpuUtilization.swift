@@ -16,10 +16,10 @@
 
 #if Autoscalers || RegionAutoscalers
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// CPU utilization policy.
-  public struct AutoscalingPolicyCpuUtilization: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AutoscalingPolicyCpuUtilization: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Indicates whether predictive autoscaling based on CPU metric is enabled.
@@ -167,11 +167,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.AutoscalingPolicyCpuUtilization"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

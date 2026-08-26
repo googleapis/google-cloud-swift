@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -758,7 +758,7 @@ extension Clients {
     /// See `WorkstationsClient.updateWorkstationCluster`.
     func updateWorkstationCluster(
       workstationCluster: WorkstationCluster?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<WorkstationCluster>
 
     /// See `WorkstationsClient.deleteWorkstationCluster`.
@@ -837,7 +837,7 @@ extension Clients {
     /// See `WorkstationsClient.updateWorkstationConfig`.
     func updateWorkstationConfig(
       workstationConfig: WorkstationConfig?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<WorkstationConfig>
 
     /// See `WorkstationsClient.deleteWorkstationConfig`.
@@ -916,7 +916,7 @@ extension Clients {
     /// See `WorkstationsClient.updateWorkstation`.
     func updateWorkstation(
       workstation: Workstation?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Workstation>
 
     /// See `WorkstationsClient.deleteWorkstation`.
@@ -1359,7 +1359,7 @@ extension Clients.WorkstationsProtocol {
 
   public func updateWorkstationCluster(
     workstationCluster: WorkstationCluster?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<WorkstationCluster> {
     let request = UpdateWorkstationClusterRequest().with {
       $0.workstationCluster = workstationCluster
@@ -1576,7 +1576,7 @@ extension Clients.WorkstationsProtocol {
 
   public func updateWorkstationConfig(
     workstationConfig: WorkstationConfig?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<WorkstationConfig> {
     let request = UpdateWorkstationConfigRequest().with {
       $0.workstationConfig = workstationConfig
@@ -1790,7 +1790,7 @@ extension Clients.WorkstationsProtocol {
 
   public func updateWorkstation(
     workstation: Workstation?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Workstation> {
     let request = UpdateWorkstationRequest().with {
       $0.workstation = workstation

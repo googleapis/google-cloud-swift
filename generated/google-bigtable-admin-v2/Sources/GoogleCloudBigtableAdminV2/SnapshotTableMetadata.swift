@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The metadata for the Operation returned by SnapshotTable.
 ///
@@ -23,17 +23,17 @@ import Foundation
 /// feature is not currently available to most Cloud Bigtable customers. This
 /// feature might be changed in backward-incompatible ways and is not recommended
 /// for production use. It is not subject to any SLA or deprecation policy.
-public struct SnapshotTableMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SnapshotTableMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The request that prompted the initiation of this SnapshotTable operation.
   public var originalRequest: SnapshotTableRequest? = nil
 
   /// The time at which the original request was received.
-  public var requestTime: GoogleCloudWkt.Timestamp? = nil
+  public var requestTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The time at which the operation failed or was completed successfully.
-  public var finishTime: GoogleCloudWkt.Timestamp? = nil
+  public var finishTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `SnapshotTableMetadata`.
   public init() {}
@@ -54,10 +54,10 @@ public struct SnapshotTableMetadata: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.bigtable.admin.v2.SnapshotTableMetadata"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -16,14 +16,14 @@
 
 import Foundation
 @_spi(GoogleCloudInternal) import GoogleCloudGax
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response message for
 /// [SecurityCenterManagement.ListEffectiveEventThreatDetectionCustomModules][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.ListEffectiveEventThreatDetectionCustomModules].
 ///
 /// [google.cloud.securitycentermanagement.v1.SecurityCenterManagement.ListEffectiveEventThreatDetectionCustomModules]: <doc:SecurityCenterManagementClient/listEffectiveEventThreatDetectionCustomModules(request:options:)>
 public struct ListEffectiveEventThreatDetectionCustomModulesResponse: Codable, Equatable,
-  GoogleCloudWkt._AnyPackable,
+  GoogleCloudWKT._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable
 {
@@ -55,11 +55,11 @@ public struct ListEffectiveEventThreatDetectionCustomModulesResponse: Codable, E
     return
       "type.googleapis.com/google.cloud.securitycentermanagement.v1.ListEffectiveEventThreatDetectionCustomModulesResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 
   public func _getPaginatedItems() -> [EffectiveEventThreatDetectionCustomModule] {

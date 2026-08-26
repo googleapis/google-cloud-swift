@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// `AuditContext` provides information that is needed for audit logging.
-public struct AuditContext: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AuditContext: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Serialized audit log.
@@ -28,13 +28,13 @@ public struct AuditContext: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// This field should only be filled if audit_log field is present.
   /// Service Control will use this to assemble a complete log for Cloud Audit
   /// Logs and Google internal audit logs.
-  public var scrubbedRequest: GoogleCloudWkt.Struct? = nil
+  public var scrubbedRequest: GoogleCloudWKT.Struct? = nil
 
   /// An API response message that is scrubbed based on the method annotation.
   /// This field should only be filled if audit_log field is present.
   /// Service Control will use this to assemble a complete log for Cloud Audit
   /// Logs and Google internal audit logs.
-  public var scrubbedResponse: GoogleCloudWkt.Struct? = nil
+  public var scrubbedResponse: GoogleCloudWKT.Struct? = nil
 
   /// Number of scrubbed response items.
   public var scrubbedResponseItemCount: Swift.Int32 = Swift.Int32()
@@ -61,10 +61,10 @@ public struct AuditContext: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.rpc.context.AuditContext"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

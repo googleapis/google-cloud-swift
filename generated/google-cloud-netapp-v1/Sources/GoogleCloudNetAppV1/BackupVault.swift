@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A NetApp BackupVault.
-public struct BackupVault: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BackupVault: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The resource name of the backup vault.
@@ -30,7 +30,7 @@ public struct BackupVault: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var state: BackupVault.State = BackupVault.State()
 
   /// Output only. Create time of the backup vault.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Description of the backup vault.
   public var description: Swift.String = Swift.String()
@@ -93,7 +93,7 @@ public struct BackupVault: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Retention policy for backups in the backup vault
-  public struct BackupRetentionPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct BackupRetentionPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Minimum retention duration in days for backups in the backup
@@ -139,11 +139,11 @@ public struct BackupVault: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -500,10 +500,10 @@ public struct BackupVault: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.netapp.v1.BackupVault"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

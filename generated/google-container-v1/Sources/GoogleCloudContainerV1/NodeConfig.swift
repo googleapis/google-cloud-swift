@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Parameters that describe the nodes in a cluster.
 ///
@@ -25,7 +25,7 @@ import Foundation
 /// instead.
 ///
 /// [google.container.v1.AutoprovisioningNodePoolDefaults]: <doc:AutoprovisioningNodePoolDefaults>
-public struct NodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct NodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The name of a Google Compute Engine [machine
@@ -269,7 +269,7 @@ public struct NodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// The maximum duration for the nodes to exist.
   /// If unspecified, the nodes can exist indefinitely.
-  public var maxRunDuration: GoogleCloudWkt.Duration? = nil
+  public var maxRunDuration: GoogleCloudWKT.Duration? = nil
 
   /// Specifies which method should be used for encrypting the
   /// Local SSDs attached to the node.
@@ -290,7 +290,7 @@ public struct NodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Consolidation delay defines duration after which the Cluster Autoscaler can
   /// scale down underutilized nodes. If not set, nodes are scaled down by
   /// default behavior, i.e. according to the chosen autoscaling profile.
-  public var consolidationDelay: GoogleCloudWkt.Duration? = nil
+  public var consolidationDelay: GoogleCloudWKT.Duration? = nil
 
   /// Optional. The taint configuration for the node pool.
   public var taintConfig: TaintConfig? = nil
@@ -535,10 +535,10 @@ public struct NodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.NodeConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

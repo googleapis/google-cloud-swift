@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Node pool configs that apply to all auto-provisioned node pools
 /// in autopilot clusters and node auto-provisioning enabled clusters.
-public struct NodePoolAutoConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct NodePoolAutoConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The list of instance tags applied to all nodes. Tags are used to identify
@@ -59,10 +59,10 @@ public struct NodePoolAutoConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.NodePoolAutoConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

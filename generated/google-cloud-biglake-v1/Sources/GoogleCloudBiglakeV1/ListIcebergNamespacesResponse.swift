@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The response message for the `ListIcebergNamespaces` API.
-public struct ListIcebergNamespacesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ListIcebergNamespacesResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The list of namespaces.
-  public var namespaces: [GoogleCloudWkt.ListValue] = []
+  public var namespaces: [GoogleCloudWKT.ListValue] = []
 
   /// The next page token for pagination.
   public var nextPageToken: Swift.String = Swift.String()
@@ -55,7 +55,7 @@ public struct ListIcebergNamespacesResponse: Codable, Equatable, GoogleCloudWkt.
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.namespaces = try container.decode([GoogleCloudWkt.ListValue].self, forKey: .namespaces)
+    self.namespaces = try container.decode([GoogleCloudWKT.ListValue].self, forKey: .namespaces)
     self.nextPageToken = try container.decode(Swift.String.self, forKey: .nextPageToken)
     self.unreachable = try container.decode([Swift.String].self, forKey: .unreachable)
   }
@@ -70,10 +70,10 @@ public struct ListIcebergNamespacesResponse: Codable, Equatable, GoogleCloudWkt.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.biglake.v1.ListIcebergNamespacesResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

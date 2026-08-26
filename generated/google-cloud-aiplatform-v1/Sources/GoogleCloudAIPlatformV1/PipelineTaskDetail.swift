@@ -16,11 +16,11 @@
 
 #if PipelineService || ScheduleService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
   import GoogleRpc
 
   /// The runtime detail of a task execution.
-  public struct PipelineTaskDetail: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PipelineTaskDetail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The system generated ID of the task.
@@ -37,13 +37,13 @@
     public var taskName: Swift.String = Swift.String()
 
     /// Output only. Task create time.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Task start time.
-    public var startTime: GoogleCloudWkt.Timestamp? = nil
+    public var startTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Task end time.
-    public var endTime: GoogleCloudWkt.Timestamp? = nil
+    public var endTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. The detailed execution info.
     public var executorDetail: PipelineTaskExecutorDetail? = nil
@@ -95,11 +95,11 @@
     }
 
     /// A single record of the task status.
-    public struct PipelineTaskStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct PipelineTaskStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. Update time of this status.
-      public var updateTime: GoogleCloudWkt.Timestamp? = nil
+      public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Output only. The state of the task.
       public var state: PipelineTaskDetail.State = PipelineTaskDetail.State()
@@ -131,16 +131,16 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.PipelineTaskDetail.PipelineTaskStatus"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// A list of artifact metadata.
-    public struct ArtifactList: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ArtifactList: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. A list of artifact metadata.
@@ -165,11 +165,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.PipelineTaskDetail.ArtifactList"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -335,11 +335,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.PipelineTaskDetail"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

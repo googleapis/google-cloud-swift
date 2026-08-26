@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A request to start a previously created migration workflow.
-public struct StartMigrationWorkflowRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct StartMigrationWorkflowRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The unique identifier for the migration workflow.
@@ -44,10 +44,10 @@ public struct StartMigrationWorkflowRequest: Codable, Equatable, GoogleCloudWkt.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.migration.v2.StartMigrationWorkflowRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

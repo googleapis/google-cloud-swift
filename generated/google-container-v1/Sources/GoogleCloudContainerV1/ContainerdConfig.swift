@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// ContainerdConfig contains configuration to customize containerd.
-public struct ContainerdConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ContainerdConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// PrivateRegistryAccessConfig is used to configure access configuration
@@ -52,7 +52,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// PrivateRegistryAccessConfig contains access configuration for
   /// private container registries.
-  public struct PrivateRegistryAccessConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PrivateRegistryAccessConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Private registry access is enabled.
@@ -80,7 +80,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// CertificateAuthorityDomainConfig configures one or more fully qualified
     /// domain names (FQDN) to a specific certificate.
-    public struct CertificateAuthorityDomainConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct CertificateAuthorityDomainConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// List of fully qualified domain names (FQDN).
@@ -154,7 +154,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// GCPSecretManagerCertificateConfig configures a secret from
       /// [Secret Manager](https://cloud.google.com/secret-manager).
-      public struct GCPSecretManagerCertificateConfig: Codable, Equatable, GoogleCloudWkt
+      public struct GCPSecretManagerCertificateConfig: Codable, Equatable, GoogleCloudWKT
           ._AnyPackable,
         Sendable
       {
@@ -183,11 +183,11 @@ public struct ContainerdConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.container.v1.ContainerdConfig.PrivateRegistryAccessConfig.CertificateAuthorityDomainConfig.GCPSecretManagerCertificateConfig"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -204,27 +204,27 @@ public struct ContainerdConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.container.v1.ContainerdConfig.PrivateRegistryAccessConfig.CertificateAuthorityDomainConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.ContainerdConfig.PrivateRegistryAccessConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Defines writable cgroups configuration.
-  public struct WritableCgroups: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct WritableCgroups: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Whether writable cgroups is enabled.
@@ -249,11 +249,11 @@ public struct ContainerdConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.ContainerdConfig.WritableCgroups"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -261,7 +261,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// containerd registry server's configuration, which represents one hosts.toml
   /// file on the node. It will override the same fqdns in
   /// PrivateRegistryAccessConfig.
-  public struct RegistryHostConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RegistryHostConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Defines the host name of the registry server, which will be used to
@@ -296,7 +296,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// CertificateConfig configures certificate for the registry.
-    public struct CertificateConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct CertificateConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// One of the methods to configure the certificate.
@@ -370,17 +370,17 @@ public struct ContainerdConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.container.v1.ContainerdConfig.RegistryHostConfig.CertificateConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// CertificateConfigPair configures pairs of certificates, which is used for
     /// client certificate and key pairs under a registry.
-    public struct CertificateConfigPair: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct CertificateConfigPair: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Cert configures the client certificate.
@@ -409,16 +409,16 @@ public struct ContainerdConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.container.v1.ContainerdConfig.RegistryHostConfig.CertificateConfigPair"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// RegistryHeader configures headers for the registry.
-    public struct RegistryHeader: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct RegistryHeader: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Key configures the header key.
@@ -447,16 +447,16 @@ public struct ContainerdConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.container.v1.ContainerdConfig.RegistryHostConfig.RegistryHeader"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// HostConfig configures the registry host under a given Server.
-    public struct HostConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct HostConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Host configures the registry host/mirror.
@@ -496,7 +496,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       /// the original registry if the mirror is unreachable.
       /// Maximum allowed value is 180s. If not set, containerd sets default 30s.
       /// The value should be a decimal number of seconds with an `s` suffix.
-      public var dialTimeout: GoogleCloudWkt.Duration? = nil
+      public var dialTimeout: GoogleCloudWKT.Duration? = nil
 
       /// Initialize a new instance of `HostConfig`.
       public init() {}
@@ -518,11 +518,11 @@ public struct ContainerdConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.container.v1.ContainerdConfig.RegistryHostConfig.HostConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -641,21 +641,21 @@ public struct ContainerdConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.ContainerdConfig.RegistryHostConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.ContainerdConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

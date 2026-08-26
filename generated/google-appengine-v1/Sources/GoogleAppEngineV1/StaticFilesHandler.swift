@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Files served directly to the user for a given URL, such as images, CSS
 /// stylesheets, or JavaScript source files. Static file handlers describe which
 /// files in the application directory are static files, and which URLs serve
 /// them.
-public struct StaticFilesHandler: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct StaticFilesHandler: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Path to the static files matched by the URL pattern, from the
@@ -44,7 +44,7 @@ public struct StaticFilesHandler: Codable, Equatable, GoogleCloudWkt._AnyPackabl
 
   /// Time a static file served by this handler should be cached
   /// by web proxies and browsers.
-  public var expiration: GoogleCloudWkt.Duration? = nil
+  public var expiration: GoogleCloudWKT.Duration? = nil
 
   /// Whether this handler should match the request if the file
   /// referenced by the handler does not exist.
@@ -76,10 +76,10 @@ public struct StaticFilesHandler: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.appengine.v1.StaticFilesHandler"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

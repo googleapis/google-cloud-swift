@@ -19,7 +19,7 @@
   // snippet.show
   import Foundation
   import GoogleCloudComputeV1
-  import GoogleCloudWkt
+  import GoogleCloudWKT
 
   func sample(client: BackendServicesClient) async throws {
     let poller = try await client.addSignedUrlKey(

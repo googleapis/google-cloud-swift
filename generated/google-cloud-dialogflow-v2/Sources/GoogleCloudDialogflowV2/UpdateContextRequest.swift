@@ -16,20 +16,20 @@
 
 #if Contexts
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The request message for
   /// [Contexts.UpdateContext][google.cloud.dialogflow.v2.Contexts.UpdateContext].
   ///
   /// [google.cloud.dialogflow.v2.Contexts.UpdateContext]: <doc:ContextsClient/updateContext(request:options:)>
-  public struct UpdateContextRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct UpdateContextRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The context to update.
     public var context: Context? = nil
 
     /// Optional. The mask to control which fields get updated.
-    public var updateMask: GoogleCloudWkt.FieldMask? = nil
+    public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
     /// Initialize a new instance of `UpdateContextRequest`.
     public init() {}
@@ -50,11 +50,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.UpdateContextRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

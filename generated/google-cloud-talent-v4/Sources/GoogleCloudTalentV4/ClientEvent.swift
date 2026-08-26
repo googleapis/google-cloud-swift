@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An event issued when an end user interacts with the application that
 /// implements Cloud Talent Solution. Providing this information improves the
 /// quality of results for the API clients, enabling the
 /// service to perform optimally. The number of events sent must be consistent
 /// with other calls, such as job searches, issued to the service by the client.
-public struct ClientEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ClientEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Strongly recommended for the best service experience.
@@ -37,7 +37,7 @@ public struct ClientEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var eventId: Swift.String = Swift.String()
 
   /// Required. The timestamp of the event.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Notes about the event provided by recruiters or other users, for example,
   /// feedback on why a job was bookmarked.
@@ -77,7 +77,7 @@ public struct ClientEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.requestId = try container.decode(Swift.String.self, forKey: .requestId)
     self.eventId = try container.decode(Swift.String.self, forKey: .eventId)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.eventNotes = try container.decode(Swift.String.self, forKey: .eventNotes)
 
     var event: OneOf_Event? = nil
@@ -123,10 +123,10 @@ public struct ClientEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.talent.v4.ClientEvent"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

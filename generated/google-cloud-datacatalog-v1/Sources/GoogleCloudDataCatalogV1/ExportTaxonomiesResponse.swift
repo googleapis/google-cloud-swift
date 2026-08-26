@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response message for
 /// [ExportTaxonomies][google.cloud.datacatalog.v1.PolicyTagManagerSerialization.ExportTaxonomies].
 ///
 /// [google.cloud.datacatalog.v1.PolicyTagManagerSerialization.ExportTaxonomies]: <doc:PolicyTagManagerSerializationClient/exportTaxonomies(request:options:)>
-public struct ExportTaxonomiesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ExportTaxonomiesResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// List of taxonomies and policy tags as nested protocol buffers.
@@ -46,10 +46,10 @@ public struct ExportTaxonomiesResponse: Codable, Equatable, GoogleCloudWkt._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datacatalog.v1.ExportTaxonomiesResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

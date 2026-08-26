@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The body of a version resource. A version resource represents a
 /// collection of components, such as files and other data. This may correspond
 /// to a version in many package management schemes.
-public struct Version: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Version: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The name of the version, for example:
@@ -33,10 +33,10 @@ public struct Version: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var description: Swift.String = Swift.String()
 
   /// The time when the version was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The time when the version was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. A list of related tags. Will contain up to 100 tags that
   /// reference this version.
@@ -50,7 +50,7 @@ public struct Version: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   /// [google.devtools.artifactregistry.v1.DockerImage]: <doc:DockerImage>
   /// [google.devtools.artifactregistry.v1.MavenArtifact]: <doc:MavenArtifact>
-  public var metadata: GoogleCloudWkt.Struct? = nil
+  public var metadata: GoogleCloudWKT.Struct? = nil
 
   /// Optional. Client specified annotations.
   public var annotations: [Swift.String: Swift.String] = [:]
@@ -79,10 +79,10 @@ public struct Version: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.devtools.artifactregistry.v1.Version"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A mute config is a Cloud SCC resource that contains the configuration
 /// to mute create/update events of findings.
-public struct MuteConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MuteConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. This field will be ignored if provided on config creation. The
@@ -62,12 +62,12 @@ public struct MuteConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Output only. The time at which the mute config was created.
   /// This field is set by the server and will be ignored if provided on config
   /// creation.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The most recent time at which the mute config was updated.
   /// This field is set by the server and will be ignored if provided on config
   /// creation or update.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Email address of the user who last edited the mute config.
   /// This field is set by the server and will be ignored if provided on config
@@ -81,7 +81,7 @@ public struct MuteConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Optional. The expiry of the mute config. Only applicable for dynamic
   /// configs. If the expiry is set, when the config expires, it is removed from
   /// all findings.
-  public var expiryTime: GoogleCloudWkt.Timestamp? = nil
+  public var expiryTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `MuteConfig`.
   public init() {}
@@ -214,10 +214,10 @@ public struct MuteConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.MuteConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

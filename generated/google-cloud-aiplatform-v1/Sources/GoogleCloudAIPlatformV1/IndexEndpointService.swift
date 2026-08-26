@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleIAMV1
   import GoogleLongRunning
   import GoogleRpc
@@ -469,7 +469,7 @@
       /// See `IndexEndpointServiceClient.updateIndexEndpoint`.
       func updateIndexEndpoint(
         indexEndpoint: IndexEndpoint?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudAIPlatformV1.IndexEndpoint
 
       /// See `IndexEndpointServiceClient.deleteIndexEndpoint`.
@@ -823,7 +823,7 @@
 
     public func updateIndexEndpoint(
       indexEndpoint: IndexEndpoint?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.IndexEndpoint {
       let request = UpdateIndexEndpointRequest().with {
         $0.indexEndpoint = indexEndpoint

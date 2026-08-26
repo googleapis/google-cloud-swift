@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for UpdateIndexEndpoint.
-public struct UpdateIndexEndpointRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateIndexEndpointRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The resource being updated.
@@ -31,7 +31,7 @@ public struct UpdateIndexEndpointRequest: Codable, Equatable, GoogleCloudWkt._An
   /// A field of the resource will be overwritten if it is in the mask.
   /// Empty field mask is not allowed.
   /// If the mask is "*", then this is a full replacement of the resource.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `UpdateIndexEndpointRequest`.
   public init() {}
@@ -52,10 +52,10 @@ public struct UpdateIndexEndpointRequest: Codable, Equatable, GoogleCloudWkt._An
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.UpdateIndexEndpointRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A step in the build pipeline.
-public struct BuildStep: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BuildStep: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The name of the container image that will run this particular
@@ -106,7 +106,7 @@ public struct BuildStep: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Time limit for executing this build step. If not defined, the step has no
   /// time limit and will be allowed to continue to run until either it completes
   /// or the build itself times out.
-  public var timeout: GoogleCloudWkt.Duration? = nil
+  public var timeout: GoogleCloudWKT.Duration? = nil
 
   /// Output only. Status of the build step. At this time, build step status is
   /// only updated on build completion; step status is not updated in real-time
@@ -157,10 +157,10 @@ public struct BuildStep: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.devtools.cloudbuild.v1.BuildStep"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// ApprovalResult describes the decision and associated metadata of a manual
 /// approval of a build.
-public struct ApprovalResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ApprovalResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Email of the user that called the ApproveBuild API to
@@ -27,7 +27,7 @@ public struct ApprovalResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var approverAccount: Swift.String = Swift.String()
 
   /// Output only. The time when the approval decision was made.
-  public var approvalTime: GoogleCloudWkt.Timestamp? = nil
+  public var approvalTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Required. The decision of this manual approval.
   public var decision: ApprovalResult.Decision = ApprovalResult.Decision()
@@ -166,10 +166,10 @@ public struct ApprovalResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.devtools.cloudbuild.v1.ApprovalResult"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

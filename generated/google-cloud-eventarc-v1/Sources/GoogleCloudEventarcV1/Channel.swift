@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A representation of the Channel resource.
 /// A Channel is a resource on which event providers publish their events.
 /// The published events are delivered through the transport associated with the
 /// channel. Note that a channel is associated with exactly one event provider.
-public struct Channel: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Channel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The resource name of the channel. Must be unique within the
@@ -35,10 +35,10 @@ public struct Channel: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var uid: Swift.String = Swift.String()
 
   /// Output only. The creation time.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The last-modified time.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The name of the event provider (e.g. Eventarc SaaS partner) associated
   /// with the channel. This provider will be granted permissions to publish
@@ -104,9 +104,9 @@ public struct Channel: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.uid = try container.decode(Swift.String.self, forKey: .uid)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.provider = try container.decode(Swift.String.self, forKey: .provider)
     self.state = try container.decode(Channel.State.self, forKey: .state)
     self.activationToken = try container.decode(Swift.String.self, forKey: .activationToken)
@@ -286,10 +286,10 @@ public struct Channel: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.eventarc.v1.Channel"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

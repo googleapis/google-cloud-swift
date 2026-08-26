@@ -16,10 +16,10 @@
 
 #if VertexRagDataService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Config for the Vector DB to use for RAG.
-  public struct RagVectorDbConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RagVectorDbConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Authentication config for the chosen Vector DB.
@@ -107,7 +107,7 @@
     }
 
     /// The config for the default RAG-managed Vector DB.
-    public struct RagManagedDb: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct RagManagedDb: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Choice of retrieval strategy.
@@ -174,7 +174,7 @@
       }
 
       /// Config for KNN search.
-      public struct KNN: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct KNN: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Initialize a new instance of `KNN`.
@@ -196,11 +196,11 @@
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.cloud.aiplatform.v1.RagVectorDbConfig.RagManagedDb.KNN"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -210,7 +210,7 @@
       /// facilitate faster searches. As a tradeoff, it requires longer indexing
       /// time and manual triggering of index rebuild via the ImportRagFiles and
       /// UpdateRagCorpus API.
-      public struct ANN: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct ANN: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// The depth of the tree-based structure. Only depth values of 2 and 3 are
@@ -250,11 +250,11 @@
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.cloud.aiplatform.v1.RagVectorDbConfig.RagManagedDb.ANN"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -271,16 +271,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.RagVectorDbConfig.RagManagedDb"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// The config for the Pinecone.
-    public struct Pinecone: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Pinecone: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Pinecone index name.
@@ -306,16 +306,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.RagVectorDbConfig.Pinecone"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// The config for the Vertex Vector Search.
-    public struct VertexVectorSearch: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct VertexVectorSearch: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The resource name of the Index Endpoint.
@@ -347,11 +347,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.RagVectorDbConfig.VertexVectorSearch"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -368,11 +368,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.RagVectorDbConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

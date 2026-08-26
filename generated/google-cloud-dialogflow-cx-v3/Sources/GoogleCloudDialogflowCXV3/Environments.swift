@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleRpc
   import GoogleCloudGax
@@ -575,7 +575,7 @@
       /// See `EnvironmentsClient.updateEnvironment`.
       func updateEnvironment(
         environment: Environment?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> any GoogleCloudGax.PollableOperation<Environment>
 
       /// See `EnvironmentsClient.deleteEnvironment`.
@@ -906,7 +906,7 @@
 
     public func updateEnvironment(
       environment: Environment?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Environment> {
       let request = UpdateEnvironmentRequest().with {
         $0.environment = environment

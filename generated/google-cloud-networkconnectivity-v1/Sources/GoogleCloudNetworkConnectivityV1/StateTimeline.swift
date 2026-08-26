@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The timeline of the pending states for a resource.
-public struct StateTimeline: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct StateTimeline: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The state and activation time details of the resource state.
@@ -41,7 +41,7 @@ public struct StateTimeline: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// The state and activation time details of the resource state.
-  public struct StateMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct StateMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The state of the resource.
@@ -52,7 +52,7 @@ public struct StateTimeline: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// the transient state of the resource will be effective. For instance, if
     /// the state is `ADDING`, this field shows the time when the resource state
     /// transitions to `ACTIVE`.
-    public var effectiveTime: GoogleCloudWkt.Timestamp? = nil
+    public var effectiveTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `StateMetadata`.
     public init() {}
@@ -199,21 +199,21 @@ public struct StateTimeline: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkconnectivity.v1.StateTimeline.StateMetadata"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkconnectivity.v1.StateTimeline"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

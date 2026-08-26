@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// AuthorizedViews represent subsets of a particular Cloud Bigtable table. Users
 /// can configure access to each Authorized View independently from the table and
 /// use the existing Data APIs to access the subset of data.
-public struct AuthorizedView: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AuthorizedView: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The name of this AuthorizedView.
@@ -103,7 +103,7 @@ public struct AuthorizedView: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Subsets of a column family that are included in this AuthorizedView.
-  public struct FamilySubsets: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FamilySubsets: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Individual exact column qualifiers to be included in the AuthorizedView.
@@ -135,16 +135,16 @@ public struct AuthorizedView: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.bigtable.admin.v2.AuthorizedView.FamilySubsets"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Defines a simple AuthorizedView that is a subset of the underlying Table.
-  public struct SubsetView: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SubsetView: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Row prefixes to be included in the AuthorizedView.
@@ -174,11 +174,11 @@ public struct AuthorizedView: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.bigtable.admin.v2.AuthorizedView.SubsetView"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -304,10 +304,10 @@ public struct AuthorizedView: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.bigtable.admin.v2.AuthorizedView"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

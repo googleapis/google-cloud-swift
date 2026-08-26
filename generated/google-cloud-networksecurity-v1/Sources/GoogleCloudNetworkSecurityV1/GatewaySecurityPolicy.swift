@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The GatewaySecurityPolicy resource contains a collection of
 /// GatewaySecurityPolicyRules and associated metadata.
-public struct GatewaySecurityPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct GatewaySecurityPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Name of the resource. Name is of the form
@@ -29,10 +29,10 @@ public struct GatewaySecurityPolicy: Codable, Equatable, GoogleCloudWkt._AnyPack
   public var name: Swift.String = Swift.String()
 
   /// Output only. The timestamp when the resource was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The timestamp when the resource was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Free-text description of the resource.
   public var description: Swift.String = Swift.String()
@@ -60,10 +60,10 @@ public struct GatewaySecurityPolicy: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networksecurity.v1.GatewaySecurityPolicy"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

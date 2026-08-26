@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// [Product][google.cloud.retail.v2.Product] image. Recommendations AI and
 /// Retail Search use product images to improve prediction and search results.
@@ -24,7 +24,7 @@ import Foundation
 /// and avoid using images with size too small.
 ///
 /// [google.cloud.retail.v2.Product]: <doc:Product>
-public struct Image: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Image: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. URI of the image.
@@ -68,10 +68,10 @@ public struct Image: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.retail.v2.Image"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

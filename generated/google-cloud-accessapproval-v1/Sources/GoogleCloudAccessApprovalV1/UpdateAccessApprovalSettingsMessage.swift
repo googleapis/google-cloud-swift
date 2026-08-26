@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request to update access approval settings.
-public struct UpdateAccessApprovalSettingsMessage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateAccessApprovalSettingsMessage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The new AccessApprovalSettings.
@@ -34,7 +34,7 @@ public struct UpdateAccessApprovalSettingsMessage: Codable, Equatable, GoogleClo
   /// https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
   /// If this field is left unset, only the notification_emails field will be
   /// updated.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `UpdateAccessApprovalSettingsMessage`.
   public init() {}
@@ -55,10 +55,10 @@ public struct UpdateAccessApprovalSettingsMessage: Codable, Equatable, GoogleClo
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.accessapproval.v1.UpdateAccessApprovalSettingsMessage"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

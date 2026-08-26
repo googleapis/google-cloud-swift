@@ -16,13 +16,13 @@
 
 import Foundation
 @_spi(GoogleCloudInternal) import GoogleCloudGax
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response message for
 /// [CloudChannelService.ListCustomerRepricingConfigs][google.cloud.channel.v1.CloudChannelService.ListCustomerRepricingConfigs].
 ///
 /// [google.cloud.channel.v1.CloudChannelService.ListCustomerRepricingConfigs]: <doc:CloudChannelServiceClient/listCustomerRepricingConfigs(request:options:)>
-public struct ListCustomerRepricingConfigsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ListCustomerRepricingConfigsResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable
 {
@@ -56,11 +56,11 @@ public struct ListCustomerRepricingConfigsResponse: Codable, Equatable, GoogleCl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.channel.v1.ListCustomerRepricingConfigsResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 
   public func _getPaginatedItems() -> [CustomerRepricingConfig] {

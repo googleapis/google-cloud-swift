@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleCloudGax
 
@@ -266,7 +266,7 @@
       /// See `WebhooksClient.updateWebhook`.
       func updateWebhook(
         webhook: Webhook?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudDialogflowCXV3.Webhook
 
       /// See `WebhooksClient.deleteWebhook`.
@@ -472,7 +472,7 @@
 
     public func updateWebhook(
       webhook: Webhook?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.Webhook {
       let request = UpdateWebhookRequest().with {
         $0.webhook = webhook

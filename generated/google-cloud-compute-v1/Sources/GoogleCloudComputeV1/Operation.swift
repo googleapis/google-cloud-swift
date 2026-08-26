@@ -16,7 +16,7 @@
 
 #if Addresses || Autoscalers || BackendBuckets || BackendServices || CrossSiteNetworks || Disks || ExternalVpnGateways || FirewallPolicies || Firewalls || ForwardingRules || FutureReservations || GlobalAddresses || GlobalForwardingRules || GlobalNetworkEndpointGroups || GlobalOperations || GlobalOrganizationOperations || GlobalPublicDelegatedPrefixes || GlobalVmExtensionPolicies || HealthChecks || Hosts || HttpHealthChecks || HttpsHealthChecks || Images || InstanceGroupManagerResizeRequests || InstanceGroupManagers || InstanceGroups || InstanceSettings || InstanceTemplates || Instances || InstantSnapshotGroups || InstantSnapshots || InterconnectAttachmentGroups || InterconnectAttachments || InterconnectGroups || Interconnects || Licenses || MachineImages || NetworkAttachments || NetworkEdgeSecurityServices || NetworkEndpointGroups || NetworkFirewallPolicies || Networks || NodeGroups || NodeTemplates || OrganizationSecurityPolicies || PacketMirrorings || PreviewFeatures || Projects || PublicAdvertisedPrefixes || PublicDelegatedPrefixes || RegionAutoscalers || RegionBackendBuckets || RegionBackendServices || RegionCommitments || RegionCompositeHealthChecks || RegionDisks || RegionHealthAggregationPolicies || RegionHealthCheckServices || RegionHealthChecks || RegionHealthSources || RegionInstanceGroupManagerResizeRequests || RegionInstanceGroupManagers || RegionInstanceGroups || RegionInstanceTemplates || RegionInstances || RegionInstantSnapshotGroups || RegionInstantSnapshots || RegionNetworkEndpointGroups || RegionNetworkFirewallPolicies || RegionNotificationEndpoints || RegionOperations || RegionSecurityPolicies || RegionSnapshotSettings || RegionSnapshots || RegionSslCertificates || RegionSslPolicies || RegionTargetHttpProxies || RegionTargetHttpsProxies || RegionTargetTcpProxies || RegionUrlMaps || ReservationBlocks || ReservationSlots || ReservationSubBlocks || Reservations || ResourcePolicies || RolloutPlans || Rollouts || Routers || Routes || SecurityPolicies || ServiceAttachments || SnapshotSettings || Snapshots || SslCertificates || SslPolicies || StoragePools || Subnetworks || TargetGrpcProxies || TargetHttpProxies || TargetHttpsProxies || TargetInstances || TargetPools || TargetSslProxies || TargetTcpProxies || TargetVpnGateways || UrlMaps || VpnGateways || VpnTunnels || WireGroups || ZoneOperations || ZoneVmExtensionPolicies
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents an Operation resource.
   ///
@@ -46,7 +46,7 @@
   ///
   /// Note that completed Operation resources have a limited
   /// retention period.
-  public struct Operation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Operation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// [Output Only] The value of `requestId` if you provided it in the request.
@@ -180,7 +180,7 @@
     /// The message type for the [error][google.cloud.compute.v1.Operation.error] field.
     ///
     /// [google.cloud.compute.v1.Operation.error]: <doc:Operation/Error>
-    public struct Error: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Error: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// [Output Only] The array of errors encountered while processing this
@@ -206,7 +206,7 @@
       /// The message type for the [errors][google.cloud.compute.v1.Operation.error.errors] field.
       ///
       /// [google.cloud.compute.v1.Operation.error.errors]: <doc:Operation/Error/Errors>
-      public struct Errors: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Errors: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// [Output Only] The error type identifier for this error.
@@ -245,7 +245,7 @@
         /// The message type for the [errorDetails][google.cloud.compute.v1.Operation.error.errors.errorDetails] field.
         ///
         /// [google.cloud.compute.v1.Operation.error.errors.errorDetails]: <doc:Operation/Error/Errors/ErrorDetails>
-        public struct ErrorDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct ErrorDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Error information containing structured domain, reason, and metadata.
@@ -279,40 +279,40 @@
           public static var _anyTypeUrl: Swift.String {
             return "type.googleapis.com/google.cloud.compute.v1.Operation.error.errors.errorDetails"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.cloud.compute.v1.Operation.error.errors"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.Operation.error"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// The message type for the [warnings][google.cloud.compute.v1.Operation.warnings] field.
     ///
     /// [google.cloud.compute.v1.Operation.warnings]: <doc:Operation/Warnings>
-    public struct Warnings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Warnings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// [Output Only] A warning code, if applicable. For example, Compute
@@ -352,7 +352,7 @@
       /// The message type for the [data][google.cloud.compute.v1.Operation.warnings.data] field.
       ///
       /// [google.cloud.compute.v1.Operation.warnings.data]: <doc:Operation/Warnings/Data>
-      public struct Data: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Data: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// [Output Only] A key that provides more detail on the warning being
@@ -386,11 +386,11 @@
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.cloud.compute.v1.Operation.warnings.data"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -707,11 +707,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.Operation.warnings"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -825,11 +825,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.Operation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

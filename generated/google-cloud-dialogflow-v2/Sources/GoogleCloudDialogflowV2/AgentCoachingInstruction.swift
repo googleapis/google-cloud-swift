@@ -16,10 +16,10 @@
 
 #if AnswerRecords || Conversations || GeneratorEvaluations || Generators || Participants
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Agent Coaching instructions that customer can configure.
-  public struct AgentCoachingInstruction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AgentCoachingInstruction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Display name for the instruction.
@@ -70,7 +70,7 @@
     }
 
     /// Duplication check for the suggestion.
-    public struct DuplicateCheckResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DuplicateCheckResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. The duplicate suggestions.
@@ -94,7 +94,7 @@
       }
 
       /// The duplicate suggestion details.
-      public struct DuplicateSuggestion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct DuplicateSuggestion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Output only. The answer record id of the past duplicate suggestion.
@@ -128,11 +128,11 @@
           return
             "type.googleapis.com/google.cloud.dialogflow.v2.AgentCoachingInstruction.DuplicateCheckResult.DuplicateSuggestion"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -140,11 +140,11 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.AgentCoachingInstruction.DuplicateCheckResult"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -277,11 +277,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.AgentCoachingInstruction"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

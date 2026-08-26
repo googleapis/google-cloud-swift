@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An Index is a resource in Corpus. It contains an indexed version of the
 /// assets and annotations. When deployed to an endpoint, it will allow users to
 /// search the Index.
-public struct Index: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Index: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Resource name of the Index resource.
@@ -38,10 +38,10 @@ public struct Index: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var state: Index.State = Index.State()
 
   /// Output only. The create timestamp.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The update timestamp.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. References to the deployed index instance.
   /// Index of VIDEO_ON_DEMAND corpus can have at most one deployed index.
@@ -100,9 +100,9 @@ public struct Index: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.description = try container.decode(Swift.String.self, forKey: .description)
     self.state = try container.decode(Index.State.self, forKey: .state)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.deployedIndexes = try container.decode(
       [DeployedIndexReference].self, forKey: .deployedIndexes)
     self.satisfiesPzs = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs)
@@ -269,10 +269,10 @@ public struct Index: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.Index"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

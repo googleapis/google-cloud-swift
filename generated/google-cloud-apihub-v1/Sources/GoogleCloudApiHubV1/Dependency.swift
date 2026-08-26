@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A dependency resource defined in the API hub describes a dependency directed
 /// from a consumer to a supplier entity. A dependency can be defined between two
@@ -25,7 +25,7 @@ import Foundation
 ///
 /// [google.cloud.apihub.v1.ApiOperation]: <doc:ApiOperation>
 /// [google.cloud.apihub.v1.ExternalApi]: <doc:ExternalApi>
-public struct Dependency: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Dependency: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The name of the dependency in the API Hub.
@@ -53,10 +53,10 @@ public struct Dependency: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var errorDetail: DependencyErrorDetail? = nil
 
   /// Output only. The time at which the dependency was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time at which the dependency was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. The list of user defined attributes associated with the
   /// dependency resource. The key is the attribute name. It will be of the
@@ -288,10 +288,10 @@ public struct Dependency: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.apihub.v1.Dependency"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

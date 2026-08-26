@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A deployment group aggregates many zonal intercept backends (deployments)
 /// into a single global intercept service. Consumers can connect this service
 /// using an endpoint group.
-public struct InterceptDeploymentGroup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct InterceptDeploymentGroup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Immutable. Identifier. The resource name of this deployment group, for
@@ -31,11 +31,11 @@ public struct InterceptDeploymentGroup: Codable, Equatable, GoogleCloudWkt._AnyP
 
   /// Output only. The timestamp when the resource was created.
   /// See https://google.aip.dev/148#timestamps.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The timestamp when the resource was most recently updated.
   /// See https://google.aip.dev/148#timestamps.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Labels are key/value pairs that help to organize and filter
   /// resources.
@@ -88,7 +88,7 @@ public struct InterceptDeploymentGroup: Codable, Equatable, GoogleCloudWkt._AnyP
   }
 
   /// An endpoint group connected to this deployment group.
-  public struct ConnectedEndpointGroup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ConnectedEndpointGroup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The connected endpoint group's resource name, for example:
@@ -116,16 +116,16 @@ public struct InterceptDeploymentGroup: Codable, Equatable, GoogleCloudWkt._AnyP
       return
         "type.googleapis.com/google.cloud.networksecurity.v1.InterceptDeploymentGroup.ConnectedEndpointGroup"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A deployment belonging to this deployment group.
-  public struct Deployment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Deployment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The name of the Intercept Deployment, in the format:
@@ -155,11 +155,11 @@ public struct InterceptDeploymentGroup: Codable, Equatable, GoogleCloudWkt._AnyP
       return
         "type.googleapis.com/google.cloud.networksecurity.v1.InterceptDeploymentGroup.Deployment"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -278,10 +278,10 @@ public struct InterceptDeploymentGroup: Codable, Equatable, GoogleCloudWkt._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networksecurity.v1.InterceptDeploymentGroup"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

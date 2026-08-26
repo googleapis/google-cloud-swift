@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudBillingBudgetsV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: BudgetServiceClient, billingAccountId: String, budgetId: String) async throws {
   try await client.deleteBudget(

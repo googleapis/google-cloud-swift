@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -308,7 +308,7 @@ extension Clients {
     /// See `ModelServiceClient.updateModel`.
     func updateModel(
       model: Model?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudRetailV2.Model
 
     /// See `ModelServiceClient.tuneModel`.
@@ -568,7 +568,7 @@ extension Clients.ModelServiceProtocol {
 
   public func updateModel(
     model: Model?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudRetailV2.Model {
     let request = UpdateModelRequest().with {
       $0.model = model

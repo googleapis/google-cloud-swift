@@ -15,20 +15,20 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The metadata for the Operation returned by UpdateInstance.
-public struct UpdateInstanceMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateInstanceMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The request that prompted the initiation of this UpdateInstance operation.
   public var originalRequest: PartialUpdateInstanceRequest? = nil
 
   /// The time at which the original request was received.
-  public var requestTime: GoogleCloudWkt.Timestamp? = nil
+  public var requestTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The time at which the operation failed or was completed successfully.
-  public var finishTime: GoogleCloudWkt.Timestamp? = nil
+  public var finishTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `UpdateInstanceMetadata`.
   public init() {}
@@ -49,10 +49,10 @@ public struct UpdateInstanceMetadata: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.bigtable.admin.v2.UpdateInstanceMetadata"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

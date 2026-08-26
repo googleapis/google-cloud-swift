@@ -16,7 +16,7 @@
 
 #if BackendBuckets || BackendServices || Disks || FirewallPolicies || Images || InstanceTemplates || Instances || InstantSnapshotGroups || InstantSnapshots || InterconnectAttachmentGroups || InterconnectGroups || LicenseCodes || Licenses || MachineImages || NetworkAttachments || NetworkFirewallPolicies || NodeGroups || NodeTemplates || OrganizationSecurityPolicies || RegionBackendBuckets || RegionBackendServices || RegionDisks || RegionInstantSnapshotGroups || RegionInstantSnapshots || RegionNetworkFirewallPolicies || RegionSecurityPolicies || RegionSnapshots || ReservationBlocks || ReservationSubBlocks || Reservations || ResourcePolicies || Routers || SecurityPolicies || ServiceAttachments || Snapshots || StoragePools || Subnetworks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents a textual expression in the Common Expression Language (CEL)
   /// syntax. CEL is a C-like expression language. The syntax and semantics of CEL
@@ -49,7 +49,7 @@
   /// The exact variables and functions that may be referenced within an expression
   /// are determined by the service that evaluates it. See the service
   /// documentation for additional information.
-  public struct Expr: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Expr: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Description of the expression. This is a longer text which
@@ -88,11 +88,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.Expr"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

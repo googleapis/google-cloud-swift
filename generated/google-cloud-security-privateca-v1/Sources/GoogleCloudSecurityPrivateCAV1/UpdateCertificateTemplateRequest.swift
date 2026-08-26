@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [CertificateAuthorityService.UpdateCertificateTemplate][google.cloud.security.privateca.v1.CertificateAuthorityService.UpdateCertificateTemplate].
 ///
 /// [google.cloud.security.privateca.v1.CertificateAuthorityService.UpdateCertificateTemplate]: <doc:CertificateAuthorityServiceClient/updateCertificateTemplate(request:options:)>
-public struct UpdateCertificateTemplateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateCertificateTemplateRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required.
@@ -32,7 +32,7 @@ public struct UpdateCertificateTemplateRequest: Codable, Equatable, GoogleCloudW
   public var certificateTemplate: CertificateTemplate? = nil
 
   /// Required. A list of fields to be updated in this request.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Optional. An ID to identify requests. Specify a unique request ID so that
   /// if you must retry your request, the server will know to ignore the request
@@ -68,10 +68,10 @@ public struct UpdateCertificateTemplateRequest: Codable, Equatable, GoogleCloudW
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.security.privateca.v1.UpdateCertificateTemplateRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

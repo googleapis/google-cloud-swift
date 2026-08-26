@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -395,7 +395,7 @@ extension Clients {
     /// See `StorageTransferServiceClient.updateAgentPool`.
     func updateAgentPool(
       agentPool: AgentPool?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleStorageTransferV1.AgentPool
 
     /// See `StorageTransferServiceClient.getAgentPool`.
@@ -729,7 +729,7 @@ extension Clients.StorageTransferServiceProtocol {
 
   public func updateAgentPool(
     agentPool: AgentPool?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleStorageTransferV1.AgentPool {
     let request = UpdateAgentPoolRequest().with {
       $0.agentPool = agentPool

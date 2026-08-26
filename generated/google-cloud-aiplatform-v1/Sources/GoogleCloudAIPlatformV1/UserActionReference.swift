@@ -16,11 +16,11 @@
 
 #if DatasetService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// References an API call. It contains more information about long running
   /// operation and Jobs that are triggered by the API call.
-  public struct UserActionReference: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct UserActionReference: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The method name of the API RPC call. For example,
@@ -106,11 +106,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.UserActionReference"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

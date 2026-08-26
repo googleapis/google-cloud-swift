@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -1056,7 +1056,7 @@ extension Clients {
     /// See `CatalogServiceClient.updateEntryType`.
     func updateEntryType(
       entryType: EntryType?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<EntryType>
 
     /// See `CatalogServiceClient.deleteEntryType`.
@@ -1120,7 +1120,7 @@ extension Clients {
     /// See `CatalogServiceClient.updateAspectType`.
     func updateAspectType(
       aspectType: AspectType?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<AspectType>
 
     /// See `CatalogServiceClient.deleteAspectType`.
@@ -1185,7 +1185,7 @@ extension Clients {
     /// See `CatalogServiceClient.updateEntryGroup`.
     func updateEntryGroup(
       entryGroup: EntryGroup?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<EntryGroup>
 
     /// See `CatalogServiceClient.deleteEntryGroup`.
@@ -1240,7 +1240,7 @@ extension Clients {
     /// See `CatalogServiceClient.updateEntry`.
     func updateEntry(
       entry: Entry?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDataplexV1.Entry
 
     /// See `CatalogServiceClient.deleteEntry`.
@@ -1452,7 +1452,7 @@ extension Clients {
     /// See `CatalogServiceClient.updateMetadataFeed`.
     func updateMetadataFeed(
       metadataFeed: MetadataFeed?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<MetadataFeed>
 
     /// See `CatalogServiceClient.listLocations`.
@@ -1929,7 +1929,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func updateEntryType(
     entryType: EntryType?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<EntryType> {
     let request = UpdateEntryTypeRequest().with {
       $0.entryType = entryType
@@ -2104,7 +2104,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func updateAspectType(
     aspectType: AspectType?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<AspectType> {
     let request = UpdateAspectTypeRequest().with {
       $0.aspectType = aspectType
@@ -2279,7 +2279,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func updateEntryGroup(
     entryGroup: EntryGroup?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<EntryGroup> {
     let request = UpdateEntryGroupRequest().with {
       $0.entryGroup = entryGroup
@@ -2418,7 +2418,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func updateEntry(
     entry: Entry?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudDataplexV1.Entry {
     let request = UpdateEntryRequest().with {
       $0.entry = entry
@@ -2973,7 +2973,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func updateMetadataFeed(
     metadataFeed: MetadataFeed?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<MetadataFeed> {
     let request = UpdateMetadataFeedRequest().with {
       $0.metadataFeed = metadataFeed

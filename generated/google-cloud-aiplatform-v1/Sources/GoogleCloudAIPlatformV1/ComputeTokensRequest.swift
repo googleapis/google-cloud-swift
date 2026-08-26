@@ -16,10 +16,10 @@
 
 #if LlmUtilityService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request message for ComputeTokens RPC call.
-  public struct ComputeTokensRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ComputeTokensRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The name of the Endpoint requested to get lists of tokens and
@@ -29,7 +29,7 @@
     /// Optional. The instances that are the input to token computing API call.
     /// Schema is identical to the prediction schema of the text model, even for
     /// the non-text models, like chat models, or Codey models.
-    public var instances: [GoogleCloudWkt.Value] = []
+    public var instances: [GoogleCloudWKT.Value] = []
 
     /// Optional. The name of the publisher model requested to serve the
     /// prediction. Format:
@@ -58,11 +58,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.ComputeTokensRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

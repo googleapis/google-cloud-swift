@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Grants permissions to the contract by the transaction sender.
 /// If `delegate_contract_id` is specified, the permissions and corresponding
@@ -23,7 +23,7 @@ import Foundation
 /// the sender.
 ///
 /// Note that there is no support for revoking permissions.
-public struct GrantContractPermissions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct GrantContractPermissions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. Deprecated: Use
@@ -64,10 +64,10 @@ public struct GrantContractPermissions: Codable, Equatable, GoogleCloudWkt._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.universalledger.v1.GrantContractPermissions"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

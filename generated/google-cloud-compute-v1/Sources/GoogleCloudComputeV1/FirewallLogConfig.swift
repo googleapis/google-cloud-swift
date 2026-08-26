@@ -16,10 +16,10 @@
 
 #if Firewalls || Instances || Networks || RegionNetworkFirewallPolicies
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The available logging options for a firewall rule.
-  public struct FirewallLogConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FirewallLogConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// This field denotes whether to enable logging for a particular firewall
@@ -148,11 +148,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.FirewallLogConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

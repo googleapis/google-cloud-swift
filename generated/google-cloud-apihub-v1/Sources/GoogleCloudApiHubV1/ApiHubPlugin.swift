@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -640,7 +640,7 @@ extension Clients {
     /// See `ApiHubPluginClient.updatePluginInstance`.
     func updatePluginInstance(
       pluginInstance: PluginInstance?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudApiHubV1.PluginInstance
 
     /// See `ApiHubPluginClient.deletePluginInstance`.
@@ -1241,7 +1241,7 @@ extension Clients.ApiHubPluginProtocol {
 
   public func updatePluginInstance(
     pluginInstance: PluginInstance?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudApiHubV1.PluginInstance {
     let request = UpdatePluginInstanceRequest().with {
       $0.pluginInstance = pluginInstance

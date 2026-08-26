@@ -16,7 +16,7 @@
 
 #if BackendServices || RegionBackendServices
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// For load balancers that have configurable
   /// failover:
@@ -32,7 +32,7 @@
   /// draining traffic. A setting of false allows existing TCP
   /// connections to persist, even on VMs no longer in the active pool, for up
   /// to the duration of the connection draining timeout (10 minutes).
-  public struct BackendServiceFailoverPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct BackendServiceFailoverPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// This can be set to true if the protocol isTCP, UDP, or UNSPECIFIED.
@@ -87,11 +87,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.BackendServiceFailoverPolicy"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

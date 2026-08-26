@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudFunctionsV2
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc

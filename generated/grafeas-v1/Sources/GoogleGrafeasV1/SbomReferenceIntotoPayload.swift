@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The actual payload that contains the SBOM Reference data.
 /// The payload follows the intoto statement specification. See
 /// https://github.com/in-toto/attestation/blob/main/spec/v1.0/statement.md
 /// for more details.
-public struct SbomReferenceIntotoPayload: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SbomReferenceIntotoPayload: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier for the schema of the Statement.
@@ -81,10 +81,10 @@ public struct SbomReferenceIntotoPayload: Codable, Equatable, GoogleCloudWkt._An
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/grafeas.v1.SbomReferenceIntotoPayload"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

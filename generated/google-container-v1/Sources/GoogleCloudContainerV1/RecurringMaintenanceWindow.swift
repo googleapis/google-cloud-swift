@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleType
 
 /// Represents an arbitrary window of time that recurs.
 /// Will replace RecurringTimeWindow.
-public struct RecurringMaintenanceWindow: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RecurringMaintenanceWindow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. Specifies the date before which will not be scheduled.
@@ -34,7 +34,7 @@ public struct RecurringMaintenanceWindow: Codable, Equatable, GoogleCloudWkt._An
   public var windowStartTime: GoogleType.TimeOfDay? = nil
 
   /// Required. Duration of the window.
-  public var windowDuration: GoogleCloudWkt.Duration? = nil
+  public var windowDuration: GoogleCloudWKT.Duration? = nil
 
   /// Required. An RRULE (https://tools.ietf.org/html/rfc5545#section-3.8.5.3)
   /// for how this window recurs.
@@ -70,10 +70,10 @@ public struct RecurringMaintenanceWindow: Codable, Equatable, GoogleCloudWkt._An
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.RecurringMaintenanceWindow"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

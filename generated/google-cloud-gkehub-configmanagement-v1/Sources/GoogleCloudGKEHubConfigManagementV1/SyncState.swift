@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// State indicating an ACM's progress syncing configurations to a cluster
-public struct SyncState: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SyncState: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Token indicating the state of the repo.
@@ -37,7 +37,7 @@ public struct SyncState: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var lastSync: Swift.String = Swift.String()
 
   /// Timestamp type of when ACM last successfully synced the repo
-  public var lastSyncTime: GoogleCloudWkt.Timestamp? = nil
+  public var lastSyncTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Sync status code
   public var code: SyncState.SyncCode = SyncState.SyncCode()
@@ -206,10 +206,10 @@ public struct SyncState: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkehub.configmanagement.v1.SyncState"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

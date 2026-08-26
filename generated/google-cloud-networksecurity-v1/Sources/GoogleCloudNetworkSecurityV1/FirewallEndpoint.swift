@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Message describing Endpoint object.
-public struct FirewallEndpoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct FirewallEndpoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Immutable. Identifier. Name of resource.
@@ -29,10 +29,10 @@ public struct FirewallEndpoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var description: Swift.String = Swift.String()
 
   /// Output only. Create time stamp.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Update time stamp
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Labels as key value pairs
   public var labels: [Swift.String: Swift.String] = [:]
@@ -89,7 +89,7 @@ public struct FirewallEndpoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// This is a subset of the FirewallEndpointAssociation message, containing
   /// fields to be used by the consumer.
-  public struct AssociationReference: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AssociationReference: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The resource name of the FirewallEndpointAssociation.
@@ -121,16 +121,16 @@ public struct FirewallEndpoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.networksecurity.v1.FirewallEndpoint.AssociationReference"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Settings for the endpoint.
-  public struct EndpointSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct EndpointSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Immutable. Indicates whether Jumbo Frames are enabled.
@@ -156,11 +156,11 @@ public struct FirewallEndpoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networksecurity.v1.FirewallEndpoint.EndpointSettings"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -286,10 +286,10 @@ public struct FirewallEndpoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networksecurity.v1.FirewallEndpoint"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

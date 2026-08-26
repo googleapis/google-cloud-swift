@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// [Cloud Endpoints](https://cloud.google.com/endpoints) configuration.
 /// The Endpoints API Service provides tooling for serving Open API and gRPC
@@ -24,7 +24,7 @@ import Foundation
 ///
 /// The fields here refer to the name and configuration ID of a "service"
 /// resource in the [Service Management API](https://cloud.google.com/service-management/overview).
-public struct EndpointsApiService: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct EndpointsApiService: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Endpoints service name which is the name of the "service" resource in the
@@ -179,10 +179,10 @@ public struct EndpointsApiService: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.appengine.v1.EndpointsApiService"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

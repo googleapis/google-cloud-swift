@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A GoogleChannelConfig is a resource that stores the custom settings
 /// respected by Eventarc first-party triggers in the matching region.
 /// Once configured, first-party event data will be protected
 /// using the specified custom managed encryption key instead of Google-managed
 /// encryption keys.
-public struct GoogleChannelConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct GoogleChannelConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The resource name of the config. Must be in the format of,
@@ -32,7 +32,7 @@ public struct GoogleChannelConfig: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public var name: Swift.String = Swift.String()
 
   /// Output only. The last-modified time.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Resource name of a KMS crypto key (managed by the user) used to
   /// encrypt/decrypt their event data.
@@ -63,10 +63,10 @@ public struct GoogleChannelConfig: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.eventarc.v1.GoogleChannelConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

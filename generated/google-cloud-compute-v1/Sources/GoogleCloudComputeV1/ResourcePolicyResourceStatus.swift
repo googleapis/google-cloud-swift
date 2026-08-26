@@ -16,13 +16,13 @@
 
 #if ResourcePolicies
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Contains output only fields.
   /// Use this sub-message for all output fields set on ResourcePolicy.
   /// The internal structure of this "status" field should mimic the structure
   /// of ResourcePolicy proto specification.
-  public struct ResourcePolicyResourceStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ResourcePolicyResourceStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. [Output Only] Specifies a set of output values reffering to
@@ -50,11 +50,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.ResourcePolicyResourceStatus"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

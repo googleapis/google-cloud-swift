@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// The long-running operation metadata for
 /// [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments].
 ///
 /// [google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments]: <doc:DocumentProcessorServiceClient/batchProcessDocuments(request:options:)>
-public struct BatchProcessMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BatchProcessMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The state of the current batch processing.
@@ -33,10 +33,10 @@ public struct BatchProcessMetadata: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public var stateMessage: Swift.String = Swift.String()
 
   /// The creation time of the operation.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The last update time of the operation.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The list of response details of each document.
   public var individualProcessStatuses: [BatchProcessMetadata.IndividualProcessStatus] = []
@@ -58,7 +58,7 @@ public struct BatchProcessMetadata: Codable, Equatable, GoogleCloudWkt._AnyPacka
   }
 
   /// The status of a each individual document in the batch process.
-  public struct IndividualProcessStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct IndividualProcessStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The source of the document, same as the
@@ -101,11 +101,11 @@ public struct BatchProcessMetadata: Codable, Equatable, GoogleCloudWkt._AnyPacka
       return
         "type.googleapis.com/google.cloud.documentai.v1.BatchProcessMetadata.IndividualProcessStatus"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -245,10 +245,10 @@ public struct BatchProcessMetadata: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.documentai.v1.BatchProcessMetadata"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

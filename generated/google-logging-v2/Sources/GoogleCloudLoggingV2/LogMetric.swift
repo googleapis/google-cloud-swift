@@ -16,7 +16,7 @@
 
 import Foundation
 import GoogleApi
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Describes a logs-based metric. The value of the metric is the number of log
 /// entries that match a logs filter in a given time interval.
@@ -25,7 +25,7 @@ import GoogleApi
 /// distribution of the values. The distribution records the statistics of the
 /// extracted values along with an optional histogram of the values as specified
 /// by the bucket options.
-public struct LogMetric: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct LogMetric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The client-assigned metric identifier.
@@ -140,12 +140,12 @@ public struct LogMetric: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Output only. The creation timestamp of the metric.
   ///
   /// This field may not be present for older metrics.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The last update timestamp of the metric.
   ///
   /// This field may not be present for older metrics.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Deprecated. The API version that created or updated this metric.
   /// The v2 format is used by default and cannot be changed.
@@ -269,10 +269,10 @@ public struct LogMetric: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.logging.v2.LogMetric"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

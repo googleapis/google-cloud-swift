@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [VectorSearchService.ImportDataObjects][google.cloud.vectorsearch.v1.VectorSearchService.ImportDataObjects].
 ///
 /// [google.cloud.vectorsearch.v1.VectorSearchService.ImportDataObjects]: <doc:VectorSearchServiceClient/importDataObjects(request:options:)>
-public struct ImportDataObjectsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ImportDataObjectsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The resource name of the Collection to import DataObjects into.
@@ -87,7 +87,7 @@ public struct ImportDataObjectsRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   }
 
   /// Google Cloud Storage configuration for the import.
-  public struct GcsImportConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GcsImportConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. URI prefix of the Cloud Storage DataObjects to import.
@@ -123,11 +123,11 @@ public struct ImportDataObjectsRequest: Codable, Equatable, GoogleCloudWkt._AnyP
       return
         "type.googleapis.com/google.cloud.vectorsearch.v1.ImportDataObjectsRequest.GcsImportConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -140,10 +140,10 @@ public struct ImportDataObjectsRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vectorsearch.v1.ImportDataObjectsRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

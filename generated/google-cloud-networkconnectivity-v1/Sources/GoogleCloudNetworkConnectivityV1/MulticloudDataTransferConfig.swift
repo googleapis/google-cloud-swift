@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The `MulticloudDataTransferConfig` resource. It lists the services that you
 /// configure for Data Transfer Essentials billing and metering.
-public struct MulticloudDataTransferConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MulticloudDataTransferConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The name of the `MulticloudDataTransferConfig` resource.
@@ -29,11 +29,11 @@ public struct MulticloudDataTransferConfig: Codable, Equatable, GoogleCloudWkt._
 
   /// Output only. Time when the `MulticloudDataTransferConfig` resource was
   /// created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Time when the `MulticloudDataTransferConfig` resource was
   /// updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. User-defined labels.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -105,10 +105,10 @@ public struct MulticloudDataTransferConfig: Codable, Equatable, GoogleCloudWkt._
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkconnectivity.v1.MulticloudDataTransferConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

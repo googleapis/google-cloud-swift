@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Sprite sheet configuration.
-public struct SpriteSheet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SpriteSheet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Format type. The default is `jpeg`.
@@ -79,12 +79,12 @@ public struct SpriteSheet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Start time in seconds, relative to the output file timeline. Determines the
   /// first sprite to pick. The default is `0s`.
-  public var startTimeOffset: GoogleCloudWkt.Duration? = nil
+  public var startTimeOffset: GoogleCloudWKT.Duration? = nil
 
   /// End time in seconds, relative to the output file timeline. When
   /// `end_time_offset` is not specified, the sprites are generated until the end
   /// of the output file.
-  public var endTimeOffset: GoogleCloudWkt.Duration? = nil
+  public var endTimeOffset: GoogleCloudWKT.Duration? = nil
 
   /// The quality of the generated sprite sheet. Enter a value between 1
   /// and 100, where 1 is the lowest quality and 100 is the highest quality.
@@ -134,9 +134,9 @@ public struct SpriteSheet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.columnCount = try container.decode(Swift.Int32.self, forKey: .columnCount)
     self.rowCount = try container.decode(Swift.Int32.self, forKey: .rowCount)
     self.startTimeOffset = try container.decodeIfPresent(
-      GoogleCloudWkt.Duration.self, forKey: .startTimeOffset)
+      GoogleCloudWKT.Duration.self, forKey: .startTimeOffset)
     self.endTimeOffset = try container.decodeIfPresent(
-      GoogleCloudWkt.Duration.self, forKey: .endTimeOffset)
+      GoogleCloudWKT.Duration.self, forKey: .endTimeOffset)
     self.quality = try container.decode(Swift.Int32.self, forKey: .quality)
 
     var extractionStrategy: OneOf_ExtractionStrategy? = nil
@@ -153,7 +153,7 @@ public struct SpriteSheet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       try extractionStrategyCheckAndSet(.totalCount(totalCount))
     }
     if let interval = try container.decodeIfPresent(
-      GoogleCloudWkt.Duration?.self, forKey: .interval)
+      GoogleCloudWKT.Duration?.self, forKey: .interval)
     {
       try extractionStrategyCheckAndSet(.interval(interval))
     }
@@ -190,16 +190,16 @@ public struct SpriteSheet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     case totalCount(Swift.Int32)
     /// Starting from `0s`, create sprites at regular intervals. Specify the
     /// interval value in seconds.
-    indirect case interval(GoogleCloudWkt.Duration?)
+    indirect case interval(GoogleCloudWKT.Duration?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.video.transcoder.v1.SpriteSheet"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

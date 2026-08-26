@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudRecaptchaEnterpriseV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: RecaptchaEnterpriseServiceClient, parent: String) async throws {
   let response = try await client.createKey(

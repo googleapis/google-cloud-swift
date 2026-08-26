@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The `PromoteRelease` rule will automatically promote a release from the
 /// current target to a specified target.
-public struct PromoteReleaseRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct PromoteReleaseRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. ID of the rule. This id must be unique in the `Automation`
@@ -29,7 +29,7 @@ public struct PromoteReleaseRule: Codable, Equatable, GoogleCloudWkt._AnyPackabl
 
   /// Optional. How long the release need to be paused until being promoted to
   /// the next target.
-  public var wait: GoogleCloudWkt.Duration? = nil
+  public var wait: GoogleCloudWKT.Duration? = nil
 
   /// Optional. The ID of the stage in the pipeline to which this `Release` is
   /// deploying. If unspecified, default it to the next stage in the promotion
@@ -65,10 +65,10 @@ public struct PromoteReleaseRule: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.deploy.v1.PromoteReleaseRule"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

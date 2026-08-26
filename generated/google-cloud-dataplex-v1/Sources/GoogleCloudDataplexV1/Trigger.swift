@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// DataScan scheduling and trigger settings.
-public struct Trigger: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Trigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// DataScan scheduling and trigger settings.
@@ -89,7 +89,7 @@ public struct Trigger: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// The scan runs once via `RunDataScan` API.
-  public struct OnDemand: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct OnDemand: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `OnDemand`.
@@ -111,16 +111,16 @@ public struct Trigger: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.Trigger.OnDemand"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The scan is scheduled to run periodically.
-  public struct Schedule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Schedule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. [Cron](https://en.wikipedia.org/wiki/Cron) schedule for running
@@ -156,16 +156,16 @@ public struct Trigger: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.Trigger.Schedule"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The scan runs once using create API.
-  public struct OneTime: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct OneTime: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Time to live for OneTime scans.
@@ -173,7 +173,7 @@ public struct Trigger: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// is 365 days. The time is calculated from the data scan job completion
     /// time. If value is set as 0 seconds, the scan will be immediately deleted
     /// upon job completion, regardless of whether the job succeeded or failed.
-    public var ttlAfterScanCompletion: GoogleCloudWkt.Duration? = nil
+    public var ttlAfterScanCompletion: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `OneTime`.
     public init() {}
@@ -194,11 +194,11 @@ public struct Trigger: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.Trigger.OneTime"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -218,10 +218,10 @@ public struct Trigger: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataplex.v1.Trigger"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

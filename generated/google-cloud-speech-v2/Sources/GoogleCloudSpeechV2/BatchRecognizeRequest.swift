@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for the
 /// [BatchRecognize][google.cloud.speech.v2.Speech.BatchRecognize]
 /// method.
 ///
 /// [google.cloud.speech.v2.Speech.BatchRecognize]: <doc:SpeechClient/batchRecognize(request:options:)>
-public struct BatchRecognizeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BatchRecognizeRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The name of the Recognizer to use during recognition. The
@@ -58,7 +58,7 @@ public struct BatchRecognizeRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
   ///
   /// [google.cloud.speech.v2.BatchRecognizeRequest.config]: <doc:BatchRecognizeRequest/config>
   /// [google.cloud.speech.v2.Recognizer.default_recognition_config]: <doc:Recognizer/defaultRecognitionConfig>
-  public var configMask: GoogleCloudWkt.FieldMask? = nil
+  public var configMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Audio files with file metadata for ASR.
   /// The maximum number of files allowed to be specified is 15.
@@ -190,10 +190,10 @@ public struct BatchRecognizeRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.speech.v2.BatchRecognizeRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

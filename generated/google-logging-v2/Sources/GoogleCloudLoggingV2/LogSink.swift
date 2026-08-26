@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Describes a sink used to export log entries to one of the following
 /// destinations in any project: a Cloud Storage bucket, a BigQuery dataset, a
 /// Pub/Sub topic or a Cloud Logging log bucket. A logs filter controls which log
 /// entries are exported. The sink must be created within a project,
 /// organization, billing account, or folder.
-public struct LogSink: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct LogSink: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The client-assigned sink identifier, unique within the project.
@@ -121,12 +121,12 @@ public struct LogSink: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Output only. The creation timestamp of the sink.
   ///
   /// This field may not be present for older sinks.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The last update timestamp of the sink.
   ///
   /// This field may not be present for older sinks.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Destination dependent options.
   public var options: OneOf_Options? = nil
@@ -175,9 +175,9 @@ public struct LogSink: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.writerIdentity = try container.decode(Swift.String.self, forKey: .writerIdentity)
     self.includeChildren = try container.decode(Swift.Bool.self, forKey: .includeChildren)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
 
     var options: OneOf_Options? = nil
     let optionsCheckAndSet = {
@@ -333,10 +333,10 @@ public struct LogSink: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.logging.v2.LogSink"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

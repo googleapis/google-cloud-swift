@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents a network policy resource. Network policies are regional
 /// resources. You can use a network policy to enable or disable internet access
@@ -23,7 +23,7 @@ import Foundation
 /// network, which might span across regions. For a given region, a network
 /// policy applies to all private clouds in the VMware Engine network associated
 /// with the policy.
-public struct NetworkPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct NetworkPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The resource name of this network policy.
@@ -34,10 +34,10 @@ public struct NetworkPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Output only. Creation time of this resource.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Last update time of this resource.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Network service that allows VMware workloads to access the internet.
   public var internetAccess: NetworkPolicy.NetworkService? = nil
@@ -90,7 +90,7 @@ public struct NetworkPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// VMware workloads. For example, whether the VMware workloads in the
   /// private clouds governed by a network policy can access or be accessed from
   /// the internet.
-  public struct NetworkService: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct NetworkService: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// True if the service is enabled; false otherwise.
@@ -232,21 +232,21 @@ public struct NetworkPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.vmwareengine.v1.NetworkPolicy.NetworkService"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vmwareengine.v1.NetworkPolicy"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

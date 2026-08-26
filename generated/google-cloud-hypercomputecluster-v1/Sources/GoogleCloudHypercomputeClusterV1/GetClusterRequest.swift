@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [GetCluster][google.cloud.hypercomputecluster.v1.HypercomputeCluster.GetCluster].
 ///
 /// [google.cloud.hypercomputecluster.v1.HypercomputeCluster.GetCluster]: <doc:HypercomputeClusterClient/getCluster(request:options:)>
-public struct GetClusterRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct GetClusterRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Name of the cluster to retrieve, in the format
@@ -47,10 +47,10 @@ public struct GetClusterRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.hypercomputecluster.v1.GetClusterRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

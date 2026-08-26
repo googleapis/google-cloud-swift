@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Host group is a collection of hosts that can be used for accessing a Block
 /// Volume.
-public struct HostGroup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct HostGroup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The resource name of the host group.
@@ -34,7 +34,7 @@ public struct HostGroup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var state: HostGroup.State = HostGroup.State()
 
   /// Output only. Create time of the host group.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Required. The list of hosts associated with the host group.
   public var hosts: [Swift.String] = []
@@ -294,10 +294,10 @@ public struct HostGroup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.netapp.v1.HostGroup"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

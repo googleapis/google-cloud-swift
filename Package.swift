@@ -65,13 +65,13 @@ let package = Package(
         .product(name: "UserGuide", package: "guide"),
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),
-        .product(name: "GoogleCloudWkt", package: "wkt"),
+        .product(name: "GoogleCloudWKT", package: "wkt"),
       ] + generatedModules,
     ),
     .testTarget(
       name: "Discovery",
       dependencies: [
-        .product(name: "GoogleCloudWkt", package: "wkt")
+        .product(name: "GoogleCloudWKT", package: "wkt")
       ],
       exclude: ["disco/"],
     ),
@@ -79,7 +79,7 @@ let package = Package(
       name: "ProtoJSON",
       dependencies: [
         .product(name: "GoogleCloudGax", package: "gax"),
-        .product(name: "GoogleCloudWkt", package: "wkt"),
+        .product(name: "GoogleCloudWKT", package: "wkt"),
       ],
       exclude: ["protos/"],
     ),
@@ -87,7 +87,7 @@ let package = Package(
       name: "DiscoveryBasedClient",
       dependencies: [
         .product(name: "GoogleCloudComputeV1", package: "google-cloud-compute-v1"),
-        .product(name: "GoogleCloudWkt", package: "wkt"),
+        .product(name: "GoogleCloudWKT", package: "wkt"),
         .product(name: "GoogleCloudTestHelpers", package: "test-helpers"),
       ],
       exclude: ["README.md"],
@@ -100,7 +100,7 @@ let package = Package(
         .product(name: "GoogleCloudLocation", package: "google-cloud-location"),
         .product(name: "GoogleIAMV1", package: "google-iam-v1"),
         .product(name: "GoogleCloudGax", package: "gax"),
-        .product(name: "GoogleCloudWkt", package: "wkt"),
+        .product(name: "GoogleCloudWKT", package: "wkt"),
         .product(name: "GoogleCloudStorage", package: "storage"),
         .product(name: "GoogleCloudTestHelpers", package: "test-helpers"),
         .product(name: "InMemoryLogging", package: "swift-log"),
@@ -110,7 +110,7 @@ let package = Package(
     .testTarget(
       name: "Any",
       dependencies: [
-        .product(name: "GoogleCloudWkt", package: "wkt"),
+        .product(name: "GoogleCloudWKT", package: "wkt"),
         .product(name: "GoogleCloudSecretManagerV1", package: "google-cloud-secretmanager-v1"),
       ],
     ),
@@ -118,7 +118,7 @@ let package = Package(
       name: "QueryParameter",
       dependencies: [
         .product(name: "GoogleCloudGax", package: "gax"),
-        .product(name: "GoogleCloudWkt", package: "wkt"),
+        .product(name: "GoogleCloudWKT", package: "wkt"),
         .product(
           name: "GoogleCloudSecurityPublicCAV1", package: "google-cloud-security-publicca-v1"),
       ],
@@ -128,7 +128,7 @@ let package = Package(
       dependencies: [
         .product(name: "GoogleCloudSecretManagerV1", package: "google-cloud-secretmanager-v1"),
         .product(name: "GoogleCloudGax", package: "gax"),
-        .product(name: "GoogleCloudWkt", package: "wkt"),
+        .product(name: "GoogleCloudWKT", package: "wkt"),
         .product(name: "GoogleCloudTestHelpers", package: "test-helpers"),
       ],
       path: "Tests/Endurance",

@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudUniversalLedgerV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(
   client: UniversalLedgerClient, projectId: String, locationId: String, endpointId: String

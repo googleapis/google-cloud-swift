@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An [EkmConnection][google.cloud.kms.v1.EkmConnection] represents an
 /// individual EKM connection. It can be used for creating
@@ -31,7 +31,7 @@ import Foundation
 /// [google.cloud.kms.v1.EkmConnection]: <doc:EkmConnection>
 /// [google.cloud.kms.v1.ProtectionLevel]: <doc:ProtectionLevel>
 /// [google.cloud.kms.v1.ProtectionLevel.EXTERNAL_VPC]: <doc:ProtectionLevel/externalVpc>
-public struct EkmConnection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct EkmConnection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The resource name for the
@@ -45,7 +45,7 @@ public struct EkmConnection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [EkmConnection][google.cloud.kms.v1.EkmConnection] was created.
   ///
   /// [google.cloud.kms.v1.EkmConnection]: <doc:EkmConnection>
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. A list of
   /// [ServiceResolvers][google.cloud.kms.v1.EkmConnection.ServiceResolver] where
@@ -103,7 +103,7 @@ public struct EkmConnection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   /// [google.cloud.kms.v1.EkmConnection]: <doc:EkmConnection>
   /// [google.cloud.kms.v1.EkmConnection.ServiceResolver]: <doc:EkmConnection/ServiceResolver>
-  public struct ServiceResolver: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ServiceResolver: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The resource name of the Service Directory service pointing to
@@ -148,11 +148,11 @@ public struct EkmConnection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.kms.v1.EkmConnection.ServiceResolver"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -304,10 +304,10 @@ public struct EkmConnection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.EkmConnection"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

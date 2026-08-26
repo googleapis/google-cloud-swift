@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A filter that ranks streams based on their statistical relation to other
 /// streams in a request.
 /// Note: This field is deprecated and completely ignored by the API.
-public struct StatisticalTimeSeriesFilter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct StatisticalTimeSeriesFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// `rankingMethod` is applied to a set of time series, and then the produced
@@ -151,10 +151,10 @@ public struct StatisticalTimeSeriesFilter: Codable, Equatable, GoogleCloudWkt._A
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.dashboard.v1.StatisticalTimeSeriesFilter"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

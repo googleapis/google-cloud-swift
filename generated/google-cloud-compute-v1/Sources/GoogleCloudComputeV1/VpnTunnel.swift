@@ -16,13 +16,13 @@
 
 #if VpnTunnels
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents a Cloud VPN Tunnel resource.
   ///
   /// For more information about VPN, read the
   /// the Cloud VPN Overview.
-  public struct VpnTunnel: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct VpnTunnel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// User specified list of ciphers to use for the phase 1 and phase 2 of the
@@ -245,7 +245,7 @@
       self.ikeVersion = try container.decodeIfPresent(Swift.Int32.self, forKey: .ikeVersion)
       self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
       if let s = try container.decodeIfPresent(Swift.String.self, forKey: .labelFingerprint) {
-        guard let v = GoogleCloudWkt._DiscoveryBase64.decode(s) else {
+        guard let v = GoogleCloudWKT._DiscoveryBase64.decode(s) else {
           throw DecodingError.dataCorrupted(
             DecodingError.Context(
               codingPath: decoder.codingPath, debugDescription: "Expected url-safe encoded value")
@@ -292,7 +292,7 @@
       try container.encode(self.kind, forKey: .kind)
       if let v = labelFingerprint {
         try container.encode(
-          GoogleCloudWkt._DiscoveryBase64.encode(v), forKey: .labelFingerprint
+          GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .labelFingerprint
         )
       }
       try container.encode(self.labels, forKey: .labels)
@@ -498,11 +498,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.VpnTunnel"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

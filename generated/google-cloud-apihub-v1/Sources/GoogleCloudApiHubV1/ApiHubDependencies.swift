@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleCloudGax
 
@@ -240,7 +240,7 @@ extension Clients {
     /// See `ApiHubDependenciesClient.updateDependency`.
     func updateDependency(
       dependency: Dependency?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudApiHubV1.Dependency
 
     /// See `ApiHubDependenciesClient.deleteDependency`.
@@ -438,7 +438,7 @@ extension Clients.ApiHubDependenciesProtocol {
 
   public func updateDependency(
     dependency: Dependency?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudApiHubV1.Dependency {
     let request = UpdateDependencyRequest().with {
       $0.dependency = dependency

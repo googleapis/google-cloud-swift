@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudModelArmorV1
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: ModelArmorClient, projectId: String, locationId: String) async throws {
   let response = try await client.updateFloorSetting(
@@ -28,7 +28,7 @@ func sample(client: ModelArmorClient, projectId: String, locationId: String) asy
         $0.floorSetting = FloorSetting().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/floorSetting"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

@@ -16,12 +16,12 @@
 
 #if BackendServices || RegionBackendServices
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A Subject Alternative Name that the load balancer matches against the SAN
   /// field in the TLS certificate provided by the backend, specified as either
   /// a DNS name or a URI, in accordance with RFC 5280 4.2.1.6
-  public struct BackendServiceTlsSettingsSubjectAltName: Codable, Equatable, GoogleCloudWkt
+  public struct BackendServiceTlsSettingsSubjectAltName: Codable, Equatable, GoogleCloudWKT
       ._AnyPackable,
     Sendable
   {
@@ -50,11 +50,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.BackendServiceTlsSettingsSubjectAltName"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

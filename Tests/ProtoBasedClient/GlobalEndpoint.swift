@@ -15,7 +15,7 @@
 import GoogleCloudLocation
 import GoogleCloudSecretManagerV1
 import GoogleCloudTestHelpers
-import GoogleCloudWkt
+import GoogleCloudWKT
 @_spi(GoogleCloudInternal) import struct GoogleCloudGax._CRC32C
 import GoogleIAMV1
 import Logging
@@ -58,7 +58,7 @@ public enum GlobalEndpoint {
 
     let update = try await client.updateSecret(
       request: .init().with {
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["annotations", "labels", "versionAliases"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["annotations", "labels", "versionAliases"])
         $0.secret = Secret().with {
           $0.name = create.name
           $0.labels = updatedLabels

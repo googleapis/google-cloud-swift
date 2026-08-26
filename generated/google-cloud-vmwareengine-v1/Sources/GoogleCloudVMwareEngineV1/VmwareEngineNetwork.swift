@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// VMware Engine network resource that provides connectivity for VMware Engine
 /// private clouds.
-public struct VmwareEngineNetwork: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct VmwareEngineNetwork: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The resource name of the VMware Engine network.
@@ -30,10 +30,10 @@ public struct VmwareEngineNetwork: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public var name: Swift.String = Swift.String()
 
   /// Output only. Creation time of this resource.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Last update time of this resource.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// User-provided description for this VMware Engine network.
   public var description: Swift.String = Swift.String()
@@ -76,7 +76,7 @@ public struct VmwareEngineNetwork: Codable, Equatable, GoogleCloudWkt._AnyPackab
 
   /// Represents a VMware Engine VPC network that is managed by a
   /// VMware Engine network resource.
-  public struct VpcNetwork: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct VpcNetwork: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Type of VPC network (INTRANET, INTERNET, or
@@ -224,11 +224,11 @@ public struct VmwareEngineNetwork: Codable, Equatable, GoogleCloudWkt._AnyPackab
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.vmwareengine.v1.VmwareEngineNetwork.VpcNetwork"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -461,10 +461,10 @@ public struct VmwareEngineNetwork: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vmwareengine.v1.VmwareEngineNetwork"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

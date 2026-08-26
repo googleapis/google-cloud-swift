@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -383,7 +383,7 @@ extension Clients {
     /// See `CmekServiceClient.updateEncryptionConfig`.
     func updateEncryptionConfig(
       encryptionConfig: EncryptionConfig?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<EncryptionConfig>
 
     /// See `CmekServiceClient.deleteEncryptionConfig`.
@@ -646,7 +646,7 @@ extension Clients.CmekServiceProtocol {
 
   public func updateEncryptionConfig(
     encryptionConfig: EncryptionConfig?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<EncryptionConfig> {
     let request = UpdateEncryptionConfigRequest().with {
       $0.encryptionConfig = encryptionConfig

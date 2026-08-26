@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response message for the Check method.
-public struct CheckResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CheckResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The same operation_id value used in the
@@ -61,7 +61,7 @@ public struct CheckResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Contains additional information about the check operation.
-  public struct CheckInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CheckInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// A list of fields and label keys that are ignored by the server.
@@ -96,16 +96,16 @@ public struct CheckResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.api.servicecontrol.v1.CheckResponse.CheckInfo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// `ConsumerInfo` provides information about the consumer.
-  public struct ConsumerInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ConsumerInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The Google cloud project number, e.g. 1234567890. A value of 0 indicates
@@ -266,21 +266,21 @@ public struct CheckResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.api.servicecontrol.v1.CheckResponse.ConsumerInfo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.servicecontrol.v1.CheckResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

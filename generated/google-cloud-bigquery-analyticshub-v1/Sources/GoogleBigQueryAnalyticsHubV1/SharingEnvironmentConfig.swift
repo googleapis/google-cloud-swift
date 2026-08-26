@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Sharing environment is a behavior model for sharing data within a
 /// data exchange. This option is configurable for a data exchange.
-public struct SharingEnvironmentConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SharingEnvironmentConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   public var environment: OneOf_Environment? = nil
@@ -85,7 +85,7 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleCloudWkt._AnyP
   }
 
   /// Default Analytics Hub data exchange, used for secured data sharing.
-  public struct DefaultExchangeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DefaultExchangeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `DefaultExchangeConfig`.
@@ -108,16 +108,16 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleCloudWkt._AnyP
       return
         "type.googleapis.com/google.cloud.bigquery.analyticshub.v1.SharingEnvironmentConfig.DefaultExchangeConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Data Clean Room (DCR), used for privacy-safe and secured data sharing.
-  public struct DcrExchangeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DcrExchangeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. If True, this DCR restricts the contributors to sharing
@@ -155,11 +155,11 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleCloudWkt._AnyP
       return
         "type.googleapis.com/google.cloud.bigquery.analyticshub.v1.SharingEnvironmentConfig.DcrExchangeConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -173,10 +173,10 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleCloudWkt._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.analyticshub.v1.SharingEnvironmentConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

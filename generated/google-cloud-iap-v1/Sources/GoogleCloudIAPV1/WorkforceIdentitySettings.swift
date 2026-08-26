@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// WorkforceIdentitySettings allows customers to configure workforce pools and
 /// OAuth 2.0 settings to gate their applications using a third-party IdP with
 /// access control.
-public struct WorkforceIdentitySettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct WorkforceIdentitySettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The workforce pool resources. Only one workforce pool is accepted.
@@ -49,10 +49,10 @@ public struct WorkforceIdentitySettings: Codable, Equatable, GoogleCloudWkt._Any
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.iap.v1.WorkforceIdentitySettings"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

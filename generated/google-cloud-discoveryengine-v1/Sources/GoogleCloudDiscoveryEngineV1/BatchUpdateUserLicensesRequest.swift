@@ -16,14 +16,14 @@
 
 #if UserLicenseService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request message for
   /// [UserLicenseService.BatchUpdateUserLicenses][google.cloud.discoveryengine.v1.UserLicenseService.BatchUpdateUserLicenses]
   /// method.
   ///
   /// [google.cloud.discoveryengine.v1.UserLicenseService.BatchUpdateUserLicenses]: <doc:UserLicenseServiceClient/batchUpdateUserLicenses(request:options:)>
-  public struct BatchUpdateUserLicensesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct BatchUpdateUserLicensesRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The parent [UserStore][] resource name, format:
@@ -99,7 +99,7 @@
 
     /// The inline source for the input config for BatchUpdateUserLicenses
     /// method.
-    public struct InlineSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct InlineSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. A list of user licenses to update. Each user license
@@ -110,7 +110,7 @@
       public var userLicenses: [UserLicense] = []
 
       /// Optional. The list of fields to update.
-      public var updateMask: GoogleCloudWkt.FieldMask? = nil
+      public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
       /// Initialize a new instance of `InlineSource`.
       public init() {}
@@ -132,11 +132,11 @@
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.BatchUpdateUserLicensesRequest.InlineSource"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -149,11 +149,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.BatchUpdateUserLicensesRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

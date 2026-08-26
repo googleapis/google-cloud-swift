@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An aggregated profile for this project, based on the resources profiled
 /// within it.
-public struct ProjectDataProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ProjectDataProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The resource name of the profile.
@@ -29,7 +29,7 @@ public struct ProjectDataProfile: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public var projectId: Swift.String = Swift.String()
 
   /// The last time the profile was generated.
-  public var profileLastGenerated: GoogleCloudWkt.Timestamp? = nil
+  public var profileLastGenerated: GoogleCloudWKT.Timestamp? = nil
 
   /// The sensitivity score of this project.
   public var sensitivityScore: SensitivityScore? = nil
@@ -65,10 +65,10 @@ public struct ProjectDataProfile: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.ProjectDataProfile"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Partially mask a string by replacing a given number of characters with a
 /// fixed character. Masking can start from the beginning or end of the string.
@@ -23,7 +23,7 @@ import Foundation
 /// de-identifying structured data we'll attempt to preserve the original data's
 /// type. (This allows you to take a long like 123 and modify it to a string like
 /// **3.
-public struct CharacterMaskConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CharacterMaskConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Character to use to mask the sensitive values&mdash;for example, `*` for an
@@ -83,10 +83,10 @@ public struct CharacterMaskConfig: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.CharacterMaskConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

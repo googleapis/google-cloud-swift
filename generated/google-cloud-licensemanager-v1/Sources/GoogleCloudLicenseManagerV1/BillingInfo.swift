@@ -15,17 +15,17 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Billing Information.
-public struct BillingInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BillingInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. When the billing starts.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. When the billing ends.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   public var currentBillingInfo: OneOf_CurrentBillingInfo? = nil
 
@@ -54,8 +54,8 @@ public struct BillingInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.startTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .startTime)
-    self.endTime = try container.decodeIfPresent(GoogleCloudWkt.Timestamp.self, forKey: .endTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
 
     var currentBillingInfo: OneOf_CurrentBillingInfo? = nil
     let currentBillingInfoCheckAndSet = {
@@ -97,10 +97,10 @@ public struct BillingInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.licensemanager.v1.BillingInfo"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

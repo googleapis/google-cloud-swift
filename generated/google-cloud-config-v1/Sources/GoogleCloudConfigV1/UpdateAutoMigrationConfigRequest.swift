@@ -15,17 +15,17 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The request message for the UpdateAutoMigrationConfig method.
-public struct UpdateAutoMigrationConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateAutoMigrationConfigRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. The update mask applies to the resource. See
   /// [google.protobuf.FieldMask][google.protobuf.FieldMask].
   ///
-  /// [google.protobuf.FieldMask]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWkt.FieldMask
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  /// [google.protobuf.FieldMask]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWKT.FieldMask
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Required. The AutoMigrationConfig to update.
   public var autoMigrationConfig: AutoMigrationConfig? = nil
@@ -49,10 +49,10 @@ public struct UpdateAutoMigrationConfigRequest: Codable, Equatable, GoogleCloudW
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.config.v1.UpdateAutoMigrationConfigRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

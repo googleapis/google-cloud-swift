@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Notifies the network that the target account wishes to withdraw reserve funds
 /// and decreases its token issuance limit. The sender must be a clearinghouse
@@ -25,7 +25,7 @@ import Foundation
 /// reserve funds can be withdrawn. This is necessary because it is possible for
 /// the transaction to fail (for example, if the minted amount is already above
 /// the requested reduced limit).
-public struct DecreaseTokenIssuanceLimit: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DecreaseTokenIssuanceLimit: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. Deprecated: Use
@@ -68,10 +68,10 @@ public struct DecreaseTokenIssuanceLimit: Codable, Equatable, GoogleCloudWkt._An
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.universalledger.v1.DecreaseTokenIssuanceLimit"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

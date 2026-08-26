@@ -16,10 +16,10 @@
 
 #if FeatureOnlineStoreService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A query to find a number of similar entities.
-  public struct NearestNeighborQuery: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct NearestNeighborQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The number of similar entities to be retrieved from feature view
@@ -122,7 +122,7 @@
     }
 
     /// The embedding vector.
-    public struct Embedding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Embedding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. Individual value in the embedding.
@@ -147,11 +147,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.NearestNeighborQuery.Embedding"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -163,7 +163,7 @@
     /// points are also purple, then they will be excluded even if they are
     /// red/blue. Only string filter is supported for now, numeric filter will be
     /// supported in the near future.
-    public struct StringFilter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct StringFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. Column names in BigQuery that used as filters.
@@ -194,11 +194,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.NearestNeighborQuery.StringFilter"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -210,7 +210,7 @@
     /// Database Point 2: {name: "a" value_int: -1} {name: "b" value_float: 3.0}
     /// Query: {name: "a" value_int: 12 operator: LESS}    // Matches Point 1, 2
     /// {name: "b" value_float: 2.0 operator: EQUAL} // Matches Point 1
-    public struct NumericFilter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct NumericFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. Column name in BigQuery that used as filters.
@@ -442,17 +442,17 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.NearestNeighborQuery.NumericFilter"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Parameters that can be overrided in each query to tune query latency and
     /// recall.
-    public struct Parameters: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Parameters: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. The number of neighbors to find via approximate search before
@@ -485,11 +485,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.NearestNeighborQuery.Parameters"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -505,11 +505,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.NearestNeighborQuery"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

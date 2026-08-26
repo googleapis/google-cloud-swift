@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Specification to configure notifications published to Pub/Sub.
 /// Notifications are published to the customer-provided topic using the
@@ -46,7 +46,7 @@ import Foundation
 /// [google.storagetransfer.v1.TransferOperation.name]: <doc:TransferOperation/name>
 /// [google.storagetransfer.v1.TransferOperation.project_id]: <doc:TransferOperation/projectId>
 /// [google.storagetransfer.v1.TransferOperation.transfer_job_name]: <doc:TransferOperation/transferJobName>
-public struct NotificationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct NotificationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The `Topic.name` of the Pub/Sub topic to which to publish
@@ -316,10 +316,10 @@ public struct NotificationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storagetransfer.v1.NotificationConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

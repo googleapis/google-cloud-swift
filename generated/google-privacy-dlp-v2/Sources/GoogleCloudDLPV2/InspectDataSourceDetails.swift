@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The results of an inspect DataSource job.
-public struct InspectDataSourceDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct InspectDataSourceDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The configuration used for this job.
@@ -44,7 +44,7 @@ public struct InspectDataSourceDetails: Codable, Equatable, GoogleCloudWkt._AnyP
   }
 
   /// Snapshot of the inspection configuration.
-  public struct RequestedOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RequestedOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// If run with an InspectTemplate, a snapshot of its state at the time of
@@ -73,16 +73,16 @@ public struct InspectDataSourceDetails: Codable, Equatable, GoogleCloudWkt._AnyP
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.InspectDataSourceDetails.RequestedOptions"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// All Result fields are updated while the job is processing.
-  public struct Result: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Result: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Total size in bytes that were processed.
@@ -121,21 +121,21 @@ public struct InspectDataSourceDetails: Codable, Equatable, GoogleCloudWkt._AnyP
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.InspectDataSourceDetails.Result"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.InspectDataSourceDetails"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

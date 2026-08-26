@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Determines what tables will have profiles generated within an organization
 /// or project. Includes the ability to filter by regular expression patterns
 /// on project ID, location, instance, database, and database resource name.
-public struct DiscoveryCloudSqlFilter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DiscoveryCloudSqlFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Whether the filter applies to a specific set of database resources or all
@@ -116,10 +116,10 @@ public struct DiscoveryCloudSqlFilter: Codable, Equatable, GoogleCloudWkt._AnyPa
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.DiscoveryCloudSqlFilter"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

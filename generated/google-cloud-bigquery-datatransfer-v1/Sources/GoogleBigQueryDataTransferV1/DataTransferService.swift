@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleCloudGax
 
 /// This API allows users to manage their data transfers into BigQuery.
@@ -349,7 +349,7 @@ extension Clients {
     /// See `DataTransferServiceClient.updateTransferConfig`.
     func updateTransferConfig(
       transferConfig: TransferConfig?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleBigQueryDataTransferV1.TransferConfig
 
     /// See `DataTransferServiceClient.deleteTransferConfig`.
@@ -392,8 +392,8 @@ extension Clients {
     @available(*, deprecated)
     func scheduleTransferRuns(
       parent: Swift.String,
-      startTime: GoogleCloudWkt.Timestamp?,
-      endTime: GoogleCloudWkt.Timestamp?,
+      startTime: GoogleCloudWKT.Timestamp?,
+      endTime: GoogleCloudWKT.Timestamp?,
     ) async throws -> GoogleBigQueryDataTransferV1.ScheduleTransferRunsResponse
 
     /// See `DataTransferServiceClient.startManualTransferRuns`.
@@ -688,7 +688,7 @@ extension Clients.DataTransferServiceProtocol {
 
   public func updateTransferConfig(
     transferConfig: TransferConfig?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleBigQueryDataTransferV1.TransferConfig {
     let request = UpdateTransferConfigRequest().with {
       $0.transferConfig = transferConfig
@@ -789,8 +789,8 @@ extension Clients.DataTransferServiceProtocol {
 
   public func scheduleTransferRuns(
     parent: Swift.String,
-    startTime: GoogleCloudWkt.Timestamp?,
-    endTime: GoogleCloudWkt.Timestamp?,
+    startTime: GoogleCloudWKT.Timestamp?,
+    endTime: GoogleCloudWKT.Timestamp?,
   ) async throws -> GoogleBigQueryDataTransferV1.ScheduleTransferRunsResponse {
     let request = ScheduleTransferRunsRequest().with {
       $0.parent = parent

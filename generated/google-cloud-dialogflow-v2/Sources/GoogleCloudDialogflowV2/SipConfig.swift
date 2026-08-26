@@ -16,10 +16,10 @@
 
 #if ConversationProfiles || Conversations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Defines the SIP configuration.
-  public struct SipConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SipConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Asks Dialogflow Telephony to create the conversation provided in the SIP
@@ -32,7 +32,7 @@
     /// Max duration for audio recording.
     /// Overrides the default value of 15 min.
     /// Max value is 8 hours.
-    public var maxAudioRecordingDuration: GoogleCloudWkt.Duration? = nil
+    public var maxAudioRecordingDuration: GoogleCloudWKT.Duration? = nil
 
     /// Allows interactions with a Dialogflow virtual agent even if the call is
     /// connected for SIPREC purposes.
@@ -68,11 +68,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.SipConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

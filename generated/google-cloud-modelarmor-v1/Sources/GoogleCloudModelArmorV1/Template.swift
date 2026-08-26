@@ -15,20 +15,20 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Message describing Template resource
-public struct Template: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Template: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. name of resource
   public var name: Swift.String = Swift.String()
 
   /// Output only. [Output only] Create time stamp
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. [Output only] Update time stamp
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Labels as key value pairs
   public var labels: [Swift.String: Swift.String] = [:]
@@ -56,7 +56,7 @@ public struct Template: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Message describing TemplateMetadata
-  public struct TemplateMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TemplateMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. If true, partial detector failures should be ignored.
@@ -113,7 +113,7 @@ public struct Template: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Metadata to enable multi language detection via template.
-    public struct MultiLanguageDetection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct MultiLanguageDetection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. If true, multi language detection will be enabled.
@@ -139,11 +139,11 @@ public struct Template: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.modelarmor.v1.Template.TemplateMetadata.MultiLanguageDetection"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -257,21 +257,21 @@ public struct Template: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.modelarmor.v1.Template.TemplateMetadata"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.modelarmor.v1.Template"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

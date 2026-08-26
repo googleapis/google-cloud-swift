@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for creating a notification config.
-public struct CreateNotificationConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CreateNotificationConfigRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Resource name of the new notification config's parent. Its format
@@ -57,10 +57,10 @@ public struct CreateNotificationConfigRequest: Codable, Equatable, GoogleCloudWk
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.CreateNotificationConfigRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A revision of a QaScorecard.
 ///
@@ -23,7 +23,7 @@ import Foundation
 /// results — the questions may have changed, or the score weighting will make
 /// existing scores impossible to understand. So changes must create a new
 /// revision, rather than modifying the existing resource.
-public struct QaScorecardRevision: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct QaScorecardRevision: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The name of the scorecard revision.
@@ -35,7 +35,7 @@ public struct QaScorecardRevision: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public var snapshot: QaScorecard? = nil
 
   /// Output only. The timestamp that the revision was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Alternative IDs for this revision of the scorecard, e.g.,
   /// `latest`.
@@ -197,10 +197,10 @@ public struct QaScorecardRevision: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.contactcenterinsights.v1.QaScorecardRevision"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

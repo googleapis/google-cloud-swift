@@ -16,11 +16,11 @@
 
 #if ScheduleService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// An instance of a Schedule periodically schedules runs to make API calls based
   /// on user specified time specification and API request type.
-  public struct Schedule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Schedule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Immutable. The resource name of the Schedule.
@@ -33,7 +33,7 @@
 
     /// Optional. Timestamp after which the first run can be scheduled.
     /// Default to Schedule create time if not specified.
-    public var startTime: GoogleCloudWkt.Timestamp? = nil
+    public var startTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Optional. Timestamp after which no new runs can be scheduled.
     /// If specified, The schedule will be completed when either
@@ -41,7 +41,7 @@
     /// If not specified, new runs will keep getting scheduled until this Schedule
     /// is paused or deleted. Already scheduled runs will be allowed to complete.
     /// Unset if not specified.
-    public var endTime: GoogleCloudWkt.Timestamp? = nil
+    public var endTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Optional. Maximum run count of the schedule.
     /// If specified, The schedule will be completed when either
@@ -58,23 +58,23 @@
     public var state: Schedule.State = Schedule.State()
 
     /// Output only. Timestamp when this Schedule was created.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Timestamp when this Schedule was updated.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Timestamp when this Schedule should schedule the next run.
     /// Having a next_run_time in the past means the runs are being started
     /// behind schedule.
-    public var nextRunTime: GoogleCloudWkt.Timestamp? = nil
+    public var nextRunTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Timestamp when this Schedule was last paused.
     /// Unset if never paused.
-    public var lastPauseTime: GoogleCloudWkt.Timestamp? = nil
+    public var lastPauseTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Timestamp when this Schedule was last resumed.
     /// Unset if never resumed from pause.
-    public var lastResumeTime: GoogleCloudWkt.Timestamp? = nil
+    public var lastResumeTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Required. Maximum number of runs that can be started concurrently for this
     /// Schedule. This is the limit for starting the scheduled requests and not the
@@ -157,21 +157,21 @@
       self.name = try container.decode(Swift.String.self, forKey: .name)
       self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
       self.startTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .startTime)
-      self.endTime = try container.decodeIfPresent(GoogleCloudWkt.Timestamp.self, forKey: .endTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+      self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
       self.maxRunCount = try container.decode(Swift.Int64.self, forKey: .maxRunCount)
       self.startedRunCount = try container.decode(Swift.Int64.self, forKey: .startedRunCount)
       self.state = try container.decode(Schedule.State.self, forKey: .state)
       self.createTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
       self.updateTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
       self.nextRunTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .nextRunTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .nextRunTime)
       self.lastPauseTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .lastPauseTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .lastPauseTime)
       self.lastResumeTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .lastResumeTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .lastResumeTime)
       self.maxConcurrentRunCount = try container.decode(
         Swift.Int64.self, forKey: .maxConcurrentRunCount)
       self.maxConcurrentActiveRunCount = try container.decode(
@@ -258,11 +258,11 @@
     }
 
     /// Status of a scheduled run.
-    public struct RunResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct RunResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The scheduled run time based on the user-specified schedule.
-      public var scheduledRunTime: GoogleCloudWkt.Timestamp? = nil
+      public var scheduledRunTime: GoogleCloudWKT.Timestamp? = nil
 
       /// The response of the scheduled run.
       public var runResponse: Swift.String = Swift.String()
@@ -286,11 +286,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.Schedule.RunResponse"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -443,11 +443,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.Schedule"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -16,14 +16,14 @@
 
 #if CompletionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Response message for
   /// [CompletionService.CompleteQuery][google.cloud.discoveryengine.v1.CompletionService.CompleteQuery]
   /// method.
   ///
   /// [google.cloud.discoveryengine.v1.CompletionService.CompleteQuery]: <doc:CompletionServiceClient/completeQuery(request:options:)>
-  public struct CompleteQueryResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CompleteQueryResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Results of the matched query suggestions. The result list is ordered and
@@ -53,7 +53,7 @@
     }
 
     /// Suggestions as search queries.
-    public struct QuerySuggestion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct QuerySuggestion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The suggestion for the query.
@@ -85,22 +85,22 @@
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.CompleteQueryResponse.QuerySuggestion"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.CompleteQueryResponse"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

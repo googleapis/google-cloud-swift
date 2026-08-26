@@ -16,10 +16,10 @@
 
 #if SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Database instance clone context.
-  public struct CloneContext: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CloneContext: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// This is always `sql#cloneContext`.
@@ -38,7 +38,7 @@
 
     /// Timestamp, if specified, identifies the time to which the source instance
     /// is cloned.
-    public var pointInTime: GoogleCloudWkt.Timestamp? = nil
+    public var pointInTime: GoogleCloudWKT.Timestamp? = nil
 
     /// The name of the allocated ip range for the private ip Cloud SQL instance.
     /// For example: "google-managed-services-default". If set, the cloned instance
@@ -66,7 +66,7 @@
 
     /// The timestamp used to identify the time when the source instance is
     /// deleted. If this instance is deleted, then you must set the timestamp.
-    public var sourceInstanceDeletionTime: GoogleCloudWkt.Timestamp? = nil
+    public var sourceInstanceDeletionTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Optional. The project ID of the destination project where the cloned
     /// instance will be created. To perform a cross-project clone, this field is
@@ -99,11 +99,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.CloneContext"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

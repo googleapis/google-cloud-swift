@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Product attribute which structured by an attribute name and value. This
 /// structure is used in conversational search filters and answers. For example,
 /// if we have `name=color` and `value=red`, this means that the color is `red`.
-public struct ProductAttributeValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ProductAttributeValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The attribute name.
@@ -48,10 +48,10 @@ public struct ProductAttributeValue: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.retail.v2.ProductAttributeValue"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

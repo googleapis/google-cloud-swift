@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -880,7 +880,7 @@ extension Clients {
     /// See `MirroringClient.updateMirroringEndpointGroup`.
     func updateMirroringEndpointGroup(
       mirroringEndpointGroup: MirroringEndpointGroup?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<MirroringEndpointGroup>
 
     /// See `MirroringClient.deleteMirroringEndpointGroup`.
@@ -950,7 +950,7 @@ extension Clients {
     /// See `MirroringClient.updateMirroringEndpointGroupAssociation`.
     func updateMirroringEndpointGroupAssociation(
       mirroringEndpointGroupAssociation: MirroringEndpointGroupAssociation?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<MirroringEndpointGroupAssociation>
 
     /// See `MirroringClient.deleteMirroringEndpointGroupAssociation`.
@@ -1017,7 +1017,7 @@ extension Clients {
     /// See `MirroringClient.updateMirroringDeploymentGroup`.
     func updateMirroringDeploymentGroup(
       mirroringDeploymentGroup: MirroringDeploymentGroup?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<MirroringDeploymentGroup>
 
     /// See `MirroringClient.deleteMirroringDeploymentGroup`.
@@ -1082,7 +1082,7 @@ extension Clients {
     /// See `MirroringClient.updateMirroringDeployment`.
     func updateMirroringDeployment(
       mirroringDeployment: MirroringDeployment?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<MirroringDeployment>
 
     /// See `MirroringClient.deleteMirroringDeployment`.
@@ -1524,7 +1524,7 @@ extension Clients.MirroringProtocol {
 
   public func updateMirroringEndpointGroup(
     mirroringEndpointGroup: MirroringEndpointGroup?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<MirroringEndpointGroup> {
     let request = UpdateMirroringEndpointGroupRequest().with {
       $0.mirroringEndpointGroup = mirroringEndpointGroup
@@ -1708,7 +1708,7 @@ extension Clients.MirroringProtocol {
 
   public func updateMirroringEndpointGroupAssociation(
     mirroringEndpointGroupAssociation: MirroringEndpointGroupAssociation?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<MirroringEndpointGroupAssociation> {
     let request = UpdateMirroringEndpointGroupAssociationRequest().with {
       $0.mirroringEndpointGroupAssociation = mirroringEndpointGroupAssociation
@@ -1888,7 +1888,7 @@ extension Clients.MirroringProtocol {
 
   public func updateMirroringDeploymentGroup(
     mirroringDeploymentGroup: MirroringDeploymentGroup?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<MirroringDeploymentGroup> {
     let request = UpdateMirroringDeploymentGroupRequest().with {
       $0.mirroringDeploymentGroup = mirroringDeploymentGroup
@@ -2066,7 +2066,7 @@ extension Clients.MirroringProtocol {
 
   public func updateMirroringDeployment(
     mirroringDeployment: MirroringDeployment?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<MirroringDeployment> {
     let request = UpdateMirroringDeploymentRequest().with {
       $0.mirroringDeployment = mirroringDeployment

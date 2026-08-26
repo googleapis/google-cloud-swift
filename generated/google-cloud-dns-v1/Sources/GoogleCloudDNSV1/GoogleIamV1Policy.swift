@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] }, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", } } ], "etag": "BwWWja0YfJA=", "version": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
-public struct GoogleIamV1Policy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct GoogleIamV1Policy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Specifies cloud audit logging configuration for this policy.
@@ -61,7 +61,7 @@ public struct GoogleIamV1Policy: Codable, Equatable, GoogleCloudWkt._AnyPackable
     self.auditConfigs = try container.decode([GoogleIamV1AuditConfig].self, forKey: .auditConfigs)
     self.bindings = try container.decode([GoogleIamV1Binding].self, forKey: .bindings)
     if let s = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
-      guard let v = GoogleCloudWkt._DiscoveryBase64.decode(s) else {
+      guard let v = GoogleCloudWKT._DiscoveryBase64.decode(s) else {
         throw DecodingError.dataCorrupted(
           DecodingError.Context(
             codingPath: decoder.codingPath, debugDescription: "Expected url-safe encoded value")
@@ -78,7 +78,7 @@ public struct GoogleIamV1Policy: Codable, Equatable, GoogleCloudWkt._AnyPackable
     try container.encode(self.bindings, forKey: .bindings)
     if let v = etag {
       try container.encode(
-        GoogleCloudWkt._DiscoveryBase64.encode(v), forKey: .etag
+        GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .etag
       )
     }
     try container.encode(self.version, forKey: .version)
@@ -87,10 +87,10 @@ public struct GoogleIamV1Policy: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/.GoogleIamV1Policy"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

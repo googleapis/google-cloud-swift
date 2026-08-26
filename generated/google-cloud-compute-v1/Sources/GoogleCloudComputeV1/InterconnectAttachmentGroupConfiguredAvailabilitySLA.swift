@@ -16,12 +16,12 @@
 
 #if InterconnectAttachmentGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// [Output Only] Which SLA this group is configured to support, and why this
   /// group does or does not meet that SLA's requirements.
   public struct InterconnectAttachmentGroupConfiguredAvailabilitySLA: Codable, Equatable,
-    GoogleCloudWkt._AnyPackable,
+    GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var effectiveSla: InterconnectAttachmentGroupConfiguredAvailabilitySLA.EffectiveSla? =
@@ -160,11 +160,11 @@
       return
         "type.googleapis.com/google.cloud.compute.v1.InterconnectAttachmentGroupConfiguredAvailabilitySLA"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

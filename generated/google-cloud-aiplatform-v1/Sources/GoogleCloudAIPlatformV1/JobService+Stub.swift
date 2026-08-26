@@ -17,7 +17,7 @@
 #if JobService
   import Foundation
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleIAMV1
   import GoogleLongRunning
   import GoogleRpc

@@ -16,14 +16,14 @@
 
 #if IndexEndpointService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// IndexPrivateEndpoints proto is used to provide paths for users to send
   /// requests via private endpoints (e.g. private service access, private service
   /// connect).
   /// To send request via private service access, use match_grpc_address.
   /// To send request via private service connect, use service_attachment.
-  public struct IndexPrivateEndpoints: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct IndexPrivateEndpoints: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The ip address used to send match gRPC requests.
@@ -56,11 +56,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.IndexPrivateEndpoints"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

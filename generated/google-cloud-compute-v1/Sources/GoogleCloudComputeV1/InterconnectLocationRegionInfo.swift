@@ -16,12 +16,12 @@
 
 #if InterconnectLocations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Information about any potential InterconnectAttachments between an
   /// Interconnect at a specific InterconnectLocation, and a specific Cloud
   /// Region.
-  public struct InterconnectLocationRegionInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct InterconnectLocationRegionInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Expected round-trip time in milliseconds, from this InterconnectLocation
@@ -175,11 +175,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.InterconnectLocationRegionInfo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

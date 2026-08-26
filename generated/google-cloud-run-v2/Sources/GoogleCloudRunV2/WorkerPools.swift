@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -335,7 +335,7 @@ extension Clients {
     /// See `WorkerPoolsClient.updateWorkerPool`.
     func updateWorkerPool(
       workerPool: WorkerPool?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<WorkerPool>
 
     /// See `WorkerPoolsClient.deleteWorkerPool`.
@@ -610,7 +610,7 @@ extension Clients.WorkerPoolsProtocol {
 
   public func updateWorkerPool(
     workerPool: WorkerPool?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<WorkerPool> {
     let request = UpdateWorkerPoolRequest().with {
       $0.workerPool = workerPool

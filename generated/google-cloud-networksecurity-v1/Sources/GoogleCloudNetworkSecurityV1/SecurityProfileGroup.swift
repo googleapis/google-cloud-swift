@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// SecurityProfileGroup is a resource that defines the behavior for various
 /// ProfileTypes.
-public struct SecurityProfileGroup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SecurityProfileGroup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Immutable. Identifier. Name of the SecurityProfileGroup resource. It
@@ -32,10 +32,10 @@ public struct SecurityProfileGroup: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public var description: Swift.String = Swift.String()
 
   /// Output only. Resource creation timestamp.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Last resource update timestamp.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. This checksum is computed by the server based on the value of
   /// other fields, and may be sent on update and delete requests to ensure the
@@ -84,10 +84,10 @@ public struct SecurityProfileGroup: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networksecurity.v1.SecurityProfileGroup"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

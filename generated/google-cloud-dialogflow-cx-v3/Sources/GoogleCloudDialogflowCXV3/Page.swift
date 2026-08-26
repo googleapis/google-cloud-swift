@@ -16,7 +16,7 @@
 
 #if Pages || Sessions || TestCases
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A Dialogflow CX conversation (session) can be described and visualized as a
   /// state machine. The states of a CX session are represented by pages.
@@ -34,7 +34,7 @@
   ///
   /// For more information, see the
   /// [Page guide](https://cloud.google.com/dialogflow/cx/docs/concept/page).
-  public struct Page: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Page: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The unique identifier of the page.
@@ -141,11 +141,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Page"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

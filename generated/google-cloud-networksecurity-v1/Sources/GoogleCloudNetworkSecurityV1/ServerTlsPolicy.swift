@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// ServerTlsPolicy is a resource that specifies how a server should authenticate
 /// incoming requests. This resource itself does not affect configuration unless
@@ -26,7 +26,7 @@ import Foundation
 /// or `INTERNAL_MANAGED` load balancing scheme. Traffic Director compatible
 /// ServerTlsPolicies can be attached to EndpointPolicy and TargetHttpsProxy with
 /// Traffic Director `INTERNAL_SELF_MANAGED` load balancing scheme.
-public struct ServerTlsPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ServerTlsPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Name of the ServerTlsPolicy resource. It matches the pattern
@@ -37,10 +37,10 @@ public struct ServerTlsPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var description: Swift.String = Swift.String()
 
   /// Output only. The timestamp when the resource was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The timestamp when the resource was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Set of label tags associated with the resource.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -94,7 +94,7 @@ public struct ServerTlsPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Specification of the MTLSPolicy.
-  public struct MTLSPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MTLSPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// When the client presents an invalid certificate or no certificate to the
@@ -257,21 +257,21 @@ public struct ServerTlsPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networksecurity.v1.ServerTlsPolicy.MTLSPolicy"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networksecurity.v1.ServerTlsPolicy"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

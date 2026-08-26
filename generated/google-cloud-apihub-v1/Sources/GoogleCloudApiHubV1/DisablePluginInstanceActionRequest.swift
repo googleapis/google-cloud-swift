@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The
 /// [DisablePluginInstanceAction][google.cloud.apihub.v1.ApiHubPlugin.DisablePluginInstanceAction]
 /// method's request.
 ///
 /// [google.cloud.apihub.v1.ApiHubPlugin.DisablePluginInstanceAction]: <doc:ApiHubPluginClient/disablePluginInstanceAction(request:options:)>
-public struct DisablePluginInstanceActionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DisablePluginInstanceActionRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The name of the plugin instance to disable.
@@ -52,10 +52,10 @@ public struct DisablePluginInstanceActionRequest: Codable, Equatable, GoogleClou
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.apihub.v1.DisablePluginInstanceActionRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

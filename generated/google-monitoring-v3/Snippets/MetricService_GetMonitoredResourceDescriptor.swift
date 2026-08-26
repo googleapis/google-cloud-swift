@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudMonitoringV3
 import GoogleApi
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: MetricServiceClient) async throws {
   let response = try await client.getMonitoredResourceDescriptor(

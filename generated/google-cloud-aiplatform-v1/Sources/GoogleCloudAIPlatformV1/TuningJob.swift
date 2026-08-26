@@ -16,11 +16,11 @@
 
 #if GenAiTuningService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
   import GoogleRpc
 
   /// Represents a TuningJob that runs with Google owned models.
-  public struct TuningJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TuningJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Identifier. Resource name of a TuningJob. Format:
@@ -50,28 +50,28 @@
     /// [TuningJob][google.cloud.aiplatform.v1.TuningJob] was created.
     ///
     /// [google.cloud.aiplatform.v1.TuningJob]: <doc:TuningJob>
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Time when the
     /// [TuningJob][google.cloud.aiplatform.v1.TuningJob] for the first time
     /// entered the `JOB_STATE_RUNNING` state.
     ///
     /// [google.cloud.aiplatform.v1.TuningJob]: <doc:TuningJob>
-    public var startTime: GoogleCloudWkt.Timestamp? = nil
+    public var startTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Time when the TuningJob entered any of the following
     /// [JobStates][google.cloud.aiplatform.v1.JobState]: `JOB_STATE_SUCCEEDED`,
     /// `JOB_STATE_FAILED`, `JOB_STATE_CANCELLED`, `JOB_STATE_EXPIRED`.
     ///
     /// [google.cloud.aiplatform.v1.JobState]: <doc:JobState>
-    public var endTime: GoogleCloudWkt.Timestamp? = nil
+    public var endTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Time when the
     /// [TuningJob][google.cloud.aiplatform.v1.TuningJob] was most recently
     /// updated.
     ///
     /// [google.cloud.aiplatform.v1.TuningJob]: <doc:TuningJob>
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Only populated when job's state is `JOB_STATE_FAILED` or
     /// `JOB_STATE_CANCELLED`.
@@ -178,12 +178,12 @@
       self.description = try container.decode(Swift.String.self, forKey: .description)
       self.state = try container.decode(JobState.self, forKey: .state)
       self.createTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
       self.startTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .startTime)
-      self.endTime = try container.decodeIfPresent(GoogleCloudWkt.Timestamp.self, forKey: .endTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+      self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
       self.updateTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
       self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
       self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
       self.experiment = try container.decode(Swift.String.self, forKey: .experiment)
@@ -286,11 +286,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.TuningJob"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

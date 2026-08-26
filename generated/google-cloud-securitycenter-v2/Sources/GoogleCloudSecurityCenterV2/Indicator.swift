@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents what's commonly known as an _indicator of compromise_ (IoC) in
 /// computer forensics. This is an artifact observed on a network or in an
 /// operating system that, with high confidence, indicates a computer intrusion.
 /// For more information, see [Indicator of
 /// compromise](https://en.wikipedia.org/wiki/Indicator_of_compromise).
-public struct Indicator: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Indicator: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The list of IP addresses that are associated with the finding.
@@ -55,7 +55,7 @@ public struct Indicator: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Indicates what signature matched this process.
-  public struct ProcessSignature: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ProcessSignature: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Describes the type of resource associated with the signature.
@@ -130,7 +130,7 @@ public struct Indicator: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// A signature corresponding to memory page hashes.
-    public struct MemoryHashSignature: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct MemoryHashSignature: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The binary family.
@@ -157,7 +157,7 @@ public struct Indicator: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       }
 
       /// Memory hash detection contributing to the binary family match.
-      public struct Detection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Detection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// The name of the binary associated with the memory hash
@@ -188,11 +188,11 @@ public struct Indicator: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.securitycenter.v2.Indicator.ProcessSignature.MemoryHashSignature.Detection"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -200,16 +200,16 @@ public struct Indicator: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.securitycenter.v2.Indicator.ProcessSignature.MemoryHashSignature"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// A signature corresponding to a YARA rule.
-    public struct YaraRuleSignature: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct YaraRuleSignature: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The name of the YARA rule.
@@ -235,11 +235,11 @@ public struct Indicator: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.securitycenter.v2.Indicator.ProcessSignature.YaraRuleSignature"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -359,21 +359,21 @@ public struct Indicator: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.securitycenter.v2.Indicator.ProcessSignature"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.Indicator"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

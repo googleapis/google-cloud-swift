@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -1053,7 +1053,7 @@ extension Clients {
     /// See `TranslationServiceClient.updateGlossary`.
     func updateGlossary(
       glossary: Glossary?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Glossary>
 
     /// See `TranslationServiceClient.listGlossaries`.
@@ -2032,7 +2032,7 @@ extension Clients.TranslationServiceProtocol {
 
   public func updateGlossary(
     glossary: Glossary?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Glossary> {
     let request = UpdateGlossaryRequest().with {
       $0.glossary = glossary

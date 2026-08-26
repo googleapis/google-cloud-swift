@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleIdentityAccessContextManagerV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -32,7 +32,7 @@ func sample(client: AccessContextManagerClient, accessPolicyId: String, accessLe
         $0.accessLevel = AccessLevel().with {
           $0.name = "accessPolicies/\(accessPolicyId)/accessLevels/\(accessLevelId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   let response = try await poller.wait()

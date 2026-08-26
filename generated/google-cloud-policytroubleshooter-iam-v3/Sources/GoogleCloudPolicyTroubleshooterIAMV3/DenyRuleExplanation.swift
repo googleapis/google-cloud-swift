@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleType
 
 /// Details about how a deny rule in a deny policy affects a principal's ability
 /// to use a permission.
-public struct DenyRuleExplanation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DenyRuleExplanation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Indicates whether _this rule_ denies the specified permission to
@@ -121,7 +121,7 @@ public struct DenyRuleExplanation: Codable, Equatable, GoogleCloudWkt._AnyPackab
 
   /// Details about whether the permission in the request is denied by the
   /// deny rule.
-  public struct AnnotatedPermissionMatching: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AnnotatedPermissionMatching: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Indicates whether the permission in the request is denied by the deny
@@ -153,18 +153,18 @@ public struct DenyRuleExplanation: Codable, Equatable, GoogleCloudWkt._AnyPackab
       return
         "type.googleapis.com/google.cloud.policytroubleshooter.iam.v3.DenyRuleExplanation.AnnotatedPermissionMatching"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Details about whether the principal in the request is listed as a denied
   /// principal in the deny rule, either directly or through membership in a
   /// principal set.
-  public struct AnnotatedDenyPrincipalMatching: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AnnotatedDenyPrincipalMatching: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Indicates whether the principal is listed as a denied principal in the
@@ -195,21 +195,21 @@ public struct DenyRuleExplanation: Codable, Equatable, GoogleCloudWkt._AnyPackab
       return
         "type.googleapis.com/google.cloud.policytroubleshooter.iam.v3.DenyRuleExplanation.AnnotatedDenyPrincipalMatching"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.policytroubleshooter.iam.v3.DenyRuleExplanation"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

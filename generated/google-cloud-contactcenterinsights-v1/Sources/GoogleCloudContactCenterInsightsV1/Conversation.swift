@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The conversation resource.
-public struct Conversation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Conversation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Immutable. The resource name of the conversation.
@@ -30,13 +30,13 @@ public struct Conversation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var dataSource: ConversationDataSource? = nil
 
   /// Output only. The time at which the conversation was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The most recent time at which the conversation was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The time at which the conversation started.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// A user-specified language code for the conversation.
   public var languageCode: Swift.String = Swift.String()
@@ -65,7 +65,7 @@ public struct Conversation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var medium: Conversation.Medium = Conversation.Medium()
 
   /// Output only. The duration of the conversation.
-  public var duration: GoogleCloudWkt.Duration? = nil
+  public var duration: GoogleCloudWKT.Duration? = nil
 
   /// Output only. The number of turns in the conversation.
   public var turnCount: Swift.Int32 = Swift.Int32()
@@ -144,11 +144,11 @@ public struct Conversation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.dataSource = try container.decodeIfPresent(
       ConversationDataSource.self, forKey: .dataSource)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.startTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .startTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
     self.languageCode = try container.decode(Swift.String.self, forKey: .languageCode)
     self.agentId = try container.decode(Swift.String.self, forKey: .agentId)
     self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
@@ -158,7 +158,7 @@ public struct Conversation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.transcript = try container.decodeIfPresent(
       Conversation.Transcript.self, forKey: .transcript)
     self.medium = try container.decode(Conversation.Medium.self, forKey: .medium)
-    self.duration = try container.decodeIfPresent(GoogleCloudWkt.Duration.self, forKey: .duration)
+    self.duration = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .duration)
     self.turnCount = try container.decode(Swift.Int32.self, forKey: .turnCount)
     self.latestAnalysis = try container.decodeIfPresent(Analysis.self, forKey: .latestAnalysis)
     self.latestSummary = try container.decodeIfPresent(
@@ -197,11 +197,11 @@ public struct Conversation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       expiration = $0
     }
     if let expireTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp?.self, forKey: .expireTime)
+      GoogleCloudWKT.Timestamp?.self, forKey: .expireTime)
     {
       try expirationCheckAndSet(.expireTime(expireTime))
     }
-    if let ttl = try container.decodeIfPresent(GoogleCloudWkt.Duration?.self, forKey: .ttl) {
+    if let ttl = try container.decodeIfPresent(GoogleCloudWKT.Duration?.self, forKey: .ttl) {
       try expirationCheckAndSet(.ttl(ttl))
     }
     self.expiration = expiration
@@ -247,7 +247,7 @@ public struct Conversation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Call-specific metadata.
-  public struct CallMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CallMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The audio channel that contains the customer.
@@ -275,23 +275,23 @@ public struct Conversation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.contactcenterinsights.v1.Conversation.CallMetadata"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Conversation metadata related to quality management.
-  public struct QualityMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct QualityMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// An arbitrary integer value indicating the customer's satisfaction rating.
     public var customerSatisfactionRating: Swift.Int32 = Swift.Int32()
 
     /// The amount of time the customer waited to connect with an agent.
-    public var waitDuration: GoogleCloudWkt.Duration? = nil
+    public var waitDuration: GoogleCloudWKT.Duration? = nil
 
     /// An arbitrary string value specifying the menu path the customer took.
     public var menuPath: Swift.String = Swift.String()
@@ -316,7 +316,7 @@ public struct Conversation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Information about an agent involved in the conversation.
-    public struct AgentInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AgentInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// A user-specified string representing the agent.
@@ -355,11 +355,11 @@ public struct Conversation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.contactcenterinsights.v1.Conversation.QualityMetadata.AgentInfo"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -367,16 +367,16 @@ public struct Conversation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.contactcenterinsights.v1.Conversation.QualityMetadata"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A message representing the transcript of a conversation.
-  public struct Transcript: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Transcript: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// A list of sequential transcript segments that comprise the conversation.
@@ -399,11 +399,11 @@ public struct Conversation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// A segment of a full transcript.
-    public struct TranscriptSegment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct TranscriptSegment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The time that the message occurred, if provided.
-      public var messageTime: GoogleCloudWkt.Timestamp? = nil
+      public var messageTime: GoogleCloudWKT.Timestamp? = nil
 
       /// The text of this segment.
       public var text: Swift.String = Swift.String()
@@ -453,16 +453,16 @@ public struct Conversation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       }
 
       /// Word-level info for words in a transcript.
-      public struct WordInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct WordInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Time offset of the start of this word relative to the beginning of
         /// the total conversation.
-        public var startOffset: GoogleCloudWkt.Duration? = nil
+        public var startOffset: GoogleCloudWKT.Duration? = nil
 
         /// Time offset of the end of this word relative to the beginning of the
         /// total conversation.
-        public var endOffset: GoogleCloudWkt.Duration? = nil
+        public var endOffset: GoogleCloudWKT.Duration? = nil
 
         /// The word itself. Includes punctuation marks that surround the word.
         public var word: Swift.String = Swift.String()
@@ -491,16 +491,16 @@ public struct Conversation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.contactcenterinsights.v1.Conversation.Transcript.TranscriptSegment.WordInfo"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Metadata from Dialogflow relating to the current transcript segment.
-      public struct DialogflowSegmentMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct DialogflowSegmentMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Whether the transcript segment was covered under the configured smart
@@ -527,11 +527,11 @@ public struct Conversation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.contactcenterinsights.v1.Conversation.Transcript.TranscriptSegment.DialogflowSegmentMetadata"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -539,22 +539,22 @@ public struct Conversation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.contactcenterinsights.v1.Conversation.Transcript.TranscriptSegment"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.contactcenterinsights.v1.Conversation.Transcript"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -676,19 +676,19 @@ public struct Conversation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public enum OneOf_Expiration: Codable, Equatable, Sendable {
     /// The time at which this conversation should expire. After this time, the
     /// conversation data and any associated analyses will be deleted.
-    indirect case expireTime(GoogleCloudWkt.Timestamp?)
+    indirect case expireTime(GoogleCloudWKT.Timestamp?)
     /// Input only. The TTL for this resource. If specified, then this TTL will
     /// be used to calculate the expire time.
-    indirect case ttl(GoogleCloudWkt.Duration?)
+    indirect case ttl(GoogleCloudWKT.Duration?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.contactcenterinsights.v1.Conversation"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

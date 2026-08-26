@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents service health events that may affect Google Cloud products used
 /// across the organization. It is a read-only view and does not allow any
 /// modifications.
-public struct OrganizationEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct OrganizationEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Identifier. Name of the event. Unique name of the event in
@@ -66,17 +66,17 @@ public struct OrganizationEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public var parentEvent: Swift.String = Swift.String()
 
   /// Output only. The time the update was posted.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The start time of the event, if applicable.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The end time of the event, if applicable.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Incident-only field. The time when the next update can be
   /// expected.
-  public var nextUpdateTime: GoogleCloudWkt.Timestamp? = nil
+  public var nextUpdateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `OrganizationEvent`.
   public init() {}
@@ -559,10 +559,10 @@ public struct OrganizationEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.servicehealth.v1.OrganizationEvent"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

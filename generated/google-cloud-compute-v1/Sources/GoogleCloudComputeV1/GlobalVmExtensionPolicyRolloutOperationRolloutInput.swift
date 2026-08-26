@@ -16,10 +16,10 @@
 
 #if GlobalVmExtensionPolicies
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   public struct GlobalVmExtensionPolicyRolloutOperationRolloutInput: Codable, Equatable,
-    GoogleCloudWkt._AnyPackable,
+    GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Specifies the behavior of the rollout if a conflict is detected in a
@@ -189,11 +189,11 @@
       return
         "type.googleapis.com/google.cloud.compute.v1.GlobalVmExtensionPolicyRolloutOperationRolloutInput"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

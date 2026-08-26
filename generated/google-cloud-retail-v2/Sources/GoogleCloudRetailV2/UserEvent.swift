@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// UserEvent captures all metadata information Retail API needs to know about
 /// how end users interact with customers' website.
-public struct UserEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UserEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. User event type. Allowed values are:
@@ -69,7 +69,7 @@ public struct UserEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// method. Timestamp of when the user event happened.
   ///
   /// [google.cloud.retail.v2.UserEventService.ImportUserEvents]: <doc:UserEventServiceClient/importUserEvents(request:options:)>
-  public var eventTime: GoogleCloudWkt.Timestamp? = nil
+  public var eventTime: GoogleCloudWKT.Timestamp? = nil
 
   /// A list of identifiers for the independent experiment groups this user event
   /// belongs to. This is used to distinguish between user events associated with
@@ -303,10 +303,10 @@ public struct UserEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.retail.v2.UserEvent"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

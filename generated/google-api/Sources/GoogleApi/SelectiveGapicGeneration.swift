@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// This message is used to configure the generation of a subset of the RPCs in
 /// a service for client libraries.
 ///
 /// Note: This feature should not be used in most cases.
-public struct SelectiveGapicGeneration: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SelectiveGapicGeneration: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// An allowlist of the fully qualified names of RPCs that should be included
@@ -55,10 +55,10 @@ public struct SelectiveGapicGeneration: Codable, Equatable, GoogleCloudWkt._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.SelectiveGapicGeneration"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

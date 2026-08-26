@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Data with integrity verification field.
-public struct ChecksummedData: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ChecksummedData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Raw Data.
@@ -40,7 +40,7 @@ public struct ChecksummedData: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// languages that support this type.
   ///
   /// [google.cloud.kms.v1.ChecksummedData.data]: <doc:ChecksummedData/data>
-  public var crc32CChecksum: GoogleCloudWkt.Int64Value? = nil
+  public var crc32CChecksum: GoogleCloudWKT.Int64Value? = nil
 
   /// Initialize a new instance of `ChecksummedData`.
   public init() {}
@@ -67,7 +67,7 @@ public struct ChecksummedData: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.data = try container.decode(Foundation.Data.self, forKey: .data)
     self.crc32CChecksum = try container.decodeIfPresent(
-      GoogleCloudWkt.Int64Value.self, forKey: .crc32CChecksum)
+      GoogleCloudWKT.Int64Value.self, forKey: .crc32CChecksum)
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -79,10 +79,10 @@ public struct ChecksummedData: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.ChecksummedData"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

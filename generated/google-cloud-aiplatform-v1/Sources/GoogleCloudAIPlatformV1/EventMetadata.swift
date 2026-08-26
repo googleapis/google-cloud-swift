@@ -16,10 +16,10 @@
 
 #if SessionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Metadata relating to a LLM response event.
-  public struct EventMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct EventMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Metadata returned to client when grounding is enabled.
@@ -50,7 +50,7 @@
     public var branch: Swift.String = Swift.String()
 
     /// The custom metadata of the LlmResponse.
-    public var customMetadata: GoogleCloudWkt.Struct? = nil
+    public var customMetadata: GoogleCloudWKT.Struct? = nil
 
     /// Optional. Audio transcription of user input.
     public var inputTranscription: Transcription? = nil
@@ -77,11 +77,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.EventMetadata"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

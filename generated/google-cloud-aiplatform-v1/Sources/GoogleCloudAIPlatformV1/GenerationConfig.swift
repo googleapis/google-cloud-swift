@@ -16,10 +16,10 @@
 
 #if GenAiTuningService || LlmUtilityService || PredictionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Generation config.
-  public struct GenerationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GenerationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Controls the randomness of predictions.
@@ -109,7 +109,7 @@
     /// be used within non-required properties. (Nullable properties are not
     /// sufficient.) If `$ref` is set on a sub-schema, no other properties, except
     /// for than those starting as a `$`, may be set.
-    public var responseJsonSchema: GoogleCloudWkt.Value? = nil
+    public var responseJsonSchema: GoogleCloudWKT.Value? = nil
 
     /// Optional. Routing configuration.
     public var routingConfig: GenerationConfig.RoutingConfig? = nil
@@ -161,7 +161,7 @@
     }
 
     /// The configuration for routing the request to a specific model.
-    public struct RoutingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct RoutingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Routing mode.
@@ -230,7 +230,7 @@
       /// When automated routing is specified, the routing will be determined by
       /// the pretrained routing model and customer provided model routing
       /// preference.
-      public struct AutoRoutingMode: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct AutoRoutingMode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// The model routing preference.
@@ -369,16 +369,16 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.GenerationConfig.RoutingConfig.AutoRoutingMode"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// When manual routing is set, the specified model will be used directly.
-      public struct ManualRoutingMode: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct ManualRoutingMode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// The model name to use. Only the public LLM models are accepted. e.g.
@@ -405,11 +405,11 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.GenerationConfig.RoutingConfig.ManualRoutingMode"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -424,16 +424,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.GenerationConfig.RoutingConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Config for thinking features.
-    public struct ThinkingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ThinkingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Indicates whether to include thoughts in the response.
@@ -585,11 +585,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.GenerationConfig.ThinkingConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -820,11 +820,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.GenerationConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

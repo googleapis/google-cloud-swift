@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -798,7 +798,7 @@ extension Clients {
     func updateSink(
       sinkName: Swift.String,
       sink: LogSink?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudLoggingV2.LogSink
 
     /// See `ConfigServiceV2Client.updateSink`.
@@ -903,7 +903,7 @@ extension Clients {
     func updateExclusion(
       name: Swift.String,
       exclusion: LogExclusion?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudLoggingV2.LogExclusion
 
     /// See `ConfigServiceV2Client.deleteExclusion`.
@@ -937,7 +937,7 @@ extension Clients {
     /// See `ConfigServiceV2Client.updateSettings`.
     func updateSettings(
       settings: Settings?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudLoggingV2.Settings
 
     /// See `ConfigServiceV2Client.copyLogEntries`.
@@ -1511,7 +1511,7 @@ extension Clients.ConfigServiceV2Protocol {
   public func updateSink(
     sinkName: Swift.String,
     sink: LogSink?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudLoggingV2.LogSink {
     let request = UpdateSinkRequest().with {
       $0.sinkName = sinkName
@@ -1776,7 +1776,7 @@ extension Clients.ConfigServiceV2Protocol {
   public func updateExclusion(
     name: Swift.String,
     exclusion: LogExclusion?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudLoggingV2.LogExclusion {
     let request = UpdateExclusionRequest().with {
       $0.name = name
@@ -1863,7 +1863,7 @@ extension Clients.ConfigServiceV2Protocol {
 
   public func updateSettings(
     settings: Settings?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudLoggingV2.Settings {
     let request = UpdateSettingsRequest().with {
       $0.settings = settings

@@ -16,14 +16,14 @@
 
 #if Intents || Sessions || TestCases
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// An intent represents a user's intent to interact with a conversational agent.
   ///
   /// You can provide information for the Dialogflow API to use to match user input
   /// to an intent by adding training phrases (i.e., examples of user input) to
   /// your intent.
-  public struct Intent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Intent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The unique identifier of the intent.
@@ -105,7 +105,7 @@
     }
 
     /// Represents an example that the agent is trained on to identify the intent.
-    public struct TrainingPhrase: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct TrainingPhrase: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. The unique identifier of the training phrase.
@@ -155,7 +155,7 @@
       }
 
       /// Represents a part of a training phrase.
-      public struct Part: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Part: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. The text for this part.
@@ -187,27 +187,27 @@
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Intent.TrainingPhrase.Part"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Intent.TrainingPhrase"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Represents an intent parameter.
-    public struct Parameter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Parameter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The unique identifier of the parameter. This field
@@ -260,22 +260,22 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Intent.Parameter"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Intent"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

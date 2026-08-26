@@ -16,11 +16,11 @@
 
 #if RegionInstanceGroupManagers
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// RegionInstanceGroupManagers.deletePerInstanceConfigs
   public struct RegionInstanceGroupManagerDeleteInstanceConfigReq: Codable, Equatable,
-    GoogleCloudWkt._AnyPackable,
+    GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The list of instance names for which we want to delete per-instance configs
@@ -47,11 +47,11 @@
       return
         "type.googleapis.com/google.cloud.compute.v1.RegionInstanceGroupManagerDeleteInstanceConfigReq"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

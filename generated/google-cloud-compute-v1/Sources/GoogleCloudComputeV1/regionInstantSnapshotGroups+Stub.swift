@@ -16,7 +16,7 @@
 
 #if RegionInstantSnapshotGroups
   import Foundation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleCloudGax
 
   extension Clients {

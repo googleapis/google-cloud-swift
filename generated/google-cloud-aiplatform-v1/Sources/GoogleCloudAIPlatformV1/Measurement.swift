@@ -16,17 +16,17 @@
 
 #if JobService || VizierService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A message representing a Measurement of a Trial. A Measurement contains
   /// the Metrics got by executing a Trial using suggested hyperparameter
   /// values.
-  public struct Measurement: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Measurement: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Time that the Trial has been running at the point of this
     /// Measurement.
-    public var elapsedDuration: GoogleCloudWkt.Duration? = nil
+    public var elapsedDuration: GoogleCloudWKT.Duration? = nil
 
     /// Output only. The number of steps the machine learning model has been
     /// trained for. Must be non-negative.
@@ -53,7 +53,7 @@
     }
 
     /// A message representing a metric in the measurement.
-    public struct Metric: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Metric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. The ID of the Metric. The Metric should be defined in
@@ -84,22 +84,22 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.Measurement.Metric"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.Measurement"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -17,7 +17,7 @@
 #if UserEventService
   import Foundation
   import GoogleApi
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleRpc
   import GoogleCloudGax

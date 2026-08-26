@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The request message for the UpdateTrigger method.
-public struct UpdateTriggerRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateTriggerRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The trigger to be updated.
@@ -27,7 +27,7 @@ public struct UpdateTriggerRequest: Codable, Equatable, GoogleCloudWkt._AnyPacka
   /// The fields to be updated; only fields explicitly provided are updated.
   /// If no field mask is provided, all provided fields in the request are
   /// updated. To update all fields, provide a field mask of "*".
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// If set to true, and the trigger is not found, a new trigger will be
   /// created. In this situation, `update_mask` is ignored.
@@ -56,10 +56,10 @@ public struct UpdateTriggerRequest: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.eventarc.v1.UpdateTriggerRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A common proto for logging HTTP requests. Only contains semantics
 /// defined by the HTTP specification. Product-specific logging
 /// information MUST be defined in a separate message.
-public struct HttpRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct HttpRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The request method. Examples: `"GET"`, `"HEAD"`, `"PUT"`, `"POST"`.
@@ -65,7 +65,7 @@ public struct HttpRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// The request processing latency on the server, from the time the request was
   /// received until the response was sent.
-  public var latency: GoogleCloudWkt.Duration? = nil
+  public var latency: GoogleCloudWKT.Duration? = nil
 
   /// Whether or not a cache lookup was attempted.
   public var cacheLookup: Swift.Bool = Swift.Bool()
@@ -131,7 +131,7 @@ public struct HttpRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.remoteIp = try container.decode(Swift.String.self, forKey: .remoteIp)
     self.serverIp = try container.decode(Swift.String.self, forKey: .serverIp)
     self.referer = try container.decode(Swift.String.self, forKey: .referer)
-    self.latency = try container.decodeIfPresent(GoogleCloudWkt.Duration.self, forKey: .latency)
+    self.latency = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .latency)
     self.cacheLookup = try container.decode(Swift.Bool.self, forKey: .cacheLookup)
     self.cacheHit = try container.decode(Swift.Bool.self, forKey: .cacheHit)
     self.cacheValidatedWithOriginServer = try container.decode(
@@ -163,10 +163,10 @@ public struct HttpRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.logging.type.HttpRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// RequestMetadata is the metadata message for the request.
-public struct RequestMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RequestMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Stream name.
@@ -40,7 +40,7 @@ public struct RequestMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// by the server after the client leaves. If the lease term is not set, the
   /// server will release the session immediately and the client cannot reconnect
   /// to the same session later.
-  public var leaseTerm: GoogleCloudWkt.Duration? = nil
+  public var leaseTerm: GoogleCloudWKT.Duration? = nil
 
   /// Initialize a new instance of `RequestMetadata`.
   public init() {}
@@ -61,10 +61,10 @@ public struct RequestMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.RequestMetadata"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

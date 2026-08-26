@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A message which contains notification details.
-public struct Message: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Message: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The message content.
@@ -28,10 +28,10 @@ public struct Message: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var attachments: [Attachment] = []
 
   /// The Message creation timestamp.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Time when Message was localized
-  public var localizationTime: GoogleCloudWkt.Timestamp? = nil
+  public var localizationTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `Message`.
   public init() {}
@@ -50,7 +50,7 @@ public struct Message: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// A message body containing text.
-  public struct Body: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Body: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The text content of the message body.
@@ -75,21 +75,21 @@ public struct Message: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.advisorynotifications.v1.Message.Body"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.advisorynotifications.v1.Message"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

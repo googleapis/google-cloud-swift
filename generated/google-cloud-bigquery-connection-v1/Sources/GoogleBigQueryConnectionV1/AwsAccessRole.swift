@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Authentication method for Amazon Web Services (AWS) that uses Google owned
 /// Google service account to assume into customer's AWS IAM Role.
-public struct AwsAccessRole: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AwsAccessRole: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The user’s AWS IAM Role that trusts the Google-owned AWS IAM user
@@ -49,10 +49,10 @@ public struct AwsAccessRole: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.connection.v1.AwsAccessRole"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

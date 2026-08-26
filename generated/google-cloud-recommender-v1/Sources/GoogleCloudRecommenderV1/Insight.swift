@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An insight along with the information used to derive the insight. The insight
 /// may have associated recommendations as well.
-public struct Insight: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Insight: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. Name of the insight.
@@ -37,15 +37,15 @@ public struct Insight: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// A struct of custom fields to explain the insight.
   /// Example: "grantedPermissionsCount": "1000"
-  public var content: GoogleCloudWkt.Struct? = nil
+  public var content: GoogleCloudWKT.Struct? = nil
 
   /// Timestamp of the latest data used to generate the insight.
-  public var lastRefreshTime: GoogleCloudWkt.Timestamp? = nil
+  public var lastRefreshTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Observation period that led to the insight. The source data used to
   /// generate the insight ends at last_refresh_time and begins at
   /// (last_refresh_time - observation_period).
-  public var observationPeriod: GoogleCloudWkt.Duration? = nil
+  public var observationPeriod: GoogleCloudWKT.Duration? = nil
 
   /// Information state and metadata.
   public var stateInfo: InsightStateInfo? = nil
@@ -80,7 +80,7 @@ public struct Insight: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Reference to an associated recommendation.
-  public struct RecommendationReference: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RecommendationReference: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Recommendation resource name, e.g.
@@ -106,11 +106,11 @@ public struct Insight: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.recommender.v1.Insight.RecommendationReference"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -369,10 +369,10 @@ public struct Insight: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.recommender.v1.Insight"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -16,12 +16,12 @@
 
 #if Flows || Pages || Sessions || TestCases
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The Knowledge Connector settings for this page or flow.
   /// This includes information such as the attached Knowledge Bases, and the way
   /// to execute fulfillment.
-  public struct KnowledgeConnectorSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct KnowledgeConnectorSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Whether Knowledge Connector is enabled or not.
@@ -134,11 +134,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.KnowledgeConnectorSettings"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

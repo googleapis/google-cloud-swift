@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Catalog level attribute config for an attribute. For example, if customers
 /// want to enable/disable facet for a specific attribute.
-public struct CatalogAttribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CatalogAttribute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Attribute name.
@@ -156,7 +156,7 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Possible options for the facet that corresponds to the current attribute
   /// config.
-  public struct FacetConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FacetConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// If you don't set the facet
@@ -228,7 +228,7 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// [google.cloud.retail.v2.SearchResponse.Facet]: <doc:SearchResponse/Facet>
     /// [google.cloud.retail.v2.SearchResponse.Facet.key]: <doc:SearchResponse/Facet/key>
     /// [google.cloud.retail.v2.SearchResponse.Facet.values]: <doc:SearchResponse/Facet/values>
-    public struct IgnoredFacetValues: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct IgnoredFacetValues: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// List of facet values to ignore for the following time range. The facet
@@ -244,11 +244,11 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       /// must be before end time.
       /// If start time is not empty and end time is empty, then will ignore
       /// these facet values after the start time.
-      public var startTime: GoogleCloudWkt.Timestamp? = nil
+      public var startTime: GoogleCloudWKT.Timestamp? = nil
 
       /// If start time is empty and end time is not empty, then ignore these
       /// facet values before end time.
-      public var endTime: GoogleCloudWkt.Timestamp? = nil
+      public var endTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Initialize a new instance of `IgnoredFacetValues`.
       public init() {}
@@ -270,11 +270,11 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.retail.v2.CatalogAttribute.FacetConfig.IgnoredFacetValues"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -284,7 +284,7 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// This feature is available only for textual custom attributes.
     ///
     /// [google.cloud.retail.v2.CatalogAttribute]: <doc:CatalogAttribute>
-    public struct MergedFacetValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct MergedFacetValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// All the facet values that are replaces by the same
@@ -319,11 +319,11 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.retail.v2.CatalogAttribute.FacetConfig.MergedFacetValue"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -334,7 +334,7 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// numerical custom attributes (same type).
     ///
     /// [google.cloud.retail.v2.CatalogAttribute.FacetConfig.MergedFacet.merged_facet_key]: <doc:CatalogAttribute/FacetConfig/MergedFacet/mergedFacetKey>
-    public struct MergedFacet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct MergedFacet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The merged facet key should be a valid facet key that is different than
@@ -364,11 +364,11 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.retail.v2.CatalogAttribute.FacetConfig.MergedFacet"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -380,7 +380,7 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// rerank on, this control won't be effective. Moreover, to obtain better
     /// results, the facet values that you want to rerank on should be close to
     /// English (ideally made of words, underscores, and spaces).
-    public struct RerankConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct RerankConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// If set to true, then we also rerank the dynamic facets based on the
@@ -412,22 +412,22 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.retail.v2.CatalogAttribute.FacetConfig.RerankConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.retail.v2.CatalogAttribute.FacetConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -1069,10 +1069,10 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.retail.v2.CatalogAttribute"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

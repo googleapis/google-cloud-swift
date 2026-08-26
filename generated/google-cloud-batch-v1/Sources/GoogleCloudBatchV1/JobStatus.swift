@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Job status.
-public struct JobStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct JobStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Job state
@@ -32,7 +32,7 @@ public struct JobStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var taskGroups: [Swift.String: JobStatus.TaskGroupStatus] = [:]
 
   /// The duration of time that the Job spent in status RUNNING.
-  public var runDuration: GoogleCloudWkt.Duration? = nil
+  public var runDuration: GoogleCloudWKT.Duration? = nil
 
   /// Initialize a new instance of `JobStatus`.
   public init() {}
@@ -51,7 +51,7 @@ public struct JobStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// VM instance status.
-  public struct InstanceStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct InstanceStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The Compute Engine machine type.
@@ -86,16 +86,16 @@ public struct JobStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.batch.v1.JobStatus.InstanceStatus"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Aggregated task status for a TaskGroup.
-  public struct TaskGroupStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TaskGroupStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Count of task in each state in the TaskGroup.
@@ -124,11 +124,11 @@ public struct JobStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.batch.v1.JobStatus.TaskGroupStatus"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -288,10 +288,10 @@ public struct JobStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.batch.v1.JobStatus"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

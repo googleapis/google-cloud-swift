@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// ConfigVariableTemplate provides metadata about a `ConfigVariable` that is
 /// used in a Connection.
-public struct ConfigVariableTemplate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ConfigVariableTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Key of the config variable.
@@ -361,10 +361,10 @@ public struct ConfigVariableTemplate: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.connectors.v1.ConfigVariableTemplate"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Lineage link between two entities.
-public struct LineageLink: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct LineageLink: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The entity that is the **source** of this link.
@@ -56,7 +56,7 @@ public struct LineageLink: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Process metadata for the link.
-  public struct LineageProcess: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct LineageProcess: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Process that created the link.
@@ -81,16 +81,16 @@ public struct LineageLink: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.datacatalog.lineage.v1.LineageLink.LineageProcess"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Dependency info describes how one entity is dependent on another.
-  public struct DependencyInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DependencyInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The type of dependency.
@@ -115,21 +115,21 @@ public struct LineageLink: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.datacatalog.lineage.v1.LineageLink.DependencyInfo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datacatalog.lineage.v1.LineageLink"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

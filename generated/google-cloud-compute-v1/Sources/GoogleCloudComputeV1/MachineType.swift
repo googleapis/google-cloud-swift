@@ -16,13 +16,13 @@
 
 #if MachineTypes
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents a Machine Type resource.
   ///
   /// You can use specific machine types for your VM instances based on performance
   /// and pricing requirements. For more information, readMachine Types.
-  public struct MachineType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MachineType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// [Output Only] A list of accelerator configurations assigned to this
@@ -104,7 +104,7 @@
     /// The message type for the [accelerators][google.cloud.compute.v1.MachineType.accelerators] field.
     ///
     /// [google.cloud.compute.v1.MachineType.accelerators]: <doc:MachineType/Accelerators>
-    public struct Accelerators: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Accelerators: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Number of accelerator cards exposed to the guest.
@@ -132,11 +132,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.MachineType.accelerators"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -250,11 +250,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.MachineType"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

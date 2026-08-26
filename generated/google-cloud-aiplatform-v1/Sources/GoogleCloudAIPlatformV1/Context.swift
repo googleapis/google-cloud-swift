@@ -16,10 +16,10 @@
 
 #if MetadataService || PipelineService || ScheduleService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Instance of a general context.
-  public struct Context: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Context: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Immutable. The resource name of the Context.
@@ -43,10 +43,10 @@
     public var labels: [Swift.String: Swift.String] = [:]
 
     /// Output only. Timestamp when this Context was created.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Timestamp when this Context was last updated.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. A list of resource names of Contexts that are parents of this
     /// Context. A Context may have at most 10 parent_contexts.
@@ -69,7 +69,7 @@
     /// Properties of the Context.
     /// Top level metadata keys' heading and trailing spaces will be trimmed.
     /// The size of this field should not exceed 200KB.
-    public var metadata: GoogleCloudWkt.Struct? = nil
+    public var metadata: GoogleCloudWKT.Struct? = nil
 
     /// Description of the Context
     public var description: Swift.String = Swift.String()
@@ -93,11 +93,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.Context"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

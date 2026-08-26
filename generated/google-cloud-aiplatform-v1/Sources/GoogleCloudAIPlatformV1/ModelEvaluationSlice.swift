@@ -16,11 +16,11 @@
 
 #if ModelService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A collection of metrics calculated by comparing Model's predictions on a
   /// slice of the test data against ground truth annotations.
-  public struct ModelEvaluationSlice: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ModelEvaluationSlice: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The resource name of the ModelEvaluationSlice.
@@ -43,10 +43,10 @@
     /// [metrics_schema_uri][google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics_schema_uri]
     ///
     /// [google.cloud.aiplatform.v1.ModelEvaluationSlice.metrics_schema_uri]: <doc:ModelEvaluationSlice/metricsSchemaUri>
-    public var metrics: GoogleCloudWkt.Value? = nil
+    public var metrics: GoogleCloudWKT.Value? = nil
 
     /// Output only. Timestamp when this ModelEvaluationSlice was created.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Aggregated explanation metrics for the Model's prediction
     /// output over the data this ModelEvaluation uses. This field is populated
@@ -71,7 +71,7 @@
     }
 
     /// Definition of a slice.
-    public struct Slice: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Slice: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. The dimension of the slice.
@@ -111,7 +111,7 @@
       }
 
       /// Specification for how the data should be sliced.
-      public struct SliceSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct SliceSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Mapping configuration for this SliceSpec.
@@ -191,7 +191,7 @@
         /// 12345 and country "US" will be in one slice, zip_code 12345 and country
         /// "Canada" in another slice, and zip_code 12345 and country "Mexico" in
         /// another slice, totaling 3 slices.
-        public struct SliceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct SliceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           public var kind: OneOf_Kind? = nil
@@ -242,7 +242,7 @@
               try kindCheckAndSet(.range(range))
             }
             if let allValues = try container.decodeIfPresent(
-              GoogleCloudWkt.BoolValue?.self, forKey: .allValues)
+              GoogleCloudWKT.BoolValue?.self, forKey: .allValues)
             {
               try kindCheckAndSet(.allValues(allValues))
             }
@@ -275,24 +275,24 @@
             /// If all_values is set to true, then all possible labels of the keyed
             /// feature will have another slice computed.
             /// Example: `{"all_values":{"value":true}}`
-            indirect case allValues(GoogleCloudWkt.BoolValue?)
+            indirect case allValues(GoogleCloudWKT.BoolValue?)
           }
 
           public static var _anyTypeUrl: Swift.String {
             return
               "type.googleapis.com/google.cloud.aiplatform.v1.ModelEvaluationSlice.Slice.SliceSpec.SliceConfig"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
         /// A range of values for slice(s).
         /// `low` is inclusive, `high` is exclusive.
-        public struct Range: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct Range: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Inclusive low value for the range.
@@ -321,16 +321,16 @@
             return
               "type.googleapis.com/google.cloud.aiplatform.v1.ModelEvaluationSlice.Slice.SliceSpec.Range"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
         /// Single value that supports strings and floats.
-        public struct Value: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct Value: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           public var kind: OneOf_Kind? = nil
@@ -405,11 +405,11 @@
             return
               "type.googleapis.com/google.cloud.aiplatform.v1.ModelEvaluationSlice.Slice.SliceSpec.Value"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
@@ -417,33 +417,33 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.ModelEvaluationSlice.Slice.SliceSpec"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.ModelEvaluationSlice.Slice"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.ModelEvaluationSlice"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudKMSV1
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 
@@ -33,7 +33,7 @@ func sample(
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/ekmConnections/\(ekmConnectionId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

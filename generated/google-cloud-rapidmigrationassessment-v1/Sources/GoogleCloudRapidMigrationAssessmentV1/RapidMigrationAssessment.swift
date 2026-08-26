@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -513,7 +513,7 @@ extension Clients {
     /// See `RapidMigrationAssessmentClient.updateCollector`.
     func updateCollector(
       collector: Collector?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Collector>
 
     /// See `RapidMigrationAssessmentClient.deleteCollector`.
@@ -930,7 +930,7 @@ extension Clients.RapidMigrationAssessmentProtocol {
 
   public func updateCollector(
     collector: Collector?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Collector> {
     let request = UpdateCollectorRequest().with {
       $0.collector = collector

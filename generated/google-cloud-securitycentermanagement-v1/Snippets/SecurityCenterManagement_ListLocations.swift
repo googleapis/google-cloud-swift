@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudSecurityCenterManagementV1
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: SecurityCenterManagementClient) async throws {
   let items = try client.listLocations(

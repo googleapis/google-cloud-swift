@@ -19,7 +19,7 @@
   // snippet.show
   import Foundation
   import GoogleCloudComputeV1
-  import GoogleCloudWkt
+  import GoogleCloudWKT
 
   func sample(client: DisksClient) async throws {
     let items = try client.aggregatedList(

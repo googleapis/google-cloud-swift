@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -728,7 +728,7 @@ extension Clients {
     /// See `CrossNetworkAutomationServiceClient.updateServiceConnectionMap`.
     func updateServiceConnectionMap(
       serviceConnectionMap: ServiceConnectionMap?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<ServiceConnectionMap>
 
     /// See `CrossNetworkAutomationServiceClient.deleteServiceConnectionMap`.
@@ -793,7 +793,7 @@ extension Clients {
     /// See `CrossNetworkAutomationServiceClient.updateServiceConnectionPolicy`.
     func updateServiceConnectionPolicy(
       serviceConnectionPolicy: ServiceConnectionPolicy?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<ServiceConnectionPolicy>
 
     /// See `CrossNetworkAutomationServiceClient.deleteServiceConnectionPolicy`.
@@ -843,7 +843,7 @@ extension Clients {
     /// See `CrossNetworkAutomationServiceClient.updateServiceClass`.
     func updateServiceClass(
       serviceClass: ServiceClass?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<ServiceClass>
 
     /// See `CrossNetworkAutomationServiceClient.deleteServiceClass`.
@@ -1310,7 +1310,7 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
 
   public func updateServiceConnectionMap(
     serviceConnectionMap: ServiceConnectionMap?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<ServiceConnectionMap> {
     let request = UpdateServiceConnectionMapRequest().with {
       $0.serviceConnectionMap = serviceConnectionMap
@@ -1488,7 +1488,7 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
 
   public func updateServiceConnectionPolicy(
     serviceConnectionPolicy: ServiceConnectionPolicy?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<ServiceConnectionPolicy> {
     let request = UpdateServiceConnectionPolicyRequest().with {
       $0.serviceConnectionPolicy = serviceConnectionPolicy
@@ -1623,7 +1623,7 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
 
   public func updateServiceClass(
     serviceClass: ServiceClass?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<ServiceClass> {
     let request = UpdateServiceClassRequest().with {
       $0.serviceClass = serviceClass

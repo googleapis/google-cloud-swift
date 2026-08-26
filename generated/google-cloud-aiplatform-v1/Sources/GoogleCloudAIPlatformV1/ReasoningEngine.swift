@@ -16,11 +16,11 @@
 
 #if ReasoningEngineService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// ReasoningEngine provides a customizable runtime for models to determine
   /// which actions to take and in which order.
-  public struct ReasoningEngine: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ReasoningEngine: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Identifier. The resource name of the ReasoningEngine.
@@ -38,10 +38,10 @@
     public var spec: ReasoningEngineSpec? = nil
 
     /// Output only. Timestamp when this ReasoningEngine was created.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Timestamp when this ReasoningEngine was most recently updated.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Optional. Used to perform consistent read-modify-write updates. If not set,
     /// a blind "overwrite" update happens.
@@ -74,11 +74,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.ReasoningEngine"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

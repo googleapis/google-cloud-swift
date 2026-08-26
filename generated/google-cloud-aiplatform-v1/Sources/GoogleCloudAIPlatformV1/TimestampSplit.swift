@@ -16,14 +16,14 @@
 
 #if PipelineService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Assigns input data to training, validation, and test sets based on a
   /// provided timestamps. The youngest data pieces are assigned to training set,
   /// next to validation set, and the oldest to the test set.
   ///
   /// Supported only for tabular Datasets.
-  public struct TimestampSplit: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TimestampSplit: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The fraction of the input data that is to be used to train the Model.
@@ -61,11 +61,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.TimestampSplit"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

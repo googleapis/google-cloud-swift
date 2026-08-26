@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// External access firewall rules for filtering incoming traffic destined to
 /// `ExternalAddress` resources.
-public struct ExternalAccessRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ExternalAccessRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The resource name of this external access rule.
@@ -30,10 +30,10 @@ public struct ExternalAccessRule: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public var name: Swift.String = Swift.String()
 
   /// Output only. Creation time of this resource.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Last update time of this resource.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// User-provided description for this external access rule.
   public var description: Swift.String = Swift.String()
@@ -109,7 +109,7 @@ public struct ExternalAccessRule: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   }
 
   /// An IP range provided in any one of the supported formats.
-  public struct IpRange: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct IpRange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var ipRange: OneOf_IpRange? = nil
@@ -197,11 +197,11 @@ public struct ExternalAccessRule: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.vmwareengine.v1.ExternalAccessRule.IpRange"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -433,10 +433,10 @@ public struct ExternalAccessRule: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vmwareengine.v1.ExternalAccessRule"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -16,10 +16,10 @@
 
 import Foundation
 @_spi(GoogleCloudInternal) import GoogleCloudGax
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response to ListWorkloadsRequest.
-public struct ListWorkloadsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ListWorkloadsResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable
 {
@@ -46,7 +46,7 @@ public struct ListWorkloadsResponse: Codable, Equatable, GoogleCloudWkt._AnyPack
   }
 
   /// Information about a single workload.
-  public struct ComposerWorkload: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ComposerWorkload: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Name of a workload.
@@ -79,16 +79,16 @@ public struct ListWorkloadsResponse: Codable, Equatable, GoogleCloudWkt._AnyPack
       return
         "type.googleapis.com/google.cloud.orchestration.airflow.service.v1.ListWorkloadsResponse.ComposerWorkload"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Workload status.
-  public struct ComposerWorkloadStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ComposerWorkloadStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Workload state.
@@ -121,11 +121,11 @@ public struct ListWorkloadsResponse: Codable, Equatable, GoogleCloudWkt._AnyPack
       return
         "type.googleapis.com/google.cloud.orchestration.airflow.service.v1.ListWorkloadsResponse.ComposerWorkloadStatus"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -412,11 +412,11 @@ public struct ListWorkloadsResponse: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.orchestration.airflow.service.v1.ListWorkloadsResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 
   public func _getPaginatedItems() -> [ListWorkloadsResponse.ComposerWorkload] {

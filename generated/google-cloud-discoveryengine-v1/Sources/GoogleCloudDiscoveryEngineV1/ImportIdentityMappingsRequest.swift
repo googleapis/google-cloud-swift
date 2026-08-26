@@ -16,13 +16,13 @@
 
 #if IdentityMappingStoreService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request message for
   /// [IdentityMappingStoreService.ImportIdentityMappings][google.cloud.discoveryengine.v1.IdentityMappingStoreService.ImportIdentityMappings]
   ///
   /// [google.cloud.discoveryengine.v1.IdentityMappingStoreService.ImportIdentityMappings]: <doc:IdentityMappingStoreServiceClient/importIdentityMappings(request:options:)>
-  public struct ImportIdentityMappingsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ImportIdentityMappingsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The name of the Identity Mapping Store to import Identity Mapping
@@ -90,7 +90,7 @@
     }
 
     /// The inline source to import identity mapping entries from.
-    public struct InlineSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct InlineSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// A maximum of 10000 entries can be imported at one time
@@ -116,11 +116,11 @@
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.ImportIdentityMappingsRequest.InlineSource"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -133,11 +133,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.ImportIdentityMappingsRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

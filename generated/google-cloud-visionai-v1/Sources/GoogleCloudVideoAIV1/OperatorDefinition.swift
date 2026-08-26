@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Defines the interface of an Operator.
 ///
 /// Arguments to an operator are input/output streams that are getting
 /// processesed/returned while attributes are fixed configuration parameters.
-public struct OperatorDefinition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct OperatorDefinition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The name of this operator.
@@ -102,7 +102,7 @@ public struct OperatorDefinition: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   /// Defines an argument to an operator.
   ///
   /// Used for both inputs and outputs.
-  public struct ArgumentDefinition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ArgumentDefinition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The name of the argument.
@@ -135,16 +135,16 @@ public struct OperatorDefinition: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.OperatorDefinition.ArgumentDefinition"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Defines an attribute of an operator.
-  public struct AttributeDefinition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AttributeDefinition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The name of the attribute.
@@ -180,21 +180,21 @@ public struct OperatorDefinition: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.OperatorDefinition.AttributeDefinition"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.OperatorDefinition"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

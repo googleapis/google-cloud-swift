@@ -16,13 +16,13 @@
 
 #if Playbooks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The request message for
   /// [Playbooks.UpdatePlaybook][google.cloud.dialogflow.cx.v3.Playbooks.UpdatePlaybook].
   ///
   /// [google.cloud.dialogflow.cx.v3.Playbooks.UpdatePlaybook]: <doc:PlaybooksClient/updatePlaybook(request:options:)>
-  public struct UpdatePlaybookRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct UpdatePlaybookRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The playbook to update.
@@ -30,7 +30,7 @@
 
     /// The mask to control which fields get updated. If the mask is not present,
     /// all fields will be updated.
-    public var updateMask: GoogleCloudWkt.FieldMask? = nil
+    public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
     /// Initialize a new instance of `UpdatePlaybookRequest`.
     public init() {}
@@ -51,11 +51,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.UpdatePlaybookRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

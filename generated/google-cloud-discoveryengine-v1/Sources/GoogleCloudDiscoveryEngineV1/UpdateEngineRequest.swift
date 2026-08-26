@@ -16,14 +16,14 @@
 
 #if EngineService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request message for
   /// [EngineService.UpdateEngine][google.cloud.discoveryengine.v1.EngineService.UpdateEngine]
   /// method.
   ///
   /// [google.cloud.discoveryengine.v1.EngineService.UpdateEngine]: <doc:EngineServiceClient/updateEngine(request:options:)>
-  public struct UpdateEngineRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct UpdateEngineRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The [Engine][google.cloud.discoveryengine.v1.Engine] to update.
@@ -45,7 +45,7 @@
     /// is returned.
     ///
     /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
-    public var updateMask: GoogleCloudWkt.FieldMask? = nil
+    public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
     /// Initialize a new instance of `UpdateEngineRequest`.
     public init() {}
@@ -66,11 +66,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.UpdateEngineRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

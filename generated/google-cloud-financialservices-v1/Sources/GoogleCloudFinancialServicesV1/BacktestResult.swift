@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// BacktestResult is created to test the performance of a model on a dataset.
-public struct BacktestResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BacktestResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The resource name of the BacktestResult.
@@ -27,10 +27,10 @@ public struct BacktestResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Output only. The timestamp of creation of this resource.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The timestamp of the most recent update of this resource.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Labels
   public var labels: [Swift.String: Swift.String] = [:]
@@ -51,7 +51,7 @@ public struct BacktestResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Required. End_time specifies the latest time from which labels are used and
   /// from which data is used to generate features for backtesting.  End_time
   /// should be no later than the end of the date_range of the primary dataset.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The number of consecutive months to conduct backtesting for, ending with
   /// the last full month prior to the end_time according to the dataset's
@@ -84,7 +84,7 @@ public struct BacktestResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// PerformanceTarget gives hints on how to evaluate the performance of a
   /// model.
-  public struct PerformanceTarget: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PerformanceTarget: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. A number that gives the tuner a hint on the number of parties
@@ -115,11 +115,11 @@ public struct BacktestResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.financialservices.v1.BacktestResult.PerformanceTarget"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -245,10 +245,10 @@ public struct BacktestResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.financialservices.v1.BacktestResult"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

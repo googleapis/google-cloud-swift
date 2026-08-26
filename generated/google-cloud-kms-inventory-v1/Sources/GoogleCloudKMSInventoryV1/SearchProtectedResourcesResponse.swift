@@ -16,13 +16,13 @@
 
 import Foundation
 @_spi(GoogleCloudInternal) import GoogleCloudGax
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response message for
 /// [KeyTrackingService.SearchProtectedResources][google.cloud.kms.inventory.v1.KeyTrackingService.SearchProtectedResources].
 ///
 /// [google.cloud.kms.inventory.v1.KeyTrackingService.SearchProtectedResources]: <doc:KeyTrackingServiceClient/searchProtectedResources(request:options:)>
-public struct SearchProtectedResourcesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SearchProtectedResourcesResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable
 {
@@ -52,11 +52,11 @@ public struct SearchProtectedResourcesResponse: Codable, Equatable, GoogleCloudW
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.inventory.v1.SearchProtectedResourcesResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 
   public func _getPaginatedItems() -> [ProtectedResource] {

@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -1775,7 +1775,7 @@ extension Clients {
     /// See `SecureSourceManagerClient.updateRepository`.
     func updateRepository(
       repository: Repository?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Repository>
 
     /// See `SecureSourceManagerClient.deleteRepository`.
@@ -1837,7 +1837,7 @@ extension Clients {
     /// See `SecureSourceManagerClient.updateHook`.
     func updateHook(
       hook: Hook?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Hook>
 
     /// See `SecureSourceManagerClient.deleteHook`.
@@ -1928,7 +1928,7 @@ extension Clients {
     /// See `SecureSourceManagerClient.updateBranchRule`.
     func updateBranchRule(
       branchRule: BranchRule?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<BranchRule>
 
     /// See `SecureSourceManagerClient.deleteBranchRule`.
@@ -1992,7 +1992,7 @@ extension Clients {
     /// See `SecureSourceManagerClient.updatePullRequest`.
     func updatePullRequest(
       pullRequest: PullRequest?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<PullRequest>
 
     /// See `SecureSourceManagerClient.mergePullRequest`.
@@ -2106,7 +2106,7 @@ extension Clients {
     /// See `SecureSourceManagerClient.updateIssue`.
     func updateIssue(
       issue: Issue?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Issue>
 
     /// See `SecureSourceManagerClient.deleteIssue`.
@@ -2193,7 +2193,7 @@ extension Clients {
     /// See `SecureSourceManagerClient.updatePullRequestComment`.
     func updatePullRequestComment(
       pullRequestComment: PullRequestComment?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<PullRequestComment>
 
     /// See `SecureSourceManagerClient.deletePullRequestComment`.
@@ -2299,7 +2299,7 @@ extension Clients {
     /// See `SecureSourceManagerClient.updateIssueComment`.
     func updateIssueComment(
       issueComment: IssueComment?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<IssueComment>
 
     /// See `SecureSourceManagerClient.deleteIssueComment`.
@@ -3150,7 +3150,7 @@ extension Clients.SecureSourceManagerProtocol {
 
   public func updateRepository(
     repository: Repository?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Repository> {
     let request = UpdateRepositoryRequest().with {
       $0.repository = repository
@@ -3320,7 +3320,7 @@ extension Clients.SecureSourceManagerProtocol {
 
   public func updateHook(
     hook: Hook?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Hook> {
     let request = UpdateHookRequest().with {
       $0.hook = hook
@@ -3557,7 +3557,7 @@ extension Clients.SecureSourceManagerProtocol {
 
   public func updateBranchRule(
     branchRule: BranchRule?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<BranchRule> {
     let request = UpdateBranchRuleRequest().with {
       $0.branchRule = branchRule
@@ -3731,7 +3731,7 @@ extension Clients.SecureSourceManagerProtocol {
 
   public func updatePullRequest(
     pullRequest: PullRequest?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<PullRequest> {
     let request = UpdatePullRequestRequest().with {
       $0.pullRequest = pullRequest
@@ -4052,7 +4052,7 @@ extension Clients.SecureSourceManagerProtocol {
 
   public func updateIssue(
     issue: Issue?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Issue> {
     let request = UpdateIssueRequest().with {
       $0.issue = issue
@@ -4296,7 +4296,7 @@ extension Clients.SecureSourceManagerProtocol {
 
   public func updatePullRequestComment(
     pullRequestComment: PullRequestComment?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<PullRequestComment> {
     let request = UpdatePullRequestCommentRequest().with {
       $0.pullRequestComment = pullRequestComment
@@ -4593,7 +4593,7 @@ extension Clients.SecureSourceManagerProtocol {
 
   public func updateIssueComment(
     issueComment: IssueComment?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<IssueComment> {
     let request = UpdateIssueCommentRequest().with {
       $0.issueComment = issueComment

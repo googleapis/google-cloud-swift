@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for the
 /// [UpdatePhraseSet][google.cloud.speech.v2.Speech.UpdatePhraseSet] method.
 ///
 /// [google.cloud.speech.v2.Speech.UpdatePhraseSet]: <doc:SpeechClient/updatePhraseSet(request:options:)>
-public struct UpdatePhraseSetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdatePhraseSetRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The PhraseSet to update.
@@ -32,7 +32,7 @@ public struct UpdatePhraseSetRequest: Codable, Equatable, GoogleCloudWkt._AnyPac
 
   /// The list of fields to update. If empty, all non-default valued fields are
   /// considered for update. Use `*` to update the entire PhraseSet resource.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// If set, validate the request and preview the updated PhraseSet, but do not
   /// actually update it.
@@ -57,10 +57,10 @@ public struct UpdatePhraseSetRequest: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.speech.v2.UpdatePhraseSetRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

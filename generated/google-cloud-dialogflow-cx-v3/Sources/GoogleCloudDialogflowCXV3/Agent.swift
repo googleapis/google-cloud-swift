@@ -16,7 +16,7 @@
 
 #if Agents
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Agents are best described as Natural Language Understanding (NLU) modules
   /// that transform user requests into actionable data. You can include agents
@@ -38,7 +38,7 @@
   /// [google.cloud.dialogflow.cx.v3.Intent]: <doc:Intent>
   /// [google.cloud.dialogflow.cx.v3.TransitionRouteGroup]: <doc:TransitionRouteGroup>
   /// [google.cloud.dialogflow.cx.v3.Webhook]: <doc:Webhook>
-  public struct Agent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Agent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The unique identifier of the agent.
@@ -290,7 +290,7 @@
     }
 
     /// Settings for connecting to Git repository for an agent.
-    public struct GitIntegrationSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GitIntegrationSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The git settings to specific systems.
@@ -349,7 +349,7 @@
       }
 
       /// Settings of integration with GitHub.
-      public struct GithubSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct GithubSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// The unique repository display name for the GitHub repository.
@@ -388,11 +388,11 @@
           return
             "type.googleapis.com/google.cloud.dialogflow.cx.v3.Agent.GitIntegrationSettings.GithubSettings"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -405,16 +405,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Agent.GitIntegrationSettings"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Settings for Gen App Builder.
-    public struct GenAppBuilderSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GenAppBuilderSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The full name of the Gen App Builder engine related to this
@@ -441,16 +441,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Agent.GenAppBuilderSettings"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Settings for answer feedback collection.
-    public struct AnswerFeedbackSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AnswerFeedbackSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. If enabled, end users will be able to provide
@@ -480,16 +480,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Agent.AnswerFeedbackSettings"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Settings for end user personalization.
-    public struct PersonalizationSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct PersonalizationSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. Default end user metadata, used when processing DetectIntent
@@ -503,7 +503,7 @@
       ///
       /// [google.cloud.dialogflow.cx.v3.DetectIntentRequest.query_params]: <doc:DetectIntentRequest/queryParams>
       /// [google.cloud.dialogflow.cx.v3.QueryParameters.end_user_metadata]: <doc:QueryParameters/endUserMetadata>
-      public var defaultEndUserMetadata: GoogleCloudWkt.Struct? = nil
+      public var defaultEndUserMetadata: GoogleCloudWKT.Struct? = nil
 
       /// Initialize a new instance of `PersonalizationSettings`.
       public init() {}
@@ -524,16 +524,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Agent.PersonalizationSettings"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Settings for custom client certificates.
-    public struct ClientCertificateSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ClientCertificateSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The ssl certificate encoded in PEM format. This string must
@@ -570,11 +570,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Agent.ClientCertificateSettings"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -602,11 +602,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Agent"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

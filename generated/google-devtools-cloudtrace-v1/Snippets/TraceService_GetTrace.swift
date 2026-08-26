@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudTraceV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: TraceServiceClient) async throws {
   let response = try await client.getTrace(

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A metadata job resource.
-public struct MetadataJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MetadataJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Identifier. The name of the resource that the configuration is
@@ -32,10 +32,10 @@ public struct MetadataJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var uid: Swift.String = Swift.String()
 
   /// Output only. The time when the metadata job was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time when the metadata job was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. User-defined labels.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -85,9 +85,9 @@ public struct MetadataJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.uid = try container.decode(Swift.String.self, forKey: .uid)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
     self.type = try container.decode(MetadataJob.Type_.self, forKey: .type)
     self.status = try container.decodeIfPresent(MetadataJob.Status.self, forKey: .status)
@@ -167,7 +167,7 @@ public struct MetadataJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Results from a metadata import job.
-  public struct ImportJobResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ImportJobResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The total number of entries that were deleted.
@@ -186,7 +186,7 @@ public struct MetadataJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public var recreatedEntries: Swift.Int64 = Swift.Int64()
 
     /// Output only. The time when the status was updated.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. The total number of entry links that were successfully
     /// deleted.
@@ -218,18 +218,18 @@ public struct MetadataJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.MetadataJob.ImportJobResult"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Summary results from a metadata export job. The results are a snapshot of
   /// the metadata at the time when the job was created. The exported entries are
   /// saved to a Cloud Storage bucket.
-  public struct ExportJobResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ExportJobResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The number of entries that were exported.
@@ -257,11 +257,11 @@ public struct MetadataJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.MetadataJob.ExportJobResult"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -275,7 +275,7 @@ public struct MetadataJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// to custom entries and system entries. For custom entries, you can modify
   /// both optional aspects and required aspects. For system entries, you can
   /// modify optional aspects.
-  public struct ImportJobSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ImportJobSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The URI of a Cloud Storage bucket or folder (beginning with
@@ -301,7 +301,7 @@ public struct MetadataJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Optional. The time when the process that created the metadata import
     /// files began.
-    public var sourceCreateTime: GoogleCloudWkt.Timestamp? = nil
+    public var sourceCreateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Required. A boundary on the scope of impact that the metadata import job
     /// can have.
@@ -342,7 +342,7 @@ public struct MetadataJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// A boundary on the scope of impact that the metadata import job can have.
-    public struct ImportJobScope: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ImportJobScope: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The entry groups that are in scope for the import job,
@@ -439,11 +439,11 @@ public struct MetadataJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.dataplex.v1.MetadataJob.ImportJobSpec.ImportJobScope"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -693,16 +693,16 @@ public struct MetadataJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.MetadataJob.ImportJobSpec"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Job specification for a metadata export job.
-  public struct ExportJobSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ExportJobSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The scope of the export job.
@@ -736,7 +736,7 @@ public struct MetadataJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// The scope of the export job.
-    public struct ExportJobScope: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ExportJobScope: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Whether the metadata export job is an organization-level export job.
@@ -810,27 +810,27 @@ public struct MetadataJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.dataplex.v1.MetadataJob.ExportJobSpec.ExportJobScope"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.MetadataJob.ExportJobSpec"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Metadata job status.
-  public struct Status: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Status: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. State of the metadata job.
@@ -843,7 +843,7 @@ public struct MetadataJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public var completionPercent: Swift.Int32 = Swift.Int32()
 
     /// Output only. The time when the status was updated.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `Status`.
     public init() {}
@@ -1004,11 +1004,11 @@ public struct MetadataJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.MetadataJob.Status"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -1134,10 +1134,10 @@ public struct MetadataJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataplex.v1.MetadataJob"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

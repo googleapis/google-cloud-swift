@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleRpc
   import GoogleCloudGax
@@ -499,7 +499,7 @@
       /// See `FlowsClient.updateFlow`.
       func updateFlow(
         flow: Flow?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudDialogflowCXV3.Flow
 
       /// See `FlowsClient.trainFlow`.
@@ -793,7 +793,7 @@
 
     public func updateFlow(
       flow: Flow?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.Flow {
       let request = UpdateFlowRequest().with {
         $0.flow = flow

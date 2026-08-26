@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudSupportV2
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: CaseServiceClient) async throws {
   let response = try await client.escalateCase(

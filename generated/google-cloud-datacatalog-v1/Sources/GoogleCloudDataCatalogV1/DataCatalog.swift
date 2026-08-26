@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -965,7 +965,7 @@ extension Clients {
     @available(*, deprecated)
     func getEntryGroup(
       name: Swift.String,
-      readMask: GoogleCloudWkt.FieldMask?,
+      readMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDataCatalogV1.EntryGroup
 
     /// See `DataCatalogClient.updateEntryGroup`.
@@ -983,7 +983,7 @@ extension Clients {
     @available(*, deprecated)
     func updateEntryGroup(
       entryGroup: EntryGroup?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDataCatalogV1.EntryGroup
 
     /// See `DataCatalogClient.deleteEntryGroup`.
@@ -1039,7 +1039,7 @@ extension Clients {
     @available(*, deprecated)
     func updateEntry(
       entry: Entry?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDataCatalogV1.Entry
 
     /// See `DataCatalogClient.deleteEntry`.
@@ -1132,7 +1132,7 @@ extension Clients {
     @available(*, deprecated)
     func updateTagTemplate(
       tagTemplate: TagTemplate?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDataCatalogV1.TagTemplate
 
     /// See `DataCatalogClient.deleteTagTemplate`.
@@ -1176,7 +1176,7 @@ extension Clients {
     func updateTagTemplateField(
       name: Swift.String,
       tagTemplateField: TagTemplateField?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDataCatalogV1.TagTemplateField
 
     /// See `DataCatalogClient.renameTagTemplateField`.
@@ -1239,7 +1239,7 @@ extension Clients {
     @available(*, deprecated)
     func updateTag(
       tag: Tag?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDataCatalogV1.Tag
 
     /// See `DataCatalogClient.deleteTag`.
@@ -1750,7 +1750,7 @@ extension Clients.DataCatalogProtocol {
 
   public func getEntryGroup(
     name: Swift.String,
-    readMask: GoogleCloudWkt.FieldMask?,
+    readMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudDataCatalogV1.EntryGroup {
     let request = GetEntryGroupRequest().with {
       $0.name = name
@@ -1782,7 +1782,7 @@ extension Clients.DataCatalogProtocol {
 
   public func updateEntryGroup(
     entryGroup: EntryGroup?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudDataCatalogV1.EntryGroup {
     let request = UpdateEntryGroupRequest().with {
       $0.entryGroup = entryGroup
@@ -1895,7 +1895,7 @@ extension Clients.DataCatalogProtocol {
 
   public func updateEntry(
     entry: Entry?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudDataCatalogV1.Entry {
     let request = UpdateEntryRequest().with {
       $0.entry = entry
@@ -2084,7 +2084,7 @@ extension Clients.DataCatalogProtocol {
 
   public func updateTagTemplate(
     tagTemplate: TagTemplate?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudDataCatalogV1.TagTemplate {
     let request = UpdateTagTemplateRequest().with {
       $0.tagTemplate = tagTemplate
@@ -2165,7 +2165,7 @@ extension Clients.DataCatalogProtocol {
   public func updateTagTemplateField(
     name: Swift.String,
     tagTemplateField: TagTemplateField?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudDataCatalogV1.TagTemplateField {
     let request = UpdateTagTemplateFieldRequest().with {
       $0.name = name
@@ -2284,7 +2284,7 @@ extension Clients.DataCatalogProtocol {
 
   public func updateTag(
     tag: Tag?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudDataCatalogV1.Tag {
     let request = UpdateTagRequest().with {
       $0.tag = tag

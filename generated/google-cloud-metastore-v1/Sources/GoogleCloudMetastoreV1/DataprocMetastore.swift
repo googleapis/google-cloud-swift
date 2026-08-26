@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -778,7 +778,7 @@ extension Clients {
     /// See `DataprocMetastoreClient.updateService`.
     func updateService(
       service: Service?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Service>
 
     /// See `DataprocMetastoreClient.deleteService`.
@@ -842,7 +842,7 @@ extension Clients {
     /// See `DataprocMetastoreClient.updateMetadataImport`.
     func updateMetadataImport(
       metadataImport: MetadataImport?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<MetadataImport>
 
     /// See `DataprocMetastoreClient.exportMetadata`.
@@ -1337,7 +1337,7 @@ extension Clients.DataprocMetastoreProtocol {
 
   public func updateService(
     service: Service?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Service> {
     let request = UpdateServiceRequest().with {
       $0.service = service
@@ -1512,7 +1512,7 @@ extension Clients.DataprocMetastoreProtocol {
 
   public func updateMetadataImport(
     metadataImport: MetadataImport?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<MetadataImport> {
     let request = UpdateMetadataImportRequest().with {
       $0.metadataImport = metadataImport

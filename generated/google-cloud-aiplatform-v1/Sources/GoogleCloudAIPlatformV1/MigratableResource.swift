@@ -16,20 +16,20 @@
 
 #if MigrationService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents one resource that exists in automl.googleapis.com,
   /// datalabeling.googleapis.com or ml.googleapis.com.
-  public struct MigratableResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MigratableResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Timestamp when the last migration attempt on this
     /// MigratableResource started. Will not be set if there's no migration attempt
     /// on this MigratableResource.
-    public var lastMigrateTime: GoogleCloudWkt.Timestamp? = nil
+    public var lastMigrateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Timestamp when this MigratableResource was last updated.
-    public var lastUpdateTime: GoogleCloudWkt.Timestamp? = nil
+    public var lastUpdateTime: GoogleCloudWKT.Timestamp? = nil
 
     public var resource: OneOf_Resource? = nil
 
@@ -61,9 +61,9 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.lastMigrateTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .lastMigrateTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .lastMigrateTime)
       self.lastUpdateTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .lastUpdateTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .lastUpdateTime)
 
       var resource: OneOf_Resource? = nil
       let resourceCheckAndSet = {
@@ -118,7 +118,7 @@
     }
 
     /// Represents one model Version in ml.googleapis.com.
-    public struct MlEngineModelVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct MlEngineModelVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The ml.googleapis.com endpoint that this model Version currently lives
@@ -155,16 +155,16 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.MigratableResource.MlEngineModelVersion"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Represents one Model in automl.googleapis.com.
-    public struct AutomlModel: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AutomlModel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Full resource name of automl Model.
@@ -194,16 +194,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.MigratableResource.AutomlModel"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Represents one Dataset in automl.googleapis.com.
-    public struct AutomlDataset: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AutomlDataset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Full resource name of automl Dataset.
@@ -233,16 +233,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.MigratableResource.AutomlDataset"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Represents one Dataset in datalabeling.googleapis.com.
-    public struct DataLabelingDataset: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DataLabelingDataset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Full resource name of data labeling Dataset.
@@ -275,7 +275,7 @@
       }
 
       /// Represents one AnnotatedDataset in datalabeling.googleapis.com.
-      public struct DataLabelingAnnotatedDataset: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct DataLabelingAnnotatedDataset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Full resource name of data labeling AnnotatedDataset.
@@ -306,11 +306,11 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.MigratableResource.DataLabelingDataset.DataLabelingAnnotatedDataset"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -318,11 +318,11 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.MigratableResource.DataLabelingDataset"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -340,11 +340,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.MigratableResource"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

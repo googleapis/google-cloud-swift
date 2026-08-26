@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Details about the Access request.
-public struct AccessApprovalRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AccessApprovalRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. Format:
@@ -26,14 +26,14 @@ public struct AccessApprovalRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
   public var name: Swift.String = Swift.String()
 
   /// The time at which approval was requested.
-  public var requestTime: GoogleCloudWkt.Timestamp? = nil
+  public var requestTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The justification for which approval is being requested.
   public var requestedReason: AccessReason? = nil
 
   /// The requested expiration for the approval. If the request is approved,
   /// access will be granted from the time of approval until the expiration time.
-  public var requestedExpirationTime: GoogleCloudWkt.Timestamp? = nil
+  public var requestedExpirationTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `AccessApprovalRequest`.
   public init() {}
@@ -54,10 +54,10 @@ public struct AccessApprovalRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.cloudcontrolspartner.v1.AccessApprovalRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

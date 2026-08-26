@@ -20,7 +20,7 @@
   import Foundation
   import GoogleCloudDialogflowV2
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
 
   func sample(client: EnvironmentsClient, projectId: String, environmentId: String) async throws {
@@ -30,7 +30,7 @@
           $0.environment = Environment().with {
             $0.name = "projects/\(projectId)/agent/environments/\(environmentId)"
           }
-          $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+          $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
         }
     )
     print("Success: \(response)")

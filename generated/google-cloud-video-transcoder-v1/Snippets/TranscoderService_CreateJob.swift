@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudVideoTranscoderV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: TranscoderServiceClient, parent: String) async throws {
   let response = try await client.createJob(

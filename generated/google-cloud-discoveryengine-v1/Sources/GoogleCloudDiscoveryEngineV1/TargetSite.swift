@@ -16,10 +16,10 @@
 
 #if SiteSearchEngineService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A target site for the SiteSearchEngine.
-  public struct TargetSite: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TargetSite: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The fully qualified resource name of the target site.
@@ -56,7 +56,7 @@
     public var indexingStatus: TargetSite.IndexingStatus = TargetSite.IndexingStatus()
 
     /// Output only. The target site's last updated time.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Failure reason.
     public var failureReason: TargetSite.FailureReason? = nil
@@ -78,7 +78,7 @@
     }
 
     /// Site search indexing failure reasons.
-    public struct FailureReason: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct FailureReason: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Failure reason.
@@ -137,7 +137,7 @@
       }
 
       /// Failed due to insufficient quota.
-      public struct QuotaFailure: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct QuotaFailure: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// This number is an estimation on how much total quota this project needs
@@ -164,11 +164,11 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.TargetSite.FailureReason.QuotaFailure"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -181,11 +181,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.TargetSite.FailureReason"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -437,11 +437,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.TargetSite"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

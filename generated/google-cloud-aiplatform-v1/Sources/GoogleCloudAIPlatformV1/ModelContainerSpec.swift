@@ -16,12 +16,12 @@
 
 #if DatasetService || JobService || ModelGardenService || ModelService || PipelineService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Specification of a container for serving predictions. Some fields in this
   /// message correspond to fields in the [Kubernetes Container v1 core
   /// specification](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#container-v1-core).
-  public struct ModelContainerSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ModelContainerSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Immutable. URI of the Docker image to be used as the custom
@@ -278,7 +278,7 @@
 
     /// Immutable. Deployment timeout.
     /// Limit for deployment timeout is 2 hours.
-    public var deploymentTimeout: GoogleCloudWkt.Duration? = nil
+    public var deploymentTimeout: GoogleCloudWKT.Duration? = nil
 
     /// Immutable. The amount of the VM memory to reserve as the shared memory for
     /// the model in megabytes.
@@ -312,11 +312,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.ModelContainerSpec"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

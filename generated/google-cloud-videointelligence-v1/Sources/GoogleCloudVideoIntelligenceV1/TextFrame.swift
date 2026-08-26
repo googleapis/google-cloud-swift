@@ -15,19 +15,19 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Video frame level annotation results for text annotation (OCR).
 /// Contains information regarding timestamp and bounding box locations for the
 /// frames containing detected OCR text snippets.
-public struct TextFrame: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TextFrame: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Bounding polygon of the detected text for this frame.
   public var rotatedBoundingBox: NormalizedBoundingPoly? = nil
 
   /// Timestamp of this frame.
-  public var timeOffset: GoogleCloudWkt.Duration? = nil
+  public var timeOffset: GoogleCloudWKT.Duration? = nil
 
   /// Initialize a new instance of `TextFrame`.
   public init() {}
@@ -48,10 +48,10 @@ public struct TextFrame: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.videointelligence.v1.TextFrame"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

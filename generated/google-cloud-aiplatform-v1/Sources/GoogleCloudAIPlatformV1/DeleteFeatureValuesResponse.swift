@@ -16,13 +16,13 @@
 
 #if FeaturestoreService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Response message for
   /// [FeaturestoreService.DeleteFeatureValues][google.cloud.aiplatform.v1.FeaturestoreService.DeleteFeatureValues].
   ///
   /// [google.cloud.aiplatform.v1.FeaturestoreService.DeleteFeatureValues]: <doc:FeaturestoreServiceClient/deleteFeatureValues(request:options:)>
-  public struct DeleteFeatureValuesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DeleteFeatureValuesResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Response based on which delete option is specified in the
@@ -91,7 +91,7 @@
     }
 
     /// Response message if the request uses the SelectEntity option.
-    public struct SelectEntity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SelectEntity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The count of deleted entity rows in the offline storage.
@@ -123,16 +123,16 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.DeleteFeatureValuesResponse.SelectEntity"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Response message if the request uses the SelectTimeRangeAndFeature option.
-    public struct SelectTimeRangeAndFeature: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SelectTimeRangeAndFeature: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The count of the features or columns impacted.
@@ -172,11 +172,11 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.DeleteFeatureValuesResponse.SelectTimeRangeAndFeature"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -193,11 +193,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.DeleteFeatureValuesResponse"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

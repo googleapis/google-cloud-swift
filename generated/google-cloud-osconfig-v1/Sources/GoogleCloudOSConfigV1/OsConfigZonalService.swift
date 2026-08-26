@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -436,7 +436,7 @@ extension Clients {
     /// See `OsConfigZonalServiceClient.updateOspolicyAssignment`.
     func updateOspolicyAssignment(
       osPolicyAssignment: OSPolicyAssignment?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<OSPolicyAssignment>
 
     /// See `OsConfigZonalServiceClient.getOspolicyAssignment`.
@@ -747,7 +747,7 @@ extension Clients.OsConfigZonalServiceProtocol {
 
   public func updateOspolicyAssignment(
     osPolicyAssignment: OSPolicyAssignment?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<OSPolicyAssignment> {
     let request = UpdateOSPolicyAssignmentRequest().with {
       $0.osPolicyAssignment = osPolicyAssignment

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// `Service` is the root object of Google API service configuration (service
 /// config). It describes the basic information about a logical service,
@@ -50,7 +50,7 @@ import Foundation
 ///       - selector: "*"
 ///         requirements:
 ///           provider_id: google_calendar_auth
-public struct Service: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Service: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The service name, which is a DNS-like logical identifier for the
@@ -78,8 +78,8 @@ public struct Service: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// IDL during the normalization process. It is an error to specify an API
   /// interface here which cannot be resolved against the associated IDL files.
   ///
-  /// [google.protobuf.Api]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWkt.Api
-  public var apis: [GoogleCloudWkt.Api] = []
+  /// [google.protobuf.Api]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWKT.Api
+  public var apis: [GoogleCloudWKT.Api] = []
 
   /// A list of all proto message types included in this API service.
   /// Types referenced directly or indirectly by the `apis` are automatically
@@ -89,7 +89,7 @@ public struct Service: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   ///     types:
   ///     - name: google.protobuf.Int32
-  public var types: [GoogleCloudWkt.Type_] = []
+  public var types: [GoogleCloudWKT.Type_] = []
 
   /// A list of all enum types included in this API service.  Enums referenced
   /// directly or indirectly by the `apis` are automatically included.  Enums
@@ -98,7 +98,7 @@ public struct Service: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   ///     enums:
   ///     - name: google.someapi.v1.SomeEnum
-  public var enums: [GoogleCloudWkt.Enum] = []
+  public var enums: [GoogleCloudWKT.Enum] = []
 
   /// Additional API documentation.
   public var documentation: Documentation? = nil
@@ -163,7 +163,7 @@ public struct Service: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   /// This field has no semantic meaning. The service config compiler always
   /// sets this field to `3`.
-  public var configVersion: GoogleCloudWkt.UInt32Value? = nil
+  public var configVersion: GoogleCloudWKT.UInt32Value? = nil
 
   /// Initialize a new instance of `Service`.
   public init() {}
@@ -184,10 +184,10 @@ public struct Service: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.Service"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

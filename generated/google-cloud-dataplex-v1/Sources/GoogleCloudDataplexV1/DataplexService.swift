@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -924,7 +924,7 @@ extension Clients {
     /// See `DataplexServiceClient.updateLake`.
     func updateLake(
       lake: Lake?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Lake>
 
     /// See `DataplexServiceClient.deleteLake`.
@@ -999,7 +999,7 @@ extension Clients {
     /// See `DataplexServiceClient.updateZone`.
     func updateZone(
       zone: Zone?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Zone>
 
     /// See `DataplexServiceClient.deleteZone`.
@@ -1074,7 +1074,7 @@ extension Clients {
     /// See `DataplexServiceClient.updateAsset`.
     func updateAsset(
       asset: Asset?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Asset>
 
     /// See `DataplexServiceClient.deleteAsset`.
@@ -1149,7 +1149,7 @@ extension Clients {
     /// See `DataplexServiceClient.updateTask`.
     func updateTask(
       task: Task?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Task>
 
     /// See `DataplexServiceClient.deleteTask`.
@@ -1633,7 +1633,7 @@ extension Clients.DataplexServiceProtocol {
 
   public func updateLake(
     lake: Lake?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Lake> {
     let request = UpdateLakeRequest().with {
       $0.lake = lake
@@ -1836,7 +1836,7 @@ extension Clients.DataplexServiceProtocol {
 
   public func updateZone(
     zone: Zone?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Zone> {
     let request = UpdateZoneRequest().with {
       $0.zone = zone
@@ -2039,7 +2039,7 @@ extension Clients.DataplexServiceProtocol {
 
   public func updateAsset(
     asset: Asset?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Asset> {
     let request = UpdateAssetRequest().with {
       $0.asset = asset
@@ -2243,7 +2243,7 @@ extension Clients.DataplexServiceProtocol {
 
   public func updateTask(
     task: Task?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Task> {
     let request = UpdateTaskRequest().with {
       $0.task = task

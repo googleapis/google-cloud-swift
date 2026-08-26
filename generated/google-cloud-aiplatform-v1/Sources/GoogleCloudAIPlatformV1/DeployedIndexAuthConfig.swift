@@ -16,10 +16,10 @@
 
 #if IndexEndpointService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Used to set up the auth on the DeployedIndex's private endpoint.
-  public struct DeployedIndexAuthConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DeployedIndexAuthConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Defines the authentication provider that the DeployedIndex uses.
@@ -44,7 +44,7 @@
     /// Configuration for an authentication provider, including support for
     /// [JSON Web Token
     /// (JWT)](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32).
-    public struct AuthProvider: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AuthProvider: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The list of JWT
@@ -78,22 +78,22 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.DeployedIndexAuthConfig.AuthProvider"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.DeployedIndexAuthConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -16,10 +16,10 @@
 
 #if Addresses || Autoscalers || BackendBuckets || BackendServices || CrossSiteNetworks || Disks || ExternalVpnGateways || FirewallPolicies || Firewalls || ForwardingRules || FutureReservations || GlobalAddresses || GlobalForwardingRules || GlobalNetworkEndpointGroups || GlobalOperations || GlobalOrganizationOperations || GlobalPublicDelegatedPrefixes || GlobalVmExtensionPolicies || HealthChecks || Hosts || HttpHealthChecks || HttpsHealthChecks || Images || InstanceGroupManagerResizeRequests || InstanceGroupManagers || InstanceGroups || InstanceSettings || InstanceTemplates || Instances || InstantSnapshotGroups || InstantSnapshots || InterconnectAttachmentGroups || InterconnectAttachments || InterconnectGroups || Interconnects || Licenses || MachineImages || NetworkAttachments || NetworkEdgeSecurityServices || NetworkEndpointGroups || NetworkFirewallPolicies || Networks || NodeGroups || NodeTemplates || OrganizationSecurityPolicies || PacketMirrorings || PreviewFeatures || Projects || PublicAdvertisedPrefixes || PublicDelegatedPrefixes || RegionAutoscalers || RegionBackendBuckets || RegionBackendServices || RegionCommitments || RegionCompositeHealthChecks || RegionDisks || RegionHealthAggregationPolicies || RegionHealthCheckServices || RegionHealthChecks || RegionHealthSources || RegionInstanceGroupManagerResizeRequests || RegionInstanceGroupManagers || RegionInstanceGroups || RegionInstanceTemplates || RegionInstances || RegionInstantSnapshotGroups || RegionInstantSnapshots || RegionNetworkEndpointGroups || RegionNetworkFirewallPolicies || RegionNotificationEndpoints || RegionOperations || RegionSecurityPolicies || RegionSnapshotSettings || RegionSnapshots || RegionSslCertificates || RegionSslPolicies || RegionTargetHttpProxies || RegionTargetHttpsProxies || RegionTargetTcpProxies || RegionUrlMaps || ReservationBlocks || ReservationSlots || ReservationSubBlocks || Reservations || ResourcePolicies || RolloutPlans || Rollouts || Routers || Routes || SecurityPolicies || ServiceAttachments || SnapshotSettings || Snapshots || SslCertificates || SslPolicies || StoragePools || Subnetworks || TargetGrpcProxies || TargetHttpProxies || TargetHttpsProxies || TargetInstances || TargetPools || TargetSslProxies || TargetTcpProxies || TargetVpnGateways || UrlMaps || VpnGateways || VpnTunnels || WireGroups || ZoneOperations || ZoneVmExtensionPolicies
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   public struct SetCommonInstanceMetadataOperationMetadataPerLocationOperationInfo: Codable,
-    Equatable, GoogleCloudWkt._AnyPackable,
+    Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// [Output Only] If state is `ABANDONED` or `FAILED`, this field is
@@ -178,11 +178,11 @@
       return
         "type.googleapis.com/google.cloud.compute.v1.SetCommonInstanceMetadataOperationMetadataPerLocationOperationInfo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

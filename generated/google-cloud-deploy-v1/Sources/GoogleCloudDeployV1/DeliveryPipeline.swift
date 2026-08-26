@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A `DeliveryPipeline` resource in the Cloud Deploy API.
 ///
 /// A `DeliveryPipeline` defines a pipeline through which a Skaffold
 /// configuration can progress.
-public struct DeliveryPipeline: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DeliveryPipeline: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. Name of the `DeliveryPipeline`. Format is
@@ -55,10 +55,10 @@ public struct DeliveryPipeline: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var labels: [Swift.String: Swift.String] = [:]
 
   /// Output only. Time at which the pipeline was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Most recent time at which the pipeline was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Information around the state of the Delivery Pipeline.
   public var condition: PipelineCondition? = nil
@@ -113,9 +113,9 @@ public struct DeliveryPipeline: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.annotations = try container.decode([Swift.String: Swift.String].self, forKey: .annotations)
     self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.condition = try container.decodeIfPresent(PipelineCondition.self, forKey: .condition)
     self.etag = try container.decode(Swift.String.self, forKey: .etag)
     self.suspended = try container.decode(Swift.Bool.self, forKey: .suspended)
@@ -169,10 +169,10 @@ public struct DeliveryPipeline: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.deploy.v1.DeliveryPipeline"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

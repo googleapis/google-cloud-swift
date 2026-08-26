@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The configuration for prefetch ads.
-public struct PrefetchConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct PrefetchConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Indicates whether the option to prefetch ad requests is enabled.
@@ -30,7 +30,7 @@ public struct PrefetchConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// benefits of prefetching, but not longer than the shortest ad break
   /// expected. For example, for a live event with 30s and 60s ad breaks, the
   /// initial duration should be set to 30s.
-  public var initialAdRequestDuration: GoogleCloudWkt.Duration? = nil
+  public var initialAdRequestDuration: GoogleCloudWKT.Duration? = nil
 
   /// Initialize a new instance of `PrefetchConfig`.
   public init() {}
@@ -51,10 +51,10 @@ public struct PrefetchConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.video.stitcher.v1.PrefetchConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

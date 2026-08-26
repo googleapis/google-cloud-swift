@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Settings for creating an AlloyDB cluster.
-public struct AlloyDbSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AlloyDbSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Input only. Initial user to setup during cluster creation.
@@ -63,7 +63,7 @@ public struct AlloyDbSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// The username/password for a database user. Used for specifying initial
   /// users at cluster creation time.
-  public struct UserPassword: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct UserPassword: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The database username.
@@ -94,16 +94,16 @@ public struct AlloyDbSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.clouddms.v1.AlloyDbSettings.UserPassword"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Settings for the cluster's primary instance
-  public struct PrimaryInstanceSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PrimaryInstanceSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The ID of the AlloyDB primary instance. The ID must satisfy the
@@ -144,7 +144,7 @@ public struct AlloyDbSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// MachineConfig describes the configuration of a machine.
-    public struct MachineConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct MachineConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The number of CPU's in the VM instance.
@@ -170,28 +170,28 @@ public struct AlloyDbSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.clouddms.v1.AlloyDbSettings.PrimaryInstanceSettings.MachineConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.clouddms.v1.AlloyDbSettings.PrimaryInstanceSettings"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// EncryptionConfig describes the encryption config of a cluster that is
   /// encrypted with a CMEK (customer-managed encryption key).
-  public struct EncryptionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct EncryptionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The fully-qualified resource name of the KMS key.
@@ -218,21 +218,21 @@ public struct AlloyDbSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.clouddms.v1.AlloyDbSettings.EncryptionConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.clouddms.v1.AlloyDbSettings"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

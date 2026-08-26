@@ -15,16 +15,16 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Autonomous Data Guard standby database details.
 /// https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/datatypes/AutonomousDatabaseStandbySummary
-public struct AutonomousDatabaseStandbySummary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AutonomousDatabaseStandbySummary: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The amount of time, in seconds, that the data of the standby
   /// database lags in comparison to the data of the primary database.
-  public var lagTimeDuration: GoogleCloudWkt.Duration? = nil
+  public var lagTimeDuration: GoogleCloudWKT.Duration? = nil
 
   /// Output only. The additional details about the current lifecycle state of
   /// the Autonomous Database.
@@ -35,11 +35,11 @@ public struct AutonomousDatabaseStandbySummary: Codable, Equatable, GoogleCloudW
 
   /// Output only. The date and time the Autonomous Data Guard role was switched
   /// for the standby Autonomous Database.
-  public var dataGuardRoleChangedTime: GoogleCloudWkt.Timestamp? = nil
+  public var dataGuardRoleChangedTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The date and time the Disaster Recovery role was switched for
   /// the standby Autonomous Database.
-  public var disasterRecoveryRoleChangedTime: GoogleCloudWkt.Timestamp? = nil
+  public var disasterRecoveryRoleChangedTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `AutonomousDatabaseStandbySummary`.
   public init() {}
@@ -60,10 +60,10 @@ public struct AutonomousDatabaseStandbySummary: Codable, Equatable, GoogleCloudW
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.oracledatabase.v1.AutonomousDatabaseStandbySummary"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

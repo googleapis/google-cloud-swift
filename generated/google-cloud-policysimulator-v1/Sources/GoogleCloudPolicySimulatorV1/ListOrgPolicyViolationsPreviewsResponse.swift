@@ -16,13 +16,13 @@
 
 import Foundation
 @_spi(GoogleCloudInternal) import GoogleCloudGax
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// ListOrgPolicyViolationsPreviewsResponse is the response message for
 /// [OrgPolicyViolationsPreviewService.ListOrgPolicyViolationsPreviews][google.cloud.policysimulator.v1.OrgPolicyViolationsPreviewService.ListOrgPolicyViolationsPreviews].
 ///
 /// [google.cloud.policysimulator.v1.OrgPolicyViolationsPreviewService.ListOrgPolicyViolationsPreviews]: <doc:OrgPolicyViolationsPreviewServiceClient/listOrgPolicyViolationsPreviews(request:options:)>
-public struct ListOrgPolicyViolationsPreviewsResponse: Codable, Equatable, GoogleCloudWkt
+public struct ListOrgPolicyViolationsPreviewsResponse: Codable, Equatable, GoogleCloudWKT
     ._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable
@@ -54,11 +54,11 @@ public struct ListOrgPolicyViolationsPreviewsResponse: Codable, Equatable, Googl
     return
       "type.googleapis.com/google.cloud.policysimulator.v1.ListOrgPolicyViolationsPreviewsResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 
   public func _getPaginatedItems() -> [OrgPolicyViolationsPreview] {

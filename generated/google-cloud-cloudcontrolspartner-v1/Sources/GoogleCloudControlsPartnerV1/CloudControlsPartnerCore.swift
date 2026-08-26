@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleCloudGax
 
 /// Service describing handlers for resources
@@ -304,7 +304,7 @@ extension Clients {
     /// See `CloudControlsPartnerCoreClient.updateCustomer`.
     func updateCustomer(
       customer: Customer?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudControlsPartnerV1.Customer
 
     /// See `CloudControlsPartnerCoreClient.deleteCustomer`.
@@ -647,7 +647,7 @@ extension Clients.CloudControlsPartnerCoreProtocol {
 
   public func updateCustomer(
     customer: Customer?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudControlsPartnerV1.Customer {
     let request = UpdateCustomerRequest().with {
       $0.customer = customer

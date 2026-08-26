@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Specification for the BigQuery connection to a Cloud SQL instance.
-public struct CloudSqlBigQueryConnectionSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CloudSqlBigQueryConnectionSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Cloud SQL instance ID in the format of `project:location:instance`.
@@ -155,10 +155,10 @@ public struct CloudSqlBigQueryConnectionSpec: Codable, Equatable, GoogleCloudWkt
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datacatalog.v1.CloudSqlBigQueryConnectionSpec"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,15 +15,15 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// Explanation for how a condition affects a principal's access
-public struct ConditionExplanation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ConditionExplanation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Value of the condition.
-  public var value: GoogleCloudWkt.Value? = nil
+  public var value: GoogleCloudWKT.Value? = nil
 
   /// Any errors that prevented complete evaluation of the condition expression.
   public var errors: [GoogleRpc.Status] = []
@@ -50,7 +50,7 @@ public struct ConditionExplanation: Codable, Equatable, GoogleCloudWkt._AnyPacka
   }
 
   /// Evaluated state of a condition expression.
-  public struct EvaluationState: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct EvaluationState: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Start position of an expression in the condition, by character.
@@ -62,7 +62,7 @@ public struct ConditionExplanation: Codable, Equatable, GoogleCloudWkt._AnyPacka
     public var end: Swift.Int32 = Swift.Int32()
 
     /// Value of this expression.
-    public var value: GoogleCloudWkt.Value? = nil
+    public var value: GoogleCloudWKT.Value? = nil
 
     /// Any errors that prevented complete evaluation of the condition
     /// expression.
@@ -88,21 +88,21 @@ public struct ConditionExplanation: Codable, Equatable, GoogleCloudWkt._AnyPacka
       return
         "type.googleapis.com/google.cloud.policytroubleshooter.iam.v3.ConditionExplanation.EvaluationState"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.policytroubleshooter.iam.v3.ConditionExplanation"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Network-level access control policy for the Airflow web server.
-public struct WebServerNetworkAccessControl: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct WebServerNetworkAccessControl: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A collection of allowed IP ranges with descriptions.
@@ -41,7 +41,7 @@ public struct WebServerNetworkAccessControl: Codable, Equatable, GoogleCloudWkt.
   }
 
   /// Allowed IP range with user-provided description.
-  public struct AllowedIpRange: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AllowedIpRange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// IP address or range, defined using CIDR notation, of requests that this
@@ -78,11 +78,11 @@ public struct WebServerNetworkAccessControl: Codable, Equatable, GoogleCloudWkt.
       return
         "type.googleapis.com/google.cloud.orchestration.airflow.service.v1.WebServerNetworkAccessControl.AllowedIpRange"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -90,10 +90,10 @@ public struct WebServerNetworkAccessControl: Codable, Equatable, GoogleCloudWkt.
     return
       "type.googleapis.com/google.cloud.orchestration.airflow.service.v1.WebServerNetworkAccessControl"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [KeyManagementService.UpdateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyVersion].
 ///
 /// [google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyVersion]: <doc:KeyManagementServiceClient/updateCryptoKeyVersion(request:options:)>
-public struct UpdateCryptoKeyVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateCryptoKeyVersionRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with
@@ -31,7 +31,7 @@ public struct UpdateCryptoKeyVersionRequest: Codable, Equatable, GoogleCloudWkt.
   public var cryptoKeyVersion: CryptoKeyVersion? = nil
 
   /// Required. List of fields to be updated in this request.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `UpdateCryptoKeyVersionRequest`.
   public init() {}
@@ -52,10 +52,10 @@ public struct UpdateCryptoKeyVersionRequest: Codable, Equatable, GoogleCloudWkt.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.UpdateCryptoKeyVersionRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

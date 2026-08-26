@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Apply a hash function on the value.
-public struct ApplyHash: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ApplyHash: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   public var hashFunction: OneOf_HashFunction? = nil
@@ -57,7 +57,7 @@ public struct ApplyHash: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       hashFunction = $0
     }
     if let uuidFromBytes = try container.decodeIfPresent(
-      GoogleCloudWkt.Empty?.self, forKey: .uuidFromBytes)
+      GoogleCloudWKT.Empty?.self, forKey: .uuidFromBytes)
     {
       try hashFunctionCheckAndSet(.uuidFromBytes(uuidFromBytes))
     }
@@ -77,16 +77,16 @@ public struct ApplyHash: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   public enum OneOf_HashFunction: Codable, Equatable, Sendable {
     /// Optional. Generate UUID from the data's byte array
-    indirect case uuidFromBytes(GoogleCloudWkt.Empty?)
+    indirect case uuidFromBytes(GoogleCloudWKT.Empty?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.clouddms.v1.ApplyHash"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleCloudGax
 
@@ -161,7 +161,7 @@ extension Clients {
     /// See `DataPolicyServiceClient.updateDataPolicy`.
     func updateDataPolicy(
       dataPolicy: DataPolicy?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleBigQueryDataPoliciesV1.DataPolicy
 
     /// See `DataPolicyServiceClient.renameDataPolicy`.
@@ -306,7 +306,7 @@ extension Clients.DataPolicyServiceProtocol {
 
   public func updateDataPolicy(
     dataPolicy: DataPolicy?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleBigQueryDataPoliciesV1.DataPolicy {
     let request = UpdateDataPolicyRequest().with {
       $0.dataPolicy = dataPolicy

@@ -19,7 +19,7 @@
   #if canImport(FoundationNetworking)
     import FoundationNetworking
   #endif
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleCloudGax
 
   ///
@@ -143,7 +143,7 @@
       /// See `SqlBackupsServiceClient.updateBackup`.
       func updateBackup(
         backup: Backup?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudSqlV1.Operation
 
       /// See `SqlBackupsServiceClient.deleteBackup`.
@@ -280,7 +280,7 @@
 
     public func updateBackup(
       backup: Backup?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudSqlV1.Operation {
       let request = UpdateBackupRequest().with {
         $0.backup = backup

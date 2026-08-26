@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Fields related to Google Cloud Armor findings.
-public struct CloudArmor: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CloudArmor: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Information about the [Google Cloud Armor security
@@ -46,7 +46,7 @@ public struct CloudArmor: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Duration of attack from the start until the current moment (updated every 5
   /// minutes).
-  public var duration: GoogleCloudWkt.Duration? = nil
+  public var duration: GoogleCloudWKT.Duration? = nil
 
   /// Initialize a new instance of `CloudArmor`.
   public init() {}
@@ -67,10 +67,10 @@ public struct CloudArmor: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.CloudArmor"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

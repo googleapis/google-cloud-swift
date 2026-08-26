@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for updating a backup plan.
-public struct UpdateBackupPlanRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateBackupPlanRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The resource being updated
@@ -32,7 +32,7 @@ public struct UpdateBackupPlanRequest: Codable, Equatable, GoogleCloudWkt._AnyPa
   /// user does not provide a mask then the request will fail.
   /// Currently, these fields are supported in update: description, schedules,
   /// retention period, adding and removing Backup Rules.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Optional. An optional request ID to identify requests. Specify a unique
   /// request ID so that if you must retry your request, the server will know to
@@ -68,10 +68,10 @@ public struct UpdateBackupPlanRequest: Codable, Equatable, GoogleCloudWkt._AnyPa
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.backupdr.v1.UpdateBackupPlanRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

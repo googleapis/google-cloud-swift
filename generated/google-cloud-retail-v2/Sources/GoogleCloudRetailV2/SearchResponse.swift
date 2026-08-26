@@ -16,13 +16,13 @@
 
 import Foundation
 @_spi(GoogleCloudInternal) import GoogleCloudGax
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response message for
 /// [SearchService.Search][google.cloud.retail.v2.SearchService.Search] method.
 ///
 /// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
-public struct SearchResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SearchResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable
 {
@@ -123,7 +123,7 @@ public struct SearchResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Represents the search results.
-  public struct SearchResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SearchResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// [Product.id][google.cloud.retail.v2.Product.id] of the searched
@@ -177,7 +177,7 @@ public struct SearchResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// [google.cloud.retail.v2.Product]: <doc:Product>
     /// [google.cloud.retail.v2.Product.Type.VARIANT]: <doc:Product/Type_/variant>
     /// [google.cloud.retail.v2.Product.name]: <doc:Product/name>
-    public var matchingVariantFields: [Swift.String: GoogleCloudWkt.FieldMask] = [:]
+    public var matchingVariantFields: [Swift.String: GoogleCloudWKT.FieldMask] = [:]
 
     /// The rollup matching
     /// [variant][google.cloud.retail.v2.Product.Type.VARIANT]
@@ -215,9 +215,9 @@ public struct SearchResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// [google.cloud.retail.v2.Product]: <doc:Product>
     /// [google.cloud.retail.v2.Product.Type.VARIANT]: <doc:Product/Type_/variant>
     /// [google.cloud.retail.v2.SearchRequest.variant_rollup_keys]: <doc:SearchRequest/variantRollupKeys>
-    /// [google.protobuf.ListValue]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWkt.ListValue
-    /// [google.protobuf.Value]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWkt.Value
-    public var variantRollupValues: [Swift.String: GoogleCloudWkt.Value] = [:]
+    /// [google.protobuf.ListValue]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWKT.ListValue
+    /// [google.protobuf.Value]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWKT.Value
+    public var variantRollupValues: [Swift.String: GoogleCloudWKT.Value] = [:]
 
     /// Specifies previous events related to this product for this user based on
     /// [UserEvent][google.cloud.retail.v2.UserEvent] with same
@@ -262,16 +262,16 @@ public struct SearchResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.retail.v2.SearchResponse.SearchResult"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A facet result.
-  public struct Facet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Facet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The key for this facet. E.g., "colorFamilies" or "price" or
@@ -301,7 +301,7 @@ public struct SearchResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// A facet value which contains value names and their count.
-    public struct FacetValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct FacetValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Number of items that have this facet value.
@@ -406,28 +406,28 @@ public struct SearchResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.retail.v2.SearchResponse.Facet.FacetValue"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.retail.v2.SearchResponse.Facet"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Information describing query expansion including whether expansion has
   /// occurred.
-  public struct QueryExpansionInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct QueryExpansionInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Bool describing whether query expansion has occurred.
@@ -460,17 +460,17 @@ public struct SearchResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.retail.v2.SearchResponse.QueryExpansionInfo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// This field specifies all related information that is needed on client
   /// side for UI rendering of conversational retail search.
-  public struct ConversationalSearchResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ConversationalSearchResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Conversation UUID. This field will be stored in client side storage to
@@ -533,7 +533,7 @@ public struct SearchResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Suggested answers to the follow-up question.
-    public struct SuggestedAnswer: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SuggestedAnswer: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Product attribute value, including an attribute key and an
@@ -560,16 +560,16 @@ public struct SearchResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.retail.v2.SearchResponse.ConversationalSearchResult.SuggestedAnswer"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Additional filter that client side need to apply.
-    public struct AdditionalFilter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AdditionalFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Product attribute value, including an attribute key and an
@@ -596,28 +596,28 @@ public struct SearchResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.retail.v2.SearchResponse.ConversationalSearchResult.AdditionalFilter"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.retail.v2.SearchResponse.ConversationalSearchResult"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// This field specifies all related information for tile navigation that will
   /// be used in client side.
-  public struct TileNavigationResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TileNavigationResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The current tiles that are used for tile navigation, sorted by
@@ -643,22 +643,22 @@ public struct SearchResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.retail.v2.SearchResponse.TileNavigationResult"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.retail.v2.SearchResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 
   public func _getPaginatedItems() -> [SearchResponse.SearchResult] {

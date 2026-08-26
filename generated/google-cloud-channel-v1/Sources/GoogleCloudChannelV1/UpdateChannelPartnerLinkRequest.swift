@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [CloudChannelService.UpdateChannelPartnerLink][google.cloud.channel.v1.CloudChannelService.UpdateChannelPartnerLink]
 ///
 /// [google.cloud.channel.v1.CloudChannelService.UpdateChannelPartnerLink]: <doc:CloudChannelServiceClient/updateChannelPartnerLink(request:options:)>
-public struct UpdateChannelPartnerLinkRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateChannelPartnerLinkRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The resource name of the channel partner link to cancel.
@@ -36,7 +36,7 @@ public struct UpdateChannelPartnerLinkRequest: Codable, Equatable, GoogleCloudWk
   /// Required. The update mask that applies to the resource.
   /// The only allowable value for an update mask is
   /// channel_partner_link.link_state.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `UpdateChannelPartnerLinkRequest`.
   public init() {}
@@ -57,10 +57,10 @@ public struct UpdateChannelPartnerLinkRequest: Codable, Equatable, GoogleCloudWk
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.channel.v1.UpdateChannelPartnerLinkRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

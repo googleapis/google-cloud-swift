@@ -44,7 +44,7 @@ let package = Package(
         .product(name: "GoogleCloudGax", package: "gax"),
         .product(name: "GoogleCloudOSConfigV1", package: "google-cloud-osconfig-v1"),
         .product(name: "GoogleCloudOrgPolicyV1", package: "google-cloud-orgpolicy-v1"),
-        .product(name: "GoogleCloudWkt", package: "wkt"),
+        .product(name: "GoogleCloudWKT", package: "wkt"),
         .product(name: "GoogleIAMV1", package: "google-iam-v1"),
         .product(
           name: "GoogleIdentityAccessContextManagerV1",

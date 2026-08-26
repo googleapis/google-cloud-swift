@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudControlsPartnerV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(organizationId: String, locationId: String, customerId: String, workloadId: String, )
   async throws

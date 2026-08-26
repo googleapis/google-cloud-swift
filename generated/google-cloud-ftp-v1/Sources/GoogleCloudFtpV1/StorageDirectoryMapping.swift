@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Mapping of backing Cloud Storage path to the directory where the user lands
 /// in the SFTP server. If directory is not specified, it'll default to '/'.
@@ -34,7 +34,7 @@ import Foundation
 /// The user will land at '/', and the view there will match
 /// that of /bucket/path1/path2. The user will not be aware of Cloud Storage
 /// prefix '/bucket/path1/path2' and there will be no such directory in the view.
-public struct StorageDirectoryMapping: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct StorageDirectoryMapping: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Name of the bucket.
@@ -173,10 +173,10 @@ public struct StorageDirectoryMapping: Codable, Equatable, GoogleCloudWkt._AnyPa
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ftp.v1.StorageDirectoryMapping"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

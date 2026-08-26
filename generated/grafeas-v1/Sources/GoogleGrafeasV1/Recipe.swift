@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Steps taken to build the artifact.
 /// For a TaskRun, typically each container corresponds to one step in the
 /// recipe.
-public struct Recipe: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Recipe: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// URI indicating what type of recipe was performed. It determines the meaning
@@ -47,13 +47,13 @@ public struct Recipe: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// the target, which is captured in recipe.entryPoint. Since the arguments
   /// field can greatly vary in structure, depending on the builder and recipe
   /// type, this is of form "Any".
-  public var arguments: [GoogleCloudWkt.`Any`] = []
+  public var arguments: [GoogleCloudWKT.`Any`] = []
 
   /// Any other builder-controlled inputs necessary for correctly evaluating the
   /// recipe. Usually only needed for reproducing the build but not evaluated as
   /// part of policy. Since the environment field can greatly vary in structure,
   /// depending on the builder and recipe type, this is of form "Any".
-  public var environment: [GoogleCloudWkt.`Any`] = []
+  public var environment: [GoogleCloudWKT.`Any`] = []
 
   /// Initialize a new instance of `Recipe`.
   public init() {}
@@ -74,10 +74,10 @@ public struct Recipe: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/grafeas.v1.Recipe"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

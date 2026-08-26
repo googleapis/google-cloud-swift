@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleCloudGax
 
@@ -187,7 +187,7 @@ extension Clients {
     func updateConnection(
       name: Swift.String,
       connection: Connection?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleBigQueryConnectionV1.Connection
 
     /// See `ConnectionServiceClient.deleteConnection`.
@@ -373,7 +373,7 @@ extension Clients.ConnectionServiceProtocol {
   public func updateConnection(
     name: Swift.String,
     connection: Connection?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleBigQueryConnectionV1.Connection {
     let request = UpdateConnectionRequest().with {
       $0.name = name

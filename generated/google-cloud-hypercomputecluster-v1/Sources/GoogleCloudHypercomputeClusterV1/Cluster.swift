@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A collection of virtual machines and connected resources forming a
 /// high-performance computing cluster capable of running large-scale, tightly
@@ -23,7 +23,7 @@ import Foundation
 /// computations, storage resources that contain inputs and store outputs, an
 /// orchestrator that is responsible for assigning jobs to compute resources, and
 /// network resources that connect everything together.
-public struct Cluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Cluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. [Relative resource name](https://google.aip.dev/122) of the
@@ -41,10 +41,10 @@ public struct Cluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var labels: [Swift.String: Swift.String] = [:]
 
   /// Output only. Time that the cluster was originally created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Time that the cluster was most recently updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Indicates whether changes to the cluster are currently in
   /// flight. If this is `true`, then the current state might not match the
@@ -93,10 +93,10 @@ public struct Cluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.hypercomputecluster.v1.Cluster"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleType
 
 /// Job compensation details.
-public struct CompensationInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CompensationInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Job compensation information.
@@ -97,7 +97,7 @@ public struct CompensationInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [google.cloud.talent.v4.CompensationInfo.CompensationEntry.amount]: <doc:CompensationInfo/CompensationEntry/OneOf_CompensationAmount/amount(_:)>
   /// [google.cloud.talent.v4.CompensationInfo.CompensationEntry.expected_units_per_year]: <doc:CompensationInfo/CompensationEntry/expectedUnitsPerYear>
   /// [google.cloud.talent.v4.CompensationInfo.CompensationEntry.range]: <doc:CompensationInfo/CompensationEntry/OneOf_CompensationAmount/range(_:)>
-  public struct CompensationEntry: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CompensationEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Compensation type.
@@ -134,7 +134,7 @@ public struct CompensationInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     ///
     /// [google.cloud.talent.v4.CompensationInfo.CompensationEntry.unit]: <doc:CompensationInfo/CompensationEntry/unit>
     /// [google.cloud.talent.v4.Job.employment_types]: <doc:Job/employmentTypes>
-    public var expectedUnitsPerYear: GoogleCloudWkt.DoubleValue? = nil
+    public var expectedUnitsPerYear: GoogleCloudWKT.DoubleValue? = nil
 
     /// Compensation amount. It could be a fixed amount or a floating range.
     public var compensationAmount: OneOf_CompensationAmount? = nil
@@ -170,7 +170,7 @@ public struct CompensationInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       self.unit = try container.decode(CompensationInfo.CompensationUnit.self, forKey: .unit)
       self.description = try container.decode(Swift.String.self, forKey: .description)
       self.expectedUnitsPerYear = try container.decodeIfPresent(
-        GoogleCloudWkt.DoubleValue.self, forKey: .expectedUnitsPerYear)
+        GoogleCloudWKT.DoubleValue.self, forKey: .expectedUnitsPerYear)
 
       var compensationAmount: OneOf_CompensationAmount? = nil
       let compensationAmountCheckAndSet = {
@@ -221,16 +221,16 @@ public struct CompensationInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.talent.v4.CompensationInfo.CompensationEntry"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Compensation range.
-  public struct CompensationRange: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CompensationRange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The maximum amount of compensation. If left empty, the value is set
@@ -267,11 +267,11 @@ public struct CompensationInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.talent.v4.CompensationInfo.CompensationRange"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -599,10 +599,10 @@ public struct CompensationInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.talent.v4.CompensationInfo"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

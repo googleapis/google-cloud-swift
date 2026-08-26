@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Explicit content annotation (based on per-frame visual signals only).
 /// If no explicit content has been detected in a frame, no annotations are
 /// present for that frame.
-public struct ExplicitContentAnnotation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ExplicitContentAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// All video frames where explicit content was detected.
@@ -48,10 +48,10 @@ public struct ExplicitContentAnnotation: Codable, Equatable, GoogleCloudWkt._Any
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.videointelligence.v1.ExplicitContentAnnotation"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// What must take place for a profile to be updated and how
 /// frequently it should occur.
 /// New tables are scanned as quickly as possible depending on system
 /// capacity.
-public struct DiscoveryGenerationCadence: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DiscoveryGenerationCadence: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Governs when to update data profiles when a schema is modified.
@@ -58,10 +58,10 @@ public struct DiscoveryGenerationCadence: Codable, Equatable, GoogleCloudWkt._An
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.DiscoveryGenerationCadence"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

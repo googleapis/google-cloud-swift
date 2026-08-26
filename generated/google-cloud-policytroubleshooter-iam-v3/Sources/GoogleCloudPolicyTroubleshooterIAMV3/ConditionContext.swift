@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Additional context for troubleshooting conditional role bindings and deny
 /// rules.
-public struct ConditionContext: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ConditionContext: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Represents a target resource that is involved with a network activity.
@@ -58,7 +58,7 @@ public struct ConditionContext: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Core attributes for a resource. A resource is an
   /// addressable (named) entity provided by the destination service. For
   /// example, a Compute Engine instance.
-  public struct Resource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Resource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The name of the service that this resource belongs to, such as
@@ -104,11 +104,11 @@ public struct ConditionContext: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.policytroubleshooter.iam.v3.ConditionContext.Resource"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -116,7 +116,7 @@ public struct ConditionContext: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// The node can be either a service or an application that sends, forwards,
   /// or receives the request. Service peers should fill in
   /// `principal` and `labels` as appropriate.
-  public struct Peer: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Peer: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The IPv4 or IPv6 address of the peer.
@@ -144,23 +144,23 @@ public struct ConditionContext: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.policytroubleshooter.iam.v3.ConditionContext.Peer"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// This message defines attributes for an HTTP request. If the actual
   /// request is not an HTTP request, the runtime system should try to map
   /// the actual request to an equivalent HTTP request.
-  public struct Request: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Request: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The timestamp when the destination service receives the first
     /// byte of the request.
-    public var receiveTime: GoogleCloudWkt.Timestamp? = nil
+    public var receiveTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `Request`.
     public init() {}
@@ -181,11 +181,11 @@ public struct ConditionContext: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.policytroubleshooter.iam.v3.ConditionContext.Request"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -194,7 +194,7 @@ public struct ConditionContext: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// `EffectiveTag` contains the `name` and `namespaced_name` of the tag value
   /// and tag key, with additional fields of `inherited` to indicate the
   /// inheritance status of the effective tag.
-  public struct EffectiveTag: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct EffectiveTag: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Resource name for TagValue in the format `tagValues/456`.
@@ -247,21 +247,21 @@ public struct ConditionContext: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.policytroubleshooter.iam.v3.ConditionContext.EffectiveTag"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.policytroubleshooter.iam.v3.ConditionContext"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

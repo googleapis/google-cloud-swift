@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The
 /// [LookupApiHubInstance][google.cloud.apihub.v1.Provisioning.LookupApiHubInstance]
 /// method's request.
 ///
 /// [google.cloud.apihub.v1.Provisioning.LookupApiHubInstance]: <doc:ProvisioningClient/lookupApiHubInstance(request:options:)>
-public struct LookupApiHubInstanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct LookupApiHubInstanceRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. There will always be only one Api Hub instance for a GCP project
@@ -50,10 +50,10 @@ public struct LookupApiHubInstanceRequest: Codable, Equatable, GoogleCloudWkt._A
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.apihub.v1.LookupApiHubInstanceRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

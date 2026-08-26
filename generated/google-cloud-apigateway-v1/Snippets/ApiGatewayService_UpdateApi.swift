@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudApiGatewayV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 
@@ -29,7 +29,7 @@ func sample(client: ApiGatewayServiceClient, projectId: String, apiId: String) a
         $0.api = Api().with {
           $0.name = "projects/\(projectId)/locations/global/apis/\(apiId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   let response = try await poller.wait()

@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Precise location of the finding within a document, record, image, or metadata
 /// container.
-public struct ContentLocation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ContentLocation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Name of the container where the finding is located.
@@ -38,7 +38,7 @@ public struct ContentLocation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// this field contains the last file modification timestamp. For a BigQuery
   /// table, this field contains the last_modified_time property. For Datastore,
   /// this field isn't populated.
-  public var containerTimestamp: GoogleCloudWkt.Timestamp? = nil
+  public var containerTimestamp: GoogleCloudWKT.Timestamp? = nil
 
   /// Finding container version, if available
   /// ("generation" for Cloud Storage).
@@ -79,7 +79,7 @@ public struct ContentLocation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.containerName = try container.decode(Swift.String.self, forKey: .containerName)
     self.containerTimestamp = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .containerTimestamp)
+      GoogleCloudWKT.Timestamp.self, forKey: .containerTimestamp)
     self.containerVersion = try container.decode(Swift.String.self, forKey: .containerVersion)
 
     var location: OneOf_Location? = nil
@@ -168,10 +168,10 @@ public struct ContentLocation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.ContentLocation"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

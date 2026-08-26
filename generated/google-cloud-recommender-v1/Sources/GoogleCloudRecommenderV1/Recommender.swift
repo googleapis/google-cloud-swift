@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleCloudGax
 
 /// Provides insights and recommendations for cloud customers for various
@@ -362,7 +362,7 @@ extension Clients {
     /// See `RecommenderClient.updateRecommenderConfig`.
     func updateRecommenderConfig(
       recommenderConfig: RecommenderConfig?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudRecommenderV1.RecommenderConfig
 
     /// See `RecommenderClient.getInsightTypeConfig`.
@@ -381,7 +381,7 @@ extension Clients {
     /// See `RecommenderClient.updateInsightTypeConfig`.
     func updateInsightTypeConfig(
       insightTypeConfig: InsightTypeConfig?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudRecommenderV1.InsightTypeConfig
 
     /// See `RecommenderClient.listInsights`.
@@ -737,7 +737,7 @@ extension Clients.RecommenderProtocol {
 
   public func updateRecommenderConfig(
     recommenderConfig: RecommenderConfig?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudRecommenderV1.RecommenderConfig {
     let request = UpdateRecommenderConfigRequest().with {
       $0.recommenderConfig = recommenderConfig
@@ -781,7 +781,7 @@ extension Clients.RecommenderProtocol {
 
   public func updateInsightTypeConfig(
     insightTypeConfig: InsightTypeConfig?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudRecommenderV1.InsightTypeConfig {
     let request = UpdateInsightTypeConfigRequest().with {
       $0.insightTypeConfig = insightTypeConfig

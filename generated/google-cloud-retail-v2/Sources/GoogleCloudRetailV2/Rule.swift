@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A rule is a condition-action pair
 ///
@@ -26,7 +26,7 @@ import Foundation
 ///
 /// [google.cloud.retail.v2.Control]: <doc:Control>
 /// [google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH]: <doc:SolutionType/search>
-public struct Rule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Rule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The condition that triggers the rule.
@@ -169,7 +169,7 @@ public struct Rule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// A boost action to apply to results matching condition specified above.
-  public struct BoostAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct BoostAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Strength of the condition boost, which must be in [-1, 1]. Negative
@@ -228,11 +228,11 @@ public struct Rule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.retail.v2.Rule.BoostAction"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -254,7 +254,7 @@ public struct Rule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// the filter.
   ///
   /// [google.cloud.retail.v2.Condition.query_terms]: <doc:Condition/queryTerms>
-  public struct FilterAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FilterAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// A filter to apply on the matching condition results. Supported features:
@@ -294,11 +294,11 @@ public struct Rule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.retail.v2.Rule.FilterAction"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -311,7 +311,7 @@ public struct Rule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// * Action Result: Redirects shopper to provided uri.
   ///
   /// [google.cloud.retail.v2.Condition.query_terms]: <doc:Condition/queryTerms>
-  public struct RedirectAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RedirectAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// URL must have length equal or less than 2000 characters.
@@ -336,11 +336,11 @@ public struct Rule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.retail.v2.Rule.RedirectAction"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -349,7 +349,7 @@ public struct Rule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   ///  * "sneakers" will use a synonym of "shoes".
   ///  * "shoes" will use a synonym of "sneakers".
-  public struct TwowaySynonymsAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TwowaySynonymsAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Defines a set of synonyms.
@@ -376,11 +376,11 @@ public struct Rule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.retail.v2.Rule.TwowaySynonymsAction"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -389,7 +389,7 @@ public struct Rule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// `query_terms` will not be treated as synonyms of each other.
   /// Example: "sneakers" will use a synonym of "shoes".
   /// "shoes" will not use a synonym of "sneakers".
-  public struct OnewaySynonymsAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct OnewaySynonymsAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Terms from the search query.
@@ -425,18 +425,18 @@ public struct Rule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.retail.v2.Rule.OnewaySynonymsAction"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Prevents `query_term` from being associated with specified terms during
   /// search.
   /// Example: Don't associate "gShoe" and "cheap".
-  public struct DoNotAssociateAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DoNotAssociateAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Terms from the search query.
@@ -470,18 +470,18 @@ public struct Rule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.retail.v2.Rule.DoNotAssociateAction"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Replaces a term in the query. Multiple replacement candidates can be
   /// specified. All `query_terms` will be replaced with the replacement term.
   /// Example: Replace "gShoe" with "google shoe".
-  public struct ReplacementAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ReplacementAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Terms from the search query.
@@ -514,17 +514,17 @@ public struct Rule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.retail.v2.Rule.ReplacementAction"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Prevents a term in the query from being used in search.
   /// Example: Don't search for "shoddy".
-  public struct IgnoreAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct IgnoreAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Terms to ignore in the search query.
@@ -549,11 +549,11 @@ public struct Rule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.retail.v2.Rule.IgnoreAction"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -589,7 +589,7 @@ public struct Rule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [google.cloud.retail.v2.Condition.query_terms]: <doc:Condition/queryTerms>
   /// [google.cloud.retail.v2.Rule.ForceReturnFacetAction.FacetPositionAdjustment.attribute_name]: <doc:Rule/ForceReturnFacetAction/FacetPositionAdjustment/attributeName>
   /// [google.cloud.retail.v2.Rule.ForceReturnFacetAction.FacetPositionAdjustment.position]: <doc:Rule/ForceReturnFacetAction/FacetPositionAdjustment/position>
-  public struct ForceReturnFacetAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ForceReturnFacetAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Each instance corresponds to a force return attribute for the given
@@ -614,7 +614,7 @@ public struct Rule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Each facet position adjustment consists of a single attribute name (i.e.
     /// facet key) along with a specified position.
-    public struct FacetPositionAdjustment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct FacetPositionAdjustment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The attribute name to force return as a facet. Each attribute name
@@ -646,22 +646,22 @@ public struct Rule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.retail.v2.Rule.ForceReturnFacetAction.FacetPositionAdjustment"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.retail.v2.Rule.ForceReturnFacetAction"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -686,7 +686,7 @@ public struct Rule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   /// [google.cloud.retail.v2.Condition.page_categories]: <doc:Condition/pageCategories>
   /// [google.cloud.retail.v2.Condition.query_terms]: <doc:Condition/queryTerms>
-  public struct RemoveFacetAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RemoveFacetAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The attribute names (i.e. facet keys) to remove from the dynamic facets
@@ -714,11 +714,11 @@ public struct Rule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.retail.v2.Rule.RemoveFacetAction"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -751,7 +751,7 @@ public struct Rule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   /// [google.cloud.retail.v2.Condition.page_categories]: <doc:Condition/pageCategories>
   /// [google.cloud.retail.v2.Condition.query_terms]: <doc:Condition/queryTerms>
-  public struct PinAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PinAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. A map of positions to product_ids.
@@ -820,11 +820,11 @@ public struct Rule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.retail.v2.Rule.PinAction"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -859,10 +859,10 @@ public struct Rule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.retail.v2.Rule"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

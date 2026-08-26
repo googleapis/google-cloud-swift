@@ -15,20 +15,20 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Message describing FloorSetting resource
-public struct FloorSetting: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct FloorSetting: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The resource name.
   public var name: Swift.String = Swift.String()
 
   /// Output only. [Output only] Create timestamp
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. [Output only] Update timestamp
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Required. ModelArmor filter configuration.
   public var filterConfig: FilterConfig? = nil
@@ -63,7 +63,7 @@ public struct FloorSetting: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// message describing FloorSetting Metadata
-  public struct FloorSettingMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FloorSettingMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Metadata for multi language detection.
@@ -87,7 +87,7 @@ public struct FloorSetting: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Metadata to enable multi language detection via floor setting.
-    public struct MultiLanguageDetection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct MultiLanguageDetection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. If true, multi language detection will be enabled.
@@ -113,22 +113,22 @@ public struct FloorSetting: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.modelarmor.v1.FloorSetting.FloorSettingMetadata.MultiLanguageDetection"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.modelarmor.v1.FloorSetting.FloorSettingMetadata"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -233,10 +233,10 @@ public struct FloorSetting: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.modelarmor.v1.FloorSetting"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

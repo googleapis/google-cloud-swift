@@ -16,10 +16,10 @@
 
 #if Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents one match result of [MatchIntent][].
-  public struct Match: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Match: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The [Intent][google.cloud.dialogflow.cx.v3.Intent] that matched the query.
@@ -53,7 +53,7 @@
     /// * MapValue value: If parameter's entity type is a composite entity then use
     /// map from composite entity property names to property values, otherwise,
     /// use parameter value.
-    public var parameters: GoogleCloudWkt.Struct? = nil
+    public var parameters: GoogleCloudWKT.Struct? = nil
 
     /// Final text input which was matched during MatchIntent. This value can be
     /// different from original input sent in request because of spelling
@@ -242,11 +242,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Match"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

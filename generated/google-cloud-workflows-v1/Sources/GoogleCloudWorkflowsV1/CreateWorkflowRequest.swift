@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request for the
 /// [CreateWorkflow][google.cloud.workflows.v1.Workflows.CreateWorkflow]
 /// method.
 ///
 /// [google.cloud.workflows.v1.Workflows.CreateWorkflow]: <doc:WorkflowsClient/createWorkflow(request:options:)>
-public struct CreateWorkflowRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CreateWorkflowRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Project and location in which the workflow should be created.
@@ -61,10 +61,10 @@ public struct CreateWorkflowRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.workflows.v1.CreateWorkflowRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A
 /// [CertificateDescription][google.cloud.security.privateca.v1.CertificateDescription]
@@ -23,7 +23,7 @@ import Foundation
 /// to using ASN.1 / X.509.
 ///
 /// [google.cloud.security.privateca.v1.CertificateDescription]: <doc:CertificateDescription>
-public struct CertificateDescription: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CertificateDescription: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Describes some of the values in a certificate that are related to the
@@ -80,7 +80,7 @@ public struct CertificateDescription: Codable, Equatable, GoogleCloudWkt._AnyPac
 
   /// These values describe fields in an issued X.509 certificate such as the
   /// distinguished name, subject alternative names, serial number, and lifetime.
-  public struct SubjectDescription: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SubjectDescription: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Contains distinguished name fields such as the common name, location and
@@ -94,16 +94,16 @@ public struct CertificateDescription: Codable, Equatable, GoogleCloudWkt._AnyPac
     public var hexSerialNumber: Swift.String = Swift.String()
 
     /// For convenience, the actual lifetime of an issued certificate.
-    public var lifetime: GoogleCloudWkt.Duration? = nil
+    public var lifetime: GoogleCloudWKT.Duration? = nil
 
     /// The time at which the certificate becomes valid.
-    public var notBeforeTime: GoogleCloudWkt.Timestamp? = nil
+    public var notBeforeTime: GoogleCloudWKT.Timestamp? = nil
 
     /// The time after which the certificate is expired.
     /// Per RFC 5280, the validity period for a certificate is the period of time
     /// from not_before_time through not_after_time, inclusive.
     /// Corresponds to 'not_before_time' + 'lifetime' - 1 second.
-    public var notAfterTime: GoogleCloudWkt.Timestamp? = nil
+    public var notAfterTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `SubjectDescription`.
     public init() {}
@@ -125,17 +125,17 @@ public struct CertificateDescription: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.cloud.security.privateca.v1.CertificateDescription.SubjectDescription"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A KeyId identifies a specific public key, usually by hashing the public
   /// key.
-  public struct KeyId: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct KeyId: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The value of this KeyId encoded in lowercase hexadecimal. This
@@ -161,16 +161,16 @@ public struct CertificateDescription: Codable, Equatable, GoogleCloudWkt._AnyPac
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.security.privateca.v1.CertificateDescription.KeyId"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A group of fingerprints for the x509 certificate.
-  public struct CertificateFingerprint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CertificateFingerprint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The SHA 256 hash, encoded in hexadecimal, of the DER x509 certificate.
@@ -196,21 +196,21 @@ public struct CertificateDescription: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.cloud.security.privateca.v1.CertificateDescription.CertificateFingerprint"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.security.privateca.v1.CertificateDescription"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

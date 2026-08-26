@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// ExternalProtectionLevelOptions stores a group of additional fields for
 /// configuring a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] that
@@ -27,7 +27,7 @@ import Foundation
 /// [google.cloud.kms.v1.CryptoKeyVersion]: <doc:CryptoKeyVersion>
 /// [google.cloud.kms.v1.ProtectionLevel.EXTERNAL]: <doc:ProtectionLevel/external>
 /// [google.cloud.kms.v1.ProtectionLevel.EXTERNAL_VPC]: <doc:ProtectionLevel/externalVpc>
-public struct ExternalProtectionLevelOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ExternalProtectionLevelOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The URI for an external resource that this
@@ -63,10 +63,10 @@ public struct ExternalProtectionLevelOptions: Codable, Equatable, GoogleCloudWkt
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.ExternalProtectionLevelOptions"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

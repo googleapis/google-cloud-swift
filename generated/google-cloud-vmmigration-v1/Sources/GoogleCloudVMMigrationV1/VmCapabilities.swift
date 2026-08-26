@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Migrating VM source information about the VM capabilities needed for some
 /// Compute Engine features.
-public struct VmCapabilities: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct VmCapabilities: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Unordered list. List of certain VM OS capabilities needed for
@@ -27,7 +27,7 @@ public struct VmCapabilities: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var osCapabilities: [OsCapability] = []
 
   /// Output only. The last time OS capabilities list was updated.
-  public var lastOsCapabilitiesUpdateTime: GoogleCloudWkt.Timestamp? = nil
+  public var lastOsCapabilitiesUpdateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `VmCapabilities`.
   public init() {}
@@ -48,10 +48,10 @@ public struct VmCapabilities: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vmmigration.v1.VmCapabilities"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

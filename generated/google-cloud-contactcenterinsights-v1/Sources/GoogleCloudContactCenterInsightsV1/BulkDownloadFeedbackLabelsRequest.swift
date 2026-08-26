@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request for the BulkDownloadFeedbackLabel endpoint.
-public struct BulkDownloadFeedbackLabelsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BulkDownloadFeedbackLabelsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The parent resource for new feedback labels.
@@ -136,7 +136,7 @@ public struct BulkDownloadFeedbackLabelsRequest: Codable, Equatable, GoogleCloud
   }
 
   /// Google Cloud Storage Object details to write the feedback labels to.
-  public struct GcsDestination: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GcsDestination: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. File format in which the labels will be exported.
@@ -292,11 +292,11 @@ public struct BulkDownloadFeedbackLabelsRequest: Codable, Equatable, GoogleCloud
       return
         "type.googleapis.com/google.cloud.contactcenterinsights.v1.BulkDownloadFeedbackLabelsRequest.GcsDestination"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -417,10 +417,10 @@ public struct BulkDownloadFeedbackLabelsRequest: Codable, Equatable, GoogleCloud
     return
       "type.googleapis.com/google.cloud.contactcenterinsights.v1.BulkDownloadFeedbackLabelsRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

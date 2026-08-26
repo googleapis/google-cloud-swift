@@ -15,19 +15,19 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Video segment.
-public struct VideoSegment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct VideoSegment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Time-offset, relative to the beginning of the video,
   /// corresponding to the start of the segment (inclusive).
-  public var startTimeOffset: GoogleCloudWkt.Duration? = nil
+  public var startTimeOffset: GoogleCloudWKT.Duration? = nil
 
   /// Time-offset, relative to the beginning of the video,
   /// corresponding to the end of the segment (inclusive).
-  public var endTimeOffset: GoogleCloudWkt.Duration? = nil
+  public var endTimeOffset: GoogleCloudWKT.Duration? = nil
 
   /// Initialize a new instance of `VideoSegment`.
   public init() {}
@@ -48,10 +48,10 @@ public struct VideoSegment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.videointelligence.v1.VideoSegment"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

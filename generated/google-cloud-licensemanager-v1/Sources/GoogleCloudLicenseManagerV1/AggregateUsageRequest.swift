@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Message for requesting aggregate of Usage per configuration.
-public struct AggregateUsageRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AggregateUsageRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Parent value for AggregateUsageRequest
@@ -39,11 +39,11 @@ public struct AggregateUsageRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
 
   /// Required. Licenses are purchased per month - so usage track needs start
   /// time of a month.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Required. Usage track is always for a month. This parameter is for the end
   /// time of the month.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `AggregateUsageRequest`.
   public init() {}
@@ -64,10 +64,10 @@ public struct AggregateUsageRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.licensemanager.v1.AggregateUsageRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -16,10 +16,10 @@
 
 #if MetadataService || PipelineService || ScheduleService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Instance of a general artifact.
-  public struct Artifact: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Artifact: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The resource name of the Artifact.
@@ -47,10 +47,10 @@
     public var labels: [Swift.String: Swift.String] = [:]
 
     /// Output only. Timestamp when this Artifact was created.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Timestamp when this Artifact was last updated.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// The state of this Artifact. This is a property of the Artifact, and does
     /// not imply or capture any ongoing process. This property is managed by
@@ -75,7 +75,7 @@
     /// Properties of the Artifact.
     /// Top level metadata keys' heading and trailing spaces will be trimmed.
     /// The size of this field should not exceed 200KB.
-    public var metadata: GoogleCloudWkt.Struct? = nil
+    public var metadata: GoogleCloudWKT.Struct? = nil
 
     /// Description of the Artifact
     public var description: Swift.String = Swift.String()
@@ -206,11 +206,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.Artifact"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -32,7 +32,7 @@ let package = Package(
       name: "GoogleCloudDatastreamLoggingV1",
       dependencies: [
         .product(name: "GoogleCloudDatastreamV1", package: "google-cloud-datastream-v1"),
-        .product(name: "GoogleCloudWkt", package: "wkt"),
+        .product(name: "GoogleCloudWKT", package: "wkt"),
       ],
     )
   ]

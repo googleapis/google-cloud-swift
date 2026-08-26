@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudDataCatalogV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 

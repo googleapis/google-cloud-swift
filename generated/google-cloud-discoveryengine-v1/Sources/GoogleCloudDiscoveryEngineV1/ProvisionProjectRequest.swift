@@ -16,14 +16,14 @@
 
 #if ProjectService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request for
   /// [ProjectService.ProvisionProject][google.cloud.discoveryengine.v1.ProjectService.ProvisionProject]
   /// method.
   ///
   /// [google.cloud.discoveryengine.v1.ProjectService.ProvisionProject]: <doc:ProjectServiceClient/provisionProject(request:options:)>
-  public struct ProvisionProjectRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ProvisionProjectRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Full resource name of a
@@ -64,11 +64,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.ProvisionProjectRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

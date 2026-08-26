@@ -16,7 +16,7 @@
 
 #if Flows || Pages || Sessions || TestCases
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// An event handler specifies an
   /// [event][google.cloud.dialogflow.cx.v3.EventHandler.event] that can be handled
@@ -39,7 +39,7 @@
   /// [google.cloud.dialogflow.cx.v3.EventHandler.target_flow]: <doc:EventHandler/OneOf_Target/targetFlow(_:)>
   /// [google.cloud.dialogflow.cx.v3.EventHandler.target_page]: <doc:EventHandler/OneOf_Target/targetPage(_:)>
   /// [google.cloud.dialogflow.cx.v3.EventHandler.trigger_fulfillment]: <doc:EventHandler/triggerFulfillment>
-  public struct EventHandler: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct EventHandler: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The unique identifier of this event handler.
@@ -160,11 +160,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.EventHandler"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

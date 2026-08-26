@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The [UpdateVersion][google.cloud.apihub.v1.ApiHub.UpdateVersion] method's
 /// request.
 ///
 /// [google.cloud.apihub.v1.ApiHub.UpdateVersion]: <doc:ApiHubClient/updateVersion(request:options:)>
-public struct UpdateVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateVersionRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The API version to update.
@@ -32,7 +32,7 @@ public struct UpdateVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public var version: Version? = nil
 
   /// Required. The list of fields to update.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `UpdateVersionRequest`.
   public init() {}
@@ -53,10 +53,10 @@ public struct UpdateVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.apihub.v1.UpdateVersionRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

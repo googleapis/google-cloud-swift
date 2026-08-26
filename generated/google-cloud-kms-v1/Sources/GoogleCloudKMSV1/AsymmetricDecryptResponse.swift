@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response message for
 /// [KeyManagementService.AsymmetricDecrypt][google.cloud.kms.v1.KeyManagementService.AsymmetricDecrypt].
 ///
 /// [google.cloud.kms.v1.KeyManagementService.AsymmetricDecrypt]: <doc:KeyManagementServiceClient/asymmetricDecrypt(request:options:)>
-public struct AsymmetricDecryptResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AsymmetricDecryptResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The decrypted data originally encrypted with the matching public key.
@@ -42,7 +42,7 @@ public struct AsymmetricDecryptResponse: Codable, Equatable, GoogleCloudWkt._Any
   /// languages that support this type.
   ///
   /// [google.cloud.kms.v1.AsymmetricDecryptResponse.plaintext]: <doc:AsymmetricDecryptResponse/plaintext>
-  public var plaintextCrc32C: GoogleCloudWkt.Int64Value? = nil
+  public var plaintextCrc32C: GoogleCloudWKT.Int64Value? = nil
 
   /// Integrity verification field. A flag indicating whether
   /// [AsymmetricDecryptRequest.ciphertext_crc32c][google.cloud.kms.v1.AsymmetricDecryptRequest.ciphertext_crc32c]
@@ -99,7 +99,7 @@ public struct AsymmetricDecryptResponse: Codable, Equatable, GoogleCloudWkt._Any
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.plaintext = try container.decode(Foundation.Data.self, forKey: .plaintext)
     self.plaintextCrc32C = try container.decodeIfPresent(
-      GoogleCloudWkt.Int64Value.self, forKey: .plaintextCrc32C)
+      GoogleCloudWKT.Int64Value.self, forKey: .plaintextCrc32C)
     self.verifiedCiphertextCrc32C = try container.decode(
       Swift.Bool.self, forKey: .verifiedCiphertextCrc32C)
     self.protectionLevel = try container.decode(ProtectionLevel.self, forKey: .protectionLevel)
@@ -116,10 +116,10 @@ public struct AsymmetricDecryptResponse: Codable, Equatable, GoogleCloudWkt._Any
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.AsymmetricDecryptResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

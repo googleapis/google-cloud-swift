@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleCloudGax
 
@@ -401,7 +401,7 @@ extension Clients {
     /// See `ConfigClient.updateFramework`.
     func updateFramework(
       framework: Framework?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudSecurityComplianceV1.Framework
 
     /// See `ConfigClient.deleteFramework`.
@@ -453,7 +453,7 @@ extension Clients {
     /// See `ConfigClient.updateCloudControl`.
     func updateCloudControl(
       cloudControl: CloudControl?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudSecurityComplianceV1.CloudControl
 
     /// See `ConfigClient.deleteCloudControl`.
@@ -705,7 +705,7 @@ extension Clients.ConfigProtocol {
 
   public func updateFramework(
     framework: Framework?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudSecurityComplianceV1.Framework {
     let request = UpdateFrameworkRequest().with {
       $0.framework = framework
@@ -831,7 +831,7 @@ extension Clients.ConfigProtocol {
 
   public func updateCloudControl(
     cloudControl: CloudControl?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudSecurityComplianceV1.CloudControl {
     let request = UpdateCloudControlRequest().with {
       $0.cloudControl = cloudControl

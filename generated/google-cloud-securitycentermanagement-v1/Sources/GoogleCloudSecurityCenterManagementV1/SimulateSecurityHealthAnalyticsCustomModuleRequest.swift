@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleIAMV1
 
 /// Request message for
@@ -23,7 +23,7 @@ import GoogleIAMV1
 /// The maximum size of the request is 4 MiB.
 ///
 /// [google.cloud.securitycentermanagement.v1.SecurityCenterManagement.SimulateSecurityHealthAnalyticsCustomModule]: <doc:SecurityCenterManagementClient/simulateSecurityHealthAnalyticsCustomModule(request:options:)>
-public struct SimulateSecurityHealthAnalyticsCustomModuleRequest: Codable, Equatable, GoogleCloudWkt
+public struct SimulateSecurityHealthAnalyticsCustomModuleRequest: Codable, Equatable, GoogleCloudWKT
     ._AnyPackable,
   Sendable
 {
@@ -56,7 +56,7 @@ public struct SimulateSecurityHealthAnalyticsCustomModuleRequest: Codable, Equat
   }
 
   /// Manually constructed information about a resource.
-  public struct SimulatedResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SimulatedResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The type of the resource. For example,
@@ -68,7 +68,7 @@ public struct SimulateSecurityHealthAnalyticsCustomModuleRequest: Codable, Equat
     ///
     /// If the custom module evaluates only the IAM allow policy, then you can
     /// omit this field.
-    public var resourceData: GoogleCloudWkt.Struct? = nil
+    public var resourceData: GoogleCloudWKT.Struct? = nil
 
     /// Optional. A representation of the IAM allow policy.
     ///
@@ -96,11 +96,11 @@ public struct SimulateSecurityHealthAnalyticsCustomModuleRequest: Codable, Equat
       return
         "type.googleapis.com/google.cloud.securitycentermanagement.v1.SimulateSecurityHealthAnalyticsCustomModuleRequest.SimulatedResource"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -108,10 +108,10 @@ public struct SimulateSecurityHealthAnalyticsCustomModuleRequest: Codable, Equat
     return
       "type.googleapis.com/google.cloud.securitycentermanagement.v1.SimulateSecurityHealthAnalyticsCustomModuleRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

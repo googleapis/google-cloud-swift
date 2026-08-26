@@ -15,26 +15,26 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A span is a unit of work or a single operation during the request processing.
-public struct Span: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Span: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The name of the span.
   public var name: Swift.String = Swift.String()
 
   /// Output only. The start time of the span.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The end time of the span.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The duration of the span.
-  public var duration: GoogleCloudWkt.Duration? = nil
+  public var duration: GoogleCloudWKT.Duration? = nil
 
   /// Output only. Key-value attributes associated with the span.
-  public var attributes: GoogleCloudWkt.Struct? = nil
+  public var attributes: GoogleCloudWKT.Struct? = nil
 
   /// Output only. The child spans that are nested under this span.
   public var childSpans: [Span] = []
@@ -58,10 +58,10 @@ public struct Span: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.Span"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

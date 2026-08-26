@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for UpdateInterceptEndpointGroupAssociation.
-public struct UpdateInterceptEndpointGroupAssociationRequest: Codable, Equatable, GoogleCloudWkt
+public struct UpdateInterceptEndpointGroupAssociationRequest: Codable, Equatable, GoogleCloudWKT
     ._AnyPackable,
   Sendable
 {
@@ -27,7 +27,7 @@ public struct UpdateInterceptEndpointGroupAssociationRequest: Codable, Equatable
   /// (e.g. `description`; *not*
   /// `intercept_endpoint_group_association.description`). See
   /// https://google.aip.dev/161 for more details.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Required. The association to update.
   public var interceptEndpointGroupAssociation: InterceptEndpointGroupAssociation? = nil
@@ -57,10 +57,10 @@ public struct UpdateInterceptEndpointGroupAssociationRequest: Codable, Equatable
     return
       "type.googleapis.com/google.cloud.networksecurity.v1.UpdateInterceptEndpointGroupAssociationRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

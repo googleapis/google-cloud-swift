@@ -16,10 +16,10 @@
 
 #if VertexRagDataService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Specifies the parsing config for RagFiles.
-  public struct RagFileParsingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RagFileParsingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The parser to use for RagFiles.
@@ -86,7 +86,7 @@
     }
 
     /// Document AI Layout Parser config.
-    public struct LayoutParser: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct LayoutParser: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The full resource name of a Document AI processor or processor version.
@@ -123,16 +123,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.RagFileParsingConfig.LayoutParser"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Specifies the advanced parsing for RagFiles.
-    public struct LlmParser: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct LlmParser: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The name of a LLM model used for parsing.
@@ -170,11 +170,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.RagFileParsingConfig.LlmParser"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -189,11 +189,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.RagFileParsingConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

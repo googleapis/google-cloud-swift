@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A build resource in the Cloud Build API.
 ///
@@ -36,7 +36,7 @@ import Foundation
 /// - $REVISION_ID or $COMMIT_SHA: the commit SHA specified by RepoSource or
 ///   resolved from the specified branch or tag.
 /// - $SHORT_SHA: first 7 characters of $REVISION_ID or $COMMIT_SHA.
-public struct Build: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Build: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The 'Build' name with format:
@@ -66,16 +66,16 @@ public struct Build: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var results: Results? = nil
 
   /// Output only. Time at which the request to create the build was received.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Time at which execution of the build was started.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Time at which execution of the build was finished.
   ///
   /// The difference between finish_time and start_time is the duration of the
   /// build's execution.
-  public var finishTime: GoogleCloudWkt.Timestamp? = nil
+  public var finishTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Amount of time that this build should be allowed to run, to second
   /// granularity. If this amount of time elapses, work on the build will cease
@@ -84,7 +84,7 @@ public struct Build: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// `timeout` starts ticking from `startTime`.
   ///
   /// Default time is 60 minutes.
-  public var timeout: GoogleCloudWkt.Duration? = nil
+  public var timeout: GoogleCloudWKT.Duration? = nil
 
   /// A list of images to be pushed upon the successful completion of all build
   /// steps.
@@ -103,7 +103,7 @@ public struct Build: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// `EXPIRED`.
   ///
   /// The TTL starts ticking from create_time.
-  public var queueTtl: GoogleCloudWkt.Duration? = nil
+  public var queueTtl: GoogleCloudWKT.Duration? = nil
 
   /// Artifacts produced by the build that should be uploaded upon
   /// successful completion of all build steps.
@@ -198,7 +198,7 @@ public struct Build: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// A non-fatal problem encountered during the execution of the build.
-  public struct Warning: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Warning: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Explanation of the warning generated.
@@ -338,16 +338,16 @@ public struct Build: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.devtools.cloudbuild.v1.Build.Warning"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A fatal problem encountered during the execution of the build.
-  public struct FailureInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FailureInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The name of the failure.
@@ -509,11 +509,11 @@ public struct Build: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.devtools.cloudbuild.v1.Build.FailureInfo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -675,10 +675,10 @@ public struct Build: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.devtools.cloudbuild.v1.Build"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Selector of all available annotators and phrase matchers to run.
-public struct AnnotatorSelector: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AnnotatorSelector: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Whether to run the interruption annotator.
@@ -86,7 +86,7 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleCloudWkt._AnyPackable
   }
 
   /// Configuration for summarization.
-  public struct SummarizationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SummarizationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Summarization must use either a preexisting conversation profile or one
@@ -273,16 +273,16 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleCloudWkt._AnyPackable
       return
         "type.googleapis.com/google.cloud.contactcenterinsights.v1.AnnotatorSelector.SummarizationConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configuration for the QA feature.
-  public struct QaConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct QaConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Which scorecards should be scored.
@@ -341,7 +341,7 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleCloudWkt._AnyPackable
     }
 
     /// Container for a list of scorecards.
-    public struct ScorecardList: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ScorecardList: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// List of QaScorecardRevisions.
@@ -367,11 +367,11 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleCloudWkt._AnyPackable
         return
           "type.googleapis.com/google.cloud.contactcenterinsights.v1.AnnotatorSelector.QaConfig.ScorecardList"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -384,21 +384,21 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleCloudWkt._AnyPackable
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.contactcenterinsights.v1.AnnotatorSelector.QaConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.contactcenterinsights.v1.AnnotatorSelector"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

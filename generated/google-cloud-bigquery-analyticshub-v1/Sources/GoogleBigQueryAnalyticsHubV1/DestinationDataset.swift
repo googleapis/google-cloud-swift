@@ -15,20 +15,20 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Defines the destination bigquery dataset.
-public struct DestinationDataset: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DestinationDataset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. A reference that identifies the destination dataset.
   public var datasetReference: DestinationDatasetReference? = nil
 
   /// Optional. A descriptive name for the dataset.
-  public var friendlyName: GoogleCloudWkt.StringValue? = nil
+  public var friendlyName: GoogleCloudWKT.StringValue? = nil
 
   /// Optional. A user-friendly description of the dataset.
-  public var description: GoogleCloudWkt.StringValue? = nil
+  public var description: GoogleCloudWKT.StringValue? = nil
 
   /// Optional. The labels associated with this dataset. You can use these
   /// to organize and group your datasets.
@@ -66,10 +66,10 @@ public struct DestinationDataset: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.analyticshub.v1.DestinationDataset"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

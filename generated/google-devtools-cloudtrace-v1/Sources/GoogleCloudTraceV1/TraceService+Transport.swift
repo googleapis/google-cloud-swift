@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 
 extension Clients {
@@ -102,7 +102,7 @@ extension Clients {
         req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
       }
       _ = try await req.rpc(
-        GoogleCloudWkt.Empty.self, timeout: options.attemptTimeout
+        GoogleCloudWKT.Empty.self, timeout: options.attemptTimeout
       ).get()
     }
   }

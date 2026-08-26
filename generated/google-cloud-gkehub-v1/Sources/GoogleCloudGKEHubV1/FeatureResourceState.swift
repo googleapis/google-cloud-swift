@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// FeatureResourceState describes the state of a Feature *resource* in the
 /// GkeHub API. See `FeatureState` for the "running state" of the Feature in the
 /// Fleet and across Memberships.
-public struct FeatureResourceState: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct FeatureResourceState: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The current state of the Feature resource in the Hub API.
@@ -174,10 +174,10 @@ public struct FeatureResourceState: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkehub.v1.FeatureResourceState"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

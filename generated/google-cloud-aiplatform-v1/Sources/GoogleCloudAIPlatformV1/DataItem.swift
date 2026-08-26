@@ -16,21 +16,21 @@
 
 #if DatasetService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A piece of data in a Dataset. Could be an image, a video, a document or plain
   /// text.
-  public struct DataItem: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DataItem: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The resource name of the DataItem.
     public var name: Swift.String = Swift.String()
 
     /// Output only. Timestamp when this DataItem was created.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Timestamp when this DataItem was last updated.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Optional. The labels with user-defined metadata to organize your DataItems.
     ///
@@ -51,7 +51,7 @@
     /// dataItemSchemaUri field.
     ///
     /// [google.cloud.aiplatform.v1.Dataset.metadata_schema_uri]: <doc:Dataset/metadataSchemaUri>
-    public var payload: GoogleCloudWkt.Value? = nil
+    public var payload: GoogleCloudWKT.Value? = nil
 
     /// Optional. Used to perform consistent read-modify-write updates. If not set,
     /// a blind "overwrite" update happens.
@@ -82,11 +82,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.DataItem"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

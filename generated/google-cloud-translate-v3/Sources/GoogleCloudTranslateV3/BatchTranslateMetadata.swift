@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// State metadata for the batch translation operation.
-public struct BatchTranslateMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BatchTranslateMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The state of the operation.
@@ -37,7 +37,7 @@ public struct BatchTranslateMetadata: Codable, Equatable, GoogleCloudWkt._AnyPac
   public var totalCharacters: Swift.Int64 = Swift.Int64()
 
   /// Time when the operation was submitted.
-  public var submitTime: GoogleCloudWkt.Timestamp? = nil
+  public var submitTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `BatchTranslateMetadata`.
   public init() {}
@@ -188,10 +188,10 @@ public struct BatchTranslateMetadata: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.translation.v3.BatchTranslateMetadata"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

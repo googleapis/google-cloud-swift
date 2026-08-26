@@ -16,14 +16,14 @@
 
 #if GlobalPublicDelegatedPrefixes || PublicDelegatedPrefixes
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A PublicDelegatedPrefix resource represents an IP block within a
   /// PublicAdvertisedPrefix that is configured within a single cloud scope
   /// (global or region). IPs in the block can be allocated to resources within
   /// that scope. Public delegated prefixes may be further broken up into
   /// smaller IP blocks in the same scope as the parent block.
-  public struct PublicDelegatedPrefix: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PublicDelegatedPrefix: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The allocatable prefix length supported by this public delegated prefix.
@@ -166,7 +166,7 @@
       self.enableEnhancedIpv4Allocation = try container.decodeIfPresent(
         Swift.Bool.self, forKey: .enableEnhancedIpv4Allocation)
       if let s = try container.decodeIfPresent(Swift.String.self, forKey: .fingerprint) {
-        guard let v = GoogleCloudWkt._DiscoveryBase64.decode(s) else {
+        guard let v = GoogleCloudWKT._DiscoveryBase64.decode(s) else {
           throw DecodingError.dataCorrupted(
             DecodingError.Context(
               codingPath: decoder.codingPath, debugDescription: "Expected url-safe encoded value")
@@ -201,7 +201,7 @@
       try container.encode(self.enableEnhancedIpv4Allocation, forKey: .enableEnhancedIpv4Allocation)
       if let v = fingerprint {
         try container.encode(
-          GoogleCloudWkt._DiscoveryBase64.encode(v), forKey: .fingerprint
+          GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }
       try container.encode(self.id, forKey: .id)
@@ -687,11 +687,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.PublicDelegatedPrefix"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

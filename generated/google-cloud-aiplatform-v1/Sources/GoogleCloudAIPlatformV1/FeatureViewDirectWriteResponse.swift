@@ -16,14 +16,14 @@
 
 #if FeatureOnlineStoreService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
   import GoogleRpc
 
   /// Response message for
   /// [FeatureOnlineStoreService.FeatureViewDirectWrite][google.cloud.aiplatform.v1.FeatureOnlineStoreService.FeatureViewDirectWrite].
   ///
   /// [google.cloud.aiplatform.v1.FeatureOnlineStoreService.FeatureViewDirectWrite]: <doc:FeatureOnlineStoreServiceClient/featureViewDirectWrite(request:options:)>
-  public struct FeatureViewDirectWriteResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FeatureViewDirectWriteResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Response status for the keys listed in
@@ -68,7 +68,7 @@
     }
 
     /// Details about the write for each key.
-    public struct WriteResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct WriteResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// What key is this write response associated with.
@@ -80,7 +80,7 @@
       /// is not OK, this field is not populated.
       ///
       /// [google.cloud.aiplatform.v1.FeatureViewDirectWriteResponse.status]: <doc:FeatureViewDirectWriteResponse/status>
-      public var onlineStoreWriteTime: GoogleCloudWkt.Timestamp? = nil
+      public var onlineStoreWriteTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Initialize a new instance of `WriteResponse`.
       public init() {}
@@ -102,22 +102,22 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.FeatureViewDirectWriteResponse.WriteResponse"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.FeatureViewDirectWriteResponse"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

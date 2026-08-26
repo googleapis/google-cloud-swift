@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -773,7 +773,7 @@ extension Clients {
     /// See `AssetServiceClient.updateSavedQuery`.
     func updateSavedQuery(
       savedQuery: SavedQuery?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudAssetV1.SavedQuery
 
     /// See `AssetServiceClient.deleteSavedQuery`.
@@ -1422,7 +1422,7 @@ extension Clients.AssetServiceProtocol {
 
   public func updateSavedQuery(
     savedQuery: SavedQuery?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudAssetV1.SavedQuery {
     let request = UpdateSavedQueryRequest().with {
       $0.savedQuery = savedQuery

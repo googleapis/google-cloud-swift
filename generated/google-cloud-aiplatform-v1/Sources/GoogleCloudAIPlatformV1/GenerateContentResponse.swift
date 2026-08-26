@@ -16,10 +16,10 @@
 
 #if PredictionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Response message for [PredictionService.GenerateContent].
-  public struct GenerateContentResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GenerateContentResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Generated candidates.
@@ -29,7 +29,7 @@
     public var modelVersion: Swift.String = Swift.String()
 
     /// Output only. Timestamp when the request is made to the server.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. response_id is used to identify each response. It is the
     /// encoding of the event_id.
@@ -60,7 +60,7 @@
     }
 
     /// Content filter results for a prompt sent in the request.
-    public struct PromptFeedback: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct PromptFeedback: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. Blocked reason.
@@ -227,16 +227,16 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.GenerateContentResponse.PromptFeedback"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Usage metadata about response(s).
-    public struct UsageMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct UsageMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Number of tokens in the request. When `cached_content` is set, this is
@@ -416,22 +416,22 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.GenerateContentResponse.UsageMetadata"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.GenerateContentResponse"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

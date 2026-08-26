@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleRpc
   import GoogleCloudGax
@@ -436,7 +436,7 @@
       /// See `ConversationProfilesClient.updateConversationProfile`.
       func updateConversationProfile(
         conversationProfile: ConversationProfile?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudDialogflowV2.ConversationProfile
 
       /// See `ConversationProfilesClient.deleteConversationProfile`.
@@ -703,7 +703,7 @@
 
     public func updateConversationProfile(
       conversationProfile: ConversationProfile?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDialogflowV2.ConversationProfile {
       let request = UpdateConversationProfileRequest().with {
         $0.conversationProfile = conversationProfile

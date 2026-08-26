@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message to check if a service in your project in a region is
 /// eligible for Data Transfer Essentials configuration.
-public struct GetMulticloudDataTransferSupportedServiceRequest: Codable, Equatable, GoogleCloudWkt
+public struct GetMulticloudDataTransferSupportedServiceRequest: Codable, Equatable, GoogleCloudWKT
     ._AnyPackable,
   Sendable
 {
@@ -46,10 +46,10 @@ public struct GetMulticloudDataTransferSupportedServiceRequest: Codable, Equatab
     return
       "type.googleapis.com/google.cloud.networkconnectivity.v1.GetMulticloudDataTransferSupportedServiceRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

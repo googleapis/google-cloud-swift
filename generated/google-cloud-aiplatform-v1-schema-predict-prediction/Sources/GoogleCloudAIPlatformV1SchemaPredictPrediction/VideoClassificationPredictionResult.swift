@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Prediction output format for Video Classification.
-public struct VideoClassificationPredictionResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct VideoClassificationPredictionResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The resource ID of the AnnotationSpec that had been identified.
@@ -41,7 +41,7 @@ public struct VideoClassificationPredictionResult: Codable, Equatable, GoogleClo
   /// 'segment-classification' prediction type, this equals the original
   /// 'timeSegmentStart' from the input instance, for other types it is the
   /// start of a shot or a 1 second interval respectively.
-  public var timeSegmentStart: GoogleCloudWkt.Duration? = nil
+  public var timeSegmentStart: GoogleCloudWKT.Duration? = nil
 
   /// The end, exclusive, of the video's time segment in which the
   /// AnnotationSpec has been identified. Expressed as a number of seconds as
@@ -50,11 +50,11 @@ public struct VideoClassificationPredictionResult: Codable, Equatable, GoogleClo
   /// 'segment-classification' prediction type, this equals the original
   /// 'timeSegmentEnd' from the input instance, for other types it is the end
   /// of a shot or a 1 second interval respectively.
-  public var timeSegmentEnd: GoogleCloudWkt.Duration? = nil
+  public var timeSegmentEnd: GoogleCloudWKT.Duration? = nil
 
   /// The Model's confidence in correction of this prediction, higher
   /// value means higher confidence.
-  public var confidence: GoogleCloudWkt.FloatValue? = nil
+  public var confidence: GoogleCloudWKT.FloatValue? = nil
 
   /// Initialize a new instance of `VideoClassificationPredictionResult`.
   public init() {}
@@ -76,10 +76,10 @@ public struct VideoClassificationPredictionResult: Codable, Equatable, GoogleClo
     return
       "type.googleapis.com/google.cloud.aiplatform.v1.schema.predict.prediction.VideoClassificationPredictionResult"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

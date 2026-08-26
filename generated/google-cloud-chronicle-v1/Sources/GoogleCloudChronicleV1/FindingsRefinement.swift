@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents a set of logic conditions used to refine various types of
 /// findings such as curated rule detections.
-public struct FindingsRefinement: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct FindingsRefinement: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Full resource name for the findings refinement.
@@ -34,11 +34,11 @@ public struct FindingsRefinement: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public var type: FindingsRefinementType = FindingsRefinementType()
 
   /// Output only. The timestamp of when the findings refinement was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The timestamp of when the findings refinement was last
   /// updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The query for the findings refinement. Works in conjunction with the type
   /// field to determine the findings refinement behavior. The syntax of this
@@ -72,10 +72,10 @@ public struct FindingsRefinement: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.chronicle.v1.FindingsRefinement"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

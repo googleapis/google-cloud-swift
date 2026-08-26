@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudParameterManagerV1
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(
   client: ParameterManagerClient, projectId: String, locationId: String, parameterId: String,

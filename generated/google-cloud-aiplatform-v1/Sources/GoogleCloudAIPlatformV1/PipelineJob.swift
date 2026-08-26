@@ -16,11 +16,11 @@
 
 #if PipelineService || ScheduleService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
   import GoogleRpc
 
   /// An instance of a machine learning PipelineJob.
-  public struct PipelineJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PipelineJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The resource name of the PipelineJob.
@@ -32,19 +32,19 @@
     public var displayName: Swift.String = Swift.String()
 
     /// Output only. Pipeline creation time.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Pipeline start time.
-    public var startTime: GoogleCloudWkt.Timestamp? = nil
+    public var startTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Pipeline end time.
-    public var endTime: GoogleCloudWkt.Timestamp? = nil
+    public var endTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Timestamp when this PipelineJob was most recently updated.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// The spec of the pipeline.
-    public var pipelineSpec: GoogleCloudWkt.Struct? = nil
+    public var pipelineSpec: GoogleCloudWKT.Struct? = nil
 
     /// Output only. The detailed state of the job.
     public var state: PipelineState = PipelineState()
@@ -154,7 +154,7 @@
     }
 
     /// The runtime config of a PipelineJob.
-    public struct RuntimeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct RuntimeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Deprecated. Use
@@ -189,7 +189,7 @@
       /// DSL.
       ///
       /// [google.cloud.aiplatform.v1.PipelineJob.pipeline_spec]: <doc:PipelineJob/pipelineSpec>
-      public var parameterValues: [Swift.String: GoogleCloudWkt.Value] = [:]
+      public var parameterValues: [Swift.String: GoogleCloudWKT.Value] = [:]
 
       /// Represents the failure policy of a pipeline. Currently, the default of a
       /// pipeline is that the pipeline will continue to run until no more tasks
@@ -220,7 +220,7 @@
       }
 
       /// The type of an input artifact.
-      public struct InputArtifact: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct InputArtifact: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         public var kind: OneOf_Kind? = nil
@@ -289,33 +289,33 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.PipelineJob.RuntimeConfig.InputArtifact"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.PipelineJob.RuntimeConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.PipelineJob"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

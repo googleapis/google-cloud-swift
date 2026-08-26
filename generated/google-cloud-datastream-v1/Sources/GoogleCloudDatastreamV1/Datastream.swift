@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -809,7 +809,7 @@ extension Clients {
     /// See `DatastreamClient.updateConnectionProfile`.
     func updateConnectionProfile(
       connectionProfile: ConnectionProfile?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<ConnectionProfile>
 
     /// See `DatastreamClient.deleteConnectionProfile`.
@@ -875,7 +875,7 @@ extension Clients {
     /// See `DatastreamClient.updateStream`.
     func updateStream(
       stream: Stream?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Stream>
 
     /// See `DatastreamClient.deleteStream`.
@@ -1475,7 +1475,7 @@ extension Clients.DatastreamProtocol {
 
   public func updateConnectionProfile(
     connectionProfile: ConnectionProfile?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<ConnectionProfile> {
     let request = UpdateConnectionProfileRequest().with {
       $0.connectionProfile = connectionProfile
@@ -1658,7 +1658,7 @@ extension Clients.DatastreamProtocol {
 
   public func updateStream(
     stream: Stream?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Stream> {
     let request = UpdateStreamRequest().with {
       $0.stream = stream

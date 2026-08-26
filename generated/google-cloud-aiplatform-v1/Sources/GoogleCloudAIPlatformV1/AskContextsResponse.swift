@@ -16,13 +16,13 @@
 
 #if VertexRagService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Response message for
   /// [VertexRagService.AskContexts][google.cloud.aiplatform.v1.VertexRagService.AskContexts].
   ///
   /// [google.cloud.aiplatform.v1.VertexRagService.AskContexts]: <doc:VertexRagServiceClient/askContexts(request:options:)>
-  public struct AskContextsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AskContextsResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The Retrieval Response.
@@ -50,11 +50,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.AskContextsResponse"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

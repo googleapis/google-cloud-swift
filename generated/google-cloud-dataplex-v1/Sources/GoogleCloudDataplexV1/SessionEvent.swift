@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// These messages contain information about sessions within an environment.
 /// The monitored resource is 'Environment'.
-public struct SessionEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SessionEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The log message.
@@ -43,7 +43,7 @@ public struct SessionEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var fastStartupEnabled: Swift.Bool = Swift.Bool()
 
   /// The idle duration of a warm pooled session before it is assigned to user.
-  public var unassignedDuration: GoogleCloudWkt.Duration? = nil
+  public var unassignedDuration: GoogleCloudWKT.Duration? = nil
 
   /// Additional information about the Query metadata.
   public var detail: OneOf_Detail? = nil
@@ -84,7 +84,7 @@ public struct SessionEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.eventSucceeded = try container.decode(Swift.Bool.self, forKey: .eventSucceeded)
     self.fastStartupEnabled = try container.decode(Swift.Bool.self, forKey: .fastStartupEnabled)
     self.unassignedDuration = try container.decodeIfPresent(
-      GoogleCloudWkt.Duration.self, forKey: .unassignedDuration)
+      GoogleCloudWKT.Duration.self, forKey: .unassignedDuration)
 
     var detail: OneOf_Detail? = nil
     let detailCheckAndSet = {
@@ -121,7 +121,7 @@ public struct SessionEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Execution details of the query.
-  public struct QueryDetail: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct QueryDetail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The unique Query id identifying the query.
@@ -134,7 +134,7 @@ public struct SessionEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public var engine: SessionEvent.QueryDetail.Engine = SessionEvent.QueryDetail.Engine()
 
     /// Time taken for execution of the query.
-    public var duration: GoogleCloudWkt.Duration? = nil
+    public var duration: GoogleCloudWKT.Duration? = nil
 
     /// The size of results the query produced.
     public var resultSizeBytes: Swift.Int64 = Swift.Int64()
@@ -266,11 +266,11 @@ public struct SessionEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.SessionEvent.QueryDetail"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -403,10 +403,10 @@ public struct SessionEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataplex.v1.SessionEvent"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

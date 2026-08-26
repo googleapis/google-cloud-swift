@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// OmnichannelIntegrationConfig contains all App integration configs.
-public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. Various of configuration for handling App events.
@@ -48,7 +48,7 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleCloudWkt._
   }
 
   /// ChannelConfig contains config for various of app integration.
-  public struct ChannelConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ChannelConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The config for the app.
@@ -115,16 +115,16 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleCloudWkt._
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ces.v1.OmnichannelIntegrationConfig.ChannelConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// How Omnichannel should receive/reply events from WhatsApp.
-  public struct WhatsappConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct WhatsappConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The Phone Number ID associated with the WhatsApp Business Account.
@@ -167,16 +167,16 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleCloudWkt._
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ces.v1.OmnichannelIntegrationConfig.WhatsappConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configs of subscribers.
-  public struct SubscriberConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SubscriberConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The config for the subscriber.
@@ -243,16 +243,16 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleCloudWkt._
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ces.v1.OmnichannelIntegrationConfig.SubscriberConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configs for CES app.
-  public struct CesAppConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CesAppConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The unique identifier of the CES app.
@@ -278,16 +278,16 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleCloudWkt._
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ces.v1.OmnichannelIntegrationConfig.CesAppConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Routing config specify how/who to route app events to a subscriber.
-  public struct RoutingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RoutingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The key of the subscriber.
@@ -312,21 +312,21 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleCloudWkt._
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ces.v1.OmnichannelIntegrationConfig.RoutingConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.OmnichannelIntegrationConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

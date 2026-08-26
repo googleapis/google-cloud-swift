@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleApiServiceControlV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: QuotaControllerClient) async throws {
   let response = try await client.allocateQuota(

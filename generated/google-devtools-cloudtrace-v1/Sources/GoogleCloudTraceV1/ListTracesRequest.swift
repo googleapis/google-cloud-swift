@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The request message for the `ListTraces` method. All fields are required
 /// unless specified.
-public struct ListTracesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ListTracesRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. ID of the Cloud project where the trace data is stored.
@@ -40,11 +40,11 @@ public struct ListTracesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
   /// Start of the time interval (inclusive) during which the trace data was
   /// collected from the application.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// End of the time interval (inclusive) during which the trace data was
   /// collected from the application.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. A filter against labels for the request.
   ///
@@ -228,10 +228,10 @@ public struct ListTracesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.devtools.cloudtrace.v1.ListTracesRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

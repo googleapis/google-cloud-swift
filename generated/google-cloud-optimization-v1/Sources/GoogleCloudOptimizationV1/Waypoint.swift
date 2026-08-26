@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Encapsulates a waypoint. Waypoints mark arrival and departure locations of
 /// VisitRequests, and start and end locations of Vehicles.
-public struct Waypoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Waypoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Indicates that the location of this waypoint is meant to have a preference
@@ -104,10 +104,10 @@ public struct Waypoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.optimization.v1.Waypoint"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

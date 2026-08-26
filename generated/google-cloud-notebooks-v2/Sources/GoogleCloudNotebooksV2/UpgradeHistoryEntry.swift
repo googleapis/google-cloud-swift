@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The entry of VM image upgrade history.
-public struct UpgradeHistoryEntry: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpgradeHistoryEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. The snapshot of the boot disk of this notebook instance before
@@ -41,7 +41,7 @@ public struct UpgradeHistoryEntry: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public var state: UpgradeHistoryEntry.State = UpgradeHistoryEntry.State()
 
   /// Immutable. The time that this instance upgrade history entry is created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Action. Rolloback or Upgrade.
   public var action: UpgradeHistoryEntry.Action = UpgradeHistoryEntry.Action()
@@ -285,10 +285,10 @@ public struct UpgradeHistoryEntry: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.notebooks.v2.UpgradeHistoryEntry"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

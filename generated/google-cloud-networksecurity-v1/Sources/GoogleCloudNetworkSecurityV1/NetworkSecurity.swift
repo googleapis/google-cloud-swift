@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -1541,7 +1541,7 @@ extension Clients {
     /// See `NetworkSecurityClient.updateAuthorizationPolicy`.
     func updateAuthorizationPolicy(
       authorizationPolicy: AuthorizationPolicy?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<AuthorizationPolicy>
 
     /// See `NetworkSecurityClient.deleteAuthorizationPolicy`.
@@ -1606,7 +1606,7 @@ extension Clients {
     /// See `NetworkSecurityClient.updateBackendAuthenticationConfig`.
     func updateBackendAuthenticationConfig(
       backendAuthenticationConfig: BackendAuthenticationConfig?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<BackendAuthenticationConfig>
 
     /// See `NetworkSecurityClient.deleteBackendAuthenticationConfig`.
@@ -1671,7 +1671,7 @@ extension Clients {
     /// See `NetworkSecurityClient.updateServerTlsPolicy`.
     func updateServerTlsPolicy(
       serverTlsPolicy: ServerTlsPolicy?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<ServerTlsPolicy>
 
     /// See `NetworkSecurityClient.deleteServerTlsPolicy`.
@@ -1736,7 +1736,7 @@ extension Clients {
     /// See `NetworkSecurityClient.updateClientTlsPolicy`.
     func updateClientTlsPolicy(
       clientTlsPolicy: ClientTlsPolicy?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<ClientTlsPolicy>
 
     /// See `NetworkSecurityClient.deleteClientTlsPolicy`.
@@ -1801,7 +1801,7 @@ extension Clients {
     /// See `NetworkSecurityClient.updateGatewaySecurityPolicy`.
     func updateGatewaySecurityPolicy(
       gatewaySecurityPolicy: GatewaySecurityPolicy?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<GatewaySecurityPolicy>
 
     /// See `NetworkSecurityClient.deleteGatewaySecurityPolicy`.
@@ -1866,7 +1866,7 @@ extension Clients {
     /// See `NetworkSecurityClient.updateGatewaySecurityPolicyRule`.
     func updateGatewaySecurityPolicyRule(
       gatewaySecurityPolicyRule: GatewaySecurityPolicyRule?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<GatewaySecurityPolicyRule>
 
     /// See `NetworkSecurityClient.deleteGatewaySecurityPolicyRule`.
@@ -1928,7 +1928,7 @@ extension Clients {
     /// See `NetworkSecurityClient.updateUrlList`.
     func updateUrlList(
       urlList: UrlList?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<UrlList>
 
     /// See `NetworkSecurityClient.deleteUrlList`.
@@ -1992,7 +1992,7 @@ extension Clients {
     /// See `NetworkSecurityClient.updateTlsInspectionPolicy`.
     func updateTlsInspectionPolicy(
       tlsInspectionPolicy: TlsInspectionPolicy?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<TlsInspectionPolicy>
 
     /// See `NetworkSecurityClient.deleteTlsInspectionPolicy`.
@@ -2057,7 +2057,7 @@ extension Clients {
     /// See `NetworkSecurityClient.updateAuthzPolicy`.
     func updateAuthzPolicy(
       authzPolicy: AuthzPolicy?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<AuthzPolicy>
 
     /// See `NetworkSecurityClient.deleteAuthzPolicy`.
@@ -2718,7 +2718,7 @@ extension Clients.NetworkSecurityProtocol {
 
   public func updateAuthorizationPolicy(
     authorizationPolicy: AuthorizationPolicy?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<AuthorizationPolicy> {
     let request = UpdateAuthorizationPolicyRequest().with {
       $0.authorizationPolicy = authorizationPolicy
@@ -2896,7 +2896,7 @@ extension Clients.NetworkSecurityProtocol {
 
   public func updateBackendAuthenticationConfig(
     backendAuthenticationConfig: BackendAuthenticationConfig?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<BackendAuthenticationConfig> {
     let request = UpdateBackendAuthenticationConfigRequest().with {
       $0.backendAuthenticationConfig = backendAuthenticationConfig
@@ -3072,7 +3072,7 @@ extension Clients.NetworkSecurityProtocol {
 
   public func updateServerTlsPolicy(
     serverTlsPolicy: ServerTlsPolicy?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<ServerTlsPolicy> {
     let request = UpdateServerTlsPolicyRequest().with {
       $0.serverTlsPolicy = serverTlsPolicy
@@ -3248,7 +3248,7 @@ extension Clients.NetworkSecurityProtocol {
 
   public func updateClientTlsPolicy(
     clientTlsPolicy: ClientTlsPolicy?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<ClientTlsPolicy> {
     let request = UpdateClientTlsPolicyRequest().with {
       $0.clientTlsPolicy = clientTlsPolicy
@@ -3426,7 +3426,7 @@ extension Clients.NetworkSecurityProtocol {
 
   public func updateGatewaySecurityPolicy(
     gatewaySecurityPolicy: GatewaySecurityPolicy?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<GatewaySecurityPolicy> {
     let request = UpdateGatewaySecurityPolicyRequest().with {
       $0.gatewaySecurityPolicy = gatewaySecurityPolicy
@@ -3604,7 +3604,7 @@ extension Clients.NetworkSecurityProtocol {
 
   public func updateGatewaySecurityPolicyRule(
     gatewaySecurityPolicyRule: GatewaySecurityPolicyRule?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<GatewaySecurityPolicyRule> {
     let request = UpdateGatewaySecurityPolicyRuleRequest().with {
       $0.gatewaySecurityPolicyRule = gatewaySecurityPolicyRule
@@ -3779,7 +3779,7 @@ extension Clients.NetworkSecurityProtocol {
 
   public func updateUrlList(
     urlList: UrlList?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<UrlList> {
     let request = UpdateUrlListRequest().with {
       $0.urlList = urlList
@@ -3957,7 +3957,7 @@ extension Clients.NetworkSecurityProtocol {
 
   public func updateTlsInspectionPolicy(
     tlsInspectionPolicy: TlsInspectionPolicy?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<TlsInspectionPolicy> {
     let request = UpdateTlsInspectionPolicyRequest().with {
       $0.tlsInspectionPolicy = tlsInspectionPolicy
@@ -4133,7 +4133,7 @@ extension Clients.NetworkSecurityProtocol {
 
   public func updateAuthzPolicy(
     authzPolicy: AuthzPolicy?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<AuthzPolicy> {
     let request = UpdateAuthzPolicyRequest().with {
       $0.authzPolicy = authzPolicy

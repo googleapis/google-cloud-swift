@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Overlay configuration.
-public struct Overlay: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Overlay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Image overlay.
@@ -45,7 +45,7 @@ public struct Overlay: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// 2D normalized coordinates. Default: `{0.0, 0.0}`
-  public struct NormalizedCoordinate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct NormalizedCoordinate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Normalized x coordinate.
@@ -73,16 +73,16 @@ public struct Overlay: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.video.transcoder.v1.Overlay.NormalizedCoordinate"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Overlaid image.
-  public struct Image: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Image: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. URI of the image in Cloud Storage. For example,
@@ -118,16 +118,16 @@ public struct Overlay: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.video.transcoder.v1.Overlay.Image"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Display static overlay object.
-  public struct AnimationStatic: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AnimationStatic: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Normalized coordinates based on output video resolution. Valid
@@ -138,7 +138,7 @@ public struct Overlay: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public var xy: Overlay.NormalizedCoordinate? = nil
 
     /// The time to start displaying the overlay object, in seconds. Default: 0
-    public var startTimeOffset: GoogleCloudWkt.Duration? = nil
+    public var startTimeOffset: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `AnimationStatic`.
     public init() {}
@@ -159,16 +159,16 @@ public struct Overlay: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.video.transcoder.v1.Overlay.AnimationStatic"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Display overlay object with fade animation.
-  public struct AnimationFade: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AnimationFade: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Type of fade animation: `FADE_IN` or `FADE_OUT`.
@@ -182,11 +182,11 @@ public struct Overlay: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public var xy: Overlay.NormalizedCoordinate? = nil
 
     /// The time to start the fade animation, in seconds. Default: 0
-    public var startTimeOffset: GoogleCloudWkt.Duration? = nil
+    public var startTimeOffset: GoogleCloudWKT.Duration? = nil
 
     /// The time to end the fade animation, in seconds. Default:
     /// `start_time_offset` + 1s
-    public var endTimeOffset: GoogleCloudWkt.Duration? = nil
+    public var endTimeOffset: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `AnimationFade`.
     public init() {}
@@ -207,22 +207,22 @@ public struct Overlay: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.video.transcoder.v1.Overlay.AnimationFade"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// End previous overlay animation from the video. Without `AnimationEnd`, the
   /// overlay object will keep the state of previous animation until the end of
   /// the video.
-  public struct AnimationEnd: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AnimationEnd: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The time to end overlay object, in seconds. Default: 0
-    public var startTimeOffset: GoogleCloudWkt.Duration? = nil
+    public var startTimeOffset: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `AnimationEnd`.
     public init() {}
@@ -243,16 +243,16 @@ public struct Overlay: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.video.transcoder.v1.Overlay.AnimationEnd"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Animation types.
-  public struct Animation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Animation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Animations can be static or fade, or they can end the previous animation.
@@ -339,11 +339,11 @@ public struct Overlay: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.video.transcoder.v1.Overlay.Animation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -455,10 +455,10 @@ public struct Overlay: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.video.transcoder.v1.Overlay"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Log entry for BDRProtectedResource Log for resources using BackupPlan based
 /// protection.
-public struct BDRProtectedResourceLog: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BDRProtectedResourceLog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Full canonical source resource name.
@@ -44,7 +44,7 @@ public struct BDRProtectedResourceLog: Codable, Equatable, GoogleCloudWkt._AnyPa
   public var currentBackupRuleDetails: [BackupRuleDetail] = []
 
   /// Timestamp when the resource was last protected.
-  public var lastProtectedOn: GoogleCloudWkt.Timestamp? = nil
+  public var lastProtectedOn: GoogleCloudWKT.Timestamp? = nil
 
   /// Full Resource Name of the backup vault currently associated with the source
   /// resource.
@@ -72,10 +72,10 @@ public struct BDRProtectedResourceLog: Codable, Equatable, GoogleCloudWkt._AnyPa
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.backupdr.logging.v1.BDRProtectedResourceLog"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

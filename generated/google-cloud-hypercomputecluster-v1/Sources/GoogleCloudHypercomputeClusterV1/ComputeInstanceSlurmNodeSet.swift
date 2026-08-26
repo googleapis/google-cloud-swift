@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// When set in a
 /// [SlurmNodeSet][google.cloud.hypercomputecluster.v1.SlurmNodeSet], indicates
 /// that the nodeset should be backed by Compute Engine VM instances.
 ///
 /// [google.cloud.hypercomputecluster.v1.SlurmNodeSet]: <doc:SlurmNodeSet>
-public struct ComputeInstanceSlurmNodeSet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ComputeInstanceSlurmNodeSet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. [Startup
@@ -57,10 +57,10 @@ public struct ComputeInstanceSlurmNodeSet: Codable, Equatable, GoogleCloudWkt._A
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.hypercomputecluster.v1.ComputeInstanceSlurmNodeSet"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

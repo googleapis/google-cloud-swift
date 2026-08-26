@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// UpgradeClusterResponse contains the response for upgrade cluster operation.
-public struct UpgradeClusterResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpgradeClusterResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Status of upgrade operation.
@@ -49,7 +49,7 @@ public struct UpgradeClusterResponse: Codable, Equatable, GoogleCloudWkt._AnyPac
   }
 
   /// Stage information for different stages in the upgrade process.
-  public struct StageInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct StageInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The stage.
@@ -82,16 +82,16 @@ public struct UpgradeClusterResponse: Codable, Equatable, GoogleCloudWkt._AnyPac
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.alloydb.v1.UpgradeClusterResponse.StageInfo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Details regarding the upgrade of instances associated with a cluster.
-  public struct InstanceUpgradeDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct InstanceUpgradeDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Normalized name of the instance.
@@ -123,16 +123,16 @@ public struct UpgradeClusterResponse: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.cloud.alloydb.v1.UpgradeClusterResponse.InstanceUpgradeDetails"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Upgrade details of a cluster. This cluster can be primary or secondary.
-  public struct ClusterUpgradeDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ClusterUpgradeDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Normalized name of the cluster
@@ -175,11 +175,11 @@ public struct UpgradeClusterResponse: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.cloud.alloydb.v1.UpgradeClusterResponse.ClusterUpgradeDetails"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -466,10 +466,10 @@ public struct UpgradeClusterResponse: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.alloydb.v1.UpgradeClusterResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

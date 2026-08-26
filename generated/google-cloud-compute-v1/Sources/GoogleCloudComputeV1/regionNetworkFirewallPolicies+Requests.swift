@@ -16,13 +16,13 @@
 
 #if RegionNetworkFirewallPolicies
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   extension RegionNetworkFirewallPoliciesClient {
     /// Synthetic request message for the [addAssociation()][google.cloud.compute.v1.regionNetworkFirewallPolicies.addAssociation] method.
     ///
     /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.addAssociation]: <doc:RegionNetworkFirewallPoliciesClient/addAssociation(request:options:)>
-    public struct AddAssociationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AddAssociationRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Name of the firewall policy to update.
@@ -79,18 +79,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.regionNetworkFirewallPolicies.addAssociationRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [addRule()][google.cloud.compute.v1.regionNetworkFirewallPolicies.addRule] method.
     ///
     /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.addRule]: <doc:RegionNetworkFirewallPoliciesClient/addRule(request:options:)>
-    public struct AddRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AddRuleRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Name of the firewall policy to update.
@@ -150,18 +150,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.regionNetworkFirewallPolicies.addRuleRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [cloneRules()][google.cloud.compute.v1.regionNetworkFirewallPolicies.cloneRules] method.
     ///
     /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.cloneRules]: <doc:RegionNetworkFirewallPoliciesClient/cloneRules(request:options:)>
-    public struct CloneRulesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct CloneRulesRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Name of the firewall policy to update.
@@ -211,18 +211,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.regionNetworkFirewallPolicies.cloneRulesRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.regionNetworkFirewallPolicies.delete] method.
     ///
     /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.delete]: <doc:RegionNetworkFirewallPoliciesClient/delete(request:options:)>
-    public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DeleteRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Name of the firewall policy to delete.
@@ -269,18 +269,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.regionNetworkFirewallPolicies.deleteRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.regionNetworkFirewallPolicies.get] method.
     ///
     /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.get]: <doc:RegionNetworkFirewallPoliciesClient/`get`(request:options:)>
-    public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GetRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Name of the firewall policy to get.
@@ -312,18 +312,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.regionNetworkFirewallPolicies.getRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [getAssociation()][google.cloud.compute.v1.regionNetworkFirewallPolicies.getAssociation] method.
     ///
     /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.getAssociation]: <doc:RegionNetworkFirewallPoliciesClient/getAssociation(request:options:)>
-    public struct GetAssociationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GetAssociationRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Name of the firewall policy to which the queried association belongs.
@@ -358,18 +358,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.regionNetworkFirewallPolicies.getAssociationRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [getEffectiveFirewalls()][google.cloud.compute.v1.regionNetworkFirewallPolicies.getEffectiveFirewalls] method.
     ///
     /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.getEffectiveFirewalls]: <doc:RegionNetworkFirewallPoliciesClient/getEffectiveFirewalls(request:options:)>
-    public struct GetEffectiveFirewallsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GetEffectiveFirewallsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Network reference
@@ -401,18 +401,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.regionNetworkFirewallPolicies.getEffectiveFirewallsRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [getIamPolicy()][google.cloud.compute.v1.regionNetworkFirewallPolicies.getIamPolicy] method.
     ///
     /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.getIamPolicy]: <doc:RegionNetworkFirewallPoliciesClient/getIamPolicy(request:options:)>
-    public struct GetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GetIamPolicyRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Requested IAM Policy version.
@@ -447,18 +447,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.regionNetworkFirewallPolicies.getIamPolicyRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [getRule()][google.cloud.compute.v1.regionNetworkFirewallPolicies.getRule] method.
     ///
     /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.getRule]: <doc:RegionNetworkFirewallPoliciesClient/getRule(request:options:)>
-    public struct GetRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GetRuleRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Name of the firewall policy to which the queried rule belongs.
@@ -493,18 +493,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.regionNetworkFirewallPolicies.getRuleRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.regionNetworkFirewallPolicies.insert] method.
     ///
     /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.insert]: <doc:RegionNetworkFirewallPoliciesClient/insert(request:options:)>
-    public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct InsertRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Project ID for this request.
@@ -553,18 +553,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.regionNetworkFirewallPolicies.insertRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.regionNetworkFirewallPolicies.list] method.
     ///
     /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.list]: <doc:RegionNetworkFirewallPoliciesClient/list(request:options:)>
-    public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ListRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// A filter expression that filters resources listed in the response. Most
@@ -686,18 +686,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.regionNetworkFirewallPolicies.listRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.regionNetworkFirewallPolicies.patch] method.
     ///
     /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.patch]: <doc:RegionNetworkFirewallPoliciesClient/patch(request:options:)>
-    public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct PatchRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Name of the firewall policy to update.
@@ -749,18 +749,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.regionNetworkFirewallPolicies.patchRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [patchRule()][google.cloud.compute.v1.regionNetworkFirewallPolicies.patchRule] method.
     ///
     /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.patchRule]: <doc:RegionNetworkFirewallPoliciesClient/patchRule(request:options:)>
-    public struct PatchRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct PatchRuleRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Name of the firewall policy to update.
@@ -815,18 +815,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.regionNetworkFirewallPolicies.patchRuleRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [removeAssociation()][google.cloud.compute.v1.regionNetworkFirewallPolicies.removeAssociation] method.
     ///
     /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.removeAssociation]: <doc:RegionNetworkFirewallPoliciesClient/removeAssociation(request:options:)>
-    public struct RemoveAssociationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct RemoveAssociationRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Name of the firewall policy to update.
@@ -876,18 +876,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.regionNetworkFirewallPolicies.removeAssociationRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [removeRule()][google.cloud.compute.v1.regionNetworkFirewallPolicies.removeRule] method.
     ///
     /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.removeRule]: <doc:RegionNetworkFirewallPoliciesClient/removeRule(request:options:)>
-    public struct RemoveRuleRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct RemoveRuleRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Name of the firewall policy to update.
@@ -937,18 +937,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.regionNetworkFirewallPolicies.removeRuleRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [setIamPolicy()][google.cloud.compute.v1.regionNetworkFirewallPolicies.setIamPolicy] method.
     ///
     /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.setIamPolicy]: <doc:RegionNetworkFirewallPoliciesClient/setIamPolicy(request:options:)>
-    public struct SetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SetIamPolicyRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Project ID for this request.
@@ -985,18 +985,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.regionNetworkFirewallPolicies.setIamPolicyRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [testIamPermissions()][google.cloud.compute.v1.regionNetworkFirewallPolicies.testIamPermissions] method.
     ///
     /// [google.cloud.compute.v1.regionNetworkFirewallPolicies.testIamPermissions]: <doc:RegionNetworkFirewallPoliciesClient/testIamPermissions(request:options:)>
-    public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Project ID for this request.
@@ -1033,11 +1033,11 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.regionNetworkFirewallPolicies.testIamPermissionsRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
   }

@@ -20,7 +20,7 @@ import Foundation
 import GoogleCloudManagedKafkaSchemaRegistryV1
 import GoogleApi
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 
 func sample(client: ManagedSchemaRegistryClient) async throws {

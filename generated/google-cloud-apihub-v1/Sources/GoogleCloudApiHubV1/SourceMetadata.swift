@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// SourceMetadata represents the metadata for a resource at the source.
-public struct SourceMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SourceMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The type of the source.
@@ -28,10 +28,10 @@ public struct SourceMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var originalResourceId: Swift.String = Swift.String()
 
   /// Output only. The time at which the resource was created at the source.
-  public var originalResourceCreateTime: GoogleCloudWkt.Timestamp? = nil
+  public var originalResourceCreateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time at which the resource was last updated at the source.
-  public var originalResourceUpdateTime: GoogleCloudWkt.Timestamp? = nil
+  public var originalResourceUpdateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The source of the resource.
   public var source: OneOf_Source? = nil
@@ -65,9 +65,9 @@ public struct SourceMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.sourceType = try container.decode(SourceMetadata.SourceType.self, forKey: .sourceType)
     self.originalResourceId = try container.decode(Swift.String.self, forKey: .originalResourceId)
     self.originalResourceCreateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .originalResourceCreateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .originalResourceCreateTime)
     self.originalResourceUpdateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .originalResourceUpdateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .originalResourceUpdateTime)
 
     var source: OneOf_Source? = nil
     let sourceCheckAndSet = {
@@ -103,7 +103,7 @@ public struct SourceMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// PluginInstanceActionSource represents the plugin instance action source.
-  public struct PluginInstanceActionSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PluginInstanceActionSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The resource name of the source plugin instance.
@@ -133,11 +133,11 @@ public struct SourceMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.apihub.v1.SourceMetadata.PluginInstanceActionSource"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -248,10 +248,10 @@ public struct SourceMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.apihub.v1.SourceMetadata"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -16,10 +16,10 @@
 
 #if GeneratorEvaluations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Generator evaluation input config.
-  public struct GeneratorEvaluationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GeneratorEvaluationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The config/source of input data.
@@ -96,16 +96,16 @@
 
     /// The distinctive configs for Agent Assist conversations as the conversation
     /// source.
-    public struct AgentAssistInputDataConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AgentAssistInputDataConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The start of the time range for conversations to be evaluated.
       /// Only conversations created at or after this timestamp will be sampled.
-      public var startTime: GoogleCloudWkt.Timestamp? = nil
+      public var startTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Required. The end of the time range for conversations to be evaluated.
       /// Only conversations ended at or before this timestamp will be sampled.
-      public var endTime: GoogleCloudWkt.Timestamp? = nil
+      public var endTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Initialize a new instance of `AgentAssistInputDataConfig`.
       public init() {}
@@ -127,16 +127,16 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.GeneratorEvaluationConfig.AgentAssistInputDataConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// The distinctive configs for dataset as the conversation source.
-    public struct DatasetInputDataConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DatasetInputDataConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The identifier of the dataset to be evaluated.
@@ -164,16 +164,16 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.GeneratorEvaluationConfig.DatasetInputDataConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Input data config details
-    public struct InputDataConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct InputDataConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The source type of input data.
@@ -183,11 +183,11 @@
 
       /// Optional. The start timestamp to fetch conversation data.
       @available(*, deprecated)
-      public var startTime: GoogleCloudWkt.Timestamp? = nil
+      public var startTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Optional. The end timestamp to fetch conversation data.
       @available(*, deprecated)
-      public var endTime: GoogleCloudWkt.Timestamp? = nil
+      public var endTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Optional. Desired number of conversation-summary pairs to be evaluated.
       public var sampleSize: Swift.Int32 = Swift.Int32()
@@ -238,9 +238,9 @@
         self.inputDataSourceType = try container.decode(
           GeneratorEvaluationConfig.InputDataSourceType.self, forKey: .inputDataSourceType)
         self.startTime = try container.decodeIfPresent(
-          GoogleCloudWkt.Timestamp.self, forKey: .startTime)
+          GoogleCloudWKT.Timestamp.self, forKey: .startTime)
         self.endTime = try container.decodeIfPresent(
-          GoogleCloudWkt.Timestamp.self, forKey: .endTime)
+          GoogleCloudWKT.Timestamp.self, forKey: .endTime)
         self.sampleSize = try container.decode(Swift.Int32.self, forKey: .sampleSize)
         self.isSummaryGenerationAllowed = try container.decode(
           Swift.Bool.self, forKey: .isSummaryGenerationAllowed)
@@ -418,16 +418,16 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.GeneratorEvaluationConfig.InputDataConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Evaluation configs for summarization generator.
-    public struct SummarizationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SummarizationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. Enable accuracy evaluation.
@@ -471,11 +471,11 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.GeneratorEvaluationConfig.SummarizationConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -597,11 +597,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.GeneratorEvaluationConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Configuration of a restore.
-public struct RestoreConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RestoreConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. Specifies the mechanism to be used to restore volume data.
@@ -200,7 +200,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// This is a direct map to the Kubernetes GroupKind type
   /// [GroupKind](https://godoc.org/k8s.io/apimachinery/pkg/runtime/schema#GroupKind)
   /// and is used for identifying specific "types" of resources to restore.
-  public struct GroupKind: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GroupKind: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. API group string of a Kubernetes resource, e.g.
@@ -232,11 +232,11 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.gkebackup.v1.RestoreConfig.GroupKind"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -260,7 +260,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// and will cause an error if selected here.
   /// - Namespace
   /// - PersistentVolume
-  public struct ClusterResourceRestoreScope: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ClusterResourceRestoreScope: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. A list of cluster-scoped resource group kinds to restore from
@@ -303,18 +303,18 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.gkebackup.v1.RestoreConfig.ClusterResourceRestoreScope"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A transformation rule to be applied against Kubernetes resources as they
   /// are selected for restoration from a Backup. A rule contains both filtering
   /// logic (which resources are subject to substitution) and substitution logic.
-  public struct SubstitutionRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SubstitutionRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. (Filtering parameter) Any resource subject to substitution must
@@ -377,17 +377,17 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.gkebackup.v1.RestoreConfig.SubstitutionRule"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// TransformationRuleAction defines a TransformationRule action based on the
   /// JSON Patch RFC (https://www.rfc-editor.org/rfc/rfc6902)
-  public struct TransformationRuleAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TransformationRuleAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. op specifies the operation to perform.
@@ -570,18 +570,18 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.gkebackup.v1.RestoreConfig.TransformationRuleAction"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// ResourceFilter specifies matching criteria to limit the scope of a
   /// change to a specific set of kubernetes resources that are selected for
   /// restoration from a backup.
-  public struct ResourceFilter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ResourceFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. (Filtering parameter) Any resource subject to transformation
@@ -624,18 +624,18 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.gkebackup.v1.RestoreConfig.ResourceFilter"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A transformation rule to be applied against Kubernetes resources as they
   /// are selected for restoration from a Backup. A rule contains both filtering
   /// logic (which resources are subject to transform) and transformation logic.
-  public struct TransformationRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TransformationRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. A list of transformation rule actions to take against candidate
@@ -673,16 +673,16 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.gkebackup.v1.RestoreConfig.TransformationRule"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Binds resources in the scope to the given VolumeDataRestorePolicy.
-  public struct VolumeDataRestorePolicyBinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct VolumeDataRestorePolicyBinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The VolumeDataRestorePolicy to apply when restoring volumes in
@@ -758,17 +758,17 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.gkebackup.v1.RestoreConfig.VolumeDataRestorePolicyBinding"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Allows customers to specify dependencies between resources
   /// that Backup for GKE can use to compute a resasonable restore order.
-  public struct RestoreOrder: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RestoreOrder: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Contains a list of group kind dependency pairs provided
@@ -793,7 +793,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Defines a dependency between two group kinds.
-    public struct GroupKindDependency: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GroupKindDependency: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The satisfying group kind must be restored first
@@ -824,22 +824,22 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.gkebackup.v1.RestoreConfig.RestoreOrder.GroupKindDependency"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.gkebackup.v1.RestoreConfig.RestoreOrder"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -1265,10 +1265,10 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkebackup.v1.RestoreConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -16,14 +16,14 @@
 
 #if FeaturestoreService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
   import GoogleType
 
   /// Request message for
   /// [FeaturestoreService.DeleteFeatureValues][google.cloud.aiplatform.v1.FeaturestoreService.DeleteFeatureValues].
   ///
   /// [google.cloud.aiplatform.v1.FeaturestoreService.DeleteFeatureValues]: <doc:FeaturestoreServiceClient/deleteFeatureValues(request:options:)>
-  public struct DeleteFeatureValuesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DeleteFeatureValuesRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The resource name of the EntityType grouping the Features for
@@ -101,7 +101,7 @@
     /// Message to select entity.
     /// If an entity id is selected, all the feature values corresponding to the
     /// entity id will be deleted, including the entityId.
-    public struct SelectEntity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SelectEntity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. Selectors choosing feature values of which entity id to be
@@ -128,11 +128,11 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.DeleteFeatureValuesRequest.SelectEntity"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -142,7 +142,7 @@
     /// from the specified feature IDs within the specified time range.
     /// This might include data from the online storage. If you want to retain
     /// any deleted historical data in the online storage, you must re-ingest it.
-    public struct SelectTimeRangeAndFeature: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SelectTimeRangeAndFeature: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. Select feature generated within a half-inclusive time range.
@@ -178,11 +178,11 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.DeleteFeatureValuesRequest.SelectTimeRangeAndFeature"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -198,11 +198,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.DeleteFeatureValuesRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

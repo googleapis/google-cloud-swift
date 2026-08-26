@@ -15,15 +15,15 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Output format for Personal Protective Equipment Detection Operator.
-public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, GoogleCloudWkt
+public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, GoogleCloudWKT
     ._AnyPackable,
   Sendable
 {
   /// Current timestamp.
-  public var currentTime: GoogleCloudWkt.Timestamp? = nil
+  public var currentTime: GoogleCloudWKT.Timestamp? = nil
 
   /// A list of DetectedPersons.
   public var detectedPersons: [PersonalProtectiveEquipmentDetectionOutput.DetectedPerson] = []
@@ -45,7 +45,7 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
   }
 
   /// The entity info for annotations from person detection prediction result.
-  public struct PersonEntity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PersonEntity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Entity id.
@@ -71,16 +71,16 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
       return
         "type.googleapis.com/google.cloud.visionai.v1.PersonalProtectiveEquipmentDetectionOutput.PersonEntity"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The entity info for annotations from PPE detection prediction result.
-  public struct PPEEntity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PPEEntity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Label id.
@@ -116,16 +116,16 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
       return
         "type.googleapis.com/google.cloud.visionai.v1.PersonalProtectiveEquipmentDetectionOutput.PPEEntity"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Bounding Box in the normalized coordinates.
-  public struct NormalizedBoundingBox: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct NormalizedBoundingBox: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Min in x coordinate.
@@ -160,17 +160,17 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
       return
         "type.googleapis.com/google.cloud.visionai.v1.PersonalProtectiveEquipmentDetectionOutput.NormalizedBoundingBox"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// PersonIdentified box contains the location and the entity info of the
   /// person.
-  public struct PersonIdentifiedBox: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PersonIdentifiedBox: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// An unique id for this box.
@@ -206,16 +206,16 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
       return
         "type.googleapis.com/google.cloud.visionai.v1.PersonalProtectiveEquipmentDetectionOutput.PersonIdentifiedBox"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// PPEIdentified box contains the location and the entity info of the PPE.
-  public struct PPEIdentifiedBox: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PPEIdentifiedBox: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// An unique id for this box.
@@ -251,17 +251,17 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
       return
         "type.googleapis.com/google.cloud.visionai.v1.PersonalProtectiveEquipmentDetectionOutput.PPEIdentifiedBox"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Detected Person contains the detected person and their associated
   /// ppes and their protecting information.
-  public struct DetectedPerson: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DetectedPerson: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The id of detected person.
@@ -314,21 +314,21 @@ public struct PersonalProtectiveEquipmentDetectionOutput: Codable, Equatable, Go
       return
         "type.googleapis.com/google.cloud.visionai.v1.PersonalProtectiveEquipmentDetectionOutput.DetectedPerson"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.PersonalProtectiveEquipmentDetectionOutput"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// gRPC request payload for tether.
-public struct EgressRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct EgressRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Unique identifier for the request.
@@ -38,7 +38,7 @@ public struct EgressRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var traceId: Swift.String = Swift.String()
 
   /// Timeout for the HTTP request.
-  public var timeout: GoogleCloudWkt.Duration? = nil
+  public var timeout: GoogleCloudWKT.Duration? = nil
 
   /// Initialize a new instance of `EgressRequest`.
   public init() {}
@@ -59,10 +59,10 @@ public struct EgressRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.apigeeconnect.v1.EgressRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

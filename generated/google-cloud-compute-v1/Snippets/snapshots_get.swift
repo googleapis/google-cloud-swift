@@ -19,7 +19,7 @@
   // snippet.show
   import Foundation
   import GoogleCloudComputeV1
-  import GoogleCloudWkt
+  import GoogleCloudWKT
 
   func sample(client: SnapshotsClient) async throws {
     let response = try await client.`get`(

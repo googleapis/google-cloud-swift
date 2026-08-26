@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleType
 
 /// MaintenanceUpdatePolicy defines the policy for system updates.
-public struct MaintenanceUpdatePolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MaintenanceUpdatePolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Preferred windows to perform maintenance. Currently limited to 1.
@@ -45,7 +45,7 @@ public struct MaintenanceUpdatePolicy: Codable, Equatable, GoogleCloudWkt._AnyPa
   }
 
   /// MaintenanceWindow specifies a preferred day and time for maintenance.
-  public struct MaintenanceWindow: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MaintenanceWindow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Preferred day of the week for maintenance, e.g. MONDAY, TUESDAY, etc.
@@ -74,18 +74,18 @@ public struct MaintenanceUpdatePolicy: Codable, Equatable, GoogleCloudWkt._AnyPa
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.alloydb.v1.MaintenanceUpdatePolicy.MaintenanceWindow"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// DenyMaintenancePeriod definition. Excepting emergencies, maintenance
   /// will not be scheduled to start within this deny period. The start_date must
   /// be less than the end_date.
-  public struct DenyMaintenancePeriod: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DenyMaintenancePeriod: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Deny period start date.
@@ -126,21 +126,21 @@ public struct MaintenanceUpdatePolicy: Codable, Equatable, GoogleCloudWkt._AnyPa
       return
         "type.googleapis.com/google.cloud.alloydb.v1.MaintenanceUpdatePolicy.DenyMaintenancePeriod"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.alloydb.v1.MaintenanceUpdatePolicy"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

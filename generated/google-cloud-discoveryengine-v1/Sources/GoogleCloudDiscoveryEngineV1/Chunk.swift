@@ -16,11 +16,11 @@
 
 #if ConversationalSearchService || SearchService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Chunk captures all raw metadata information of items to be recommended or
   /// searched in the chunk mode.
-  public struct Chunk: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Chunk: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The full resource name of the chunk.
@@ -51,13 +51,13 @@
 
     /// Output only. This field is OUTPUT_ONLY.
     /// It contains derived data that are not in the original input document.
-    public var derivedStructData: GoogleCloudWkt.Struct? = nil
+    public var derivedStructData: GoogleCloudWKT.Struct? = nil
 
     /// Page span of the chunk.
     public var pageSpan: Chunk.PageSpan? = nil
 
     /// Output only. Metadata of the current chunk.
-    public var chunkMetadata: GoogleCloudWkt.Recursive<Chunk.ChunkMetadata>? = nil
+    public var chunkMetadata: GoogleCloudWKT.Recursive<Chunk.ChunkMetadata>? = nil
 
     /// Output only. Image Data URLs if the current chunk contains images.
     /// Data URLs are composed of four parts: a prefix (data:), a MIME type
@@ -91,7 +91,7 @@
 
     /// Document metadata contains the information of the document of the current
     /// chunk.
-    public struct DocumentMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DocumentMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Uri of the document.
@@ -106,7 +106,7 @@
       /// `INVALID_ARGUMENT` error is thrown.
       ///
       /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
-      public var structData: GoogleCloudWkt.Struct? = nil
+      public var structData: GoogleCloudWKT.Struct? = nil
 
       /// Initialize a new instance of `DocumentMetadata`.
       public init() {}
@@ -127,16 +127,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.Chunk.DocumentMetadata"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Page span of the chunk.
-    public struct PageSpan: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct PageSpan: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The start page of the chunk.
@@ -164,11 +164,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.Chunk.PageSpan"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -177,7 +177,7 @@
     /// API.
     ///
     /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
-    public struct ChunkMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ChunkMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The previous chunks of the current chunk. The number is controlled by
@@ -219,16 +219,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.Chunk.ChunkMetadata"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// The structured content information.
-    public struct StructuredContent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct StructuredContent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. The structure type of the structured content.
@@ -256,16 +256,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.Chunk.StructuredContent"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// The annotation metadata includes structured content in the current chunk.
-    public struct AnnotationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AnnotationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. The structured content information.
@@ -294,11 +294,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.Chunk.AnnotationMetadata"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -417,11 +417,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.Chunk"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

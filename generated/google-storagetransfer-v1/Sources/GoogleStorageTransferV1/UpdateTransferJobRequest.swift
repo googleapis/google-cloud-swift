@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request passed to UpdateTransferJob.
-public struct UpdateTransferJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateTransferJobRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The name of job to update.
@@ -68,7 +68,7 @@ public struct UpdateTransferJobRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   /// [google.storagetransfer.v1.TransferJob.notification_config]: <doc:TransferJob/notificationConfig>
   /// [google.storagetransfer.v1.TransferJob.status]: <doc:TransferJob/status>
   /// [google.storagetransfer.v1.TransferJob.transfer_spec]: <doc:TransferJob/transferSpec>
-  public var updateTransferJobFieldMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateTransferJobFieldMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `UpdateTransferJobRequest`.
   public init() {}
@@ -89,10 +89,10 @@ public struct UpdateTransferJobRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storagetransfer.v1.UpdateTransferJobRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

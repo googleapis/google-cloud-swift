@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleType
 
 /// The response for querying metrics.
-public struct QueryMetricsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct QueryMetricsResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The location of the data.
@@ -27,7 +27,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public var location: Swift.String = Swift.String()
 
   /// The metrics last update time.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// A slice contains a total and (if the request specified a time granularity)
   /// a time series of metric values. Each slice contains a unique combination of
@@ -66,7 +66,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleCloudWkt._AnyPacka
   ///
   /// * Slice 1 -> dimensions=[Issue 1]
   /// * Slice 2 -> dimensions=[Issue 2]
-  public struct Slice: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Slice: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// A unique combination of dimensions that this slice represents.
@@ -97,7 +97,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleCloudWkt._AnyPacka
     }
 
     /// A data point contains the metric values mapped to an interval.
-    public struct DataPoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DataPoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The interval that this data point represents.
@@ -168,7 +168,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleCloudWkt._AnyPacka
       }
 
       /// The measure related to conversations.
-      public struct ConversationMeasure: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct ConversationMeasure: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// The conversation count.
@@ -178,7 +178,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleCloudWkt._AnyPacka
         public var averageSilencePercentage: Swift.Float? = nil
 
         /// The average duration.
-        public var averageDuration: GoogleCloudWkt.Duration? = nil
+        public var averageDuration: GoogleCloudWKT.Duration? = nil
 
         /// The average turn count.
         public var averageTurnCount: Swift.Float? = nil
@@ -223,7 +223,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleCloudWkt._AnyPacka
         }
 
         /// Average QA normalized score for the tag.
-        public struct QaTagScore: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct QaTagScore: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Tag name.
@@ -252,11 +252,11 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleCloudWkt._AnyPacka
             return
               "type.googleapis.com/google.cloud.contactcenterinsights.v1.QueryMetricsResponse.Slice.DataPoint.ConversationMeasure.QaTagScore"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
@@ -264,11 +264,11 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleCloudWkt._AnyPacka
           return
             "type.googleapis.com/google.cloud.contactcenterinsights.v1.QueryMetricsResponse.Slice.DataPoint.ConversationMeasure"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -282,16 +282,16 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleCloudWkt._AnyPacka
         return
           "type.googleapis.com/google.cloud.contactcenterinsights.v1.QueryMetricsResponse.Slice.DataPoint"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// A time series of metric values.
-    public struct TimeSeries: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct TimeSeries: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The data points that make up the time series .
@@ -317,32 +317,32 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleCloudWkt._AnyPacka
         return
           "type.googleapis.com/google.cloud.contactcenterinsights.v1.QueryMetricsResponse.Slice.TimeSeries"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.contactcenterinsights.v1.QueryMetricsResponse.Slice"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.contactcenterinsights.v1.QueryMetricsResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

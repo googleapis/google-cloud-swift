@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A response to CommitServicePerimetersRequest. This will be put inside of
 /// Operation.response field.
-public struct CommitServicePerimetersResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CommitServicePerimetersResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// List of all the [Service Perimeter]
@@ -48,10 +48,10 @@ public struct CommitServicePerimetersResponse: Codable, Equatable, GoogleCloudWk
     return
       "type.googleapis.com/google.identity.accesscontextmanager.v1.CommitServicePerimetersResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

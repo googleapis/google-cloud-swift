@@ -16,10 +16,10 @@
 
 import Foundation
 import GoogleAppsScriptType
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Properties customizing the appearance and execution of a Gmail add-on.
-public struct GmailAddOnManifest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct GmailAddOnManifest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Defines an endpoint that will be executed in contexts that don't
@@ -73,10 +73,10 @@ public struct GmailAddOnManifest: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.apps.script.type.gmail.GmailAddOnManifest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

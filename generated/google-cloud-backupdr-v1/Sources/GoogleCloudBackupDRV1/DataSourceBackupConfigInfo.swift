@@ -15,17 +15,17 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Information of backup configuration on the DataSource.
-public struct DataSourceBackupConfigInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DataSourceBackupConfigInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The status of the last backup in this DataSource
   public var lastBackupState: BackupConfigInfo.LastBackupState = BackupConfigInfo.LastBackupState()
 
   /// Output only. Timestamp of the last successful backup to this DataSource.
-  public var lastSuccessfulBackupConsistencyTime: GoogleCloudWkt.Timestamp? = nil
+  public var lastSuccessfulBackupConsistencyTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `DataSourceBackupConfigInfo`.
   public init() {}
@@ -46,10 +46,10 @@ public struct DataSourceBackupConfigInfo: Codable, Equatable, GoogleCloudWkt._An
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.backupdr.v1.DataSourceBackupConfigInfo"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

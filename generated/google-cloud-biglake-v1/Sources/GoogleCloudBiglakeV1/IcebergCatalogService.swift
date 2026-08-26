@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleApi
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleCloudGax
 
 ///
@@ -388,7 +388,7 @@ extension Clients {
     /// See `IcebergCatalogServiceClient.updateIcebergCatalog`.
     func updateIcebergCatalog(
       icebergCatalog: IcebergCatalog?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudBiglakeV1.IcebergCatalog
 
     /// See `IcebergCatalogServiceClient.createIcebergCatalog`.
@@ -853,7 +853,7 @@ extension Clients.IcebergCatalogServiceProtocol {
 
   public func updateIcebergCatalog(
     icebergCatalog: IcebergCatalog?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudBiglakeV1.IcebergCatalog {
     let request = UpdateIcebergCatalogRequest().with {
       $0.icebergCatalog = icebergCatalog

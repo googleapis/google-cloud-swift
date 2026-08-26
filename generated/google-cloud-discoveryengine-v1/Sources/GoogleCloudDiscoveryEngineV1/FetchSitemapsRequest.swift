@@ -16,14 +16,14 @@
 
 #if SiteSearchEngineService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request message for
   /// [SiteSearchEngineService.FetchSitemaps][google.cloud.discoveryengine.v1.SiteSearchEngineService.FetchSitemaps]
   /// method.
   ///
   /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.FetchSitemaps]: <doc:SiteSearchEngineServiceClient/fetchSitemaps(request:options:)>
-  public struct FetchSitemapsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FetchSitemapsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Parent resource name of the
@@ -62,7 +62,7 @@
     /// their uris.
     ///
     /// [google.cloud.discoveryengine.v1.Sitemap]: <doc:Sitemap>
-    public struct UrisMatcher: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct UrisMatcher: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The [Sitemap][google.cloud.discoveryengine.v1.Sitemap] uris.
@@ -90,11 +90,11 @@
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.FetchSitemapsRequest.UrisMatcher"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -102,7 +102,7 @@
     /// Currently only supports uris matcher.
     ///
     /// [google.cloud.discoveryengine.v1.Sitemap]: <doc:Sitemap>
-    public struct Matcher: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Matcher: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Matcher for the [Sitemap][google.cloud.discoveryengine.v1.Sitemap]s.
@@ -173,22 +173,22 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.FetchSitemapsRequest.Matcher"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.FetchSitemapsRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

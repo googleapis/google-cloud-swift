@@ -16,10 +16,10 @@
 
 #if SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Instance switchover request.
-  public struct SqlInstancesSwitchoverRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SqlInstancesSwitchoverRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Cloud SQL read replica instance name.
@@ -31,7 +31,7 @@
     /// Optional. (MySQL and PostgreSQL only) Cloud SQL instance operations
     /// timeout, which is a sum of all database operations. Default value is 10
     /// minutes and can be modified to a maximum value of 24 hours.
-    public var dbTimeout: GoogleCloudWkt.Duration? = nil
+    public var dbTimeout: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `SqlInstancesSwitchoverRequest`.
     public init() {}
@@ -52,11 +52,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.SqlInstancesSwitchoverRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

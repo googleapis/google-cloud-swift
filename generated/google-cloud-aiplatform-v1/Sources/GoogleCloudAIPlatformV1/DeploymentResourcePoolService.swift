@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleIAMV1
   import GoogleLongRunning
   import GoogleRpc
@@ -417,7 +417,7 @@
       /// See `DeploymentResourcePoolServiceClient.updateDeploymentResourcePool`.
       func updateDeploymentResourcePool(
         deploymentResourcePool: DeploymentResourcePool?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> any GoogleCloudGax.PollableOperation<DeploymentResourcePool>
 
       /// See `DeploymentResourcePoolServiceClient.deleteDeploymentResourcePool`.
@@ -751,7 +751,7 @@
 
     public func updateDeploymentResourcePool(
       deploymentResourcePool: DeploymentResourcePool?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<DeploymentResourcePool> {
       let request = UpdateDeploymentResourcePoolRequest().with {
         $0.deploymentResourcePool = deploymentResourcePool

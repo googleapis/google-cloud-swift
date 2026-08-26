@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The request for
 /// [UpdateTable][google.bigtable.admin.v2.BigtableTableAdmin.UpdateTable].
 ///
 /// [google.bigtable.admin.v2.BigtableTableAdmin.UpdateTable]: <doc:BigtableTableAdminClient/updateTable(request:options:)>
-public struct UpdateTableRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateTableRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The table to update.
@@ -41,7 +41,7 @@ public struct UpdateTableRequest: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   ///
   /// If `column_families` is set in `update_mask`, it will return an
   /// UNIMPLEMENTED error.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Optional. If true, ignore safety checks when updating the table.
   public var ignoreWarnings: Swift.Bool = Swift.Bool()
@@ -65,10 +65,10 @@ public struct UpdateTableRequest: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.bigtable.admin.v2.UpdateTableRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

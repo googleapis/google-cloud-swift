@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request for ListSchemaRegistries.
-public struct ListSchemaRegistriesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ListSchemaRegistriesRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The parent whose schema registry instances are to be listed.
@@ -45,10 +45,10 @@ public struct ListSchemaRegistriesRequest: Codable, Equatable, GoogleCloudWkt._A
     return
       "type.googleapis.com/google.cloud.managedkafka.schemaregistry.v1.ListSchemaRegistriesRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

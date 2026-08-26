@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Metadata for a stitched ad.
-public struct AdStitchDetail: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AdStitchDetail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The ad break ID of the processed ad.
@@ -28,13 +28,13 @@ public struct AdStitchDetail: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var adId: Swift.String = Swift.String()
 
   /// Required. The time offset of the processed ad.
-  public var adTimeOffset: GoogleCloudWkt.Duration? = nil
+  public var adTimeOffset: GoogleCloudWKT.Duration? = nil
 
   /// Optional. Indicates the reason why the ad has been skipped.
   public var skipReason: Swift.String = Swift.String()
 
   /// Optional. The metadata of the chosen media file for the ad.
-  public var media: [Swift.String: GoogleCloudWkt.Value] = [:]
+  public var media: [Swift.String: GoogleCloudWKT.Value] = [:]
 
   /// Initialize a new instance of `AdStitchDetail`.
   public init() {}
@@ -55,10 +55,10 @@ public struct AdStitchDetail: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.video.stitcher.v1.AdStitchDetail"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

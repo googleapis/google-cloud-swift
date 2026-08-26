@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// IAM policy analysis query message.
-public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The relative name of the root asset. Only resources and IAM
@@ -69,7 +69,7 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleCloudWkt._AnyPac
   /// Specifies the resource to analyze for access policies, which may be set
   /// directly on the resource, or on ancestors such as organizations, folders or
   /// projects.
-  public struct ResourceSelector: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ResourceSelector: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The [full resource name]
@@ -97,18 +97,18 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleCloudWkt._AnyPac
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.asset.v1.IamPolicyAnalysisQuery.ResourceSelector"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Specifies an identity for which to determine resource access, based on
   /// roles assigned either directly to them or to the groups they belong to,
   /// directly or indirectly.
-  public struct IdentitySelector: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct IdentitySelector: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The identity appear in the form of principals in
@@ -144,11 +144,11 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleCloudWkt._AnyPac
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.asset.v1.IamPolicyAnalysisQuery.IdentitySelector"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -157,7 +157,7 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleCloudWkt._AnyPac
   /// values are specified, results will include roles or permissions matching
   /// any of them. The total number of roles and permissions should be equal or
   /// less than 10.
-  public struct AccessSelector: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AccessSelector: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The roles to appear in result.
@@ -185,16 +185,16 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleCloudWkt._AnyPac
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.asset.v1.IamPolicyAnalysisQuery.AccessSelector"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Contains query options.
-  public struct Options: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Options: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. If true, the identities section of the result will expand any
@@ -325,16 +325,16 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleCloudWkt._AnyPac
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.asset.v1.IamPolicyAnalysisQuery.Options"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The IAM conditions context.
-  public struct ConditionContext: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ConditionContext: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The IAM conditions time context.
@@ -374,7 +374,7 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleCloudWkt._AnyPac
         timeContext = $0
       }
       if let accessTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp?.self, forKey: .accessTime)
+        GoogleCloudWKT.Timestamp?.self, forKey: .accessTime)
       {
         try timeContextCheckAndSet(.accessTime(accessTime))
       }
@@ -397,27 +397,27 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleCloudWkt._AnyPac
       /// The hypothetical access timestamp to evaluate IAM conditions. Note that
       /// this value must not be earlier than the current time; otherwise, an
       /// INVALID_ARGUMENT error will be returned.
-      indirect case accessTime(GoogleCloudWkt.Timestamp?)
+      indirect case accessTime(GoogleCloudWKT.Timestamp?)
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.asset.v1.IamPolicyAnalysisQuery.ConditionContext"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.asset.v1.IamPolicyAnalysisQuery"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

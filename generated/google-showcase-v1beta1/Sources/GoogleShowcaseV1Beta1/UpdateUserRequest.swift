@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The request message for the google.showcase.v1beta1.Identity\UpdateUser
 /// method.
-public struct UpdateUserRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateUserRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The user to update.
@@ -27,7 +27,7 @@ public struct UpdateUserRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
   /// The field mask to determine which fields are to be updated. If empty, the
   /// server will assume all fields are to be updated.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `UpdateUserRequest`.
   public init() {}
@@ -48,10 +48,10 @@ public struct UpdateUserRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.showcase.v1beta1.UpdateUserRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

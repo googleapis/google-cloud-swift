@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -570,7 +570,7 @@ extension Clients {
     /// See `CloudFtpClient.updateServer`.
     func updateServer(
       server: Server?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Server>
 
     /// See `CloudFtpClient.deleteServer`.
@@ -630,7 +630,7 @@ extension Clients {
     /// See `CloudFtpClient.updateUser`.
     func updateUser(
       user: User?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<User>
 
     /// See `CloudFtpClient.deleteUser`.
@@ -986,7 +986,7 @@ extension Clients.CloudFtpProtocol {
 
   public func updateServer(
     server: Server?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Server> {
     let request = UpdateServerRequest().with {
       $0.server = server
@@ -1153,7 +1153,7 @@ extension Clients.CloudFtpProtocol {
 
   public func updateUser(
     user: User?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<User> {
     let request = UpdateUserRequest().with {
       $0.user = user

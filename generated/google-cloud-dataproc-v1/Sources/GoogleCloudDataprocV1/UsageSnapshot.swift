@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The usage snapshot represents the resources consumed by a workload at a
 /// specified time.
-public struct UsageSnapshot: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UsageSnapshot: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. Milli (one-thousandth) Dataproc Compute Units (DCUs) (see
@@ -49,7 +49,7 @@ public struct UsageSnapshot: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var acceleratorType: Swift.String = Swift.String()
 
   /// Optional. The timestamp of the usage snapshot.
-  public var snapshotTime: GoogleCloudWkt.Timestamp? = nil
+  public var snapshotTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `UsageSnapshot`.
   public init() {}
@@ -70,10 +70,10 @@ public struct UsageSnapshot: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataproc.v1.UsageSnapshot"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

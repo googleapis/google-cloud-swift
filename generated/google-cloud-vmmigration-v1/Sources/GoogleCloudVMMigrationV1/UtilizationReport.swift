@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// Utilization report details the utilization (CPU, memory, etc.) of selected
 /// source VMs.
-public struct UtilizationReport: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UtilizationReport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The report unique name.
@@ -33,7 +33,7 @@ public struct UtilizationReport: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public var state: UtilizationReport.State = UtilizationReport.State()
 
   /// Output only. The time the state was last set.
-  public var stateTime: GoogleCloudWkt.Timestamp? = nil
+  public var stateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Provides details on the state of the report in case of an
   /// error.
@@ -41,7 +41,7 @@ public struct UtilizationReport: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
   /// Output only. The time the report was created (this refers to the time of
   /// the request, not the time the report creation completed).
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Time frame of the report.
   public var timeFrame: UtilizationReport.TimeFrame = UtilizationReport.TimeFrame()
@@ -50,7 +50,7 @@ public struct UtilizationReport: Codable, Equatable, GoogleCloudWkt._AnyPackable
   /// time frame is counted backwards. For instance if the "frame_end_time" value
   /// is 2021/01/20 and the time frame is WEEK then the report covers the week
   /// between 2021/01/20 and 2021/01/14.
-  public var frameEndTime: GoogleCloudWkt.Timestamp? = nil
+  public var frameEndTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Total number of VMs included in the report.
   public var vmCount: Swift.Int32 = Swift.Int32()
@@ -304,10 +304,10 @@ public struct UtilizationReport: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vmmigration.v1.UtilizationReport"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Result of a risk analysis operation request.
-public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Privacy metric to compute.
@@ -139,7 +139,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWkt._
   }
 
   /// Result of the numerical stats computation.
-  public struct NumericalStatsResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct NumericalStatsResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Minimum value appearing in the column.
@@ -172,16 +172,16 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWkt._
       return
         "type.googleapis.com/google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.NumericalStatsResult"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Result of the categorical stats computation.
-  public struct CategoricalStatsResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CategoricalStatsResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Histogram of value frequencies in the column.
@@ -205,7 +205,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWkt._
     }
 
     /// Histogram of value frequencies in the column.
-    public struct CategoricalStatsHistogramBucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct CategoricalStatsHistogramBucket: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Lower bound on the value frequency of the values in this bucket.
@@ -244,11 +244,11 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWkt._
         return
           "type.googleapis.com/google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.CategoricalStatsResult.CategoricalStatsHistogramBucket"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -256,16 +256,16 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWkt._
       return
         "type.googleapis.com/google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.CategoricalStatsResult"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Result of the k-anonymity computation.
-  public struct KAnonymityResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct KAnonymityResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Histogram of k-anonymity equivalence classes.
@@ -289,7 +289,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWkt._
     }
 
     /// The set of columns' values that share the same ldiversity value
-    public struct KAnonymityEquivalenceClass: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct KAnonymityEquivalenceClass: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Set of values defining the equivalence class. One value per
@@ -321,16 +321,16 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWkt._
         return
           "type.googleapis.com/google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KAnonymityResult.KAnonymityEquivalenceClass"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Histogram of k-anonymity equivalence classes.
-    public struct KAnonymityHistogramBucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct KAnonymityHistogramBucket: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Lower bound on the size of the equivalence classes in this bucket.
@@ -370,11 +370,11 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWkt._
         return
           "type.googleapis.com/google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KAnonymityResult.KAnonymityHistogramBucket"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -382,16 +382,16 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWkt._
       return
         "type.googleapis.com/google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KAnonymityResult"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Result of the l-diversity computation.
-  public struct LDiversityResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct LDiversityResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Histogram of l-diversity equivalence class sensitive value frequencies.
@@ -415,7 +415,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWkt._
     }
 
     /// The set of columns' values that share the same ldiversity value.
-    public struct LDiversityEquivalenceClass: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct LDiversityEquivalenceClass: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Quasi-identifier values defining the k-anonymity equivalence
@@ -451,16 +451,16 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWkt._
         return
           "type.googleapis.com/google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.LDiversityResult.LDiversityEquivalenceClass"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Histogram of l-diversity equivalence class sensitive value frequencies.
-    public struct LDiversityHistogramBucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct LDiversityHistogramBucket: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Lower bound on the sensitive value frequencies of the equivalence
@@ -502,11 +502,11 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWkt._
         return
           "type.googleapis.com/google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.LDiversityResult.LDiversityHistogramBucket"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -514,17 +514,17 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWkt._
       return
         "type.googleapis.com/google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.LDiversityResult"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Result of the reidentifiability analysis. Note that these results are an
   /// estimation, not exact values.
-  public struct KMapEstimationResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct KMapEstimationResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The intervals [min_anonymity, max_anonymity] do not overlap. If a value
@@ -555,7 +555,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWkt._
     }
 
     /// A tuple of values for the quasi-identifier columns.
-    public struct KMapEstimationQuasiIdValues: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct KMapEstimationQuasiIdValues: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The quasi-identifier values.
@@ -584,11 +584,11 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWkt._
         return
           "type.googleapis.com/google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KMapEstimationResult.KMapEstimationQuasiIdValues"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -600,7 +600,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWkt._
     /// to 3, 4 or 5 people in the overlying population. An important particular
     /// case is when min_anonymity = max_anonymity = 1: the frequency field then
     /// corresponds to the number of uniquely identifiable records.
-    public struct KMapEstimationHistogramBucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct KMapEstimationHistogramBucket: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Always positive.
@@ -640,11 +640,11 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWkt._
         return
           "type.googleapis.com/google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KMapEstimationResult.KMapEstimationHistogramBucket"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -652,17 +652,17 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWkt._
       return
         "type.googleapis.com/google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KMapEstimationResult"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Result of the δ-presence computation. Note that these results are an
   /// estimation, not exact values.
-  public struct DeltaPresenceEstimationResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DeltaPresenceEstimationResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The intervals [min_probability, max_probability) do not overlap. If a
@@ -694,7 +694,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWkt._
     }
 
     /// A tuple of values for the quasi-identifier columns.
-    public struct DeltaPresenceEstimationQuasiIdValues: Codable, Equatable, GoogleCloudWkt
+    public struct DeltaPresenceEstimationQuasiIdValues: Codable, Equatable, GoogleCloudWKT
         ._AnyPackable,
       Sendable
     {
@@ -731,11 +731,11 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWkt._
         return
           "type.googleapis.com/google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.DeltaPresenceEstimationResult.DeltaPresenceEstimationQuasiIdValues"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -748,7 +748,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWkt._
     /// important particular case is when min_probability = max_probability = 1:
     /// then, every individual who shares this quasi-identifier combination is in
     /// the dataset.
-    public struct DeltaPresenceEstimationHistogramBucket: Codable, Equatable, GoogleCloudWkt
+    public struct DeltaPresenceEstimationHistogramBucket: Codable, Equatable, GoogleCloudWKT
         ._AnyPackable,
       Sendable
     {
@@ -790,11 +790,11 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWkt._
         return
           "type.googleapis.com/google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.DeltaPresenceEstimationResult.DeltaPresenceEstimationHistogramBucket"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -802,16 +802,16 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWkt._
       return
         "type.googleapis.com/google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.DeltaPresenceEstimationResult"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Risk analysis options.
-  public struct RequestedRiskAnalysisOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RequestedRiskAnalysisOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The job config for the risk job.
@@ -837,11 +837,11 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWkt._
       return
         "type.googleapis.com/google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.RequestedRiskAnalysisOptions"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -865,10 +865,10 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWkt._
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

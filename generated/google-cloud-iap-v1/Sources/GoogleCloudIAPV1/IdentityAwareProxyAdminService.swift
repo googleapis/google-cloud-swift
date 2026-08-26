@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleCloudGax
 
@@ -247,7 +247,7 @@ extension Clients {
     /// See `IdentityAwareProxyAdminServiceClient.updateTunnelDestGroup`.
     func updateTunnelDestGroup(
       tunnelDestGroup: TunnelDestGroup?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudIAPV1.TunnelDestGroup
 
     /// See `IdentityAwareProxyAdminServiceClient.setIamPolicy`.
@@ -502,7 +502,7 @@ extension Clients.IdentityAwareProxyAdminServiceProtocol {
 
   public func updateTunnelDestGroup(
     tunnelDestGroup: TunnelDestGroup?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudIAPV1.TunnelDestGroup {
     let request = UpdateTunnelDestGroupRequest().with {
       $0.tunnelDestGroup = tunnelDestGroup

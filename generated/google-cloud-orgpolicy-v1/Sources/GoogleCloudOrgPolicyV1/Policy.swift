@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Defines a Cloud Organization `Policy` which is used to specify `Constraints`
 /// for configurations of Cloud Platform resources.
-public struct Policy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Policy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Version of the `Policy`. Default version is 0;
@@ -52,7 +52,7 @@ public struct Policy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// server, not specified by the caller, and represents the last time a call to
   /// `SetOrgPolicy` was made for that `Policy`. Any value set by the client will
   /// be ignored.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The field to populate is based on the `constraint_type` value in the
   /// `Constraint`.
@@ -100,7 +100,7 @@ public struct Policy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.constraint = try container.decode(Swift.String.self, forKey: .constraint)
     self.etag = try container.decode(Foundation.Data.self, forKey: .etag)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
 
     var policyType: OneOf_PolicyType? = nil
     let policyTypeCheckAndSet = {
@@ -169,7 +169,7 @@ public struct Policy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// `ALL_VALUES_UNSPECIFIED`. `ALLOW` or `DENY` are used to allow or deny all
   /// values. If `all_values` is set to either `ALLOW` or `DENY`,
   /// `allowed_values` and `denied_values` must be unset.
-  public struct ListPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ListPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// List of values allowed  at this resource. Can only be set if `all_values`
@@ -420,17 +420,17 @@ public struct Policy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.orgpolicy.v1.Policy.ListPolicy"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Used in `policy_type` to specify how `boolean_policy` will behave at this
   /// resource.
-  public struct BooleanPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct BooleanPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// If `true`, then the `Policy` is enforced. If `false`, then any
@@ -498,11 +498,11 @@ public struct Policy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.orgpolicy.v1.Policy.BooleanPolicy"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -518,7 +518,7 @@ public struct Policy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// several experimental projects, restoring the `constraint_default`
   /// enforcement of the `Constraint` for only those projects, allowing those
   /// projects to have all services activated.
-  public struct RestoreDefault: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RestoreDefault: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `RestoreDefault`.
@@ -540,11 +540,11 @@ public struct Policy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.orgpolicy.v1.Policy.RestoreDefault"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -573,10 +573,10 @@ public struct Policy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.orgpolicy.v1.Policy"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

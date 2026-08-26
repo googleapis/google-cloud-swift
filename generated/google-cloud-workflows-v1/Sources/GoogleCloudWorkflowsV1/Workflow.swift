@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Workflow program to be executed by Workflows.
-public struct Workflow: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Workflow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The resource name of the workflow.
@@ -52,15 +52,15 @@ public struct Workflow: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Output only. The timestamp for when the workflow was created.
   /// This is a workflow-wide field and is not tied to a specific revision.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The timestamp for when the workflow was last updated.
   /// This is a workflow-wide field and is not tied to a specific revision.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The timestamp for the latest revision of the workflow's
   /// creation.
-  public var revisionCreateTime: GoogleCloudWkt.Timestamp? = nil
+  public var revisionCreateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Labels associated with this workflow.
   /// Labels can contain at most 64 entries. Keys and values can be no longer
@@ -185,11 +185,11 @@ public struct Workflow: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.state = try container.decode(Workflow.State.self, forKey: .state)
     self.revisionId = try container.decode(Swift.String.self, forKey: .revisionId)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.revisionCreateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .revisionCreateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .revisionCreateTime)
     self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
     self.serviceAccount = try container.decode(Swift.String.self, forKey: .serviceAccount)
     self.cryptoKeyName = try container.decode(Swift.String.self, forKey: .cryptoKeyName)
@@ -251,7 +251,7 @@ public struct Workflow: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Describes an error related to the current state of the workflow.
-  public struct StateError: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct StateError: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Provides specifics about the error.
@@ -377,11 +377,11 @@ public struct Workflow: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.workflows.v1.Workflow.StateError"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -615,10 +615,10 @@ public struct Workflow: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.workflows.v1.Workflow"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

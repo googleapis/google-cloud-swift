@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A collection of router appliance instances. If you configure multiple router
 /// appliance instances to receive data from the same set of sites outside of
 /// Google Cloud, we recommend that you associate those instances with the same
 /// spoke.
-public struct LinkedRouterApplianceInstances: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct LinkedRouterApplianceInstances: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The list of router appliance instances.
@@ -60,10 +60,10 @@ public struct LinkedRouterApplianceInstances: Codable, Equatable, GoogleCloudWkt
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkconnectivity.v1.LinkedRouterApplianceInstances"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

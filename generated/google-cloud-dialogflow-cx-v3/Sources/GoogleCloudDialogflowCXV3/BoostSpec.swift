@@ -16,13 +16,13 @@
 
 #if Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Boost specification to boost certain documents.
   /// A copy of google.cloud.discoveryengine.v1main.BoostSpec, field documentation
   /// is available at
   /// https://cloud.google.com/generative-ai-app-builder/docs/reference/rest/v1alpha/BoostSpec
-  public struct BoostSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct BoostSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Condition boost specifications. If a document matches multiple
@@ -48,7 +48,7 @@
     }
 
     /// Boost applies to documents which match a condition.
-    public struct ConditionBoostSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ConditionBoostSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. An expression which specifies a boost condition. The syntax and
@@ -103,7 +103,7 @@
       /// Specification for custom ranking based on customer specified attribute
       /// value. It provides more controls for customized ranking than the simple
       /// (condition, boost) combination above.
-      public struct BoostControlSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct BoostControlSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. The name of the field whose value will be used to determine
@@ -148,7 +148,7 @@
         /// The control points used to define the curve. The curve defined
         /// through these control points can only be monotonically increasing
         /// or decreasing(constant values are acceptable).
-        public struct ControlPoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct ControlPoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Optional. Can be one of:
@@ -183,11 +183,11 @@
             return
               "type.googleapis.com/google.cloud.dialogflow.cx.v3.BoostSpec.ConditionBoostSpec.BoostControlSpec.ControlPoint"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
@@ -409,33 +409,33 @@
           return
             "type.googleapis.com/google.cloud.dialogflow.cx.v3.BoostSpec.ConditionBoostSpec.BoostControlSpec"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.BoostSpec.ConditionBoostSpec"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.BoostSpec"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

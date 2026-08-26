@@ -20,7 +20,7 @@
   import Foundation
   import GoogleCloudAIPlatformV1
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleIAMV1
   import GoogleLongRunning
   import GoogleRpc

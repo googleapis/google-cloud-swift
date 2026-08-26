@@ -16,13 +16,13 @@
 
 #if Conversations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The response message for
   /// [Conversations.SuggestConversationSummary][google.cloud.dialogflow.v2.Conversations.SuggestConversationSummary].
   ///
   /// [google.cloud.dialogflow.v2.Conversations.SuggestConversationSummary]: <doc:ConversationsClient/suggestConversationSummary(request:options:)>
-  public struct SuggestConversationSummaryResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SuggestConversationSummaryResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Generated summary.
@@ -63,7 +63,7 @@
     }
 
     /// Generated summary for a conversation.
-    public struct Summary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Summary: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The summary content that is concatenated into one string.
@@ -104,7 +104,7 @@
       }
 
       /// A component of the generated summary.
-      public struct SummarySection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct SummarySection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Output only. Name of the section.
@@ -133,11 +133,11 @@
           return
             "type.googleapis.com/google.cloud.dialogflow.v2.SuggestConversationSummaryResponse.Summary.SummarySection"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -145,22 +145,22 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.SuggestConversationSummaryResponse.Summary"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.SuggestConversationSummaryResponse"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

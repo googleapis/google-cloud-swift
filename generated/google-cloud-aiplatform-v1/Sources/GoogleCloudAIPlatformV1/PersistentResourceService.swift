@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleIAMV1
   import GoogleLongRunning
   import GoogleRpc
@@ -439,7 +439,7 @@
       /// See `PersistentResourceServiceClient.updatePersistentResource`.
       func updatePersistentResource(
         persistentResource: PersistentResource?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> any GoogleCloudGax.PollableOperation<PersistentResource>
 
       /// See `PersistentResourceServiceClient.rebootPersistentResource`.
@@ -796,7 +796,7 @@
 
     public func updatePersistentResource(
       persistentResource: PersistentResource?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<PersistentResource> {
       let request = UpdatePersistentResourceRequest().with {
         $0.persistentResource = persistentResource

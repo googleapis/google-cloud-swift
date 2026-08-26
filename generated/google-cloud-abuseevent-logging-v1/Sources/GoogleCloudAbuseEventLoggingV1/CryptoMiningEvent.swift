@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Information about a cryptocurrency mining event observed on the monitored
 /// resource.
-public struct CryptoMiningEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CryptoMiningEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// VM and zone in which cryptocurrency mining occurred.
@@ -27,10 +27,10 @@ public struct CryptoMiningEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public var vmResource: [Swift.String] = []
 
   /// Detected start time of the cryptocurrency mining.
-  public var detectedMiningStartTime: GoogleCloudWkt.Timestamp? = nil
+  public var detectedMiningStartTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Detected end time of the cryptocurrency mining.
-  public var detectedMiningEndTime: GoogleCloudWkt.Timestamp? = nil
+  public var detectedMiningEndTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The IP address(es) of the VM associated with the cryptocurrency mining.
   /// This field may be empty if this information is not available.
@@ -55,10 +55,10 @@ public struct CryptoMiningEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.abuseevent.logging.v1.CryptoMiningEvent"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

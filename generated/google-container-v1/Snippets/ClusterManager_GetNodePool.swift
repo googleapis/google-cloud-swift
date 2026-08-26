@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudContainerV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: ClusterManagerClient) async throws {
   let response = try await client.getNodePool(

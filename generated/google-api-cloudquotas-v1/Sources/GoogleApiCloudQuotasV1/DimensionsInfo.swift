@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The detailed quota information such as effective quota value for a
 /// combination of dimensions.
-public struct DimensionsInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DimensionsInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The map of dimensions in key-value pairs. The key of a map entry
@@ -61,10 +61,10 @@ public struct DimensionsInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.cloudquotas.v1.DimensionsInfo"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

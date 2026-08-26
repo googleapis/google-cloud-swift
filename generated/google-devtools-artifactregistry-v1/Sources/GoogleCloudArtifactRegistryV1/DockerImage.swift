@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// DockerImage represents a docker artifact.
 /// The following fields are returned as untyped metadata in the Version
@@ -23,7 +23,7 @@ import Foundation
 /// * imageSizeBytes
 /// * mediaType
 /// * buildTime
-public struct DockerImage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DockerImage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. registry_location, project_id, repository_name and image id forms
@@ -52,7 +52,7 @@ public struct DockerImage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var imageSizeBytes: Swift.Int64 = Swift.Int64()
 
   /// Time the image was uploaded.
-  public var uploadTime: GoogleCloudWkt.Timestamp? = nil
+  public var uploadTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Media type of this image, e.g.
   /// "application/vnd.docker.distribution.manifest.v2+json".
@@ -65,10 +65,10 @@ public struct DockerImage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Version resource.
   /// The build time is returned to the client as an RFC 3339 string, which can
   /// be easily used with the JavaScript Date constructor.
-  public var buildTime: GoogleCloudWkt.Timestamp? = nil
+  public var buildTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time when the docker image was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// ArtifactType of this image, e.g. "application/vnd.example+type".
   /// If the `subject_digest` is set and no `artifact_type` is given, the
@@ -99,10 +99,10 @@ public struct DockerImage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.devtools.artifactregistry.v1.DockerImage"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

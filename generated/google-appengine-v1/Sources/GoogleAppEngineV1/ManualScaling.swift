@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A service with manual scaling runs continuously, allowing you to perform
 /// complex initialization and rely on the state of its memory over time.
-public struct ManualScaling: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ManualScaling: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Number of instances to assign to the service at the start. This number
@@ -47,10 +47,10 @@ public struct ManualScaling: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.appengine.v1.ManualScaling"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

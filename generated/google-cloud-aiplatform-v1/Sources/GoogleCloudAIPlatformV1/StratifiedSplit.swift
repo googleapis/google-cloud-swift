@@ -16,7 +16,7 @@
 
 #if PipelineService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Assigns input data to the training, validation, and test sets so that the
   /// distribution of values found in the categorical column (as specified by the
@@ -35,7 +35,7 @@
   /// a specific value, those rows are randomly assigned.
   ///
   /// Supported only for tabular Datasets.
-  public struct StratifiedSplit: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct StratifiedSplit: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The fraction of the input data that is to be used to train the Model.
@@ -70,11 +70,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.StratifiedSplit"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

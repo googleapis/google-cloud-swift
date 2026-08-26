@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleBigQueryReservationV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 
 func sample(client: ReservationServiceClient, projectId: String, locationId: String) async throws {
@@ -28,7 +28,7 @@ func sample(client: ReservationServiceClient, projectId: String, locationId: Str
         $0.biReservation = BiReservation().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/biReservation"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Message that represents an arbitrary HTTP body. It should only be used for
 /// payload formats that can't be represented as JSON, such as raw binary or
@@ -60,7 +60,7 @@ import Foundation
 ///
 /// Use of this type only changes how the request and response bodies are
 /// handled, all other features will continue to work unchanged.
-public struct HttpBody: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct HttpBody: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The HTTP Content-Type header value specifying the content type of the body.
@@ -71,7 +71,7 @@ public struct HttpBody: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Application specific response metadata. Must be set in the first response
   /// for streaming APIs.
-  public var extensions: [GoogleCloudWkt.`Any`] = []
+  public var extensions: [GoogleCloudWKT.`Any`] = []
 
   /// Initialize a new instance of `HttpBody`.
   public init() {}
@@ -92,10 +92,10 @@ public struct HttpBody: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.HttpBody"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

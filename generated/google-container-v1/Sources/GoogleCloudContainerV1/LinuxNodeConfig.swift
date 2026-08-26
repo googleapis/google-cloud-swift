@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Parameters that can be configured on Linux nodes.
-public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The Linux kernel parameters to be applied to the nodes and all pods running
@@ -144,7 +144,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Hugepages amount in both 2m and 1g size
-  public struct HugepagesConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct HugepagesConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Amount of 2M hugepages
@@ -189,16 +189,16 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.LinuxNodeConfig.HugepagesConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Support for running custom init code while bootstrapping nodes.
-  public struct CustomNodeInit: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CustomNodeInit: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The init script to be executed on the node.
@@ -221,7 +221,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// InitScript provide a simply bash script to be executed on the node.
-    public struct InitScript: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct InitScript: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The Cloud Storage URI for storing the init script.
@@ -272,27 +272,27 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.container.v1.LinuxNodeConfig.CustomNodeInit.InitScript"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.LinuxNodeConfig.CustomNodeInit"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configuration for swap memory on a node pool.
-  public struct SwapConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SwapConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Enables or disables swap for the node pool.
@@ -381,7 +381,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Defines encryption settings for the swap space.
-    public struct EncryptionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct EncryptionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. If true, swap space will not be encrypted.
@@ -407,16 +407,16 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.container.v1.LinuxNodeConfig.SwapConfig.EncryptionConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Swap on the node's boot disk.
-    public struct BootDiskProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct BootDiskProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. Specifies the size of the swap space. If omitted, GKE
@@ -494,16 +494,16 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.container.v1.LinuxNodeConfig.SwapConfig.BootDiskProfile"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Swap on the local SSD shared with pod ephemeral storage.
-    public struct EphemeralLocalSsdProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct EphemeralLocalSsdProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Specifies the size of the swap space to be provisioned.
@@ -580,16 +580,16 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.container.v1.LinuxNodeConfig.SwapConfig.EphemeralLocalSsdProfile"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Provisions a new, separate local NVMe SSD exclusively for swap.
-    public struct DedicatedLocalSsdProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DedicatedLocalSsdProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The number of physical local NVMe SSD disks to attach.
@@ -615,11 +615,11 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.container.v1.LinuxNodeConfig.SwapConfig.DedicatedLocalSsdProfile"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -637,16 +637,16 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.LinuxNodeConfig.SwapConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configuration for kernel module loading on nodes.
-  public struct NodeKernelModuleLoading: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct NodeKernelModuleLoading: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Set the node module loading policy for nodes in the node pool.
@@ -789,17 +789,17 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.LinuxNodeConfig.NodeKernelModuleLoading"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// AccurateTimeConfig contains configuration for the accurate time
   /// synchronization feature.
-  public struct AccurateTimeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AccurateTimeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Enables enhanced time synchronization using PTP-KVM.
@@ -824,11 +824,11 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.LinuxNodeConfig.AccurateTimeConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -1194,10 +1194,10 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.LinuxNodeConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

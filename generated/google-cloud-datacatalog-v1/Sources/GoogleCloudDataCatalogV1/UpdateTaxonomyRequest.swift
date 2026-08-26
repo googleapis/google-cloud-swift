@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [UpdateTaxonomy][google.cloud.datacatalog.v1.PolicyTagManager.UpdateTaxonomy].
 ///
 /// [google.cloud.datacatalog.v1.PolicyTagManager.UpdateTaxonomy]: <doc:PolicyTagManagerClient/updateTaxonomy(request:options:)>
-public struct UpdateTaxonomyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateTaxonomyRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The taxonomy to update. You can update only its description, display name,
@@ -33,7 +33,7 @@ public struct UpdateTaxonomyRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
   ///
   /// For more information, see [FieldMask]
   /// (https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask).
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `UpdateTaxonomyRequest`.
   public init() {}
@@ -54,10 +54,10 @@ public struct UpdateTaxonomyRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datacatalog.v1.UpdateTaxonomyRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

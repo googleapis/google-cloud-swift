@@ -16,10 +16,10 @@
 
 #if DataFoundryService || EvaluationService || GenAiCacheService || GenAiTuningService || LlmUtilityService || PredictionService || SessionService || VertexRagService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Partial argument value of the function call.
-  public struct PartialArg: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PartialArg: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. A JSON Path (RFC 9535) to the argument being streamed.
@@ -75,7 +75,7 @@
         delta = $0
       }
       if let nullValue = try container.decodeIfPresent(
-        GoogleCloudWkt.NullValue.self, forKey: .nullValue)
+        GoogleCloudWKT.NullValue.self, forKey: .nullValue)
       {
         try deltaCheckAndSet(.nullValue(nullValue))
       }
@@ -113,7 +113,7 @@
     /// The delta of field value being streamed.
     public enum OneOf_Delta: Codable, Equatable, Sendable {
       /// Optional. Represents a null value.
-      case nullValue(GoogleCloudWkt.NullValue)
+      case nullValue(GoogleCloudWKT.NullValue)
       /// Optional. Represents a double value.
       case numberValue(Swift.Double)
       /// Optional. Represents a string value.
@@ -125,11 +125,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.PartialArg"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

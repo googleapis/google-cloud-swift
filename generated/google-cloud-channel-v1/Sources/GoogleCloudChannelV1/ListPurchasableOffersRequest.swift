@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for ListPurchasableOffers.
-public struct ListPurchasableOffersRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ListPurchasableOffersRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The resource name of the customer to list Offers for.
@@ -115,7 +115,7 @@ public struct ListPurchasableOffersRequest: Codable, Equatable, GoogleCloudWkt._
   }
 
   /// List Offers for CreateEntitlement purchase.
-  public struct CreateEntitlementPurchase: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CreateEntitlementPurchase: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. SKU that the result should be restricted to.
@@ -146,16 +146,16 @@ public struct ListPurchasableOffersRequest: Codable, Equatable, GoogleCloudWkt._
       return
         "type.googleapis.com/google.cloud.channel.v1.ListPurchasableOffersRequest.CreateEntitlementPurchase"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// List Offers for ChangeOffer purchase.
-  public struct ChangeOfferPurchase: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ChangeOfferPurchase: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Resource name of the entitlement.
@@ -196,11 +196,11 @@ public struct ListPurchasableOffersRequest: Codable, Equatable, GoogleCloudWkt._
       return
         "type.googleapis.com/google.cloud.channel.v1.ListPurchasableOffersRequest.ChangeOfferPurchase"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -215,10 +215,10 @@ public struct ListPurchasableOffersRequest: Codable, Equatable, GoogleCloudWkt._
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.channel.v1.ListPurchasableOffersRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

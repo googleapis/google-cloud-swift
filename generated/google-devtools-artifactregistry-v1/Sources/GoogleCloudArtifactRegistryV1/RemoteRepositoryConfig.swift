@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Remote repository configuration.
-public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The description of the remote source.
@@ -146,7 +146,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
   }
 
   /// The credentials to access the remote repository.
-  public struct UpstreamCredentials: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct UpstreamCredentials: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var credentials: OneOf_Credentials? = nil
@@ -205,7 +205,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
     }
 
     /// Username and password credentials.
-    public struct UsernamePasswordCredentials: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct UsernamePasswordCredentials: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The username to access the remote repository.
@@ -236,11 +236,11 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
         return
           "type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.UpstreamCredentials.UsernamePasswordCredentials"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -254,16 +254,16 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.UpstreamCredentials"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configuration for a Docker remote repository.
-  public struct DockerRepository: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DockerRepository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Address of the remote repository.
@@ -330,7 +330,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
     }
 
     /// Customer-specified publicly available remote repository.
-    public struct CustomRepository: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct CustomRepository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// An http/https uri reference to the custom remote repository, for ex:
@@ -357,11 +357,11 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
         return
           "type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.DockerRepository.CustomRepository"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -477,16 +477,16 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.DockerRepository"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configuration for a Maven remote repository.
-  public struct MavenRepository: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MavenRepository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Address of the remote repository.
@@ -553,7 +553,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
     }
 
     /// Customer-specified publicly available remote repository.
-    public struct CustomRepository: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct CustomRepository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// An http/https uri reference to the upstream remote repository, for ex:
@@ -580,11 +580,11 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
         return
           "type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.MavenRepository.CustomRepository"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -700,16 +700,16 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.MavenRepository"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configuration for a Npm remote repository.
-  public struct NpmRepository: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct NpmRepository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Address of the remote repository
@@ -776,7 +776,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
     }
 
     /// Customer-specified publicly available remote repository.
-    public struct CustomRepository: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct CustomRepository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// An http/https uri reference to the upstream remote repository, for ex:
@@ -803,11 +803,11 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
         return
           "type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.NpmRepository.CustomRepository"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -922,16 +922,16 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.NpmRepository"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configuration for a Python remote repository.
-  public struct PythonRepository: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PythonRepository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Address of the remote repository.
@@ -998,7 +998,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
     }
 
     /// Customer-specified publicly available remote repository.
-    public struct CustomRepository: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct CustomRepository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// An http/https uri reference to the upstream remote repository, for ex:
@@ -1025,11 +1025,11 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
         return
           "type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.PythonRepository.CustomRepository"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -1144,16 +1144,16 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.PythonRepository"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configuration for an Apt remote repository.
-  public struct AptRepository: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AptRepository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Address of the remote repository.
@@ -1221,7 +1221,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
 
     /// Publicly available Apt repositories constructed from a common repository
     /// base and a custom repository path.
-    public struct PublicRepository: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct PublicRepository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// A common public repository base for Apt.
@@ -1364,16 +1364,16 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
         return
           "type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.AptRepository.PublicRepository"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Customer-specified publicly available remote repository.
-    public struct CustomRepository: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct CustomRepository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// An http/https uri reference to the upstream remote repository, for ex:
@@ -1400,11 +1400,11 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
         return
           "type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.AptRepository.CustomRepository"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -1421,16 +1421,16 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.AptRepository"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configuration for a Yum remote repository.
-  public struct YumRepository: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct YumRepository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Address of the remote repository.
@@ -1498,7 +1498,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
 
     /// Publicly available Yum repositories constructed from a common repository
     /// base and a custom repository path.
-    public struct PublicRepository: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct PublicRepository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// A common public repository base for Yum.
@@ -1662,16 +1662,16 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
         return
           "type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.YumRepository.PublicRepository"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Customer-specified publicly available remote repository.
-    public struct CustomRepository: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct CustomRepository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// An http/https uri reference to the upstream remote repository, for ex:
@@ -1698,11 +1698,11 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
         return
           "type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.YumRepository.CustomRepository"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -1719,16 +1719,16 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.YumRepository"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Common remote repository settings type.
-  public struct CommonRemoteRepository: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CommonRemoteRepository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. A common public repository base for remote repository.
@@ -1754,11 +1754,11 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig.CommonRemoteRepository"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -1784,10 +1784,10 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.devtools.artifactregistry.v1.RemoteRepositoryConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

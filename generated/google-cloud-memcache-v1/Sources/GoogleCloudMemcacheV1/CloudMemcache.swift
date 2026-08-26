@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -457,7 +457,7 @@ extension Clients {
     /// See `CloudMemcacheClient.updateInstance`.
     func updateInstance(
       instance: Instance?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Instance>
 
     /// See `CloudMemcacheClient.updateParameters`.
@@ -471,7 +471,7 @@ extension Clients {
     /// See `CloudMemcacheClient.updateParameters`.
     func updateParameters(
       name: Swift.String,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
       parameters: MemcacheParameters?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Instance>
 
@@ -514,7 +514,7 @@ extension Clients {
     func rescheduleMaintenance(
       instance: Swift.String,
       rescheduleType: RescheduleMaintenanceRequest.RescheduleType,
-      scheduleTime: GoogleCloudWkt.Timestamp?,
+      scheduleTime: GoogleCloudWKT.Timestamp?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Instance>
 
     /// See `CloudMemcacheClient.listLocations`.
@@ -804,7 +804,7 @@ extension Clients.CloudMemcacheProtocol {
 
   public func updateInstance(
     instance: Instance?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Instance> {
     let request = UpdateInstanceRequest().with {
       $0.instance = instance
@@ -843,7 +843,7 @@ extension Clients.CloudMemcacheProtocol {
 
   public func updateParameters(
     name: Swift.String,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
     parameters: MemcacheParameters?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Instance> {
     let request = UpdateParametersRequest().with {
@@ -963,7 +963,7 @@ extension Clients.CloudMemcacheProtocol {
   public func rescheduleMaintenance(
     instance: Swift.String,
     rescheduleType: RescheduleMaintenanceRequest.RescheduleType,
-    scheduleTime: GoogleCloudWkt.Timestamp?,
+    scheduleTime: GoogleCloudWKT.Timestamp?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Instance> {
     let request = RescheduleMaintenanceRequest().with {
       $0.instance = instance

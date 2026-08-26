@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A RetiredResource resource represents the record of a deleted
 /// [CryptoKey][google.cloud.kms.v1.CryptoKey]. Its purpose is to provide
@@ -23,7 +23,7 @@ import Foundation
 /// new [CryptoKeys][google.cloud.kms.v1.CryptoKey].
 ///
 /// [google.cloud.kms.v1.CryptoKey]: <doc:CryptoKey>
-public struct RetiredResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RetiredResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Identifier. The resource name for this
@@ -45,7 +45,7 @@ public struct RetiredResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Output only. The time at which the original resource was deleted and this
   /// RetiredResource record was created.
-  public var deleteTime: GoogleCloudWkt.Timestamp? = nil
+  public var deleteTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `RetiredResource`.
   public init() {}
@@ -66,10 +66,10 @@ public struct RetiredResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.RetiredResource"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

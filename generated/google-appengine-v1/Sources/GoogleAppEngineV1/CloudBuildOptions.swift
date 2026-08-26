@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Options for the build operations performed as a part of the version
 /// deployment. Only applicable for App Engine flexible environment when creating
 /// a version using source code directly.
-public struct CloudBuildOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CloudBuildOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Path to the yaml file used in deployment, used to determine runtime
@@ -34,7 +34,7 @@ public struct CloudBuildOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
   /// The Cloud Build timeout used as part of any dependent builds performed by
   /// version creation. Defaults to 10 minutes.
-  public var cloudBuildTimeout: GoogleCloudWkt.Duration? = nil
+  public var cloudBuildTimeout: GoogleCloudWKT.Duration? = nil
 
   /// Initialize a new instance of `CloudBuildOptions`.
   public init() {}
@@ -55,10 +55,10 @@ public struct CloudBuildOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.appengine.v1.CloudBuildOptions"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

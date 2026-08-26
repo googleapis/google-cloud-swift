@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Describes a Cloud Function that contains user computation executed in
 /// response to an event. It encapsulates function and trigger configurations.
-public struct Function: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Function: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A user-defined name of the function. Function names must be unique
@@ -45,7 +45,7 @@ public struct Function: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var state: Function.State = Function.State()
 
   /// Output only. The last update timestamp of a Cloud Function.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Labels associated with this Cloud Function.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -71,7 +71,7 @@ public struct Function: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Output only. The create timestamp of a Cloud Function. This is only
   /// applicable to 2nd Gen functions.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `Function`.
   public init() {}
@@ -219,10 +219,10 @@ public struct Function: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.functions.v2.Function"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

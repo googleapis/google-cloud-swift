@@ -15,20 +15,20 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A resource representing streaming data from a source to a destination.
-public struct Stream: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Stream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Identifier. The stream's name.
   public var name: Swift.String = Swift.String()
 
   /// Output only. The creation time of the stream.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The last update time of the stream.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Labels.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -56,7 +56,7 @@ public struct Stream: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Output only. If the stream was recovered, the time of the last recovery.
   /// Note: This field is currently experimental.
-  public var lastRecoveryTime: GoogleCloudWkt.Timestamp? = nil
+  public var lastRecoveryTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Reserved for future use.
   public var satisfiesPzs: Swift.Bool? = nil
@@ -105,9 +105,9 @@ public struct Stream: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
     self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
     self.sourceConfig = try container.decodeIfPresent(SourceConfig.self, forKey: .sourceConfig)
@@ -118,7 +118,7 @@ public struct Stream: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.customerManagedEncryptionKey = try container.decodeIfPresent(
       Swift.String.self, forKey: .customerManagedEncryptionKey)
     self.lastRecoveryTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .lastRecoveryTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .lastRecoveryTime)
     self.satisfiesPzs = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs)
     self.satisfiesPzi = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi)
 
@@ -173,7 +173,7 @@ public struct Stream: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Backfill strategy to automatically backfill the Stream's objects.
   /// Specific objects can be excluded.
-  public struct BackfillAllStrategy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct BackfillAllStrategy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// List of objects to exclude.
@@ -290,16 +290,16 @@ public struct Stream: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.datastream.v1.Stream.BackfillAllStrategy"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Backfill strategy to disable automatic backfill for the Stream's objects.
-  public struct BackfillNoneStrategy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct BackfillNoneStrategy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `BackfillNoneStrategy`.
@@ -321,11 +321,11 @@ public struct Stream: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.datastream.v1.Stream.BackfillNoneStrategy"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -492,10 +492,10 @@ public struct Stream: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datastream.v1.Stream"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A description of the execution of a transfer.
-public struct TransferOperation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TransferOperation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A globally unique ID assigned by the system.
@@ -37,10 +37,10 @@ public struct TransferOperation: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public var loggingConfig: LoggingConfig? = nil
 
   /// Start time of this transfer execution.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// End time of this transfer execution.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Status of the transfer operation.
   public var status: TransferOperation.Status = TransferOperation.Status()
@@ -213,10 +213,10 @@ public struct TransferOperation: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storagetransfer.v1.TransferOperation"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

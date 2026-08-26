@@ -15,21 +15,21 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A set of reusable connection configurations to be used as a source or
 /// destination for a stream.
-public struct ConnectionProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ConnectionProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Identifier. The resource's name.
   public var name: Swift.String = Swift.String()
 
   /// Output only. The create time of the resource.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The update time of the resource.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Labels.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -90,9 +90,9 @@ public struct ConnectionProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
     self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
     self.satisfiesPzs = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs)
@@ -250,10 +250,10 @@ public struct ConnectionProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datastream.v1.ConnectionProfile"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -19,7 +19,7 @@
   #if canImport(FoundationNetworking)
     import FoundationNetworking
   #endif
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleRpc
   import GoogleCloudGax
@@ -309,7 +309,7 @@
       /// See `DataStoreServiceClient.updateDataStore`.
       func updateDataStore(
         dataStore: DataStore?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudDiscoveryEngineV1.DataStore
 
       /// See `DataStoreServiceClient.listOperations`.
@@ -544,7 +544,7 @@
 
     public func updateDataStore(
       dataStore: DataStore?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDiscoveryEngineV1.DataStore {
       let request = UpdateDataStoreRequest().with {
         $0.dataStore = dataStore

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents a single metric value.
-public struct MetricValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MetricValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The labels describing the metric value.
@@ -38,7 +38,7 @@ public struct MetricValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// will be used.
   ///
   /// [google.api.servicecontrol.v1.Operation.start_time]: <doc:Operation/startTime>
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The end of the time period over which this metric value's measurement
   /// applies.  If not specified,
@@ -46,7 +46,7 @@ public struct MetricValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// will be used.
   ///
   /// [google.api.servicecontrol.v1.Operation.end_time]: <doc:Operation/endTime>
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The value. The type of value used in the request must
   /// agree with the metric definition in the service configuration, otherwise
@@ -84,8 +84,8 @@ public struct MetricValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
     self.startTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .startTime)
-    self.endTime = try container.decodeIfPresent(GoogleCloudWkt.Timestamp.self, forKey: .endTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
 
     var value: OneOf_Value? = nil
     let valueCheckAndSet = {
@@ -158,10 +158,10 @@ public struct MetricValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.servicecontrol.v1.MetricValue"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

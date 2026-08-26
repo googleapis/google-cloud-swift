@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudOracleDatabaseV1
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 

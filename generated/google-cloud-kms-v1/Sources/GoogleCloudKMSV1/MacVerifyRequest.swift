@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [KeyManagementService.MacVerify][google.cloud.kms.v1.KeyManagementService.MacVerify].
 ///
 /// [google.cloud.kms.v1.KeyManagementService.MacVerify]: <doc:KeyManagementServiceClient/macVerify(request:options:)>
-public struct MacVerifyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MacVerifyRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The resource name of the
@@ -60,7 +60,7 @@ public struct MacVerifyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   /// [google.cloud.kms.v1.MacVerifyRequest.data]: <doc:MacVerifyRequest/data>
   /// [google.cloud.kms.v1.MacVerifyRequest.data_crc32c]: <doc:MacVerifyRequest/dataCrc32C>
-  public var dataCrc32C: GoogleCloudWkt.Int64Value? = nil
+  public var dataCrc32C: GoogleCloudWKT.Int64Value? = nil
 
   /// Required. The signature to verify.
   public var mac: Foundation.Data = Foundation.Data()
@@ -86,7 +86,7 @@ public struct MacVerifyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   /// [google.cloud.kms.v1.MacVerifyRequest.mac]: <doc:MacVerifyRequest/mac>
   /// [google.cloud.kms.v1.MacVerifyRequest.mac_crc32c]: <doc:MacVerifyRequest/macCrc32C>
-  public var macCrc32C: GoogleCloudWkt.Int64Value? = nil
+  public var macCrc32C: GoogleCloudWKT.Int64Value? = nil
 
   /// Initialize a new instance of `MacVerifyRequest`.
   public init() {}
@@ -117,10 +117,10 @@ public struct MacVerifyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.data = try container.decode(Foundation.Data.self, forKey: .data)
     self.dataCrc32C = try container.decodeIfPresent(
-      GoogleCloudWkt.Int64Value.self, forKey: .dataCrc32C)
+      GoogleCloudWKT.Int64Value.self, forKey: .dataCrc32C)
     self.mac = try container.decode(Foundation.Data.self, forKey: .mac)
     self.macCrc32C = try container.decodeIfPresent(
-      GoogleCloudWkt.Int64Value.self, forKey: .macCrc32C)
+      GoogleCloudWKT.Int64Value.self, forKey: .macCrc32C)
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -135,10 +135,10 @@ public struct MacVerifyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.MacVerifyRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

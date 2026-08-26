@@ -16,7 +16,7 @@
 
 #if TestCases || TransitionRouteGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A TransitionRouteGroup represents a group of
   /// [`TransitionRoutes`][google.cloud.dialogflow.cx.v3.TransitionRoute] to be
@@ -24,7 +24,7 @@
   ///
   /// [google.cloud.dialogflow.cx.v3.Page]: <doc:Page>
   /// [google.cloud.dialogflow.cx.v3.TransitionRoute]: <doc:TransitionRoute>
-  public struct TransitionRouteGroup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TransitionRouteGroup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The unique identifier of the transition route group.
@@ -65,11 +65,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.TransitionRouteGroup"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -16,10 +16,10 @@
 
 #if DataStoreService || SchemaService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Defines the structure and layout of a type of document data.
-  public struct Schema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Schema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Immutable. The full resource name of the schema, in the format of
@@ -75,7 +75,7 @@
         schema = $0
       }
       if let structSchema = try container.decodeIfPresent(
-        GoogleCloudWkt.Struct?.self, forKey: .structSchema)
+        GoogleCloudWKT.Struct?.self, forKey: .structSchema)
       {
         try schemaCheckAndSet(.structSchema(structSchema))
       }
@@ -108,7 +108,7 @@
     /// [google.cloud.discoveryengine.v1.Schema.struct_schema]: <doc:Schema/OneOf_Schema/structSchema(_:)>
     public enum OneOf_Schema: Codable, Equatable, Sendable {
       /// The structured representation of the schema.
-      indirect case structSchema(GoogleCloudWkt.Struct?)
+      indirect case structSchema(GoogleCloudWKT.Struct?)
       /// The JSON representation of the schema.
       case jsonSchema(Swift.String)
     }
@@ -116,11 +116,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.Schema"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

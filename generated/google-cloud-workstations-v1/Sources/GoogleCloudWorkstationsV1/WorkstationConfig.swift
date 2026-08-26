@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// A workstation configuration resource in the Cloud Workstations API.
@@ -27,7 +27,7 @@ import GoogleRpc
 /// can also use [Identity and Access Management
 /// (IAM)](https://cloud.google.com/iam/docs/overview) rules to grant access to
 /// teams or to individual developers.
-public struct WorkstationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct WorkstationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. Full name of this workstation configuration.
@@ -54,14 +54,14 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public var labels: [Swift.String: Swift.String] = [:]
 
   /// Output only. Time when this workstation configuration was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Time when this workstation configuration was most recently
   /// updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Time when this workstation configuration was soft-deleted.
-  public var deleteTime: GoogleCloudWkt.Timestamp? = nil
+  public var deleteTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Checksum computed by the server. May be sent on update and delete
   /// requests to make sure that the client has an up-to-date value before
@@ -77,7 +77,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
   /// [duration](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#duration)
   /// terminated by `s` for seconds—for example, `"7200s"` (2 hours).
   /// The default is `"1200s"` (20 minutes).
-  public var idleTimeout: GoogleCloudWkt.Duration? = nil
+  public var idleTimeout: GoogleCloudWKT.Duration? = nil
 
   /// Optional. Number of seconds that a workstation can run until it is
   /// automatically shut down. We recommend that workstations be shut down daily
@@ -105,7 +105,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
   /// [google.cloud.workstations.v1.WorkstationConfig.encryption_key]: <doc:WorkstationConfig/encryptionKey>
   /// [google.cloud.workstations.v1.WorkstationConfig.idle_timeout]: <doc:WorkstationConfig/idleTimeout>
   /// [google.cloud.workstations.v1.WorkstationConfig.running_timeout]: <doc:WorkstationConfig/runningTimeout>
-  public var runningTimeout: GoogleCloudWkt.Duration? = nil
+  public var runningTimeout: GoogleCloudWKT.Duration? = nil
 
   /// Optional. Maximum number of workstations under this configuration a user
   /// can have `workstations.workstation.use` permission on.
@@ -241,7 +241,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
   }
 
   /// Runtime host for a workstation.
-  public struct Host: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Host: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Type of host to be used for the workstation's runtime.
@@ -300,7 +300,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
     }
 
     /// A runtime using a Compute Engine instance.
-    public struct GceInstance: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GceInstance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. The type of machine to use for VM instances—for example,
@@ -460,7 +460,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
       }
 
       /// A set of Compute Engine Shielded instance options.
-      public struct GceShieldedInstanceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct GceShieldedInstanceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. Whether the instance has Secure Boot enabled.
@@ -492,16 +492,16 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
           return
             "type.googleapis.com/google.cloud.workstations.v1.WorkstationConfig.Host.GceInstance.GceShieldedInstanceConfig"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// A set of Compute Engine Confidential VM instance options.
-      public struct GceConfidentialInstanceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct GceConfidentialInstanceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. Whether the instance has confidential compute enabled.
@@ -527,16 +527,16 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
           return
             "type.googleapis.com/google.cloud.workstations.v1.WorkstationConfig.Host.GceInstance.GceConfidentialInstanceConfig"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// An accelerator card attached to the instance.
-      public struct Accelerator: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Accelerator: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. Type of accelerator resource to attach to the instance, for
@@ -567,11 +567,11 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
           return
             "type.googleapis.com/google.cloud.workstations.v1.WorkstationConfig.Host.GceInstance.Accelerator"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -582,7 +582,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
       /// the workstation user does not provide a boost config ID  in the start
       /// request, the system will choose a VM from the pool provisioned under
       /// the default config.
-      public struct BoostConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct BoostConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. The ID to be used for the boost configuration.
@@ -657,22 +657,22 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
           return
             "type.googleapis.com/google.cloud.workstations.v1.WorkstationConfig.Host.GceInstance.BoostConfig"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.workstations.v1.WorkstationConfig.Host.GceInstance"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -685,18 +685,18 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.workstations.v1.WorkstationConfig.Host"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A directory to persist across workstation sessions. Updates to this field
   /// will not update existing workstations and will only take effect on new
   /// workstations.
-  public struct PersistentDirectory: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PersistentDirectory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Location of this directory in the running workstation.
@@ -781,7 +781,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
     /// directory.
     ///
     /// [google.cloud.workstations.v1.WorkstationConfig.persistent_directories]: <doc:WorkstationConfig/persistentDirectories>
-    public struct GceRegionalPersistentDisk: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GceRegionalPersistentDisk: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. The GB capacity of a persistent home directory for each
@@ -843,7 +843,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
       /// create a disk from the archival snapshot.
       ///
       /// A value of `"0s"` indicates that the disk will never be archived.
-      public var archiveTimeout: GoogleCloudWkt.Duration? = nil
+      public var archiveTimeout: GoogleCloudWKT.Duration? = nil
 
       /// Initialize a new instance of `GceRegionalPersistentDisk`.
       public init() {}
@@ -972,11 +972,11 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
         return
           "type.googleapis.com/google.cloud.workstations.v1.WorkstationConfig.PersistentDirectory.GceRegionalPersistentDisk"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -985,7 +985,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
     /// Disk](https://cloud.google.com/compute/docs/disks/hd-types/hyperdisk-balanced-ha).
     /// This is a high-availability block storage solution that offers a balance
     /// between performance and cost for most general-purpose workloads.
-    public struct GceHyperdiskBalancedHighAvailability: Codable, Equatable, GoogleCloudWkt
+    public struct GceHyperdiskBalancedHighAvailability: Codable, Equatable, GoogleCloudWKT
         ._AnyPackable,
       Sendable
     {
@@ -1027,7 +1027,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
       /// create a disk from the archival snapshot.
       ///
       /// A value of `"0s"` indicates that the disk will never be archived.
-      public var archiveTimeout: GoogleCloudWkt.Duration? = nil
+      public var archiveTimeout: GoogleCloudWKT.Duration? = nil
 
       /// Initialize a new instance of `GceHyperdiskBalancedHighAvailability`.
       public init() {}
@@ -1156,11 +1156,11 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
         return
           "type.googleapis.com/google.cloud.workstations.v1.WorkstationConfig.PersistentDirectory.GceHyperdiskBalancedHighAvailability"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -1178,17 +1178,17 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
       return
         "type.googleapis.com/google.cloud.workstations.v1.WorkstationConfig.PersistentDirectory"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// An ephemeral directory which won't persist across workstation sessions. It
   /// is freshly created on every workstation start operation.
-  public struct EphemeralDirectory: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct EphemeralDirectory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Location of this directory in the running workstation.
@@ -1253,7 +1253,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
     }
 
     /// An EphemeralDirectory is backed by a Compute Engine persistent disk.
-    public struct GcePersistentDisk: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GcePersistentDisk: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. Type of the disk to use. Defaults to `"pd-standard"`.
@@ -1328,11 +1328,11 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
         return
           "type.googleapis.com/google.cloud.workstations.v1.WorkstationConfig.EphemeralDirectory.GcePersistentDisk"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -1345,16 +1345,16 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.workstations.v1.WorkstationConfig.EphemeralDirectory"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A Docker container.
-  public struct Container: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Container: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. A Docker container image that defines a custom environment.
@@ -1410,11 +1410,11 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.workstations.v1.WorkstationConfig.Container"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -1424,7 +1424,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
   /// We recommend that you use a separate service account and follow
   /// [Cloud KMS best
   /// practices](https://cloud.google.com/kms/docs/separation-of-duties).
-  public struct CustomerEncryptionKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CustomerEncryptionKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Immutable. The name of the Google Cloud KMS encryption key. For example,
@@ -1461,16 +1461,16 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
       return
         "type.googleapis.com/google.cloud.workstations.v1.WorkstationConfig.CustomerEncryptionKey"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A readiness check to be performed on a workstation.
-  public struct ReadinessCheck: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ReadinessCheck: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Path to which the request should be sent.
@@ -1498,11 +1498,11 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.workstations.v1.WorkstationConfig.ReadinessCheck"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -1517,7 +1517,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
   ///
   /// [google.cloud.workstations.v1.WorkstationConfig.PortRange.first]: <doc:WorkstationConfig/PortRange/first>
   /// [google.cloud.workstations.v1.WorkstationConfig.PortRange.last]: <doc:WorkstationConfig/PortRange/last>
-  public struct PortRange: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PortRange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Starting port number for the current range of ports.
@@ -1547,21 +1547,21 @@ public struct WorkstationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.workstations.v1.WorkstationConfig.PortRange"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.workstations.v1.WorkstationConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

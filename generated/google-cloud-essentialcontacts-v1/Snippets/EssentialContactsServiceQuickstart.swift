@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudEssentialContactsV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(projectId: String, ) async throws {
   let client = try GoogleCloudEssentialContactsV1.EssentialContactsServiceClient()

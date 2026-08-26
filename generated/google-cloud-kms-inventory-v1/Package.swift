@@ -37,7 +37,7 @@ let package = Package(
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),
         .product(name: "GoogleCloudKMSV1", package: "google-cloud-kms-v1"),
-        .product(name: "GoogleCloudWkt", package: "wkt"),
+        .product(name: "GoogleCloudWKT", package: "wkt"),
         .product(name: "Logging", package: "swift-log"),
       ],
     )

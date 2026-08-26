@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance]
 /// represents a single-tenant HSM instance. It can be used for creating
@@ -28,7 +28,7 @@ import Foundation
 /// [google.cloud.kms.v1.CryptoKey]: <doc:CryptoKey>
 /// [google.cloud.kms.v1.ProtectionLevel]: <doc:ProtectionLevel>
 /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
-public struct SingleTenantHsmInstance: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SingleTenantHsmInstance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The resource name for this
@@ -43,7 +43,7 @@ public struct SingleTenantHsmInstance: Codable, Equatable, GoogleCloudWkt._AnyPa
   /// created.
   ///
   /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The state of the
   /// [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance].
@@ -62,12 +62,12 @@ public struct SingleTenantHsmInstance: Codable, Equatable, GoogleCloudWkt._AnyPa
   /// deleted.
   ///
   /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
-  public var deleteTime: GoogleCloudWkt.Timestamp? = nil
+  public var deleteTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The system-defined duration that an instance can remain
   /// unrefreshed until it is automatically disabled. This will have a value of
   /// 730 days.
-  public var unrefreshedDurationUntilDisable: GoogleCloudWkt.Duration? = nil
+  public var unrefreshedDurationUntilDisable: GoogleCloudWKT.Duration? = nil
 
   /// Output only. The time at which the instance will be automatically disabled
   /// if not refreshed. This field is updated upon creation and after each
@@ -79,7 +79,7 @@ public struct SingleTenantHsmInstance: Codable, Equatable, GoogleCloudWkt._AnyPa
   /// become disabled.
   ///
   /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
-  public var disableTime: GoogleCloudWkt.Timestamp? = nil
+  public var disableTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Immutable. Indicates whether key portability is enabled for the
   /// [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance].
@@ -106,7 +106,7 @@ public struct SingleTenantHsmInstance: Codable, Equatable, GoogleCloudWkt._AnyPa
   }
 
   /// Configuration for M of N quorum auth.
-  public struct QuorumAuth: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct QuorumAuth: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The total number of approvers. This is the N value used
@@ -146,11 +146,11 @@ public struct SingleTenantHsmInstance: Codable, Equatable, GoogleCloudWkt._AnyPa
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.kms.v1.SingleTenantHsmInstance.QuorumAuth"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -350,10 +350,10 @@ public struct SingleTenantHsmInstance: Codable, Equatable, GoogleCloudWkt._AnyPa
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.SingleTenantHsmInstance"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -16,10 +16,10 @@
 
 #if TensorboardService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// TensorboardTimeSeries maps to times series produced in training runs
-  public struct TensorboardTimeSeries: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TensorboardTimeSeries: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Name of the TensorboardTimeSeries.
@@ -37,10 +37,10 @@
     public var valueType: TensorboardTimeSeries.ValueType = TensorboardTimeSeries.ValueType()
 
     /// Output only. Timestamp when this TensorboardTimeSeries was created.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Timestamp when this TensorboardTimeSeries was last updated.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Used to perform a consistent read-modify-write updates. If not set, a blind
     /// "overwrite" update happens.
@@ -74,7 +74,7 @@
     }
 
     /// Describes metadata for a TensorboardTimeSeries.
-    public struct Metadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Metadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. Max step index of all data points within a
@@ -83,7 +83,7 @@
 
       /// Output only. Max wall clock timestamp of all data points within a
       /// TensorboardTimeSeries.
-      public var maxWallTime: GoogleCloudWkt.Timestamp? = nil
+      public var maxWallTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Output only. The largest blob sequence length (number of blobs) of all
       /// data points in this time series, if its ValueType is BLOB_SEQUENCE.
@@ -108,11 +108,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.TensorboardTimeSeries.Metadata"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -234,11 +234,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.TensorboardTimeSeries"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

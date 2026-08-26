@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A Network Connectivity Center spoke represents one or more network
 /// connectivity resources.
@@ -27,7 +27,7 @@ import Foundation
 /// * linked_interconnect_attachments
 /// * linked_router_appliance_instances
 /// * linked_vpc_network
-public struct Spoke: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Spoke: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Immutable. The name of the spoke. Spoke names must be unique. They use the
@@ -36,10 +36,10 @@ public struct Spoke: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Output only. The time the spoke was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time the spoke was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional labels in key-value pair format. For more information about
   /// labels, see [Requirements for
@@ -109,7 +109,7 @@ public struct Spoke: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// The reason a spoke is inactive.
-  public struct StateReason: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct StateReason: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The code associated with this reason.
@@ -282,21 +282,21 @@ public struct Spoke: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkconnectivity.v1.Spoke.StateReason"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkconnectivity.v1.Spoke"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

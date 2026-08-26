@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The request message for [ListControlComplianceSummaries][].
-public struct ListControlComplianceSummariesRequest: Codable, Equatable, GoogleCloudWkt
+public struct ListControlComplianceSummariesRequest: Codable, Equatable, GoogleCloudWKT
     ._AnyPackable,
   Sendable
 {
@@ -27,7 +27,7 @@ public struct ListControlComplianceSummariesRequest: Codable, Equatable, GoogleC
 
   /// Optional. The end time of the control compliance summary.
   @available(*, deprecated)
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. The requested page size. The server might return fewer items than
   /// requested. If unspecified, the server picks an appropriate default.
@@ -60,10 +60,10 @@ public struct ListControlComplianceSummariesRequest: Codable, Equatable, GoogleC
     return
       "type.googleapis.com/google.cloud.cloudsecuritycompliance.v1.ListControlComplianceSummariesRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The `Destination` resource. It specifies the IP prefix and the associated
 /// autonomous system numbers (ASN) that you want to include in a
 /// `MulticloudDataTransferConfig` resource.
-public struct Destination: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Destination: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The name of the `Destination` resource.
@@ -29,10 +29,10 @@ public struct Destination: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Output only. Time when the `Destination` resource was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Time when the `Destination` resource was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. User-defined labels.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -97,7 +97,7 @@ public struct Destination: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// The metadata for a `DestinationEndpoint` resource.
-  public struct DestinationEndpoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DestinationEndpoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The ASN of the remote IP prefix.
@@ -111,7 +111,7 @@ public struct Destination: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       .State()
 
     /// Output only. Time when the `DestinationEndpoint` resource was updated.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `DestinationEndpoint`.
     public init() {}
@@ -238,21 +238,21 @@ public struct Destination: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.networkconnectivity.v1.Destination.DestinationEndpoint"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkconnectivity.v1.Destination"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

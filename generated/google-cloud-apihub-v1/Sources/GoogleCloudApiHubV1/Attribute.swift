@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An attribute in the API Hub.
 /// An attribute is a name value pair which can be attached to different
 /// resources in the API hub based on the scope of the attribute. Attributes can
 /// either be pre-defined by the API Hub or created by users.
-public struct Attribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Attribute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The name of the attribute in the API Hub.
@@ -64,10 +64,10 @@ public struct Attribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var mandatory: Swift.Bool = Swift.Bool()
 
   /// Output only. The time at which the attribute was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time at which the attribute was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `Attribute`.
   public init() {}
@@ -87,7 +87,7 @@ public struct Attribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// The value that can be assigned to the attribute when the data type is
   /// enum.
-  public struct AllowedValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AllowedValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The ID of the allowed value.
@@ -131,11 +131,11 @@ public struct Attribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.apihub.v1.Attribute.AllowedValue"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -522,10 +522,10 @@ public struct Attribute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.apihub.v1.Attribute"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -16,10 +16,10 @@
 
 import Foundation
 @_spi(GoogleCloudInternal) import GoogleCloudGax
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response of the ListAddressGroupReferences method.
-public struct ListAddressGroupReferencesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ListAddressGroupReferencesResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable
 {
@@ -48,7 +48,7 @@ public struct ListAddressGroupReferencesResponse: Codable, Equatable, GoogleClou
   }
 
   /// The Reference of AddressGroup.
-  public struct AddressGroupReference: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AddressGroupReference: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// FirewallPolicy that is using the Address Group.
@@ -80,22 +80,22 @@ public struct ListAddressGroupReferencesResponse: Codable, Equatable, GoogleClou
       return
         "type.googleapis.com/google.cloud.networksecurity.v1.ListAddressGroupReferencesResponse.AddressGroupReference"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networksecurity.v1.ListAddressGroupReferencesResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 
   public func _getPaginatedItems() -> [ListAddressGroupReferencesResponse.AddressGroupReference] {

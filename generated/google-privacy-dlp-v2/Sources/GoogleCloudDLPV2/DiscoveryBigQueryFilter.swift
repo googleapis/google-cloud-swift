@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Determines what tables will have profiles generated within an organization
 /// or project. Includes the ability to filter by regular expression patterns
 /// on project ID, dataset ID, and table ID.
-public struct DiscoveryBigQueryFilter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DiscoveryBigQueryFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Whether the filter applies to a specific set of tables or all other tables
@@ -98,7 +98,7 @@ public struct DiscoveryBigQueryFilter: Codable, Equatable, GoogleCloudWkt._AnyPa
   /// Catch-all for all other tables not specified by other filters. Should
   /// always be last, except for single-table configurations, which will only
   /// have a TableReference target.
-  public struct AllOtherBigQueryTables: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AllOtherBigQueryTables: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `AllOtherBigQueryTables`.
@@ -121,11 +121,11 @@ public struct DiscoveryBigQueryFilter: Codable, Equatable, GoogleCloudWkt._AnyPa
       return
         "type.googleapis.com/google.privacy.dlp.v2.DiscoveryBigQueryFilter.AllOtherBigQueryTables"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -153,10 +153,10 @@ public struct DiscoveryBigQueryFilter: Codable, Equatable, GoogleCloudWkt._AnyPa
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.DiscoveryBigQueryFilter"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

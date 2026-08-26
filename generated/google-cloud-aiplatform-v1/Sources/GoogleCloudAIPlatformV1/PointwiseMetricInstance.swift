@@ -16,11 +16,11 @@
 
 #if EvaluationService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Pointwise metric instance. Usually one instance corresponds to one row in an
   /// evaluation dataset.
-  public struct PointwiseMetricInstance: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PointwiseMetricInstance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Instance for pointwise metric.
@@ -100,11 +100,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.PointwiseMetricInstance"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

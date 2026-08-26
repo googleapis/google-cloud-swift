@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The configuration settings for Cloud Composer maintenance window.
 /// The following example:
@@ -30,16 +30,16 @@ import Foundation
 ///
 /// would define a maintenance window between 01 and 07 hours UTC during
 /// each Tuesday and Wednesday.
-public struct MaintenanceWindow: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MaintenanceWindow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Start time of the first recurrence of the maintenance window.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Required. Maintenance window end time. It is used only to calculate the
   /// duration of the maintenance window. The value for end-time must be in the
   /// future, relative to `start_time`.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Required. Maintenance window recurrence. Format is a subset of
   /// [RFC-5545](https://tools.ietf.org/html/rfc5545) `RRULE`. The only allowed
@@ -66,10 +66,10 @@ public struct MaintenanceWindow: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.orchestration.airflow.service.v1.MaintenanceWindow"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Various properties and settings associated with Db node.
-public struct DbNodeProperties: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DbNodeProperties: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. OCID of database node.
@@ -46,7 +46,7 @@ public struct DbNodeProperties: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var totalCpuCoreCount: Swift.Int32 = Swift.Int32()
 
   /// Output only. The date and time that the database node was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `DbNodeProperties`.
   public init() {}
@@ -221,10 +221,10 @@ public struct DbNodeProperties: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.oracledatabase.v1.DbNodeProperties"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

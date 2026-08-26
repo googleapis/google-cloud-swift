@@ -16,14 +16,14 @@
 
 #if ConversationModels
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Metadata for a
   /// [ConversationModels.UndeployConversationModel][google.cloud.dialogflow.v2.ConversationModels.UndeployConversationModel]
   /// operation.
   ///
   /// [google.cloud.dialogflow.v2.ConversationModels.UndeployConversationModel]: <doc:ConversationModelsClient/undeployConversationModel(request:options:)>
-  public struct UndeployConversationModelOperationMetadata: Codable, Equatable, GoogleCloudWkt
+  public struct UndeployConversationModelOperationMetadata: Codable, Equatable, GoogleCloudWKT
       ._AnyPackable,
     Sendable
   {
@@ -33,10 +33,10 @@
 
     /// Timestamp when the request to undeploy conversation model was submitted.
     /// The time is measured on server side.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// The time when the operation finished.
-    public var doneTime: GoogleCloudWkt.Timestamp? = nil
+    public var doneTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `UndeployConversationModelOperationMetadata`.
     public init() {}
@@ -58,11 +58,11 @@
       return
         "type.googleapis.com/google.cloud.dialogflow.v2.UndeployConversationModelOperationMetadata"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

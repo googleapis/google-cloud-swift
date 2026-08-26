@@ -16,10 +16,10 @@
 
 #if Conversations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Debug information related to SearchKnowledge feature.
-  public struct SearchKnowledgeDebugInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SearchKnowledgeDebugInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Response reason from datastore which indicates data serving status or
@@ -36,7 +36,7 @@
     public var serviceLatency: ServiceLatency? = nil
 
     /// Optional. Debug info from the Customer Engagement Suite (CES) execution.
-    public var cesDebugInfo: GoogleCloudWkt.Struct? = nil
+    public var cesDebugInfo: GoogleCloudWKT.Struct? = nil
 
     /// Initialize a new instance of `SearchKnowledgeDebugInfo`.
     public init() {}
@@ -55,7 +55,7 @@
     }
 
     /// Configured behaviors for SearchKnowledge.
-    public struct SearchKnowledgeBehavior: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SearchKnowledgeBehavior: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Whether data store agent rewriter was turned on for the request.
@@ -89,22 +89,22 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeDebugInfo.SearchKnowledgeBehavior"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeDebugInfo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

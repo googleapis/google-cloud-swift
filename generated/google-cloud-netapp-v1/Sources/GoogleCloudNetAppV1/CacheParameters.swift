@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Cache Parameters for the volume.
-public struct CacheParameters: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CacheParameters: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Name of the origin volume for the cache volume.
@@ -48,7 +48,7 @@ public struct CacheParameters: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Optional. Expiration time for the peering command to be executed on user's
   /// ONTAP.
-  public var peeringCommandExpiryTime: GoogleCloudWkt.Timestamp? = nil
+  public var peeringCommandExpiryTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Temporary passphrase generated to accept cluster peering
   /// command.
@@ -197,10 +197,10 @@ public struct CacheParameters: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.netapp.v1.CacheParameters"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

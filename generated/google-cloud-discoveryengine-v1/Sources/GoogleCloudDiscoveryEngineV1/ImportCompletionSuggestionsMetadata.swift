@@ -16,21 +16,21 @@
 
 #if CompletionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Metadata related to the progress of the ImportCompletionSuggestions
   /// operation. This will be returned by the google.longrunning.Operation.metadata
   /// field.
-  public struct ImportCompletionSuggestionsMetadata: Codable, Equatable, GoogleCloudWkt
+  public struct ImportCompletionSuggestionsMetadata: Codable, Equatable, GoogleCloudWKT
       ._AnyPackable,
     Sendable
   {
     /// Operation create time.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Operation last update time. If the operation is done, this is also the
     /// finish time.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Count of
     /// [CompletionSuggestion][google.cloud.discoveryengine.v1.CompletionSuggestion]s
@@ -66,11 +66,11 @@
       return
         "type.googleapis.com/google.cloud.discoveryengine.v1.ImportCompletionSuggestionsMetadata"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

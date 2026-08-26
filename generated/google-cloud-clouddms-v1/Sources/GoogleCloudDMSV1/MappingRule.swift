@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Definition of a transformation that is to be applied to a group of entities
 /// in the source schema. Several such transformations can be applied to an
 /// entity sequentially to define the corresponding entity in the target schema.
-public struct MappingRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MappingRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Full name of the mapping rule resource, in the form of:
@@ -49,7 +49,7 @@ public struct MappingRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var revisionId: Swift.String = Swift.String()
 
   /// Output only. The timestamp that the revision was created.
-  public var revisionCreateTime: GoogleCloudWkt.Timestamp? = nil
+  public var revisionCreateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The rule specific details.
   public var details: OneOf_Details? = nil
@@ -102,7 +102,7 @@ public struct MappingRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.ruleOrder = try container.decode(Swift.Int64.self, forKey: .ruleOrder)
     self.revisionId = try container.decode(Swift.String.self, forKey: .revisionId)
     self.revisionCreateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .revisionCreateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .revisionCreateTime)
 
     var details: OneOf_Details? = nil
     let detailsCheckAndSet = {
@@ -357,10 +357,10 @@ public struct MappingRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.clouddms.v1.MappingRule"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

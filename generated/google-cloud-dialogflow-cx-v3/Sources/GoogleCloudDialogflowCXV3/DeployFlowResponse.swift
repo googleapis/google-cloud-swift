@@ -16,13 +16,13 @@
 
 #if Environments
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The response message for
   /// [Environments.DeployFlow][google.cloud.dialogflow.cx.v3.Environments.DeployFlow].
   ///
   /// [google.cloud.dialogflow.cx.v3.Environments.DeployFlow]: <doc:EnvironmentsClient/deployFlow(request:options:)>
-  public struct DeployFlowResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DeployFlowResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The updated environment where the flow is deployed.
@@ -54,11 +54,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.DeployFlowResponse"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

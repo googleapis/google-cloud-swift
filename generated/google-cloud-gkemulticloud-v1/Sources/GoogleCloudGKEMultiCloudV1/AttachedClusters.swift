@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -415,7 +415,7 @@ extension Clients {
     /// See `AttachedClustersClient.updateAttachedCluster`.
     func updateAttachedCluster(
       attachedCluster: AttachedCluster?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<AttachedCluster>
 
     /// See `AttachedClustersClient.importAttachedCluster`.
@@ -688,7 +688,7 @@ extension Clients.AttachedClustersProtocol {
 
   public func updateAttachedCluster(
     attachedCluster: AttachedCluster?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<AttachedCluster> {
     let request = UpdateAttachedClusterRequest().with {
       $0.attachedCluster = attachedCluster

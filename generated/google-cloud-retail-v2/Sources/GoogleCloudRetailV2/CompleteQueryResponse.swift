@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response of the autocomplete query.
-public struct CompleteQueryResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CompleteQueryResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Results of the matching suggestions. The result list is ordered and the
@@ -88,7 +88,7 @@ public struct CompleteQueryResponse: Codable, Equatable, GoogleCloudWkt._AnyPack
   }
 
   /// Resource that represents completion results.
-  public struct CompletionResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CompletionResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The suggestion for the query.
@@ -126,17 +126,17 @@ public struct CompleteQueryResponse: Codable, Equatable, GoogleCloudWkt._AnyPack
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.retail.v2.CompleteQueryResponse.CompletionResult"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Deprecated: Recent search of this user.
   @available(*, deprecated)
-  public struct RecentSearchResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RecentSearchResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The recent search query.
@@ -161,16 +161,16 @@ public struct CompleteQueryResponse: Codable, Equatable, GoogleCloudWkt._AnyPack
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.retail.v2.CompleteQueryResponse.RecentSearchResult"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Resource that represents attribute results.
-  public struct AttributeResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AttributeResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The list of suggestions for the attribute.
@@ -195,21 +195,21 @@ public struct CompleteQueryResponse: Codable, Equatable, GoogleCloudWkt._AnyPack
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.retail.v2.CompleteQueryResponse.AttributeResult"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.retail.v2.CompleteQueryResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

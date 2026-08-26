@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The ArtifactDeployment resource represents the deployment of the artifact
 /// within the InsightsConfig resource.
-public struct ArtifactDeployment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ArtifactDeployment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Unique identifier of `ArtifactDeployment`.
@@ -37,11 +37,11 @@ public struct ArtifactDeployment: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public var sourceCommitUris: [Swift.String] = []
 
   /// Output only. The time at which the deployment was deployed.
-  public var deployTime: GoogleCloudWkt.Timestamp? = nil
+  public var deployTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time at which the deployment was undeployed, all artifacts
   /// are considered undeployed once this time is set.
-  public var undeployTime: GoogleCloudWkt.Timestamp? = nil
+  public var undeployTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The summary of container status of the artifact deployment.
   /// Format as `ContainerStatusState-Reason : restartCount`
@@ -67,10 +67,10 @@ public struct ArtifactDeployment: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.developerconnect.v1.ArtifactDeployment"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

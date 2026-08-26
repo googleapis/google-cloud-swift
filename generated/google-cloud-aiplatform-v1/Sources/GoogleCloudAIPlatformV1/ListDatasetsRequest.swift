@@ -16,13 +16,13 @@
 
 #if DatasetService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request message for
   /// [DatasetService.ListDatasets][google.cloud.aiplatform.v1.DatasetService.ListDatasets].
   ///
   /// [google.cloud.aiplatform.v1.DatasetService.ListDatasets]: <doc:DatasetServiceClient/listDatasets(request:options:)>
-  public struct ListDatasetsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ListDatasetsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The name of the Dataset's parent resource.
@@ -52,7 +52,7 @@
     public var pageToken: Swift.String = Swift.String()
 
     /// Mask specifying which fields to read.
-    public var readMask: GoogleCloudWkt.FieldMask? = nil
+    public var readMask: GoogleCloudWKT.FieldMask? = nil
 
     /// A comma-separated list of fields to order by, sorted in ascending order.
     /// Use "desc" after a field name for descending.
@@ -82,11 +82,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.ListDatasetsRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

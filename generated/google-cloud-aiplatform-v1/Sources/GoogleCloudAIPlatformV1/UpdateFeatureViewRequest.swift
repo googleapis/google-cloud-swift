@@ -16,13 +16,13 @@
 
 #if FeatureOnlineStoreAdminService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request message for
   /// [FeatureOnlineStoreAdminService.UpdateFeatureView][google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService.UpdateFeatureView].
   ///
   /// [google.cloud.aiplatform.v1.FeatureOnlineStoreAdminService.UpdateFeatureView]: <doc:FeatureOnlineStoreAdminServiceClient/updateFeatureView(request:options:)>
-  public struct UpdateFeatureViewRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct UpdateFeatureViewRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The FeatureView's `name` field is used to identify the
@@ -50,7 +50,7 @@
     ///   * `sync_config`
     ///   * `sync_config.cron`
     ///   * `optimized_config.automatic_resources`
-    public var updateMask: GoogleCloudWkt.FieldMask? = nil
+    public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
     /// Initialize a new instance of `UpdateFeatureViewRequest`.
     public init() {}
@@ -71,11 +71,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.UpdateFeatureViewRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

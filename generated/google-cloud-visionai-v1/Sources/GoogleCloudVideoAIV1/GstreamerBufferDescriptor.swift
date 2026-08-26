@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The descriptor for a gstreamer buffer payload.
-public struct GstreamerBufferDescriptor: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct GstreamerBufferDescriptor: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The caps string of the payload.
@@ -28,13 +28,13 @@ public struct GstreamerBufferDescriptor: Codable, Equatable, GoogleCloudWkt._Any
   public var isKeyFrame: Swift.Bool = Swift.Bool()
 
   /// PTS of the frame.
-  public var ptsTime: GoogleCloudWkt.Timestamp? = nil
+  public var ptsTime: GoogleCloudWKT.Timestamp? = nil
 
   /// DTS of the frame.
-  public var dtsTime: GoogleCloudWkt.Timestamp? = nil
+  public var dtsTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Duration of the frame.
-  public var duration: GoogleCloudWkt.Duration? = nil
+  public var duration: GoogleCloudWKT.Duration? = nil
 
   /// Initialize a new instance of `GstreamerBufferDescriptor`.
   public init() {}
@@ -55,10 +55,10 @@ public struct GstreamerBufferDescriptor: Codable, Equatable, GoogleCloudWkt._Any
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.GstreamerBufferDescriptor"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

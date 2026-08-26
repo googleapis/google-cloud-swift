@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// DataAttributeBinding represents binding of attributes to resources. Eg: Bind
 /// 'CustomerInfo' entity with 'PII' attribute.
 @available(*, deprecated)
-public struct DataAttributeBinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DataAttributeBinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The relative resource name of the Data Attribute Binding, of
@@ -34,10 +34,10 @@ public struct DataAttributeBinding: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public var uid: Swift.String = Swift.String()
 
   /// Output only. The time when the DataAttributeBinding was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time when the DataAttributeBinding was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Description of the DataAttributeBinding.
   public var description: Swift.String = Swift.String()
@@ -103,9 +103,9 @@ public struct DataAttributeBinding: Codable, Equatable, GoogleCloudWkt._AnyPacka
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.uid = try container.decode(Swift.String.self, forKey: .uid)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.description = try container.decode(Swift.String.self, forKey: .description)
     self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
     self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
@@ -153,7 +153,7 @@ public struct DataAttributeBinding: Codable, Equatable, GoogleCloudWkt._AnyPacka
   /// Represents a subresource of the given resource, and associated bindings
   /// with it. Currently supported subresources are column and partition schema
   /// fields within a table.
-  public struct Path: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Path: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The name identifier of the path.
@@ -184,11 +184,11 @@ public struct DataAttributeBinding: Codable, Equatable, GoogleCloudWkt._AnyPacka
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.DataAttributeBinding.Path"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -206,10 +206,10 @@ public struct DataAttributeBinding: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataplex.v1.DataAttributeBinding"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

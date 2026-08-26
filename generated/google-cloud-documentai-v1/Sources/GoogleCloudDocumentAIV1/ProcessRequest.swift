@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for the
 /// [ProcessDocument][google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument]
 /// method.
 ///
 /// [google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument]: <doc:DocumentProcessorServiceClient/processDocument(request:options:)>
-public struct ProcessRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ProcessRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The resource name of the
@@ -51,7 +51,7 @@ public struct ProcessRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// the form of `{document_field_name}` or `pages.{page_field_name}`.
   ///
   /// [google.cloud.documentai.v1.ProcessResponse.document]: <doc:ProcessResponse/document>
-  public var fieldMask: GoogleCloudWkt.FieldMask? = nil
+  public var fieldMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Inference-time options for the process API
   public var processOptions: ProcessOptions? = nil
@@ -103,7 +103,7 @@ public struct ProcessRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.skipHumanReview = try container.decode(Swift.Bool.self, forKey: .skipHumanReview)
     self.fieldMask = try container.decodeIfPresent(
-      GoogleCloudWkt.FieldMask.self, forKey: .fieldMask)
+      GoogleCloudWKT.FieldMask.self, forKey: .fieldMask)
     self.processOptions = try container.decodeIfPresent(
       ProcessOptions.self, forKey: .processOptions)
     self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
@@ -165,10 +165,10 @@ public struct ProcessRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.documentai.v1.ProcessRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

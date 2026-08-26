@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A change made on a line item.
-public struct LineItemChange: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct LineItemChange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Change ID.
@@ -52,14 +52,14 @@ public struct LineItemChange: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Output only. A time at which the change became or will become (in case of
   /// pending change) effective.
-  public var changeEffectiveTime: GoogleCloudWkt.Timestamp? = nil
+  public var changeEffectiveTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time when change was initiated.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time when change was updated, e.g. approved/rejected by
   /// partners or cancelled by the user.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `LineItemChange`.
   public init() {}
@@ -80,10 +80,10 @@ public struct LineItemChange: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.commerce.consumer.procurement.v1.LineItemChange"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

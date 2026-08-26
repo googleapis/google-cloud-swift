@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudOSLoginV1
 import GoogleCloudOSLoginCommon
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(userId: String, fingerprintId: String, ) async throws {
   let client = try GoogleCloudOSLoginV1.OsLoginServiceClient()

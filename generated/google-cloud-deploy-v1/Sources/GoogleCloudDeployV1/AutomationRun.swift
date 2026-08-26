@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An `AutomationRun` resource in the Cloud Deploy API.
 ///
 /// An `AutomationRun` represents an execution instance of an
 /// automation rule.
-public struct AutomationRun: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AutomationRun: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Name of the `AutomationRun`. Format is
@@ -29,10 +29,10 @@ public struct AutomationRun: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Output only. Time at which the `AutomationRun` was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Time at which the automationRun was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The weak etag of the `AutomationRun` resource.
   /// This checksum is computed by the server based on the value of other
@@ -66,7 +66,7 @@ public struct AutomationRun: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Output only. Time the `AutomationRun` expires. An `AutomationRun` expires
   /// after 14 days from its creation date.
-  public var expireTime: GoogleCloudWkt.Timestamp? = nil
+  public var expireTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The ID of the automation rule that initiated the operation.
   public var ruleId: Swift.String = Swift.String()
@@ -76,7 +76,7 @@ public struct AutomationRun: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Output only. Earliest time the `AutomationRun` will attempt to resume.
   /// Wait-time is configured by `wait` in automation rule.
-  public var waitUntilTime: GoogleCloudWkt.Timestamp? = nil
+  public var waitUntilTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The operation that the `AutomationRun` will perform.
   public var operation: OneOf_Operation? = nil
@@ -122,9 +122,9 @@ public struct AutomationRun: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.etag = try container.decode(Swift.String.self, forKey: .etag)
     self.serviceAccount = try container.decode(Swift.String.self, forKey: .serviceAccount)
     self.automationSnapshot = try container.decodeIfPresent(
@@ -135,11 +135,11 @@ public struct AutomationRun: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.policyViolation = try container.decodeIfPresent(
       PolicyViolation.self, forKey: .policyViolation)
     self.expireTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .expireTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .expireTime)
     self.ruleId = try container.decode(Swift.String.self, forKey: .ruleId)
     self.automationId = try container.decode(Swift.String.self, forKey: .automationId)
     self.waitUntilTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .waitUntilTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .waitUntilTime)
 
     var operation: OneOf_Operation? = nil
     let operationCheckAndSet = {
@@ -354,10 +354,10 @@ public struct AutomationRun: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.deploy.v1.AutomationRun"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

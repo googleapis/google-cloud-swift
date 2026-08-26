@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Prediction output format for Image Object Detection.
-public struct ImageObjectDetectionPredictionResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ImageObjectDetectionPredictionResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The resource IDs of the AnnotationSpecs that had been identified, ordered
@@ -40,7 +40,7 @@ public struct ImageObjectDetectionPredictionResult: Codable, Equatable, GoogleCl
   /// `yMax`, which represent the extremal coordinates of the box. They are
   /// relative to the image size, and the point 0,0 is in the top left
   /// of the image.
-  public var bboxes: [GoogleCloudWkt.ListValue] = []
+  public var bboxes: [GoogleCloudWKT.ListValue] = []
 
   /// Initialize a new instance of `ImageObjectDetectionPredictionResult`.
   public init() {}
@@ -61,10 +61,10 @@ public struct ImageObjectDetectionPredictionResult: Codable, Equatable, GoogleCl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.ImageObjectDetectionPredictionResult"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

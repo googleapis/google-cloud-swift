@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// CleanupPolicyMostRecentVersions is an alternate condition of a CleanupPolicy
 /// for retaining a minimum number of versions.
-public struct CleanupPolicyMostRecentVersions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CleanupPolicyMostRecentVersions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// List of package name prefixes that will apply this rule.
@@ -47,10 +47,10 @@ public struct CleanupPolicyMostRecentVersions: Codable, Equatable, GoogleCloudWk
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.devtools.artifactregistry.v1.CleanupPolicyMostRecentVersions"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

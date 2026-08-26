@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// use case 5
 /// A log entry when modification(creation, update, deletion) is made to a
 /// backupChannel.
-public struct BackupChannelChange: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BackupChannelChange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The full name of the BackupChannel resource that is being modified.
@@ -34,7 +34,7 @@ public struct BackupChannelChange: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public var changeType: ChangeType = ChangeType()
 
   /// Modification details.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// The input BackupChannel resource with the updated fields populated to
   /// update the source BackupChannel to.
@@ -62,10 +62,10 @@ public struct BackupChannelChange: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkebackup.logging.v1.BackupChannelChange"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

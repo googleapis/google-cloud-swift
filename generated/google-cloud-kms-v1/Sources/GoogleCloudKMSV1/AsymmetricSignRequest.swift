@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [KeyManagementService.AsymmetricSign][google.cloud.kms.v1.KeyManagementService.AsymmetricSign].
 ///
 /// [google.cloud.kms.v1.KeyManagementService.AsymmetricSign]: <doc:KeyManagementServiceClient/asymmetricSign(request:options:)>
-public struct AsymmetricSignRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AsymmetricSignRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The resource name of the
@@ -66,7 +66,7 @@ public struct AsymmetricSignRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
   /// [google.cloud.kms.v1.AsymmetricSignRequest.digest]: <doc:AsymmetricSignRequest/digest>
   /// [google.cloud.kms.v1.AsymmetricSignRequest.digest_crc32c]: <doc:AsymmetricSignRequest/digestCrc32C>
   /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
-  public var digestCrc32C: GoogleCloudWkt.Int64Value? = nil
+  public var digestCrc32C: GoogleCloudWKT.Int64Value? = nil
 
   /// Optional. The data to sign.
   /// It can't be supplied if
@@ -99,7 +99,7 @@ public struct AsymmetricSignRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
   /// [google.cloud.kms.v1.AsymmetricSignRequest.data]: <doc:AsymmetricSignRequest/data>
   /// [google.cloud.kms.v1.AsymmetricSignRequest.data_crc32c]: <doc:AsymmetricSignRequest/dataCrc32C>
   /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
-  public var dataCrc32C: GoogleCloudWkt.Int64Value? = nil
+  public var dataCrc32C: GoogleCloudWKT.Int64Value? = nil
 
   /// Initialize a new instance of `AsymmetricSignRequest`.
   public init() {}
@@ -130,10 +130,10 @@ public struct AsymmetricSignRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.digest = try container.decodeIfPresent(Digest.self, forKey: .digest)
     self.digestCrc32C = try container.decodeIfPresent(
-      GoogleCloudWkt.Int64Value.self, forKey: .digestCrc32C)
+      GoogleCloudWKT.Int64Value.self, forKey: .digestCrc32C)
     self.data = try container.decode(Foundation.Data.self, forKey: .data)
     self.dataCrc32C = try container.decodeIfPresent(
-      GoogleCloudWkt.Int64Value.self, forKey: .dataCrc32C)
+      GoogleCloudWKT.Int64Value.self, forKey: .dataCrc32C)
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -148,10 +148,10 @@ public struct AsymmetricSignRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.AsymmetricSignRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

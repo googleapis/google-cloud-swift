@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The configuration of exporting documents from the Document Warehouse to CDW
 /// pipeline.
-public struct ExportToCdwPipeline: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ExportToCdwPipeline: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The list of all the resource names of the documents to be processed.
@@ -61,10 +61,10 @@ public struct ExportToCdwPipeline: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.contentwarehouse.v1.ExportToCdwPipeline"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

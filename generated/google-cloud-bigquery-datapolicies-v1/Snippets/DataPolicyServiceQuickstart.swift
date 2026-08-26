@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleBigQueryDataPoliciesV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 
 func sample(projectId: String, locationId: String, ) async throws {

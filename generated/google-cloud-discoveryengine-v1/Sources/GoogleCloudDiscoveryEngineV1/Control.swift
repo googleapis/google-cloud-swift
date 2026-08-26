@@ -16,7 +16,7 @@
 
 #if ControlService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Defines a conditioned behavior to employ during serving.
   /// Must be attached to a
@@ -24,7 +24,7 @@
   /// considered at serving time. Permitted actions dependent on `SolutionType`.
   ///
   /// [google.cloud.discoveryengine.v1.ServingConfig]: <doc:ServingConfig>
-  public struct Control: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Control: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Immutable. Fully qualified name
@@ -177,7 +177,7 @@
     }
 
     /// Adjusts order of products in returned list.
-    public struct BoostAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct BoostAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Strength of the boost, which should be in [-1, 1]. Negative
@@ -272,7 +272,7 @@
       /// Specification for custom ranking based on customer specified attribute
       /// value. It provides more controls for customized ranking than the simple
       /// (condition, boost) combination above.
-      public struct InterpolationBoostSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct InterpolationBoostSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. The name of the field whose value will be used to determine
@@ -316,7 +316,7 @@
         /// The control points used to define the curve. The curve defined
         /// through these control points can only be monotonically increasing
         /// or decreasing(constant values are acceptable).
-        public struct ControlPoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct ControlPoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Optional. Can be one of:
@@ -351,11 +351,11 @@
             return
               "type.googleapis.com/google.cloud.discoveryengine.v1.Control.BoostAction.InterpolationBoostSpec.ControlPoint"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
@@ -577,11 +577,11 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.Control.BoostAction.InterpolationBoostSpec"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -598,17 +598,17 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.Control.BoostAction"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Specified which products may be included in results.
     /// Uses same filter as boost.
-    public struct FilterAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct FilterAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. A filter to apply on the matching condition results.
@@ -644,16 +644,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.Control.FilterAction"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Redirects a shopper to the provided URI.
-    public struct RedirectAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct RedirectAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The URI to which the shopper will be redirected.
@@ -682,11 +682,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.Control.RedirectAction"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -694,7 +694,7 @@
     ///
     /// Example: "happy" will also be considered as "glad", "glad" will also be
     /// considered as "happy".
-    public struct SynonymsAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SynonymsAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Defines a set of synonyms.
@@ -722,11 +722,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.Control.SynonymsAction"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -734,7 +734,7 @@
     ///
     /// Example: Promote shoe store link when searching for `shoe` keyword.
     /// The link can be outside of associated data store.
-    public struct PromoteAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct PromoteAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. Data store with which this promotion is attached to.
@@ -762,11 +762,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.Control.PromoteAction"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -790,11 +790,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.Control"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

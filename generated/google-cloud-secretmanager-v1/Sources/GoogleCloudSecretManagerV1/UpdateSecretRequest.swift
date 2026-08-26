@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [SecretManagerService.UpdateSecret][google.cloud.secretmanager.v1.SecretManagerService.UpdateSecret].
 ///
 /// [google.cloud.secretmanager.v1.SecretManagerService.UpdateSecret]: <doc:SecretManagerServiceClient/updateSecret(request:options:)>
-public struct UpdateSecretRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateSecretRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. [Secret][google.cloud.secretmanager.v1.Secret] with updated field
@@ -31,7 +31,7 @@ public struct UpdateSecretRequest: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public var secret: Secret? = nil
 
   /// Required. Specifies the fields to be updated.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `UpdateSecretRequest`.
   public init() {}
@@ -52,10 +52,10 @@ public struct UpdateSecretRequest: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.secretmanager.v1.UpdateSecretRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

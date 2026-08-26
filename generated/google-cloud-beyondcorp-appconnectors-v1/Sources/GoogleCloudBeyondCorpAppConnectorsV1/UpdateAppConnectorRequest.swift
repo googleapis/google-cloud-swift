@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for BeyondCorp.UpdateAppConnector.
-public struct UpdateAppConnectorRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateAppConnectorRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Mask of fields to update. At least one path must be supplied in
@@ -26,7 +26,7 @@ public struct UpdateAppConnectorRequest: Codable, Equatable, GoogleCloudWkt._Any
   /// fields from [BeyondCorp.AppConnector]:
   /// * `labels`
   /// * `display_name`
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Required. AppConnector message with updated fields. Only supported fields
   /// specified in update_mask are updated.
@@ -70,10 +70,10 @@ public struct UpdateAppConnectorRequest: Codable, Equatable, GoogleCloudWkt._Any
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.beyondcorp.appconnectors.v1.UpdateAppConnectorRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

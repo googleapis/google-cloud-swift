@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A request to update a cluster.
-public struct UpdateClusterRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateClusterRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The ID of the Google Cloud Platform project the
@@ -43,7 +43,7 @@ public struct UpdateClusterRequest: Codable, Equatable, GoogleCloudWkt._AnyPacka
   /// [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
   ///
   /// Only supported on Dataproc image versions 1.2 and higher.
-  public var gracefulDecommissionTimeout: GoogleCloudWkt.Duration? = nil
+  public var gracefulDecommissionTimeout: GoogleCloudWKT.Duration? = nil
 
   /// Required. Specifies the path, relative to `Cluster`, of
   /// the field to update. For example, to change the number of workers
@@ -96,7 +96,7 @@ public struct UpdateClusterRequest: Codable, Equatable, GoogleCloudWkt._AnyPacka
   ///  </tr>
   ///  </tbody>
   ///  </table>
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Optional. A unique ID used to identify the request. If the server
   /// receives two
@@ -133,10 +133,10 @@ public struct UpdateClusterRequest: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataproc.v1.UpdateClusterRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

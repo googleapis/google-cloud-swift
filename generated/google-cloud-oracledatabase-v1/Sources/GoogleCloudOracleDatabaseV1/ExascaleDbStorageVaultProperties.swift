@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleType
 
 /// The properties of the ExascaleDbStorageVault.
 /// next ID: 12
-public struct ExascaleDbStorageVaultProperties: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ExascaleDbStorageVaultProperties: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The OCID for the ExascaleDbStorageVault.
@@ -320,10 +320,10 @@ public struct ExascaleDbStorageVaultProperties: Codable, Equatable, GoogleCloudW
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.oracledatabase.v1.ExascaleDbStorageVaultProperties"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Representation of third party SIEM/SOAR fields within SCC.
-public struct ExternalSystem: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ExternalSystem: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Full resource name of the external system. The following list
@@ -48,7 +48,7 @@ public struct ExternalSystem: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// The time when the case was last updated, as reported by the external
   /// system.
-  public var externalSystemUpdateTime: GoogleCloudWkt.Timestamp? = nil
+  public var externalSystemUpdateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The link to the finding's corresponding case in the external system.
   public var caseUri: Swift.String = Swift.String()
@@ -57,13 +57,13 @@ public struct ExternalSystem: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var casePriority: Swift.String = Swift.String()
 
   /// The SLA of the finding's corresponding case in the external system.
-  public var caseSla: GoogleCloudWkt.Timestamp? = nil
+  public var caseSla: GoogleCloudWKT.Timestamp? = nil
 
   /// The time when the case was created, as reported by the external system.
-  public var caseCreateTime: GoogleCloudWkt.Timestamp? = nil
+  public var caseCreateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The time when the case was closed, as reported by the external system.
-  public var caseCloseTime: GoogleCloudWkt.Timestamp? = nil
+  public var caseCloseTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Information about the ticket, if any, that is being used to track the
   /// resolution of the issue that is identified by this finding.
@@ -87,7 +87,7 @@ public struct ExternalSystem: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Information about the ticket, if any, that is being used to track the
   /// resolution of the issue that is identified by this finding.
-  public struct TicketInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TicketInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The identifier of the ticket in the ticket system.
@@ -107,7 +107,7 @@ public struct ExternalSystem: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// The time when the ticket was last updated, as reported by the ticket
     /// system.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `TicketInfo`.
     public init() {}
@@ -128,21 +128,21 @@ public struct ExternalSystem: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.securitycenter.v2.ExternalSystem.TicketInfo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.ExternalSystem"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

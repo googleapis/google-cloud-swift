@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The response of a lint operation. An empty response indicates
 /// the operation was able to fully execute and no lint issue was found.
-public struct LintPolicyResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct LintPolicyResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// List of lint results sorted by `severity` in descending order.
@@ -44,10 +44,10 @@ public struct LintPolicyResponse: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.iam.admin.v1.LintPolicyResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

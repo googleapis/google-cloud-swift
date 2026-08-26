@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Configure processing location for discovery and inspection. For example,
 /// image OCR is only provided in limited regions but configuring
 /// ProcessingLocation will redirect OCR to a location where OCR is provided.
-public struct ProcessingLocation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ProcessingLocation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Image processing falls back using this configuration.
@@ -47,7 +47,7 @@ public struct ProcessingLocation: Codable, Equatable, GoogleCloudWkt._AnyPackabl
 
   /// Processing occurs in a multi-region that contains the current region
   /// if available.
-  public struct MultiRegionProcessing: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MultiRegionProcessing: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `MultiRegionProcessing`.
@@ -69,16 +69,16 @@ public struct ProcessingLocation: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.ProcessingLocation.MultiRegionProcessing"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Processing occurs in the global region.
-  public struct GlobalProcessing: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GlobalProcessing: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `GlobalProcessing`.
@@ -100,18 +100,18 @@ public struct ProcessingLocation: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.ProcessingLocation.GlobalProcessing"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configure image processing to fall back to any of the following processing
   /// options if image processing is unavailable in the original request
   /// location.
-  public struct ImageFallbackLocation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ImageFallbackLocation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Processing occurs in a multi-region that contains the current region
@@ -140,18 +140,18 @@ public struct ProcessingLocation: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.ProcessingLocation.ImageFallbackLocation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configure document processing to fall back to any of the following
   /// processing options if document processing is unavailable in the original
   /// request location.
-  public struct DocumentFallbackLocation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DocumentFallbackLocation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Processing occurs in a multi-region that contains the current region
@@ -180,21 +180,21 @@ public struct ProcessingLocation: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.ProcessingLocation.DocumentFallbackLocation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.ProcessingLocation"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -16,12 +16,12 @@
 
 #if FutureReservations || RegionCommitments || Reservations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Properties of the SKU instances being reserved.
   /// Next ID: 10
   public struct AllocationSpecificSKUAllocationReservedInstanceProperties: Codable, Equatable,
-    GoogleCloudWkt._AnyPackable,
+    GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Specifies accelerator type and count.
@@ -65,11 +65,11 @@
       return
         "type.googleapis.com/google.cloud.compute.v1.AllocationSpecificSKUAllocationReservedInstanceProperties"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

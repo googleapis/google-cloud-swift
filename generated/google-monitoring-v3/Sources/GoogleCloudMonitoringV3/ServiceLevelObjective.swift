@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleType
 
 /// A Service-Level Objective (SLO) describes a level of desired good service. It
@@ -24,7 +24,7 @@ import GoogleType
 /// use SLIs defined in a number of different manners. Typical SLOs might include
 /// "99% of requests in each rolling week have latency below 200 milliseconds" or
 /// "99.5% of requests in each calendar month return successfully."
-public struct ServiceLevelObjective: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ServiceLevelObjective: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. Resource name for this `ServiceLevelObjective`. The format is:
@@ -101,7 +101,7 @@ public struct ServiceLevelObjective: Codable, Equatable, GoogleCloudWkt._AnyPack
       period = $0
     }
     if let rollingPeriod = try container.decodeIfPresent(
-      GoogleCloudWkt.Duration?.self, forKey: .rollingPeriod)
+      GoogleCloudWKT.Duration?.self, forKey: .rollingPeriod)
     {
       try periodCheckAndSet(.rollingPeriod(rollingPeriod))
     }
@@ -247,7 +247,7 @@ public struct ServiceLevelObjective: Codable, Equatable, GoogleCloudWkt._AnyPack
   public enum OneOf_Period: Codable, Equatable, Sendable {
     /// A rolling time period, semantically "in the past `<rolling_period>`".
     /// Must be an integer multiple of 1 day no larger than 30 days.
-    indirect case rollingPeriod(GoogleCloudWkt.Duration?)
+    indirect case rollingPeriod(GoogleCloudWKT.Duration?)
     /// A calendar period, semantically "since the start of the current
     /// `<calendar_period>`". At this time, only `DAY`, `WEEK`, `FORTNIGHT`, and
     /// `MONTH` are supported.
@@ -257,10 +257,10 @@ public struct ServiceLevelObjective: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.v3.ServiceLevelObjective"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

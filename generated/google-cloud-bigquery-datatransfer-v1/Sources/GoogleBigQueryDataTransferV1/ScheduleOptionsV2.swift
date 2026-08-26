@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// V2 options customizing different types of data transfer schedule.
 /// This field supports existing time-based and manual transfer schedule. Also
 /// supports Event-Driven transfer schedule. ScheduleOptionsV2 cannot be used
 /// together with ScheduleOptions/Schedule.
-public struct ScheduleOptionsV2: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ScheduleOptionsV2: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Data transfer schedules.
@@ -113,10 +113,10 @@ public struct ScheduleOptionsV2: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.datatransfer.v1.ScheduleOptionsV2"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

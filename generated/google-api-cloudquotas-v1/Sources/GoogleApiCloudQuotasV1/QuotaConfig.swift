@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The preferred quota configuration.
-public struct QuotaConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct QuotaConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The preferred value. Must be greater than or equal to -1. If set
@@ -29,7 +29,7 @@ public struct QuotaConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var stateDetail: Swift.String = Swift.String()
 
   /// Output only. Granted quota value.
-  public var grantedValue: GoogleCloudWkt.Int64Value? = nil
+  public var grantedValue: GoogleCloudWKT.Int64Value? = nil
 
   /// Output only. The trace id that the Google Cloud uses to provision the
   /// requested quota. This trace id may be used by the client to contact Cloud
@@ -170,10 +170,10 @@ public struct QuotaConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.cloudquotas.v1.QuotaConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

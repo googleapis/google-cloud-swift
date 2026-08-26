@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudDNSV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample() async throws {
   let client = try GoogleCloudDNSV1.ResourceRecordSetsClient()

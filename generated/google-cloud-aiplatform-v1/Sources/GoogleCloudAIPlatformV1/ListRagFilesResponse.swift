@@ -17,13 +17,13 @@
 #if VertexRagDataService
   import Foundation
   @_spi(GoogleCloudInternal) import GoogleCloudGax
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Response message for
   /// [VertexRagDataService.ListRagFiles][google.cloud.aiplatform.v1.VertexRagDataService.ListRagFiles].
   ///
   /// [google.cloud.aiplatform.v1.VertexRagDataService.ListRagFiles]: <doc:VertexRagDataServiceClient/listRagFiles(request:options:)>
-  public struct ListRagFilesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ListRagFilesResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable
   {
@@ -57,11 +57,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.ListRagFilesResponse"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
 
     public func _getPaginatedItems() -> [RagFile] {

@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleCloudGax
 
@@ -192,7 +192,7 @@ extension Clients {
     /// See `ControlServiceClient.updateControl`.
     func updateControl(
       control: Control?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudRetailV2.Control
 
     /// See `ControlServiceClient.getControl`.
@@ -334,7 +334,7 @@ extension Clients.ControlServiceProtocol {
 
   public func updateControl(
     control: Control?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudRetailV2.Control {
     let request = UpdateControlRequest().with {
       $0.control = control

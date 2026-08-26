@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// TextAnnotation contains a structured representation of OCR extracted text.
 /// The hierarchy of an OCR extracted text structure is like this:
@@ -27,7 +27,7 @@ import Foundation
 /// message definition below for more detail.
 ///
 /// [google.cloud.vision.v1.TextAnnotation.TextProperty]: <doc:TextAnnotation/TextProperty>
-public struct TextAnnotation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TextAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// List of pages detected by OCR.
@@ -53,7 +53,7 @@ public struct TextAnnotation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Detected language for a structural component.
-  public struct DetectedLanguage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DetectedLanguage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The BCP-47 language code, such as "en-US" or "sr-Latn". For more
@@ -83,16 +83,16 @@ public struct TextAnnotation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.vision.v1.TextAnnotation.DetectedLanguage"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Detected start or end of a structural component.
-  public struct DetectedBreak: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DetectedBreak: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Detected break type.
@@ -248,16 +248,16 @@ public struct TextAnnotation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.vision.v1.TextAnnotation.DetectedBreak"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Additional information detected on the structural component.
-  public struct TextProperty: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TextProperty: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// A list of detected languages together with confidence.
@@ -285,21 +285,21 @@ public struct TextAnnotation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.vision.v1.TextAnnotation.TextProperty"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vision.v1.TextAnnotation"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudDataFormV1
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -31,7 +31,7 @@ func sample(client: DataformClient, projectId: String, locationId: String) async
         $0.config = Config().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/config"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

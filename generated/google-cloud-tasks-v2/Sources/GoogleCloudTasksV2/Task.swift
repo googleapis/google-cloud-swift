@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A unit of scheduled work.
-public struct Task: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Task: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optionally caller-specified in
@@ -49,12 +49,12 @@ public struct Task: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// The time when the task is scheduled to be attempted or retried.
   ///
   /// `schedule_time` will be truncated to the nearest microsecond.
-  public var scheduleTime: GoogleCloudWkt.Timestamp? = nil
+  public var scheduleTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time that the task was created.
   ///
   /// `create_time` will be truncated to the nearest second.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The deadline for requests sent to the worker. If the worker does not
   /// respond by this deadline then the request is cancelled and the attempt
@@ -93,7 +93,7 @@ public struct Task: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [google.cloud.tasks.v2.AppEngineHttpRequest]: <doc:AppEngineHttpRequest>
   /// [google.cloud.tasks.v2.HttpRequest]: <doc:HttpRequest>
   /// [google.cloud.tasks.v2.RetryConfig]: <doc:RetryConfig>
-  public var dispatchDeadline: GoogleCloudWkt.Duration? = nil
+  public var dispatchDeadline: GoogleCloudWKT.Duration? = nil
 
   /// Output only. The number of attempts dispatched.
   ///
@@ -160,11 +160,11 @@ public struct Task: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.scheduleTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .scheduleTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .scheduleTime)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.dispatchDeadline = try container.decodeIfPresent(
-      GoogleCloudWkt.Duration.self, forKey: .dispatchDeadline)
+      GoogleCloudWKT.Duration.self, forKey: .dispatchDeadline)
     self.dispatchCount = try container.decode(Swift.Int32.self, forKey: .dispatchCount)
     self.responseCount = try container.decode(Swift.Int32.self, forKey: .responseCount)
     self.firstAttempt = try container.decodeIfPresent(Attempt.self, forKey: .firstAttempt)
@@ -365,10 +365,10 @@ public struct Task: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.tasks.v2.Task"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

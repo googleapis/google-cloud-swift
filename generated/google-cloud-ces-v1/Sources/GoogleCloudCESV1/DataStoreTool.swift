@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Tool to retrieve from Vertex AI Search datastore or engine for grounding.
 /// Accepts either a datastore or an engine, but not both.
 /// See Vertex AI Search:
 /// https://cloud.google.com/generative-ai-app-builder/docs/enterprise-search-introduction.
-public struct DataStoreTool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DataStoreTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The data store tool name.
@@ -121,7 +121,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Rewriter configuration.
-  public struct RewriterConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RewriterConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Configurations for the LLM model.
@@ -152,16 +152,16 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ces.v1.DataStoreTool.RewriterConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Summarization configuration.
-  public struct SummarizationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SummarizationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Configurations for the LLM model.
@@ -192,16 +192,16 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ces.v1.DataStoreTool.SummarizationConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Grounding configuration.
-  public struct GroundingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GroundingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The groundedness threshold of the answer based on the retrieved
@@ -236,16 +236,16 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ces.v1.DataStoreTool.GroundingConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configuration for searching within a specific DataStore.
-  public struct DataStoreSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DataStoreSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Filter specification for the DataStore.
@@ -275,17 +275,17 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ces.v1.DataStoreTool.DataStoreSource"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configuration for searching within an Engine, potentially targeting
   /// specific DataStores.
-  public struct EngineSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct EngineSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Full resource name of the Engine.
@@ -322,18 +322,18 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ces.v1.DataStoreTool.EngineSource"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Boost specifications to boost certain documents.
   /// For more information, please refer to
   /// https://cloud.google.com/generative-ai-app-builder/docs/boosting.
-  public struct BoostSpecs: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct BoostSpecs: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The Data Store where the boosting configuration is applied.
@@ -363,16 +363,16 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ces.v1.DataStoreTool.BoostSpecs"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Boost specification to boost certain documents.
-  public struct BoostSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct BoostSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. A list of boosting specifications.
@@ -395,7 +395,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Boost specification for a condition.
-    public struct ConditionBoostSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ConditionBoostSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. An expression which specifies a boost condition. The syntax
@@ -441,7 +441,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       /// Specification for custom ranking based on customer specified attribute
       /// value. It provides more controls for customized ranking than the simple
       /// (condition, boost) combination above.
-      public struct BoostControlSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct BoostControlSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. The name of the field whose value will be used to determine
@@ -489,7 +489,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         /// The control points used to define the curve. The curve defined
         /// through these control points can only be monotonically increasing
         /// or decreasing(constant values are acceptable).
-        public struct ControlPoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct ControlPoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Optional. Can be one of:
@@ -524,11 +524,11 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
             return
               "type.googleapis.com/google.cloud.ces.v1.DataStoreTool.BoostSpec.ConditionBoostSpec.BoostControlSpec.ControlPoint"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
@@ -750,39 +750,39 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.ces.v1.DataStoreTool.BoostSpec.ConditionBoostSpec.BoostControlSpec"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.ces.v1.DataStoreTool.BoostSpec.ConditionBoostSpec"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ces.v1.DataStoreTool.BoostSpec"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// If specified, will apply the given configuration for the specified
   /// modality.
-  public struct ModalityConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ModalityConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The modality type.
@@ -922,11 +922,11 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ces.v1.DataStoreTool.ModalityConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -1051,10 +1051,10 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.DataStoreTool"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

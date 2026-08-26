@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudSchedulerV1
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: CloudSchedulerClient, projectId: String, locationId: String, jobId: String)
   async throws
@@ -30,7 +30,7 @@ func sample(client: CloudSchedulerClient, projectId: String, locationId: String,
         $0.job = Job().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/jobs/\(jobId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

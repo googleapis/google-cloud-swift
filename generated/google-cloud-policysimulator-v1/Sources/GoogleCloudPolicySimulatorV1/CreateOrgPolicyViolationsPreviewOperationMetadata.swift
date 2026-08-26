@@ -15,20 +15,20 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// CreateOrgPolicyViolationsPreviewOperationMetadata is metadata about an
 /// OrgPolicyViolationsPreview generations operation.
-public struct CreateOrgPolicyViolationsPreviewOperationMetadata: Codable, Equatable, GoogleCloudWkt
+public struct CreateOrgPolicyViolationsPreviewOperationMetadata: Codable, Equatable, GoogleCloudWKT
     ._AnyPackable,
   Sendable
 {
   /// Time when the request was received.
-  public var requestTime: GoogleCloudWkt.Timestamp? = nil
+  public var requestTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Time when the request started processing, i.e., when the state was set to
   /// RUNNING.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The current state of the operation.
   public var state: PreviewState = PreviewState()
@@ -63,10 +63,10 @@ public struct CreateOrgPolicyViolationsPreviewOperationMetadata: Codable, Equata
     return
       "type.googleapis.com/google.cloud.policysimulator.v1.CreateOrgPolicyViolationsPreviewOperationMetadata"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

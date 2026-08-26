@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Shared regional certificate authority
-public struct SharedRegionalCertificateAuthority: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SharedRegionalCertificateAuthority: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. Unique name of the resource in this scope including project and
@@ -86,7 +86,7 @@ public struct SharedRegionalCertificateAuthority: Codable, Equatable, GoogleClou
   }
 
   /// CA certificate chains for redis managed server authentication.
-  public struct RegionalManagedCertificateAuthority: Codable, Equatable, GoogleCloudWkt
+  public struct RegionalManagedCertificateAuthority: Codable, Equatable, GoogleCloudWKT
       ._AnyPackable,
     Sendable
   {
@@ -113,7 +113,7 @@ public struct SharedRegionalCertificateAuthority: Codable, Equatable, GoogleClou
     }
 
     /// The certificates that form the CA chain, from leaf to root order.
-    public struct RegionalCertChain: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct RegionalCertChain: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The certificates that form the CA chain, from leaf to root order.
@@ -139,11 +139,11 @@ public struct SharedRegionalCertificateAuthority: Codable, Equatable, GoogleClou
         return
           "type.googleapis.com/google.cloud.redis.cluster.v1.SharedRegionalCertificateAuthority.RegionalManagedCertificateAuthority.RegionalCertChain"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -151,11 +151,11 @@ public struct SharedRegionalCertificateAuthority: Codable, Equatable, GoogleClou
       return
         "type.googleapis.com/google.cloud.redis.cluster.v1.SharedRegionalCertificateAuthority.RegionalManagedCertificateAuthority"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -169,10 +169,10 @@ public struct SharedRegionalCertificateAuthority: Codable, Equatable, GoogleClou
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.redis.cluster.v1.SharedRegionalCertificateAuthority"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

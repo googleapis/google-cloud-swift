@@ -16,7 +16,7 @@
 
 #if RegionNotificationEndpoints
   import Foundation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleCloudGax
 
   extension Clients {

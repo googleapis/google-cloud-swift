@@ -16,10 +16,10 @@
 
 #if TestCases
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents a result from running a test case in an agent environment.
-  public struct TestCaseResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TestCaseResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The resource name for the test case result. Format:
@@ -38,7 +38,7 @@
     public var testResult: TestResult = TestResult()
 
     /// The time that the test was run.
-    public var testTime: GoogleCloudWkt.Timestamp? = nil
+    public var testTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `TestCaseResult`.
     public init() {}
@@ -59,11 +59,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.TestCaseResult"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

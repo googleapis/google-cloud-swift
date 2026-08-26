@@ -15,18 +15,18 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response message for
 /// [fetchInventory][google.cloud.vmmigration.v1.VmMigration.FetchInventory].
 ///
 /// [google.cloud.vmmigration.v1.VmMigration.FetchInventory]: <doc:VmMigrationClient/fetchInventory(request:options:)>
-public struct FetchInventoryResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct FetchInventoryResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The timestamp when the source was last queried (if the result
   /// is from the cache).
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   public var sourceVms: OneOf_SourceVms? = nil
 
@@ -56,7 +56,7 @@ public struct FetchInventoryResponse: Codable, Equatable, GoogleCloudWkt._AnyPac
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
 
     var sourceVms: OneOf_SourceVms? = nil
     let sourceVmsCheckAndSet = {
@@ -108,10 +108,10 @@ public struct FetchInventoryResponse: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vmmigration.v1.FetchInventoryResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

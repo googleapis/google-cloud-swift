@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for the
 /// [UpdateRecognizer][google.cloud.speech.v2.Speech.UpdateRecognizer] method.
 ///
 /// [google.cloud.speech.v2.Speech.UpdateRecognizer]: <doc:SpeechClient/updateRecognizer(request:options:)>
-public struct UpdateRecognizerRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateRecognizerRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The Recognizer to update.
@@ -32,7 +32,7 @@ public struct UpdateRecognizerRequest: Codable, Equatable, GoogleCloudWkt._AnyPa
 
   /// The list of fields to update. If empty, all non-default valued fields are
   /// considered for update. Use `*` to update the entire Recognizer resource.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// If set, validate the request and preview the updated Recognizer, but do not
   /// actually update it.
@@ -57,10 +57,10 @@ public struct UpdateRecognizerRequest: Codable, Equatable, GoogleCloudWkt._AnyPa
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.speech.v2.UpdateRecognizerRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -16,13 +16,13 @@
 
 #if BackendServices || RegionBackendServices
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Contains the configurations necessary to generate a signature for access to
   /// private storage buckets that support Signature Version 4 for authentication.
   /// The service name for generating the authentication header will always default
   /// to 's3'.
-  public struct AWSV4Signature: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AWSV4Signature: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The access key used for s3 bucket authentication. Required for updating or
@@ -64,11 +64,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.AWSV4Signature"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

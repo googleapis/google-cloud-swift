@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Patch deployments are configurations that individual patch jobs use to
 /// complete a patch. These configurations include instance filter, package
 /// repository settings, and a schedule. For more information about creating and
 /// managing patch deployments, see [Scheduling patch
 /// jobs](https://cloud.google.com/compute/docs/os-patch-management/schedule-patch-jobs).
-public struct PatchDeployment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct PatchDeployment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Unique name for the patch deployment resource in a project. The patch
@@ -43,20 +43,20 @@ public struct PatchDeployment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Optional. Duration of the patch. After the duration ends, the patch times
   /// out.
-  public var duration: GoogleCloudWkt.Duration? = nil
+  public var duration: GoogleCloudWKT.Duration? = nil
 
   /// Output only. Time the patch deployment was created. Timestamp is in
   /// [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Time the patch deployment was last updated. Timestamp is in
   /// [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The last time a patch job was started by this deployment.
   /// Timestamp is in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text
   /// format.
-  public var lastExecuteTime: GoogleCloudWkt.Timestamp? = nil
+  public var lastExecuteTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Rollout strategy of the patch job.
   public var rollout: PatchRollout? = nil
@@ -105,13 +105,13 @@ public struct PatchDeployment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.instanceFilter = try container.decodeIfPresent(
       PatchInstanceFilter.self, forKey: .instanceFilter)
     self.patchConfig = try container.decodeIfPresent(PatchConfig.self, forKey: .patchConfig)
-    self.duration = try container.decodeIfPresent(GoogleCloudWkt.Duration.self, forKey: .duration)
+    self.duration = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .duration)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.lastExecuteTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .lastExecuteTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .lastExecuteTime)
     self.rollout = try container.decodeIfPresent(PatchRollout.self, forKey: .rollout)
     self.state = try container.decode(PatchDeployment.State.self, forKey: .state)
 
@@ -278,10 +278,10 @@ public struct PatchDeployment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.osconfig.v1.PatchDeployment"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

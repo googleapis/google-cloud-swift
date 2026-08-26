@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Respresents an API Observation observed in one of the sources.
-public struct DiscoveredApiObservation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DiscoveredApiObservation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The name of the discovered API Observation.
@@ -39,7 +39,7 @@ public struct DiscoveredApiObservation: Codable, Equatable, GoogleCloudWkt._AnyP
   public var hostname: Swift.String = Swift.String()
 
   /// Optional. Last event detected time stamp
-  public var lastEventDetectedTime: GoogleCloudWkt.Timestamp? = nil
+  public var lastEventDetectedTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. The location of the observation source.
   public var sourceLocations: [Swift.String] = []
@@ -61,10 +61,10 @@ public struct DiscoveredApiObservation: Codable, Equatable, GoogleCloudWkt._AnyP
   public var unknownOperationsCount: Swift.Int64 = Swift.Int64()
 
   /// Output only. Create time stamp of the observation in API Hub.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Update time stamp of the observation in API Hub.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The metadata of the source from which the observation was
   /// collected.
@@ -306,10 +306,10 @@ public struct DiscoveredApiObservation: Codable, Equatable, GoogleCloudWkt._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.apihub.v1.DiscoveredApiObservation"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

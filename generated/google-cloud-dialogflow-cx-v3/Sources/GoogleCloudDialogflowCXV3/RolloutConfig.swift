@@ -16,10 +16,10 @@
 
 #if Experiments
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The configuration for auto rollout.
-  public struct RolloutConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RolloutConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Steps to roll out a flow version. Steps should be sorted by percentage in
@@ -56,7 +56,7 @@
     }
 
     /// A single rollout step with specified traffic allocation.
-    public struct RolloutStep: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct RolloutStep: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The name of the rollout step;
@@ -69,7 +69,7 @@
       /// The minimum time that this step should last. Should be longer than 1
       /// hour. If not set, the default minimum duration for each step will be 1
       /// hour.
-      public var minDuration: GoogleCloudWkt.Duration? = nil
+      public var minDuration: GoogleCloudWKT.Duration? = nil
 
       /// Initialize a new instance of `RolloutStep`.
       public init() {}
@@ -90,22 +90,22 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.RolloutConfig.RolloutStep"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.RolloutConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

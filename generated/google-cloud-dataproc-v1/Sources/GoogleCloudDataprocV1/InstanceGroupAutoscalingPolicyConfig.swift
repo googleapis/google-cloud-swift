@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Configuration for the size bounds of an instance group, including its
 /// proportional size to other groups.
-public struct InstanceGroupAutoscalingPolicyConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct InstanceGroupAutoscalingPolicyConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. Minimum number of instances for this group.
@@ -75,10 +75,10 @@ public struct InstanceGroupAutoscalingPolicyConfig: Codable, Equatable, GoogleCl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataproc.v1.InstanceGroupAutoscalingPolicyConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

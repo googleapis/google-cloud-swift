@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -655,7 +655,7 @@ extension Clients {
     @available(*, deprecated)
     func updateAwsCluster(
       awsCluster: AwsCluster?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<AwsCluster>
 
     /// See `AwsClustersClient.getAwsCluster`.
@@ -744,7 +744,7 @@ extension Clients {
     @available(*, deprecated)
     func updateAwsNodePool(
       awsNodePool: AwsNodePool?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<AwsNodePool>
 
     /// See `AwsClustersClient.rollbackAwsNodePoolUpdate`.
@@ -1104,7 +1104,7 @@ extension Clients.AwsClustersProtocol {
 
   public func updateAwsCluster(
     awsCluster: AwsCluster?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<AwsCluster> {
     let request = UpdateAwsClusterRequest().with {
       $0.awsCluster = awsCluster
@@ -1303,7 +1303,7 @@ extension Clients.AwsClustersProtocol {
 
   public func updateAwsNodePool(
     awsNodePool: AwsNodePool?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<AwsNodePool> {
     let request = UpdateAwsNodePoolRequest().with {
       $0.awsNodePool = awsNodePool

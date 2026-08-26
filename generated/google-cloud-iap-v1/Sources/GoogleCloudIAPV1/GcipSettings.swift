@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Allows customers to configure tenant IDs for a Cloud Identity Platform (GCIP)
 /// instance for each application.
-public struct GcipSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct GcipSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. GCIP tenant IDs that are linked to the IAP resource. `tenant_ids`
@@ -33,7 +33,7 @@ public struct GcipSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Login page URI associated with the GCIP tenants.
   /// Typically, all resources within the same project share the same login page,
   /// though it could be overridden at the sub resource level.
-  public var loginPageUri: GoogleCloudWkt.StringValue? = nil
+  public var loginPageUri: GoogleCloudWKT.StringValue? = nil
 
   /// Initialize a new instance of `GcipSettings`.
   public init() {}
@@ -54,10 +54,10 @@ public struct GcipSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.iap.v1.GcipSettings"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

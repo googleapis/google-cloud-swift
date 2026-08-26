@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleIAMV1
   import GoogleLongRunning
   import GoogleRpc
@@ -398,7 +398,7 @@
       /// See `ScheduleServiceClient.updateSchedule`.
       func updateSchedule(
         schedule: Schedule?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudAIPlatformV1.Schedule
 
       /// See `ScheduleServiceClient.listLocations`.
@@ -744,7 +744,7 @@
 
     public func updateSchedule(
       schedule: Schedule?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.Schedule {
       let request = UpdateScheduleRequest().with {
         $0.schedule = schedule

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A plugin resource in the API Hub.
-public struct Plugin: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Plugin: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The name of the plugin.
@@ -86,10 +86,10 @@ public struct Plugin: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var configTemplate: Plugin.ConfigTemplate? = nil
 
   /// Output only. Timestamp indicating when the plugin was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Timestamp indicating when the plugin was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. The type of the gateway.
   public var gatewayType: GatewayType = GatewayType()
@@ -112,7 +112,7 @@ public struct Plugin: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// The information related to the service implemented by the plugin
   /// developer, used to invoke the plugin's functionality.
-  public struct HostingService: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct HostingService: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The URI of the service implemented by the plugin developer,
@@ -139,16 +139,16 @@ public struct Plugin: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.apihub.v1.Plugin.HostingService"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// ConfigTemplate represents the configuration template for a plugin.
-  public struct ConfigTemplate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ConfigTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The authentication template for the plugin.
@@ -175,7 +175,7 @@ public struct Plugin: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// AuthConfigTemplate represents the authentication template for a plugin.
-    public struct AuthConfigTemplate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AuthConfigTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The list of authentication types supported by the plugin.
@@ -214,22 +214,22 @@ public struct Plugin: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.apihub.v1.Plugin.ConfigTemplate.AuthConfigTemplate"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.apihub.v1.Plugin.ConfigTemplate"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -453,10 +453,10 @@ public struct Plugin: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.apihub.v1.Plugin"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudContainerAnalysisV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 
 func sample() async throws {

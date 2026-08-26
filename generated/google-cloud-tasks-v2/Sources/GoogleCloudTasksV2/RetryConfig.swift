@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Retry config.
 ///
 /// These settings determine when a failed task attempt is retried.
-public struct RetryConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RetryConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Number of attempts per task.
@@ -59,7 +59,7 @@ public struct RetryConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// queue.yaml/xml](https://cloud.google.com/appengine/docs/standard/python/config/queueref#retry_parameters).
   ///
   /// [google.cloud.tasks.v2.RetryConfig.max_attempts]: <doc:RetryConfig/maxAttempts>
-  public var maxRetryDuration: GoogleCloudWkt.Duration? = nil
+  public var maxRetryDuration: GoogleCloudWKT.Duration? = nil
 
   /// A task will be [scheduled][google.cloud.tasks.v2.Task.schedule_time] for
   /// retry between [min_backoff][google.cloud.tasks.v2.RetryConfig.min_backoff]
@@ -82,7 +82,7 @@ public struct RetryConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [google.cloud.tasks.v2.RetryConfig.max_backoff]: <doc:RetryConfig/maxBackoff>
   /// [google.cloud.tasks.v2.RetryConfig.min_backoff]: <doc:RetryConfig/minBackoff>
   /// [google.cloud.tasks.v2.Task.schedule_time]: <doc:Task/scheduleTime>
-  public var minBackoff: GoogleCloudWkt.Duration? = nil
+  public var minBackoff: GoogleCloudWKT.Duration? = nil
 
   /// A task will be [scheduled][google.cloud.tasks.v2.Task.schedule_time] for
   /// retry between [min_backoff][google.cloud.tasks.v2.RetryConfig.min_backoff]
@@ -105,7 +105,7 @@ public struct RetryConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [google.cloud.tasks.v2.RetryConfig.max_backoff]: <doc:RetryConfig/maxBackoff>
   /// [google.cloud.tasks.v2.RetryConfig.min_backoff]: <doc:RetryConfig/minBackoff>
   /// [google.cloud.tasks.v2.Task.schedule_time]: <doc:Task/scheduleTime>
-  public var maxBackoff: GoogleCloudWkt.Duration? = nil
+  public var maxBackoff: GoogleCloudWKT.Duration? = nil
 
   /// The time between retries will double `max_doublings` times.
   ///
@@ -159,10 +159,10 @@ public struct RetryConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.tasks.v2.RetryConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

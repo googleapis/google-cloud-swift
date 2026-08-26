@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A condition necessary for an `AccessLevel` to be granted. The Condition is an
 /// AND over its fields. So a Condition is true if: 1) the request IP is from one
 /// of the listed subnetworks AND 2) the originating device complies with the
 /// listed device policy AND 3) all listed access levels are granted AND 4) the
 /// request was sent at a time allowed by the DateTimeRestriction.
-public struct Condition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Condition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// CIDR block IP subnetwork specification. May be IPv4 or IPv6. Note that for
@@ -82,10 +82,10 @@ public struct Condition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.identity.accesscontextmanager.v1.Condition"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

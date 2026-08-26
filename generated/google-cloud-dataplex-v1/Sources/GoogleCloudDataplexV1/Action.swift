@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Action represents an issue requiring administrator action for resolution.
-public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Action: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The category of issue associated with the action.
@@ -28,7 +28,7 @@ public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var issue: Swift.String = Swift.String()
 
   /// The time that the issue was detected.
-  public var detectTime: GoogleCloudWkt.Timestamp? = nil
+  public var detectTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The relative resource name of the action, of the form:
   /// `projects/{project}/locations/{location}/lakes/{lake}/actions/{action}`
@@ -98,7 +98,7 @@ public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.category = try container.decode(Action.Category.self, forKey: .category)
     self.issue = try container.decode(Swift.String.self, forKey: .issue)
     self.detectTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .detectTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .detectTime)
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.lake = try container.decode(Swift.String.self, forKey: .lake)
     self.zone = try container.decode(Swift.String.self, forKey: .zone)
@@ -192,7 +192,7 @@ public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Action details for resource references in assets that cannot be located.
-  public struct MissingResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MissingResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `MissingResource`.
@@ -214,18 +214,18 @@ public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.Action.MissingResource"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Action details for unauthorized resource issues raised to indicate that the
   /// service account associated with the lake instance is not authorized to
   /// access or manage the resource associated with an asset.
-  public struct UnauthorizedResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct UnauthorizedResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `UnauthorizedResource`.
@@ -247,11 +247,11 @@ public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.Action.UnauthorizedResource"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -259,7 +259,7 @@ public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// lake, zone or an asset. For a lake or zone resource, one or more underlying
   /// assets has a failure applying security policy to the associated managed
   /// resource.
-  public struct FailedSecurityPolicyApply: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FailedSecurityPolicyApply: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Resource name of one of the assets with failing security policy
@@ -285,16 +285,16 @@ public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.Action.FailedSecurityPolicyApply"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Action details for invalid or unsupported data files detected by discovery.
-  public struct InvalidDataFormat: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct InvalidDataFormat: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The list of data locations sampled and used for format/schema
@@ -326,16 +326,16 @@ public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.Action.InvalidDataFormat"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Action details for incompatible schemas detected by discovery.
-  public struct IncompatibleDataSchema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct IncompatibleDataSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The name of the table containing invalid data.
@@ -482,16 +482,16 @@ public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.Action.IncompatibleDataSchema"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Action details for invalid or unsupported partitions detected by discovery.
-  public struct InvalidDataPartition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct InvalidDataPartition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The issue type of InvalidDataPartition.
@@ -622,16 +622,16 @@ public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.Action.InvalidDataPartition"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Action details for absence of data detected by discovery.
-  public struct MissingData: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MissingData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `MissingData`.
@@ -653,16 +653,16 @@ public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.Action.MissingData"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Action details for invalid data arrangement.
-  public struct InvalidDataOrganization: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct InvalidDataOrganization: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `InvalidDataOrganization`.
@@ -684,11 +684,11 @@ public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.Action.InvalidDataOrganization"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -829,10 +829,10 @@ public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataplex.v1.Action"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

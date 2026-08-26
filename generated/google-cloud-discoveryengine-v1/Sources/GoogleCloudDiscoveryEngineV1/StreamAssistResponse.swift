@@ -16,14 +16,14 @@
 
 #if AssistantService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Response for the
   /// [AssistantService.StreamAssist][google.cloud.discoveryengine.v1.AssistantService.StreamAssist]
   /// method.
   ///
   /// [google.cloud.discoveryengine.v1.AssistantService.StreamAssist]: <doc:AssistantServiceClient/streamAssist(request:options:)>
-  public struct StreamAssistResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct StreamAssistResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Assist answer resource object containing parts of the assistant's final
@@ -73,7 +73,7 @@
     }
 
     /// Information about the session.
-    public struct SessionInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SessionInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Name of the newly generated or continued session.
@@ -102,22 +102,22 @@
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.StreamAssistResponse.SessionInfo"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.StreamAssistResponse"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

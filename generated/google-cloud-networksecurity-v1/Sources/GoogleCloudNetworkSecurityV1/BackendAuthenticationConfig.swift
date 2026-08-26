@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// BackendAuthenticationConfig message groups the TrustConfig together with
 /// other settings that control how the load balancer authenticates, and
@@ -33,7 +33,7 @@ import Foundation
 ///
 /// You can attach the BackendAuthenticationConfig to the load balancer's
 /// BackendService directly determining how that BackendService negotiates TLS.
-public struct BackendAuthenticationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BackendAuthenticationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Name of the BackendAuthenticationConfig resource. It matches the
@@ -45,10 +45,10 @@ public struct BackendAuthenticationConfig: Codable, Equatable, GoogleCloudWkt._A
   public var description: Swift.String = Swift.String()
 
   /// Output only. The timestamp when the resource was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The timestamp when the resource was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Set of label tags associated with the resource.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -212,10 +212,10 @@ public struct BackendAuthenticationConfig: Codable, Equatable, GoogleCloudWkt._A
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networksecurity.v1.BackendAuthenticationConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

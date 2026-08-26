@@ -16,10 +16,10 @@
 
 #if DocumentService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request message for Import methods.
-  public struct ImportDocumentsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ImportDocumentsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The parent branch resource name, such as
@@ -40,7 +40,7 @@
 
     /// Indicates which fields in the provided imported documents to update. If
     /// not set, the default is to update all fields.
-    public var updateMask: GoogleCloudWkt.FieldMask? = nil
+    public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
     /// Whether to automatically generate IDs for the documents if absent.
     ///
@@ -180,7 +180,7 @@
       self.reconciliationMode = try container.decode(
         ImportDocumentsRequest.ReconciliationMode.self, forKey: .reconciliationMode)
       self.updateMask = try container.decodeIfPresent(
-        GoogleCloudWkt.FieldMask.self, forKey: .updateMask)
+        GoogleCloudWKT.FieldMask.self, forKey: .updateMask)
       self.autoGenerateIds = try container.decode(Swift.Bool.self, forKey: .autoGenerateIds)
       self.idField = try container.decode(Swift.String.self, forKey: .idField)
       self.forceRefreshContent = try container.decode(Swift.Bool.self, forKey: .forceRefreshContent)
@@ -276,7 +276,7 @@
     }
 
     /// The inline source for the input config for ImportDocuments method.
-    public struct InlineSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct InlineSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. A list of documents to update/create. Each document must have a
@@ -306,11 +306,11 @@
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.ImportDocumentsRequest.InlineSource"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -446,11 +446,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.ImportDocumentsRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A Version resource is a specific set of source code and configuration files
 /// that are deployed into a service.
-public struct Version: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Version: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Full path to the Version resource in the API.  Example:
@@ -98,7 +98,7 @@ public struct Version: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Time that this version was created.
   ///
   /// @OutputOnly
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Total size in bytes of all the files that are included in this version
   /// and currently hosted on the App Engine disk.
@@ -159,7 +159,7 @@ public struct Version: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// does not specify its own expiration time.
   ///
   /// Only returned in `GET` requests if `view=FULL` is set.
-  public var defaultExpiration: GoogleCloudWkt.Duration? = nil
+  public var defaultExpiration: GoogleCloudWKT.Duration? = nil
 
   /// Configures health checking for instances. Unhealthy instances are
   /// stopped and replaced with new instances.
@@ -293,7 +293,7 @@ public struct Version: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.servingStatus = try container.decode(ServingStatus.self, forKey: .servingStatus)
     self.createdBy = try container.decode(Swift.String.self, forKey: .createdBy)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.diskUsageBytes = try container.decode(Swift.Int64.self, forKey: .diskUsageBytes)
     self.runtimeApiVersion = try container.decode(Swift.String.self, forKey: .runtimeApiVersion)
     self.runtimeMainExecutablePath = try container.decode(
@@ -308,7 +308,7 @@ public struct Version: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.buildEnvVariables = try container.decode(
       [Swift.String: Swift.String].self, forKey: .buildEnvVariables)
     self.defaultExpiration = try container.decodeIfPresent(
-      GoogleCloudWkt.Duration.self, forKey: .defaultExpiration)
+      GoogleCloudWKT.Duration.self, forKey: .defaultExpiration)
     self.healthCheck = try container.decodeIfPresent(HealthCheck.self, forKey: .healthCheck)
     self.readinessCheck = try container.decodeIfPresent(
       ReadinessCheck.self, forKey: .readinessCheck)
@@ -422,10 +422,10 @@ public struct Version: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.appengine.v1.Version"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

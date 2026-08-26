@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The parameters to `TailLogEntries`.
-public struct TailLogEntriesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TailLogEntriesRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Name of a parent resource from which to retrieve log entries:
@@ -47,7 +47,7 @@ public struct TailLogEntriesRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
   /// being returned to prevent out of order results due to late arriving log
   /// entries. Valid values are between 0-60000 milliseconds. Defaults to 2000
   /// milliseconds.
-  public var bufferWindow: GoogleCloudWkt.Duration? = nil
+  public var bufferWindow: GoogleCloudWKT.Duration? = nil
 
   /// Initialize a new instance of `TailLogEntriesRequest`.
   public init() {}
@@ -68,10 +68,10 @@ public struct TailLogEntriesRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.logging.v2.TailLogEntriesRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

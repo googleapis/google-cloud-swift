@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -677,7 +677,7 @@ extension Clients {
     func updateEnvironment(
       name: Swift.String,
       environment: Environment?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Environment>
 
     /// See `EnvironmentsClient.deleteEnvironment`.
@@ -1198,7 +1198,7 @@ extension Clients.EnvironmentsProtocol {
   public func updateEnvironment(
     name: Swift.String,
     environment: Environment?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Environment> {
     let request = UpdateEnvironmentRequest().with {
       $0.name = name

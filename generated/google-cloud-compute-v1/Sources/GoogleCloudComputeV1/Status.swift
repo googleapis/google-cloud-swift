@@ -16,7 +16,7 @@
 
 #if Addresses || Autoscalers || BackendBuckets || BackendServices || CrossSiteNetworks || Disks || ExternalVpnGateways || FirewallPolicies || Firewalls || ForwardingRules || FutureReservations || GlobalAddresses || GlobalForwardingRules || GlobalNetworkEndpointGroups || GlobalOperations || GlobalOrganizationOperations || GlobalPublicDelegatedPrefixes || GlobalVmExtensionPolicies || HealthChecks || Hosts || HttpHealthChecks || HttpsHealthChecks || Images || InstanceGroupManagerResizeRequests || InstanceGroupManagers || InstanceGroups || InstanceSettings || InstanceTemplates || Instances || InstantSnapshotGroups || InstantSnapshots || InterconnectAttachmentGroups || InterconnectAttachments || InterconnectGroups || Interconnects || Licenses || MachineImages || NetworkAttachments || NetworkEdgeSecurityServices || NetworkEndpointGroups || NetworkFirewallPolicies || Networks || NodeGroups || NodeTemplates || OrganizationSecurityPolicies || PacketMirrorings || PreviewFeatures || Projects || PublicAdvertisedPrefixes || PublicDelegatedPrefixes || RegionAutoscalers || RegionBackendBuckets || RegionBackendServices || RegionCommitments || RegionCompositeHealthChecks || RegionDisks || RegionHealthAggregationPolicies || RegionHealthCheckServices || RegionHealthChecks || RegionHealthSources || RegionInstanceGroupManagerResizeRequests || RegionInstanceGroupManagers || RegionInstanceGroups || RegionInstanceTemplates || RegionInstances || RegionInstantSnapshotGroups || RegionInstantSnapshots || RegionNetworkEndpointGroups || RegionNetworkFirewallPolicies || RegionNotificationEndpoints || RegionOperations || RegionSecurityPolicies || RegionSnapshotSettings || RegionSnapshots || RegionSslCertificates || RegionSslPolicies || RegionTargetHttpProxies || RegionTargetHttpsProxies || RegionTargetTcpProxies || RegionUrlMaps || ReservationBlocks || ReservationSlots || ReservationSubBlocks || Reservations || ResourcePolicies || RolloutPlans || Rollouts || Routers || Routes || SecurityPolicies || ServiceAttachments || SnapshotSettings || Snapshots || SslCertificates || SslPolicies || StoragePools || Subnetworks || TargetGrpcProxies || TargetHttpProxies || TargetHttpsProxies || TargetInstances || TargetPools || TargetSslProxies || TargetTcpProxies || TargetVpnGateways || UrlMaps || VpnGateways || VpnTunnels || WireGroups || ZoneOperations || ZoneVmExtensionPolicies
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The `Status` type defines a logical error model that is suitable for
   /// different programming environments, including REST APIs and RPC APIs. It is
@@ -25,7 +25,7 @@
   ///
   /// You can find out more about this error model and how to work with it in the
   /// [API Design Guide](https://cloud.google.com/apis/design/errors).
-  public struct Status: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Status: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The status code, which should be an enum value of google.rpc.Code.
@@ -33,7 +33,7 @@
 
     /// A list of messages that carry the error details.  There is a common set of
     /// message types for APIs to use.
-    public var details: [GoogleCloudWkt.`Any`] = []
+    public var details: [GoogleCloudWKT.`Any`] = []
 
     /// A developer-facing error message, which should be in English. Any
     /// user-facing error message should be localized and sent in the
@@ -59,11 +59,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.Status"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

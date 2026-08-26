@@ -15,20 +15,20 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Job statistics that may change after a job starts.
-public struct JobStatistics: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct JobStatistics: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Time when the job was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Time when the job started.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Time when the job ended.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Total bytes processed for a job.
   public var totalProcessedBytes: Swift.Int64 = Swift.Int64()
@@ -95,7 +95,7 @@ public struct JobStatistics: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Job resource usage breakdown by reservation.
-  public struct ReservationResourceUsage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ReservationResourceUsage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Reservation name or "unreserved" for on-demand resources usage.
@@ -124,21 +124,21 @@ public struct JobStatistics: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.bigquery.logging.v1.JobStatistics.ReservationResourceUsage"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.logging.v1.JobStatistics"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

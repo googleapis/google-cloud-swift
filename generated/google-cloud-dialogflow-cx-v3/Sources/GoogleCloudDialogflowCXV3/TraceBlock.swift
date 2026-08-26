@@ -16,27 +16,27 @@
 
 #if Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The trace block tracks a sequence of actions taken by the agent in a flow or
   /// a playbook.
-  public struct TraceBlock: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TraceBlock: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The actions performed by the agent and the user during this session.
     public var actions: [Action] = []
 
     /// Output only. Timestamp of the start of the trace block.
-    public var startTime: GoogleCloudWkt.Timestamp? = nil
+    public var startTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Timestamp of the end of the trace block.
-    public var completeTime: GoogleCloudWkt.Timestamp? = nil
+    public var completeTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Optional. A list of input parameters of the trace block.
-    public var inputParameters: GoogleCloudWkt.Struct? = nil
+    public var inputParameters: GoogleCloudWKT.Struct? = nil
 
     /// Optional. A list of output parameters of the trace block.
-    public var outputParameters: GoogleCloudWkt.Struct? = nil
+    public var outputParameters: GoogleCloudWKT.Struct? = nil
 
     /// Optional. Output only. The end state of the trace block.
     public var endState: OutputState = OutputState()
@@ -76,13 +76,13 @@
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.actions = try container.decode([Action].self, forKey: .actions)
       self.startTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .startTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .startTime)
       self.completeTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .completeTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .completeTime)
       self.inputParameters = try container.decodeIfPresent(
-        GoogleCloudWkt.Struct.self, forKey: .inputParameters)
+        GoogleCloudWKT.Struct.self, forKey: .inputParameters)
       self.outputParameters = try container.decodeIfPresent(
-        GoogleCloudWkt.Struct.self, forKey: .outputParameters)
+        GoogleCloudWKT.Struct.self, forKey: .outputParameters)
       self.endState = try container.decode(OutputState.self, forKey: .endState)
 
       var traceMetadata: OneOf_TraceMetadata? = nil
@@ -147,11 +147,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.TraceBlock"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

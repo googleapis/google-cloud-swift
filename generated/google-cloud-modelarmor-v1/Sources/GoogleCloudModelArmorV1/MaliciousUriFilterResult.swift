@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Malicious URI Filter Result.
-public struct MaliciousUriFilterResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MaliciousUriFilterResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Reports whether Malicious URI filter was successfully executed
@@ -56,7 +56,7 @@ public struct MaliciousUriFilterResult: Codable, Equatable, GoogleCloudWkt._AnyP
 
   /// Information regarding malicious URI and its location within the input
   /// content.
-  public struct MaliciousUriMatchedItem: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MaliciousUriMatchedItem: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Malicious URI.
@@ -87,21 +87,21 @@ public struct MaliciousUriFilterResult: Codable, Equatable, GoogleCloudWkt._AnyP
       return
         "type.googleapis.com/google.cloud.modelarmor.v1.MaliciousUriFilterResult.MaliciousUriMatchedItem"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.modelarmor.v1.MaliciousUriFilterResult"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

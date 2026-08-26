@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The HTTP referrers (websites) that are allowed to use the key.
-public struct BrowserKeyRestrictions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BrowserKeyRestrictions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A list of regular expressions for the referrer URLs that are allowed
@@ -44,10 +44,10 @@ public struct BrowserKeyRestrictions: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.apikeys.v2.BrowserKeyRestrictions"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -523,7 +523,7 @@ extension Clients {
     /// See `ManagedKafkaClient.updateCluster`.
     func updateCluster(
       cluster: Cluster?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Cluster>
 
     /// See `ManagedKafkaClient.deleteCluster`.
@@ -576,7 +576,7 @@ extension Clients {
     /// See `ManagedKafkaClient.updateTopic`.
     func updateTopic(
       topic: Topic?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudManagedKafkaV1.Topic
 
     /// See `ManagedKafkaClient.deleteTopic`.
@@ -617,7 +617,7 @@ extension Clients {
     /// See `ManagedKafkaClient.updateConsumerGroup`.
     func updateConsumerGroup(
       consumerGroup: ConsumerGroup?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudManagedKafkaV1.ConsumerGroup
 
     /// See `ManagedKafkaClient.deleteConsumerGroup`.
@@ -666,7 +666,7 @@ extension Clients {
     /// See `ManagedKafkaClient.updateAcl`.
     func updateAcl(
       acl: Acl?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudManagedKafkaV1.Acl
 
     /// See `ManagedKafkaClient.deleteAcl`.
@@ -1049,7 +1049,7 @@ extension Clients.ManagedKafkaProtocol {
 
   public func updateCluster(
     cluster: Cluster?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Cluster> {
     let request = UpdateClusterRequest().with {
       $0.cluster = cluster
@@ -1190,7 +1190,7 @@ extension Clients.ManagedKafkaProtocol {
 
   public func updateTopic(
     topic: Topic?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudManagedKafkaV1.Topic {
     let request = UpdateTopicRequest().with {
       $0.topic = topic
@@ -1290,7 +1290,7 @@ extension Clients.ManagedKafkaProtocol {
 
   public func updateConsumerGroup(
     consumerGroup: ConsumerGroup?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudManagedKafkaV1.ConsumerGroup {
     let request = UpdateConsumerGroupRequest().with {
       $0.consumerGroup = consumerGroup
@@ -1409,7 +1409,7 @@ extension Clients.ManagedKafkaProtocol {
 
   public func updateAcl(
     acl: Acl?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudManagedKafkaV1.Acl {
     let request = UpdateAclRequest().with {
       $0.acl = acl

@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleCloudGax
 
@@ -349,7 +349,7 @@ extension Clients {
     /// See `RegistrationServiceClient.updateNamespace`.
     func updateNamespace(
       namespace: Namespace?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudServiceDirectoryV1.Namespace
 
     /// See `RegistrationServiceClient.deleteNamespace`.
@@ -401,7 +401,7 @@ extension Clients {
     /// See `RegistrationServiceClient.updateService`.
     func updateService(
       service: Service?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudServiceDirectoryV1.Service
 
     /// See `RegistrationServiceClient.deleteService`.
@@ -453,7 +453,7 @@ extension Clients {
     /// See `RegistrationServiceClient.updateEndpoint`.
     func updateEndpoint(
       endpoint: Endpoint?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudServiceDirectoryV1.Endpoint
 
     /// See `RegistrationServiceClient.deleteEndpoint`.
@@ -708,7 +708,7 @@ extension Clients.RegistrationServiceProtocol {
 
   public func updateNamespace(
     namespace: Namespace?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudServiceDirectoryV1.Namespace {
     let request = UpdateNamespaceRequest().with {
       $0.namespace = namespace
@@ -833,7 +833,7 @@ extension Clients.RegistrationServiceProtocol {
 
   public func updateService(
     service: Service?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudServiceDirectoryV1.Service {
     let request = UpdateServiceRequest().with {
       $0.service = service
@@ -958,7 +958,7 @@ extension Clients.RegistrationServiceProtocol {
 
   public func updateEndpoint(
     endpoint: Endpoint?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudServiceDirectoryV1.Endpoint {
     let request = UpdateEndpointRequest().with {
       $0.endpoint = endpoint

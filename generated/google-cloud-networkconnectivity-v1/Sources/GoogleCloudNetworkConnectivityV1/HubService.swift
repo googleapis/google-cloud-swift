@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -856,7 +856,7 @@ extension Clients {
     /// See `HubServiceClient.updateHub`.
     func updateHub(
       hub: Hub?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Hub>
 
     /// See `HubServiceClient.deleteHub`.
@@ -945,7 +945,7 @@ extension Clients {
     /// See `HubServiceClient.updateSpoke`.
     func updateSpoke(
       spoke: Spoke?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Spoke>
 
     /// See `HubServiceClient.rejectHubSpoke`.
@@ -1093,7 +1093,7 @@ extension Clients {
     /// See `HubServiceClient.updateGroup`.
     func updateGroup(
       group: Group?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Group>
 
     /// See `HubServiceClient.listLocations`.
@@ -1532,7 +1532,7 @@ extension Clients.HubServiceProtocol {
 
   public func updateHub(
     hub: Hub?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Hub> {
     let request = UpdateHubRequest().with {
       $0.hub = hub
@@ -1777,7 +1777,7 @@ extension Clients.HubServiceProtocol {
 
   public func updateSpoke(
     spoke: Spoke?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Spoke> {
     let request = UpdateSpokeRequest().with {
       $0.spoke = spoke
@@ -2188,7 +2188,7 @@ extension Clients.HubServiceProtocol {
 
   public func updateGroup(
     group: Group?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Group> {
     let request = UpdateGroupRequest().with {
       $0.group = group

@@ -16,13 +16,13 @@
 
 import Foundation
 @_spi(GoogleCloudInternal) import GoogleCloudGax
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The response for
 /// [ReservationService.ListCapacityCommitments][google.cloud.bigquery.reservation.v1.ReservationService.ListCapacityCommitments].
 ///
 /// [google.cloud.bigquery.reservation.v1.ReservationService.ListCapacityCommitments]: <doc:ReservationServiceClient/listCapacityCommitments(request:options:)>
-public struct ListCapacityCommitmentsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ListCapacityCommitmentsResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable
 {
@@ -53,11 +53,11 @@ public struct ListCapacityCommitmentsResponse: Codable, Equatable, GoogleCloudWk
     return
       "type.googleapis.com/google.cloud.bigquery.reservation.v1.ListCapacityCommitmentsResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 
   public func _getPaginatedItems() -> [CapacityCommitment] {

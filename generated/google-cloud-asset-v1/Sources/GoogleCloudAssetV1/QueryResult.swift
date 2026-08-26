@@ -15,18 +15,18 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Execution results of the query.
 ///
 /// The result is formatted as rows represented by BigQuery compatible [schema].
 /// When pagination is necessary, it will contains the page token to retrieve
 /// the results of following pages.
-public struct QueryResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct QueryResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Each row hold a query result in the format of `Struct`.
-  public var rows: [GoogleCloudWkt.Struct] = []
+  public var rows: [GoogleCloudWKT.Struct] = []
 
   /// Describes the format of the [rows].
   public var schema: TableSchema? = nil
@@ -56,10 +56,10 @@ public struct QueryResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.asset.v1.QueryResult"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -32,7 +32,7 @@ let package = Package(
       name: "GoogleAppsScriptTypeSlides",
       dependencies: [
         .product(name: "GoogleAppsScriptType", package: "google-apps-script-type"),
-        .product(name: "GoogleCloudWkt", package: "wkt"),
+        .product(name: "GoogleCloudWKT", package: "wkt"),
       ],
     )
   ]

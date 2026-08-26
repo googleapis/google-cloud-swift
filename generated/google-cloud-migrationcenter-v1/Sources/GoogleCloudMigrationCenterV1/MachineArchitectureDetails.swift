@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Details of the machine architecture.
-public struct MachineArchitectureDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MachineArchitectureDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// CPU architecture, e.g., "x64-based PC", "x86_64", "i686" etc.
@@ -276,10 +276,10 @@ public struct MachineArchitectureDetails: Codable, Equatable, GoogleCloudWkt._An
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.migrationcenter.v1.MachineArchitectureDetails"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

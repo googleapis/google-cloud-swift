@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// DiscoveredApiOperation represents an API Operation observed in one of the
 /// sources.
-public struct DiscoveredApiOperation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DiscoveredApiOperation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The name of the discovered API Operation.
@@ -29,10 +29,10 @@ public struct DiscoveredApiOperation: Codable, Equatable, GoogleCloudWkt._AnyPac
   public var name: Swift.String = Swift.String()
 
   /// Optional. First seen time stamp
-  public var firstSeenTime: GoogleCloudWkt.Timestamp? = nil
+  public var firstSeenTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Last seen time stamp
-  public var lastSeenTime: GoogleCloudWkt.Timestamp? = nil
+  public var lastSeenTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. The number of occurrences of this API Operation.
   public var count: Swift.Int64 = Swift.Int64()
@@ -52,10 +52,10 @@ public struct DiscoveredApiOperation: Codable, Equatable, GoogleCloudWkt._AnyPac
   public var sourceMetadata: SourceMetadata? = nil
 
   /// Output only. Create time stamp of the discovered API operation in API Hub.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Update time stamp of the discovered API operation in API Hub.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// ApiOperation protocol style
   public var operation: OneOf_Operation? = nil
@@ -93,9 +93,9 @@ public struct DiscoveredApiOperation: Codable, Equatable, GoogleCloudWkt._AnyPac
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.firstSeenTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .firstSeenTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .firstSeenTime)
     self.lastSeenTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .lastSeenTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .lastSeenTime)
     self.count = try container.decode(Swift.Int64.self, forKey: .count)
     self.classification = try container.decode(
       DiscoveredApiOperation.Classification.self, forKey: .classification)
@@ -104,9 +104,9 @@ public struct DiscoveredApiOperation: Codable, Equatable, GoogleCloudWkt._AnyPac
     self.sourceMetadata = try container.decodeIfPresent(
       SourceMetadata.self, forKey: .sourceMetadata)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
 
     var operation: OneOf_Operation? = nil
     let operationCheckAndSet = {
@@ -148,7 +148,7 @@ public struct DiscoveredApiOperation: Codable, Equatable, GoogleCloudWkt._AnyPac
 
   /// MatchResult represents the result of matching a discovered API operation
   /// with a catalog API operation.
-  public struct MatchResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MatchResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The name of the matched API Operation.
@@ -176,11 +176,11 @@ public struct DiscoveredApiOperation: Codable, Equatable, GoogleCloudWkt._AnyPac
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.apihub.v1.DiscoveredApiOperation.MatchResult"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -298,10 +298,10 @@ public struct DiscoveredApiOperation: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.apihub.v1.DiscoveredApiOperation"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

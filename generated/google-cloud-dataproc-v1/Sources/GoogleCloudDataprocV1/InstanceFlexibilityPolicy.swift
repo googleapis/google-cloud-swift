@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Instance flexibility Policy allowing a mixture of VM shapes and provisioning
 /// models.
-public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. Defines how the Group selects the provisioning model to ensure
@@ -51,7 +51,7 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleCloudWkt._Any
 
   /// Defines how Dataproc should create VMs with a mixture of provisioning
   /// models.
-  public struct ProvisioningModelMix: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ProvisioningModelMix: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The base capacity that will always use Standard VMs to avoid
@@ -92,16 +92,16 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleCloudWkt._Any
       return
         "type.googleapis.com/google.cloud.dataproc.v1.InstanceFlexibilityPolicy.ProvisioningModelMix"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Defines machines types and a rank to which the machines types belong.
-  public struct InstanceSelection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct InstanceSelection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Full machine-type names, e.g. "n1-standard-16".
@@ -140,17 +140,17 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleCloudWkt._Any
       return
         "type.googleapis.com/google.cloud.dataproc.v1.InstanceFlexibilityPolicy.InstanceSelection"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Defines a mapping from machine types to the number of VMs that are created
   /// with each machine type.
-  public struct InstanceSelectionResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct InstanceSelectionResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Full machine-type names, e.g. "n1-standard-16".
@@ -179,21 +179,21 @@ public struct InstanceFlexibilityPolicy: Codable, Equatable, GoogleCloudWkt._Any
       return
         "type.googleapis.com/google.cloud.dataproc.v1.InstanceFlexibilityPolicy.InstanceSelectionResult"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataproc.v1.InstanceFlexibilityPolicy"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

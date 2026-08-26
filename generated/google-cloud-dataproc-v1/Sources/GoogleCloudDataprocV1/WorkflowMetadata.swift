@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A Dataproc workflow template resource.
-public struct WorkflowMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct WorkflowMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The resource name of the workflow template as described
@@ -56,10 +56,10 @@ public struct WorkflowMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var parameters: [Swift.String: Swift.String] = [:]
 
   /// Output only. Workflow start time.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Workflow end time.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The UUID of target cluster.
   public var clusterUuid: Swift.String = Swift.String()
@@ -67,21 +67,21 @@ public struct WorkflowMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Output only. The timeout duration for the DAG of jobs, expressed in seconds
   /// (see [JSON representation of
   /// duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
-  public var dagTimeout: GoogleCloudWkt.Duration? = nil
+  public var dagTimeout: GoogleCloudWKT.Duration? = nil
 
   /// Output only. DAG start time, only set for workflows with
   /// [dag_timeout][google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout] when
   /// DAG begins.
   ///
   /// [google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout]: <doc:WorkflowMetadata/dagTimeout>
-  public var dagStartTime: GoogleCloudWkt.Timestamp? = nil
+  public var dagStartTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. DAG end time, only set for workflows with
   /// [dag_timeout][google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout] when
   /// DAG ends.
   ///
   /// [google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout]: <doc:WorkflowMetadata/dagTimeout>
-  public var dagEndTime: GoogleCloudWkt.Timestamp? = nil
+  public var dagEndTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `WorkflowMetadata`.
   public init() {}
@@ -214,10 +214,10 @@ public struct WorkflowMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataproc.v1.WorkflowMetadata"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

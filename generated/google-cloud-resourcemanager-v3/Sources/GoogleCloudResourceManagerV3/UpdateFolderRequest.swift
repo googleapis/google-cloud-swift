@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The request sent to the
 /// [UpdateFolder][google.cloud.resourcemanager.v3.Folder.UpdateFolder]
@@ -27,7 +27,7 @@ import Foundation
 /// change the `parent` field.
 ///
 /// [google.cloud.resourcemanager.v3.Folders.MoveFolder]: <doc:FoldersClient/moveFolder(request:options:)>
-public struct UpdateFolderRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateFolderRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The new definition of the Folder. It must include the `name`
@@ -36,7 +36,7 @@ public struct UpdateFolderRequest: Codable, Equatable, GoogleCloudWkt._AnyPackab
 
   /// Required. Fields to be updated.
   /// Only the `display_name` can be updated.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `UpdateFolderRequest`.
   public init() {}
@@ -57,10 +57,10 @@ public struct UpdateFolderRequest: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.resourcemanager.v3.UpdateFolderRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

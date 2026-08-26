@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The request for sending an AdaptiveMt translation query.
-public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Location to make a regional call.
@@ -61,7 +61,7 @@ public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleCloudWkt._An
   }
 
   /// A pair of sentences used as reference in source and target languages.
-  public struct ReferenceSentencePair: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ReferenceSentencePair: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Source sentence in the sentence pair.
@@ -90,16 +90,16 @@ public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleCloudWkt._An
       return
         "type.googleapis.com/google.cloud.translation.v3.AdaptiveMtTranslateRequest.ReferenceSentencePair"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A list of reference sentence pairs.
-  public struct ReferenceSentencePairList: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ReferenceSentencePairList: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Reference sentence pairs.
@@ -125,16 +125,16 @@ public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleCloudWkt._An
       return
         "type.googleapis.com/google.cloud.translation.v3.AdaptiveMtTranslateRequest.ReferenceSentencePairList"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Message of caller-provided reference configuration.
-  public struct ReferenceSentenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ReferenceSentenceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Reference sentences pair lists. Each list will be used as the references
@@ -170,18 +170,18 @@ public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleCloudWkt._An
       return
         "type.googleapis.com/google.cloud.translation.v3.AdaptiveMtTranslateRequest.ReferenceSentenceConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configures which glossary is used for a specific target language and
   /// defines
   /// options for applying that glossary.
-  public struct GlossaryConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GlossaryConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The `glossary` to be applied for this translation.
@@ -220,21 +220,21 @@ public struct AdaptiveMtTranslateRequest: Codable, Equatable, GoogleCloudWkt._An
       return
         "type.googleapis.com/google.cloud.translation.v3.AdaptiveMtTranslateRequest.GlossaryConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.translation.v3.AdaptiveMtTranslateRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

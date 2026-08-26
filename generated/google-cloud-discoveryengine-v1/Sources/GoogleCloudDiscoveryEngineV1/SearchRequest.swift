@@ -16,14 +16,14 @@
 
 #if AssistantService || ConversationalSearchService || SearchService || ServingConfigService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request message for
   /// [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search]
   /// method.
   ///
   /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
-  public struct SearchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SearchRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The resource name of the Search serving config, such as
@@ -216,7 +216,7 @@
     ///    depending on the value. The only valid non-default value is 1,
     ///    which enables image searching.
     ///    For example, `search_type: 1`
-    public var params: [Swift.String: GoogleCloudWkt.Value] = [:]
+    public var params: [Swift.String: GoogleCloudWKT.Value] = [:]
 
     /// The query expansion specification that specifies the conditions under which
     /// query expansion occurs.
@@ -470,7 +470,7 @@
     }
 
     /// Specifies the image query input.
-    public struct ImageQuery: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ImageQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       public var image: OneOf_Image? = nil
@@ -534,18 +534,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.ImageQuery"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// A struct to define data stores to filter on in a search call and
     /// configurations for those data stores. Otherwise, an `INVALID_ARGUMENT`
     /// error is returned.
-    public struct DataStoreSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DataStoreSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. Full resource name of
@@ -592,16 +592,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.DataStoreSpec"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// A facet specification to perform faceted search.
-    public struct FacetSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct FacetSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The facet key specification.
@@ -695,7 +695,7 @@
       }
 
       /// Specifies how a facet is computed.
-      public struct FacetKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct FacetKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. Supported textual and numerical facet keys in
@@ -779,27 +779,27 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.FacetSpec.FacetKey"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.FacetSpec"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Boost specification to boost certain documents.
-    public struct BoostSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct BoostSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Condition boost specifications. If a document matches multiple conditions
@@ -825,7 +825,7 @@
       }
 
       /// Boost applies to documents which match a condition.
-      public struct ConditionBoostSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct ConditionBoostSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// An expression which specifies a boost condition. The syntax and
@@ -887,7 +887,7 @@
         /// Specification for custom ranking based on customer specified attribute
         /// value. It provides more controls for customized ranking than the simple
         /// (condition, boost) combination above.
-        public struct BoostControlSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct BoostControlSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// The name of the field whose value will be used to determine the
@@ -934,7 +934,7 @@
           /// The control points used to define the curve. The curve defined
           /// through these control points can only be monotonically increasing
           /// or decreasing(constant values are acceptable).
-          public struct ControlPoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+          public struct ControlPoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
             Sendable
           {
             /// Can be one of:
@@ -969,11 +969,11 @@
               return
                 "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.BoostSpec.ConditionBoostSpec.BoostControlSpec.ControlPoint"
             }
-            public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-              self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+            public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+              self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
             }
-            public func _pack() throws -> GoogleCloudWkt.Struct {
-              return try GoogleCloudWkt._slowAnySerialize(message: self)
+            public func _pack() throws -> GoogleCloudWKT.Struct {
+              return try GoogleCloudWKT._slowAnySerialize(message: self)
             }
           }
 
@@ -1195,11 +1195,11 @@
             return
               "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.BoostSpec.ConditionBoostSpec.BoostControlSpec"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
@@ -1207,28 +1207,28 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.BoostSpec.ConditionBoostSpec"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.BoostSpec"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Specification to determine under which conditions query expansion should
     /// occur.
-    public struct QueryExpansionSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct QueryExpansionSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The condition under which query expansion should occur. Default to
@@ -1376,16 +1376,16 @@
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.QueryExpansionSpec"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// The specification for query spell correction.
-    public struct SpellCorrectionSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SpellCorrectionSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The mode under which spell correction
@@ -1531,16 +1531,16 @@
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.SpellCorrectionSpec"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// A specification for configuring the behavior of content search.
-    public struct ContentSearchSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ContentSearchSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// If `snippetSpec` is not specified, snippets are not included in the
@@ -1587,7 +1587,7 @@
       }
 
       /// A specification for configuring snippets in a search response.
-      public struct SnippetSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct SnippetSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// [DEPRECATED] This field is deprecated. To control snippet return, use
@@ -1626,17 +1626,17 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SnippetSpec"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// A specification for configuring a summary returned in a search
       /// response.
-      public struct SummarySpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct SummarySpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// The number of top results to generate the summary from. If the number
@@ -1757,7 +1757,7 @@
         }
 
         /// Specification of the prompt to use with the model.
-        public struct ModelPromptSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct ModelPromptSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Text at the beginning of the prompt that instructs the assistant.
@@ -1784,16 +1784,16 @@
             return
               "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SummarySpec.ModelPromptSpec"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
         /// Specification of the model.
-        public struct ModelSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct ModelSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// The model version used to generate the summary.
@@ -1830,11 +1830,11 @@
             return
               "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SummarySpec.ModelSpec"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
@@ -1842,17 +1842,17 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SummarySpec"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// A specification for configuring the extractive content in a search
       /// response.
-      public struct ExtractiveContentSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct ExtractiveContentSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// The maximum number of extractive answers returned in each search
@@ -1932,11 +1932,11 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.ExtractiveContentSpec"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -1948,7 +1948,7 @@
       ///
       /// [google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SearchResultMode.CHUNKS]: <doc:SearchRequest/ContentSearchSpec/SearchResultMode/chunks>
       /// [google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.search_result_mode]: <doc:SearchRequest/ContentSearchSpec/searchResultMode>
-      public struct ChunkSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct ChunkSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// The number of previous chunks to be returned of the current chunk. The
@@ -1981,11 +1981,11 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.ChunkSpec"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -2102,17 +2102,17 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Specification to enable natural language understanding capabilities for
     /// search requests.
-    public struct NaturalLanguageQueryUnderstandingSpec: Codable, Equatable, GoogleCloudWkt
+    public struct NaturalLanguageQueryUnderstandingSpec: Codable, Equatable, GoogleCloudWKT
         ._AnyPackable,
       Sendable
     {
@@ -2393,16 +2393,16 @@
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.NaturalLanguageQueryUnderstandingSpec"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Specification for search as you type in search requests.
-    public struct SearchAsYouTypeSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SearchAsYouTypeSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The condition under which search as you type should occur.
@@ -2549,16 +2549,16 @@
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.SearchAsYouTypeSpec"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Specifies features for display, like match highlighting.
-    public struct DisplaySpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DisplaySpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The condition under which match highlighting should occur.
@@ -2689,11 +2689,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.DisplaySpec"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -2702,7 +2702,7 @@
     /// For example, crowding on the color field with a max_count of 3 and mode
     /// DROP_CROWDED_RESULTS will return at most 3 results with the same color
     /// across all pages.
-    public struct CrowdingSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct CrowdingSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The field to use for crowding. Documents can be crowded by a field in the
@@ -2850,11 +2850,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.CrowdingSpec"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -2863,7 +2863,7 @@
     /// Multi-turn Search feature is currently at private GA stage. Please use
     /// v1alpha or v1beta version instead before we launch this feature to public
     /// GA. Or ask for allowlisting through Google Support team.
-    public struct SessionSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SessionSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// If set, the search result gets stored to the "turn" specified by this
@@ -2923,16 +2923,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.SessionSpec"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// The specification for returning the document relevance score.
-    public struct RelevanceScoreSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct RelevanceScoreSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. Whether to return the relevance score for search results.
@@ -2959,16 +2959,16 @@
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.RelevanceScoreSpec"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Relevance filtering specification.
-    public struct RelevanceFilterSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct RelevanceFilterSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. Relevance filtering threshold specification for keyword search.
@@ -2997,7 +2997,7 @@
       }
 
       /// Specification for relevance filtering on a specific sub-search.
-      public struct RelevanceThresholdSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct RelevanceThresholdSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Configures how the relevance threshold is determined.
@@ -3077,11 +3077,11 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.RelevanceFilterSpec.RelevanceThresholdSpec"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -3089,11 +3089,11 @@
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest.RelevanceFilterSpec"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -3349,11 +3349,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.SearchRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -16,13 +16,13 @@
 
 #if GenAiCacheService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request message for
   /// [GenAiCacheService.DeleteCachedContent][google.cloud.aiplatform.v1.GenAiCacheService.DeleteCachedContent].
   ///
   /// [google.cloud.aiplatform.v1.GenAiCacheService.DeleteCachedContent]: <doc:GenAiCacheServiceClient/deleteCachedContent(request:options:)>
-  public struct DeleteCachedContentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DeleteCachedContentRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The resource name referring to the cached content
@@ -47,11 +47,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.DeleteCachedContentRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -1088,7 +1088,7 @@ extension Clients {
     /// See `LivestreamServiceClient.updateChannel`.
     func updateChannel(
       channel: Channel?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Channel>
 
     /// See `LivestreamServiceClient.startChannel`.
@@ -1201,7 +1201,7 @@ extension Clients {
     /// See `LivestreamServiceClient.updateInput`.
     func updateInput(
       input: Input?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Input>
 
     /// See `LivestreamServiceClient.previewInput`.
@@ -1363,7 +1363,7 @@ extension Clients {
     /// See `LivestreamServiceClient.updateDvrSession`.
     func updateDvrSession(
       dvrSession: DvrSession?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<DvrSession>
 
     /// See `LivestreamServiceClient.createAsset`.
@@ -1432,7 +1432,7 @@ extension Clients {
     /// See `LivestreamServiceClient.updatePool`.
     func updatePool(
       pool: Pool?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Pool>
 
     /// See `LivestreamServiceClient.listLocations`.
@@ -1974,7 +1974,7 @@ extension Clients.LivestreamServiceProtocol {
 
   public func updateChannel(
     channel: Channel?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Channel> {
     let request = UpdateChannelRequest().with {
       $0.channel = channel
@@ -2295,7 +2295,7 @@ extension Clients.LivestreamServiceProtocol {
 
   public func updateInput(
     input: Input?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Input> {
     let request = UpdateInputRequest().with {
       $0.input = input
@@ -2722,7 +2722,7 @@ extension Clients.LivestreamServiceProtocol {
 
   public func updateDvrSession(
     dvrSession: DvrSession?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<DvrSession> {
     let request = UpdateDvrSessionRequest().with {
       $0.dvrSession = dvrSession
@@ -2909,7 +2909,7 @@ extension Clients.LivestreamServiceProtocol {
 
   public func updatePool(
     pool: Pool?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Pool> {
     let request = UpdatePoolRequest().with {
       $0.pool = pool

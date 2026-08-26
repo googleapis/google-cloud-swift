@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// ServiceBinding can be used to:
 /// - Bind a Service Directory Service to be used in a BackendService resource.
@@ -24,7 +24,7 @@ import Foundation
 ///   Cloud Service Mesh or Application Load Balancers.
 /// - Bind a Cloud Run service to be used in consumer Cloud Service Mesh or
 ///   Application Load Balancers.
-public struct ServiceBinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ServiceBinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. Name of the ServiceBinding resource. It matches pattern
@@ -36,10 +36,10 @@ public struct ServiceBinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var description: Swift.String = Swift.String()
 
   /// Output only. The timestamp when the resource was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The timestamp when the resource was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. The full Service Directory Service name of the format
   /// `projects/*/locations/*/namespaces/*/services/*`.
@@ -78,10 +78,10 @@ public struct ServiceBinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkservices.v1.ServiceBinding"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

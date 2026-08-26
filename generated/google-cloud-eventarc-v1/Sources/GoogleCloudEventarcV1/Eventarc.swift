@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -1227,7 +1227,7 @@ extension Clients {
     /// See `EventarcClient.updateTrigger`.
     func updateTrigger(
       trigger: Trigger?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
       allowMissing: Swift.Bool,
     ) async throws -> any GoogleCloudGax.PollableOperation<Trigger>
 
@@ -1290,7 +1290,7 @@ extension Clients {
     /// See `EventarcClient.updateChannel`.
     func updateChannel(
       channel: Channel?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Channel>
 
     /// See `EventarcClient.deleteChannel`.
@@ -1394,7 +1394,7 @@ extension Clients {
     /// See `EventarcClient.updateGoogleChannelConfig`.
     func updateGoogleChannelConfig(
       googleChannelConfig: GoogleChannelConfig?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudEventarcV1.GoogleChannelConfig
 
     /// See `EventarcClient.getMessageBus`.
@@ -1455,7 +1455,7 @@ extension Clients {
     /// See `EventarcClient.updateMessageBus`.
     func updateMessageBus(
       messageBus: MessageBus?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<MessageBus>
 
     /// See `EventarcClient.deleteMessageBus`.
@@ -1521,7 +1521,7 @@ extension Clients {
     /// See `EventarcClient.updateEnrollment`.
     func updateEnrollment(
       enrollment: Enrollment?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Enrollment>
 
     /// See `EventarcClient.deleteEnrollment`.
@@ -1584,7 +1584,7 @@ extension Clients {
     /// See `EventarcClient.updatePipeline`.
     func updatePipeline(
       pipeline: Pipeline?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Pipeline>
 
     /// See `EventarcClient.deletePipeline`.
@@ -1649,7 +1649,7 @@ extension Clients {
     /// See `EventarcClient.updateGoogleApiSource`.
     func updateGoogleApiSource(
       googleApiSource: GoogleApiSource?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<GoogleApiSource>
 
     /// See `EventarcClient.deleteGoogleApiSource`.
@@ -2236,7 +2236,7 @@ extension Clients.EventarcProtocol {
 
   public func updateTrigger(
     trigger: Trigger?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
     allowMissing: Swift.Bool,
   ) async throws -> any GoogleCloudGax.PollableOperation<Trigger> {
     let request = UpdateTriggerRequest().with {
@@ -2413,7 +2413,7 @@ extension Clients.EventarcProtocol {
 
   public func updateChannel(
     channel: Channel?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Channel> {
     let request = UpdateChannelRequest().with {
       $0.channel = channel
@@ -2690,7 +2690,7 @@ extension Clients.EventarcProtocol {
 
   public func updateGoogleChannelConfig(
     googleChannelConfig: GoogleChannelConfig?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudEventarcV1.GoogleChannelConfig {
     let request = UpdateGoogleChannelConfigRequest().with {
       $0.googleChannelConfig = googleChannelConfig
@@ -2849,7 +2849,7 @@ extension Clients.EventarcProtocol {
 
   public func updateMessageBus(
     messageBus: MessageBus?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<MessageBus> {
     let request = UpdateMessageBusRequest().with {
       $0.messageBus = messageBus
@@ -3026,7 +3026,7 @@ extension Clients.EventarcProtocol {
 
   public func updateEnrollment(
     enrollment: Enrollment?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Enrollment> {
     let request = UpdateEnrollmentRequest().with {
       $0.enrollment = enrollment
@@ -3203,7 +3203,7 @@ extension Clients.EventarcProtocol {
 
   public func updatePipeline(
     pipeline: Pipeline?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Pipeline> {
     let request = UpdatePipelineRequest().with {
       $0.pipeline = pipeline
@@ -3380,7 +3380,7 @@ extension Clients.EventarcProtocol {
 
   public func updateGoogleApiSource(
     googleApiSource: GoogleApiSource?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<GoogleApiSource> {
     let request = UpdateGoogleApiSourceRequest().with {
       $0.googleApiSource = googleApiSource

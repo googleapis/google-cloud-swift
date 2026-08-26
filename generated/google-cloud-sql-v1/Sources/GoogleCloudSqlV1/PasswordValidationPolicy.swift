@@ -16,41 +16,41 @@
 
 #if SqlBackupsService || SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Database instance local user password validation policy.
   /// This message defines the password policy for local database users.
   /// When enabled, it enforces constraints on password complexity, length,
   /// and reuse. Keep this policy enabled to help prevent unauthorized access.
-  public struct PasswordValidationPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PasswordValidationPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Minimum number of characters allowed.
-    public var minLength: GoogleCloudWkt.Int32Value? = nil
+    public var minLength: GoogleCloudWKT.Int32Value? = nil
 
     /// The complexity of the password.
     public var complexity: PasswordValidationPolicy.Complexity =
       PasswordValidationPolicy.Complexity()
 
     /// Number of previous passwords that cannot be reused.
-    public var reuseInterval: GoogleCloudWkt.Int32Value? = nil
+    public var reuseInterval: GoogleCloudWKT.Int32Value? = nil
 
     /// Disallow username as a part of the password.
-    public var disallowUsernameSubstring: GoogleCloudWkt.BoolValue? = nil
+    public var disallowUsernameSubstring: GoogleCloudWKT.BoolValue? = nil
 
     /// Minimum interval after which the password can be changed. This flag is only
     /// supported for PostgreSQL.
-    public var passwordChangeInterval: GoogleCloudWkt.Duration? = nil
+    public var passwordChangeInterval: GoogleCloudWKT.Duration? = nil
 
     /// Whether to enable the password policy or not. When enabled, passwords must
     /// meet complexity requirements. Keep this policy enabled to help prevent
     /// unauthorized access. Disabling this policy allows weak passwords.
-    public var enablePasswordPolicy: GoogleCloudWkt.BoolValue? = nil
+    public var enablePasswordPolicy: GoogleCloudWKT.BoolValue? = nil
 
     /// This field is deprecated and will be removed in a future version of the
     /// API.
     @available(*, deprecated)
-    public var disallowCompromisedCredentials: GoogleCloudWkt.BoolValue? = nil
+    public var disallowCompromisedCredentials: GoogleCloudWKT.BoolValue? = nil
 
     /// Initialize a new instance of `PasswordValidationPolicy`.
     public init() {}
@@ -170,11 +170,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.PasswordValidationPolicy"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

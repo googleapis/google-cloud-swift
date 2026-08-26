@@ -15,20 +15,20 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Container for workload onboarding information.
-public struct WorkloadOnboardingStep: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct WorkloadOnboardingStep: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The onboarding step.
   public var step: WorkloadOnboardingStep.Step = WorkloadOnboardingStep.Step()
 
   /// The starting time of the onboarding step.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The completion time of the onboarding step.
-  public var completionTime: GoogleCloudWkt.Timestamp? = nil
+  public var completionTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The completion state of the onboarding step.
   public var completionState: CompletionState = CompletionState()
@@ -157,10 +157,10 @@ public struct WorkloadOnboardingStep: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.cloudcontrolspartner.v1.WorkloadOnboardingStep"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

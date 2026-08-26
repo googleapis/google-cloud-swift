@@ -16,14 +16,14 @@
 
 #if SiteSearchEngineService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Response message for
   /// [SiteSearchEngineService.RecrawlUris][google.cloud.discoveryengine.v1.SiteSearchEngineService.RecrawlUris]
   /// method.
   ///
   /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.RecrawlUris]: <doc:SiteSearchEngineServiceClient/recrawlUris(request:options:)>
-  public struct RecrawlUrisResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RecrawlUrisResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Details for a sample of up to 10 `failed_uris`.
@@ -50,7 +50,7 @@
 
     /// Details about why a particular URI failed to be crawled. Each FailureInfo
     /// contains one FailureReason per CorpusType.
-    public struct FailureInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct FailureInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// URI that failed to be crawled.
@@ -77,7 +77,7 @@
 
       /// Details about why crawling failed for a particular CorpusType, e.g.,
       /// DESKTOP and MOBILE crawling may fail for different reasons.
-      public struct FailureReason: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct FailureReason: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// DESKTOP, MOBILE, or CORPUS_TYPE_UNSPECIFIED.
@@ -212,33 +212,33 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.RecrawlUrisResponse.FailureInfo.FailureReason"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.RecrawlUrisResponse.FailureInfo"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.RecrawlUrisResponse"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

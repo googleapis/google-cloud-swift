@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Metadata for the given [google.longrunning.Operation][google.longrunning.Operation].
 ///
 /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
-public struct OperationMetadataV1: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct OperationMetadataV1: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// API method that initiated this operation. Example:
@@ -32,12 +32,12 @@ public struct OperationMetadataV1: Codable, Equatable, GoogleCloudWkt._AnyPackab
   /// Time that this operation was created.
   ///
   /// @OutputOnly
-  public var insertTime: GoogleCloudWkt.Timestamp? = nil
+  public var insertTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Time that this operation completed.
   ///
   /// @OutputOnly
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// User who requested this operation.
   ///
@@ -93,8 +93,8 @@ public struct OperationMetadataV1: Codable, Equatable, GoogleCloudWkt._AnyPackab
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.method = try container.decode(Swift.String.self, forKey: .method)
     self.insertTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .insertTime)
-    self.endTime = try container.decodeIfPresent(GoogleCloudWkt.Timestamp.self, forKey: .endTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .insertTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
     self.user = try container.decode(Swift.String.self, forKey: .user)
     self.target = try container.decode(Swift.String.self, forKey: .target)
     self.ephemeralMessage = try container.decode(Swift.String.self, forKey: .ephemeralMessage)
@@ -145,10 +145,10 @@ public struct OperationMetadataV1: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.appengine.v1.OperationMetadataV1"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

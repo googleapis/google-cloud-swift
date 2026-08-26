@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudMonitoringV3
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: UptimeCheckServiceClient, projectId: String, uptimeCheckConfigId: String)
   async throws

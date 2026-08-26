@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Security Command Center finding.
 ///
@@ -24,7 +24,7 @@ import Foundation
 /// notification, analysis, policy testing, and enforcement. For example, a
 /// cross-site scripting (XSS) vulnerability in an App Engine application is a
 /// finding.
-public struct Finding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Finding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The [relative resource
@@ -99,7 +99,7 @@ public struct Finding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// that writes the finding. The key names in the source_properties map must be
   /// between 1 and 255 characters, and must start with a letter and contain
   /// alphanumeric characters or underscores only.
-  public var sourceProperties: [Swift.String: GoogleCloudWkt.Value] = [:]
+  public var sourceProperties: [Swift.String: GoogleCloudWKT.Value] = [:]
 
   /// Output only. User specified security marks. These marks are entirely
   /// managed by the user and come from the SecurityMarks resource that belongs
@@ -113,11 +113,11 @@ public struct Finding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// accuracy is determined by the detector. If the finding is later resolved,
   /// then this time reflects when the finding was resolved. This must not
   /// be set to a value greater than the current timestamp.
-  public var eventTime: GoogleCloudWkt.Timestamp? = nil
+  public var eventTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time at which the finding was created in Security Command
   /// Center.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The severity of the finding. This field is managed by the source that
   /// writes the finding.
@@ -147,7 +147,7 @@ public struct Finding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var vulnerability: Vulnerability? = nil
 
   /// Output only. The most recent time this finding was muted or unmuted.
-  public var muteUpdateTime: GoogleCloudWkt.Timestamp? = nil
+  public var muteUpdateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Third party SIEM/SOAR fields within SCC, contains external
   /// system information and external system finding fields.
@@ -342,7 +342,7 @@ public struct Finding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Mute information about the finding, including whether the finding has a
   /// static mute or any matching dynamic mute rules.
-  public struct MuteInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MuteInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// If set, the static mute applied to this finding. Static mutes override
@@ -371,7 +371,7 @@ public struct Finding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// Information about the static mute state. A static mute state overrides
     /// any dynamic mute rules that apply to this finding. The static mute state
     /// can be set by a static mute rule or by muting the finding directly.
-    public struct StaticMute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct StaticMute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The static mute state. If the value is `MUTED` or `UNMUTED`, then the
@@ -379,7 +379,7 @@ public struct Finding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public var state: Finding.Mute = Finding.Mute()
 
       /// When the static mute was applied.
-      public var applyTime: GoogleCloudWkt.Timestamp? = nil
+      public var applyTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Initialize a new instance of `StaticMute`.
       public init() {}
@@ -400,16 +400,16 @@ public struct Finding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.securitycenter.v2.Finding.MuteInfo.StaticMute"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// The record of a dynamic mute rule that matches the finding.
-    public struct DynamicMuteRecord: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DynamicMuteRecord: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The relative resource name of the mute rule, represented by a mute
@@ -419,7 +419,7 @@ public struct Finding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public var muteConfig: Swift.String = Swift.String()
 
       /// When the dynamic mute rule first matched the finding.
-      public var matchTime: GoogleCloudWkt.Timestamp? = nil
+      public var matchTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Initialize a new instance of `DynamicMuteRecord`.
       public init() {}
@@ -441,22 +441,22 @@ public struct Finding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.securitycenter.v2.Finding.MuteInfo.DynamicMuteRecord"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.securitycenter.v2.Finding.MuteInfo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -1002,10 +1002,10 @@ public struct Finding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.Finding"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

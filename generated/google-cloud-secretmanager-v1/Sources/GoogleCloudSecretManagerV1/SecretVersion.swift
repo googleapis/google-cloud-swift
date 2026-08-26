@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A secret version resource in the Secret Manager API.
-public struct SecretVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SecretVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The resource name of the
@@ -37,7 +37,7 @@ public struct SecretVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] was created.
   ///
   /// [google.cloud.secretmanager.v1.SecretVersion]: <doc:SecretVersion>
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time this
   /// [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] was destroyed.
@@ -48,7 +48,7 @@ public struct SecretVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [google.cloud.secretmanager.v1.SecretVersion]: <doc:SecretVersion>
   /// [google.cloud.secretmanager.v1.SecretVersion.State.DESTROYED]: <doc:SecretVersion/State/destroyed>
   /// [google.cloud.secretmanager.v1.SecretVersion.state]: <doc:SecretVersion/state>
-  public var destroyTime: GoogleCloudWkt.Timestamp? = nil
+  public var destroyTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The current state of the
   /// [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
@@ -85,7 +85,7 @@ public struct SecretVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Secret with a valid version destroy TTL, when a secert version is
   /// destroyed, version is moved to disabled state and it is scheduled for
   /// destruction Version is destroyed only after the scheduled_destroy_time.
-  public var scheduledDestroyTime: GoogleCloudWkt.Timestamp? = nil
+  public var scheduledDestroyTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The customer-managed encryption status of the
   /// [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]. Only
@@ -245,10 +245,10 @@ public struct SecretVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.secretmanager.v1.SecretVersion"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

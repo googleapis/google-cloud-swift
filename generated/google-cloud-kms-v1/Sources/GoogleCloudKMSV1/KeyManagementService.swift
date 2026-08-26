@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -1135,7 +1135,7 @@ extension Clients {
     /// See `KeyManagementServiceClient.updateCryptoKey`.
     func updateCryptoKey(
       cryptoKey: CryptoKey?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudKMSV1.CryptoKey
 
     /// See `KeyManagementServiceClient.updateCryptoKeyVersion`.
@@ -1145,7 +1145,7 @@ extension Clients {
     /// See `KeyManagementServiceClient.updateCryptoKeyVersion`.
     func updateCryptoKeyVersion(
       cryptoKeyVersion: CryptoKeyVersion?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudKMSV1.CryptoKeyVersion
 
     /// See `KeyManagementServiceClient.updateCryptoKeyPrimaryVersion`.
@@ -2047,7 +2047,7 @@ extension Clients.KeyManagementServiceProtocol {
 
   public func updateCryptoKey(
     cryptoKey: CryptoKey?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudKMSV1.CryptoKey {
     let request = UpdateCryptoKeyRequest().with {
       $0.cryptoKey = cryptoKey
@@ -2070,7 +2070,7 @@ extension Clients.KeyManagementServiceProtocol {
 
   public func updateCryptoKeyVersion(
     cryptoKeyVersion: CryptoKeyVersion?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudKMSV1.CryptoKeyVersion {
     let request = UpdateCryptoKeyVersionRequest().with {
       $0.cryptoKeyVersion = cryptoKeyVersion

@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudMonitoringV3
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: AlertPolicyServiceClient, projectId: String) async throws {
   let items = try client.listAlertPolicies(

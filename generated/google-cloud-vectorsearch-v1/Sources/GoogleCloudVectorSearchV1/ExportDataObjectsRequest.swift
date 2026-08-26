@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [VectorSearchService.ExportDataObjects][google.cloud.vectorsearch.v1.VectorSearchService.ExportDataObjects].
 ///
 /// [google.cloud.vectorsearch.v1.VectorSearchService.ExportDataObjects]: <doc:VectorSearchServiceClient/exportDataObjects(request:options:)>
-public struct ExportDataObjectsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ExportDataObjectsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The resource name of the Collection from which we want to export
@@ -101,7 +101,7 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   }
 
   /// Google Cloud Storage configuration for the export.
-  public struct GcsExportDestination: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GcsExportDestination: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. URI prefix of the Cloud Storage where to export Data Objects.
@@ -230,16 +230,16 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleCloudWkt._AnyP
       return
         "type.googleapis.com/google.cloud.vectorsearch.v1.ExportDataObjectsRequest.GcsExportDestination"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Selects which top-level Data Object fields are emitted at export time.
-  public struct FieldFilter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FieldFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Exactly one of `included_fields` or `excluded_fields` must be set.
@@ -308,7 +308,7 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleCloudWkt._AnyP
     /// Wrapper for a repeated string. Wrapping in a message lets the
     /// surrounding `oneof` distinguish "field set to an empty list" (which is
     /// rejected as INVALID_ARGUMENT) from "field not set".
-    public struct FieldList: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct FieldList: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The list of top-level Data Object JSON field names. Allowed
@@ -335,11 +335,11 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleCloudWkt._AnyP
         return
           "type.googleapis.com/google.cloud.vectorsearch.v1.ExportDataObjectsRequest.FieldFilter.FieldList"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -356,11 +356,11 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleCloudWkt._AnyP
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.vectorsearch.v1.ExportDataObjectsRequest.FieldFilter"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -373,10 +373,10 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vectorsearch.v1.ExportDataObjectsRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

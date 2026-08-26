@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [KeyManagementService.AsymmetricDecrypt][google.cloud.kms.v1.KeyManagementService.AsymmetricDecrypt].
 ///
 /// [google.cloud.kms.v1.KeyManagementService.AsymmetricDecrypt]: <doc:KeyManagementServiceClient/asymmetricDecrypt(request:options:)>
-public struct AsymmetricDecryptRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AsymmetricDecryptRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The resource name of the
@@ -61,7 +61,7 @@ public struct AsymmetricDecryptRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   /// [google.cloud.kms.v1.AsymmetricDecryptRequest.ciphertext]: <doc:AsymmetricDecryptRequest/ciphertext>
   /// [google.cloud.kms.v1.AsymmetricDecryptRequest.ciphertext_crc32c]: <doc:AsymmetricDecryptRequest/ciphertextCrc32C>
   /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
-  public var ciphertextCrc32C: GoogleCloudWkt.Int64Value? = nil
+  public var ciphertextCrc32C: GoogleCloudWKT.Int64Value? = nil
 
   /// Initialize a new instance of `AsymmetricDecryptRequest`.
   public init() {}
@@ -90,7 +90,7 @@ public struct AsymmetricDecryptRequest: Codable, Equatable, GoogleCloudWkt._AnyP
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.ciphertext = try container.decode(Foundation.Data.self, forKey: .ciphertext)
     self.ciphertextCrc32C = try container.decodeIfPresent(
-      GoogleCloudWkt.Int64Value.self, forKey: .ciphertextCrc32C)
+      GoogleCloudWKT.Int64Value.self, forKey: .ciphertextCrc32C)
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -103,10 +103,10 @@ public struct AsymmetricDecryptRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.AsymmetricDecryptRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

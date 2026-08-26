@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleIAMAdminV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 
 func sample(projectId: String, serviceAccountId: String, ) async throws {

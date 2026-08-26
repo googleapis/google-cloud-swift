@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Message describing a BackupVault object.
-public struct BackupVault: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BackupVault: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Identifier. Name of the backup vault to create. It must have
@@ -37,14 +37,14 @@ public struct BackupVault: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var labels: [Swift.String: Swift.String] = [:]
 
   /// Output only. The time when the instance was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time when the instance was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Required. The default and minimum enforced retention for each backup within
   /// the backup vault.  The enforced retention for each backup can be extended.
-  public var backupMinimumEnforcedRetentionDuration: GoogleCloudWkt.Duration? = nil
+  public var backupMinimumEnforcedRetentionDuration: GoogleCloudWKT.Duration? = nil
 
   /// Optional. Setting for how a backup's enforced retention end time is
   /// inherited.
@@ -62,7 +62,7 @@ public struct BackupVault: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var state: BackupVault.State = BackupVault.State()
 
   /// Optional. Time after which the BackupVault resource is locked.
-  public var effectiveTime: GoogleCloudWkt.Timestamp? = nil
+  public var effectiveTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The number of backups in this backup vault.
   public var backupCount: Swift.Int64 = Swift.Int64()
@@ -108,7 +108,7 @@ public struct BackupVault: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Message describing the EncryptionConfig of backup vault.
   /// This determines how data within the vault is encrypted at rest.
-  public struct EncryptionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct EncryptionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The Cloud KMS key name to encrypt backups in this backup vault.
@@ -136,11 +136,11 @@ public struct BackupVault: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.backupdr.v1.BackupVault.EncryptionConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -510,10 +510,10 @@ public struct BackupVault: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.backupdr.v1.BackupVault"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

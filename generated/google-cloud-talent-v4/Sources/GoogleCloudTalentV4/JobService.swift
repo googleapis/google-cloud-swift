@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -317,7 +317,7 @@ extension Clients {
     /// See `JobServiceClient.updateJob`.
     func updateJob(
       job: Job?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudTalentV4.Job
 
     /// See `JobServiceClient.batchUpdateJobs`.
@@ -544,7 +544,7 @@ extension Clients.JobServiceProtocol {
 
   public func updateJob(
     job: Job?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudTalentV4.Job {
     let request = UpdateJobRequest().with {
       $0.job = job

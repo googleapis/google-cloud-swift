@@ -16,13 +16,13 @@
 
 #if PredictionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request message for
   /// [PredictionService.Predict][google.cloud.aiplatform.v1.PredictionService.Predict].
   ///
   /// [google.cloud.aiplatform.v1.PredictionService.Predict]: <doc:PredictionServiceClient/predict(request:options:)>
-  public struct PredictRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PredictRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The name of the Endpoint requested to serve the prediction.
@@ -43,7 +43,7 @@
     /// [google.cloud.aiplatform.v1.DeployedModel.model]: <doc:DeployedModel/model>
     /// [google.cloud.aiplatform.v1.Model.predict_schemata]: <doc:Model/predictSchemata>
     /// [google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri]: <doc:PredictSchemata/instanceSchemaUri>
-    public var instances: [GoogleCloudWkt.Value] = []
+    public var instances: [GoogleCloudWKT.Value] = []
 
     /// The parameters that govern the prediction. The schema of the parameters may
     /// be specified via Endpoint's DeployedModels' [Model's
@@ -54,7 +54,7 @@
     /// [google.cloud.aiplatform.v1.DeployedModel.model]: <doc:DeployedModel/model>
     /// [google.cloud.aiplatform.v1.Model.predict_schemata]: <doc:Model/predictSchemata>
     /// [google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri]: <doc:PredictSchemata/parametersSchemaUri>
-    public var parameters: GoogleCloudWkt.Value? = nil
+    public var parameters: GoogleCloudWKT.Value? = nil
 
     /// Optional. The user labels for Imagen billing usage only. Only Imagen
     /// supports labels. For other use cases, it will be ignored.
@@ -79,11 +79,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.PredictRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

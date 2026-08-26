@@ -16,13 +16,13 @@
 
 #if EndpointService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request message for
   /// [EndpointService.UpdateEndpoint][google.cloud.aiplatform.v1.EndpointService.UpdateEndpoint].
   ///
   /// [google.cloud.aiplatform.v1.EndpointService.UpdateEndpoint]: <doc:EndpointServiceClient/updateEndpoint(request:options:)>
-  public struct UpdateEndpointRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct UpdateEndpointRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The Endpoint which replaces the resource on the server.
@@ -31,8 +31,8 @@
     /// Required. The update mask applies to the resource. See
     /// [google.protobuf.FieldMask][google.protobuf.FieldMask].
     ///
-    /// [google.protobuf.FieldMask]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWkt.FieldMask
-    public var updateMask: GoogleCloudWkt.FieldMask? = nil
+    /// [google.protobuf.FieldMask]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWKT.FieldMask
+    public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
     /// Initialize a new instance of `UpdateEndpointRequest`.
     public init() {}
@@ -53,11 +53,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.UpdateEndpointRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

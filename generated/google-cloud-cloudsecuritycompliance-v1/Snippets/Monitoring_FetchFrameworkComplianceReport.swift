@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudSecurityComplianceV1
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 
 func sample(client: MonitoringClient) async throws {

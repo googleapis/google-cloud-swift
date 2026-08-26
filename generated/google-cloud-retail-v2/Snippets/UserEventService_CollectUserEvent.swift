@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudRetailV2
 import GoogleApi
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 

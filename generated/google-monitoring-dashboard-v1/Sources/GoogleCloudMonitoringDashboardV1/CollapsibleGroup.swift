@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A widget that groups the other widgets. All widgets that are within
 /// the area spanned by the grouping widget are considered member widgets.
-public struct CollapsibleGroup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CollapsibleGroup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The collapsed state of the widget on first page load.
@@ -44,10 +44,10 @@ public struct CollapsibleGroup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.dashboard.v1.CollapsibleGroup"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

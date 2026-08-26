@@ -16,14 +16,14 @@
 
 #if Instances || RegionInstances
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Specification of machine type to use. Every position inside this message
   /// is an alternative.
   /// The count specified in the shape flexibility must not exceed the number
   /// of entries in per_instance_properties or the capacity of the
   /// name_pattern, if used.
-  public struct InstanceFlexibilityPolicyInstanceSelection: Codable, Equatable, GoogleCloudWkt
+  public struct InstanceFlexibilityPolicyInstanceSelection: Codable, Equatable, GoogleCloudWKT
       ._AnyPackable,
     Sendable
   {
@@ -62,11 +62,11 @@
       return
         "type.googleapis.com/google.cloud.compute.v1.InstanceFlexibilityPolicyInstanceSelection"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

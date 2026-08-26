@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -2206,7 +2206,7 @@ extension Clients {
     /// See `NetAppClient.updateStoragePool`.
     func updateStoragePool(
       storagePool: StoragePool?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<StoragePool>
 
     /// See `NetAppClient.deleteStoragePool`.
@@ -2284,7 +2284,7 @@ extension Clients {
     /// See `NetAppClient.updateVolume`.
     func updateVolume(
       volume: Volume?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Volume>
 
     /// See `NetAppClient.deleteVolume`.
@@ -2372,7 +2372,7 @@ extension Clients {
     /// See `NetAppClient.updateSnapshot`.
     func updateSnapshot(
       snapshot: Snapshot?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Snapshot>
 
     /// See `NetAppClient.listActiveDirectories`.
@@ -2424,7 +2424,7 @@ extension Clients {
     /// See `NetAppClient.updateActiveDirectory`.
     func updateActiveDirectory(
       activeDirectory: ActiveDirectory?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<ActiveDirectory>
 
     /// See `NetAppClient.deleteActiveDirectory`.
@@ -2488,7 +2488,7 @@ extension Clients {
     /// See `NetAppClient.updateKmsConfig`.
     func updateKmsConfig(
       kmsConfig: KmsConfig?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<KmsConfig>
 
     /// See `NetAppClient.encryptVolumes`.
@@ -2577,7 +2577,7 @@ extension Clients {
     /// See `NetAppClient.updateReplication`.
     func updateReplication(
       replication: Replication?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Replication>
 
     /// See `NetAppClient.stopReplication`.
@@ -2669,7 +2669,7 @@ extension Clients {
     /// See `NetAppClient.updateBackupVault`.
     func updateBackupVault(
       backupVault: BackupVault?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<BackupVault>
 
     /// See `NetAppClient.deleteBackupVault`.
@@ -2743,7 +2743,7 @@ extension Clients {
     /// See `NetAppClient.updateBackup`.
     func updateBackup(
       backup: Backup?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Backup>
 
     /// See `NetAppClient.createBackupPolicy`.
@@ -2795,7 +2795,7 @@ extension Clients {
     /// See `NetAppClient.updateBackupPolicy`.
     func updateBackupPolicy(
       backupPolicy: BackupPolicy?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<BackupPolicy>
 
     /// See `NetAppClient.deleteBackupPolicy`.
@@ -2859,7 +2859,7 @@ extension Clients {
     /// See `NetAppClient.updateQuotaRule`.
     func updateQuotaRule(
       quotaRule: QuotaRule?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<QuotaRule>
 
     /// See `NetAppClient.deleteQuotaRule`.
@@ -2931,7 +2931,7 @@ extension Clients {
     /// See `NetAppClient.updateHostGroup`.
     func updateHostGroup(
       hostGroup: HostGroup?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<HostGroup>
 
     /// See `NetAppClient.deleteHostGroup`.
@@ -3805,7 +3805,7 @@ extension Clients.NetAppProtocol {
 
   public func updateStoragePool(
     storagePool: StoragePool?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<StoragePool> {
     let request = UpdateStoragePoolRequest().with {
       $0.storagePool = storagePool
@@ -4031,7 +4031,7 @@ extension Clients.NetAppProtocol {
 
   public func updateVolume(
     volume: Volume?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Volume> {
     let request = UpdateVolumeRequest().with {
       $0.volume = volume
@@ -4296,7 +4296,7 @@ extension Clients.NetAppProtocol {
 
   public func updateSnapshot(
     snapshot: Snapshot?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Snapshot> {
     let request = UpdateSnapshotRequest().with {
       $0.snapshot = snapshot
@@ -4434,7 +4434,7 @@ extension Clients.NetAppProtocol {
 
   public func updateActiveDirectory(
     activeDirectory: ActiveDirectory?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<ActiveDirectory> {
     let request = UpdateActiveDirectoryRequest().with {
       $0.activeDirectory = activeDirectory
@@ -4609,7 +4609,7 @@ extension Clients.NetAppProtocol {
 
   public func updateKmsConfig(
     kmsConfig: KmsConfig?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<KmsConfig> {
     let request = UpdateKmsConfigRequest().with {
       $0.kmsConfig = kmsConfig
@@ -4861,7 +4861,7 @@ extension Clients.NetAppProtocol {
 
   public func updateReplication(
     replication: Replication?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Replication> {
     let request = UpdateReplicationRequest().with {
       $0.replication = replication
@@ -5139,7 +5139,7 @@ extension Clients.NetAppProtocol {
 
   public func updateBackupVault(
     backupVault: BackupVault?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<BackupVault> {
     let request = UpdateBackupVaultRequest().with {
       $0.backupVault = backupVault
@@ -5345,7 +5345,7 @@ extension Clients.NetAppProtocol {
 
   public func updateBackup(
     backup: Backup?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Backup> {
     let request = UpdateBackupRequest().with {
       $0.backup = backup
@@ -5483,7 +5483,7 @@ extension Clients.NetAppProtocol {
 
   public func updateBackupPolicy(
     backupPolicy: BackupPolicy?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<BackupPolicy> {
     let request = UpdateBackupPolicyRequest().with {
       $0.backupPolicy = backupPolicy
@@ -5658,7 +5658,7 @@ extension Clients.NetAppProtocol {
 
   public func updateQuotaRule(
     quotaRule: QuotaRule?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<QuotaRule> {
     let request = UpdateQuotaRuleRequest().with {
       $0.quotaRule = quotaRule
@@ -5862,7 +5862,7 @@ extension Clients.NetAppProtocol {
 
   public func updateHostGroup(
     hostGroup: HostGroup?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<HostGroup> {
     let request = UpdateHostGroupRequest().with {
       $0.hostGroup = hostGroup

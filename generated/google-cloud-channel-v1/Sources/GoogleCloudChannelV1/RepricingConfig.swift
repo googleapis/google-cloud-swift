@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleType
 
 /// Configuration for repricing a Google bill over a period of time.
-public struct RepricingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RepricingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The YearMonth when these adjustments activate. The Day field
@@ -119,7 +119,7 @@ public struct RepricingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Applies the repricing configuration at the entitlement level.
-  public struct EntitlementGranularity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct EntitlementGranularity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Resource name of the entitlement.
@@ -146,11 +146,11 @@ public struct RepricingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.channel.v1.RepricingConfig.EntitlementGranularity"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -163,7 +163,7 @@ public struct RepricingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   /// [google.cloud.channel.v1.RepricingConfig.EntitlementGranularity]: <doc:RepricingConfig/EntitlementGranularity>
   @available(*, deprecated)
-  public struct ChannelPartnerGranularity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ChannelPartnerGranularity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `ChannelPartnerGranularity`.
@@ -185,11 +185,11 @@ public struct RepricingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.channel.v1.RepricingConfig.ChannelPartnerGranularity"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -232,10 +232,10 @@ public struct RepricingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.channel.v1.RepricingConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

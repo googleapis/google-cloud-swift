@@ -16,7 +16,7 @@
 
 #if Playbooks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Playbook is the basic building block to instruct the LLM how to execute a
   /// certain task.
@@ -26,7 +26,7 @@
   /// default plugin tools to use) to perform the task,
   /// a list of contextual input data to be passed in at the beginning of the
   /// invoked, and a list of output parameters to store the playbook result.
-  public struct Playbook: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Playbook: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The unique identifier of the playbook.
@@ -56,10 +56,10 @@
     public var tokenCount: Swift.Int64 = Swift.Int64()
 
     /// Output only. The timestamp of initial playbook creation.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Last time the playbook version was updated.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. The resource name of other playbooks referenced by the current
     /// playbook in the instructions.
@@ -111,7 +111,7 @@
     }
 
     /// Message of single step execution.
-    public struct Step: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Step: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Sub-processing needed to execute the current step.
@@ -182,16 +182,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Playbook.Step"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Message of the Instruction of the playbook.
-    public struct Instruction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Instruction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// General guidelines for the playbook. These are unstructured instructions
@@ -222,11 +222,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Playbook.Instruction"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -338,11 +338,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Playbook"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

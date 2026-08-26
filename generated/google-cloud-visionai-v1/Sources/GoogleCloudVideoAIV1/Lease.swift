@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The lease message.
-public struct Lease: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Lease: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The lease id.
@@ -31,7 +31,7 @@ public struct Lease: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var owner: Swift.String = Swift.String()
 
   /// The lease expire time.
-  public var expireTime: GoogleCloudWkt.Timestamp? = nil
+  public var expireTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The lease type.
   public var leaseType: LeaseType = LeaseType()
@@ -55,10 +55,10 @@ public struct Lease: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.Lease"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

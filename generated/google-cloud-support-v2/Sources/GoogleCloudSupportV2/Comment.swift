@@ -15,21 +15,21 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A comment associated with a support case.
 ///
 /// Case comments are the primary way for Google Support to communicate with a
 /// user who has opened a case. When a user responds to Google Support, the
 /// user's responses also appear as comments.
-public struct Comment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Comment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Identifier. The resource name of the comment.
   public var name: Swift.String = Swift.String()
 
   /// Output only. The time when the comment was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The user or Google Support agent who created the comment.
   public var creator: Actor? = nil
@@ -66,10 +66,10 @@ public struct Comment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.support.v2.Comment"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

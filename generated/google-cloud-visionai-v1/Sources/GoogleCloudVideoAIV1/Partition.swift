@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Partition to specify the partition in time and space for sub-asset level
 /// annotation.
-public struct Partition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Partition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Partition of asset in time.
@@ -49,14 +49,14 @@ public struct Partition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Partition of asset in UTC Epoch time. Supported by STREAM_VIDEO corpus
   /// type.
-  public struct TemporalPartition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TemporalPartition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Start time of the partition.
-    public var startTime: GoogleCloudWkt.Timestamp? = nil
+    public var startTime: GoogleCloudWKT.Timestamp? = nil
 
     /// End time of the partition.
-    public var endTime: GoogleCloudWkt.Timestamp? = nil
+    public var endTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `TemporalPartition`.
     public init() {}
@@ -77,16 +77,16 @@ public struct Partition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.Partition.TemporalPartition"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Partition of asset in space.
-  public struct SpatialPartition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SpatialPartition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The minimum x coordinate value.
@@ -120,24 +120,24 @@ public struct Partition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.Partition.SpatialPartition"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Partition of asset in relative time. Supported by VIDEO_ON_DEMAND corpus
   /// type.
-  public struct RelativeTemporalPartition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RelativeTemporalPartition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Start time offset of the partition.
-    public var startOffset: GoogleCloudWkt.Duration? = nil
+    public var startOffset: GoogleCloudWKT.Duration? = nil
 
     /// End time offset of the partition.
-    public var endOffset: GoogleCloudWkt.Duration? = nil
+    public var endOffset: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `RelativeTemporalPartition`.
     public init() {}
@@ -158,21 +158,21 @@ public struct Partition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.Partition.RelativeTemporalPartition"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.Partition"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

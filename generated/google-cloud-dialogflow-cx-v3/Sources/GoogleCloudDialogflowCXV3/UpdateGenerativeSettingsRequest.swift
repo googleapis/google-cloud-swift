@@ -16,14 +16,14 @@
 
 #if Agents
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request for
   /// [UpdateGenerativeSettings][google.cloud.dialogflow.cx.v3.Agents.UpdateGenerativeSettings]
   /// RPC.
   ///
   /// [google.cloud.dialogflow.cx.v3.Agents.UpdateGenerativeSettings]: <doc:AgentsClient/updateGenerativeSettings(request:options:)>
-  public struct UpdateGenerativeSettingsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct UpdateGenerativeSettingsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Generative settings to update.
@@ -31,7 +31,7 @@
 
     /// Optional. The mask to control which fields get updated. If the mask is not
     /// present, all fields will be updated.
-    public var updateMask: GoogleCloudWkt.FieldMask? = nil
+    public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
     /// Initialize a new instance of `UpdateGenerativeSettingsRequest`.
     public init() {}
@@ -52,11 +52,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.UpdateGenerativeSettingsRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

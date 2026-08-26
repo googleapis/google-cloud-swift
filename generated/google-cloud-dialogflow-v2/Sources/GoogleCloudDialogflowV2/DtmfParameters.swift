@@ -16,10 +16,10 @@
 
 #if Participants
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The message in the response that indicates the parameters of DTMF.
-  public struct DtmfParameters: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DtmfParameters: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Indicates whether DTMF input can be handled in the next request.
@@ -44,11 +44,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.DtmfParameters"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

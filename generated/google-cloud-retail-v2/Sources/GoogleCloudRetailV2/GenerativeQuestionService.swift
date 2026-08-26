@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleCloudGax
 
@@ -143,7 +143,7 @@ extension Clients {
     /// See `GenerativeQuestionServiceClient.updateGenerativeQuestionsFeatureConfig`.
     func updateGenerativeQuestionsFeatureConfig(
       generativeQuestionsFeatureConfig: GenerativeQuestionsFeatureConfig?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudRetailV2.GenerativeQuestionsFeatureConfig
 
     /// See `GenerativeQuestionServiceClient.getGenerativeQuestionsFeatureConfig`.
@@ -171,7 +171,7 @@ extension Clients {
     /// See `GenerativeQuestionServiceClient.updateGenerativeQuestionConfig`.
     func updateGenerativeQuestionConfig(
       generativeQuestionConfig: GenerativeQuestionConfig?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudRetailV2.GenerativeQuestionConfig
 
     /// See `GenerativeQuestionServiceClient.batchUpdateGenerativeQuestionConfigs`.
@@ -252,7 +252,7 @@ extension Clients.GenerativeQuestionServiceProtocol {
 
   public func updateGenerativeQuestionsFeatureConfig(
     generativeQuestionsFeatureConfig: GenerativeQuestionsFeatureConfig?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudRetailV2.GenerativeQuestionsFeatureConfig {
     let request = UpdateGenerativeQuestionsFeatureConfigRequest().with {
       $0.generativeQuestionsFeatureConfig = generativeQuestionsFeatureConfig
@@ -317,7 +317,7 @@ extension Clients.GenerativeQuestionServiceProtocol {
 
   public func updateGenerativeQuestionConfig(
     generativeQuestionConfig: GenerativeQuestionConfig?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudRetailV2.GenerativeQuestionConfig {
     let request = UpdateGenerativeQuestionConfigRequest().with {
       $0.generativeQuestionConfig = generativeQuestionConfig

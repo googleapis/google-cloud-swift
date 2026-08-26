@@ -16,7 +16,7 @@
 
 #if PipelineService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
   import GoogleRpc
 
   /// The TrainingPipeline orchestrates tasks associated with training a Model. It
@@ -26,7 +26,7 @@
   /// Vertex AI, and evaluate the Model.
   ///
   /// [google.cloud.aiplatform.v1.ModelService.UploadModel]: <doc:ModelServiceClient/uploadModel(request:options:)>
-  public struct TrainingPipeline: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TrainingPipeline: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Resource name of the TrainingPipeline.
@@ -63,7 +63,7 @@
     /// `inputs`.
     ///
     /// [google.cloud.aiplatform.v1.TrainingPipeline.training_task_definition]: <doc:TrainingPipeline/trainingTaskDefinition>
-    public var trainingTaskInputs: GoogleCloudWkt.Value? = nil
+    public var trainingTaskInputs: GoogleCloudWKT.Value? = nil
 
     /// Output only. The metadata information as specified in the
     /// [training_task_definition][google.cloud.aiplatform.v1.TrainingPipeline.training_task_definition]'s
@@ -75,7 +75,7 @@
     /// contains `metadata` object.
     ///
     /// [google.cloud.aiplatform.v1.TrainingPipeline.training_task_definition]: <doc:TrainingPipeline/trainingTaskDefinition>
-    public var trainingTaskMetadata: GoogleCloudWkt.Value? = nil
+    public var trainingTaskMetadata: GoogleCloudWKT.Value? = nil
 
     /// Describes the Model that may be uploaded (via
     /// [ModelService.UploadModel][google.cloud.aiplatform.v1.ModelService.UploadModel])
@@ -119,19 +119,19 @@
     public var error: GoogleRpc.Status? = nil
 
     /// Output only. Time when the TrainingPipeline was created.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Time when the TrainingPipeline for the first time entered the
     /// `PIPELINE_STATE_RUNNING` state.
-    public var startTime: GoogleCloudWkt.Timestamp? = nil
+    public var startTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Time when the TrainingPipeline entered any of the following
     /// states: `PIPELINE_STATE_SUCCEEDED`, `PIPELINE_STATE_FAILED`,
     /// `PIPELINE_STATE_CANCELLED`.
-    public var endTime: GoogleCloudWkt.Timestamp? = nil
+    public var endTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Time when the TrainingPipeline was most recently updated.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// The labels with user-defined metadata to organize TrainingPipelines.
     ///
@@ -171,11 +171,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.TrainingPipeline"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

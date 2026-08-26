@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudGSuiteAddOnsV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: GSuiteAddOnsClient) async throws {
   try await client.uninstallDeployment(

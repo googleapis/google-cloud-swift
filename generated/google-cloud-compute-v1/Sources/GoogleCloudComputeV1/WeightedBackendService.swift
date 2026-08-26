@@ -16,14 +16,14 @@
 
 #if RegionUrlMaps || UrlMaps
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// In contrast to a single BackendService in
   /// HttpRouteAction to which all matching traffic is directed to,WeightedBackendService allows traffic to be split across
   /// multiple backend services. The volume of traffic for each
   /// backend service is proportional to the weight specified
   /// in each WeightedBackendService
-  public struct WeightedBackendService: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct WeightedBackendService: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The full or partial URL to the default BackendService
@@ -77,11 +77,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.WeightedBackendService"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

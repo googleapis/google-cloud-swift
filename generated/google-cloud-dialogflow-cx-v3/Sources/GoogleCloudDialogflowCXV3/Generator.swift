@@ -16,13 +16,13 @@
 
 #if Generators
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Generators contain prompt to be sent to the LLM model to generate text. The
   /// prompt can contain parameters which will be resolved before calling the
   /// model. It can optionally contain banned phrases to ensure the model responses
   /// are safe.
-  public struct Generator: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Generator: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The unique identifier of the generator.
@@ -70,7 +70,7 @@
     }
 
     /// Represents a custom placeholder in the prompt text.
-    public struct Placeholder: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Placeholder: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Unique ID used to map custom placeholder to parameters in fulfillment.
@@ -98,17 +98,17 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Generator.Placeholder"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Parameters to be passed to the LLM. If not set, default values will be
     /// used.
-    public struct ModelParameter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ModelParameter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The temperature used for sampling. Temperature sampling occurs after both
@@ -153,22 +153,22 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Generator.ModelParameter"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Generator"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An [ImportJob][google.cloud.kms.v1.ImportJob] can be used to create
 /// [CryptoKeys][google.cloud.kms.v1.CryptoKey] and
@@ -59,7 +59,7 @@ import Foundation
 /// [google.cloud.kms.v1.ImportJob.public_key]: <doc:ImportJob/publicKey>
 /// [google.cloud.kms.v1.ImportJob.state]: <doc:ImportJob/state>
 /// [google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion]: <doc:KeyManagementServiceClient/importCryptoKeyVersion(request:options:)>
-public struct ImportJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ImportJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The resource name for this
@@ -90,20 +90,20 @@ public struct ImportJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [ImportJob][google.cloud.kms.v1.ImportJob] was created.
   ///
   /// [google.cloud.kms.v1.ImportJob]: <doc:ImportJob>
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time this [ImportJob][google.cloud.kms.v1.ImportJob]'s key
   /// material was generated.
   ///
   /// [google.cloud.kms.v1.ImportJob]: <doc:ImportJob>
-  public var generateTime: GoogleCloudWkt.Timestamp? = nil
+  public var generateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time at which this
   /// [ImportJob][google.cloud.kms.v1.ImportJob] is scheduled for expiration and
   /// can no longer be used to import key material.
   ///
   /// [google.cloud.kms.v1.ImportJob]: <doc:ImportJob>
-  public var expireTime: GoogleCloudWkt.Timestamp? = nil
+  public var expireTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time this [ImportJob][google.cloud.kms.v1.ImportJob]
   /// expired. Only present if [state][google.cloud.kms.v1.ImportJob.state] is
@@ -112,7 +112,7 @@ public struct ImportJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [google.cloud.kms.v1.ImportJob]: <doc:ImportJob>
   /// [google.cloud.kms.v1.ImportJob.ImportJobState.EXPIRED]: <doc:ImportJob/ImportJobState/expired>
   /// [google.cloud.kms.v1.ImportJob.state]: <doc:ImportJob/state>
-  public var expireEventTime: GoogleCloudWkt.Timestamp? = nil
+  public var expireEventTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The current state of the
   /// [ImportJob][google.cloud.kms.v1.ImportJob], indicating if it can be used.
@@ -181,7 +181,7 @@ public struct ImportJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [ImportMethod][google.cloud.kms.v1.ImportJob.ImportMethod].
   ///
   /// [google.cloud.kms.v1.ImportJob.ImportMethod]: <doc:ImportJob/ImportMethod>
-  public struct WrappingPublicKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct WrappingPublicKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The public key, encoded in PEM format. For more information, see the [RFC
@@ -229,11 +229,11 @@ public struct ImportJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.kms.v1.ImportJob.WrappingPublicKey"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -572,10 +572,10 @@ public struct ImportJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.ImportJob"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

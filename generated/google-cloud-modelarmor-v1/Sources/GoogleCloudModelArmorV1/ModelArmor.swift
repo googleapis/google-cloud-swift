@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleCloudGax
 
 /// Service describing handlers for resources
@@ -215,7 +215,7 @@ extension Clients {
     /// See `ModelArmorClient.updateTemplate`.
     func updateTemplate(
       template: Template?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudModelArmorV1.Template
 
     /// See `ModelArmorClient.deleteTemplate`.
@@ -242,7 +242,7 @@ extension Clients {
     /// See `ModelArmorClient.updateFloorSetting`.
     func updateFloorSetting(
       floorSetting: FloorSetting?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudModelArmorV1.FloorSetting
 
     /// See `ModelArmorClient.sanitizeUserPrompt`.
@@ -432,7 +432,7 @@ extension Clients.ModelArmorProtocol {
 
   public func updateTemplate(
     template: Template?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudModelArmorV1.Template {
     let request = UpdateTemplateRequest().with {
       $0.template = template
@@ -495,7 +495,7 @@ extension Clients.ModelArmorProtocol {
 
   public func updateFloorSetting(
     floorSetting: FloorSetting?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudModelArmorV1.FloorSetting {
     let request = UpdateFloorSettingRequest().with {
       $0.floorSetting = floorSetting

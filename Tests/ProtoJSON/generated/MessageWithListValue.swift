@@ -15,23 +15,23 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A test message for ListValue.
-public struct MessageWithListValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MessageWithListValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A singular field.
-  public var singular: GoogleCloudWkt.ListValue? = nil
+  public var singular: GoogleCloudWKT.ListValue? = nil
 
   /// An optional field.
-  public var `optional`: GoogleCloudWkt.ListValue? = nil
+  public var `optional`: GoogleCloudWKT.ListValue? = nil
 
   /// A repeated field.
-  public var repeated: [GoogleCloudWkt.ListValue] = []
+  public var repeated: [GoogleCloudWKT.ListValue] = []
 
   /// A map field, messages cannot be keys.
-  public var map: [Swift.String: GoogleCloudWkt.ListValue] = [:]
+  public var map: [Swift.String: GoogleCloudWKT.ListValue] = [:]
 
   /// Initialize a new instance of `MessageWithListValue`.
   public init() {}
@@ -58,11 +58,11 @@ public struct MessageWithListValue: Codable, Equatable, GoogleCloudWkt._AnyPacka
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.singular = try container.decodeIfPresent(GoogleCloudWkt.ListValue.self, forKey: .singular)
+    self.singular = try container.decodeIfPresent(GoogleCloudWKT.ListValue.self, forKey: .singular)
     self.`optional` = try container.decodeIfPresent(
-      GoogleCloudWkt.ListValue.self, forKey: .`optional`)
-    self.repeated = try container.decode([GoogleCloudWkt.ListValue].self, forKey: .repeated)
-    self.map = try container.decode([Swift.String: GoogleCloudWkt.ListValue].self, forKey: .map)
+      GoogleCloudWKT.ListValue.self, forKey: .`optional`)
+    self.repeated = try container.decode([GoogleCloudWKT.ListValue].self, forKey: .repeated)
+    self.map = try container.decode([Swift.String: GoogleCloudWKT.ListValue].self, forKey: .map)
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -76,10 +76,10 @@ public struct MessageWithListValue: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.swift.sdk.test.MessageWithListValue"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Windows Update represents the metadata about the update for the Windows
 /// operating system. The fields in this message come from the Windows Update API
 /// documented at
 /// https://docs.microsoft.com/en-us/windows/win32/api/wuapi/nn-wuapi-iupdate.
-public struct WindowsUpdate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct WindowsUpdate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required - The unique identifier for the update.
@@ -44,7 +44,7 @@ public struct WindowsUpdate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var supportUrl: Swift.String = Swift.String()
 
   /// The last published timestamp of the update.
-  public var lastPublishedTimestamp: GoogleCloudWkt.Timestamp? = nil
+  public var lastPublishedTimestamp: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `WindowsUpdate`.
   public init() {}
@@ -63,7 +63,7 @@ public struct WindowsUpdate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// The unique identifier of the update.
-  public struct Identity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Identity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The revision independent identifier of the update.
@@ -91,16 +91,16 @@ public struct WindowsUpdate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/grafeas.v1.WindowsUpdate.Identity"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The category to which the update belongs.
-  public struct Category: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Category: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The identifier of the category.
@@ -128,21 +128,21 @@ public struct WindowsUpdate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/grafeas.v1.WindowsUpdate.Category"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/grafeas.v1.WindowsUpdate"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

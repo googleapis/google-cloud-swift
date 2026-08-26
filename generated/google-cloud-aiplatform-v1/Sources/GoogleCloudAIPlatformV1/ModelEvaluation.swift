@@ -16,11 +16,11 @@
 
 #if ModelService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A collection of metrics calculated by comparing Model's predictions on all of
   /// the test data against annotations from the test data.
-  public struct ModelEvaluation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ModelEvaluation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The resource name of the ModelEvaluation.
@@ -41,10 +41,10 @@
     /// [metrics_schema_uri][google.cloud.aiplatform.v1.ModelEvaluation.metrics_schema_uri]
     ///
     /// [google.cloud.aiplatform.v1.ModelEvaluation.metrics_schema_uri]: <doc:ModelEvaluation/metricsSchemaUri>
-    public var metrics: GoogleCloudWkt.Value? = nil
+    public var metrics: GoogleCloudWKT.Value? = nil
 
     /// Output only. Timestamp when this ModelEvaluation was created.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// All possible
     /// [dimensions][google.cloud.aiplatform.v1.ModelEvaluationSlice.Slice.dimension]
@@ -99,7 +99,7 @@
     /// For the ModelEvaluation uploaded from Managed Pipeline, metadata contains a
     /// structured value with keys of "pipeline_job_id", "evaluation_dataset_type",
     /// "evaluation_dataset_path", "row_based_metrics_path".
-    public var metadata: GoogleCloudWkt.Value? = nil
+    public var metadata: GoogleCloudWKT.Value? = nil
 
     /// Initialize a new instance of `ModelEvaluation`.
     public init() {}
@@ -117,7 +117,7 @@
       return copy
     }
 
-    public struct ModelEvaluationExplanationSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ModelEvaluationExplanationSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Explanation type.
@@ -151,22 +151,22 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.ModelEvaluation.ModelEvaluationExplanationSpec"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.ModelEvaluation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

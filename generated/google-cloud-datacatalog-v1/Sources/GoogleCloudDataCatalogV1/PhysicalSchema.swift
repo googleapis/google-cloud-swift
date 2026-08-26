@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Native schema used by a resource represented as an entry. Used by query
 /// engines for deserializing and parsing source data.
-public struct PhysicalSchema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct PhysicalSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   public var schema: OneOf_Schema? = nil
@@ -111,7 +111,7 @@ public struct PhysicalSchema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Schema in Avro JSON format.
-  public struct AvroSchema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AvroSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// JSON source of the Avro schema.
@@ -136,16 +136,16 @@ public struct PhysicalSchema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.datacatalog.v1.PhysicalSchema.AvroSchema"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Schema in Thrift format.
-  public struct ThriftSchema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ThriftSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Thrift IDL source of the schema.
@@ -170,16 +170,16 @@ public struct PhysicalSchema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.datacatalog.v1.PhysicalSchema.ThriftSchema"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Schema in protocol buffer format.
-  public struct ProtobufSchema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ProtobufSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Protocol buffer source of the schema.
@@ -204,16 +204,16 @@ public struct PhysicalSchema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.datacatalog.v1.PhysicalSchema.ProtobufSchema"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Marks a Parquet-encoded data source.
-  public struct ParquetSchema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ParquetSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `ParquetSchema`.
@@ -235,16 +235,16 @@ public struct PhysicalSchema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.datacatalog.v1.PhysicalSchema.ParquetSchema"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Marks an ORC-encoded data source.
-  public struct OrcSchema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct OrcSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `OrcSchema`.
@@ -266,16 +266,16 @@ public struct PhysicalSchema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.datacatalog.v1.PhysicalSchema.OrcSchema"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Marks a CSV-encoded data source.
-  public struct CsvSchema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CsvSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `CsvSchema`.
@@ -297,11 +297,11 @@ public struct PhysicalSchema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.datacatalog.v1.PhysicalSchema.CsvSchema"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -323,10 +323,10 @@ public struct PhysicalSchema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datacatalog.v1.PhysicalSchema"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

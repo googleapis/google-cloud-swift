@@ -31,7 +31,7 @@ let package = Package(
     .target(
       name: "GoogleCloudNetworkAnalyzerLoggingV1",
       dependencies: [
-        .product(name: "GoogleCloudWkt", package: "wkt")
+        .product(name: "GoogleCloudWKT", package: "wkt")
       ],
     )
   ]

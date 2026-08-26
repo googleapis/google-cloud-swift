@@ -16,13 +16,13 @@
 
 #if AnswerRecords || Conversations || Participants || Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The sentiment, such as positive/negative feeling or association, for a unit
   /// of analysis, such as the query text. See:
   /// https://cloud.google.com/natural-language/docs/basics#interpreting_sentiment_analysis_values
   /// for how to interpret the result.
-  public struct Sentiment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Sentiment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Sentiment score between -1.0 (negative sentiment) and 1.0 (positive
@@ -52,11 +52,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.Sentiment"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

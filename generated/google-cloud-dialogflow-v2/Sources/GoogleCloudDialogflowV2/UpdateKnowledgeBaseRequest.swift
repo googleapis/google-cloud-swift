@@ -16,13 +16,13 @@
 
 #if KnowledgeBases
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request message for
   /// [KnowledgeBases.UpdateKnowledgeBase][google.cloud.dialogflow.v2.KnowledgeBases.UpdateKnowledgeBase].
   ///
   /// [google.cloud.dialogflow.v2.KnowledgeBases.UpdateKnowledgeBase]: <doc:KnowledgeBasesClient/updateKnowledgeBase(request:options:)>
-  public struct UpdateKnowledgeBaseRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct UpdateKnowledgeBaseRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The knowledge base to update.
@@ -31,7 +31,7 @@
     /// Optional. Not specified means `update all`.
     /// Currently, only `display_name` can be updated, an InvalidArgument will be
     /// returned for attempting to update other fields.
-    public var updateMask: GoogleCloudWkt.FieldMask? = nil
+    public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
     /// Initialize a new instance of `UpdateKnowledgeBaseRequest`.
     public init() {}
@@ -52,11 +52,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.UpdateKnowledgeBaseRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

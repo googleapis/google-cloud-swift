@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The parameters to
 /// [UpdateCmekSettings][google.logging.v2.ConfigServiceV2.UpdateCmekSettings].
@@ -25,7 +25,7 @@ import Foundation
 /// more information.
 ///
 /// [google.logging.v2.ConfigServiceV2.UpdateCmekSettings]: <doc:ConfigServiceV2Client/updateCmekSettings(request:options:)>
-public struct UpdateCmekSettingsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateCmekSettingsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The resource name for the CMEK settings to update.
@@ -59,8 +59,8 @@ public struct UpdateCmekSettingsRequest: Codable, Equatable, GoogleCloudWkt._Any
   ///
   /// For example: `"updateMask=kmsKeyName"`
   ///
-  /// [google.protobuf.FieldMask]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWkt.FieldMask
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  /// [google.protobuf.FieldMask]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWKT.FieldMask
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `UpdateCmekSettingsRequest`.
   public init() {}
@@ -81,10 +81,10 @@ public struct UpdateCmekSettingsRequest: Codable, Equatable, GoogleCloudWkt._Any
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.logging.v2.UpdateCmekSettingsRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

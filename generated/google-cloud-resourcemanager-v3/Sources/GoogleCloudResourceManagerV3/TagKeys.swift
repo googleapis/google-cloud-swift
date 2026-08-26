@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -314,7 +314,7 @@ extension Clients {
     /// See `TagKeysClient.updateTagKey`.
     func updateTagKey(
       tagKey: TagKey?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<TagKey>
 
     /// See `TagKeysClient.deleteTagKey`.
@@ -569,7 +569,7 @@ extension Clients.TagKeysProtocol {
 
   public func updateTagKey(
     tagKey: TagKey?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<TagKey> {
     let request = UpdateTagKeyRequest().with {
       $0.tagKey = tagKey

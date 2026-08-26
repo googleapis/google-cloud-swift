@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A manual approval workflow where users who are designated as approvers
 /// need to call the `ApproveGrant`/`DenyGrant` APIs for a grant. The workflow
@@ -32,7 +32,7 @@ import Foundation
 /// A single user might be part of the `approvers` ACL for multiple steps in this
 /// workflow, but they can only approve once and that approval is only considered
 /// to satisfy the approval step at which it was granted.
-public struct ManualApprovals: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ManualApprovals: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. Do the approvers need to provide a justification for their
@@ -60,7 +60,7 @@ public struct ManualApprovals: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Step represents a logical step in a manual approval workflow.
-  public struct Step: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Step: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The potential set of approvers in this step. This list must
@@ -95,21 +95,21 @@ public struct ManualApprovals: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.ManualApprovals.Step"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.ManualApprovals"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

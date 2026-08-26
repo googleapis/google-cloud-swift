@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// KubernetesConfig contains the Kubernetes runtime configuration.
-public struct KubernetesConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct KubernetesConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The service definition configuration.
@@ -85,7 +85,7 @@ public struct KubernetesConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Information about the Kubernetes Gateway API service mesh configuration.
-  public struct GatewayServiceMesh: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GatewayServiceMesh: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Name of the Gateway API HTTPRoute.
@@ -101,13 +101,13 @@ public struct KubernetesConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// Optional. The time to wait for route updates to propagate. The maximum
     /// configurable time is 3 hours, in seconds format. If unspecified, there is
     /// no wait time.
-    public var routeUpdateWaitTime: GoogleCloudWkt.Duration? = nil
+    public var routeUpdateWaitTime: GoogleCloudWKT.Duration? = nil
 
     /// Optional. The amount of time to migrate traffic back from the canary
     /// Service to the original Service during the stable phase deployment. If
     /// specified, must be between 15s and 3600s. If unspecified, there is no
     /// cutback time.
-    public var stableCutbackDuration: GoogleCloudWkt.Duration? = nil
+    public var stableCutbackDuration: GoogleCloudWKT.Duration? = nil
 
     /// Optional. The label to use when selecting Pods for the Deployment and
     /// Service resources. This label must already be present in both resources.
@@ -137,7 +137,7 @@ public struct KubernetesConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Information about route destinations for the Gateway API service mesh.
-    public struct RouteDestinations: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct RouteDestinations: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The clusters where the Gateway API HTTPRoute resource will be
@@ -173,27 +173,27 @@ public struct KubernetesConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.deploy.v1.KubernetesConfig.GatewayServiceMesh.RouteDestinations"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.deploy.v1.KubernetesConfig.GatewayServiceMesh"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Information about the Kubernetes Service networking configuration.
-  public struct ServiceNetworking: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ServiceNetworking: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Name of the Kubernetes Service.
@@ -232,11 +232,11 @@ public struct KubernetesConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.deploy.v1.KubernetesConfig.ServiceNetworking"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -251,10 +251,10 @@ public struct KubernetesConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.deploy.v1.KubernetesConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

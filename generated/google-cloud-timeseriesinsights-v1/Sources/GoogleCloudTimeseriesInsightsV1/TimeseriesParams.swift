@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Parameters that control how we construct the time series for each slice.
-public struct TimeseriesParams: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TimeseriesParams: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. How long should we go in the past when fetching the timeline used for
@@ -39,7 +39,7 @@ public struct TimeseriesParams: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   /// [google.cloud.timeseriesinsights.v1.EvaluatedSlice.status]: <doc:EvaluatedSlice/status>
   /// [google.cloud.timeseriesinsights.v1.QueryDataSetRequest.detection_time]: <doc:QueryDataSetRequest/detectionTime>
-  public var forecastHistory: GoogleCloudWkt.Duration? = nil
+  public var forecastHistory: GoogleCloudWKT.Duration? = nil
 
   /// Required. The time granularity of the time series (on the x-axis). Each time series
   /// point starting at time T will aggregate all events for a particular slice
@@ -56,7 +56,7 @@ public struct TimeseriesParams: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Currently, the minimal supported granularity is 10 seconds.
   ///
   /// [google.cloud.timeseriesinsights.v1.TimeseriesParams.metric]: <doc:TimeseriesParams/metric>
-  public var granularity: GoogleCloudWkt.Duration? = nil
+  public var granularity: GoogleCloudWKT.Duration? = nil
 
   /// Optional. Denotes the [name][google.cloud.timeseriesinsights.v1.EventDimension.name] of a numerical
   /// dimension that will have its values aggregated to compute the y-axis of the
@@ -282,10 +282,10 @@ public struct TimeseriesParams: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.timeseriesinsights.v1.TimeseriesParams"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

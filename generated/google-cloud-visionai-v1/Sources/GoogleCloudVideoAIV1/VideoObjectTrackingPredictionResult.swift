@@ -15,20 +15,20 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Prediction output format for Video Object Tracking.
-public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The beginning, inclusive, of the video's time segment in which the
   /// current identifications happens.
-  public var segmentStartTime: GoogleCloudWkt.Timestamp? = nil
+  public var segmentStartTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The end, inclusive, of the video's time segment in which the current
   /// identifications happen. Particularly, if the end is the same as the start,
   /// it means the identifications happen on a specific video frame.
-  public var segmentEndTime: GoogleCloudWkt.Timestamp? = nil
+  public var segmentEndTime: GoogleCloudWKT.Timestamp? = nil
 
   /// All of the objects detected in the specified time range.
   public var objects: [VideoObjectTrackingPredictionResult.DetectedObject] = []
@@ -52,7 +52,7 @@ public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleClo
   /// Boundingbox for detected object. I.e. the rectangle over the video frame
   /// pinpointing the found AnnotationSpec. The coordinates are relative to the
   /// frame size, and the point 0,0 is in the top left of the frame.
-  public struct BoundingBox: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct BoundingBox: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The leftmost coordinate of the bounding box.
@@ -87,18 +87,18 @@ public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleClo
       return
         "type.googleapis.com/google.cloud.visionai.v1.VideoObjectTrackingPredictionResult.BoundingBox"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Each DetectedObject is one particular identification of an object
   /// specified with the AnnotationSpec id and display_name, the bounding box,
   /// the associated confidence score and the corresponding track_id.
-  public struct DetectedObject: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DetectedObject: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The resource ID of the AnnotationSpec that had been identified.
@@ -140,21 +140,21 @@ public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleClo
       return
         "type.googleapis.com/google.cloud.visionai.v1.VideoObjectTrackingPredictionResult.DetectedObject"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.VideoObjectTrackingPredictionResult"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

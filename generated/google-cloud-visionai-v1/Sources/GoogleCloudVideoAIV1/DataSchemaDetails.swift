@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Data schema details indicates the data type and the data struct corresponding
 /// to the key of user specified annotation.
-public struct DataSchemaDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DataSchemaDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Type of the annotation.
@@ -29,11 +29,11 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public var protoAnyConfig: DataSchemaDetails.ProtoAnyConfig? = nil
 
   /// Config for List data type.
-  public var listConfig: GoogleCloudWkt.Recursive<DataSchemaDetails.ListConfig>? = nil
+  public var listConfig: GoogleCloudWKT.Recursive<DataSchemaDetails.ListConfig>? = nil
 
   /// Config for CustomizedStruct data type.
   public var customizedStructConfig:
-    GoogleCloudWkt.Recursive<DataSchemaDetails.CustomizedStructConfig>? = nil
+    GoogleCloudWKT.Recursive<DataSchemaDetails.CustomizedStructConfig>? = nil
 
   /// The granularity associated with this DataSchema.
   public var granularity: DataSchemaDetails.Granularity? = nil
@@ -58,7 +58,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable
   }
 
   /// The configuration for `PROTO_ANY` data type.
-  public struct ProtoAnyConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ProtoAnyConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The type URI of the proto message.
@@ -83,20 +83,20 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.DataSchemaDetails.ProtoAnyConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The configuration for `LIST` data type.
-  public struct ListConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ListConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The value's data schema in the list.
-    public var valueSchema: GoogleCloudWkt.Recursive<DataSchemaDetails>? = nil
+    public var valueSchema: GoogleCloudWKT.Recursive<DataSchemaDetails>? = nil
 
     /// Initialize a new instance of `ListConfig`.
     public init() {}
@@ -117,16 +117,16 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.DataSchemaDetails.ListConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The configuration for `CUSTOMIZED_STRUCT` data type.
-  public struct CustomizedStructConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CustomizedStructConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Direct child elements data schemas.
@@ -151,16 +151,16 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.DataSchemaDetails.CustomizedStructConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The search strategy for annotations value of the `key`.
-  public struct SearchStrategy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SearchStrategy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The type of search strategy to be applied on the `key` above.
@@ -219,7 +219,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable
     ///   }
     /// }
     /// This means only "name" with score > 0.6 will be indexed.
-    public struct ConfidenceScoreIndexConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ConfidenceScoreIndexConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The path to the confidence score field. It is a string that
@@ -281,11 +281,11 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable
         return
           "type.googleapis.com/google.cloud.visionai.v1.DataSchemaDetails.SearchStrategy.ConfidenceScoreIndexConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -399,11 +399,11 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.DataSchemaDetails.SearchStrategy"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -731,10 +731,10 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.DataSchemaDetails"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

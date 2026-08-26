@@ -16,13 +16,13 @@
 
 #if Firewalls || Instances || Networks || RegionNetworkFirewallPolicies
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents a Firewall Rule resource.
   ///
   /// Firewall rules allow or deny ingress traffic to, and egress traffic from your
   /// instances. For more information, readFirewall rules.
-  public struct Firewall: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Firewall: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The list of ALLOW rules specified by this firewall. Each rule specifies a
@@ -180,7 +180,7 @@
     /// The message type for the [allowed][google.cloud.compute.v1.Firewall.allowed] field.
     ///
     /// [google.cloud.compute.v1.Firewall.allowed]: <doc:Firewall/Allowed>
-    public struct Allowed: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Allowed: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The IP protocol to which this rule applies. The protocol type is
@@ -233,18 +233,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.Firewall.allowed"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// The message type for the [denied][google.cloud.compute.v1.Firewall.denied] field.
     ///
     /// [google.cloud.compute.v1.Firewall.denied]: <doc:Firewall/Denied>
-    public struct Denied: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Denied: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The IP protocol to which this rule applies. The protocol type is
@@ -297,11 +297,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.Firewall.denied"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -408,11 +408,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.Firewall"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

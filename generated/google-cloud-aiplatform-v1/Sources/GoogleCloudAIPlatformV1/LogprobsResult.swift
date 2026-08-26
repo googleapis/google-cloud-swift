@@ -16,10 +16,10 @@
 
 #if PredictionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Logprobs Result
-  public struct LogprobsResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct LogprobsResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Length = total number of decoding steps.
@@ -46,7 +46,7 @@
     }
 
     /// Candidate for the logprobs token and score.
-    public struct Candidate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Candidate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The candidate’s token string value.
@@ -77,16 +77,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.LogprobsResult.Candidate"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Candidates with top log probabilities at each decoding step.
-    public struct TopCandidates: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct TopCandidates: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Sorted by log probability in descending order.
@@ -111,22 +111,22 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.LogprobsResult.TopCandidates"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.LogprobsResult"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

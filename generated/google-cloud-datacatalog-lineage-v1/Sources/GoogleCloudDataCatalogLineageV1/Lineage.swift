@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -494,7 +494,7 @@ extension Clients {
     /// See `LineageClient.processOpenLineageRunEvent`.
     func processOpenLineageRunEvent(
       parent: Swift.String,
-      openLineage: GoogleCloudWkt.Struct?,
+      openLineage: GoogleCloudWKT.Struct?,
     ) async throws -> GoogleCloudDataCatalogLineageV1.ProcessOpenLineageRunEventResponse
 
     /// See `LineageClient.createProcess`.
@@ -514,7 +514,7 @@ extension Clients {
     /// See `LineageClient.updateProcess`.
     func updateProcess(
       process: Process?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDataCatalogLineageV1.Process
 
     /// See `LineageClient.getProcess`.
@@ -567,7 +567,7 @@ extension Clients {
     /// See `LineageClient.updateRun`.
     func updateRun(
       run: Run?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDataCatalogLineageV1.Run
 
     /// See `LineageClient.getRun`.
@@ -861,7 +861,7 @@ extension Clients.LineageProtocol {
 
   public func processOpenLineageRunEvent(
     parent: Swift.String,
-    openLineage: GoogleCloudWkt.Struct?,
+    openLineage: GoogleCloudWKT.Struct?,
   ) async throws -> GoogleCloudDataCatalogLineageV1.ProcessOpenLineageRunEventResponse {
     let request = ProcessOpenLineageRunEventRequest().with {
       $0.parent = parent
@@ -907,7 +907,7 @@ extension Clients.LineageProtocol {
 
   public func updateProcess(
     process: Process?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudDataCatalogLineageV1.Process {
     let request = UpdateProcessRequest().with {
       $0.process = process
@@ -1048,7 +1048,7 @@ extension Clients.LineageProtocol {
 
   public func updateRun(
     run: Run?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudDataCatalogLineageV1.Run {
     let request = UpdateRunRequest().with {
       $0.run = run

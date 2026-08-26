@@ -16,12 +16,12 @@
 
 #if DataFoundryService || EvaluationService || GenAiCacheService || GenAiTuningService || LlmUtilityService || PredictionService || SessionService || VertexRagService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A predicted [FunctionCall] returned from the model that contains a string
   /// representing the [FunctionDeclaration.name] and a structured JSON object
   /// containing the parameters and their values.
-  public struct FunctionCall: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FunctionCall: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The name of the function to call.
@@ -30,7 +30,7 @@
 
     /// Optional. The function parameters and values in JSON object format.
     /// See [FunctionDeclaration.parameters] for parameter details.
-    public var args: GoogleCloudWkt.Struct? = nil
+    public var args: GoogleCloudWKT.Struct? = nil
 
     /// Optional. The partial argument value of the function call.
     /// If provided, represents the arguments/fields that are streamed
@@ -61,11 +61,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.FunctionCall"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -16,11 +16,11 @@
 
 #if DocumentService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The Bigtable Options object that contains information to support
   /// the import.
-  public struct BigtableOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct BigtableOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The field name used for saving row key value in the document. The name has
@@ -49,7 +49,7 @@
     }
 
     /// The column family of the Bigtable.
-    public struct BigtableColumnFamily: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct BigtableColumnFamily: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The field name to use for this column family in the document. The
@@ -97,16 +97,16 @@
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.BigtableOptions.BigtableColumnFamily"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// The column of the Bigtable.
-    public struct BigtableColumn: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct BigtableColumn: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. Qualifier of the column. If it cannot be decoded with utf-8,
@@ -153,11 +153,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.BigtableOptions.BigtableColumn"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -413,11 +413,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.BigtableOptions"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

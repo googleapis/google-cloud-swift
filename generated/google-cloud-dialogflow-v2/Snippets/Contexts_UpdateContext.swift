@@ -20,7 +20,7 @@
   import Foundation
   import GoogleCloudDialogflowV2
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
 
   func sample(client: ContextsClient, projectId: String, sessionId: String, contextId: String)
@@ -32,7 +32,7 @@
           $0.context = Context().with {
             $0.name = "projects/\(projectId)/agent/sessions/\(sessionId)/contexts/\(contextId)"
           }
-          $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+          $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
         }
     )
     print("Success: \(response)")

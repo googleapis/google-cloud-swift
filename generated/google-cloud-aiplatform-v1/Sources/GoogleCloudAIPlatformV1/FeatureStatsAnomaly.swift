@@ -16,7 +16,7 @@
 
 #if FeatureRegistryService || FeaturestoreService || JobService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Stats and Anomaly generated at specific timestamp for specific Feature.
   /// The start_time and end_time are used to define the time range of the dataset
@@ -27,7 +27,7 @@
   /// anomaly_uri in the tensorflow defined protos. Field data_stats contains
   /// almost identical information with the raw stats in Vertex AI
   /// defined proto, for UI to display.
-  public struct FeatureStatsAnomaly: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FeatureStatsAnomaly: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Feature importance score, only populated when cross-feature monitoring is
@@ -76,13 +76,13 @@
     /// For objectives where time window doesn't make sense (e.g. Featurestore
     /// Snapshot Monitoring), start_time is only used to indicate the monitoring
     /// intervals, so it always equals to (end_time - monitoring_interval).
-    public var startTime: GoogleCloudWkt.Timestamp? = nil
+    public var startTime: GoogleCloudWKT.Timestamp? = nil
 
     /// The end timestamp of window where stats were generated.
     /// For objectives where time window doesn't make sense (e.g. Featurestore
     /// Snapshot Monitoring), end_time indicates the timestamp of the data used to
     /// generate stats (e.g. timestamp we take snapshots for feature values).
-    public var endTime: GoogleCloudWkt.Timestamp? = nil
+    public var endTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `FeatureStatsAnomaly`.
     public init() {}
@@ -103,11 +103,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.FeatureStatsAnomaly"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

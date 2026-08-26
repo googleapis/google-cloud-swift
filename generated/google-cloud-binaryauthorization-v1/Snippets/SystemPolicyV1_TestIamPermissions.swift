@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudBinaryAuthorizationV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 
 func sample(client: SystemPolicyV1Client) async throws {

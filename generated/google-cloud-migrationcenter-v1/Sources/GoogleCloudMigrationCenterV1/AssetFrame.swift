@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Contains data reported from an inventory source on an asset.
-public struct AssetFrame: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AssetFrame: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The time the data was reported.
-  public var reportTime: GoogleCloudWkt.Timestamp? = nil
+  public var reportTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Labels as key value pairs.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -70,7 +70,7 @@ public struct AssetFrame: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.reportTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .reportTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .reportTime)
     self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
     self.attributes = try container.decode([Swift.String: Swift.String].self, forKey: .attributes)
     self.performanceSamples = try container.decode(
@@ -121,10 +121,10 @@ public struct AssetFrame: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.migrationcenter.v1.AssetFrame"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

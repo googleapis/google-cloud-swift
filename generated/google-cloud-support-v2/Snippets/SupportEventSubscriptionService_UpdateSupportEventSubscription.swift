@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudSupportV2
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(
   client: SupportEventSubscriptionServiceClient, organizationId: String,
@@ -31,7 +31,7 @@ func sample(
           $0.name =
             "organizations/\(organizationId)/supportEventSubscriptions/\(supportEventSubscriptionId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

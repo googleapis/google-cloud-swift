@@ -16,13 +16,13 @@
 
 import Foundation
 @_spi(GoogleCloudInternal) import GoogleCloudGax
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response message for
 /// [SecurityCenterManagement.ListSecurityHealthAnalyticsCustomModules][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.ListSecurityHealthAnalyticsCustomModules].
 ///
 /// [google.cloud.securitycentermanagement.v1.SecurityCenterManagement.ListSecurityHealthAnalyticsCustomModules]: <doc:SecurityCenterManagementClient/listSecurityHealthAnalyticsCustomModules(request:options:)>
-public struct ListSecurityHealthAnalyticsCustomModulesResponse: Codable, Equatable, GoogleCloudWkt
+public struct ListSecurityHealthAnalyticsCustomModulesResponse: Codable, Equatable, GoogleCloudWKT
     ._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable
@@ -54,11 +54,11 @@ public struct ListSecurityHealthAnalyticsCustomModulesResponse: Codable, Equatab
     return
       "type.googleapis.com/google.cloud.securitycentermanagement.v1.ListSecurityHealthAnalyticsCustomModulesResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 
   public func _getPaginatedItems() -> [SecurityHealthAnalyticsCustomModule] {

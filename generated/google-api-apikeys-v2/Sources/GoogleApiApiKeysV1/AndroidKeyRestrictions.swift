@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The Android apps that are allowed to use the key.
-public struct AndroidKeyRestrictions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AndroidKeyRestrictions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A list of Android applications that are allowed to make API calls with
@@ -44,10 +44,10 @@ public struct AndroidKeyRestrictions: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.apikeys.v2.AndroidKeyRestrictions"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

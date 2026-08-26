@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Contains information on the resources to select for a deploy policy.
 /// Attributes provided must all match the resource in order for policy
 /// restrictions to apply. For example, if delivery pipelines attributes given
 /// are an id "prod" and labels "foo: bar", a delivery pipeline resource must
 /// match both that id and have that label in order to be subject to the policy.
-public struct DeployPolicyResourceSelector: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DeployPolicyResourceSelector: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. Contains attributes about a delivery pipeline.
@@ -50,10 +50,10 @@ public struct DeployPolicyResourceSelector: Codable, Equatable, GoogleCloudWkt._
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.deploy.v1.DeployPolicyResourceSelector"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

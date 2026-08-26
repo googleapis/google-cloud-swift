@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The results of scoring a single conversation against a QaScorecard. Contains
 /// a collection of QaAnswers and aggregate score.
-public struct QaScorecardResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct QaScorecardResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The name of the scorecard result.
@@ -34,7 +34,7 @@ public struct QaScorecardResult: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public var conversation: Swift.String = Swift.String()
 
   /// Output only. The timestamp that the revision was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// ID of the agent that handled the conversation.
   public var agentId: Swift.String = Swift.String()
@@ -77,7 +77,7 @@ public struct QaScorecardResult: Codable, Equatable, GoogleCloudWkt._AnyPackable
   }
 
   /// Tags and their corresponding results.
-  public struct QaTagResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct QaTagResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The tag the score applies to.
@@ -112,18 +112,18 @@ public struct QaScorecardResult: Codable, Equatable, GoogleCloudWkt._AnyPackable
       return
         "type.googleapis.com/google.cloud.contactcenterinsights.v1.QaScorecardResult.QaTagResult"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A scorecard result may have multiple sets of scores from varying sources,
   /// one of which becomes the "main" answer above. A ScoreSource represents
   /// each individual set of scores.
-  public struct ScoreSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ScoreSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// What created the score.
@@ -269,21 +269,21 @@ public struct QaScorecardResult: Codable, Equatable, GoogleCloudWkt._AnyPackable
       return
         "type.googleapis.com/google.cloud.contactcenterinsights.v1.QaScorecardResult.ScoreSource"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.contactcenterinsights.v1.QaScorecardResult"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

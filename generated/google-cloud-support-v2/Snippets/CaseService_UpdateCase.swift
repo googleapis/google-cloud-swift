@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudSupportV2
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: CaseServiceClient, organizationId: String, caseId: String) async throws {
   let response = try await client.updateCase(
@@ -27,7 +27,7 @@ func sample(client: CaseServiceClient, organizationId: String, caseId: String) a
         $0.`case` = Case().with {
           $0.name = "organizations/\(organizationId)/cases/\(caseId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

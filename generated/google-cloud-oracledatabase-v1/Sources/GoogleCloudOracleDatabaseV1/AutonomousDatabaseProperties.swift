@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The properties of an Autonomous Database.
-public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. OCID of the Autonomous Database.
@@ -147,7 +147,7 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleCloudWkt._
 
   /// Output only. This field indicates the number of seconds of data loss during
   /// a Data Guard failover.
-  public var failedDataRecoveryDuration: GoogleCloudWkt.Duration? = nil
+  public var failedDataRecoveryDuration: GoogleCloudWKT.Duration? = nil
 
   /// Output only. The memory assigned to in-memory tables in an Autonomous
   /// Database.
@@ -241,21 +241,21 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleCloudWkt._
   public var totalAutoBackupStorageSizeGbs: Swift.Float = Swift.Float()
 
   /// Output only. The long term backup schedule of the Autonomous Database.
-  public var nextLongTermBackupTime: GoogleCloudWkt.Timestamp? = nil
+  public var nextLongTermBackupTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The date and time the Autonomous Data Guard role was changed
   /// for the standby Autonomous Database.
-  public var dataGuardRoleChangedTime: GoogleCloudWkt.Timestamp? = nil
+  public var dataGuardRoleChangedTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The date and time the Disaster Recovery role was changed for
   /// the standby Autonomous Database.
-  public var disasterRecoveryRoleChangedTime: GoogleCloudWkt.Timestamp? = nil
+  public var disasterRecoveryRoleChangedTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The date and time when maintenance will begin.
-  public var maintenanceBeginTime: GoogleCloudWkt.Timestamp? = nil
+  public var maintenanceBeginTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The date and time when maintenance will end.
-  public var maintenanceEndTime: GoogleCloudWkt.Timestamp? = nil
+  public var maintenanceEndTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Immutable. The list of allowlisted IP addresses for the
   /// Autonomous Database.
@@ -1542,10 +1542,10 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleCloudWkt._
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.oracledatabase.v1.AutonomousDatabaseProperties"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

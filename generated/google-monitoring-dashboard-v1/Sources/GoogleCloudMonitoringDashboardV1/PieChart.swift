@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A widget that displays timeseries data as a pie or a donut.
-public struct PieChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct PieChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The queries for the chart's data.
@@ -47,7 +47,7 @@ public struct PieChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Groups a time series query definition.
-  public struct PieChartDataSet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PieChartDataSet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The query for the PieChart. See,
@@ -67,7 +67,7 @@ public struct PieChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// series query. For example, if the data is published once every 10
     /// minutes, the `min_alignment_period` should be at least 10 minutes. It
     /// would not make sense to fetch and align data at one minute intervals.
-    public var minAlignmentPeriod: GoogleCloudWkt.Duration? = nil
+    public var minAlignmentPeriod: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `PieChartDataSet`.
     public init() {}
@@ -88,11 +88,11 @@ public struct PieChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.dashboard.v1.PieChart.PieChartDataSet"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -204,10 +204,10 @@ public struct PieChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.dashboard.v1.PieChart"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

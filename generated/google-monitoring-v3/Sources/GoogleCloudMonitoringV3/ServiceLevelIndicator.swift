@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A Service-Level Indicator (SLI) describes the "performance" of a service. For
 /// some services, the SLI is well-defined. In such cases, the SLI can be
@@ -30,7 +30,7 @@ import Foundation
 /// of concerns, a single Service-Level Indicator measures performance for only
 /// one aspect of service quality, such as fraction of successful queries or
 /// fast-enough queries.
-public struct ServiceLevelIndicator: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ServiceLevelIndicator: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Service level indicators can be grouped by whether the "unit" of service
@@ -119,10 +119,10 @@ public struct ServiceLevelIndicator: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.v3.ServiceLevelIndicator"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

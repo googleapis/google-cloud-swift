@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// Transcoding job resource.
-public struct Job: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The resource name of the job.
@@ -45,13 +45,13 @@ public struct Job: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var state: Job.ProcessingState = Job.ProcessingState()
 
   /// Output only. The time the job was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time the transcoding started.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time the transcoding finished.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Job time to live value in days, which will be effective after job
   /// completion. Job should be deleted automatically after the given TTL. Enter
@@ -136,10 +136,10 @@ public struct Job: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.outputUri = try container.decode(Swift.String.self, forKey: .outputUri)
     self.state = try container.decode(Job.ProcessingState.self, forKey: .state)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.startTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .startTime)
-    self.endTime = try container.decodeIfPresent(GoogleCloudWkt.Timestamp.self, forKey: .endTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
     self.ttlAfterCompletionDays = try container.decode(
       Swift.Int32.self, forKey: .ttlAfterCompletionDays)
     self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
@@ -545,10 +545,10 @@ public struct Job: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.video.transcoder.v1.Job"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

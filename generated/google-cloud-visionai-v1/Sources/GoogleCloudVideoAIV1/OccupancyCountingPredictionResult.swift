@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The prediction result proto for occupancy counting.
-public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Current timestamp.
-  public var currentTime: GoogleCloudWkt.Timestamp? = nil
+  public var currentTime: GoogleCloudWKT.Timestamp? = nil
 
   /// A list of identified boxes.
   public var identifiedBoxes: [OccupancyCountingPredictionResult.IdentifiedBox] = []
@@ -58,7 +58,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleCloud
   }
 
   /// The entity info for annotations from occupancy counting operator.
-  public struct Entity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Entity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Label id.
@@ -86,16 +86,16 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleCloud
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.Entity"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Identified box contains location and the entity of the object.
-  public struct IdentifiedBox: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct IdentifiedBox: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// An unique id for this box.
@@ -132,7 +132,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleCloud
     }
 
     /// Bounding Box in the normalized coordinates.
-    public struct NormalizedBoundingBox: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct NormalizedBoundingBox: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Min in x coordinate.
@@ -167,11 +167,11 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleCloud
         return
           "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.IdentifiedBox.NormalizedBoundingBox"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -179,16 +179,16 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleCloud
       return
         "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.IdentifiedBox"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The statistics info for annotations from occupancy counting operator.
-  public struct Stats: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Stats: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Counts of the full frame.
@@ -218,7 +218,7 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleCloud
 
     /// The object info and instant count for annotations from occupancy counting
     /// operator.
-    public struct ObjectCount: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ObjectCount: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Entity of this object.
@@ -247,21 +247,21 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleCloud
         return
           "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.ObjectCount"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// The object info and accumulated count for annotations from occupancy
     /// counting operator.
-    public struct AccumulatedObjectCount: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AccumulatedObjectCount: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The start time of the accumulated count.
-      public var startTime: GoogleCloudWkt.Timestamp? = nil
+      public var startTime: GoogleCloudWKT.Timestamp? = nil
 
       /// The object count for the accumulated count.
       public var objectCount: OccupancyCountingPredictionResult.Stats.ObjectCount? = nil
@@ -286,16 +286,16 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleCloud
         return
           "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.AccumulatedObjectCount"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Message for Crossing line count.
-    public struct CrossingLineCount: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct CrossingLineCount: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Line annotation from the user.
@@ -335,16 +335,16 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleCloud
         return
           "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.CrossingLineCount"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Message for the active zone count.
-    public struct ActiveZoneCount: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ActiveZoneCount: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Active zone annotation from the user.
@@ -373,34 +373,34 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleCloud
         return
           "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.ActiveZoneCount"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The track info for annotations from occupancy counting operator.
-  public struct TrackInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TrackInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// An unique id to identify a track. It should be consistent across frames.
     public var trackId: Swift.String = Swift.String()
 
     /// Start timestamp of this track.
-    public var startTime: GoogleCloudWkt.Timestamp? = nil
+    public var startTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `TrackInfo`.
     public init() {}
@@ -422,16 +422,16 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleCloud
       return
         "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.TrackInfo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The dwell time info for annotations from occupancy counting operator.
-  public struct DwellTimeInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DwellTimeInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// An unique id to identify a track. It should be consistent across frames.
@@ -441,10 +441,10 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleCloud
     public var zoneId: Swift.String = Swift.String()
 
     /// The beginning time when a dwelling object has been identified in a zone.
-    public var dwellStartTime: GoogleCloudWkt.Timestamp? = nil
+    public var dwellStartTime: GoogleCloudWKT.Timestamp? = nil
 
     /// The end time when a dwelling object has exited in a zone.
-    public var dwellEndTime: GoogleCloudWkt.Timestamp? = nil
+    public var dwellEndTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `DwellTimeInfo`.
     public init() {}
@@ -466,21 +466,21 @@ public struct OccupancyCountingPredictionResult: Codable, Equatable, GoogleCloud
       return
         "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult.DwellTimeInfo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.OccupancyCountingPredictionResult"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

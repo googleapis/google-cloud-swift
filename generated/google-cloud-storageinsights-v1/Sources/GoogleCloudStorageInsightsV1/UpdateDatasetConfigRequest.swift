@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [`UpdateDatasetConfig`][google.cloud.storageinsights.v1.StorageInsights.UpdateDatasetConfig]
 ///
 /// [google.cloud.storageinsights.v1.StorageInsights.UpdateDatasetConfig]: <doc:StorageInsightsClient/updateDatasetConfig(request:options:)>
-public struct UpdateDatasetConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateDatasetConfigRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Field mask is used to specify the fields to be overwritten in the
@@ -29,7 +29,7 @@ public struct UpdateDatasetConfigRequest: Codable, Equatable, GoogleCloudWkt._An
   /// The fields specified in the `update_mask` are relative to the resource, not
   /// the full request. A field is overwritten if it is in the mask. If the
   /// user does not provide a mask then it returns an "Invalid Argument" error.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Required. The resource being updated
   public var datasetConfig: DatasetConfig? = nil
@@ -66,10 +66,10 @@ public struct UpdateDatasetConfigRequest: Codable, Equatable, GoogleCloudWkt._An
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.storageinsights.v1.UpdateDatasetConfigRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -16,10 +16,10 @@
 
 #if JobService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The alert config for model monitoring.
-  public struct ModelMonitoringAlertConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ModelMonitoringAlertConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Dump the anomalies to Cloud Logging. The anomalies will be put to json
@@ -98,7 +98,7 @@
     }
 
     /// The config for email alert.
-    public struct EmailAlertConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct EmailAlertConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The email addresses to send the alert.
@@ -124,11 +124,11 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.ModelMonitoringAlertConfig.EmailAlertConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -140,11 +140,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.ModelMonitoringAlertConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

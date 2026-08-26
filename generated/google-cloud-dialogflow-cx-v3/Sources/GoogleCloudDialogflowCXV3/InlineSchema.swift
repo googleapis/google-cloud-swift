@@ -16,17 +16,17 @@
 
 #if Flows || Playbooks || Sessions || TestCases
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A type schema object that's specified inline.
-  public struct InlineSchema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct InlineSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Data type of the schema.
     public var type: DataType = DataType()
 
     /// Schema of the elements if this is an ARRAY type.
-    public var items: GoogleCloudWkt.Recursive<TypeSchema>? = nil
+    public var items: GoogleCloudWKT.Recursive<TypeSchema>? = nil
 
     /// Initialize a new instance of `InlineSchema`.
     public init() {}
@@ -47,11 +47,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.InlineSchema"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

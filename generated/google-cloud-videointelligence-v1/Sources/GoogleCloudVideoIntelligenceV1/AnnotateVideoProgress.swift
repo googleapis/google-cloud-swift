@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Video annotation progress. Included in the `metadata`
 /// field of the `Operation` returned by the `GetOperation`
 /// call of the `google::longrunning::Operations` service.
-public struct AnnotateVideoProgress: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AnnotateVideoProgress: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Progress metadata for all videos specified in `AnnotateVideoRequest`.
@@ -45,10 +45,10 @@ public struct AnnotateVideoProgress: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.videointelligence.v1.AnnotateVideoProgress"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

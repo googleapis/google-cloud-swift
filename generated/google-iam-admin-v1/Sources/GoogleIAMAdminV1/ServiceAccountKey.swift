@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents a service account key.
 ///
@@ -41,7 +41,7 @@ import Foundation
 ///
 /// Public keys for all service accounts are also published at the OAuth2
 /// Service Account API.
-public struct ServiceAccountKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ServiceAccountKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The resource name of the service account key in the following format
@@ -72,13 +72,13 @@ public struct ServiceAccountKey: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public var publicKeyData: Foundation.Data = Foundation.Data()
 
   /// The key can be used after this timestamp.
-  public var validAfterTime: GoogleCloudWkt.Timestamp? = nil
+  public var validAfterTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The key can be used before this timestamp.
   /// For system-managed key pairs, this timestamp is the end time for the
   /// private key signing operation. The public key could still be used
   /// for verification for a few hours after this time.
-  public var validBeforeTime: GoogleCloudWkt.Timestamp? = nil
+  public var validBeforeTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The key origin.
   public var keyOrigin: ServiceAccountKeyOrigin = ServiceAccountKeyOrigin()
@@ -109,10 +109,10 @@ public struct ServiceAccountKey: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.iam.admin.v1.ServiceAccountKey"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

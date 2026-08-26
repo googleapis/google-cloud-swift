@@ -16,13 +16,13 @@
 
 #if TestCases
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The request message for
   /// [TestCases.UpdateTestCase][google.cloud.dialogflow.cx.v3.TestCases.UpdateTestCase].
   ///
   /// [google.cloud.dialogflow.cx.v3.TestCases.UpdateTestCase]: <doc:TestCasesClient/updateTestCase(request:options:)>
-  public struct UpdateTestCaseRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct UpdateTestCaseRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The test case to update.
@@ -35,7 +35,7 @@
     ///
     /// [google.cloud.dialogflow.cx.v3.TestCase.creation_time]: <doc:TestCase/creationTime>
     /// [google.cloud.dialogflow.cx.v3.TestCase.last_test_result]: <doc:TestCase/lastTestResult>
-    public var updateMask: GoogleCloudWkt.FieldMask? = nil
+    public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
     /// Initialize a new instance of `UpdateTestCaseRequest`.
     public init() {}
@@ -56,11 +56,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.UpdateTestCaseRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

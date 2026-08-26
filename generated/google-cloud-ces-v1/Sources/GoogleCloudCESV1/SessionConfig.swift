@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The configuration for the session.
-public struct SessionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SessionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The unique identifier of the session.
@@ -103,7 +103,7 @@ public struct SessionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// to send to the remote
   /// [Dialogflow](https://cloud.google.com/dialogflow/cx/docs/concept/console-conversational-agents)
   /// agent when the session control is transferred to the remote agent.
-  public struct RemoteDialogflowQueryParameters: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RemoteDialogflowQueryParameters: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The HTTP headers to be sent as webhook_headers in
@@ -112,11 +112,11 @@ public struct SessionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Optional. The payload to be sent in
     /// [QueryParameters](https://cloud.google.com/dialogflow/cx/docs/reference/rpc/google.cloud.dialogflow.cx.v3#queryparameters).
-    public var payload: GoogleCloudWkt.Struct? = nil
+    public var payload: GoogleCloudWKT.Struct? = nil
 
     /// Optional. The end user metadata to be sent in
     /// [QueryParameters](https://cloud.google.com/dialogflow/cx/docs/reference/rpc/google.cloud.dialogflow.cx.v3#queryparameters).
-    public var endUserMetadata: GoogleCloudWkt.Struct? = nil
+    public var endUserMetadata: GoogleCloudWKT.Struct? = nil
 
     /// Initialize a new instance of `RemoteDialogflowQueryParameters`.
     public init() {}
@@ -137,21 +137,21 @@ public struct SessionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ces.v1.SessionConfig.RemoteDialogflowQueryParameters"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.SessionConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

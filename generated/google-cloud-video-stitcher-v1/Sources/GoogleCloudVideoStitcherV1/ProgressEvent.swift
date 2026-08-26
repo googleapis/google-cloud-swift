@@ -15,16 +15,16 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Indicates a time in which a list of events should be triggered
 /// during media playback.
-public struct ProgressEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ProgressEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The time when the following tracking events occurs. The time is in
   /// seconds relative to the start of the VOD asset.
-  public var timeOffset: GoogleCloudWkt.Duration? = nil
+  public var timeOffset: GoogleCloudWKT.Duration? = nil
 
   /// The list of progress tracking events for the ad break. These can be of
   /// the following IAB types: `BREAK_START`, `BREAK_END`, `IMPRESSION`,
@@ -51,10 +51,10 @@ public struct ProgressEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.video.stitcher.v1.ProgressEvent"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

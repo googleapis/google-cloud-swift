@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudMonitoringV3
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: AlertPolicyServiceClient, projectId: String, alertPolicyId: String) async throws
 {
@@ -28,7 +28,7 @@ func sample(client: AlertPolicyServiceClient, projectId: String, alertPolicyId: 
         $0.alertPolicy = AlertPolicy().with {
           $0.name = "projects/\(projectId)/alertPolicies/\(alertPolicyId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

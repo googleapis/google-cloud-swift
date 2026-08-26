@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleType
 
 /// Time window in which disruptive maintenance updates occur. Non-disruptive
 /// updates can occur inside or outside this window.
-public struct WeeklyMaintenanceWindow: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct WeeklyMaintenanceWindow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The day of week that maintenance updates occur.
@@ -31,7 +31,7 @@ public struct WeeklyMaintenanceWindow: Codable, Equatable, GoogleCloudWkt._AnyPa
 
   /// Output only. Duration of the maintenance window. The current window is
   /// fixed at 1 hour.
-  public var duration: GoogleCloudWkt.Duration? = nil
+  public var duration: GoogleCloudWKT.Duration? = nil
 
   /// Initialize a new instance of `WeeklyMaintenanceWindow`.
   public init() {}
@@ -52,10 +52,10 @@ public struct WeeklyMaintenanceWindow: Codable, Equatable, GoogleCloudWkt._AnyPa
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.redis.v1.WeeklyMaintenanceWindow"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

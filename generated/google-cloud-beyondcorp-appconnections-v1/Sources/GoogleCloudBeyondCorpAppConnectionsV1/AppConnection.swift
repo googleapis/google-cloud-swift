@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A BeyondCorp AppConnection resource represents a BeyondCorp protected
 /// AppConnection to a remote application. It creates all the necessary GCP
 /// components needed for creating a BeyondCorp protected AppConnection. Multiple
 /// connectors can be authorised for a single AppConnection.
-public struct AppConnection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AppConnection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Unique resource name of the AppConnection.
@@ -29,10 +29,10 @@ public struct AppConnection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Output only. Timestamp when the resource was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Timestamp when the resource was last modified.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Resource labels to represent user provided metadata.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -79,7 +79,7 @@ public struct AppConnection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// ApplicationEndpoint represents a remote application endpoint.
-  public struct ApplicationEndpoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ApplicationEndpoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Hostname or IP address of the remote application endpoint.
@@ -108,17 +108,17 @@ public struct AppConnection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.beyondcorp.appconnections.v1.AppConnection.ApplicationEndpoint"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Gateway represents a user facing component that serves as an entrance to
   /// enable connectivity.
-  public struct Gateway: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Gateway: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The type of hosting used by the gateway.
@@ -252,11 +252,11 @@ public struct AppConnection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.beyondcorp.appconnections.v1.AppConnection.Gateway"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -490,10 +490,10 @@ public struct AppConnection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.beyondcorp.appconnections.v1.AppConnection"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

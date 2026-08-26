@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A BackupPlanAssociation represents a single BackupPlanAssociation which
 /// contains details like workload, backup plan etc
-public struct BackupPlanAssociation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BackupPlanAssociation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Identifier. The resource name of BackupPlanAssociation in
@@ -46,10 +46,10 @@ public struct BackupPlanAssociation: Codable, Equatable, GoogleCloudWkt._AnyPack
   public var backupPlan: Swift.String = Swift.String()
 
   /// Output only. The time when the instance was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time when the instance was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The BackupPlanAssociation resource state.
   public var state: BackupPlanAssociation.State = BackupPlanAssociation.State()
@@ -117,9 +117,9 @@ public struct BackupPlanAssociation: Codable, Equatable, GoogleCloudWkt._AnyPack
     self.resource = try container.decode(Swift.String.self, forKey: .resource)
     self.backupPlan = try container.decode(Swift.String.self, forKey: .backupPlan)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.state = try container.decode(BackupPlanAssociation.State.self, forKey: .state)
     self.rulesConfigInfo = try container.decode([RuleConfigInfo].self, forKey: .rulesConfigInfo)
     self.dataSource = try container.decode(Swift.String.self, forKey: .dataSource)
@@ -320,10 +320,10 @@ public struct BackupPlanAssociation: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.backupdr.v1.BackupPlanAssociation"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -16,10 +16,10 @@
 
 #if SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Instance delete request.
-  public struct SqlInstancesDeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SqlInstancesDeleteRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Cloud SQL instance ID. This does not include the project ID.
@@ -86,7 +86,7 @@
         try expirationCheckAndSet(.finalBackupTtlDays(finalBackupTtlDays))
       }
       if let finalBackupExpiryTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp?.self, forKey: .finalBackupExpiryTime)
+        GoogleCloudWKT.Timestamp?.self, forKey: .finalBackupExpiryTime)
       {
         try expirationCheckAndSet(.finalBackupExpiryTime(finalBackupExpiryTime))
       }
@@ -115,17 +115,17 @@
       case finalBackupTtlDays(Swift.Int64)
       /// Optional. Final Backup expiration time.
       /// Timestamp in UTC of when this resource is considered expired.
-      indirect case finalBackupExpiryTime(GoogleCloudWkt.Timestamp?)
+      indirect case finalBackupExpiryTime(GoogleCloudWKT.Timestamp?)
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.SqlInstancesDeleteRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

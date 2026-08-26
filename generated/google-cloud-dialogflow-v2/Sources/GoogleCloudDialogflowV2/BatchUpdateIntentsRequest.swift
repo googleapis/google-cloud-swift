@@ -16,9 +16,9 @@
 
 #if Intents
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
-  public struct BatchUpdateIntentsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct BatchUpdateIntentsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The name of the agent to update or create intents in.
@@ -33,7 +33,7 @@
     public var languageCode: Swift.String = Swift.String()
 
     /// Optional. The mask to control which fields get updated.
-    public var updateMask: GoogleCloudWkt.FieldMask? = nil
+    public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
     /// Optional. The resource view to apply to the returned intent.
     public var intentView: IntentView = IntentView()
@@ -71,7 +71,7 @@
       self.parent = try container.decode(Swift.String.self, forKey: .parent)
       self.languageCode = try container.decode(Swift.String.self, forKey: .languageCode)
       self.updateMask = try container.decodeIfPresent(
-        GoogleCloudWkt.FieldMask.self, forKey: .updateMask)
+        GoogleCloudWKT.FieldMask.self, forKey: .updateMask)
       self.intentView = try container.decode(IntentView.self, forKey: .intentView)
 
       var intentBatch: OneOf_IntentBatch? = nil
@@ -127,11 +127,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.BatchUpdateIntentsRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Manifest configuration.
-public struct Manifest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Manifest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The name of the generated file. The default is `manifest` with the
@@ -63,7 +63,7 @@ public struct Manifest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// is used and segment_keep_duration is ignored.
   ///
   /// [google.cloud.video.livestream.v1.RetentionConfig.retention_window_duration]: <doc:RetentionConfig/retentionWindowDuration>
-  public var segmentKeepDuration: GoogleCloudWkt.Duration? = nil
+  public var segmentKeepDuration: GoogleCloudWKT.Duration? = nil
 
   /// Whether to use the timecode, as specified in timecode config, when setting:
   ///
@@ -201,10 +201,10 @@ public struct Manifest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.video.livestream.v1.Manifest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

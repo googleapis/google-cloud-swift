@@ -16,10 +16,10 @@
 
 #if SqlBackupsService || SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Read-replica configuration for connecting to the primary instance.
-  public struct ReplicaConfiguration: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ReplicaConfiguration: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// This is always `sql#replicaConfiguration`.
@@ -38,12 +38,12 @@
     /// primary instance fails, the replica instance will be promoted as the new
     /// primary instance. Only one replica can be specified as failover target, and
     /// the replica has to be in different zone with the primary instance.
-    public var failoverTarget: GoogleCloudWkt.BoolValue? = nil
+    public var failoverTarget: GoogleCloudWKT.BoolValue? = nil
 
     /// Optional. Specifies if a SQL Server replica is a cascadable replica. A
     /// cascadable replica is a SQL Server cross region replica that supports
     /// replica(s) under it.
-    public var cascadableReplica: GoogleCloudWkt.BoolValue? = nil
+    public var cascadableReplica: GoogleCloudWKT.BoolValue? = nil
 
     /// Initialize a new instance of `ReplicaConfiguration`.
     public init() {}
@@ -64,11 +64,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.ReplicaConfiguration"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

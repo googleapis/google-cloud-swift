@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A request to list previously created migration subtasks.
-public struct ListMigrationSubtasksRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ListMigrationSubtasksRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The migration task of the subtasks to list.
@@ -26,7 +26,7 @@ public struct ListMigrationSubtasksRequest: Codable, Equatable, GoogleCloudWkt._
   public var parent: Swift.String = Swift.String()
 
   /// Optional. The list of fields to be retrieved.
-  public var readMask: GoogleCloudWkt.FieldMask? = nil
+  public var readMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Optional. The maximum number of migration tasks to return. The service may
   /// return fewer than this number.
@@ -63,10 +63,10 @@ public struct ListMigrationSubtasksRequest: Codable, Equatable, GoogleCloudWkt._
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.migration.v2.ListMigrationSubtasksRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

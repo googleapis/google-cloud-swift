@@ -15,17 +15,17 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The aggregated compliance report.
-public struct AggregatedComplianceReport: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AggregatedComplianceReport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The control assessment details of the framework.
   public var controlAssessmentDetails: ControlAssessmentDetails? = nil
 
   /// The report time of the aggregated compliance report.
-  public var reportTime: GoogleCloudWkt.Timestamp? = nil
+  public var reportTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `AggregatedComplianceReport`.
   public init() {}
@@ -46,10 +46,10 @@ public struct AggregatedComplianceReport: Codable, Equatable, GoogleCloudWkt._An
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.cloudsecuritycompliance.v1.AggregatedComplianceReport"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

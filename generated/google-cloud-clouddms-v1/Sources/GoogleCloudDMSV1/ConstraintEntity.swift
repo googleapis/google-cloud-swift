@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Constraint is not used as an independent entity, it is retrieved
 /// as part of another entity such as Table or View.
-public struct ConstraintEntity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ConstraintEntity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The name of the table constraint.
@@ -34,7 +34,7 @@ public struct ConstraintEntity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var tableColumns: [Swift.String] = []
 
   /// Custom engine specific features.
-  public var customFeatures: GoogleCloudWkt.Struct? = nil
+  public var customFeatures: GoogleCloudWKT.Struct? = nil
 
   /// Reference columns which may be associated with the constraint. For example,
   /// if the constraint is a FOREIGN_KEY, this represents the list of full names
@@ -71,10 +71,10 @@ public struct ConstraintEntity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.clouddms.v1.ConstraintEntity"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

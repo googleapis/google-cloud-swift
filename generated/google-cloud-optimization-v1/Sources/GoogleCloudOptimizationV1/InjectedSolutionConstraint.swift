@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Solution injected in the request including information about which visits
 /// must be constrained and how they must be constrained.
-public struct InjectedSolutionConstraint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct InjectedSolutionConstraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Routes of the solution to inject. Some routes may be omitted from the
@@ -56,7 +56,7 @@ public struct InjectedSolutionConstraint: Codable, Equatable, GoogleCloudWkt._An
   /// visits will be relaxed and to which level. Shipments listed in
   /// the `skipped_shipment` field are constrained to be skipped; i.e., they
   /// cannot be performed.
-  public struct ConstraintRelaxation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ConstraintRelaxation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// All the visit constraint relaxations that will apply to visits on
@@ -130,7 +130,7 @@ public struct InjectedSolutionConstraint: Codable, Equatable, GoogleCloudWkt._An
     /// and no visits may be inserted into these sequences. Also, if a
     /// vehicle start or end does not satisfy the conditions of any
     /// relaxation the time is fixed, unless the vehicle is empty.
-    public struct Relaxation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Relaxation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The constraint relaxation level that applies when the conditions
@@ -140,7 +140,7 @@ public struct InjectedSolutionConstraint: Codable, Equatable, GoogleCloudWkt._An
         InjectedSolutionConstraint.ConstraintRelaxation.Relaxation.Level()
 
       /// The time at or after which the relaxation `level` may be applied.
-      public var thresholdTime: GoogleCloudWkt.Timestamp? = nil
+      public var thresholdTime: GoogleCloudWKT.Timestamp? = nil
 
       /// The number of visits at or after which the relaxation `level` may be
       /// applied. If `threshold_visit_count` is 0 (or unset), the `level` may be
@@ -299,11 +299,11 @@ public struct InjectedSolutionConstraint: Codable, Equatable, GoogleCloudWkt._An
         return
           "type.googleapis.com/google.cloud.optimization.v1.InjectedSolutionConstraint.ConstraintRelaxation.Relaxation"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -311,21 +311,21 @@ public struct InjectedSolutionConstraint: Codable, Equatable, GoogleCloudWkt._An
       return
         "type.googleapis.com/google.cloud.optimization.v1.InjectedSolutionConstraint.ConstraintRelaxation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.optimization.v1.InjectedSolutionConstraint"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

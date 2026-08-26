@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The first-class citizen for Document AI. Each processor defines how to
 /// extract structural information from a document.
-public struct Processor: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Processor: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Immutable. The resource name of the processor.
@@ -50,7 +50,7 @@ public struct Processor: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var processEndpoint: Swift.String = Swift.String()
 
   /// Output only. The time the processor was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The [KMS key](https://cloud.google.com/security-key-management) used for
   /// encryption and decryption in CMEK scenarios.
@@ -229,10 +229,10 @@ public struct Processor: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.documentai.v1.Processor"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

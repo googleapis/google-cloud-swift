@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// SecretManagerConfig is config for secret manager enablement.
-public struct SecretManagerConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SecretManagerConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Enable/Disable Secret Manager Config.
@@ -44,7 +44,7 @@ public struct SecretManagerConfig: Codable, Equatable, GoogleCloudWkt._AnyPackab
   }
 
   /// RotationConfig is config for secret manager auto rotation.
-  public struct RotationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RotationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Whether the rotation is enabled.
@@ -52,7 +52,7 @@ public struct SecretManagerConfig: Codable, Equatable, GoogleCloudWkt._AnyPackab
 
     /// The interval between two consecutive rotations. Default rotation interval
     /// is 2 minutes.
-    public var rotationInterval: GoogleCloudWkt.Duration? = nil
+    public var rotationInterval: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `RotationConfig`.
     public init() {}
@@ -73,21 +73,21 @@ public struct SecretManagerConfig: Codable, Equatable, GoogleCloudWkt._AnyPackab
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.SecretManagerConfig.RotationConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.SecretManagerConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

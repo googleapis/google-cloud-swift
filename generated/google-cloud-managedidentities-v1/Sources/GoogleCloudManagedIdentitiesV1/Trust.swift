@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents a relationship between two domains. This allows a controller in
 /// one domain to authenticate a user in another domain.
-public struct Trust: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Trust: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The fully qualified target domain name which will be in trust with the
@@ -47,10 +47,10 @@ public struct Trust: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var trustHandshakeSecret: Swift.String = Swift.String()
 
   /// Output only. The time the instance was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The last update time.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The current state of the trust.
   public var state: Trust.State = Trust.State()
@@ -59,7 +59,7 @@ public struct Trust: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var stateDescription: Swift.String = Swift.String()
 
   /// Output only. The last heartbeat time when the trust was known to be connected.
-  public var lastTrustHeartbeatTime: GoogleCloudWkt.Timestamp? = nil
+  public var lastTrustHeartbeatTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `Trust`.
   public init() {}
@@ -426,10 +426,10 @@ public struct Trust: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.managedidentities.v1.Trust"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

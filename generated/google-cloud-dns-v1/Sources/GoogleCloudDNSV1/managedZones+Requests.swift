@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 extension ManagedZonesClient {
   /// Synthetic request message for the [create()][.managedZones.create] method.
-  public struct CreateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CreateRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
@@ -50,16 +50,16 @@ extension ManagedZonesClient {
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.managedZones.createRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Synthetic request message for the [delete()][.managedZones.delete] method.
-  public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DeleteRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
@@ -90,16 +90,16 @@ extension ManagedZonesClient {
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.managedZones.deleteRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Synthetic request message for the [get()][.managedZones.get] method.
-  public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GetRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
@@ -130,16 +130,16 @@ extension ManagedZonesClient {
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.managedZones.getRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Synthetic request message for the [getIamPolicy()][.managedZones.getIamPolicy] method.
-  public struct GetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GetIamPolicyRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
@@ -167,16 +167,16 @@ extension ManagedZonesClient {
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.managedZones.getIamPolicyRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Synthetic request message for the [list()][.managedZones.list] method.
-  public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ListRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Restricts the list to return only zones with this domain name.
@@ -210,16 +210,16 @@ extension ManagedZonesClient {
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.managedZones.listRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Synthetic request message for the [patch()][.managedZones.patch] method.
-  public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PatchRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
@@ -253,16 +253,16 @@ extension ManagedZonesClient {
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.managedZones.patchRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Synthetic request message for the [setIamPolicy()][.managedZones.setIamPolicy] method.
-  public struct SetIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SetIamPolicyRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
@@ -290,16 +290,16 @@ extension ManagedZonesClient {
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.managedZones.setIamPolicyRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Synthetic request message for the [testIamPermissions()][.managedZones.testIamPermissions] method.
-  public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TestIamPermissionsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
@@ -327,16 +327,16 @@ extension ManagedZonesClient {
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.managedZones.testIamPermissionsRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Synthetic request message for the [update()][.managedZones.update] method.
-  public struct UpdateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct UpdateRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
@@ -370,11 +370,11 @@ extension ManagedZonesClient {
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.managedZones.updateRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 }

@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleIAMV1
   import GoogleLongRunning
   import GoogleRpc
@@ -696,7 +696,7 @@
       /// See `DatasetServiceClient.updateDataset`.
       func updateDataset(
         dataset: Dataset?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudAIPlatformV1.Dataset
 
       /// See `DatasetServiceClient.listDatasets`.
@@ -772,7 +772,7 @@
       /// See `DatasetServiceClient.updateDatasetVersion`.
       func updateDatasetVersion(
         datasetVersion: DatasetVersion?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudAIPlatformV1.DatasetVersion
 
       /// See `DatasetServiceClient.deleteDatasetVersion`.
@@ -1253,7 +1253,7 @@
 
     public func updateDataset(
       dataset: Dataset?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.Dataset {
       let request = UpdateDatasetRequest().with {
         $0.dataset = dataset
@@ -1465,7 +1465,7 @@
 
     public func updateDatasetVersion(
       datasetVersion: DatasetVersion?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.DatasetVersion {
       let request = UpdateDatasetVersionRequest().with {
         $0.datasetVersion = datasetVersion

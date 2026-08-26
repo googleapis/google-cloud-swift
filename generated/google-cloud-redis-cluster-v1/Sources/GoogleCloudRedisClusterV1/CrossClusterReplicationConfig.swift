@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Cross cluster replication config.
-public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The role of the cluster in cross cluster replication.
@@ -37,7 +37,7 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleCloudWkt.
   public var secondaryClusters: [CrossClusterReplicationConfig.RemoteCluster] = []
 
   /// Output only. The last time cross cluster replication config was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. An output only view of all the member clusters participating
   /// in the cross cluster replication. This view will be provided by every
@@ -69,7 +69,7 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleCloudWkt.
 
   /// Details of the remote cluster associated with this cluster in a cross
   /// cluster replication setup.
-  public struct RemoteCluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RemoteCluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The full resource path of the remote cluster in
@@ -99,17 +99,17 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleCloudWkt.
       return
         "type.googleapis.com/google.cloud.redis.cluster.v1.CrossClusterReplicationConfig.RemoteCluster"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// An output only view of all the member clusters participating in the cross
   /// cluster replication.
-  public struct Membership: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Membership: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The primary cluster that acts as the source of replication
@@ -140,11 +140,11 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleCloudWkt.
       return
         "type.googleapis.com/google.cloud.redis.cluster.v1.CrossClusterReplicationConfig.Membership"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -267,10 +267,10 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleCloudWkt.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.redis.cluster.v1.CrossClusterReplicationConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

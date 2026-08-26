@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleCloudGax
 
@@ -277,7 +277,7 @@
       /// See `ContextsClient.updateContext`.
       func updateContext(
         context: Context?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudDialogflowV2.Context
 
       /// See `ContextsClient.deleteContext`.
@@ -496,7 +496,7 @@
 
     public func updateContext(
       context: Context?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDialogflowV2.Context {
       let request = UpdateContextRequest().with {
         $0.context = context

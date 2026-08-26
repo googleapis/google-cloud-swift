@@ -16,10 +16,10 @@
 
 #if DeploymentResourcePoolService || EndpointService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A deployment of a Model. Endpoints contain one or more DeployedModels.
-  public struct DeployedModel: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DeployedModel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Immutable. The ID of the DeployedModel. If not provided upon deployment,
@@ -47,7 +47,7 @@
     public var displayName: Swift.String = Swift.String()
 
     /// Output only. Timestamp when the DeployedModel was created.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Explanation configuration for this DeployedModel.
     ///
@@ -189,7 +189,7 @@
       self.modelVersionId = try container.decode(Swift.String.self, forKey: .modelVersionId)
       self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
       self.createTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
       self.explanationSpec = try container.decodeIfPresent(
         ExplanationSpec.self, forKey: .explanationSpec)
       self.disableExplanations = try container.decode(Swift.Bool.self, forKey: .disableExplanations)
@@ -268,14 +268,14 @@
     }
 
     /// Runtime status of the deployed model.
-    public struct Status: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Status: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. The latest deployed model's status message (if any).
       public var message: Swift.String = Swift.String()
 
       /// Output only. The time at which the status was last updated.
-      public var lastUpdateTime: GoogleCloudWkt.Timestamp? = nil
+      public var lastUpdateTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Output only. The number of available replicas of the deployed model.
       public var availableReplicaCount: Swift.Int32 = Swift.Int32()
@@ -299,11 +299,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.DeployedModel.Status"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -331,11 +331,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.DeployedModel"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An individual action. Each action represents what to do if a policy
 /// matches.
-public struct FirewallAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct FirewallAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   public var firewallActionOneof: OneOf_FirewallActionOneof? = nil
@@ -113,7 +113,7 @@ public struct FirewallAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// An allow action continues processing a request unimpeded.
-  public struct AllowAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AllowAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `AllowAction`.
@@ -135,17 +135,17 @@ public struct FirewallAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.recaptchaenterprise.v1.FirewallAction.AllowAction"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A block action serves an HTTP error code a prevents the request from
   /// hitting the backend.
-  public struct BlockAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct BlockAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `BlockAction`.
@@ -167,11 +167,11 @@ public struct FirewallAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.recaptchaenterprise.v1.FirewallAction.BlockAction"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -180,7 +180,7 @@ public struct FirewallAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// script is tasked with collecting user signals on the requested web page,
   /// issuing tokens as a cookie within the site domain, and enabling their
   /// utilization in subsequent page requests.
-  public struct IncludeRecaptchaScriptAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct IncludeRecaptchaScriptAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `IncludeRecaptchaScriptAction`.
@@ -203,17 +203,17 @@ public struct FirewallAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.recaptchaenterprise.v1.FirewallAction.IncludeRecaptchaScriptAction"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A redirect action returns a 307 (temporary redirect) response, pointing
   /// the user to a reCAPTCHA interstitial page to attach a token.
-  public struct RedirectAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RedirectAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `RedirectAction`.
@@ -235,17 +235,17 @@ public struct FirewallAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.recaptchaenterprise.v1.FirewallAction.RedirectAction"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A substitute action transparently serves a different page than the one
   /// requested.
-  public struct SubstituteAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SubstituteAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The address to redirect to. The target is a relative path in
@@ -272,18 +272,18 @@ public struct FirewallAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.recaptchaenterprise.v1.FirewallAction.SubstituteAction"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A set header action sets a header and forwards the request to the
   /// backend. This can be used to trigger custom protection implemented on the
   /// backend.
-  public struct SetHeaderAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SetHeaderAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The header key to set in the request to the backend server.
@@ -312,11 +312,11 @@ public struct FirewallAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.recaptchaenterprise.v1.FirewallAction.SetHeaderAction"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -344,10 +344,10 @@ public struct FirewallAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.recaptchaenterprise.v1.FirewallAction"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -16,10 +16,10 @@
 
 #if DatasetService || DeploymentResourcePoolService || EndpointService || JobService || ModelService || PipelineService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Metadata describing the Model's input and output for explanation.
-  public struct ExplanationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ExplanationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Map from feature names to feature input metadata. Keys are the
@@ -94,7 +94,7 @@
     /// Tensorflow.
     ///
     /// [google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.input_baselines]: <doc:ExplanationMetadata/InputMetadata/inputBaselines>
-    public struct InputMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct InputMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Baseline inputs for this feature.
@@ -121,7 +121,7 @@
       /// [google.cloud.aiplatform.v1.ExplainRequest.instances]: <doc:ExplainRequest/instances>
       /// [google.cloud.aiplatform.v1.Model.predict_schemata]: <doc:Model/predictSchemata>
       /// [google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri]: <doc:PredictSchemata/instanceSchemaUri>
-      public var inputBaselines: [GoogleCloudWkt.Value] = []
+      public var inputBaselines: [GoogleCloudWKT.Value] = []
 
       /// Name of the input tensor for this feature. Required and is only
       /// applicable to Vertex AI-provided images for Tensorflow.
@@ -179,7 +179,7 @@
       /// The shape of each baseline should match the shape of the encoded tensor.
       /// If a scalar is provided, Vertex AI broadcasts to the same shape as the
       /// encoded tensor.
-      public var encodedBaselines: [GoogleCloudWkt.Value] = []
+      public var encodedBaselines: [GoogleCloudWKT.Value] = []
 
       /// Visualization configurations for image explanation.
       public var visualization: ExplanationMetadata.InputMetadata.Visualization? = nil
@@ -218,7 +218,7 @@
       /// stddev = 1 values, then original_mean, and original_stddev refer to the
       /// mean and stddev of the original feature (e.g. image tensor) from which
       /// input feature (with mean = 0 and stddev = 1) was obtained.
-      public struct FeatureValueDomain: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct FeatureValueDomain: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// The minimum permissible value for this feature.
@@ -257,16 +257,16 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.FeatureValueDomain"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Visualization configurations for image explanation.
-      public struct Visualization: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Visualization: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Type of the image visualization. Only applicable to
@@ -820,11 +820,11 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.Visualization"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -1015,16 +1015,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Metadata of the prediction output to be explained.
-    public struct OutputMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct OutputMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Name of the output tensor. Required and is only applicable to Vertex
@@ -1081,7 +1081,7 @@
           displayNameMapping = $0
         }
         if let indexDisplayNameMapping = try container.decodeIfPresent(
-          GoogleCloudWkt.Value?.self, forKey: .indexDisplayNameMapping)
+          GoogleCloudWKT.Value?.self, forKey: .indexDisplayNameMapping)
         {
           try displayNameMappingCheckAndSet(.indexDisplayNameMapping(indexDisplayNameMapping))
         }
@@ -1136,7 +1136,7 @@
         ///
         /// [google.cloud.aiplatform.v1.Attribution.output_display_name]: <doc:Attribution/outputDisplayName>
         /// [google.cloud.aiplatform.v1.Attribution.output_index]: <doc:Attribution/outputIndex>
-        indirect case indexDisplayNameMapping(GoogleCloudWkt.Value?)
+        indirect case indexDisplayNameMapping(GoogleCloudWKT.Value?)
         /// Specify a field name in the prediction to look for the display name.
         ///
         /// Use this if the prediction contains the display names for the outputs.
@@ -1153,22 +1153,22 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.ExplanationMetadata.OutputMetadata"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.ExplanationMetadata"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

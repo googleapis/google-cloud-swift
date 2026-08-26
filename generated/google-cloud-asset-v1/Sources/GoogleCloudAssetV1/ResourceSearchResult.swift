@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A result of Resource Search, containing information of a cloud resource.
-public struct ResourceSearchResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ResourceSearchResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The full resource name of this resource. Example:
@@ -174,7 +174,7 @@ public struct ResourceSearchResult: Codable, Equatable, GoogleCloudWkt._AnyPacka
   ///     - value in date string. Example: `createTime > 2021-01-01`
   ///     - value in date-time string (must be quoted). Example: `createTime >
   ///     "2021-01-01T00:00:00"`
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The last update timestamp of this resource, at which the resource was last
   /// modified or deleted. The granularity is in seconds. Timestamp.nanos will
@@ -188,7 +188,7 @@ public struct ResourceSearchResult: Codable, Equatable, GoogleCloudWkt._AnyPacka
   ///     - value in date string. Example: `updateTime < 2021-01-01`
   ///     - value in date-time string (must be quoted). Example: `updateTime <
   ///     "2021-01-01T00:00:00"`
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The state of this resource. Different resources types have different state
   /// definitions that are mapped from various fields of different resource
@@ -231,7 +231,7 @@ public struct ResourceSearchResult: Codable, Equatable, GoogleCloudWkt._AnyPacka
   /// * Use a free text query to match the attributes values. Example: to search
   ///   `additional_attributes = { dnsName: "foobar" }`, you can issue a query
   ///   `foobar`.
-  public var additionalAttributes: GoogleCloudWkt.Struct? = nil
+  public var additionalAttributes: GoogleCloudWKT.Struct? = nil
 
   /// The full resource name of this resource's parent, if it has one.
   /// To search against the `parent_full_resource_name`:
@@ -420,10 +420,10 @@ public struct ResourceSearchResult: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.asset.v1.ResourceSearchResult"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

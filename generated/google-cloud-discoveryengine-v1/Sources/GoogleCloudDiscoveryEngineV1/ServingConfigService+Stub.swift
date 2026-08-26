@@ -16,7 +16,7 @@
 
 #if ServingConfigService
   import Foundation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleCloudGax
 

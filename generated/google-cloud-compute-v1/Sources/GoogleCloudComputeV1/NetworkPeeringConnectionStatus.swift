@@ -16,13 +16,13 @@
 
 #if Networks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// [Output Only] Describes the state of a peering connection, not just the
   /// local peering. This field provides information about the effective settings
   /// for the connection as a whole, including pending delete/update requests for
   /// CONSENSUS peerings.
-  public struct NetworkPeeringConnectionStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct NetworkPeeringConnectionStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The consensus state contains information about the status of update
@@ -171,11 +171,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.NetworkPeeringConnectionStatus"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

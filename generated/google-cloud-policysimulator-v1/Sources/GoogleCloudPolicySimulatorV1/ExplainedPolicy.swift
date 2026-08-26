@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleIAMV1
 
 /// Details about how a specific IAM [Policy][google.iam.v1.Policy] contributed
 /// to the access check.
 ///
 /// [google.iam.v1.Policy]: https://www.google.com/search?q=Swift+google.iam.v1+GoogleIAMV1.Policy
-public struct ExplainedPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ExplainedPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Indicates whether _this policy_ provides the specified permission to the
@@ -96,10 +96,10 @@ public struct ExplainedPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.policysimulator.v1.ExplainedPolicy"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

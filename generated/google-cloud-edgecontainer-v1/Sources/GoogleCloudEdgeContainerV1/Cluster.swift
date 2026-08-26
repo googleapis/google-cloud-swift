@@ -15,21 +15,21 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// A Google Distributed Cloud Edge Kubernetes cluster.
-public struct Cluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Cluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The resource name of the cluster.
   public var name: Swift.String = Swift.String()
 
   /// Output only. The time when the cluster was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time when the cluster was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Labels associated with this resource.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -124,7 +124,7 @@ public struct Cluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Configuration of the cluster control plane.
-  public struct ControlPlane: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ControlPlane: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var config: OneOf_Config? = nil
@@ -189,7 +189,7 @@ public struct Cluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Configuration specific to clusters with a control plane hosted remotely.
-    public struct Remote: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Remote: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Initialize a new instance of `Remote`.
@@ -211,11 +211,11 @@ public struct Cluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.edgecontainer.v1.Cluster.ControlPlane.Remote"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -226,7 +226,7 @@ public struct Cluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// project with any other type of clusters, including non-GDCE clusters.
     /// Mixing local control plane GDCE clusters with any other type of
     /// clusters in the same project can result in data loss.
-    public struct Local: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Local: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Name of the Google Distributed Cloud Edge zones where this node pool
@@ -271,11 +271,11 @@ public struct Cluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.edgecontainer.v1.Cluster.ControlPlane.Local"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -403,16 +403,16 @@ public struct Cluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.edgecontainer.v1.Cluster.ControlPlane"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Config that customers are allowed to define for GDCE system add-ons.
-  public struct SystemAddonsConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SystemAddonsConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Config for Ingress.
@@ -440,7 +440,7 @@ public struct Cluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// Config for the Ingress add-on which allows customers to create an Ingress
     /// object to manage external access to the servers in a cluster. The add-on
     /// consists of istiod and istio-ingress.
-    public struct Ingress: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Ingress: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. Whether Ingress is disabled.
@@ -469,16 +469,16 @@ public struct Cluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.Ingress"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// VMServiceConfig defines the configuration for GDCE VM Service.
-    public struct VMServiceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct VMServiceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. Whether VMM is enabled.
@@ -504,27 +504,27 @@ public struct Cluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig.VMServiceConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.edgecontainer.v1.Cluster.SystemAddonsConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configuration for Customer-managed KMS key support for control plane nodes.
-  public struct ControlPlaneEncryption: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ControlPlaneEncryption: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The Cloud KMS CryptoKey e.g.
@@ -571,11 +571,11 @@ public struct Cluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.edgecontainer.v1.Cluster.ControlPlaneEncryption"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -583,7 +583,7 @@ public struct Cluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// to the cluster workloads, including Google-driven or user-initiated cluster
   /// upgrades, user-initiated cluster configuration changes that require
   /// restarting nodes, etc.
-  public struct MaintenanceEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MaintenanceEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. UUID of the maintenance event.
@@ -608,18 +608,18 @@ public struct Cluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public var state: Cluster.MaintenanceEvent.State = Cluster.MaintenanceEvent.State()
 
     /// Output only. The time when the maintenance event request was created.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. The time when the maintenance event started.
-    public var startTime: GoogleCloudWkt.Timestamp? = nil
+    public var startTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. The time when the maintenance event ended, either
     /// successfully or not. If the maintenance event is split into multiple
     /// maintenance windows, end_time is only updated when the whole flow ends.
-    public var endTime: GoogleCloudWkt.Timestamp? = nil
+    public var endTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. The time when the maintenance event message was updated.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `MaintenanceEvent`.
     public init() {}
@@ -955,23 +955,23 @@ public struct Cluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.edgecontainer.v1.Cluster.MaintenanceEvent"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configuration of the cluster survivability, e.g., for the case when network
   /// connectivity is lost.
-  public struct SurvivabilityConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SurvivabilityConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Time period that allows the cluster nodes to be rebooted and
     /// become functional without network connectivity to Google. The default 0
     /// means not allowed. The maximum is 7 days.
-    public var offlineRebootTtl: GoogleCloudWkt.Duration? = nil
+    public var offlineRebootTtl: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `SurvivabilityConfig`.
     public init() {}
@@ -992,24 +992,24 @@ public struct Cluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.edgecontainer.v1.Cluster.SurvivabilityConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// ConnectionState holds the current connection state from the cluster to
   /// Google.
-  public struct ConnectionState: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ConnectionState: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The current connection state.
     public var state: Cluster.ConnectionState.State = Cluster.ConnectionState.State()
 
     /// Output only. The time when the connection state was last changed.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `ConnectionState`.
     public init() {}
@@ -1143,11 +1143,11 @@ public struct Cluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.edgecontainer.v1.Cluster.ConnectionState"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -1386,10 +1386,10 @@ public struct Cluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.edgecontainer.v1.Cluster"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

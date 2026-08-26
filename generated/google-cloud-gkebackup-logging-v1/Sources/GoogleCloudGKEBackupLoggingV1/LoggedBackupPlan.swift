@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// BackupPlan as stored in Platform log. It's used to log the details of
 /// a createBackupPlan/updateBackupPlan request, so only fields that can be taken
 /// from user input are included here.
-public struct LoggedBackupPlan: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct LoggedBackupPlan: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// User specified descriptive string for this BackupPlan.
@@ -70,7 +70,7 @@ public struct LoggedBackupPlan: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// 1. When to automatically delete Backups created under this BackupPlan
   /// 2. A plan level minimum Backup retain days which blocks deletion
   /// 3. Lock to disallow any policy updates
-  public struct RetentionPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RetentionPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Number of days during which deletion of a Backup created under this
@@ -109,16 +109,16 @@ public struct LoggedBackupPlan: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.gkebackup.logging.v1.LoggedBackupPlan.RetentionPolicy"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Schedule, an inner message type defines a cron schedule.
-  public struct Schedule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Schedule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// A cron style string schedule on which an operation will be executed.
@@ -146,17 +146,17 @@ public struct LoggedBackupPlan: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.gkebackup.logging.v1.LoggedBackupPlan.Schedule"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// BackupConfig, an inner message type defines the configuration of creating
   /// a backup from this BackupPlan
-  public struct BackupConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct BackupConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// A boolean flag specifies whether volume data should be backed up
@@ -259,21 +259,21 @@ public struct LoggedBackupPlan: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.gkebackup.logging.v1.LoggedBackupPlan.BackupConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkebackup.logging.v1.LoggedBackupPlan"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

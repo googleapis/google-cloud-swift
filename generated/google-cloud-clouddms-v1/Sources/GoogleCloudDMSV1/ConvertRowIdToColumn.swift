@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Options to configure rule type ConvertROWIDToColumn.
 /// The rule is used to add column rowid to destination tables based on an Oracle
@@ -28,7 +28,7 @@ import Foundation
 /// This rule requires additional filter to be specified beyond the basic rule
 /// filter field, which is whether or not to work on tables which already have a
 /// primary key defined.
-public struct ConvertRowIdToColumn: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ConvertRowIdToColumn: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Only work on tables without primary key defined
@@ -53,10 +53,10 @@ public struct ConvertRowIdToColumn: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.clouddms.v1.ConvertRowIdToColumn"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

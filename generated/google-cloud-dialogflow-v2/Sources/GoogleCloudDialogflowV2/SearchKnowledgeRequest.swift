@@ -16,13 +16,13 @@
 
 #if Conversations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The request message for
   /// [Conversations.SearchKnowledge][google.cloud.dialogflow.v2.Conversations.SearchKnowledge].
   ///
   /// [google.cloud.dialogflow.v2.Conversations.SearchKnowledge]: <doc:ConversationsClient/searchKnowledge(request:options:)>
-  public struct SearchKnowledgeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SearchKnowledgeRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The parent resource contains the conversation profile
@@ -79,7 +79,7 @@
     ///   ]
     /// }
     /// ```
-    public var endUserMetadata: GoogleCloudWkt.Struct? = nil
+    public var endUserMetadata: GoogleCloudWKT.Struct? = nil
 
     /// Optional. Configuration specific to search queries with data stores.
     public var searchConfig: SearchKnowledgeRequest.SearchConfig? = nil
@@ -104,7 +104,7 @@
     }
 
     /// Configuration specific to search queries with data stores.
-    public struct SearchConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SearchConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. Boost specifications for data stores.
@@ -139,7 +139,7 @@
       }
 
       /// Boost specifications for data stores.
-      public struct BoostSpecs: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct BoostSpecs: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. Data Stores where the boosting configuration is applied. The
@@ -171,7 +171,7 @@
         /// A copy of google.cloud.discoveryengine.v1main.BoostSpec, field
         /// documentation is available at
         /// https://cloud.google.com/generative-ai-app-builder/docs/reference/rest/v1alpha/BoostSpec
-        public struct BoostSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct BoostSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Optional. Condition boost specifications. If a document matches
@@ -198,7 +198,7 @@
           }
 
           /// Boost applies to documents which match a condition.
-          public struct ConditionBoostSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+          public struct ConditionBoostSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
             Sendable
           {
             /// Optional. An expression which specifies a boost condition. The
@@ -257,7 +257,7 @@
             /// attribute
             /// value. It provides more controls for customized ranking than the
             /// simple (condition, boost) combination above.
-            public struct BoostControlSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+            public struct BoostControlSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
               Sendable
             {
               /// Optional. The name of the field whose value will be used to
@@ -308,7 +308,7 @@
               /// The control points used to define the curve. The curve defined
               /// through these control points can only be monotonically increasing
               /// or decreasing(constant values are acceptable).
-              public struct ControlPoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+              public struct ControlPoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
                 Sendable
               {
                 /// Optional. Can be one of:
@@ -343,11 +343,11 @@
                   return
                     "type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec.ConditionBoostSpec.BoostControlSpec.ControlPoint"
                 }
-                public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-                  self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+                public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+                  self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
                 }
-                public func _pack() throws -> GoogleCloudWkt.Struct {
-                  return try GoogleCloudWkt._slowAnySerialize(message: self)
+                public func _pack() throws -> GoogleCloudWKT.Struct {
+                  return try GoogleCloudWKT._slowAnySerialize(message: self)
                 }
               }
 
@@ -571,11 +571,11 @@
                 return
                   "type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec.ConditionBoostSpec.BoostControlSpec"
               }
-              public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-                self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+              public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+                self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
               }
-              public func _pack() throws -> GoogleCloudWkt.Struct {
-                return try GoogleCloudWkt._slowAnySerialize(message: self)
+              public func _pack() throws -> GoogleCloudWKT.Struct {
+                return try GoogleCloudWKT._slowAnySerialize(message: self)
               }
             }
 
@@ -583,11 +583,11 @@
               return
                 "type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec.ConditionBoostSpec"
             }
-            public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-              self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+            public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+              self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
             }
-            public func _pack() throws -> GoogleCloudWkt.Struct {
-              return try GoogleCloudWkt._slowAnySerialize(message: self)
+            public func _pack() throws -> GoogleCloudWKT.Struct {
+              return try GoogleCloudWKT._slowAnySerialize(message: self)
             }
           }
 
@@ -595,11 +595,11 @@
             return
               "type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.BoostSpecs.BoostSpec"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
@@ -607,16 +607,16 @@
           return
             "type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.BoostSpecs"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Filter specification for data store queries.
-      public struct FilterSpecs: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct FilterSpecs: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. The data store where the filter configuration is applied.
@@ -650,22 +650,22 @@
           return
             "type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.FilterSpecs"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -786,11 +786,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.SearchKnowledgeRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

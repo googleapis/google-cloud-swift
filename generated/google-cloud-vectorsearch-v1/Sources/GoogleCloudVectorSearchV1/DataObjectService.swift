@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleCloudGax
 
@@ -269,7 +269,7 @@ extension Clients {
     /// See `DataObjectServiceClient.updateDataObject`.
     func updateDataObject(
       dataObject: DataObject?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudVectorSearchV1.DataObject
 
     /// See `DataObjectServiceClient.batchUpdateDataObjects`.
@@ -489,7 +489,7 @@ extension Clients.DataObjectServiceProtocol {
 
   public func updateDataObject(
     dataObject: DataObject?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudVectorSearchV1.DataObject {
     let request = UpdateDataObjectRequest().with {
       $0.dataObject = dataObject

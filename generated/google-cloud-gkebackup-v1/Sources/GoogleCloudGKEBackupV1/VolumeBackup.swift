@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents the backup of a specific persistent volume as a component of a
 /// Backup - both the record of the operation and a pointer to the underlying
 /// storage-specific artifacts.
-public struct VolumeBackup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct VolumeBackup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The full name of the VolumeBackup resource.
@@ -33,11 +33,11 @@ public struct VolumeBackup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Output only. The timestamp when this VolumeBackup resource was
   /// created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The timestamp when this VolumeBackup resource was last
   /// updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. A reference to the source Kubernetes PVC from which this
   /// VolumeBackup was created.
@@ -63,7 +63,7 @@ public struct VolumeBackup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Output only. The timestamp when the associated underlying volume backup
   /// operation completed.
-  public var completeTime: GoogleCloudWkt.Timestamp? = nil
+  public var completeTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The current state of this VolumeBackup.
   public var state: VolumeBackup.State = VolumeBackup.State()
@@ -351,10 +351,10 @@ public struct VolumeBackup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkebackup.v1.VolumeBackup"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

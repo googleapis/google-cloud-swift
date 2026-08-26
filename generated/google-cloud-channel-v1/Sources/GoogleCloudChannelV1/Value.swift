@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Data type and value of a parameter.
-public struct Value: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Value: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The kind of value.
@@ -71,7 +71,7 @@ public struct Value: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       try kindCheckAndSet(.doubleValue(doubleValue))
     }
     if let protoValue = try container.decodeIfPresent(
-      GoogleCloudWkt.`Any`?.self, forKey: .protoValue)
+      GoogleCloudWKT.`Any`?.self, forKey: .protoValue)
     {
       try kindCheckAndSet(.protoValue(protoValue))
     }
@@ -109,7 +109,7 @@ public struct Value: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// Represents a double value.
     case doubleValue(Swift.Double)
     /// Represents an 'Any' proto value.
-    indirect case protoValue(GoogleCloudWkt.`Any`?)
+    indirect case protoValue(GoogleCloudWKT.`Any`?)
     /// Represents a boolean value.
     case boolValue(Swift.Bool)
   }
@@ -117,10 +117,10 @@ public struct Value: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.channel.v1.Value"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

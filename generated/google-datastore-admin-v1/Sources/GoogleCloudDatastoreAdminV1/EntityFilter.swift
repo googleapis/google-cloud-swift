@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Identifies a subset of entities in a project. This is specified as
 /// combinations of kinds and namespaces (either or both of which may be all, as
@@ -36,7 +36,7 @@ import Foundation
 ///
 /// The entire Baz namespace:
 ///   kinds=[], namespace_ids=['Baz']
-public struct EntityFilter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct EntityFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// If empty, then this represents all kinds.
@@ -70,10 +70,10 @@ public struct EntityFilter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.datastore.admin.v1.EntityFilter"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents an MCP Server. MCP Servers act as endpoints that expose a
 /// collection of tools that can be invoked by agents.
-public struct McpServer: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct McpServer: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The resource name of the MCP Server.
@@ -44,7 +44,7 @@ public struct McpServer: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// The capabilities that a server may support. Known capabilities defined in
   /// https://modelcontextprotocol.io/specification/2025-06-18/schema#servercapabilities
   /// and additional capabilities defined by the servers.
-  public var capabilities: GoogleCloudWkt.Struct? = nil
+  public var capabilities: GoogleCloudWKT.Struct? = nil
 
   /// Output only. The state of the MCP Server.
   public var state: State = State()
@@ -68,10 +68,10 @@ public struct McpServer: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.apiregistry.v1.McpServer"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

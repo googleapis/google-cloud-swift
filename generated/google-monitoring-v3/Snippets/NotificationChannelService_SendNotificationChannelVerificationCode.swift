@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudMonitoringV3
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: NotificationChannelServiceClient) async throws {
   try await client.sendNotificationChannelVerificationCode(

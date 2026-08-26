@@ -16,10 +16,10 @@
 
 #if InstanceGroupManagers
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// InstanceGroupManagers.createInstances
-  public struct InstanceGroupManagersCreateInstancesRequest: Codable, Equatable, GoogleCloudWkt
+  public struct InstanceGroupManagersCreateInstancesRequest: Codable, Equatable, GoogleCloudWKT
       ._AnyPackable,
     Sendable
   {
@@ -46,11 +46,11 @@
       return
         "type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagersCreateInstancesRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

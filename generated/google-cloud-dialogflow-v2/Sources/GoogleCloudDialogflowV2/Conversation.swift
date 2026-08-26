@@ -16,13 +16,13 @@
 
 #if Conversations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents a conversation.
   /// A conversation is an interaction between an agent, including live agents
   /// and Dialogflow agents, and a support customer. Conversations can
   /// include phone calls and text-based chat sessions.
-  public struct Conversation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Conversation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Identifier. The unique identifier of this conversation.
@@ -44,10 +44,10 @@
     public var phoneNumber: ConversationPhoneNumber? = nil
 
     /// Output only. The time the conversation was started.
-    public var startTime: GoogleCloudWkt.Timestamp? = nil
+    public var startTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. The time the conversation was finished.
-    public var endTime: GoogleCloudWkt.Timestamp? = nil
+    public var endTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Optional. The stage of a conversation. It indicates whether the virtual
     /// agent or a human agent is handling the conversation.
@@ -103,7 +103,7 @@
 
     /// The information about phone calls connected via phone gateway to the
     /// conversation.
-    public struct TelephonyConnectionInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct TelephonyConnectionInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. The number dialed to connect this call in E.164 format.
@@ -137,7 +137,7 @@
       }
 
       /// The SIP headers from the initial SIP INVITE.
-      public struct SipHeader: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct SipHeader: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. The name of the header.
@@ -166,16 +166,16 @@
           return
             "type.googleapis.com/google.cloud.dialogflow.v2.Conversation.TelephonyConnectionInfo.SipHeader"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// The mime content from the initial SIP INVITE.
-      public struct MimeContent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct MimeContent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. The mime type of the content.
@@ -204,27 +204,27 @@
           return
             "type.googleapis.com/google.cloud.dialogflow.v2.Conversation.TelephonyConnectionInfo.MimeContent"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.v2.Conversation.TelephonyConnectionInfo"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Represents a section of ingested context information.
-    public struct ContextReference: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ContextReference: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The list of content updates for a context reference.
@@ -239,7 +239,7 @@
       public var languageCode: Swift.String = Swift.String()
 
       /// Output only. The time the context reference was first created.
-      public var createTime: GoogleCloudWkt.Timestamp? = nil
+      public var createTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Initialize a new instance of `ContextReference`.
       public init() {}
@@ -258,7 +258,7 @@
       }
 
       /// Contents ingested.
-      public struct ContextContent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct ContextContent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. The information ingested in a single request.
@@ -270,7 +270,7 @@
 
         /// Output only. The time when this information was incorporated into the
         /// relevant context reference.
-        public var ingestionTime: GoogleCloudWkt.Timestamp? = nil
+        public var ingestionTime: GoogleCloudWKT.Timestamp? = nil
 
         /// If the context content was generated from a tool call, specify the
         /// answer record associated with the tool call.
@@ -403,11 +403,11 @@
           return
             "type.googleapis.com/google.cloud.dialogflow.v2.Conversation.ContextReference.ContextContent"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -519,16 +519,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.v2.Conversation.ContextReference"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Represents the context of a generator.
-    public struct GeneratorContext: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GeneratorContext: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. The type of the generator.
@@ -687,11 +687,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.v2.Conversation.GeneratorContext"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -913,11 +913,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.Conversation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

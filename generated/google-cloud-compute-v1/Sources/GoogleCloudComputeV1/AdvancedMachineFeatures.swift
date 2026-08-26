@@ -16,14 +16,14 @@
 
 #if InstanceTemplates || Instances || MachineImages || RegionInstanceTemplates || RegionInstances
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Specifies options for controlling advanced machine features.
   /// Options that would traditionally be configured in a BIOS belong
   /// here. Features that require operating system support may have
   /// corresponding entries in the GuestOsFeatures of anImage (e.g., whether or not the OS in theImage supports nested virtualization being enabled or
   /// disabled).
-  public struct AdvancedMachineFeatures: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AdvancedMachineFeatures: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Whether to enable nested virtualization or not (default is false).
@@ -188,11 +188,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.AdvancedMachineFeatures"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -16,11 +16,11 @@
 
 #if DatasetService || JobService || ModelGardenService || ModelService || PipelineService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Probe describes a health check to be performed against a container to
   /// determine whether it is alive or ready to receive traffic.
-  public struct Probe: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Probe: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// How often (in seconds) to perform the probe. Default to 10 seconds.
@@ -142,7 +142,7 @@
     }
 
     /// ExecAction specifies a command to execute.
-    public struct ExecAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ExecAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Command is the command line to execute inside the container, the working
@@ -172,16 +172,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.Probe.ExecAction"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// HttpGetAction describes an action based on HTTP Get requests.
-    public struct HttpGetAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct HttpGetAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Path to access on the HTTP server.
@@ -221,16 +221,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.Probe.HttpGetAction"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// GrpcAction checks the health of a container using a gRPC service.
-    public struct GrpcAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GrpcAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Port number of the gRPC service. Number must be in the range 1 to 65535.
@@ -262,17 +262,17 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.Probe.GrpcAction"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// TcpSocketAction probes the health of a container by opening a TCP socket
     /// connection.
-    public struct TcpSocketAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct TcpSocketAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Number of the port to access on the container.
@@ -302,16 +302,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.Probe.TcpSocketAction"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// HttpHeader describes a custom header to be used in HTTP probes
-    public struct HttpHeader: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct HttpHeader: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The header field name.
@@ -341,11 +341,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.Probe.HttpHeader"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -365,11 +365,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.Probe"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -16,10 +16,10 @@
 
 #if SqlBackupsService || SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// An entry for an Access Control list.
-  public struct AclEntry: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AclEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The allowlisted value for the access control list.
@@ -28,7 +28,7 @@
     /// The time when this access control entry expires in
     /// [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
     /// `2012-11-15T16:19:00.094Z`.
-    public var expirationTime: GoogleCloudWkt.Timestamp? = nil
+    public var expirationTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Optional. A label to identify this entry.
     public var name: Swift.String = Swift.String()
@@ -55,11 +55,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.AclEntry"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

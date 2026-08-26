@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A [Certificate][google.cloud.security.privateca.v1.Certificate] corresponds
 /// to a signed X.509 certificate issued by a
@@ -23,7 +23,7 @@ import Foundation
 ///
 /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
 /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
-public struct Certificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Certificate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The resource name for this
@@ -44,7 +44,7 @@ public struct Certificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// the "not_before_time" and "not_after_time" fields inside an X.509
   /// certificate. Note that the lifetime may be truncated if it would extend
   /// past the life of any certificate authority in the issuing chain.
-  public var lifetime: GoogleCloudWkt.Duration? = nil
+  public var lifetime: GoogleCloudWKT.Duration? = nil
 
   /// Immutable. The resource name for a
   /// [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
@@ -89,13 +89,13 @@ public struct Certificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [Certificate][google.cloud.security.privateca.v1.Certificate] was created.
   ///
   /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time at which this
   /// [Certificate][google.cloud.security.privateca.v1.Certificate] was updated.
   ///
   /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Labels with user-defined metadata.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -120,7 +120,7 @@ public struct Certificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [google.cloud.security.privateca.v1.CaPool.IssuancePolicy.backdate_duration]: <doc:CaPool/IssuancePolicy/backdateDuration>
   /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
   /// [google.cloud.security.privateca.v1.CertificateDescription.SubjectDescription.not_before_time]: <doc:CertificateDescription/SubjectDescription/notBeforeTime>
-  public var requestedNotBeforeTime: GoogleCloudWkt.Timestamp? = nil
+  public var requestedNotBeforeTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The config used to create a signed X.509 certificate.
   public var certificateConfig: OneOf_CertificateConfig? = nil
@@ -164,7 +164,7 @@ public struct Certificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.issuerCertificateAuthority = try container.decode(
       Swift.String.self, forKey: .issuerCertificateAuthority)
-    self.lifetime = try container.decodeIfPresent(GoogleCloudWkt.Duration.self, forKey: .lifetime)
+    self.lifetime = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .lifetime)
     self.certificateTemplate = try container.decode(Swift.String.self, forKey: .certificateTemplate)
     self.subjectMode = try container.decode(SubjectRequestMode.self, forKey: .subjectMode)
     self.revocationDetails = try container.decodeIfPresent(
@@ -175,12 +175,12 @@ public struct Certificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.pemCertificateChain = try container.decode(
       [Swift.String].self, forKey: .pemCertificateChain)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
     self.requestedNotBeforeTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .requestedNotBeforeTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .requestedNotBeforeTime)
 
     var certificateConfig: OneOf_CertificateConfig? = nil
     let certificateConfigCheckAndSet = {
@@ -231,7 +231,7 @@ public struct Certificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [Certificate][google.cloud.security.privateca.v1.Certificate].
   ///
   /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
-  public struct RevocationDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RevocationDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Indicates why a
@@ -246,7 +246,7 @@ public struct Certificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// revoked.
     ///
     /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
-    public var revocationTime: GoogleCloudWkt.Timestamp? = nil
+    public var revocationTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `RevocationDetails`.
     public init() {}
@@ -267,11 +267,11 @@ public struct Certificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.security.privateca.v1.Certificate.RevocationDetails"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -287,10 +287,10 @@ public struct Certificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.security.privateca.v1.Certificate"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

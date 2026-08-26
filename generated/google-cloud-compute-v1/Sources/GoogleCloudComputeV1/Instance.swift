@@ -16,13 +16,13 @@
 
 #if Instances
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents an Instance resource.
   ///
   /// An instance is a virtual machine that is hosted on Google Cloud Platform.
   /// For more information, readVirtual Machine Instances.
-  public struct Instance: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Controls for advanced machine-related behavior features.
@@ -339,7 +339,7 @@
       self.disks = try container.decode([AttachedDisk].self, forKey: .disks)
       self.displayDevice = try container.decodeIfPresent(DisplayDevice.self, forKey: .displayDevice)
       if let s = try container.decodeIfPresent(Swift.String.self, forKey: .fingerprint) {
-        guard let v = GoogleCloudWkt._DiscoveryBase64.decode(s) else {
+        guard let v = GoogleCloudWKT._DiscoveryBase64.decode(s) else {
           throw DecodingError.dataCorrupted(
             DecodingError.Context(
               codingPath: decoder.codingPath, debugDescription: "Expected url-safe encoded value")
@@ -357,7 +357,7 @@
         Instance.KeyRevocationActionType.self, forKey: .keyRevocationActionType)
       self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
       if let s = try container.decodeIfPresent(Swift.String.self, forKey: .labelFingerprint) {
-        guard let v = GoogleCloudWkt._DiscoveryBase64.decode(s) else {
+        guard let v = GoogleCloudWKT._DiscoveryBase64.decode(s) else {
           throw DecodingError.dataCorrupted(
             DecodingError.Context(
               codingPath: decoder.codingPath, debugDescription: "Expected url-safe encoded value")
@@ -427,7 +427,7 @@
       try container.encode(self.displayDevice, forKey: .displayDevice)
       if let v = fingerprint {
         try container.encode(
-          GoogleCloudWkt._DiscoveryBase64.encode(v), forKey: .fingerprint
+          GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }
       try container.encode(self.guestAccelerators, forKey: .guestAccelerators)
@@ -438,7 +438,7 @@
       try container.encode(self.kind, forKey: .kind)
       if let v = labelFingerprint {
         try container.encode(
-          GoogleCloudWkt._DiscoveryBase64.encode(v), forKey: .labelFingerprint
+          GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .labelFingerprint
         )
       }
       try container.encode(self.labels, forKey: .labels)
@@ -988,11 +988,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.Instance"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

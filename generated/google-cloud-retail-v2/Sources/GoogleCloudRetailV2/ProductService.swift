@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -926,7 +926,7 @@ extension Clients {
     /// See `ProductServiceClient.updateProduct`.
     func updateProduct(
       product: Product?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudRetailV2.Product
 
     /// See `ProductServiceClient.deleteProduct`.
@@ -961,7 +961,7 @@ extension Clients {
     /// See `ProductServiceClient.setInventory`.
     func setInventory(
       inventory: Product?,
-      setMask: GoogleCloudWkt.FieldMask?,
+      setMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<SetInventoryResponse>
 
     /// See `ProductServiceClient.addFulfillmentPlaces`.
@@ -1240,7 +1240,7 @@ extension Clients.ProductServiceProtocol {
 
   public func updateProduct(
     product: Product?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudRetailV2.Product {
     let request = UpdateProductRequest().with {
       $0.product = product
@@ -1356,7 +1356,7 @@ extension Clients.ProductServiceProtocol {
 
   public func setInventory(
     inventory: Product?,
-    setMask: GoogleCloudWkt.FieldMask?,
+    setMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<SetInventoryResponse> {
     let request = SetInventoryRequest().with {
       $0.inventory = inventory

@@ -16,10 +16,10 @@
 
 import Foundation
 import GoogleCloudOSLoginCommon
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A request message for updating an SSH public key.
-public struct UpdateSshPublicKeyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateSshPublicKeyRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The fingerprint of the public key to update. Public keys are
@@ -31,7 +31,7 @@ public struct UpdateSshPublicKeyRequest: Codable, Equatable, GoogleCloudWkt._Any
   public var sshPublicKey: GoogleCloudOSLoginCommon.SshPublicKey? = nil
 
   /// Mask to control which fields get updated. Updates all if not present.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `UpdateSshPublicKeyRequest`.
   public init() {}
@@ -52,10 +52,10 @@ public struct UpdateSshPublicKeyRequest: Codable, Equatable, GoogleCloudWkt._Any
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.oslogin.v1.UpdateSshPublicKeyRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

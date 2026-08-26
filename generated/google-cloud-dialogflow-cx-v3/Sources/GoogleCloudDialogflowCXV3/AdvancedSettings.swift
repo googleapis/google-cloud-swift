@@ -16,7 +16,7 @@
 
 #if Agents || Flows || Pages || Playbooks || Sessions || TestCases || TransitionRouteGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Hierarchical advanced settings for agent/flow/page/fulfillment/parameter.
   /// Settings exposed at lower level overrides the settings exposed at higher
@@ -29,7 +29,7 @@
   /// levels define DTMF detections running in parallel.
   ///
   /// Hierarchy: Agent->Flow->Page->Fulfillment/Parameter.
-  public struct AdvancedSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AdvancedSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// If present, incoming audio is exported by Dialogflow to the configured
@@ -79,7 +79,7 @@
     }
 
     /// Define behaviors of speech to text detection.
-    public struct SpeechSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SpeechSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Sensitivity of the speech model that detects the end of speech.
@@ -87,7 +87,7 @@
       public var endpointerSensitivity: Swift.Int32 = Swift.Int32()
 
       /// Timeout before detecting no speech.
-      public var noSpeechTimeout: GoogleCloudWkt.Duration? = nil
+      public var noSpeechTimeout: GoogleCloudWKT.Duration? = nil
 
       /// Use timeout based endpointing, interpreting endpointer sensitivity as
       /// seconds of timeout value.
@@ -119,16 +119,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.AdvancedSettings.SpeechSettings"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Define behaviors for DTMF (dual tone multi frequency).
-    public struct DtmfSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DtmfSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// If true, incoming audio is processed for DTMF (dual tone multi frequency)
@@ -146,10 +146,10 @@
       public var finishDigit: Swift.String = Swift.String()
 
       /// Interdigit timeout setting for matching dtmf input to regex.
-      public var interdigitTimeoutDuration: GoogleCloudWkt.Duration? = nil
+      public var interdigitTimeoutDuration: GoogleCloudWKT.Duration? = nil
 
       /// Endpoint timeout setting for matching dtmf input to regex.
-      public var endpointingTimeoutDuration: GoogleCloudWkt.Duration? = nil
+      public var endpointingTimeoutDuration: GoogleCloudWKT.Duration? = nil
 
       /// Initialize a new instance of `DtmfSettings`.
       public init() {}
@@ -170,16 +170,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.AdvancedSettings.DtmfSettings"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Define behaviors on logging.
-    public struct LoggingSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct LoggingSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Enables Google Cloud Logging.
@@ -212,22 +212,22 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.AdvancedSettings.LoggingSettings"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.AdvancedSettings"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

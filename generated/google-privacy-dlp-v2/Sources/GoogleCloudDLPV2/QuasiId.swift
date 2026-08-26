@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A column with a semantic tag attached.
-public struct QuasiId: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct QuasiId: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Identifies the column.
@@ -72,7 +72,7 @@ public struct QuasiId: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     if let customTag = try container.decodeIfPresent(Swift.String.self, forKey: .customTag) {
       try tagCheckAndSet(.customTag(customTag))
     }
-    if let inferred = try container.decodeIfPresent(GoogleCloudWkt.Empty?.self, forKey: .inferred) {
+    if let inferred = try container.decodeIfPresent(GoogleCloudWKT.Empty?.self, forKey: .inferred) {
       try tagCheckAndSet(.inferred(inferred))
     }
     self.tag = tag
@@ -110,16 +110,16 @@ public struct QuasiId: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     case customTag(Swift.String)
     /// If no semantic tag is indicated, we infer the statistical model from
     /// the distribution of values in the input data
-    indirect case inferred(GoogleCloudWkt.Empty?)
+    indirect case inferred(GoogleCloudWKT.Empty?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.QuasiId"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

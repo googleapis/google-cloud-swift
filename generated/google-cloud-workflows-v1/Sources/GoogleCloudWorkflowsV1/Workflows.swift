@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -375,7 +375,7 @@ extension Clients {
     /// See `WorkflowsClient.updateWorkflow`.
     func updateWorkflow(
       workflow: Workflow?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Workflow>
 
     /// See `WorkflowsClient.listWorkflowRevisions`.
@@ -678,7 +678,7 @@ extension Clients.WorkflowsProtocol {
 
   public func updateWorkflow(
     workflow: Workflow?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Workflow> {
     let request = UpdateWorkflowRequest().with {
       $0.workflow = workflow

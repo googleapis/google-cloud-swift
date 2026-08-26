@@ -16,7 +16,7 @@
 
 #if InstanceTemplates
   import Foundation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleCloudGax
 
   extension Clients {

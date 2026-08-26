@@ -15,20 +15,20 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A test message for u32.
-public struct MessageWithUInt32Value: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MessageWithUInt32Value: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A singular field.
-  public var singular: GoogleCloudWkt.UInt32Value? = nil
+  public var singular: GoogleCloudWKT.UInt32Value? = nil
 
   /// A repeated field.
-  public var repeated: [GoogleCloudWkt.UInt32Value] = []
+  public var repeated: [GoogleCloudWKT.UInt32Value] = []
 
   /// Test google.protobuf.UInt32Value as map values.
-  public var map: [Swift.String: GoogleCloudWkt.UInt32Value] = [:]
+  public var map: [Swift.String: GoogleCloudWKT.UInt32Value] = [:]
 
   /// Initialize a new instance of `MessageWithUInt32Value`.
   public init() {}
@@ -49,10 +49,10 @@ public struct MessageWithUInt32Value: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.swift.sdk.test.MessageWithUInt32Value"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

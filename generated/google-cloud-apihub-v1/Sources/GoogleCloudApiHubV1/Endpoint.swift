@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The endpoint to be triggered for curation.
 /// The endpoint will be invoked with a request payload containing
 /// [ApiMetadata][google.cloud.apihub.v1.ApiHub.ApiMetadata].
 /// Response should contain curated data in the form of
 /// [ApiMetadata][google.cloud.apihub.v1.ApiHub.ApiMetadata].
-public struct Endpoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Endpoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The details of the endpoint to be triggered for curation.
@@ -91,10 +91,10 @@ public struct Endpoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.apihub.v1.Endpoint"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

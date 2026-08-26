@@ -15,20 +15,20 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Requirements that must be true before a dataset is profiled for the
 /// first time.
-public struct DiscoveryVertexDatasetConditions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DiscoveryVertexDatasetConditions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Vertex AI dataset must have been created after this date. Used to avoid
   /// backfilling.
-  public var createdAfter: GoogleCloudWkt.Timestamp? = nil
+  public var createdAfter: GoogleCloudWKT.Timestamp? = nil
 
   /// Minimum age a Vertex AI dataset must have. If set, the value must be 1 hour
   /// or greater.
-  public var minAge: GoogleCloudWkt.Duration? = nil
+  public var minAge: GoogleCloudWKT.Duration? = nil
 
   /// Initialize a new instance of `DiscoveryVertexDatasetConditions`.
   public init() {}
@@ -49,10 +49,10 @@ public struct DiscoveryVertexDatasetConditions: Codable, Equatable, GoogleCloudW
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.DiscoveryVertexDatasetConditions"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

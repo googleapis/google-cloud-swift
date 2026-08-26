@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudServiceDirectoryV1
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 
 func sample(

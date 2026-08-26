@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// DashboardChart resource.
-public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DashboardChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Name of the dashboardChart.
@@ -75,7 +75,7 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Datasource of the chart including the query reference and source name.
-  public struct ChartDatasource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ChartDatasource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Reference to dashboard query resource used in the chart.
@@ -103,17 +103,17 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.ChartDatasource"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Visualization config for a chart.
   /// https://echarts.apache.org/en/option.html#series
-  public struct Visualization: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Visualization: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var xAxes: [DashboardChart.Visualization.Axis] = []
@@ -171,7 +171,7 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return copy
     }
 
-    public struct Axis: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Axis: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       public var axisType: AxisType = AxisType()
@@ -205,15 +205,15 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Axis"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
-    public struct Series: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Series: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       public var seriesType: SeriesType = SeriesType()
@@ -276,7 +276,7 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return copy
       }
 
-      public struct Encode: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Encode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         public var x: Swift.String = Swift.String()
@@ -311,16 +311,16 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.Encode"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Data label config for a series.
-      public struct DataLabel: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct DataLabel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. Whether to show data label.
@@ -346,16 +346,16 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.DataLabel"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Custom styling for chart
-      public struct ItemStyle: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct ItemStyle: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. Used to add border width
@@ -387,16 +387,16 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.ItemStyle"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Custom styling for area chart
-      public struct AreaStyle: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct AreaStyle: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. Used to add color
@@ -440,16 +440,16 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.AreaStyle"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// User selected color and label for the slice of the chart
-      public struct UserSelectedValues: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct UserSelectedValues: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. User specified color of a pie slice
@@ -478,16 +478,16 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.UserSelectedValues"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Slice containing the key and value for a slice in the chart
-      public struct ChartSliceColor: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct ChartSliceColor: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. Key for the slice
@@ -516,16 +516,16 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.ChartSliceColor"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Field to be saved for retrieving slice colors for the chart
-      public struct ItemColors: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct ItemColors: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. Slice colors array
@@ -551,16 +551,16 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.ItemColors"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Field to be saved for retrieving value and color for gauge chart
-      public struct GaugeValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct GaugeValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. Value for gauge chart
@@ -589,16 +589,16 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.GaugeValue"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Field to be saved for retrieving value and color for gauge chart
-      public struct GaugeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct GaugeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. Base value for gauge chart
@@ -630,16 +630,16 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.GaugeConfig"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Metric trend config for displaying trend value in Metrics chart
-      public struct MetricTrendConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct MetricTrendConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. Metric chart configuration to display metric trend
@@ -676,26 +676,26 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series.MetricTrendConfig"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Series"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
-    public struct Tooltip: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Tooltip: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       public var show: Swift.Bool = Swift.Bool()
@@ -721,15 +721,15 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Tooltip"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
-    public struct Legend: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Legend: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       public var id: Swift.String = Swift.String()
@@ -817,16 +817,16 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.Legend"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Column Definition.
-    public struct ColumnDef: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ColumnDef: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Field key in data.
@@ -855,17 +855,17 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.ColumnDef"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Column render type settings. This is used to determine the data render
     /// type of the column in the table.
-    public struct ColumnRenderTypeSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ColumnRenderTypeSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. Field key in data.
@@ -894,16 +894,16 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.ColumnRenderTypeSettings"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Settings for tooltip for column header and cell.
-    public struct ColumnTooltipSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ColumnTooltipSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. Field key in data.
@@ -935,16 +935,16 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.ColumnTooltipSettings"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Configuration for table appearance.
-    public struct TableConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct TableConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. Whether to show the table.
@@ -977,16 +977,16 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.TableConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Google Maps config for a chart if chart type is map.
-    public struct GoogleMapsConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GoogleMapsConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. Data settings for the map.
@@ -1019,7 +1019,7 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       }
 
       /// Data settings for the map.
-      public struct DataSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct DataSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. Latitude column.
@@ -1051,16 +1051,16 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.GoogleMapsConfig.DataSettings"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Map position settings for the map.
-      public struct MapPosition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct MapPosition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. Whether to fit the map to the data.
@@ -1097,16 +1097,16 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.GoogleMapsConfig.MapPosition"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Point settings for the map.
-      public struct PointSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct PointSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. Point size type for the map. This is used to
@@ -1136,11 +1136,11 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.GoogleMapsConfig.PointSettings"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -1148,17 +1148,17 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.GoogleMapsConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Conveys what range of values should be rendered in what color. This field
     /// is used when threshold_coloring_enabled is true.
-    public struct VisualMap: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct VisualMap: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. Contains one of the valid visual map types such as
@@ -1186,7 +1186,7 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// An ECharts visual map of type 'piecewise' contain many pieces. Each
       /// piece has a min, max, and color with which it's rendered.
-      public struct VisualMapPiece: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct VisualMapPiece: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. Minimum value for the piece.
@@ -1222,11 +1222,11 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.VisualMap.VisualMapPiece"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -1234,27 +1234,27 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization.VisualMap"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.Visualization"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Drill down configuration.
-  public struct DrillDownConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DrillDownConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Left click drill downs.
@@ -1280,7 +1280,7 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Drill down config.
-    public struct DrillDown: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DrillDown: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. ID of the drill down.
@@ -1361,7 +1361,7 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       }
 
       /// Default drill down settings.
-      public struct DefaultDrillDownSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct DefaultDrillDownSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. Whether the default drill down is enabled.
@@ -1387,16 +1387,16 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig.DrillDown.DefaultDrillDownSettings"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Custom drill down settings.
-      public struct CustomDrillDownSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct CustomDrillDownSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. Whether to open the drill down action in a new tab.
@@ -1487,7 +1487,7 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         }
 
         /// Drill down query config.
-        public struct DrillDownQuery: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct DrillDownQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Required. Search query to be executed on drill down.
@@ -1513,16 +1513,16 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
             return
               "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownQuery"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
         /// Drill down filter config.
-        public struct DrillDownFilter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct DrillDownFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Required. Dashboard filters to be applied on drill down.
@@ -1547,7 +1547,7 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           }
 
           /// Drill down dashboard filter config.
-          public struct DrillDownDashboardFilter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+          public struct DrillDownDashboardFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
             Sendable
           {
             /// Required. ID of the dashboard filter.
@@ -1577,11 +1577,11 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
               return
                 "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownFilter.DrillDownDashboardFilter"
             }
-            public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-              self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+            public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+              self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
             }
-            public func _pack() throws -> GoogleCloudWkt.Struct {
-              return try GoogleCloudWkt._slowAnySerialize(message: self)
+            public func _pack() throws -> GoogleCloudWKT.Struct {
+              return try GoogleCloudWKT._slowAnySerialize(message: self)
             }
           }
 
@@ -1589,16 +1589,16 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
             return
               "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownFilter"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
         /// Drill down external link config.
-        public struct DrillDownExternalLink: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct DrillDownExternalLink: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Required. External link the drill down action should redirect to.
@@ -1627,11 +1627,11 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
             return
               "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownExternalLink"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
@@ -1652,11 +1652,11 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -1674,32 +1674,32 @@ public struct DashboardChart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig.DrillDown"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart.DrillDownConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.chronicle.v1.DashboardChart"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

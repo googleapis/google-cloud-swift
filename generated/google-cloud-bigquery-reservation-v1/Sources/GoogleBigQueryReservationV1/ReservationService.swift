@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleCloudGax
 
@@ -706,7 +706,7 @@ extension Clients {
     /// See `ReservationServiceClient.updateReservation`.
     func updateReservation(
       reservation: Reservation?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleBigQueryReservationV1.Reservation
 
     /// See `ReservationServiceClient.failoverReservation`.
@@ -761,7 +761,7 @@ extension Clients {
     /// See `ReservationServiceClient.updateCapacityCommitment`.
     func updateCapacityCommitment(
       capacityCommitment: CapacityCommitment?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleBigQueryReservationV1.CapacityCommitment
 
     /// See `ReservationServiceClient.splitCapacityCommitment`.
@@ -866,7 +866,7 @@ extension Clients {
     /// See `ReservationServiceClient.updateAssignment`.
     func updateAssignment(
       assignment: Assignment?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleBigQueryReservationV1.Assignment
 
     /// See `ReservationServiceClient.getBiReservation`.
@@ -885,7 +885,7 @@ extension Clients {
     /// See `ReservationServiceClient.updateBiReservation`.
     func updateBiReservation(
       biReservation: BiReservation?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleBigQueryReservationV1.BiReservation
 
     /// See `ReservationServiceClient.getIamPolicy`.
@@ -1241,7 +1241,7 @@ extension Clients.ReservationServiceProtocol {
 
   public func updateReservation(
     reservation: Reservation?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleBigQueryReservationV1.Reservation {
     let request = UpdateReservationRequest().with {
       $0.reservation = reservation
@@ -1377,7 +1377,7 @@ extension Clients.ReservationServiceProtocol {
 
   public func updateCapacityCommitment(
     capacityCommitment: CapacityCommitment?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleBigQueryReservationV1.CapacityCommitment {
     let request = UpdateCapacityCommitmentRequest().with {
       $0.capacityCommitment = capacityCommitment
@@ -1627,7 +1627,7 @@ extension Clients.ReservationServiceProtocol {
 
   public func updateAssignment(
     assignment: Assignment?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleBigQueryReservationV1.Assignment {
     let request = UpdateAssignmentRequest().with {
       $0.assignment = assignment
@@ -1671,7 +1671,7 @@ extension Clients.ReservationServiceProtocol {
 
   public func updateBiReservation(
     biReservation: BiReservation?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleBigQueryReservationV1.BiReservation {
     let request = UpdateBiReservationRequest().with {
       $0.biReservation = biReservation

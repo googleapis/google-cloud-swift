@@ -16,7 +16,7 @@
 
 #if Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The top-level message returned from the
   /// [StreamingDetectIntent][google.cloud.dialogflow.cx.v3.Sessions.StreamingDetectIntent]
@@ -44,7 +44,7 @@
   ///
   /// [google.cloud.dialogflow.cx.v3.DetectIntentResponse.response_type]: <doc:DetectIntentResponse/responseType>
   /// [google.cloud.dialogflow.cx.v3.Sessions.StreamingDetectIntent]: <doc:SessionsClient/streamingDetectIntent(request:options:)>
-  public struct StreamingDetectIntentResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct StreamingDetectIntentResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Debugging info that would get populated when
@@ -129,11 +129,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.StreamingDetectIntentResponse"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

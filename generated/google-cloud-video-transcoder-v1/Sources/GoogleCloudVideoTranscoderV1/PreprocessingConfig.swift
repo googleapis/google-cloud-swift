@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Preprocessing configurations.
-public struct PreprocessingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct PreprocessingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Color preprocessing configuration.
@@ -61,7 +61,7 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackab
   /// Color preprocessing configuration.
   ///
   /// **Note:** This configuration is not supported.
-  public struct Color: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Color: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Control color saturation of the video. Enter a value between -1 and 1,
@@ -98,18 +98,18 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackab
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.video.transcoder.v1.PreprocessingConfig.Color"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Denoise preprocessing configuration.
   ///
   /// **Note:** This configuration is not supported.
-  public struct Denoise: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Denoise: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Set strength of the denoise. Enter a value between 0 and 1. The higher
@@ -143,18 +143,18 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackab
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.video.transcoder.v1.PreprocessingConfig.Denoise"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Deblock preprocessing configuration.
   ///
   /// **Note:** This configuration is not supported.
-  public struct Deblock: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Deblock: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Set strength of the deblocker. Enter a value between 0 and 1. The higher
@@ -184,16 +184,16 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackab
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.video.transcoder.v1.PreprocessingConfig.Deblock"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Audio preprocessing configuration.
-  public struct Audio: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Audio: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Specify audio loudness normalization in loudness units relative to full
@@ -238,17 +238,17 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackab
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.video.transcoder.v1.PreprocessingConfig.Audio"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Video cropping configuration for the input video. The cropped input video
   /// is scaled to match the output resolution.
-  public struct Crop: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Crop: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The number of pixels to crop from the top. The default is 0.
@@ -282,17 +282,17 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackab
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.video.transcoder.v1.PreprocessingConfig.Crop"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Pad filter configuration for the input video. The padded input video
   /// is scaled after padding with black to match the output resolution.
-  public struct Pad: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Pad: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The number of pixels to add to the top. The default is 0.
@@ -326,16 +326,16 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackab
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.video.transcoder.v1.PreprocessingConfig.Pad"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Deinterlace configuration for input video.
-  public struct Deinterlace: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Deinterlace: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Specify the video deinterlacing filter. The default is `yadif`.
@@ -402,7 +402,7 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackab
     }
 
     /// Yet Another Deinterlacing Filter Configuration.
-    public struct YadifConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct YadifConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Specifies the deinterlacing mode to adopt.
@@ -450,16 +450,16 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackab
         return
           "type.googleapis.com/google.cloud.video.transcoder.v1.PreprocessingConfig.Deinterlace.YadifConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Bob Weaver Deinterlacing Filter Configuration.
-    public struct BwdifConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct BwdifConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Specifies the deinterlacing mode to adopt.
@@ -503,11 +503,11 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackab
         return
           "type.googleapis.com/google.cloud.video.transcoder.v1.PreprocessingConfig.Deinterlace.BwdifConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -522,21 +522,21 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackab
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.video.transcoder.v1.PreprocessingConfig.Deinterlace"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.video.transcoder.v1.PreprocessingConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

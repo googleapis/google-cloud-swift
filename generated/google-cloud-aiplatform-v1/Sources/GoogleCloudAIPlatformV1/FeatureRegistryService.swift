@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleIAMV1
   import GoogleLongRunning
   import GoogleRpc
@@ -562,7 +562,7 @@
       /// See `FeatureRegistryServiceClient.updateFeatureGroup`.
       func updateFeatureGroup(
         featureGroup: FeatureGroup?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> any GoogleCloudGax.PollableOperation<FeatureGroup>
 
       /// See `FeatureRegistryServiceClient.deleteFeatureGroup`.
@@ -639,7 +639,7 @@
       /// See `FeatureRegistryServiceClient.updateFeature`.
       func updateFeature(
         feature: Feature?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> any GoogleCloudGax.PollableOperation<Feature>
 
       /// See `FeatureRegistryServiceClient.deleteFeature`.
@@ -1000,7 +1000,7 @@
 
     public func updateFeatureGroup(
       featureGroup: FeatureGroup?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<FeatureGroup> {
       let request = UpdateFeatureGroupRequest().with {
         $0.featureGroup = featureGroup
@@ -1218,7 +1218,7 @@
 
     public func updateFeature(
       feature: Feature?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Feature> {
       let request = UpdateFeatureRequest().with {
         $0.feature = feature

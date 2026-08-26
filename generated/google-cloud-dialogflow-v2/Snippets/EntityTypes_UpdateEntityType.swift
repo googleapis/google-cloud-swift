@@ -20,7 +20,7 @@
   import Foundation
   import GoogleCloudDialogflowV2
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleRpc
 
@@ -31,7 +31,7 @@
           $0.entityType = EntityType().with {
             $0.name = "projects/\(projectId)/agent/entityTypes/\(entityTypeId)"
           }
-          $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+          $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
         }
     )
     print("Success: \(response)")

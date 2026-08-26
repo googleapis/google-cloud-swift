@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleApiCloudQuotasV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(
   client: CloudQuotasClient, projectId: String, locationId: String, quotaPreferenceId: String
@@ -30,7 +30,7 @@ func sample(
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/quotaPreferences/\(quotaPreferenceId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The message definition for updating a `Snooze`. The field, `snooze.name`
 /// identifies the `Snooze` to be updated. The remainder of `snooze` gives the
@@ -30,7 +30,7 @@ import Foundation
 ///     and `interval.end_time` can be updated.
 ///   * start time is in the future: `display_name`, `interval.start_time` and
 ///     `interval.end_time` can be updated.
-public struct UpdateSnoozeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateSnoozeRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The `Snooze` to update. Must have the name field present.
@@ -58,7 +58,7 @@ public struct UpdateSnoozeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackab
   /// fields can legally be updated. Before attempting an update, users should
   /// consult the documentation for `UpdateSnoozeRequest`, which talks about
   /// which fields can be updated.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `UpdateSnoozeRequest`.
   public init() {}
@@ -79,10 +79,10 @@ public struct UpdateSnoozeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.v3.UpdateSnoozeRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

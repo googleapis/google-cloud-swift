@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Framework deployments represent the assignment of a framework to a target
 /// resource. Supported target resources are organizations, folders, and
 /// projects.
-public struct FrameworkDeployment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct FrameworkDeployment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The name of the framework deployment, in the format
@@ -56,10 +56,10 @@ public struct FrameworkDeployment: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public var deploymentState: DeploymentState = DeploymentState()
 
   /// Output only. The time at which the resource was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time at which the resource last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. To prevent concurrent updates from overwriting each other, always
   /// provide the `etag` when you update a framework deployment. You can also
@@ -111,10 +111,10 @@ public struct FrameworkDeployment: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.cloudsecuritycompliance.v1.FrameworkDeployment"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

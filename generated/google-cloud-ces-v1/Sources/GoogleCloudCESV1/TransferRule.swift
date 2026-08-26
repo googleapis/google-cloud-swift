@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Rule for transferring to a specific agent.
-public struct TransferRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TransferRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The resource name of the child agent the rule applies to.
@@ -100,7 +100,7 @@ public struct TransferRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Deterministic transfer rule. When the condition evaluates to true, the
   /// transfer occurs.
-  public struct DeterministicTransfer: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DeterministicTransfer: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The condition to evaluate.
@@ -179,16 +179,16 @@ public struct TransferRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ces.v1.TransferRule.DeterministicTransfer"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A rule that prevents the planner from transferring to the target agent.
-  public struct DisablePlannerTransfer: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DisablePlannerTransfer: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. If the condition evaluates to true, planner will not be allowed
@@ -214,11 +214,11 @@ public struct TransferRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ces.v1.TransferRule.DisablePlannerTransfer"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -340,10 +340,10 @@ public struct TransferRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.TransferRule"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

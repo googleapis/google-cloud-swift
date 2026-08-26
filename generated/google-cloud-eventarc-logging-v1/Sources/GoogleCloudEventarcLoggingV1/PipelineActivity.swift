@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// Logged during the processing of a message in a pipeline.
-public struct PipelineActivity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct PipelineActivity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The unique system generated ID associated with the event passed from the
@@ -30,7 +30,7 @@ public struct PipelineActivity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var attributes: [Swift.String: Swift.String] = [:]
 
   /// The point in time when the activity occurred.
-  public var activityTime: GoogleCloudWkt.Timestamp? = nil
+  public var activityTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Oneof for the different logging activities in a pipeline.
   public var activity: OneOf_Activity? = nil
@@ -67,7 +67,7 @@ public struct PipelineActivity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.messageUid = try container.decode(Swift.String.self, forKey: .messageUid)
     self.attributes = try container.decode([Swift.String: Swift.String].self, forKey: .attributes)
     self.activityTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .activityTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .activityTime)
 
     var activity: OneOf_Activity? = nil
     let activityCheckAndSet = {
@@ -131,7 +131,7 @@ public struct PipelineActivity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Structured log that is emitted when a message is received in this Pipeline
   /// (or an error encountered).
-  public struct MessageReceived: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MessageReceived: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Informational details when a message is received from a source.
@@ -163,17 +163,17 @@ public struct PipelineActivity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.eventarc.logging.v1.PipelineActivity.MessageReceived"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Structured log that is emitted when a message is transformed during
   /// mediation (or an error encountered) in a Pipeline.
-  public struct MessageTransformed: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MessageTransformed: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Informational details when a message is transformed during mediation.
@@ -202,17 +202,17 @@ public struct PipelineActivity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.eventarc.logging.v1.PipelineActivity.MessageTransformed"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Structured log that is emitted when a message is converted during
   /// mediation (or an error encountered) in a Pipeline.
-  public struct MessageConverted: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MessageConverted: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Informational details when a message is converted during mediation.
@@ -248,17 +248,17 @@ public struct PipelineActivity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.eventarc.logging.v1.PipelineActivity.MessageConverted"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Structured log that is emitted when a message request is dispatched to a
   /// destination (or an error encountered) in a Pipeline.
-  public struct MessageRequestDispatched: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MessageRequestDispatched: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Informational details when a message is dispatched to a destination.
@@ -291,18 +291,18 @@ public struct PipelineActivity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.eventarc.logging.v1.PipelineActivity.MessageRequestDispatched"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Structured log that is emitted when a message response (or error) is
   /// received from a destination for a message request that was dispatched
   /// earlier in a Pipeline.
-  public struct MessageResponseReceived: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MessageResponseReceived: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Informational details when a message response was received by the target,
@@ -315,7 +315,7 @@ public struct PipelineActivity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// The future time when the message request will be retried. Present if and
     /// only if the `retry_status` is `WILL_RETRY`.
-    public var retryTime: GoogleCloudWkt.Timestamp? = nil
+    public var retryTime: GoogleCloudWKT.Timestamp? = nil
 
     /// The HTTP response code received with the message response.
     public var httpResponseCode: Swift.Int32 = Swift.Int32()
@@ -449,11 +449,11 @@ public struct PipelineActivity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.eventarc.logging.v1.PipelineActivity.MessageResponseReceived"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -591,10 +591,10 @@ public struct PipelineActivity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.eventarc.logging.v1.PipelineActivity"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

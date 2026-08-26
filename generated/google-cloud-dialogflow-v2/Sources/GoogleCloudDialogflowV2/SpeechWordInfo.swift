@@ -16,10 +16,10 @@
 
 #if Participants || Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Information for a word recognized by the speech recognizer.
-  public struct SpeechWordInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SpeechWordInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The word this info is for.
@@ -28,12 +28,12 @@
     /// Time offset relative to the beginning of the audio that corresponds to the
     /// start of the spoken word. This is an experimental feature and the accuracy
     /// of the time offset can vary.
-    public var startOffset: GoogleCloudWkt.Duration? = nil
+    public var startOffset: GoogleCloudWKT.Duration? = nil
 
     /// Time offset relative to the beginning of the audio that corresponds to the
     /// end of the spoken word. This is an experimental feature and the accuracy of
     /// the time offset can vary.
-    public var endOffset: GoogleCloudWkt.Duration? = nil
+    public var endOffset: GoogleCloudWKT.Duration? = nil
 
     /// The Speech confidence between 0.0 and 1.0 for this word. A higher number
     /// indicates an estimated greater likelihood that the recognized word is
@@ -63,11 +63,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.SpeechWordInfo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

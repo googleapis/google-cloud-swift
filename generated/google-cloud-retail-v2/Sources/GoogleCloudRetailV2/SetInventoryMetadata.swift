@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Metadata related to the progress of the SetInventory operation.
 /// Currently empty because there is no meaningful metadata populated from the
@@ -23,7 +23,7 @@ import Foundation
 /// method.
 ///
 /// [google.cloud.retail.v2.ProductService.SetInventory]: <doc:ProductServiceClient/setInventory(request:options:)>
-public struct SetInventoryMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SetInventoryMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Initialize a new instance of `SetInventoryMetadata`.
@@ -45,10 +45,10 @@ public struct SetInventoryMetadata: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.retail.v2.SetInventoryMetadata"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A custom constraint defined by customers which can *only* be applied to the
 /// given resource types and organization.
@@ -23,7 +23,7 @@ import Foundation
 /// By creating a custom constraint, customers can apply policies of this
 /// custom constraint. *Creating a custom constraint itself does NOT apply any
 /// policy enforcement*.
-public struct CustomConstraint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CustomConstraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Immutable. Name of the constraint. This is unique within the organization.
@@ -68,7 +68,7 @@ public struct CustomConstraint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Output only. The last time this custom constraint was updated. This
   /// represents the last time that the `CreateCustomConstraint` or
   /// `UpdateCustomConstraint` methods were called.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `CustomConstraint`.
   public init() {}
@@ -329,10 +329,10 @@ public struct CustomConstraint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.orgpolicy.v2.CustomConstraint"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

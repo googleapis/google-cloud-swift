@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -606,7 +606,7 @@ extension Clients {
     /// See `ProductSearchClient.updateProductSet`.
     func updateProductSet(
       productSet: ProductSet?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudVisionV1.ProductSet
 
     /// See `ProductSearchClient.deleteProductSet`.
@@ -655,7 +655,7 @@ extension Clients {
     /// See `ProductSearchClient.updateProduct`.
     func updateProduct(
       product: Product?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudVisionV1.Product
 
     /// See `ProductSearchClient.deleteProduct`.
@@ -992,7 +992,7 @@ extension Clients.ProductSearchProtocol {
 
   public func updateProductSet(
     productSet: ProductSet?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudVisionV1.ProductSet {
     let request = UpdateProductSetRequest().with {
       $0.productSet = productSet
@@ -1115,7 +1115,7 @@ extension Clients.ProductSearchProtocol {
 
   public func updateProduct(
     product: Product?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudVisionV1.Product {
     let request = UpdateProductRequest().with {
       $0.product = product

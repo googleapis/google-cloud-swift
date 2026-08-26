@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Holds the facet value, selections state, and metadata.
-public struct FacetBucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct FacetBucket: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Whether one facet bucket is selected. This field represents user's facet
@@ -90,7 +90,7 @@ public struct FacetBucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// The range of values [start, end) for which faceting is applied.
-  public struct Range: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Range: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Start of the range. Non-existence indicates some bound (e.g. -inf).
@@ -118,11 +118,11 @@ public struct FacetBucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.FacetBucket.Range"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -139,10 +139,10 @@ public struct FacetBucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.FacetBucket"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

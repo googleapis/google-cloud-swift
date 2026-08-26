@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request for
 /// [TroubleshootIamPolicy][google.cloud.policytroubleshooter.iam.v3.PolicyTroubleshooter.TroubleshootIamPolicy].
 ///
 /// [google.cloud.policytroubleshooter.iam.v3.PolicyTroubleshooter.TroubleshootIamPolicy]: <doc:PolicyTroubleshooterClient/troubleshootIamPolicy(request:options:)>
-public struct TroubleshootIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TroubleshootIamPolicyRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The information to use for checking whether a principal has a permission
@@ -48,10 +48,10 @@ public struct TroubleshootIamPolicyRequest: Codable, Equatable, GoogleCloudWkt._
     return
       "type.googleapis.com/google.cloud.policytroubleshooter.iam.v3.TroubleshootIamPolicyRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

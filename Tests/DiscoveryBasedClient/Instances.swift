@@ -15,7 +15,7 @@
 import GoogleCloudComputeV1
 import GoogleCloudTestHelpers
 import GoogleCloudGax
-import GoogleCloudWkt
+import GoogleCloudWKT
 import Logging
 
 // Run the samples (which double as naive integration tests).

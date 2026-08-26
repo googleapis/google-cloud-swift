@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudEdgeNetworkV1
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 

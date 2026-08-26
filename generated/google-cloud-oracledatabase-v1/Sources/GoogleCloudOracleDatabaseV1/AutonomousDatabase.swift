@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Details of the Autonomous Database resource.
 /// https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/AutonomousDatabase/
-public struct AutonomousDatabase: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AutonomousDatabase: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The name of the Autonomous Database resource in the following
@@ -88,7 +88,7 @@ public struct AutonomousDatabase: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public var peerAutonomousDatabases: [Swift.String] = []
 
   /// Output only. The date and time that the Autonomous Database was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. List of supported GCP region to clone the Autonomous Database
   /// for disaster recovery. Format: `project/{project}/locations/{location}`.
@@ -113,10 +113,10 @@ public struct AutonomousDatabase: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.oracledatabase.v1.AutonomousDatabase"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

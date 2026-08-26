@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Spec for a data discovery scan.
-public struct DataDiscoverySpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DataDiscoverySpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. Configuration for metadata publishing.
@@ -84,7 +84,7 @@ public struct DataDiscoverySpec: Codable, Equatable, GoogleCloudWkt._AnyPackable
   }
 
   /// Describes BigQuery publishing configurations.
-  public struct BigQueryPublishingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct BigQueryPublishingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Determines whether to  publish discovered tables as BigLake
@@ -255,16 +255,16 @@ public struct DataDiscoverySpec: Codable, Equatable, GoogleCloudWkt._AnyPackable
       return
         "type.googleapis.com/google.cloud.dataplex.v1.DataDiscoverySpec.BigQueryPublishingConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configurations related to Cloud Storage as the data source.
-  public struct StorageConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct StorageConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Defines the data to include during discovery when only a subset
@@ -309,7 +309,7 @@ public struct DataDiscoverySpec: Codable, Equatable, GoogleCloudWkt._AnyPackable
     }
 
     /// Describes CSV and similar semi-structured data formats.
-    public struct CsvOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct CsvOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. The number of rows to interpret as header rows that should be
@@ -352,16 +352,16 @@ public struct DataDiscoverySpec: Codable, Equatable, GoogleCloudWkt._AnyPackable
         return
           "type.googleapis.com/google.cloud.dataplex.v1.DataDiscoverySpec.StorageConfig.CsvOptions"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Describes JSON data format.
-    public struct JsonOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct JsonOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. The character encoding of the data. The default is UTF-8.
@@ -392,16 +392,16 @@ public struct DataDiscoverySpec: Codable, Equatable, GoogleCloudWkt._AnyPackable
         return
           "type.googleapis.com/google.cloud.dataplex.v1.DataDiscoverySpec.StorageConfig.JsonOptions"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Describes options for unstructured data discovery.
-    public struct UnstructuredDataOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct UnstructuredDataOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. Specifies whether deeper semantic inference over the objects'
@@ -428,22 +428,22 @@ public struct DataDiscoverySpec: Codable, Equatable, GoogleCloudWkt._AnyPackable
         return
           "type.googleapis.com/google.cloud.dataplex.v1.DataDiscoverySpec.StorageConfig.UnstructuredDataOptions"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.DataDiscoverySpec.StorageConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -456,10 +456,10 @@ public struct DataDiscoverySpec: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataplex.v1.DataDiscoverySpec"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

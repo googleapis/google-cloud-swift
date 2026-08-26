@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 extension ResourceRecordSetsClient {
   /// Synthetic request message for the [create()][.resourceRecordSets.create] method.
-  public struct CreateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CreateRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
@@ -53,16 +53,16 @@ extension ResourceRecordSetsClient {
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.resourceRecordSets.createRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Synthetic request message for the [delete()][.resourceRecordSets.delete] method.
-  public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DeleteRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
@@ -99,16 +99,16 @@ extension ResourceRecordSetsClient {
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.resourceRecordSets.deleteRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Synthetic request message for the [get()][.resourceRecordSets.get] method.
-  public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GetRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
@@ -145,16 +145,16 @@ extension ResourceRecordSetsClient {
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.resourceRecordSets.getRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Synthetic request message for the [list()][.resourceRecordSets.list] method.
-  public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ListRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Specify a filter expression to view records that exactly match the specified domain. Both the `name` and `type` parameters are not supported and must be omitted when you use `filter`. Your `filter` expression must conform to AIP-160 and you must specify a domain in the `name` field. Optionally, you can include the `type` field to filter records by type. You can also include the `has_suffix` function to view records that match by domain suffix. Examples: * `name`="example.com." * `name`="example.com." AND type="A" * `name`=`has_suffix`("example.com.") * `name`=`has_suffix`("example.com.") AND type="A"
@@ -197,16 +197,16 @@ extension ResourceRecordSetsClient {
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.resourceRecordSets.listRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Synthetic request message for the [patch()][.resourceRecordSets.patch] method.
-  public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PatchRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
@@ -246,11 +246,11 @@ extension ResourceRecordSetsClient {
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.resourceRecordSets.patchRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 }

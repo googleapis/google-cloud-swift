@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents a Workload Manager Evaluation configuration.
 /// An Evaluation defines a set of rules to be validated against a scope
 /// of Cloud resources.
-public struct Evaluation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Evaluation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Name of resource that has the form
@@ -42,10 +42,10 @@ public struct Evaluation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var resourceStatus: ResourceStatus? = nil
 
   /// Output only. [Output only] Create time stamp.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. [Output only] Update time stamp.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Labels as key value pairs.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -208,10 +208,10 @@ public struct Evaluation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.workloadmanager.v1.Evaluation"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

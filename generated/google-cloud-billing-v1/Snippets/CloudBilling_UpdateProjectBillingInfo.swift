@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudBillingV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 
 func sample(client: CloudBillingClient, projectId: String) async throws {

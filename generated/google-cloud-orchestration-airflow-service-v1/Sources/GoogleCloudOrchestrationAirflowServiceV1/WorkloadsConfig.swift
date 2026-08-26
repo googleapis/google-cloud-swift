@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The Kubernetes workloads configuration for GKE cluster associated with the
 /// Cloud Composer environment. Supported for Cloud Composer environments in
 /// versions composer-2.*.*-airflow-*.*.* and newer.
-public struct WorkloadsConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct WorkloadsConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. Resources used by Airflow schedulers.
@@ -58,7 +58,7 @@ public struct WorkloadsConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Configuration for resources used by Airflow schedulers.
-  public struct SchedulerResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SchedulerResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. CPU request and limit for a single Airflow scheduler replica.
@@ -95,16 +95,16 @@ public struct WorkloadsConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.orchestration.airflow.service.v1.WorkloadsConfig.SchedulerResource"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configuration for resources used by Airflow web server.
-  public struct WebServerResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct WebServerResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. CPU request and limit for Airflow web server.
@@ -136,16 +136,16 @@ public struct WorkloadsConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.orchestration.airflow.service.v1.WorkloadsConfig.WebServerResource"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configuration for resources used by Airflow workers.
-  public struct WorkerResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct WorkerResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. CPU request and limit for a single Airflow worker replica.
@@ -185,16 +185,16 @@ public struct WorkloadsConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.orchestration.airflow.service.v1.WorkloadsConfig.WorkerResource"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configuration for resources used by Airflow triggerers.
-  public struct TriggererResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TriggererResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The number of triggerers.
@@ -227,11 +227,11 @@ public struct WorkloadsConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.orchestration.airflow.service.v1.WorkloadsConfig.TriggererResource"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -239,7 +239,7 @@ public struct WorkloadsConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   /// This field is supported for Cloud Composer environments in versions
   /// composer-3-airflow-*.*.*-build.* and newer.
-  public struct DagProcessorResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DagProcessorResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. CPU request and limit for a single Airflow DAG processor
@@ -278,21 +278,21 @@ public struct WorkloadsConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.orchestration.airflow.service.v1.WorkloadsConfig.DagProcessorResource"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.orchestration.airflow.service.v1.WorkloadsConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

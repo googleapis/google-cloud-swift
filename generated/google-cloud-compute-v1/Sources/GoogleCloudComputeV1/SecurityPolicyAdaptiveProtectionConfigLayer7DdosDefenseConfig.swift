@@ -16,13 +16,13 @@
 
 #if OrganizationSecurityPolicies || RegionSecurityPolicies || SecurityPolicies
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Configuration options for L7 DDoS detection.
   /// This field is only supported in Global Security Policies of type
   /// CLOUD_ARMOR.
   public struct SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig: Codable, Equatable,
-    GoogleCloudWkt._AnyPackable,
+    GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// If set to true, enables CAAP for L7 DDoS detection.
@@ -161,11 +161,11 @@
       return
         "type.googleapis.com/google.cloud.compute.v1.SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

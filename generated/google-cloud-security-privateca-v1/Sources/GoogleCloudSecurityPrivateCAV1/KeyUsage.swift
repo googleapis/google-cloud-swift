@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A [KeyUsage][google.cloud.security.privateca.v1.KeyUsage] describes key usage
 /// values that may appear in an X.509 certificate.
 ///
 /// [google.cloud.security.privateca.v1.KeyUsage]: <doc:KeyUsage>
-public struct KeyUsage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct KeyUsage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Describes high-level ways in which a key may be used.
@@ -58,7 +58,7 @@ public struct KeyUsage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// https://tools.ietf.org/html/rfc5280#section-4.2.1.3.
   ///
   /// [google.cloud.security.privateca.v1.KeyUsage.KeyUsageOptions]: <doc:KeyUsage/KeyUsageOptions>
-  public struct KeyUsageOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct KeyUsageOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The key may be used for digital signatures.
@@ -108,11 +108,11 @@ public struct KeyUsage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.security.privateca.v1.KeyUsage.KeyUsageOptions"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -121,7 +121,7 @@ public struct KeyUsage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// as an extended key usage value.
   ///
   /// [google.cloud.security.privateca.v1.KeyUsage.ExtendedKeyUsageOptions]: <doc:KeyUsage/ExtendedKeyUsageOptions>
-  public struct ExtendedKeyUsageOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ExtendedKeyUsageOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Corresponds to OID 1.3.6.1.5.5.7.3.1. Officially described as "TLS WWW
@@ -168,21 +168,21 @@ public struct KeyUsage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.security.privateca.v1.KeyUsage.ExtendedKeyUsageOptions"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.security.privateca.v1.KeyUsage"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -17,7 +17,7 @@
 #if Deployments
   import Foundation
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleCloudGax
 

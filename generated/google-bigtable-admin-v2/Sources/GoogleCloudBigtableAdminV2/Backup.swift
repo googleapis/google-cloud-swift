@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A backup of a Cloud Bigtable table.
-public struct Backup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Backup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A globally unique identifier for the backup which cannot be
@@ -51,7 +51,7 @@ public struct Backup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// - At most 90 days
   ///
   /// Once the `expire_time` has passed, Cloud Bigtable will delete the backup.
-  public var expireTime: GoogleCloudWkt.Timestamp? = nil
+  public var expireTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. `start_time` is the time that the backup was started
   /// (i.e. approximately the time the
@@ -60,11 +60,11 @@ public struct Backup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// this timestamp.
   ///
   /// [google.bigtable.admin.v2.BigtableTableAdmin.CreateBackup]: <doc:BigtableTableAdminClient/createBackup(request:options:)>
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. `end_time` is the time that the backup was finished. The row
   /// data in the backup will be no newer than this timestamp.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Size of the backup in bytes.
   public var sizeBytes: Swift.Int64 = Swift.Int64()
@@ -86,7 +86,7 @@ public struct Backup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   /// This field only applies for hot backups. When creating or updating a
   /// standard backup, attempting to set this field will fail the request.
-  public var hotToStandardTime: GoogleCloudWkt.Timestamp? = nil
+  public var hotToStandardTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `Backup`.
   public init() {}
@@ -323,10 +323,10 @@ public struct Backup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.bigtable.admin.v2.Backup"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

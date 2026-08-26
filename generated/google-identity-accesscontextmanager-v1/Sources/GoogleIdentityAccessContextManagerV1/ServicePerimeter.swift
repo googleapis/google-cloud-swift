@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// `ServicePerimeter` describes a set of Google Cloud resources which can freely
 /// import and export data amongst themselves, but not export outside of the
@@ -27,7 +27,7 @@ import Foundation
 /// Service Perimeter Bridges can contain only Google Cloud projects as members,
 /// a single Google Cloud project may belong to multiple Service Perimeter
 /// Bridges.
-public struct ServicePerimeter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ServicePerimeter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Resource name for the ServicePerimeter.  The `short_name`
@@ -44,10 +44,10 @@ public struct ServicePerimeter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var description: Swift.String = Swift.String()
 
   /// Output only. Time the `ServicePerimeter` was created in UTC.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Time the `ServicePerimeter` was updated in UTC.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Perimeter type indicator. A single project is
   /// allowed to be a member of single regular perimeter, but multiple service
@@ -211,10 +211,10 @@ public struct ServicePerimeter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeter"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

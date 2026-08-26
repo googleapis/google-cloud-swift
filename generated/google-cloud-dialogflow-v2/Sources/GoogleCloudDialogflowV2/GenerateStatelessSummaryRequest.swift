@@ -16,13 +16,13 @@
 
 #if Conversations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The request message for
   /// [Conversations.GenerateStatelessSummary][google.cloud.dialogflow.v2.Conversations.GenerateStatelessSummary].
   ///
   /// [google.cloud.dialogflow.v2.Conversations.GenerateStatelessSummary]: <doc:ConversationsClient/generateStatelessSummary(request:options:)>
-  public struct GenerateStatelessSummaryRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GenerateStatelessSummaryRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The conversation to suggest a summary for.
@@ -63,7 +63,7 @@
 
     /// The minimum amount of information required to generate a Summary without
     /// having a Conversation resource created.
-    public struct MinimalConversation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct MinimalConversation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The messages that the Summary will be generated from. It is
@@ -97,22 +97,22 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.GenerateStatelessSummaryRequest.MinimalConversation"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.GenerateStatelessSummaryRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

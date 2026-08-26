@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// User-defined authentication requirements, including support for
 /// [JSON Web Token
 /// (JWT)](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32).
-public struct AuthRequirement: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AuthRequirement: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// [id][google.api.AuthProvider.id] from authentication provider.
@@ -50,7 +50,7 @@ public struct AuthRequirement: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///                bookstore_web.apps.googleusercontent.com
   ///
   /// [google.api.Service.name]: <doc:Service/name>
-  /// [google.protobuf.Api.name]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWkt.Api/name
+  /// [google.protobuf.Api.name]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWKT.Api/name
   public var audiences: Swift.String = Swift.String()
 
   /// Initialize a new instance of `AuthRequirement`.
@@ -72,10 +72,10 @@ public struct AuthRequirement: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.AuthRequirement"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

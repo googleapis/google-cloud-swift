@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleCloudGax
 
 /// A service account is a special type of Google account that belongs to your
@@ -98,7 +98,7 @@ extension Clients {
       name: Swift.String,
       delegates: [Swift.String],
       scope: [Swift.String],
-      lifetime: GoogleCloudWkt.Duration?,
+      lifetime: GoogleCloudWKT.Duration?,
     ) async throws -> GoogleIAMCredentialsV1.GenerateAccessTokenResponse
 
     /// See `IAMCredentialsClient.generateIdToken`.
@@ -173,7 +173,7 @@ extension Clients.IAMCredentialsProtocol {
     name: Swift.String,
     delegates: [Swift.String],
     scope: [Swift.String],
-    lifetime: GoogleCloudWkt.Duration?,
+    lifetime: GoogleCloudWKT.Duration?,
   ) async throws -> GoogleIAMCredentialsV1.GenerateAccessTokenResponse {
     let request = GenerateAccessTokenRequest().with {
       $0.name = name

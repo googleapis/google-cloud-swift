@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudBillingV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: CloudCatalogClient) async throws {
   let items = try client.listServices(

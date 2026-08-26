@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [KeyManagementService.MacSign][google.cloud.kms.v1.KeyManagementService.MacSign].
 ///
 /// [google.cloud.kms.v1.KeyManagementService.MacSign]: <doc:KeyManagementServiceClient/macSign(request:options:)>
-public struct MacSignRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MacSignRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The resource name of the
@@ -56,7 +56,7 @@ public struct MacSignRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   /// [google.cloud.kms.v1.MacSignRequest.data]: <doc:MacSignRequest/data>
   /// [google.cloud.kms.v1.MacSignRequest.data_crc32c]: <doc:MacSignRequest/dataCrc32C>
-  public var dataCrc32C: GoogleCloudWkt.Int64Value? = nil
+  public var dataCrc32C: GoogleCloudWKT.Int64Value? = nil
 
   /// Initialize a new instance of `MacSignRequest`.
   public init() {}
@@ -85,7 +85,7 @@ public struct MacSignRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.data = try container.decode(Foundation.Data.self, forKey: .data)
     self.dataCrc32C = try container.decodeIfPresent(
-      GoogleCloudWkt.Int64Value.self, forKey: .dataCrc32C)
+      GoogleCloudWKT.Int64Value.self, forKey: .dataCrc32C)
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -98,10 +98,10 @@ public struct MacSignRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.MacSignRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

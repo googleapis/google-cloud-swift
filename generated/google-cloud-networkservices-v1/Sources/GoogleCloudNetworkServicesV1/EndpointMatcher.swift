@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A definition of a matcher that selects endpoints to which the policies
 /// should be applied.
-public struct EndpointMatcher: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct EndpointMatcher: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Specifies type of the matcher used for this endpoint matcher.
@@ -78,7 +78,7 @@ public struct EndpointMatcher: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// The matcher that is based on node metadata presented by xDS clients.
-  public struct MetadataLabelMatcher: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MetadataLabelMatcher: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Specifies how matching should be done.
@@ -135,7 +135,7 @@ public struct EndpointMatcher: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Defines a name-pair value for a single label.
-    public struct MetadataLabels: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct MetadataLabels: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. Label name presented as key in xDS Node Metadata.
@@ -165,11 +165,11 @@ public struct EndpointMatcher: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.networkservices.v1.EndpointMatcher.MetadataLabelMatcher.MetadataLabels"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -284,11 +284,11 @@ public struct EndpointMatcher: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.networkservices.v1.EndpointMatcher.MetadataLabelMatcher"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -301,10 +301,10 @@ public struct EndpointMatcher: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkservices.v1.EndpointMatcher"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -16,10 +16,10 @@
 
 #if Participants
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Debug information related to Knowledge Assist feature.
-  public struct KnowledgeAssistDebugInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct KnowledgeAssistDebugInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Reason for query generation.
@@ -48,7 +48,7 @@
     public var queryGenerationDebugInfo: KnowledgeAssistDebugInfo.QueryGenerationDebugInfo? = nil
 
     /// Debug information from CES runtime API.
-    public var cesDebugInfo: GoogleCloudWkt.Struct? = nil
+    public var cesDebugInfo: GoogleCloudWKT.Struct? = nil
 
     /// Initialize a new instance of `KnowledgeAssistDebugInfo`.
     public init() {}
@@ -67,7 +67,7 @@
     }
 
     /// Configured behaviors for Knowedge Assist.
-    public struct KnowledgeAssistBehavior: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct KnowledgeAssistBehavior: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Whether data store agent rewriter was turned off for the request.
@@ -148,16 +148,16 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.KnowledgeAssistDebugInfo.KnowledgeAssistBehavior"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Token usage metadata for query generation.
-    public struct QueryGenerationDebugInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct QueryGenerationDebugInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The total number of tokens in the prompt.
@@ -189,11 +189,11 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.KnowledgeAssistDebugInfo.QueryGenerationDebugInfo"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -484,11 +484,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.KnowledgeAssistDebugInfo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

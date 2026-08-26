@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Metadata describing the Batch operation.
-public struct BatchOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BatchOperationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Name of the batch for the operation.
@@ -28,10 +28,10 @@ public struct BatchOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPac
   public var batchUuid: Swift.String = Swift.String()
 
   /// The time when the operation was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The time when the operation finished.
-  public var doneTime: GoogleCloudWkt.Timestamp? = nil
+  public var doneTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The operation type.
   public var operationType: BatchOperationMetadata.BatchOperationType =
@@ -163,10 +163,10 @@ public struct BatchOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataproc.v1.BatchOperationMetadata"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

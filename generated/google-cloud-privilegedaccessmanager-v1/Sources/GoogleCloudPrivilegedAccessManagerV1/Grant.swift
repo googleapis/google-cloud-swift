@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// A grant represents a request from a user for obtaining the access specified
 /// in an entitlement they are eligible for.
-public struct Grant: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Grant: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. Name of this grant.
@@ -34,17 +34,17 @@ public struct Grant: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Output only. Create time stamp.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Update time stamp.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Username of the user who created this grant.
   public var requester: Swift.String = Swift.String()
 
   /// Required. The amount of time access is needed for. This value should be
   /// less than the `max_request_duration` value of the entitlement.
-  public var requestedDuration: GoogleCloudWkt.Duration? = nil
+  public var requestedDuration: GoogleCloudWKT.Duration? = nil
 
   /// Optional. Justification of why this access is needed.
   public var justification: Justification? = nil
@@ -91,7 +91,7 @@ public struct Grant: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Timeline of a grant describing what happened to it and when.
-  public struct Timeline: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Timeline: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The events that have occurred on this grant. This list
@@ -117,11 +117,11 @@ public struct Grant: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// A single operation on the grant.
-    public struct Event: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Event: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. The time (as recorded at server) when this event occurred.
-      public var eventTime: GoogleCloudWkt.Timestamp? = nil
+      public var eventTime: GoogleCloudWKT.Timestamp? = nil
 
       public var event: OneOf_Event? = nil
 
@@ -159,7 +159,7 @@ public struct Grant: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.eventTime = try container.decodeIfPresent(
-          GoogleCloudWkt.Timestamp.self, forKey: .eventTime)
+          GoogleCloudWKT.Timestamp.self, forKey: .eventTime)
 
         var event: OneOf_Event? = nil
         let eventCheckAndSet = {
@@ -262,12 +262,12 @@ public struct Grant: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       }
 
       /// An event representing that a grant was requested.
-      public struct Requested: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Requested: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Output only. The time at which this grant expires unless the approval
         /// workflow completes. If omitted, then the request never expires.
-        public var expireTime: GoogleCloudWkt.Timestamp? = nil
+        public var expireTime: GoogleCloudWKT.Timestamp? = nil
 
         /// Initialize a new instance of `Requested`.
         public init() {}
@@ -289,16 +289,16 @@ public struct Grant: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.Grant.Timeline.Event.Requested"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// An event representing that the grant was approved.
-      public struct Approved: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Approved: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Output only. The reason provided by the approver for approving the
@@ -328,16 +328,16 @@ public struct Grant: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.Grant.Timeline.Event.Approved"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// An event representing that the grant was denied.
-      public struct Denied: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Denied: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Output only. The reason provided by the approver for denying the
@@ -367,16 +367,16 @@ public struct Grant: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.Grant.Timeline.Event.Denied"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// An event representing that the grant was revoked.
-      public struct Revoked: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Revoked: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Output only. The reason provided by the user for revoking the grant.
@@ -405,16 +405,16 @@ public struct Grant: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.Grant.Timeline.Event.Revoked"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// An event representing that the grant was withdrawn.
-      public struct Withdrawn: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Withdrawn: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Initialize a new instance of `Withdrawn`.
@@ -437,21 +437,21 @@ public struct Grant: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.Grant.Timeline.Event.Withdrawn"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// An event representing that the grant has been scheduled to be
       /// activated later.
-      public struct Scheduled: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Scheduled: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Output only. The time at which the access is granted.
-        public var scheduledActivationTime: GoogleCloudWkt.Timestamp? = nil
+        public var scheduledActivationTime: GoogleCloudWKT.Timestamp? = nil
 
         /// Initialize a new instance of `Scheduled`.
         public init() {}
@@ -473,17 +473,17 @@ public struct Grant: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.Grant.Timeline.Event.Scheduled"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// An event representing that the grant was successfully
       /// activated.
-      public struct Activated: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Activated: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Initialize a new instance of `Activated`.
@@ -506,16 +506,16 @@ public struct Grant: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.Grant.Timeline.Event.Activated"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// An event representing that the grant activation failed.
-      public struct ActivationFailed: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct ActivationFailed: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Output only. The error that occurred while activating the grant.
@@ -541,16 +541,16 @@ public struct Grant: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.Grant.Timeline.Event.ActivationFailed"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// An event representing that the grant was expired.
-      public struct Expired: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Expired: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Initialize a new instance of `Expired`.
@@ -573,16 +573,16 @@ public struct Grant: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.Grant.Timeline.Event.Expired"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// An event representing that the grant has ended.
-      public struct Ended: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Ended: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Initialize a new instance of `Ended`.
@@ -605,17 +605,17 @@ public struct Grant: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.Grant.Timeline.Event.Ended"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// An event representing that the policy bindings made by this grant were
       /// modified externally.
-      public struct ExternallyModified: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct ExternallyModified: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Initialize a new instance of `ExternallyModified`.
@@ -638,11 +638,11 @@ public struct Grant: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.Grant.Timeline.Event.ExternallyModified"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -676,37 +676,37 @@ public struct Grant: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.Grant.Timeline.Event"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.Grant.Timeline"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Audit trail for the access provided by this grant.
-  public struct AuditTrail: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AuditTrail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The time at which access was given.
-    public var accessGrantTime: GoogleCloudWkt.Timestamp? = nil
+    public var accessGrantTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. The time at which the system removed access. This could be
     /// because of an automatic expiry or because of a revocation.
     ///
     /// If unspecified, then access hasn't been removed yet.
-    public var accessRemoveTime: GoogleCloudWkt.Timestamp? = nil
+    public var accessRemoveTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `AuditTrail`.
     public init() {}
@@ -727,11 +727,11 @@ public struct Grant: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.Grant.AuditTrail"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -919,10 +919,10 @@ public struct Grant: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.Grant"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

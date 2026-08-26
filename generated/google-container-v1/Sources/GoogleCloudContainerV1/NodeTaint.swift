@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Kubernetes taint is composed of three fields: key, value, and effect. Effect
 /// can only be one of three types:  NoSchedule, PreferNoSchedule or NoExecute.
@@ -23,7 +23,7 @@ import Foundation
 /// See
 /// [here](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration)
 /// for more information, including usage and the valid values.
-public struct NodeTaint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct NodeTaint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Key for taint.
@@ -166,10 +166,10 @@ public struct NodeTaint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.NodeTaint"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

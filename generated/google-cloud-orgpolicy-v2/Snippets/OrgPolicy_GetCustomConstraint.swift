@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudOrgPolicyV2
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: OrgPolicyClient, organizationId: String, customConstraintId: String)
   async throws

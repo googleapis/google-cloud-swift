@@ -16,7 +16,7 @@
 
 #if FeatureRegistryService || FeaturestoreService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request message for
   /// [FeaturestoreService.UpdateFeature][google.cloud.aiplatform.v1.FeaturestoreService.UpdateFeature].
@@ -25,7 +25,7 @@
   ///
   /// [google.cloud.aiplatform.v1.FeatureRegistryService.UpdateFeature]: <doc:FeatureRegistryServiceClient/updateFeature(request:options:)>
   /// [google.cloud.aiplatform.v1.FeaturestoreService.UpdateFeature]: <doc:FeaturestoreServiceClient/updateFeature(request:options:)>
-  public struct UpdateFeatureRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct UpdateFeatureRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The Feature's `name` field is used to identify the Feature to be
@@ -49,7 +49,7 @@
     ///   * `labels`
     ///   * `disable_monitoring` (Not supported for FeatureRegistryService Feature)
     ///   * `point_of_contact` (Not supported for FeaturestoreService FeatureStore)
-    public var updateMask: GoogleCloudWkt.FieldMask? = nil
+    public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
     /// Initialize a new instance of `UpdateFeatureRequest`.
     public init() {}
@@ -70,11 +70,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.UpdateFeatureRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

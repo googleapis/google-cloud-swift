@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Tags contain custom metadata and are attached to Data Catalog resources. Tags
 /// conform with the specification of their tag template.
@@ -23,7 +23,7 @@ import Foundation
 /// See [Data Catalog
 /// IAM](https://cloud.google.com/data-catalog/docs/concepts/iam) for information
 /// on the permissions needed to create or view tags.
-public struct Tag: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Tag: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The resource name of the tag in URL format where tag ID is a
@@ -148,10 +148,10 @@ public struct Tag: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datacatalog.v1.Tag"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

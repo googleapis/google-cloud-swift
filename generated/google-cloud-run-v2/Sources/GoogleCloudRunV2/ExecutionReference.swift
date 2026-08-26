@@ -15,25 +15,25 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Reference to an Execution. Use /Executions.GetExecution with the given name
 /// to get full execution including the latest status.
-public struct ExecutionReference: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ExecutionReference: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Name of the execution.
   public var name: Swift.String = Swift.String()
 
   /// Creation timestamp of the execution.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Creation timestamp of the execution.
-  public var completionTime: GoogleCloudWkt.Timestamp? = nil
+  public var completionTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The deletion time of the execution. It is only
   /// populated as a response to a Delete request.
-  public var deleteTime: GoogleCloudWkt.Timestamp? = nil
+  public var deleteTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Status for the execution completion.
   public var completionStatus: ExecutionReference.CompletionStatus =
@@ -184,10 +184,10 @@ public struct ExecutionReference: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.run.v2.ExecutionReference"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

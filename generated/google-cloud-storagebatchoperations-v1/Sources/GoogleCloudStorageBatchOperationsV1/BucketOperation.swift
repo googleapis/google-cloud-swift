@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// BucketOperation represents a bucket-level breakdown of a Job.
-public struct BucketOperation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BucketOperation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The resource name of the BucketOperation. This is defined by
@@ -30,13 +30,13 @@ public struct BucketOperation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var bucketName: Swift.String = Swift.String()
 
   /// Output only. The time that the BucketOperation was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time that the BucketOperation was started.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time that the BucketOperation was completed.
-  public var completeTime: GoogleCloudWkt.Timestamp? = nil
+  public var completeTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Information about the progress of the bucket operation.
   public var counters: Counters? = nil
@@ -92,11 +92,11 @@ public struct BucketOperation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.bucketName = try container.decode(Swift.String.self, forKey: .bucketName)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.startTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .startTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
     self.completeTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .completeTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .completeTime)
     self.counters = try container.decodeIfPresent(Counters.self, forKey: .counters)
     self.errorSummaries = try container.decode([ErrorSummary].self, forKey: .errorSummaries)
     self.state = try container.decode(BucketOperation.State.self, forKey: .state)
@@ -342,10 +342,10 @@ public struct BucketOperation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.storagebatchoperations.v1.BucketOperation"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

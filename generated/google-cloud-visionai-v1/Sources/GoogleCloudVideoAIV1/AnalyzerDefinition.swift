@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Defines an Analyzer.
 ///
 /// An analyzer processes data from its input streams using the logic defined in
 /// the Operator that it represents. Of course, it produces data for the output
 /// streams declared in the Operator.
-public struct AnalyzerDefinition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AnalyzerDefinition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The name of this analyzer.
@@ -116,7 +116,7 @@ public struct AnalyzerDefinition: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   /// output as its first input and "some-analyzer"'s "bar" output as its
   /// second input, you can set this field to the following:
   /// input = ["some-analyzer:foo", "some-analyzer:bar"]
-  public struct StreamInput: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct StreamInput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The name of the stream input (as discussed above).
@@ -141,16 +141,16 @@ public struct AnalyzerDefinition: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.AnalyzerDefinition.StreamInput"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Options available for debugging purposes only.
-  public struct DebugOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DebugOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Environment variables.
@@ -175,16 +175,16 @@ public struct AnalyzerDefinition: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.AnalyzerDefinition.DebugOptions"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Option related to the operator.
-  public struct OperatorOption: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct OperatorOption: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Tag of the operator.
@@ -212,21 +212,21 @@ public struct AnalyzerDefinition: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.AnalyzerDefinition.OperatorOption"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.AnalyzerDefinition"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

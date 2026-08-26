@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleCloudGax
 
 /// A service to manage Google Cloud support cases.
@@ -243,7 +243,7 @@ extension Clients {
     /// See `CaseServiceClient.updateCase`.
     func updateCase(
       `case`: Case?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudSupportV2.Case
 
     /// See `CaseServiceClient.escalateCase`.
@@ -436,7 +436,7 @@ extension Clients.CaseServiceProtocol {
 
   public func updateCase(
     `case`: Case?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudSupportV2.Case {
     let request = UpdateCaseRequest().with {
       $0.`case` = `case`

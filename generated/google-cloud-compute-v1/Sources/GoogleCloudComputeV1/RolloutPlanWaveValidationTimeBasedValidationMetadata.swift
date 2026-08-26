@@ -16,16 +16,16 @@
 
 #if RolloutPlans
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Metadata required if type = "time".
   public struct RolloutPlanWaveValidationTimeBasedValidationMetadata: Codable, Equatable,
-    GoogleCloudWkt._AnyPackable,
+    GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The duration that the system waits in between waves. This wait starts
     /// after all changes in the wave are rolled out.
-    public var waitDuration: GoogleCloudWkt.Duration? = nil
+    public var waitDuration: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `RolloutPlanWaveValidationTimeBasedValidationMetadata`.
     public init() {}
@@ -47,11 +47,11 @@
       return
         "type.googleapis.com/google.cloud.compute.v1.RolloutPlanWaveValidationTimeBasedValidationMetadata"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

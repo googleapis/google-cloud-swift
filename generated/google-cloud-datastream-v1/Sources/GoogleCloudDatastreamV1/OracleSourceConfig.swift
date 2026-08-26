@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Oracle data source configuration
-public struct OracleSourceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct OracleSourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Oracle objects to include in the stream.
@@ -149,7 +149,7 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   }
 
   /// Configuration to drop large object values.
-  public struct DropLargeObjects: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DropLargeObjects: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `DropLargeObjects`.
@@ -171,16 +171,16 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.datastream.v1.OracleSourceConfig.DropLargeObjects"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configuration to stream large object values.
-  public struct StreamLargeObjects: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct StreamLargeObjects: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `StreamLargeObjects`.
@@ -202,16 +202,16 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.datastream.v1.OracleSourceConfig.StreamLargeObjects"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configuration to use LogMiner CDC method.
-  public struct LogMiner: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct LogMiner: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `LogMiner`.
@@ -233,16 +233,16 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.datastream.v1.OracleSourceConfig.LogMiner"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configuration to use Binary Log Parser CDC technique.
-  public struct BinaryLogParser: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct BinaryLogParser: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Configuration to specify how the log file should be accessed.
@@ -310,7 +310,7 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     }
 
     /// Configuration to use Oracle ASM to access the log files.
-    public struct OracleAsmLogFileAccess: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct OracleAsmLogFileAccess: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Initialize a new instance of `OracleAsmLogFileAccess`.
@@ -333,16 +333,16 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
         return
           "type.googleapis.com/google.cloud.datastream.v1.OracleSourceConfig.BinaryLogParser.OracleAsmLogFileAccess"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Configuration to specify the Oracle directories to access the log files.
-    public struct LogFileDirectories: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct LogFileDirectories: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. Oracle directory for online logs.
@@ -371,11 +371,11 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
         return
           "type.googleapis.com/google.cloud.datastream.v1.OracleSourceConfig.BinaryLogParser.LogFileDirectories"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -391,11 +391,11 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.datastream.v1.OracleSourceConfig.BinaryLogParser"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -418,10 +418,10 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datastream.v1.OracleSourceConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

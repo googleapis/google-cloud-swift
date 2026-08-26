@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -889,7 +889,7 @@ extension Clients {
     /// See `ConfigDeliveryClient.updateResourceBundle`.
     func updateResourceBundle(
       resourceBundle: ResourceBundle?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<ResourceBundle>
 
     /// See `ConfigDeliveryClient.deleteResourceBundle`.
@@ -954,7 +954,7 @@ extension Clients {
     /// See `ConfigDeliveryClient.updateFleetPackage`.
     func updateFleetPackage(
       fleetPackage: FleetPackage?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<FleetPackage>
 
     /// See `ConfigDeliveryClient.deleteFleetPackage`.
@@ -1016,7 +1016,7 @@ extension Clients {
     /// See `ConfigDeliveryClient.updateRelease`.
     func updateRelease(
       release: Release?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Release>
 
     /// See `ConfigDeliveryClient.deleteRelease`.
@@ -1077,7 +1077,7 @@ extension Clients {
     /// See `ConfigDeliveryClient.updateVariant`.
     func updateVariant(
       variant: Variant?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Variant>
 
     /// See `ConfigDeliveryClient.deleteVariant`.
@@ -1588,7 +1588,7 @@ extension Clients.ConfigDeliveryProtocol {
 
   public func updateResourceBundle(
     resourceBundle: ResourceBundle?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<ResourceBundle> {
     let request = UpdateResourceBundleRequest().with {
       $0.resourceBundle = resourceBundle
@@ -1763,7 +1763,7 @@ extension Clients.ConfigDeliveryProtocol {
 
   public func updateFleetPackage(
     fleetPackage: FleetPackage?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<FleetPackage> {
     let request = UpdateFleetPackageRequest().with {
       $0.fleetPackage = fleetPackage
@@ -1938,7 +1938,7 @@ extension Clients.ConfigDeliveryProtocol {
 
   public func updateRelease(
     release: Release?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Release> {
     let request = UpdateReleaseRequest().with {
       $0.release = release
@@ -2113,7 +2113,7 @@ extension Clients.ConfigDeliveryProtocol {
 
   public func updateVariant(
     variant: Variant?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Variant> {
     let request = UpdateVariantRequest().with {
       $0.variant = variant

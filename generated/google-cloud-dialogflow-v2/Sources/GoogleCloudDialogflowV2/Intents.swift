@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleRpc
   import GoogleCloudGax
@@ -435,7 +435,7 @@
       func updateIntent(
         intent: Intent?,
         languageCode: Swift.String,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudDialogflowV2.Intent
 
       /// See `IntentsClient.deleteIntent`.
@@ -741,7 +741,7 @@
     public func updateIntent(
       intent: Intent?,
       languageCode: Swift.String,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDialogflowV2.Intent {
       let request = UpdateIntentRequest().with {
         $0.intent = intent

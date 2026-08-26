@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Information related to the source system of the data resource that is
 /// represented by the entry.
-public struct EntrySource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct EntrySource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The name of the resource in the source system.
@@ -51,13 +51,13 @@ public struct EntrySource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var ancestors: [EntrySource.Ancestor] = []
 
   /// The time when the resource was created in the source system.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The time when the resource was last updated in the source system. If the
   /// entry exists in the system and its `EntrySource` has `update_time`
   /// populated, further updates to the `EntrySource` of the entry must provide
   /// incremental updates to its `update_time`.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Location of the resource in the source system. You can search
   /// the entry by this location. By default, this should match the location of
@@ -83,7 +83,7 @@ public struct EntrySource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Information about individual items in the hierarchy that is associated with
   /// the data resource.
-  public struct Ancestor: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Ancestor: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The name of the ancestor resource.
@@ -111,21 +111,21 @@ public struct EntrySource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.EntrySource.Ancestor"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataplex.v1.EntrySource"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The request message for the PublishEvents method.
-public struct PublishEventsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct PublishEventsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The full name of the channel to publish to. For example:
@@ -27,7 +27,7 @@ public struct PublishEventsRequest: Codable, Equatable, GoogleCloudWkt._AnyPacka
 
   /// The CloudEvents v1.0 events to publish. No other types are allowed.
   /// If this field is set, then the `text_events` fields must not be set.
-  public var events: [GoogleCloudWkt.`Any`] = []
+  public var events: [GoogleCloudWKT.`Any`] = []
 
   /// The text representation of events to publish.
   /// CloudEvent v1.0 in JSON format is the only allowed type. Refer to
@@ -55,10 +55,10 @@ public struct PublishEventsRequest: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.eventarc.publishing.v1.PublishEventsRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

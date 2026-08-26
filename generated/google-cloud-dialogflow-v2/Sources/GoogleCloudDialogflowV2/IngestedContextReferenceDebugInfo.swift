@@ -16,10 +16,10 @@
 
 #if Conversations || Participants
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Debug information related to ingested context reference.
-  public struct IngestedContextReferenceDebugInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct IngestedContextReferenceDebugInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Indicates if the project is allowlisted to use ingested context
@@ -50,7 +50,7 @@
     }
 
     /// Debug information related to ingested parameters from context reference.
-    public struct IngestedParameterDebugInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct IngestedParameterDebugInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The name of the parameter in the context reference.
@@ -217,22 +217,22 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.IngestedContextReferenceDebugInfo.IngestedParameterDebugInfo"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.IngestedContextReferenceDebugInfo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An [admission rule][google.cloud.binaryauthorization.v1.AdmissionRule]
 /// specifies either that all container images used in a pod creation request
@@ -30,7 +30,7 @@ import Foundation
 /// [google.cloud.binaryauthorization.v1.AdmissionRule]: <doc:AdmissionRule>
 /// [google.cloud.binaryauthorization.v1.AdmissionWhitelistPattern]: <doc:AdmissionWhitelistPattern>
 /// [google.cloud.binaryauthorization.v1.Attestor]: <doc:Attestor>
-public struct AdmissionRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AdmissionRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. How this admission rule will be evaluated.
@@ -288,10 +288,10 @@ public struct AdmissionRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.binaryauthorization.v1.AdmissionRule"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

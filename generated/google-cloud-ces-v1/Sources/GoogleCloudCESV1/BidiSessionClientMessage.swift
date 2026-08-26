@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The top-level message sent by the client for the
 /// [SessionService.BidiRunSession][google.cloud.ces.v1.SessionService.BidiRunSession]
 /// method.
 ///
 /// [google.cloud.ces.v1.SessionService.BidiRunSession]: <doc:SessionServiceClient/bidiRunSession(request:options:)>
-public struct BidiSessionClientMessage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BidiSessionClientMessage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The type of the message.
@@ -96,10 +96,10 @@ public struct BidiSessionClientMessage: Codable, Equatable, GoogleCloudWkt._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.BidiSessionClientMessage"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

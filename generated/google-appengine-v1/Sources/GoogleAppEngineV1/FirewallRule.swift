@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A single firewall rule that is evaluated against incoming traffic
 /// and provides an action to take on matched requests.
-public struct FirewallRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct FirewallRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A positive integer between [1, Int32.MaxValue-1] that defines the order of
@@ -173,10 +173,10 @@ public struct FirewallRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.appengine.v1.FirewallRule"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

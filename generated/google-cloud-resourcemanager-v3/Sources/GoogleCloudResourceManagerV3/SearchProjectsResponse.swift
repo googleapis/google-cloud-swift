@@ -16,7 +16,7 @@
 
 import Foundation
 @_spi(GoogleCloudInternal) import GoogleCloudGax
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A page of the response received from the
 /// [SearchProjects][google.cloud.resourcemanager.v3.Projects.SearchProjects]
@@ -27,7 +27,7 @@ import Foundation
 /// retrieve the next request page.
 ///
 /// [google.cloud.resourcemanager.v3.Projects.SearchProjects]: <doc:ProjectsClient/searchProjects(request:options:)>
-public struct SearchProjectsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SearchProjectsResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable
 {
@@ -67,11 +67,11 @@ public struct SearchProjectsResponse: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.resourcemanager.v3.SearchProjectsResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 
   public func _getPaginatedItems() -> [Project] {

@@ -16,10 +16,10 @@
 
 #if Experiments
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// State of the auto-rollout process.
-  public struct RolloutState: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RolloutState: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Display name of the current auto rollout step.
@@ -29,7 +29,7 @@
     public var stepIndex: Swift.Int32 = Swift.Int32()
 
     /// Start time of the current step.
-    public var startTime: GoogleCloudWkt.Timestamp? = nil
+    public var startTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `RolloutState`.
     public init() {}
@@ -50,11 +50,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.RolloutState"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

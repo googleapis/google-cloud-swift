@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -1274,7 +1274,7 @@ extension Clients {
     /// See `BackupDRClient.updateBackupVault`.
     func updateBackupVault(
       backupVault: BackupVault?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<BackupVault>
 
     /// See `BackupDRClient.deleteBackupVault`.
@@ -1324,7 +1324,7 @@ extension Clients {
     /// See `BackupDRClient.updateDataSource`.
     func updateDataSource(
       dataSource: DataSource?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<DataSource>
 
     /// See `BackupDRClient.listBackups`.
@@ -1374,7 +1374,7 @@ extension Clients {
     /// See `BackupDRClient.updateBackup`.
     func updateBackup(
       backup: Backup?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Backup>
 
     /// See `BackupDRClient.deleteBackup`.
@@ -1427,7 +1427,7 @@ extension Clients {
     /// See `BackupDRClient.updateBackupPlan`.
     func updateBackupPlan(
       backupPlan: BackupPlan?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<BackupPlan>
 
     /// See `BackupDRClient.getBackupPlan`.
@@ -1515,7 +1515,7 @@ extension Clients {
     /// See `BackupDRClient.updateBackupPlanAssociation`.
     func updateBackupPlanAssociation(
       backupPlanAssociation: BackupPlanAssociation?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<BackupPlanAssociation>
 
     /// See `BackupDRClient.getBackupPlanAssociation`.
@@ -2374,7 +2374,7 @@ extension Clients.BackupDRProtocol {
 
   public func updateBackupVault(
     backupVault: BackupVault?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<BackupVault> {
     let request = UpdateBackupVaultRequest().with {
       $0.backupVault = backupVault
@@ -2508,7 +2508,7 @@ extension Clients.BackupDRProtocol {
 
   public func updateDataSource(
     dataSource: DataSource?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<DataSource> {
     let request = UpdateDataSourceRequest().with {
       $0.dataSource = dataSource
@@ -2642,7 +2642,7 @@ extension Clients.BackupDRProtocol {
 
   public func updateBackup(
     backup: Backup?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Backup> {
     let request = UpdateBackupRequest().with {
       $0.backup = backup
@@ -2796,7 +2796,7 @@ extension Clients.BackupDRProtocol {
 
   public func updateBackupPlan(
     backupPlan: BackupPlan?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<BackupPlan> {
     let request = UpdateBackupPlanRequest().with {
       $0.backupPlan = backupPlan
@@ -3031,7 +3031,7 @@ extension Clients.BackupDRProtocol {
 
   public func updateBackupPlanAssociation(
     backupPlanAssociation: BackupPlanAssociation?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<BackupPlanAssociation> {
     let request = UpdateBackupPlanAssociationRequest().with {
       $0.backupPlanAssociation = backupPlanAssociation

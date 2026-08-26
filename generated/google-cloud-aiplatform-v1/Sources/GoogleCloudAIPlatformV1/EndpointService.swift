@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleIAMV1
   import GoogleLongRunning
   import GoogleRpc
@@ -511,7 +511,7 @@
       /// See `EndpointServiceClient.updateEndpoint`.
       func updateEndpoint(
         endpoint: Endpoint?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudAIPlatformV1.Endpoint
 
       /// See `EndpointServiceClient.updateEndpointLongRunning`.
@@ -580,7 +580,7 @@
       func mutateDeployedModel(
         endpoint: Swift.String,
         deployedModel: DeployedModel?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> any GoogleCloudGax.PollableOperation<MutateDeployedModelResponse>
 
       /// See `EndpointServiceClient.listLocations`.
@@ -904,7 +904,7 @@
 
     public func updateEndpoint(
       endpoint: Endpoint?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.Endpoint {
       let request = UpdateEndpointRequest().with {
         $0.endpoint = endpoint
@@ -1103,7 +1103,7 @@
     public func mutateDeployedModel(
       endpoint: Swift.String,
       deployedModel: DeployedModel?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<MutateDeployedModelResponse> {
       let request = MutateDeployedModelRequest().with {
         $0.endpoint = endpoint

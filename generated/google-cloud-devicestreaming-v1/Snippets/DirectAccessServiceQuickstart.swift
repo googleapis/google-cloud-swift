@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudDeviceStreamingV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(parent: String, ) async throws {
   let client = try GoogleCloudDeviceStreamingV1.DirectAccessServiceClient()

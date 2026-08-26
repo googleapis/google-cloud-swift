@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The export asset response. This message is returned by the
 /// [google.longrunning.Operations.GetOperation][google.longrunning.Operations.GetOperation]
@@ -24,11 +24,11 @@ import Foundation
 /// field.
 ///
 /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/OneOf_Result/response(_:)
-public struct ExportAssetsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ExportAssetsResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Time the snapshot was taken.
-  public var readTime: GoogleCloudWkt.Timestamp? = nil
+  public var readTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output configuration indicating where the results were output to.
   public var outputConfig: OutputConfig? = nil
@@ -59,10 +59,10 @@ public struct ExportAssetsResponse: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.asset.v1.ExportAssetsResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudMonitoringV3
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample() async throws {
   let client = try GoogleCloudMonitoringV3.QueryServiceClient()

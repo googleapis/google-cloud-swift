@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleType
 
 /// ContinuousBackupInfo describes the continuous backup properties of a
 /// cluster.
-public struct ContinuousBackupInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ContinuousBackupInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The encryption information for the WALs and backups required
@@ -29,7 +29,7 @@ public struct ContinuousBackupInfo: Codable, Equatable, GoogleCloudWkt._AnyPacka
 
   /// Output only. When ContinuousBackup was most recently enabled. Set to null
   /// if ContinuousBackup is not enabled.
-  public var enabledTime: GoogleCloudWkt.Timestamp? = nil
+  public var enabledTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Days of the week on which a continuous backup is taken.
   public var schedule: [GoogleType.DayOfWeek] = []
@@ -44,7 +44,7 @@ public struct ContinuousBackupInfo: Codable, Equatable, GoogleCloudWkt._AnyPacka
   /// 3:23:00PM with a 14d recovery window, the earliest restorable time would be
   /// 04/02/2025 3:23:00PM. This field is only visible if the
   /// CLUSTER_VIEW_CONTINUOUS_BACKUP cluster view is provided.
-  public var earliestRestorableTime: GoogleCloudWkt.Timestamp? = nil
+  public var earliestRestorableTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `ContinuousBackupInfo`.
   public init() {}
@@ -65,10 +65,10 @@ public struct ContinuousBackupInfo: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.alloydb.v1.ContinuousBackupInfo"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

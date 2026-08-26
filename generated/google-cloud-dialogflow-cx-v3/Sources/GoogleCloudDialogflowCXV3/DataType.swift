@@ -20,7 +20,7 @@
   /// Defines data types that are supported for inlined schemas. These types are
   /// consistent with [google.protobuf.Value][google.protobuf.Value].
   ///
-  /// [google.protobuf.Value]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWkt.Value
+  /// [google.protobuf.Value]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWKT.Value
   public enum DataType: Codable, Equatable, Sendable {
     /// Not specified.
     case unspecified

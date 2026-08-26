@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Specifies details of unperformed shipments in a solution. For trivial cases
 /// and/or if we are able to identify the cause for skipping, we report the
 /// reason here.
-public struct SkippedShipment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SkippedShipment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The index corresponds to the index of the shipment in the source
@@ -80,7 +80,7 @@ public struct SkippedShipment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// capacity would be exceeded (including vehicle 1), at least one vehicle's
   /// "Pears" capacity would be exceeded (including vehicle 3) and at least one
   /// vehicle's distance limit would be exceeded (including vehicle 1).
-  public struct Reason: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Reason: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Refer to the comments of Code.
@@ -280,21 +280,21 @@ public struct SkippedShipment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.optimization.v1.SkippedShipment.Reason"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.optimization.v1.SkippedShipment"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

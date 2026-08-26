@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Contains details about a chokepoint, which is a resource or resource group
 /// where high-risk attack paths converge, based on [attack path simulations]
 /// (https://cloud.google.com/security-command-center/docs/attack-exposure-learn#attack_path_simulations).
-public struct Chokepoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Chokepoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// List of resource names of findings associated with this chokepoint.
@@ -47,10 +47,10 @@ public struct Chokepoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.Chokepoint"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

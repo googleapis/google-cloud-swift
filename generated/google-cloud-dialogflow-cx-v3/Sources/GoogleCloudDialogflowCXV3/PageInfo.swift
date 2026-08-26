@@ -16,10 +16,10 @@
 
 #if Agents && Changelogs && Deployments && EntityTypes && Environments && Examples && Experiments && Flows && Generators && Intents && Pages && Playbooks && SecuritySettingsService && SessionEntityTypes && Sessions && TestCases && Tools && TransitionRouteGroups && Versions && Webhooks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents page information communicated to and from the webhook.
-  public struct PageInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PageInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Always present for
@@ -67,7 +67,7 @@
     }
 
     /// Represents form information.
-    public struct FormInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct FormInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional for both
@@ -97,7 +97,7 @@
       }
 
       /// Represents parameter information.
-      public struct ParameterInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct ParameterInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Always present for
@@ -145,7 +145,7 @@
         ///
         /// [google.cloud.dialogflow.cx.v3.WebhookRequest]: <doc:WebhookRequest>
         /// [google.cloud.dialogflow.cx.v3.WebhookResponse]: <doc:WebhookResponse>
-        public var value: GoogleCloudWkt.Value? = nil
+        public var value: GoogleCloudWKT.Value? = nil
 
         /// Optional for
         /// [WebhookRequest][google.cloud.dialogflow.cx.v3.WebhookRequest]. Ignored
@@ -187,7 +187,7 @@
           self.`required` = try container.decode(Swift.Bool.self, forKey: .`required`)
           self.state = try container.decode(
             PageInfo.FormInfo.ParameterInfo.ParameterState.self, forKey: .state)
-          self.value = try container.decodeIfPresent(GoogleCloudWkt.Value.self, forKey: .value)
+          self.value = try container.decodeIfPresent(GoogleCloudWKT.Value.self, forKey: .value)
           self.justCollected = try container.decode(Swift.Bool.self, forKey: .justCollected)
         }
 
@@ -317,33 +317,33 @@
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.cloud.dialogflow.cx.v3.PageInfo.FormInfo.ParameterInfo"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.PageInfo.FormInfo"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.PageInfo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

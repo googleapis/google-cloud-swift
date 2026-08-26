@@ -16,13 +16,13 @@
 
 #if Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Cloud conversation info for easier debugging.
   /// It will get populated in `StreamingDetectIntentResponse` or
   /// `StreamingAnalyzeContentResponse` when the flag `enable_debugging_info` is
   /// set to true in corresponding requests.
-  public struct CloudConversationDebuggingInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CloudConversationDebuggingInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Number of input audio data chunks in streaming requests.
@@ -30,21 +30,21 @@
 
     /// Time offset of the end of speech utterance relative to the
     /// beginning of the first audio chunk.
-    public var resultEndTimeOffset: GoogleCloudWkt.Duration? = nil
+    public var resultEndTimeOffset: GoogleCloudWKT.Duration? = nil
 
     /// Duration of first audio chunk.
-    public var firstAudioDuration: GoogleCloudWkt.Duration? = nil
+    public var firstAudioDuration: GoogleCloudWKT.Duration? = nil
 
     /// Whether client used single utterance mode.
     public var singleUtterance: Swift.Bool = Swift.Bool()
 
     /// Time offsets of the speech partial results relative to the beginning of
     /// the stream.
-    public var speechPartialResultsEndTimes: [GoogleCloudWkt.Duration] = []
+    public var speechPartialResultsEndTimes: [GoogleCloudWKT.Duration] = []
 
     /// Time offsets of the speech final results (is_final=true) relative to the
     /// beginning of the stream.
-    public var speechFinalResultsEndTimes: [GoogleCloudWkt.Duration] = []
+    public var speechFinalResultsEndTimes: [GoogleCloudWKT.Duration] = []
 
     /// Total number of partial responses.
     public var partialResponses: Swift.Int32 = Swift.Int32()
@@ -62,30 +62,30 @@
 
     /// Time offsets of the DTMF partial results relative to the beginning of
     /// the stream.
-    public var dtmfPartialResultsTimes: [GoogleCloudWkt.Duration] = []
+    public var dtmfPartialResultsTimes: [GoogleCloudWKT.Duration] = []
 
     /// Time offsets of the DTMF final results relative to the beginning of
     /// the stream.
-    public var dtmfFinalResultsTimes: [GoogleCloudWkt.Duration] = []
+    public var dtmfFinalResultsTimes: [GoogleCloudWKT.Duration] = []
 
     /// Time offset of the end-of-single-utterance signal relative to the
     /// beginning of the stream.
-    public var singleUtteranceEndTimeOffset: GoogleCloudWkt.Duration? = nil
+    public var singleUtteranceEndTimeOffset: GoogleCloudWKT.Duration? = nil
 
     /// No speech timeout settings for the stream.
-    public var noSpeechTimeout: GoogleCloudWkt.Duration? = nil
+    public var noSpeechTimeout: GoogleCloudWKT.Duration? = nil
 
     /// Speech endpointing timeout settings for the stream.
-    public var endpointingTimeout: GoogleCloudWkt.Duration? = nil
+    public var endpointingTimeout: GoogleCloudWKT.Duration? = nil
 
     /// Whether the streaming terminates with an injected text query.
     public var isInputText: Swift.Bool = Swift.Bool()
 
     /// Client half close time in terms of input audio duration.
-    public var clientHalfCloseTimeOffset: GoogleCloudWkt.Duration? = nil
+    public var clientHalfCloseTimeOffset: GoogleCloudWKT.Duration? = nil
 
     /// Client half close time in terms of API streaming duration.
-    public var clientHalfCloseStreamingTimeOffset: GoogleCloudWkt.Duration? = nil
+    public var clientHalfCloseStreamingTimeOffset: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `CloudConversationDebuggingInfo`.
     public init() {}
@@ -106,11 +106,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.CloudConversationDebuggingInfo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

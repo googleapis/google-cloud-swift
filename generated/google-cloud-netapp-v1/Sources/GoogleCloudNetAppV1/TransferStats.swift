@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// TransferStats reports all statistics related to replication transfer.
-public struct TransferStats: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TransferStats: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Cumulative bytes transferred so far for the replication relationship.
@@ -26,23 +26,23 @@ public struct TransferStats: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Cumulative time taken across all transfers for the replication
   /// relationship.
-  public var totalTransferDuration: GoogleCloudWkt.Duration? = nil
+  public var totalTransferDuration: GoogleCloudWKT.Duration? = nil
 
   /// Last transfer size in bytes.
   public var lastTransferBytes: Swift.Int64? = nil
 
   /// Time taken during last transfer.
-  public var lastTransferDuration: GoogleCloudWkt.Duration? = nil
+  public var lastTransferDuration: GoogleCloudWKT.Duration? = nil
 
   /// Lag duration indicates the duration by which Destination region volume
   /// content lags behind the primary region volume content.
-  public var lagDuration: GoogleCloudWkt.Duration? = nil
+  public var lagDuration: GoogleCloudWKT.Duration? = nil
 
   /// Time when progress was updated last.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Time when last transfer completed.
-  public var lastTransferEndTime: GoogleCloudWkt.Timestamp? = nil
+  public var lastTransferEndTime: GoogleCloudWKT.Timestamp? = nil
 
   /// A message describing the cause of the last transfer failure.
   public var lastTransferError: Swift.String? = nil
@@ -66,10 +66,10 @@ public struct TransferStats: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.netapp.v1.TransferStats"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

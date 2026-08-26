@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleCloudGax
 
@@ -201,7 +201,7 @@
       /// See `FulfillmentsClient.updateFulfillment`.
       func updateFulfillment(
         fulfillment: Fulfillment?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudDialogflowV2.Fulfillment
 
       /// See `FulfillmentsClient.listLocations`.
@@ -319,7 +319,7 @@
 
     public func updateFulfillment(
       fulfillment: Fulfillment?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDialogflowV2.Fulfillment {
       let request = UpdateFulfillmentRequest().with {
         $0.fulfillment = fulfillment

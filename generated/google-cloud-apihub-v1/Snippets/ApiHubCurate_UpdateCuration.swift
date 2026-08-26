@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudApiHubV1
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 
 func sample(client: ApiHubCurateClient, projectId: String, locationId: String, curationId: String)
@@ -31,7 +31,7 @@ func sample(client: ApiHubCurateClient, projectId: String, locationId: String, c
         $0.curation = Curation().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/curations/\(curationId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

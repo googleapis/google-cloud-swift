@@ -16,17 +16,17 @@
 
 #if JobService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The config for scheduling monitoring job.
-  public struct ModelDeploymentMonitoringScheduleConfig: Codable, Equatable, GoogleCloudWkt
+  public struct ModelDeploymentMonitoringScheduleConfig: Codable, Equatable, GoogleCloudWKT
       ._AnyPackable,
     Sendable
   {
     /// Required. The model monitoring job scheduling interval. It will be rounded
     /// up to next full hour. This defines how often the monitoring jobs are
     /// triggered.
-    public var monitorInterval: GoogleCloudWkt.Duration? = nil
+    public var monitorInterval: GoogleCloudWKT.Duration? = nil
 
     /// The time window of the prediction data being included in each prediction
     /// dataset. This window specifies how long the data should be collected from
@@ -38,7 +38,7 @@
     /// monitoring statistics.
     ///
     /// [google.cloud.aiplatform.v1.ModelDeploymentMonitoringScheduleConfig.monitor_interval]: <doc:ModelDeploymentMonitoringScheduleConfig/monitorInterval>
-    public var monitorWindow: GoogleCloudWkt.Duration? = nil
+    public var monitorWindow: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `ModelDeploymentMonitoringScheduleConfig`.
     public init() {}
@@ -60,11 +60,11 @@
       return
         "type.googleapis.com/google.cloud.aiplatform.v1.ModelDeploymentMonitoringScheduleConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

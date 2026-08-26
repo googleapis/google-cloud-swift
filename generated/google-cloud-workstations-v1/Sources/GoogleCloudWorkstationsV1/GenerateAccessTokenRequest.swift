@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for GenerateAccessToken.
-public struct GenerateAccessTokenRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct GenerateAccessTokenRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Name of the workstation for which the access token should be
@@ -74,11 +74,11 @@ public struct GenerateAccessTokenRequest: Codable, Equatable, GoogleCloudWkt._An
       expiration = $0
     }
     if let expireTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp?.self, forKey: .expireTime)
+      GoogleCloudWKT.Timestamp?.self, forKey: .expireTime)
     {
       try expirationCheckAndSet(.expireTime(expireTime))
     }
-    if let ttl = try container.decodeIfPresent(GoogleCloudWkt.Duration?.self, forKey: .ttl) {
+    if let ttl = try container.decodeIfPresent(GoogleCloudWKT.Duration?.self, forKey: .ttl) {
       try expirationCheckAndSet(.ttl(ttl))
     }
     self.expiration = expiration
@@ -105,20 +105,20 @@ public struct GenerateAccessTokenRequest: Codable, Equatable, GoogleCloudWkt._An
     /// be at most 24 hours in the future. If a value is not specified, the
     /// token's expiration time will be set to a default value of 1 hour in the
     /// future.
-    indirect case expireTime(GoogleCloudWkt.Timestamp?)
+    indirect case expireTime(GoogleCloudWKT.Timestamp?)
     /// Desired lifetime duration of the access token. This value must
     /// be at most 24 hours. If a value is not specified, the token's lifetime
     /// will be set to a default value of 1 hour.
-    indirect case ttl(GoogleCloudWkt.Duration?)
+    indirect case ttl(GoogleCloudWKT.Duration?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.workstations.v1.GenerateAccessTokenRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

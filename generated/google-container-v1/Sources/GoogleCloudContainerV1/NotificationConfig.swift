@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// NotificationConfig is the configuration of notifications.
-public struct NotificationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct NotificationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Notification config for Pub/Sub.
@@ -41,7 +41,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   }
 
   /// Pub/Sub specific notification config.
-  public struct PubSub: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PubSub: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Enable notifications for Pub/Sub.
@@ -75,11 +75,11 @@ public struct NotificationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.NotificationConfig.PubSub"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -87,7 +87,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   /// present, those and only those event types will be transmitted to the
   /// cluster. Other types will be skipped. If no filter is specified, or no
   /// event types are present, all event types will be sent
-  public struct Filter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Filter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Event types to allowlist.
@@ -112,11 +112,11 @@ public struct NotificationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.NotificationConfig.Filter"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -243,10 +243,10 @@ public struct NotificationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.NotificationConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

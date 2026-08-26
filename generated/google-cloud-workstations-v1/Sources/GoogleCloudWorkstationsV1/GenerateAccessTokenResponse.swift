@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response message for GenerateAccessToken.
-public struct GenerateAccessTokenResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct GenerateAccessTokenResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The generated bearer access token. To use this token, include it in an
@@ -28,7 +28,7 @@ public struct GenerateAccessTokenResponse: Codable, Equatable, GoogleCloudWkt._A
   public var accessToken: Swift.String = Swift.String()
 
   /// Time at which the generated token will expire.
-  public var expireTime: GoogleCloudWkt.Timestamp? = nil
+  public var expireTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `GenerateAccessTokenResponse`.
   public init() {}
@@ -49,10 +49,10 @@ public struct GenerateAccessTokenResponse: Codable, Equatable, GoogleCloudWkt._A
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.workstations.v1.GenerateAccessTokenResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

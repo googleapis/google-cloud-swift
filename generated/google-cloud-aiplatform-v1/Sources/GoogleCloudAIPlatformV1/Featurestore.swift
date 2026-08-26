@@ -16,12 +16,12 @@
 
 #if FeaturestoreService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Vertex AI Feature Store provides a centralized repository for organizing,
   /// storing, and serving ML features. The Featurestore is a top-level container
   /// for your features and their values.
-  public struct Featurestore: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Featurestore: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Name of the Featurestore. Format:
@@ -29,10 +29,10 @@
     public var name: Swift.String = Swift.String()
 
     /// Output only. Timestamp when this Featurestore was created.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Timestamp when this Featurestore was last updated.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Optional. Used to perform consistent read-modify-write updates. If not set,
     /// a blind "overwrite" update happens.
@@ -97,7 +97,7 @@
 
     /// OnlineServingConfig specifies the details for provisioning online serving
     /// resources.
-    public struct OnlineServingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct OnlineServingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The number of nodes for the online store. The number of nodes doesn't
@@ -130,7 +130,7 @@
       /// Online serving scaling configuration. If min_node_count and
       /// max_node_count are set to the same value, the cluster will be configured
       /// with the fixed number of node (no auto-scaling).
-      public struct Scaling: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Scaling: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. The minimum number of nodes to scale down to. Must be greater
@@ -170,22 +170,22 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.Featurestore.OnlineServingConfig.Scaling"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.Featurestore.OnlineServingConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -308,11 +308,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.Featurestore"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

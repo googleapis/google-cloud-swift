@@ -16,7 +16,7 @@
 
 #if Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The top-level message sent by the client to the
   /// [StreamingDetectIntent][] method.
@@ -59,7 +59,7 @@
   /// [google.cloud.dialogflow.v2.StreamingDetectIntentRequest.query_input]: <doc:StreamingDetectIntentRequest/queryInput>
   /// [google.cloud.dialogflow.v2.StreamingDetectIntentRequest.query_params]: <doc:StreamingDetectIntentRequest/queryParams>
   /// [google.cloud.dialogflow.v2.StreamingDetectIntentRequest.session]: <doc:StreamingDetectIntentRequest/session>
-  public struct StreamingDetectIntentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct StreamingDetectIntentRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The name of the session the query is sent to.
@@ -123,7 +123,7 @@
     /// replaces the agent-level config in its entirety.
     ///
     /// [google.cloud.dialogflow.v2.StreamingDetectIntentRequest.output_audio_config]: <doc:StreamingDetectIntentRequest/outputAudioConfig>
-    public var outputAudioConfigMask: GoogleCloudWkt.FieldMask? = nil
+    public var outputAudioConfigMask: GoogleCloudWKT.FieldMask? = nil
 
     /// The input audio content to be recognized. Must be sent if
     /// `query_input` was set to a streaming input audio config. The complete audio
@@ -152,11 +152,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.StreamingDetectIntentRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

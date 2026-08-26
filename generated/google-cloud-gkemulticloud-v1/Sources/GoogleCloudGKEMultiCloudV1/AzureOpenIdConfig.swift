@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// AzureOpenIdConfig is an OIDC discovery document for the cluster.
 /// See the OpenID Connect Discovery 1.0 specification for details.
 @available(*, deprecated)
-public struct AzureOpenIdConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AzureOpenIdConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// OIDC Issuer.
@@ -99,10 +99,10 @@ public struct AzureOpenIdConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkemulticloud.v1.AzureOpenIdConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

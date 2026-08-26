@@ -16,10 +16,10 @@
 
 #if ProjectService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Metadata and configurations for a Google Cloud project in the service.
-  public struct Project: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Project: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Full resource name of the project, for example
@@ -29,12 +29,12 @@
     public var name: Swift.String = Swift.String()
 
     /// Output only. The timestamp when this project is created.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. The timestamp when this project is successfully provisioned.
     /// Empty value means this project is still provisioning and is not ready for
     /// use.
-    public var provisionCompletionTime: GoogleCloudWkt.Timestamp? = nil
+    public var provisionCompletionTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. A map of terms of services. The key is the `id` of
     /// [ServiceTerms][google.cloud.discoveryengine.v1.Project.ServiceTerms].
@@ -59,7 +59,7 @@
     }
 
     /// Metadata about the terms of service.
-    public struct ServiceTerms: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ServiceTerms: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The unique identifier of this terms of service.
@@ -86,11 +86,11 @@
       public var state: Project.ServiceTerms.State = Project.ServiceTerms.State()
 
       /// The last time when the project agreed to the terms of service.
-      public var acceptTime: GoogleCloudWkt.Timestamp? = nil
+      public var acceptTime: GoogleCloudWKT.Timestamp? = nil
 
       /// The last time when the project declined or revoked the agreement to terms
       /// of service.
-      public var declineTime: GoogleCloudWkt.Timestamp? = nil
+      public var declineTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Initialize a new instance of `ServiceTerms`.
       public init() {}
@@ -223,22 +223,22 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.Project.ServiceTerms"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.Project"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

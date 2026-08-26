@@ -16,14 +16,14 @@
 
 import Foundation
 @_spi(GoogleCloudInternal) import GoogleCloudGax
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleIAMV1
 
 /// The response message for
 /// [AssetService.AnalyzeOrgPolicyGovernedAssets][google.cloud.asset.v1.AssetService.AnalyzeOrgPolicyGovernedAssets].
 ///
 /// [google.cloud.asset.v1.AssetService.AnalyzeOrgPolicyGovernedAssets]: <doc:AssetServiceClient/analyzeOrgPolicyGovernedAssets(request:options:)>
-public struct AnalyzeOrgPolicyGovernedAssetsResponse: Codable, Equatable, GoogleCloudWkt
+public struct AnalyzeOrgPolicyGovernedAssetsResponse: Codable, Equatable, GoogleCloudWKT
     ._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable
@@ -60,7 +60,7 @@ public struct AnalyzeOrgPolicyGovernedAssetsResponse: Codable, Equatable, Google
   /// [AnalyzeOrgPolicyGovernedAssetsRequest.constraint][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsRequest.constraint].
   ///
   /// [google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsRequest.constraint]: <doc:AnalyzeOrgPolicyGovernedAssetsRequest/constraint>
-  public struct GovernedResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GovernedResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The [full resource name]
@@ -125,11 +125,11 @@ public struct AnalyzeOrgPolicyGovernedAssetsResponse: Codable, Equatable, Google
       return
         "type.googleapis.com/google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse.GovernedResource"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -137,7 +137,7 @@ public struct AnalyzeOrgPolicyGovernedAssetsResponse: Codable, Equatable, Google
   /// [AnalyzeOrgPolicyGovernedAssetsRequest.constraint][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsRequest.constraint].
   ///
   /// [google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsRequest.constraint]: <doc:AnalyzeOrgPolicyGovernedAssetsRequest/constraint>
-  public struct GovernedIamPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GovernedIamPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The full resource name of the resource on which this IAM policy is set.
@@ -197,11 +197,11 @@ public struct AnalyzeOrgPolicyGovernedAssetsResponse: Codable, Equatable, Google
       return
         "type.googleapis.com/google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse.GovernedIamPolicy"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -210,7 +210,7 @@ public struct AnalyzeOrgPolicyGovernedAssetsResponse: Codable, Equatable, Google
   /// [AnalyzeOrgPolicyGovernedAssetsRequest.constraint][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsRequest.constraint].
   ///
   /// [google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsRequest.constraint]: <doc:AnalyzeOrgPolicyGovernedAssetsRequest/constraint>
-  public struct GovernedAsset: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GovernedAsset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The consolidated policy for the analyzed asset. The consolidated
@@ -320,22 +320,22 @@ public struct AnalyzeOrgPolicyGovernedAssetsResponse: Codable, Equatable, Google
       return
         "type.googleapis.com/google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 
   public func _getPaginatedItems() -> [AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset] {

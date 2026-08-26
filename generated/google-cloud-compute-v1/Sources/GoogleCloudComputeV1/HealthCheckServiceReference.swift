@@ -16,7 +16,7 @@
 
 #if GlobalNetworkEndpointGroups || NetworkEndpointGroups || RegionNetworkEndpointGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A full or valid partial URL to a health check service. For example, the
   /// following are valid URLs:
@@ -24,7 +24,7 @@
   ///    - https://www.googleapis.com/compute/beta/projects/project-id/regions/us-west1/healthCheckServices/health-check-service
   ///    - projects/project-id/regions/us-west1/healthCheckServices/health-check-service
   ///    - regions/us-west1/healthCheckServices/health-check-service
-  public struct HealthCheckServiceReference: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct HealthCheckServiceReference: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var healthCheckService: Swift.String? = nil
@@ -48,11 +48,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.HealthCheckServiceReference"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

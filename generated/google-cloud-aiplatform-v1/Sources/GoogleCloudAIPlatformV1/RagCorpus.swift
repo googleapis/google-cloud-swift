@@ -16,11 +16,11 @@
 
 #if VertexRagDataService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A RagCorpus is a RagFile container and a project can have multiple
   /// RagCorpora.
-  public struct RagCorpus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RagCorpus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The resource name of the RagCorpus.
@@ -35,10 +35,10 @@
     public var description: Swift.String = Swift.String()
 
     /// Output only. Timestamp when this RagCorpus was created.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Timestamp when this RagCorpus was last updated.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. RagCorpus state.
     public var corpusStatus: CorpusStatus? = nil
@@ -87,9 +87,9 @@
       self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
       self.description = try container.decode(Swift.String.self, forKey: .description)
       self.createTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
       self.updateTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
       self.corpusStatus = try container.decodeIfPresent(CorpusStatus.self, forKey: .corpusStatus)
       self.encryptionSpec = try container.decodeIfPresent(
         EncryptionSpec.self, forKey: .encryptionSpec)
@@ -149,11 +149,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.RagCorpus"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

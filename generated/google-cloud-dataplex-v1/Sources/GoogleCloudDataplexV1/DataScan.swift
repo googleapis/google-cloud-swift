@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents a user-visible job which provides the insights for the related
 /// data source.
@@ -38,7 +38,7 @@ import Foundation
 ///   queries. For datasets, insights include descriptions, schema relationships
 ///   and sample SQL queries. For more information, see [Generate data insights
 ///   in BigQuery](https://cloud.google.com/bigquery/docs/data-insights).
-public struct DataScan: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DataScan: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Identifier. The relative resource name of the scan, of the
@@ -68,10 +68,10 @@ public struct DataScan: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var state: State = State()
 
   /// Output only. The time when the scan was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time when the scan was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Required. The data source for DataScan.
   public var data: DataSource? = nil
@@ -149,9 +149,9 @@ public struct DataScan: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
     self.state = try container.decode(State.self, forKey: .state)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.data = try container.decodeIfPresent(DataSource.self, forKey: .data)
     self.executionSpec = try container.decodeIfPresent(
       DataScan.ExecutionSpec.self, forKey: .executionSpec)
@@ -270,7 +270,7 @@ public struct DataScan: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// DataScan execution settings.
-  public struct ExecutionSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ExecutionSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Spec related to how often and when a scan should be triggered.
@@ -355,26 +355,26 @@ public struct DataScan: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.DataScan.ExecutionSpec"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Status of the data scan execution.
-  public struct ExecutionStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ExecutionStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The time when the latest DataScanJob started.
-    public var latestJobStartTime: GoogleCloudWkt.Timestamp? = nil
+    public var latestJobStartTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Optional. The time when the latest DataScanJob ended.
-    public var latestJobEndTime: GoogleCloudWkt.Timestamp? = nil
+    public var latestJobEndTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Optional. The time when the DataScanJob execution was created.
-    public var latestJobCreateTime: GoogleCloudWkt.Timestamp? = nil
+    public var latestJobCreateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `ExecutionStatus`.
     public init() {}
@@ -395,11 +395,11 @@ public struct DataScan: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.DataScan.ExecutionStatus"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -433,10 +433,10 @@ public struct DataScan: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataplex.v1.DataScan"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

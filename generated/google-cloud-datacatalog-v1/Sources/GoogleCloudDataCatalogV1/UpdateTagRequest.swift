@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [UpdateTag][google.cloud.datacatalog.v1.DataCatalog.UpdateTag].
 ///
 /// [google.cloud.datacatalog.v1.DataCatalog.UpdateTag]: <doc:DataCatalogClient/updateTag(request:options:)>
-public struct UpdateTagRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateTagRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The updated tag. The "name" field must be set.
@@ -33,7 +33,7 @@ public struct UpdateTagRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// In general, if this parameter is absent or empty, all modifiable fields
   /// are overwritten. If such fields are non-required and omitted in the
   /// request body, their values are emptied.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `UpdateTagRequest`.
   public init() {}
@@ -54,10 +54,10 @@ public struct UpdateTagRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datacatalog.v1.UpdateTagRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

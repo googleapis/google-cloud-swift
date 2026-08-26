@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Options to configure rule type MultiColumnDatatypeChange.
 /// The rule is used to change the data type and associated properties of
@@ -30,7 +30,7 @@ import Foundation
 /// filtering capabilities such as the minimum and maximum field length. All
 /// additional filters which are specified are required to be met in order for
 /// the rule to be applied (logical AND between the fields).
-public struct MultiColumnDatatypeChange: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MultiColumnDatatypeChange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Filter on source data type.
@@ -57,7 +57,7 @@ public struct MultiColumnDatatypeChange: Codable, Equatable, GoogleCloudWkt._Any
   public var overrideFractionalSecondsPrecision: Swift.Int32 = Swift.Int32()
 
   /// Optional. Custom engine specific features.
-  public var customFeatures: GoogleCloudWkt.Struct? = nil
+  public var customFeatures: GoogleCloudWKT.Struct? = nil
 
   /// Filter on source column parameters.
   public var sourceFilter: OneOf_SourceFilter? = nil
@@ -101,7 +101,7 @@ public struct MultiColumnDatatypeChange: Codable, Equatable, GoogleCloudWkt._Any
     self.overrideFractionalSecondsPrecision = try container.decode(
       Swift.Int32.self, forKey: .overrideFractionalSecondsPrecision)
     self.customFeatures = try container.decodeIfPresent(
-      GoogleCloudWkt.Struct.self, forKey: .customFeatures)
+      GoogleCloudWKT.Struct.self, forKey: .customFeatures)
 
     var sourceFilter: OneOf_SourceFilter? = nil
     let sourceFilterCheckAndSet = {
@@ -159,10 +159,10 @@ public struct MultiColumnDatatypeChange: Codable, Equatable, GoogleCloudWkt._Any
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.clouddms.v1.MultiColumnDatatypeChange"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

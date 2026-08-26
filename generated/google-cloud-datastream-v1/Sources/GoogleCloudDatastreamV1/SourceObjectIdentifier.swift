@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents an identifier of an object in the data source.
-public struct SourceObjectIdentifier: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SourceObjectIdentifier: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The identifier for an object in the data source.
@@ -117,7 +117,7 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleCloudWkt._AnyPac
   }
 
   /// Oracle data source object identifier.
-  public struct OracleObjectIdentifier: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct OracleObjectIdentifier: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The schema name.
@@ -146,16 +146,16 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.cloud.datastream.v1.SourceObjectIdentifier.OracleObjectIdentifier"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// PostgreSQL data source object identifier.
-  public struct PostgresqlObjectIdentifier: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PostgresqlObjectIdentifier: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The schema name.
@@ -184,16 +184,16 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.cloud.datastream.v1.SourceObjectIdentifier.PostgresqlObjectIdentifier"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Mysql data source object identifier.
-  public struct MysqlObjectIdentifier: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MysqlObjectIdentifier: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The database name.
@@ -222,16 +222,16 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.cloud.datastream.v1.SourceObjectIdentifier.MysqlObjectIdentifier"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// SQLServer data source object identifier.
-  public struct SqlServerObjectIdentifier: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SqlServerObjectIdentifier: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The schema name.
@@ -260,16 +260,16 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.cloud.datastream.v1.SourceObjectIdentifier.SqlServerObjectIdentifier"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Salesforce data source object identifier.
-  public struct SalesforceObjectIdentifier: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SalesforceObjectIdentifier: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The object name.
@@ -295,16 +295,16 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.cloud.datastream.v1.SourceObjectIdentifier.SalesforceObjectIdentifier"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// MongoDB data source object identifier.
-  public struct MongodbObjectIdentifier: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MongodbObjectIdentifier: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The database name.
@@ -333,11 +333,11 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.cloud.datastream.v1.SourceObjectIdentifier.MongodbObjectIdentifier"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -360,10 +360,10 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datastream.v1.SourceObjectIdentifier"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

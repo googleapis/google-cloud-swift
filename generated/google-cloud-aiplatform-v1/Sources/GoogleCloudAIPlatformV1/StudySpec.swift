@@ -16,10 +16,10 @@
 
 #if JobService || VizierService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents specification of a Study.
-  public struct StudySpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct StudySpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Metric specs for the Study.
@@ -138,7 +138,7 @@
     }
 
     /// Represents a metric to optimize.
-    public struct MetricSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct MetricSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The ID of the metric. Must not contain whitespaces and must be
@@ -169,7 +169,7 @@
       }
 
       /// Used in safe optimization to specify threshold levels and risk tolerance.
-      public struct SafetyMetricConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct SafetyMetricConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Safety threshold (boundary value between safe and unsafe). NOTE that if
@@ -204,11 +204,11 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.MetricSpec.SafetyMetricConfig"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -320,16 +320,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.MetricSpec"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Represents a single parameter to optimize.
-    public struct ParameterSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ParameterSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The ID of the parameter. Must not contain whitespaces and must
@@ -438,7 +438,7 @@
       }
 
       /// Value specification for a parameter in `DOUBLE` type.
-      public struct DoubleValueSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct DoubleValueSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. Inclusive minimum value of the parameter.
@@ -475,16 +475,16 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.ParameterSpec.DoubleValueSpec"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Value specification for a parameter in `INTEGER` type.
-      public struct IntegerValueSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct IntegerValueSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. Inclusive minimum value of the parameter.
@@ -521,16 +521,16 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.ParameterSpec.IntegerValueSpec"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Value specification for a parameter in `CATEGORICAL` type.
-      public struct CategoricalValueSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct CategoricalValueSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. The list of possible categories.
@@ -564,16 +564,16 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.ParameterSpec.CategoricalValueSpec"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Value specification for a parameter in `DISCRETE` type.
-      public struct DiscreteValueSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct DiscreteValueSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. A list of possible values.
@@ -611,20 +611,20 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.ParameterSpec.DiscreteValueSpec"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Represents a parameter spec with condition from its parent parameter.
-      public struct ConditionalParameterSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct ConditionalParameterSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. The spec for a conditional parameter.
-        public var parameterSpec: GoogleCloudWkt.Recursive<StudySpec.ParameterSpec>? = nil
+        public var parameterSpec: GoogleCloudWKT.Recursive<StudySpec.ParameterSpec>? = nil
 
         /// A set of parameter values from the parent ParameterSpec's feasible
         /// space.
@@ -656,7 +656,7 @@
         public init(from decoder: Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
           self.parameterSpec = try container.decodeIfPresent(
-            GoogleCloudWkt.Recursive<StudySpec.ParameterSpec>.self, forKey: .parameterSpec)
+            GoogleCloudWKT.Recursive<StudySpec.ParameterSpec>.self, forKey: .parameterSpec)
 
           var parentValueCondition: OneOf_ParentValueCondition? = nil
           let parentValueConditionCheckAndSet = {
@@ -706,7 +706,7 @@
         }
 
         /// Represents the spec to match discrete values from parent parameter.
-        public struct DiscreteValueCondition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct DiscreteValueCondition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Required. Matches values of the parent parameter of 'DISCRETE' type.
@@ -735,16 +735,16 @@
             return
               "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.ParameterSpec.ConditionalParameterSpec.DiscreteValueCondition"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
         /// Represents the spec to match integer values from parent parameter.
-        public struct IntValueCondition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct IntValueCondition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Required. Matches values of the parent parameter of 'INTEGER' type.
@@ -771,16 +771,16 @@
             return
               "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.ParameterSpec.ConditionalParameterSpec.IntValueCondition"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
         /// Represents the spec to match categorical values from parent parameter.
-        public struct CategoricalValueCondition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct CategoricalValueCondition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Required. Matches values of the parent parameter of 'CATEGORICAL'
@@ -808,11 +808,11 @@
             return
               "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.ParameterSpec.ConditionalParameterSpec.CategoricalValueCondition"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
@@ -837,11 +837,11 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.ParameterSpec.ConditionalParameterSpec"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -975,11 +975,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.ParameterSpec"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -988,7 +988,7 @@
     /// already completed Trials and the intermediate measurements of the current
     /// Trial. Early stopping is requested for the current Trial if there is very
     /// low probability to exceed the optimal value found so far.
-    public struct DecayCurveAutomatedStoppingSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DecayCurveAutomatedStoppingSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// True if
@@ -1021,11 +1021,11 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.DecayCurveAutomatedStoppingSpec"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -1034,7 +1034,7 @@
     /// completed Trials reported up to the Trial's last measurement.
     /// Currently, 'performance' refers to the running average of the objective
     /// values reported by the Trial in each measurement.
-    public struct MedianAutomatedStoppingSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct MedianAutomatedStoppingSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// True if median automated stopping rule applies on
@@ -1066,11 +1066,11 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.MedianAutomatedStoppingSpec"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -1084,7 +1084,7 @@
     /// trials, this pending trial will be early-stopped, but a last measurement
     /// will be added to the pending trial with max_num_steps and predicted
     /// objective value from the autoregression model.
-    public struct ConvexAutomatedStoppingSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ConvexAutomatedStoppingSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Steps used in predicting the final objective for early stopped trials. In
@@ -1152,17 +1152,17 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.ConvexAutomatedStoppingSpec"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// The configuration (stopping conditions) for automated stopping of a Study.
     /// Conditions include trial budgets, time budgets, and convergence detection.
-    public struct StudyStoppingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct StudyStoppingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// If true, a Study enters STOPPING_ASAP whenever it would normally enters
@@ -1171,7 +1171,7 @@
       /// The bottom line is: set to true if you want to interrupt on-going
       /// evaluations of Trials as soon as the study stopping condition is met.
       /// (Please see Study.State documentation for the source of truth).
-      public var shouldStopAsap: GoogleCloudWkt.BoolValue? = nil
+      public var shouldStopAsap: GoogleCloudWKT.BoolValue? = nil
 
       /// Each "stopping rule" in this proto specifies an "if" condition. Before
       /// Vizier would generate a new suggestion, it first checks each specified
@@ -1200,22 +1200,22 @@
 
       /// If there are fewer than this many COMPLETED trials, do not stop the
       /// study.
-      public var minNumTrials: GoogleCloudWkt.Int32Value? = nil
+      public var minNumTrials: GoogleCloudWKT.Int32Value? = nil
 
       /// If there are more than this many trials, stop the study.
-      public var maxNumTrials: GoogleCloudWkt.Int32Value? = nil
+      public var maxNumTrials: GoogleCloudWKT.Int32Value? = nil
 
       /// If the objective value has not improved for this many consecutive
       /// trials, stop the study.
       ///
       /// WARNING: Effective only for single-objective studies.
-      public var maxNumTrialsNoProgress: GoogleCloudWkt.Int32Value? = nil
+      public var maxNumTrialsNoProgress: GoogleCloudWKT.Int32Value? = nil
 
       /// If the objective value has not improved for this much time, stop the
       /// study.
       ///
       /// WARNING: Effective only for single-objective studies.
-      public var maxDurationNoProgress: GoogleCloudWkt.Duration? = nil
+      public var maxDurationNoProgress: GoogleCloudWKT.Duration? = nil
 
       /// Initialize a new instance of `StudyStoppingConfig`.
       public init() {}
@@ -1236,11 +1236,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec.StudyStoppingConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -1592,11 +1592,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.StudySpec"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

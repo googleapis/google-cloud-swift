@@ -15,21 +15,21 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Requirements that must be true before a file store is scanned in discovery
 /// for the first time. There is an AND relationship between the top-level
 /// attributes.
-public struct DiscoveryFileStoreConditions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DiscoveryFileStoreConditions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. File store must have been created after this date. Used to avoid
   /// backfilling.
-  public var createdAfter: GoogleCloudWkt.Timestamp? = nil
+  public var createdAfter: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Minimum age a file store must have. If set, the value must be 1
   /// hour or greater.
-  public var minAge: GoogleCloudWkt.Duration? = nil
+  public var minAge: GoogleCloudWKT.Duration? = nil
 
   /// File store specific conditions.
   public var conditions: OneOf_Conditions? = nil
@@ -59,8 +59,8 @@ public struct DiscoveryFileStoreConditions: Codable, Equatable, GoogleCloudWkt._
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.createdAfter = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createdAfter)
-    self.minAge = try container.decodeIfPresent(GoogleCloudWkt.Duration.self, forKey: .minAge)
+      GoogleCloudWKT.Timestamp.self, forKey: .createdAfter)
+    self.minAge = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .minAge)
 
     var conditions: OneOf_Conditions? = nil
     let conditionsCheckAndSet = {
@@ -102,10 +102,10 @@ public struct DiscoveryFileStoreConditions: Codable, Equatable, GoogleCloudWkt._
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.DiscoveryFileStoreConditions"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

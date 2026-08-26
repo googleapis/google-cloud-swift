@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudCESV1
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 
 func sample(client: SessionServiceClient) async throws {

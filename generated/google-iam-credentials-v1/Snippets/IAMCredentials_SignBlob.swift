@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleIAMCredentialsV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: IAMCredentialsClient) async throws {
   let response = try await client.signBlob(

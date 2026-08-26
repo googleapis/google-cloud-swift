@@ -16,11 +16,11 @@
 
 import Foundation
 import GoogleApi
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A Cloud Run Instance represents a single group of containers running in a
 /// region.
-public struct Instance: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The fully qualified name of this Instance. In CreateInstanceRequest, this
@@ -51,17 +51,17 @@ public struct Instance: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var annotations: [Swift.String: Swift.String] = [:]
 
   /// Output only. The creation time.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The last-modified time.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The deletion time.
-  public var deleteTime: GoogleCloudWkt.Timestamp? = nil
+  public var deleteTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. For a deleted resource, the time after which it will be
   /// permamently deleted.
-  public var expireTime: GoogleCloudWkt.Timestamp? = nil
+  public var expireTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Email address of the authenticated creator.
   public var creator: Swift.String = Swift.String()
@@ -115,7 +115,7 @@ public struct Instance: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// If encryption_key_revocation_action is SHUTDOWN, the duration before
   /// shutting down all instances. The minimum increment is 1 hour.
-  public var encryptionKeyShutdownDuration: GoogleCloudWkt.Duration? = nil
+  public var encryptionKeyShutdownDuration: GoogleCloudWKT.Duration? = nil
 
   /// Optional. The node selector for the instance.
   public var nodeSelector: NodeSelector? = nil
@@ -205,10 +205,10 @@ public struct Instance: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.run.v2.Instance"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

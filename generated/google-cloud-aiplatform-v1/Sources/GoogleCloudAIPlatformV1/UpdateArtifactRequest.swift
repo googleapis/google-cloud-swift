@@ -16,13 +16,13 @@
 
 #if MetadataService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request message for
   /// [MetadataService.UpdateArtifact][google.cloud.aiplatform.v1.MetadataService.UpdateArtifact].
   ///
   /// [google.cloud.aiplatform.v1.MetadataService.UpdateArtifact]: <doc:MetadataServiceClient/updateArtifact(request:options:)>
-  public struct UpdateArtifactRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct UpdateArtifactRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The Artifact containing updates.
@@ -34,7 +34,7 @@
     public var artifact: Artifact? = nil
 
     /// Optional. A FieldMask indicating which fields should be updated.
-    public var updateMask: GoogleCloudWkt.FieldMask? = nil
+    public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
     /// If set to true, and the [Artifact][google.cloud.aiplatform.v1.Artifact] is
     /// not found, a new [Artifact][google.cloud.aiplatform.v1.Artifact] is
@@ -62,11 +62,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.UpdateArtifactRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

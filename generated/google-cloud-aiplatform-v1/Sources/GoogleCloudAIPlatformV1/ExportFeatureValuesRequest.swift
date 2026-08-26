@@ -16,13 +16,13 @@
 
 #if FeaturestoreService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request message for
   /// [FeaturestoreService.ExportFeatureValues][google.cloud.aiplatform.v1.FeaturestoreService.ExportFeatureValues].
   ///
   /// [google.cloud.aiplatform.v1.FeaturestoreService.ExportFeatureValues]: <doc:FeaturestoreServiceClient/exportFeatureValues(request:options:)>
-  public struct ExportFeatureValuesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ExportFeatureValuesRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The resource name of the EntityType from which to export Feature
@@ -118,18 +118,18 @@
 
     /// Describes exporting the latest Feature values of all entities of the
     /// EntityType between [start_time, snapshot_time].
-    public struct SnapshotExport: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SnapshotExport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Exports Feature values as of this timestamp. If not set,
       /// retrieve values as of now. Timestamp, if present, must not have higher
       /// than millisecond precision.
-      public var snapshotTime: GoogleCloudWkt.Timestamp? = nil
+      public var snapshotTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Excludes Feature values with feature generation timestamp before this
       /// timestamp. If not set, retrieve oldest values kept in Feature Store.
       /// Timestamp, if present, must not have higher than millisecond precision.
-      public var startTime: GoogleCloudWkt.Timestamp? = nil
+      public var startTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Initialize a new instance of `SnapshotExport`.
       public init() {}
@@ -151,28 +151,28 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.ExportFeatureValuesRequest.SnapshotExport"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Describes exporting all historical Feature values of all entities of the
     /// EntityType between [start_time, end_time].
-    public struct FullExport: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct FullExport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Excludes Feature values with feature generation timestamp before this
       /// timestamp. If not set, retrieve oldest values kept in Feature Store.
       /// Timestamp, if present, must not have higher than millisecond precision.
-      public var startTime: GoogleCloudWkt.Timestamp? = nil
+      public var startTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Exports Feature values as of this timestamp. If not set,
       /// retrieve values as of now. Timestamp, if present, must not have higher
       /// than millisecond precision.
-      public var endTime: GoogleCloudWkt.Timestamp? = nil
+      public var endTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Initialize a new instance of `FullExport`.
       public init() {}
@@ -194,11 +194,11 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.ExportFeatureValuesRequest.FullExport"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -215,11 +215,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.ExportFeatureValuesRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

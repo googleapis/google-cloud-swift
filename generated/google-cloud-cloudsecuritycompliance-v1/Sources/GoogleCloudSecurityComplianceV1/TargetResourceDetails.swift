@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The details for a target resource.
-public struct TargetResourceDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TargetResourceDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The framework deployment name for the target resource.
@@ -36,10 +36,10 @@ public struct TargetResourceDetails: Codable, Equatable, GoogleCloudWkt._AnyPack
   public var targetResource: Swift.String = Swift.String()
 
   /// The create time of the target resource.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The update time of the target resource.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The major revision ID of the framework for the target resource.
   public var majorRevisionId: Swift.Int64 = Swift.Int64()
@@ -66,10 +66,10 @@ public struct TargetResourceDetails: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.cloudsecuritycompliance.v1.TargetResourceDetails"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

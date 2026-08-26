@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request for the `ConfigureContactSettings` method.
-public struct ConfigureContactSettingsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ConfigureContactSettingsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The name of the `Registration` whose contact settings are being updated,
@@ -31,7 +31,7 @@ public struct ConfigureContactSettingsRequest: Codable, Equatable, GoogleCloudWk
   /// Required. The field mask describing which fields to update as a comma-separated list.
   /// For example, if only the registrant contact is being updated, the
   /// `update_mask` is `"registrant_contact"`.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// The list of contact notices that the caller acknowledges. The notices
   /// needed here depend on the values specified in `contact_settings`.
@@ -59,10 +59,10 @@ public struct ConfigureContactSettingsRequest: Codable, Equatable, GoogleCloudWk
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.domains.v1.ConfigureContactSettingsRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

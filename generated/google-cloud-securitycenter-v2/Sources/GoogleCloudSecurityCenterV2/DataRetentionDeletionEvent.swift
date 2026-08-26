@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Details about data retention deletion violations, in which the data is
 /// non-compliant based on their retention or deletion time, as defined in the
@@ -26,11 +26,11 @@ import Foundation
 /// types: maximum storage length (max TTL) and minimum storage length (min TTL).
 /// Both are aimed at helping organizations meet regulatory and data management
 /// commitments.
-public struct DataRetentionDeletionEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DataRetentionDeletionEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Timestamp indicating when the event was detected.
-  public var eventDetectionTime: GoogleCloudWkt.Timestamp? = nil
+  public var eventDetectionTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Number of objects that violated the policy for this resource. If the number
   /// is less than 1,000, then the value of this field is the exact number. If
@@ -44,7 +44,7 @@ public struct DataRetentionDeletionEvent: Codable, Equatable, GoogleCloudWkt._An
   /// However, an object in that bucket is 100 days old. In this case, a
   /// DataRetentionDeletionEvent will be generated for that Cloud Storage bucket,
   /// and the max_retention_allowed is 90 days.
-  public var maxRetentionAllowed: GoogleCloudWkt.Duration? = nil
+  public var maxRetentionAllowed: GoogleCloudWKT.Duration? = nil
 
   /// Type of the DRD event.
   public var eventType: DataRetentionDeletionEvent.EventType =
@@ -167,10 +167,10 @@ public struct DataRetentionDeletionEvent: Codable, Equatable, GoogleCloudWkt._An
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.DataRetentionDeletionEvent"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

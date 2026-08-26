@@ -19,7 +19,7 @@
   #if canImport(FoundationNetworking)
     import FoundationNetworking
   #endif
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleCloudGax
 
   /// Cloud SQL instance names service.

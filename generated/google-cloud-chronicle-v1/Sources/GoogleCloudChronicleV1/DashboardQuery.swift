@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleType
 
 /// DashboardQuery resource.
-public struct DashboardQuery: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DashboardQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Name of the dashboardQuery.
@@ -56,7 +56,7 @@ public struct DashboardQuery: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Input to the query like time window.
-  public struct Input: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Input: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var timeInput: OneOf_TimeInput? = nil
@@ -122,7 +122,7 @@ public struct DashboardQuery: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// time representation for last x units.
-    public struct RelativeTime: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct RelativeTime: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       public var timeUnit: TimeUnit = TimeUnit()
@@ -148,11 +148,11 @@ public struct DashboardQuery: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.chronicle.v1.DashboardQuery.Input.RelativeTime"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -166,21 +166,21 @@ public struct DashboardQuery: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.chronicle.v1.DashboardQuery.Input"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.chronicle.v1.DashboardQuery"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Configuration for discovery to scan resources for profile generation.
 /// Only one discovery configuration may exist per organization, folder,
@@ -24,7 +24,7 @@ import Foundation
 /// The generated data profiles are retained according to the
 /// [data retention policy]
 /// (https://cloud.google.com/sensitive-data-protection/docs/data-profiles#retention).
-public struct DiscoveryConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DiscoveryConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Unique resource name for the DiscoveryConfig, assigned by the service when
@@ -72,13 +72,13 @@ public struct DiscoveryConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var errors: [Error] = []
 
   /// Output only. The creation timestamp of a DiscoveryConfig.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The last update timestamp of a DiscoveryConfig.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The timestamp of the last time this config was executed.
-  public var lastRunTime: GoogleCloudWkt.Timestamp? = nil
+  public var lastRunTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Required. A status for this configuration.
   public var status: DiscoveryConfig.Status = DiscoveryConfig.Status()
@@ -105,7 +105,7 @@ public struct DiscoveryConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Project and scan location information. Only set when the parent is an org.
-  public struct OrgConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct OrgConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The data to scan: folder, org, or project
@@ -135,11 +135,11 @@ public struct DiscoveryConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.DiscoveryConfig.OrgConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -252,10 +252,10 @@ public struct DiscoveryConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.DiscoveryConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

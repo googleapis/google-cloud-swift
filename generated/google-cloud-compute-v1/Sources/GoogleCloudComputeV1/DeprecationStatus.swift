@@ -16,10 +16,10 @@
 
 #if AcceleratorTypes || DiskTypes || ImageFamilyViews || Images || MachineTypes || NodeTypes || RegionDiskTypes || RegionZones || Regions || StoragePoolTypes || Zones
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Deprecation status for a public resource.
-  public struct DeprecationStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DeprecationStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// An optional RFC3339 timestamp on or after which the state of this
@@ -180,11 +180,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.DeprecationStatus"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

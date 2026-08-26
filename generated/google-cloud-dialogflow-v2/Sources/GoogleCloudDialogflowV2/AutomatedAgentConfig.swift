@@ -16,10 +16,10 @@
 
 #if ConversationProfiles || Conversations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Defines the Automated Agent to connect to a conversation.
-  public struct AutomatedAgentConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AutomatedAgentConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. ID of the Dialogflow agent environment to use.
@@ -45,7 +45,7 @@
     /// By default, a Dialogflow CX session remains active and its data is stored
     /// for 30 minutes after the last request is sent for the session.
     /// This value should be no longer than 1 day.
-    public var sessionTtl: GoogleCloudWkt.Duration? = nil
+    public var sessionTtl: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `AutomatedAgentConfig`.
     public init() {}
@@ -66,11 +66,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.AutomatedAgentConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

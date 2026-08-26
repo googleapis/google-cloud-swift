@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A RestorePlanBinding binds a RestorePlan with a RestoreChannel.
 /// This resource is created automatically when a RestorePlan is created using a
 /// RestoreChannel. This also serves as a holder for cross-project fields
 /// that need to be displayed in the current project.
-public struct RestorePlanBinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RestorePlanBinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The fully qualified name of the RestorePlanBinding.
@@ -33,10 +33,10 @@ public struct RestorePlanBinding: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public var uid: Swift.String = Swift.String()
 
   /// Output only. The timestamp when this binding was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The timestamp when this binding was created.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The fully qualified name of the RestorePlan bound to this
   /// RestoreChannel. `projects/*/locations/*/restorePlans/{restore_plan}`
@@ -76,10 +76,10 @@ public struct RestorePlanBinding: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkebackup.v1.RestorePlanBinding"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

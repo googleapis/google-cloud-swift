@@ -20,7 +20,7 @@ import Foundation
 #endif
 import GoogleCloudCommon
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 @_spi(GoogleCloudInternal) import GoogleCloudGax

@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// CleanupPolicyCondition is a set of conditions attached to a CleanupPolicy.
 /// If multiple entries are set, all must be satisfied for the condition to be
 /// satisfied.
-public struct CleanupPolicyCondition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CleanupPolicyCondition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Match versions by tag status.
@@ -36,10 +36,10 @@ public struct CleanupPolicyCondition: Codable, Equatable, GoogleCloudWkt._AnyPac
   public var packageNamePrefixes: [Swift.String] = []
 
   /// Match versions older than a duration.
-  public var olderThan: GoogleCloudWkt.Duration? = nil
+  public var olderThan: GoogleCloudWKT.Duration? = nil
 
   /// Match versions newer than a duration.
-  public var newerThan: GoogleCloudWkt.Duration? = nil
+  public var newerThan: GoogleCloudWKT.Duration? = nil
 
   /// Initialize a new instance of `CleanupPolicyCondition`.
   public init() {}
@@ -172,10 +172,10 @@ public struct CleanupPolicyCondition: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.devtools.artifactregistry.v1.CleanupPolicyCondition"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

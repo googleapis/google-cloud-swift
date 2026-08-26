@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for `AwsClusters.UpdateAwsCluster` method.
 @available(*, deprecated)
-public struct UpdateAwsClusterRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateAwsClusterRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
@@ -64,7 +64,7 @@ public struct UpdateAwsClusterRequest: Codable, Equatable, GoogleCloudWkt._AnyPa
   ///  *   `networking.per_node_pool_sg_rules_disabled`.
   ///
   /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `UpdateAwsClusterRequest`.
   public init() {}
@@ -85,10 +85,10 @@ public struct UpdateAwsClusterRequest: Codable, Equatable, GoogleCloudWkt._AnyPa
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkemulticloud.v1.UpdateAwsClusterRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

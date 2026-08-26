@@ -16,12 +16,12 @@
 
 #if JobService || VizierService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A message representing a Trial. A Trial contains a unique set of Parameters
   /// that has been or will be evaluated, along with the objective metrics got by
   /// running the Trial.
-  public struct Trial: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Trial: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Resource name of the Trial assigned by the service.
@@ -45,11 +45,11 @@
     public var measurements: [Measurement] = []
 
     /// Output only. Time when the Trial was started.
-    public var startTime: GoogleCloudWkt.Timestamp? = nil
+    public var startTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Time when the Trial's status changed to `SUCCEEDED` or
     /// `INFEASIBLE`.
-    public var endTime: GoogleCloudWkt.Timestamp? = nil
+    public var endTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. The identifier of the client that originally requested this
     /// Trial. Each client is identified by a unique client_id. When a client asks
@@ -106,7 +106,7 @@
     }
 
     /// A message representing a parameter to be tuned.
-    public struct Parameter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Parameter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. The ID of the parameter. The parameter should be defined in
@@ -121,7 +121,7 @@
       /// in type 'INTEGER', 'DOUBLE' or 'DISCRETE'.
       /// `string_value` will be set if a parameter defined in StudySpec is
       /// in type 'CATEGORICAL'.
-      public var value: GoogleCloudWkt.Value? = nil
+      public var value: GoogleCloudWKT.Value? = nil
 
       /// Initialize a new instance of `Parameter`.
       public init() {}
@@ -142,11 +142,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.Trial.Parameter"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -282,11 +282,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.Trial"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

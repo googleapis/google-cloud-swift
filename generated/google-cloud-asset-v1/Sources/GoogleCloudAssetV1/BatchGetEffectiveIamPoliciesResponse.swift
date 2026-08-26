@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleIAMV1
 
 /// A response message for
 /// [AssetService.BatchGetEffectiveIamPolicies][google.cloud.asset.v1.AssetService.BatchGetEffectiveIamPolicies].
 ///
 /// [google.cloud.asset.v1.AssetService.BatchGetEffectiveIamPolicies]: <doc:AssetServiceClient/batchGetEffectiveIamPolicies(request:options:)>
-public struct BatchGetEffectiveIamPoliciesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BatchGetEffectiveIamPoliciesResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The effective policies for a batch of resources. Note that the results
@@ -53,7 +53,7 @@ public struct BatchGetEffectiveIamPoliciesResponse: Codable, Equatable, GoogleCl
   }
 
   /// The effective IAM policies on one resource.
-  public struct EffectiveIamPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct EffectiveIamPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The [full_resource_name]
@@ -111,7 +111,7 @@ public struct BatchGetEffectiveIamPoliciesResponse: Codable, Equatable, GoogleCl
     }
 
     /// The IAM policy and its attached resource.
-    public struct PolicyInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct PolicyInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The full resource name the
@@ -147,11 +147,11 @@ public struct BatchGetEffectiveIamPoliciesResponse: Codable, Equatable, GoogleCl
         return
           "type.googleapis.com/google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.PolicyInfo"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -159,21 +159,21 @@ public struct BatchGetEffectiveIamPoliciesResponse: Codable, Equatable, GoogleCl
       return
         "type.googleapis.com/google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

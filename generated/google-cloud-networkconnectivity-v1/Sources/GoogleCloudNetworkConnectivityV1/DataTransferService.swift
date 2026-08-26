@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -571,7 +571,7 @@ extension Clients {
     /// See `DataTransferServiceClient.updateMulticloudDataTransferConfig`.
     func updateMulticloudDataTransferConfig(
       multicloudDataTransferConfig: MulticloudDataTransferConfig?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<MulticloudDataTransferConfig>
 
     /// See `DataTransferServiceClient.deleteMulticloudDataTransferConfig`.
@@ -636,7 +636,7 @@ extension Clients {
     /// See `DataTransferServiceClient.updateDestination`.
     func updateDestination(
       destination: Destination?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Destination>
 
     /// See `DataTransferServiceClient.deleteDestination`.
@@ -1029,7 +1029,7 @@ extension Clients.DataTransferServiceProtocol {
 
   public func updateMulticloudDataTransferConfig(
     multicloudDataTransferConfig: MulticloudDataTransferConfig?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<MulticloudDataTransferConfig> {
     let request = UpdateMulticloudDataTransferConfigRequest().with {
       $0.multicloudDataTransferConfig = multicloudDataTransferConfig
@@ -1205,7 +1205,7 @@ extension Clients.DataTransferServiceProtocol {
 
   public func updateDestination(
     destination: Destination?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Destination> {
     let request = UpdateDestinationRequest().with {
       $0.destination = destination

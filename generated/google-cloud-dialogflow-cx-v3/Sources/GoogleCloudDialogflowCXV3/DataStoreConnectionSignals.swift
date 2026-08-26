@@ -16,13 +16,13 @@
 
 #if Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Data store connection feature output signals.
   /// Might be only partially field if processing stop before the final answer.
   /// Reasons for this can be, but are not limited to: empty UCS search results,
   /// positive RAI check outcome, grounding failure, ...
-  public struct DataStoreConnectionSignals: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DataStoreConnectionSignals: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Diagnostic info related to the rewriter model call.
@@ -73,7 +73,7 @@
     }
 
     /// Diagnostic info related to the rewriter model call.
-    public struct RewriterModelCallSignals: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct RewriterModelCallSignals: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Prompt as sent to the model.
@@ -106,16 +106,16 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.cx.v3.DataStoreConnectionSignals.RewriterModelCallSignals"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Search snippet details.
-    public struct SearchSnippet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SearchSnippet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Title of the enclosing document.
@@ -128,7 +128,7 @@
       public var text: Swift.String = Swift.String()
 
       /// Metadata associated with the document.
-      public var metadata: GoogleCloudWkt.Struct? = nil
+      public var metadata: GoogleCloudWKT.Struct? = nil
 
       /// Initialize a new instance of `SearchSnippet`.
       public init() {}
@@ -150,16 +150,16 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.cx.v3.DataStoreConnectionSignals.SearchSnippet"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Diagnostic info related to the answer generation model call.
-    public struct AnswerGenerationModelCallSignals: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AnswerGenerationModelCallSignals: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Prompt as sent to the model.
@@ -192,16 +192,16 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.cx.v3.DataStoreConnectionSignals.AnswerGenerationModelCallSignals"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Answer part with citation.
-    public struct AnswerPart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AnswerPart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Substring of the answer.
@@ -230,16 +230,16 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.cx.v3.DataStoreConnectionSignals.AnswerPart"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Snippet cited by the answer generation model.
-    public struct CitedSnippet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct CitedSnippet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Details of the snippet.
@@ -268,16 +268,16 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.cx.v3.DataStoreConnectionSignals.CitedSnippet"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Grounding signals.
-    public struct GroundingSignals: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GroundingSignals: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Represents the decision of the grounding check.
@@ -539,16 +539,16 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.cx.v3.DataStoreConnectionSignals.GroundingSignals"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Safety check results.
-    public struct SafetySignals: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SafetySignals: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Safety decision.
@@ -801,22 +801,22 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.cx.v3.DataStoreConnectionSignals.SafetySignals"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.DataStoreConnectionSignals"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

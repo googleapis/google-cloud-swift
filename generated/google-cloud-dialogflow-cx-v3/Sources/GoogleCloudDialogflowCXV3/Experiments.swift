@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleCloudGax
 
@@ -311,7 +311,7 @@
       /// See `ExperimentsClient.updateExperiment`.
       func updateExperiment(
         experiment: Experiment?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudDialogflowCXV3.Experiment
 
       /// See `ExperimentsClient.deleteExperiment`.
@@ -545,7 +545,7 @@
 
     public func updateExperiment(
       experiment: Experiment?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.Experiment {
       let request = UpdateExperimentRequest().with {
         $0.experiment = experiment

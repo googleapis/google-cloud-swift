@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -346,7 +346,7 @@ extension Clients {
     /// See `HypercomputeClusterClient.updateCluster`.
     func updateCluster(
       cluster: Cluster?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Cluster>
 
     /// See `HypercomputeClusterClient.deleteCluster`.
@@ -618,7 +618,7 @@ extension Clients.HypercomputeClusterProtocol {
 
   public func updateCluster(
     cluster: Cluster?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Cluster> {
     let request = UpdateClusterRequest().with {
       $0.cluster = cluster

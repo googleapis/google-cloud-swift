@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// This is a data encryption key (DEK) (as opposed to
 /// a key encryption key (KEK) stored by Cloud Key Management Service
@@ -23,7 +23,7 @@ import Foundation
 /// When using Cloud KMS to wrap or unwrap a DEK, be sure to set an appropriate
 /// IAM policy on the KEK to ensure an attacker cannot
 /// unwrap the DEK.
-public struct CryptoKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CryptoKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Sources of crypto keys.
@@ -106,10 +106,10 @@ public struct CryptoKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.CryptoKey"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

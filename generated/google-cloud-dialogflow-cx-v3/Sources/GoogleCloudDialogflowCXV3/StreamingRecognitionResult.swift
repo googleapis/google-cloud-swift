@@ -16,7 +16,7 @@
 
 #if Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Contains a speech recognition result corresponding to a portion of the audio
   /// that is currently being processed or an indication that this is the end
@@ -55,7 +55,7 @@
   ///
   /// Concatenating the finalized transcripts with `is_final` set to true,
   /// the complete utterance becomes "to be or not to be that is the question".
-  public struct StreamingRecognitionResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct StreamingRecognitionResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Type of the result message.
@@ -101,7 +101,7 @@
     /// Time offset of the end of this Speech recognition result relative to the
     /// beginning of the audio. Only populated for `message_type` =
     /// `TRANSCRIPT`.
-    public var speechEndOffset: GoogleCloudWkt.Duration? = nil
+    public var speechEndOffset: GoogleCloudWKT.Duration? = nil
 
     /// Detected language code for the transcript.
     public var languageCode: Swift.String = Swift.String()
@@ -239,11 +239,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.StreamingRecognitionResult"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

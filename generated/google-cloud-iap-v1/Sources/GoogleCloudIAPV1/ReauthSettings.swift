@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Configuration for IAP reauthentication policies.
-public struct ReauthSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ReauthSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. Reauth method requested.
@@ -26,7 +26,7 @@ public struct ReauthSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Optional. Reauth session lifetime, how long before a user has to
   /// reauthenticate again.
-  public var maxAge: GoogleCloudWkt.Duration? = nil
+  public var maxAge: GoogleCloudWKT.Duration? = nil
 
   /// Optional. How IAP determines the effective policy in cases of hierarchical
   /// policies. Policies are merged from higher in the hierarchy to lower in the
@@ -277,10 +277,10 @@ public struct ReauthSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.iap.v1.ReauthSettings"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

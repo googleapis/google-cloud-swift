@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudIAPV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 
 func sample(
@@ -32,7 +32,7 @@ func sample(
           $0.name =
             "projects/\(projectId)/iap_tunnel/locations/\(locationId)/destGroups/\(destGroupId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

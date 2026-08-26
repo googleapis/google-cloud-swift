@@ -16,12 +16,12 @@
 
 import Foundation
 import GoogleApi
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A Revision is an immutable snapshot of code and configuration.  A Revision
 /// references a container image. Revisions are only created by updates to its
 /// parent Service.
-public struct Revision: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Revision: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The unique name of this Revision.
@@ -51,19 +51,19 @@ public struct Revision: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var annotations: [Swift.String: Swift.String] = [:]
 
   /// Output only. The creation time.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The last-modified time.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. For a deleted resource, the deletion time. It is only
   /// populated as a response to a Delete request.
-  public var deleteTime: GoogleCloudWkt.Timestamp? = nil
+  public var deleteTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. For a deleted resource, the time after which it will be
   /// permamently deleted. It is only populated as a response to a Delete
   /// request.
-  public var expireTime: GoogleCloudWkt.Timestamp? = nil
+  public var expireTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The least stable launch stage needed to create this resource, as defined by
   /// [Google Cloud Platform Launch
@@ -90,7 +90,7 @@ public struct Revision: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var maxInstanceRequestConcurrency: Swift.Int32 = Swift.Int32()
 
   /// Max allowed time for an instance to respond to a request.
-  public var timeout: GoogleCloudWkt.Duration? = nil
+  public var timeout: GoogleCloudWKT.Duration? = nil
 
   /// Email address of the IAM service account associated with the revision of
   /// the service. The service account represents the identity of the running
@@ -121,7 +121,7 @@ public struct Revision: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// If encryption_key_revocation_action is SHUTDOWN, the duration before
   /// shutting down all instances. The minimum increment is 1 hour.
-  public var encryptionKeyShutdownDuration: GoogleCloudWkt.Duration? = nil
+  public var encryptionKeyShutdownDuration: GoogleCloudWKT.Duration? = nil
 
   /// Output only. Indicates whether the resource's reconciliation is still in
   /// progress. See comments in `Service.reconciling` for additional information
@@ -183,10 +183,10 @@ public struct Revision: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.run.v2.Revision"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A toolset represents a group of dynamically managed tools that can be used
 /// by the agent.
-public struct Toolset: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Toolset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The unique identifier of the toolset.
@@ -37,13 +37,13 @@ public struct Toolset: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Optional. The timeout for the toolset execution. If not set, the default
   /// timeout is 30 seconds for `SYNCHRONOUS` toolsets and 60 seconds for
   /// `ASYNCHRONOUS` toolsets.
-  public var timeout: GoogleCloudWkt.Duration? = nil
+  public var timeout: GoogleCloudWKT.Duration? = nil
 
   /// Output only. Timestamp when the toolset was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Timestamp when the toolset was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// ETag used to ensure the object hasn't changed during a read-modify-write
   /// operation. If the etag is empty, the update will overwrite any concurrent
@@ -95,11 +95,11 @@ public struct Toolset: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
     self.description = try container.decode(Swift.String.self, forKey: .description)
-    self.timeout = try container.decodeIfPresent(GoogleCloudWkt.Duration.self, forKey: .timeout)
+    self.timeout = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .timeout)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.etag = try container.decode(Swift.String.self, forKey: .etag)
     self.executionType = try container.decode(ExecutionType.self, forKey: .executionType)
     self.toolFakeConfig = try container.decodeIfPresent(
@@ -171,10 +171,10 @@ public struct Toolset: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.Toolset"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

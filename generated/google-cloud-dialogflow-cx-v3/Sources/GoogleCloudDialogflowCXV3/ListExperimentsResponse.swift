@@ -17,13 +17,13 @@
 #if Experiments
   import Foundation
   @_spi(GoogleCloudInternal) import GoogleCloudGax
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The response message for
   /// [Experiments.ListExperiments][google.cloud.dialogflow.cx.v3.Experiments.ListExperiments].
   ///
   /// [google.cloud.dialogflow.cx.v3.Experiments.ListExperiments]: <doc:ExperimentsClient/listExperiments(request:options:)>
-  public struct ListExperimentsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ListExperimentsResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable
   {
@@ -56,11 +56,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.ListExperimentsResponse"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
 
     public func _getPaginatedItems() -> [Experiment] {

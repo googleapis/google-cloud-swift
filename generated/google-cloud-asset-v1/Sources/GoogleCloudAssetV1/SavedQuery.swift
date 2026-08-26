@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A saved query which can be shared with others or used later.
-public struct SavedQuery: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SavedQuery: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The resource name of the saved query. The format must be:
@@ -33,13 +33,13 @@ public struct SavedQuery: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var description: Swift.String = Swift.String()
 
   /// Output only. The create time of this saved query.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The account's email address who has created this saved query.
   public var creator: Swift.String = Swift.String()
 
   /// Output only. The last update time of this saved query.
-  public var lastUpdateTime: GoogleCloudWkt.Timestamp? = nil
+  public var lastUpdateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The account's email address who has updated this saved query
   /// most recently.
@@ -70,7 +70,7 @@ public struct SavedQuery: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// The query content.
-  public struct QueryContent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct QueryContent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var queryContent: OneOf_QueryContent? = nil
@@ -143,21 +143,21 @@ public struct SavedQuery: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.asset.v1.SavedQuery.QueryContent"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.asset.v1.SavedQuery"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

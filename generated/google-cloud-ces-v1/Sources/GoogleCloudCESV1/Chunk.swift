@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A chunk of content within a message.
-public struct Chunk: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Chunk: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Chunk data.
@@ -75,7 +75,7 @@ public struct Chunk: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     if let blob = try container.decodeIfPresent(Blob?.self, forKey: .blob) {
       try dataCheckAndSet(.blob(blob))
     }
-    if let payload = try container.decodeIfPresent(GoogleCloudWkt.Struct?.self, forKey: .payload) {
+    if let payload = try container.decodeIfPresent(GoogleCloudWKT.Struct?.self, forKey: .payload) {
       try dataCheckAndSet(.payload(payload))
     }
     if let image = try container.decodeIfPresent(Image?.self, forKey: .image) {
@@ -93,12 +93,12 @@ public struct Chunk: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       try dataCheckAndSet(.agentTransfer(agentTransfer))
     }
     if let updatedVariables = try container.decodeIfPresent(
-      GoogleCloudWkt.Struct?.self, forKey: .updatedVariables)
+      GoogleCloudWKT.Struct?.self, forKey: .updatedVariables)
     {
       try dataCheckAndSet(.updatedVariables(updatedVariables))
     }
     if let defaultVariables = try container.decodeIfPresent(
-      GoogleCloudWkt.Struct?.self, forKey: .defaultVariables)
+      GoogleCloudWKT.Struct?.self, forKey: .defaultVariables)
     {
       try dataCheckAndSet(.defaultVariables(defaultVariables))
     }
@@ -143,7 +143,7 @@ public struct Chunk: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// Optional. Blob data.
     indirect case blob(Blob?)
     /// Optional. Custom payload data.
-    indirect case payload(GoogleCloudWkt.Struct?)
+    indirect case payload(GoogleCloudWKT.Struct?)
     /// Optional. Image data.
     indirect case image(Image?)
     /// Optional. Tool execution request.
@@ -154,19 +154,19 @@ public struct Chunk: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     indirect case agentTransfer(AgentTransfer?)
     /// A struct represents variables that were updated in the conversation,
     /// keyed by variable names.
-    indirect case updatedVariables(GoogleCloudWkt.Struct?)
+    indirect case updatedVariables(GoogleCloudWKT.Struct?)
     /// A struct represents default variables at the start of the conversation,
     /// keyed by variable names.
-    indirect case defaultVariables(GoogleCloudWkt.Struct?)
+    indirect case defaultVariables(GoogleCloudWKT.Struct?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.Chunk"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

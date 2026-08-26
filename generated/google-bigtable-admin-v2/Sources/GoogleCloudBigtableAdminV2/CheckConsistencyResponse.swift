@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response message for
 /// [google.bigtable.admin.v2.BigtableTableAdmin.CheckConsistency][google.bigtable.admin.v2.BigtableTableAdmin.CheckConsistency]
 ///
 /// [google.bigtable.admin.v2.BigtableTableAdmin.CheckConsistency]: <doc:BigtableTableAdminClient/checkConsistency(request:options:)>
-public struct CheckConsistencyResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CheckConsistencyResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// True only if the token is consistent. A token is consistent if replication
@@ -47,10 +47,10 @@ public struct CheckConsistencyResponse: Codable, Equatable, GoogleCloudWkt._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.bigtable.admin.v2.CheckConsistencyResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

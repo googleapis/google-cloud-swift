@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request for ListSchemaVersions.
-public struct ListSchemaVersionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ListSchemaVersionsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The schema whose schema versions are to be listed. Structured
@@ -55,10 +55,10 @@ public struct ListSchemaVersionsRequest: Codable, Equatable, GoogleCloudWkt._Any
     return
       "type.googleapis.com/google.cloud.managedkafka.schemaregistry.v1.ListSchemaVersionsRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

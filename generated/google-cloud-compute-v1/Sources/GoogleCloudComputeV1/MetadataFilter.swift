@@ -16,7 +16,7 @@
 
 #if ForwardingRules || GlobalForwardingRules || RegionUrlMaps || UrlMaps
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Opaque filter criteria used by load balancers to restrict routing
   /// configuration to a limited set of load balancing proxies. Proxies and
@@ -34,7 +34,7 @@
   /// An example for using metadataFilters would be: if
   /// load balancing involves
   /// Envoys, they receive routing configuration when values inmetadataFilters match values supplied in  of their XDS requests to loadbalancers.
-  public struct MetadataFilter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MetadataFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The list of label value pairs that must match labels in the provided
@@ -181,11 +181,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.MetadataFilter"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

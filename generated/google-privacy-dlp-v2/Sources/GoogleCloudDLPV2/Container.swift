@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents a container that may contain DLP findings.
 /// Examples of a container include a file, table, or database record.
-public struct Container: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Container: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Container type, for example BigQuery or Cloud Storage.
@@ -57,7 +57,7 @@ public struct Container: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Storage, this field contains the last file modification timestamp. For a
   /// BigQuery table, this field contains the last_modified_time property. For
   /// Datastore, this field isn't populated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Findings container version, if available
   /// ("generation" for Cloud Storage).
@@ -82,10 +82,10 @@ public struct Container: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.Container"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

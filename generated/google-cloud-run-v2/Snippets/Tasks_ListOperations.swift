@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudRunV2
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 
 func sample(client: TasksClient) async throws {

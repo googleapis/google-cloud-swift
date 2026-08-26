@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Metadata used for long running operations returned by CTS batch APIs.
 /// It's used to replace
 /// [google.longrunning.Operation.metadata][google.longrunning.Operation.metadata].
 ///
 /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
-public struct BatchOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BatchOperationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The state of a long running operation.
@@ -41,21 +41,21 @@ public struct BatchOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPac
   public var totalCount: Swift.Int32 = Swift.Int32()
 
   /// The time when the batch operation is created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The time when the batch operation status is updated. The metadata and the
   /// [update_time][google.cloud.talent.v4.BatchOperationMetadata.update_time] is
   /// refreshed every minute otherwise cached data is returned.
   ///
   /// [google.cloud.talent.v4.BatchOperationMetadata.update_time]: <doc:BatchOperationMetadata/updateTime>
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The time when the batch operation is finished and
   /// [google.longrunning.Operation.done][google.longrunning.Operation.done] is
   /// set to `true`.
   ///
   /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `BatchOperationMetadata`.
   public init() {}
@@ -214,10 +214,10 @@ public struct BatchOperationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.talent.v4.BatchOperationMetadata"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

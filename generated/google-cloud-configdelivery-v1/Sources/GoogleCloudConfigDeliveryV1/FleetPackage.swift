@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A `FleetPackage` resource in the Config Delivery API.
 ///
 /// A `FleetPackage` defines a package through which kubernetes
 /// configuration is deployed to a fleet of kubernetes clusters.
-public struct FleetPackage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct FleetPackage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. Name of the `FleetPackage`. Format is
@@ -31,10 +31,10 @@ public struct FleetPackage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Output only. Time at which the `FleetPackage` was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Most recent time at which the `FleetPackage` was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Labels are attributes that can be set and used by both the
   /// user and by Config Delivery. Labels must meet the following constraints:
@@ -93,7 +93,7 @@ public struct FleetPackage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Information specifying the source of kubernetes configuration to deploy.
-  public struct ResourceBundleSelector: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ResourceBundleSelector: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// source can be a directly pushed `ResourceBundle` or
@@ -173,17 +173,17 @@ public struct FleetPackage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.configdelivery.v1.FleetPackage.ResourceBundleSelector"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// ResourceBundleTag contains the information to refer to a release for a
   /// `ResourceBundle`.
-  public struct ResourceBundleTag: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ResourceBundleTag: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Name of the `ResourceBundle`.
@@ -213,17 +213,17 @@ public struct FleetPackage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.configdelivery.v1.FleetPackage.ResourceBundleTag"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// CloudBuildRepository contains information about fetching Kubernetes
   /// configuration from a `CloudBuildRepository`.
-  public struct CloudBuildRepository: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CloudBuildRepository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Name of the cloud build repository.
@@ -322,16 +322,16 @@ public struct FleetPackage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.configdelivery.v1.FleetPackage.CloudBuildRepository"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The target defines different ways to target set of kubernetes clusters.
-  public struct Target: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Target: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// target for the fleet package.
@@ -396,17 +396,17 @@ public struct FleetPackage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.configdelivery.v1.FleetPackage.Target"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// VariantSelector contains information for selecting a variant in
   /// `ResourceBundle` to deploy to a target cluster.
-  public struct VariantSelector: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct VariantSelector: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// strategy for selecting a variant.
@@ -483,11 +483,11 @@ public struct FleetPackage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.configdelivery.v1.FleetPackage.VariantSelector"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -602,10 +602,10 @@ public struct FleetPackage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.configdelivery.v1.FleetPackage"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

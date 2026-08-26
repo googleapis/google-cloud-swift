@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A decision that has been made to dismiss an approval request.
-public struct DismissDecision: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DismissDecision: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The time at which the approval request was dismissed.
-  public var dismissTime: GoogleCloudWkt.Timestamp? = nil
+  public var dismissTime: GoogleCloudWKT.Timestamp? = nil
 
   /// This field will be true if the ApprovalRequest was implicitly dismissed due
   /// to inaction by the access approval approvers (the request is not acted
@@ -48,10 +48,10 @@ public struct DismissDecision: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.accessapproval.v1.DismissDecision"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -626,7 +626,7 @@ extension Clients {
     /// See `CloudRedisClusterClient.updateCluster`.
     func updateCluster(
       cluster: Cluster?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Cluster>
 
     /// See `CloudRedisClusterClient.deleteCluster`.
@@ -686,7 +686,7 @@ extension Clients {
     func rescheduleClusterMaintenance(
       name: Swift.String,
       rescheduleType: RescheduleClusterMaintenanceRequest.RescheduleType,
-      scheduleTime: GoogleCloudWkt.Timestamp?,
+      scheduleTime: GoogleCloudWKT.Timestamp?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Cluster>
 
     /// See `CloudRedisClusterClient.listBackupCollections`.
@@ -1061,7 +1061,7 @@ extension Clients.CloudRedisClusterProtocol {
 
   public func updateCluster(
     cluster: Cluster?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Cluster> {
     let request = UpdateClusterRequest().with {
       $0.cluster = cluster
@@ -1221,7 +1221,7 @@ extension Clients.CloudRedisClusterProtocol {
   public func rescheduleClusterMaintenance(
     name: Swift.String,
     rescheduleType: RescheduleClusterMaintenanceRequest.RescheduleType,
-    scheduleTime: GoogleCloudWkt.Timestamp?,
+    scheduleTime: GoogleCloudWKT.Timestamp?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Cluster> {
     let request = RescheduleClusterMaintenanceRequest().with {
       $0.name = name

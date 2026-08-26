@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleCloudGax
 
@@ -139,7 +139,7 @@ extension Clients {
     /// See `TenantServiceClient.updateTenant`.
     func updateTenant(
       tenant: Tenant?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudTalentV4.Tenant
 
     /// See `TenantServiceClient.deleteTenant`.
@@ -252,7 +252,7 @@ extension Clients.TenantServiceProtocol {
 
   public func updateTenant(
     tenant: Tenant?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudTalentV4.Tenant {
     let request = UpdateTenantRequest().with {
       $0.tenant = tenant

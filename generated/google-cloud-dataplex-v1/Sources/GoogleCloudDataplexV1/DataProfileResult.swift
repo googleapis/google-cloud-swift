@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// DataProfileResult defines the output of DataProfileScan. Each field of the
 /// table will have field type specific profile result.
-public struct DataProfileResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DataProfileResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The count of rows scanned.
@@ -55,7 +55,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleCloudWkt._AnyPackable
   }
 
   /// Contains name, type, mode and field type specific profile information.
-  public struct Profile: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Profile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. List of fields with structural and profile information for
@@ -79,7 +79,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleCloudWkt._AnyPackable
     }
 
     /// A field within a table.
-    public struct Field: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Field: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. The name of the field.
@@ -120,7 +120,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleCloudWkt._AnyPackable
       }
 
       /// The profile information for each field type.
-      public struct ProfileInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct ProfileInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Output only. Ratio of rows with null value against total scanned
@@ -226,7 +226,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleCloudWkt._AnyPackable
         }
 
         /// The profile information for a string type field.
-        public struct StringFieldInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct StringFieldInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Output only. Minimum length of non-null values in the scanned data.
@@ -258,16 +258,16 @@ public struct DataProfileResult: Codable, Equatable, GoogleCloudWkt._AnyPackable
             return
               "type.googleapis.com/google.cloud.dataplex.v1.DataProfileResult.Profile.Field.ProfileInfo.StringFieldInfo"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
         /// The profile information for an integer type field.
-        public struct IntegerFieldInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct IntegerFieldInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Output only. Average of non-null values in the scanned data. NaN,
@@ -320,16 +320,16 @@ public struct DataProfileResult: Codable, Equatable, GoogleCloudWkt._AnyPackable
             return
               "type.googleapis.com/google.cloud.dataplex.v1.DataProfileResult.Profile.Field.ProfileInfo.IntegerFieldInfo"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
         /// The profile information for a double type field.
-        public struct DoubleFieldInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct DoubleFieldInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Output only. Average of non-null values in the scanned data. NaN,
@@ -382,16 +382,16 @@ public struct DataProfileResult: Codable, Equatable, GoogleCloudWkt._AnyPackable
             return
               "type.googleapis.com/google.cloud.dataplex.v1.DataProfileResult.Profile.Field.ProfileInfo.DoubleFieldInfo"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
         /// Top N non-null values in the scanned data.
-        public struct TopNValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct TopNValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Output only. String value of a top N non-null value.
@@ -424,11 +424,11 @@ public struct DataProfileResult: Codable, Equatable, GoogleCloudWkt._AnyPackable
             return
               "type.googleapis.com/google.cloud.dataplex.v1.DataProfileResult.Profile.Field.ProfileInfo.TopNValue"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
@@ -448,38 +448,38 @@ public struct DataProfileResult: Codable, Equatable, GoogleCloudWkt._AnyPackable
           return
             "type.googleapis.com/google.cloud.dataplex.v1.DataProfileResult.Profile.Field.ProfileInfo"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dataplex.v1.DataProfileResult.Profile.Field"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.DataProfileResult.Profile"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The result of post scan actions of DataProfileScan job.
-  public struct PostScanActionsResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PostScanActionsResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The result of BigQuery export post scan action.
@@ -503,7 +503,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleCloudWkt._AnyPackable
     }
 
     /// The result of BigQuery export post scan action.
-    public struct BigQueryExportResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct BigQueryExportResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. Execution state for the BigQuery exporting.
@@ -646,32 +646,32 @@ public struct DataProfileResult: Codable, Equatable, GoogleCloudWkt._AnyPackable
         return
           "type.googleapis.com/google.cloud.dataplex.v1.DataProfileResult.PostScanActionsResult.BigQueryExportResult"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.DataProfileResult.PostScanActionsResult"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataplex.v1.DataProfileResult"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Message used by AlloyDB connectors to exchange client and connection metadata
 /// with the server after a successful TLS handshake. This metadata includes an
@@ -23,7 +23,7 @@ import Foundation
 /// The sole purpose of this message is for the use of AlloyDB connectors.
 /// Clients should not rely on this message directly as there can be breaking
 /// changes in the future.
-public struct MetadataExchangeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MetadataExchangeRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. Connector information.
@@ -160,10 +160,10 @@ public struct MetadataExchangeRequest: Codable, Equatable, GoogleCloudWkt._AnyPa
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.alloydb.connectors.v1.MetadataExchangeRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

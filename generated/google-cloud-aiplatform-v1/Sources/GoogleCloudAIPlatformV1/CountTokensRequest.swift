@@ -16,10 +16,10 @@
 
 #if LlmUtilityService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request message for [PredictionService.CountTokens][].
-  public struct CountTokensRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CountTokensRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The name of the Endpoint requested to perform token counting.
@@ -34,7 +34,7 @@
 
     /// Optional. The instances that are the input to token counting call.
     /// Schema is identical to the prediction schema of the underlying model.
-    public var instances: [GoogleCloudWkt.Value] = []
+    public var instances: [GoogleCloudWKT.Value] = []
 
     /// Optional. Input content.
     public var contents: [Content] = []
@@ -75,11 +75,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.CountTokensRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

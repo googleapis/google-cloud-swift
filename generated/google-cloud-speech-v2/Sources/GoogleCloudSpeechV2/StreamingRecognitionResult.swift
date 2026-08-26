@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A streaming speech recognition result corresponding to a portion of the audio
 /// that is currently being processed.
-public struct StreamingRecognitionResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct StreamingRecognitionResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// May contain one or more recognition hypotheses. These alternatives are
@@ -49,7 +49,7 @@ public struct StreamingRecognitionResult: Codable, Equatable, GoogleCloudWkt._An
 
   /// Time offset of the end of this result relative to the beginning of the
   /// audio.
-  public var resultEndOffset: GoogleCloudWkt.Duration? = nil
+  public var resultEndOffset: GoogleCloudWKT.Duration? = nil
 
   /// For multi-channel audio, this is the channel number corresponding to the
   /// recognized result for the audio from that channel.
@@ -81,10 +81,10 @@ public struct StreamingRecognitionResult: Codable, Equatable, GoogleCloudWkt._An
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.speech.v2.StreamingRecognitionResult"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

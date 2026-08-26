@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A mocked tool call.
 ///
 /// Expresses the target tool + a pattern to match against that tool's
 /// args / inputs. If the pattern matches, then the mock response will be
 /// returned.
-public struct MockedToolCall: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MockedToolCall: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. Deprecated. Use tool_identifier instead.
@@ -32,11 +32,11 @@ public struct MockedToolCall: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Required. A pattern to match against the args / inputs of all dispatched
   /// tool calls. If the tool call inputs match this pattern, then mock output
   /// will be returned.
-  public var expectedArgsPattern: GoogleCloudWkt.Struct? = nil
+  public var expectedArgsPattern: GoogleCloudWKT.Struct? = nil
 
   /// Optional. The mock response / output to return if the tool call args /
   /// inputs match the pattern.
-  public var mockResponse: GoogleCloudWkt.Struct? = nil
+  public var mockResponse: GoogleCloudWKT.Struct? = nil
 
   /// The identifier of the tool to mock.
   public var toolIdentifier: OneOf_ToolIdentifier? = nil
@@ -69,9 +69,9 @@ public struct MockedToolCall: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.tool = try container.decode(Swift.String.self, forKey: .tool)
     self.expectedArgsPattern = try container.decodeIfPresent(
-      GoogleCloudWkt.Struct.self, forKey: .expectedArgsPattern)
+      GoogleCloudWKT.Struct.self, forKey: .expectedArgsPattern)
     self.mockResponse = try container.decodeIfPresent(
-      GoogleCloudWkt.Struct.self, forKey: .mockResponse)
+      GoogleCloudWKT.Struct.self, forKey: .mockResponse)
 
     var toolIdentifier: OneOf_ToolIdentifier? = nil
     let toolIdentifierCheckAndSet = {
@@ -120,10 +120,10 @@ public struct MockedToolCall: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.MockedToolCall"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

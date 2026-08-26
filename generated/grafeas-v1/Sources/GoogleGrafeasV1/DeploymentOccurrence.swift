@@ -15,20 +15,20 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The period during which some deployable was active in a runtime.
-public struct DeploymentOccurrence: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DeploymentOccurrence: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identity of the user that triggered this deployment.
   public var userEmail: Swift.String = Swift.String()
 
   /// Required. Beginning of the lifetime of this deployment.
-  public var deployTime: GoogleCloudWkt.Timestamp? = nil
+  public var deployTime: GoogleCloudWKT.Timestamp? = nil
 
   /// End of the lifetime of this deployment.
-  public var undeployTime: GoogleCloudWkt.Timestamp? = nil
+  public var undeployTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Configuration used to create this deployment.
   public var config: Swift.String = Swift.String()
@@ -174,10 +174,10 @@ public struct DeploymentOccurrence: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/grafeas.v1.DeploymentOccurrence"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

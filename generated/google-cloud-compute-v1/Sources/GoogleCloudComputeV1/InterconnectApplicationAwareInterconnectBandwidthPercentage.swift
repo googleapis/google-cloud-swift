@@ -16,13 +16,13 @@
 
 #if Interconnects
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Specify bandwidth percentages [1-100] for various traffic classes in
   /// BandwidthPercentagePolicy. The sum of all percentages must equal 100.
   /// All traffic classes must have a percentage value specified.
   public struct InterconnectApplicationAwareInterconnectBandwidthPercentage: Codable, Equatable,
-    GoogleCloudWkt._AnyPackable,
+    GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Bandwidth percentage for a specific traffic class.
@@ -180,11 +180,11 @@
       return
         "type.googleapis.com/google.cloud.compute.v1.InterconnectApplicationAwareInterconnectBandwidthPercentage"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

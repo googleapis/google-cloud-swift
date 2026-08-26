@@ -16,10 +16,10 @@
 
 #if SqlBackupsService || SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Database instance backup configuration.
-  public struct BackupConfiguration: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct BackupConfiguration: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Start time for the daily backup configuration in UTC timezone in the 24
@@ -27,14 +27,14 @@
     public var startTime: Swift.String = Swift.String()
 
     /// Whether this configuration is enabled.
-    public var enabled: GoogleCloudWkt.BoolValue? = nil
+    public var enabled: GoogleCloudWKT.BoolValue? = nil
 
     /// This is always `sql#backupConfiguration`.
     public var kind: Swift.String = Swift.String()
 
     /// (MySQL only) Whether binary log is enabled. If backup configuration is
     /// disabled, binarylog must be disabled as well.
-    public var binaryLogEnabled: GoogleCloudWkt.BoolValue? = nil
+    public var binaryLogEnabled: GoogleCloudWKT.BoolValue? = nil
 
     /// Optional. Deprecated: replication_log_archiving_enabled is deprecated and
     /// will be removed from a future version of the API. Use
@@ -43,20 +43,20 @@
     ///
     /// [google.cloud.sql.v1.BackupConfiguration.point_in_time_recovery_enabled]: <doc:BackupConfiguration/pointInTimeRecoveryEnabled>
     @available(*, deprecated)
-    public var replicationLogArchivingEnabled: GoogleCloudWkt.BoolValue? = nil
+    public var replicationLogArchivingEnabled: GoogleCloudWKT.BoolValue? = nil
 
     /// Location of the backup
     public var location: Swift.String = Swift.String()
 
     /// Whether point in time recovery is enabled.
-    public var pointInTimeRecoveryEnabled: GoogleCloudWkt.BoolValue? = nil
+    public var pointInTimeRecoveryEnabled: GoogleCloudWKT.BoolValue? = nil
 
     /// Backup retention settings.
     public var backupRetentionSettings: BackupRetentionSettings? = nil
 
     /// The number of days of transaction logs we retain for point in time
     /// restore, from 1-7.
-    public var transactionLogRetentionDays: GoogleCloudWkt.Int32Value? = nil
+    public var transactionLogRetentionDays: GoogleCloudWKT.Int32Value? = nil
 
     /// Output only. This value contains the storage location of transactional logs
     /// used to perform point-in-time recovery (PITR) for the database.
@@ -323,11 +323,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.BackupConfiguration"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

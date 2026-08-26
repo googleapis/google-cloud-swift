@@ -15,21 +15,21 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Information about an intrusion attempt event observed on the monitored
 /// resource.
-public struct IntrusionAttemptEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct IntrusionAttemptEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// VM and zone in which the intrusion attempt occurred.
   public var vmResource: [Swift.String] = []
 
   /// Detected start time of the intrusion attempt.
-  public var detectedIntrusionStartTime: GoogleCloudWkt.Timestamp? = nil
+  public var detectedIntrusionStartTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Detected end time of the intrusion attempt.
-  public var detectedIntrusionEndTime: GoogleCloudWkt.Timestamp? = nil
+  public var detectedIntrusionEndTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The IP address(es) of the VM associated with the intrusion attempt.
   /// This field may be empty if this information is not available.
@@ -54,10 +54,10 @@ public struct IntrusionAttemptEvent: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.abuseevent.logging.v1.IntrusionAttemptEvent"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

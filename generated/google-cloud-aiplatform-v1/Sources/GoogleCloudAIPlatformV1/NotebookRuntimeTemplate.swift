@@ -16,12 +16,12 @@
 
 #if NotebookService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A template that specifies runtime configurations such as machine type,
   /// runtime version, network configurations, etc.
   /// Multiple runtimes can be created from a runtime template.
-  public struct NotebookRuntimeTemplate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct NotebookRuntimeTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The resource name of the NotebookRuntimeTemplate.
@@ -95,11 +95,11 @@
     public var eucConfig: NotebookEucConfig? = nil
 
     /// Output only. Timestamp when this NotebookRuntimeTemplate was created.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Timestamp when this NotebookRuntimeTemplate was most recently
     /// updated.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Optional. Immutable. The type of the notebook runtime template.
     public var notebookRuntimeType: NotebookRuntimeType = NotebookRuntimeType()
@@ -136,11 +136,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.NotebookRuntimeTemplate"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -15,9 +15,9 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
-public struct GenerateAccessTokenRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct GenerateAccessTokenRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The resource name of the service account for which the credentials
@@ -48,7 +48,7 @@ public struct GenerateAccessTokenRequest: Codable, Equatable, GoogleCloudWkt._An
   /// Must be set to a value less than or equal to 3600 (1 hour). If a value is
   /// not specified, the token's lifetime will be set to a default value of one
   /// hour.
-  public var lifetime: GoogleCloudWkt.Duration? = nil
+  public var lifetime: GoogleCloudWKT.Duration? = nil
 
   /// Initialize a new instance of `GenerateAccessTokenRequest`.
   public init() {}
@@ -69,10 +69,10 @@ public struct GenerateAccessTokenRequest: Codable, Equatable, GoogleCloudWkt._An
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.iam.credentials.v1.GenerateAccessTokenRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

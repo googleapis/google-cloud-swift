@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for Predict method.
-public struct PredictRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct PredictRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Full resource name of the format:
@@ -140,7 +140,7 @@ public struct PredictRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///    category.
   /// * `filterSyntaxV2`: Boolean. False by default. If set to true, the `filter`
   ///   field is interpreteted according to the new, attribute-based syntax.
-  public var params: [Swift.String: GoogleCloudWkt.Value] = [:]
+  public var params: [Swift.String: GoogleCloudWKT.Value] = [:]
 
   /// The labels applied to a resource must meet the following requirements:
   ///
@@ -180,10 +180,10 @@ public struct PredictRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.retail.v2.PredictRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,28 +15,28 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Stored in the
 /// [google.longrunning.Operation.response][google.longrunning.Operation.response]
 /// field returned by DeleteGlossary.
 ///
 /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/OneOf_Result/response(_:)
-public struct DeleteGlossaryResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DeleteGlossaryResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The name of the deleted glossary.
   public var name: Swift.String = Swift.String()
 
   /// The time when the operation was submitted to the server.
-  public var submitTime: GoogleCloudWkt.Timestamp? = nil
+  public var submitTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The time when the glossary deletion is finished and
   /// [google.longrunning.Operation.done][google.longrunning.Operation.done] is
   /// set to true.
   ///
   /// [google.longrunning.Operation.done]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/done
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `DeleteGlossaryResponse`.
   public init() {}
@@ -57,10 +57,10 @@ public struct DeleteGlossaryResponse: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.translation.v3.DeleteGlossaryResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message to update a `Destination` resource.
-public struct UpdateDestinationRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateDestinationRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. `FieldMask is used to specify the fields to be overwritten in the
@@ -26,7 +26,7 @@ public struct UpdateDestinationRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   /// The fields specified in `update_mask` are relative to the resource, not
   /// the full request. A field is overwritten if it is in the mask. If you
   /// don't specify a mask, all fields are overwritten.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Required. The `Destination` resource to update.
   public var destination: Destination? = nil
@@ -64,10 +64,10 @@ public struct UpdateDestinationRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkconnectivity.v1.UpdateDestinationRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

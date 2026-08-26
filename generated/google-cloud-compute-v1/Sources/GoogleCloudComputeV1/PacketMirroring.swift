@@ -16,7 +16,7 @@
 
 #if PacketMirrorings
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents a Packet Mirroring resource.
   ///
@@ -25,7 +25,7 @@
   /// such as an instance group of an internal TCP/UDP load balancer, for analysis
   /// or examination.
   /// For more information about setting up Packet Mirroring, seeUsing Packet Mirroring.
-  public struct PacketMirroring: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PacketMirroring: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The Forwarding Rule resource of typeloadBalancingScheme=INTERNAL that will be used as collector
@@ -209,11 +209,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.PacketMirroring"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

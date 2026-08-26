@@ -16,13 +16,13 @@
 
 #if Participants
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The request message for
   /// [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent].
   ///
   /// [google.cloud.dialogflow.v2.Participants.AnalyzeContent]: <doc:ParticipantsClient/analyzeContent(request:options:)>
-  public struct AnalyzeContentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AnalyzeContentRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The name of the participant this text comes from.
@@ -49,7 +49,7 @@
     ///
     /// Note: this field should only be used if you are connecting to a Dialogflow
     /// CX agent.
-    public var cxParameters: GoogleCloudWkt.Struct? = nil
+    public var cxParameters: GoogleCloudWKT.Struct? = nil
 
     /// A unique identifier for this request. Restricted to 36 ASCII characters.
     /// A random UUID is recommended.
@@ -97,7 +97,7 @@
       self.assistQueryParams = try container.decodeIfPresent(
         AssistQueryParameters.self, forKey: .assistQueryParams)
       self.cxParameters = try container.decodeIfPresent(
-        GoogleCloudWkt.Struct.self, forKey: .cxParameters)
+        GoogleCloudWKT.Struct.self, forKey: .cxParameters)
       self.requestId = try container.decode(Swift.String.self, forKey: .requestId)
 
       var input: OneOf_Input? = nil
@@ -165,11 +165,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.AnalyzeContentRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

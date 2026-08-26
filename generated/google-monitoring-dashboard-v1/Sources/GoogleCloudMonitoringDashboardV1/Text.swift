@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A widget that displays textual content.
-public struct Text: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Text: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The text content to be displayed.
@@ -47,7 +47,7 @@ public struct Text: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Properties that determine how the title and content are styled
-  public struct TextStyle: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TextStyle: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The background color as a hex string. "#RRGGBB" or "#RGB"
@@ -745,11 +745,11 @@ public struct Text: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.dashboard.v1.Text.TextStyle"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -861,10 +861,10 @@ public struct Text: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.dashboard.v1.Text"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

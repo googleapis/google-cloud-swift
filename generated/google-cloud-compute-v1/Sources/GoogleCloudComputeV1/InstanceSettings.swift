@@ -16,12 +16,12 @@
 
 #if InstanceSettings
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents a Instance Settings resource. You can use instance settings to
   /// configure default settings for Compute Engine VM instances. For example, you
   /// can use it to configure default machine type of Compute Engine VM instances.
-  public struct InstanceSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct InstanceSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Specifies a fingerprint for instance settings, which is essentially a hash
@@ -74,7 +74,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       if let s = try container.decodeIfPresent(Swift.String.self, forKey: .fingerprint) {
-        guard let v = GoogleCloudWkt._DiscoveryBase64.decode(s) else {
+        guard let v = GoogleCloudWKT._DiscoveryBase64.decode(s) else {
           throw DecodingError.dataCorrupted(
             DecodingError.Context(
               codingPath: decoder.codingPath, debugDescription: "Expected url-safe encoded value")
@@ -92,7 +92,7 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       if let v = fingerprint {
         try container.encode(
-          GoogleCloudWkt._DiscoveryBase64.encode(v), forKey: .fingerprint
+          GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }
       try container.encode(self.kind, forKey: .kind)
@@ -103,11 +103,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.InstanceSettings"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

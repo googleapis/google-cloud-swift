@@ -37,7 +37,7 @@ let package = Package(
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),
-        .product(name: "GoogleCloudWkt", package: "wkt"),
+        .product(name: "GoogleCloudWKT", package: "wkt"),
         .product(name: "GoogleGrafeasV1", package: "grafeas-v1"),
         .product(name: "GoogleIAMV1", package: "google-iam-v1"),
         .product(name: "Logging", package: "swift-log"),

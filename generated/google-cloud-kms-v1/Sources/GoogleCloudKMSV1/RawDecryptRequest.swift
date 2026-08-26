@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [KeyManagementService.RawDecrypt][google.cloud.kms.v1.KeyManagementService.RawDecrypt].
 ///
 /// [google.cloud.kms.v1.KeyManagementService.RawDecrypt]: <doc:KeyManagementServiceClient/rawDecrypt(request:options:)>
-public struct RawDecryptRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RawDecryptRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The resource name of the
@@ -72,7 +72,7 @@ public struct RawDecryptRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
   ///
   /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   /// [google.cloud.kms.v1.RawDecryptRequest.ciphertext]: <doc:RawDecryptRequest/ciphertext>
-  public var ciphertextCrc32C: GoogleCloudWkt.Int64Value? = nil
+  public var ciphertextCrc32C: GoogleCloudWKT.Int64Value? = nil
 
   /// Optional. An optional CRC32C checksum of the
   /// [RawDecryptRequest.additional_authenticated_data][google.cloud.kms.v1.RawDecryptRequest.additional_authenticated_data].
@@ -94,7 +94,7 @@ public struct RawDecryptRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
   ///
   /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   /// [google.cloud.kms.v1.RawDecryptRequest.additional_authenticated_data]: <doc:RawDecryptRequest/additionalAuthenticatedData>
-  public var additionalAuthenticatedDataCrc32C: GoogleCloudWkt.Int64Value? = nil
+  public var additionalAuthenticatedDataCrc32C: GoogleCloudWKT.Int64Value? = nil
 
   /// Optional. An optional CRC32C checksum of the
   /// [RawDecryptRequest.initialization_vector][google.cloud.kms.v1.RawDecryptRequest.initialization_vector].
@@ -114,7 +114,7 @@ public struct RawDecryptRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
   ///
   /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   /// [google.cloud.kms.v1.RawDecryptRequest.initialization_vector]: <doc:RawDecryptRequest/initializationVector>
-  public var initializationVectorCrc32C: GoogleCloudWkt.Int64Value? = nil
+  public var initializationVectorCrc32C: GoogleCloudWKT.Int64Value? = nil
 
   /// Initialize a new instance of `RawDecryptRequest`.
   public init() {}
@@ -153,11 +153,11 @@ public struct RawDecryptRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
       Foundation.Data.self, forKey: .initializationVector)
     self.tagLength = try container.decode(Swift.Int32.self, forKey: .tagLength)
     self.ciphertextCrc32C = try container.decodeIfPresent(
-      GoogleCloudWkt.Int64Value.self, forKey: .ciphertextCrc32C)
+      GoogleCloudWKT.Int64Value.self, forKey: .ciphertextCrc32C)
     self.additionalAuthenticatedDataCrc32C = try container.decodeIfPresent(
-      GoogleCloudWkt.Int64Value.self, forKey: .additionalAuthenticatedDataCrc32C)
+      GoogleCloudWKT.Int64Value.self, forKey: .additionalAuthenticatedDataCrc32C)
     self.initializationVectorCrc32C = try container.decodeIfPresent(
-      GoogleCloudWkt.Int64Value.self, forKey: .initializationVectorCrc32C)
+      GoogleCloudWKT.Int64Value.self, forKey: .initializationVectorCrc32C)
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -176,10 +176,10 @@ public struct RawDecryptRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.RawDecryptRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

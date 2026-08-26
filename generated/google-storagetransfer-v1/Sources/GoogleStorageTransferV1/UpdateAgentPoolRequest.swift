@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Specifies the request passed to UpdateAgentPool.
-public struct UpdateAgentPoolRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateAgentPoolRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The agent pool to update. `agent_pool` is expected to specify
@@ -49,7 +49,7 @@ public struct UpdateAgentPoolRequest: Codable, Equatable, GoogleCloudWkt._AnyPac
   ///
   /// [google.storagetransfer.v1.AgentPool.bandwidth_limit]: <doc:AgentPool/bandwidthLimit>
   /// [google.storagetransfer.v1.AgentPool.display_name]: <doc:AgentPool/displayName>
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `UpdateAgentPoolRequest`.
   public init() {}
@@ -70,10 +70,10 @@ public struct UpdateAgentPoolRequest: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storagetransfer.v1.UpdateAgentPoolRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Information about a verification endpoint that can be used for 2FA.
-public struct EndpointVerificationInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct EndpointVerificationInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Token to provide to the client to trigger endpoint
@@ -27,7 +27,7 @@ public struct EndpointVerificationInfo: Codable, Equatable, GoogleCloudWkt._AnyP
 
   /// Output only. Timestamp of the last successful verification for the
   /// endpoint, if any.
-  public var lastVerificationTime: GoogleCloudWkt.Timestamp? = nil
+  public var lastVerificationTime: GoogleCloudWKT.Timestamp? = nil
 
   public var endpoint: OneOf_Endpoint? = nil
 
@@ -58,7 +58,7 @@ public struct EndpointVerificationInfo: Codable, Equatable, GoogleCloudWkt._AnyP
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.requestToken = try container.decode(Swift.String.self, forKey: .requestToken)
     self.lastVerificationTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .lastVerificationTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .lastVerificationTime)
 
     var endpoint: OneOf_Endpoint? = nil
     let endpointCheckAndSet = {
@@ -105,10 +105,10 @@ public struct EndpointVerificationInfo: Codable, Equatable, GoogleCloudWkt._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.recaptchaenterprise.v1.EndpointVerificationInfo"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

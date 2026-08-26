@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudCommerceConsumerProcurementV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 
 func sample(billingAccountId: String, orderId: String, ) async throws {
@@ -29,7 +29,7 @@ func sample(billingAccountId: String, orderId: String, ) async throws {
         $0.licensePool = LicensePool().with {
           $0.name = "billingAccounts/\(billingAccountId)/orders/\(orderId)/licensePool"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

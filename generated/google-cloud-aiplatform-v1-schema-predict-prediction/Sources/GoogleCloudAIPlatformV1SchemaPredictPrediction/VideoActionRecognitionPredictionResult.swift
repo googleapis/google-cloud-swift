@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Prediction output format for Video Action Recognition.
-public struct VideoActionRecognitionPredictionResult: Codable, Equatable, GoogleCloudWkt
+public struct VideoActionRecognitionPredictionResult: Codable, Equatable, GoogleCloudWKT
     ._AnyPackable,
   Sendable
 {
@@ -32,17 +32,17 @@ public struct VideoActionRecognitionPredictionResult: Codable, Equatable, Google
   /// AnnotationSpec has been identified. Expressed as a number of seconds as
   /// measured from the start of the video, with fractions up to a microsecond
   /// precision, and with "s" appended at the end.
-  public var timeSegmentStart: GoogleCloudWkt.Duration? = nil
+  public var timeSegmentStart: GoogleCloudWKT.Duration? = nil
 
   /// The end, exclusive, of the video's time segment in which the
   /// AnnotationSpec has been identified. Expressed as a number of seconds as
   /// measured from the start of the video, with fractions up to a microsecond
   /// precision, and with "s" appended at the end.
-  public var timeSegmentEnd: GoogleCloudWkt.Duration? = nil
+  public var timeSegmentEnd: GoogleCloudWKT.Duration? = nil
 
   /// The Model's confidence in correction of this prediction, higher
   /// value means higher confidence.
-  public var confidence: GoogleCloudWkt.FloatValue? = nil
+  public var confidence: GoogleCloudWKT.FloatValue? = nil
 
   /// Initialize a new instance of `VideoActionRecognitionPredictionResult`.
   public init() {}
@@ -64,10 +64,10 @@ public struct VideoActionRecognitionPredictionResult: Codable, Equatable, Google
     return
       "type.googleapis.com/google.cloud.aiplatform.v1.schema.predict.prediction.VideoActionRecognitionPredictionResult"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

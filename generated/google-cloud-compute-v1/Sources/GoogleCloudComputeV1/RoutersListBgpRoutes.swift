@@ -17,9 +17,9 @@
 #if Routers
   import Foundation
   @_spi(GoogleCloudInternal) import GoogleCloudGax
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
-  public struct RoutersListBgpRoutes: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RoutersListBgpRoutes: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable
   {
@@ -70,7 +70,7 @@
     /// The message type for the [warning][google.cloud.compute.v1.RoutersListBgpRoutes.warning] field.
     ///
     /// [google.cloud.compute.v1.RoutersListBgpRoutes.warning]: <doc:RoutersListBgpRoutes/Warning>
-    public struct Warning: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Warning: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// [Output Only] A warning code, if applicable. For example, Compute
@@ -110,7 +110,7 @@
       /// The message type for the [data][google.cloud.compute.v1.RoutersListBgpRoutes.warning.data] field.
       ///
       /// [google.cloud.compute.v1.RoutersListBgpRoutes.warning.data]: <doc:RoutersListBgpRoutes/Warning/Data>
-      public struct Data: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Data: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// [Output Only] A key that provides more detail on the warning being
@@ -144,11 +144,11 @@
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.cloud.compute.v1.RoutersListBgpRoutes.warning.data"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -465,22 +465,22 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.RoutersListBgpRoutes.warning"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.RoutersListBgpRoutes"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
 
     public func _getPaginatedItems() -> [BgpRoute] {

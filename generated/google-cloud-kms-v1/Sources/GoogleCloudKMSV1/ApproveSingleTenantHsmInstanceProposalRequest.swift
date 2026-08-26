@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [HsmManagement.ApproveSingleTenantHsmInstanceProposal][google.cloud.kms.v1.HsmManagement.ApproveSingleTenantHsmInstanceProposal].
 ///
 /// [google.cloud.kms.v1.HsmManagement.ApproveSingleTenantHsmInstanceProposal]: <doc:HsmManagementClient/approveSingleTenantHsmInstanceProposal(request:options:)>
-public struct ApproveSingleTenantHsmInstanceProposalRequest: Codable, Equatable, GoogleCloudWkt
+public struct ApproveSingleTenantHsmInstanceProposalRequest: Codable, Equatable, GoogleCloudWKT
     ._AnyPackable,
   Sendable
 {
@@ -107,7 +107,7 @@ public struct ApproveSingleTenantHsmInstanceProposalRequest: Codable, Equatable,
   /// for approving the proposal.
   ///
   /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal.QuorumParameters]: <doc:SingleTenantHsmInstanceProposal/QuorumParameters>
-  public struct QuorumReply: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct QuorumReply: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The challenge replies to approve the proposal. Challenge
@@ -139,11 +139,11 @@ public struct ApproveSingleTenantHsmInstanceProposalRequest: Codable, Equatable,
       return
         "type.googleapis.com/google.cloud.kms.v1.ApproveSingleTenantHsmInstanceProposalRequest.QuorumReply"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -152,7 +152,7 @@ public struct ApproveSingleTenantHsmInstanceProposalRequest: Codable, Equatable,
   /// for approving the proposal.
   ///
   /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal.RequiredActionQuorumParameters]: <doc:SingleTenantHsmInstanceProposal/RequiredActionQuorumParameters>
-  public struct RequiredActionQuorumReply: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RequiredActionQuorumReply: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. All required challenges must be signed for the proposal to be
@@ -188,11 +188,11 @@ public struct ApproveSingleTenantHsmInstanceProposalRequest: Codable, Equatable,
       return
         "type.googleapis.com/google.cloud.kms.v1.ApproveSingleTenantHsmInstanceProposalRequest.RequiredActionQuorumReply"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -217,10 +217,10 @@ public struct ApproveSingleTenantHsmInstanceProposalRequest: Codable, Equatable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.ApproveSingleTenantHsmInstanceProposalRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

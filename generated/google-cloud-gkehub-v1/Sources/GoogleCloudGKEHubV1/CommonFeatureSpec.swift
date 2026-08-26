@@ -16,10 +16,10 @@
 
 import Foundation
 import GoogleCloudGKEHubMultiClusterIngressV1
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// CommonFeatureSpec contains Hub-wide configuration information
-public struct CommonFeatureSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CommonFeatureSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   public var featureSpec: OneOf_FeatureSpec? = nil
@@ -84,10 +84,10 @@ public struct CommonFeatureSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkehub.v1.CommonFeatureSpec"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudVideoAIV1
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 
@@ -34,7 +34,7 @@ func sample(
           $0.name =
             "projects/\(projectNumberId)/locations/\(locationId)/corpora/\(corpusId)/searchHypernyms/\(searchHypernymId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

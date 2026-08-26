@@ -16,7 +16,7 @@
 
 #if RegionSslPolicies || SslPolicies
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents an SSL Policy resource.
   ///
@@ -24,7 +24,7 @@
   /// suites, that are offered by Application Load Balancers and proxy Network Load
   /// Balancers. For more information, read
   /// SSL policies overview.
-  public struct SslPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SslPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. [Output Only] Creation timestamp inRFC3339
@@ -141,7 +141,7 @@
       self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
       self.enabledFeatures = try container.decode([Swift.String].self, forKey: .enabledFeatures)
       if let s = try container.decodeIfPresent(Swift.String.self, forKey: .fingerprint) {
-        guard let v = GoogleCloudWkt._DiscoveryBase64.decode(s) else {
+        guard let v = GoogleCloudWKT._DiscoveryBase64.decode(s) else {
           throw DecodingError.dataCorrupted(
             DecodingError.Context(
               codingPath: decoder.codingPath, debugDescription: "Expected url-safe encoded value")
@@ -170,7 +170,7 @@
       try container.encode(self.enabledFeatures, forKey: .enabledFeatures)
       if let v = fingerprint {
         try container.encode(
-          GoogleCloudWkt._DiscoveryBase64.encode(v), forKey: .fingerprint
+          GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }
       try container.encode(self.id, forKey: .id)
@@ -187,7 +187,7 @@
     /// The message type for the [warnings][google.cloud.compute.v1.SslPolicy.warnings] field.
     ///
     /// [google.cloud.compute.v1.SslPolicy.warnings]: <doc:SslPolicy/Warnings>
-    public struct Warnings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Warnings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// [Output Only] A warning code, if applicable. For example, Compute
@@ -227,7 +227,7 @@
       /// The message type for the [data][google.cloud.compute.v1.SslPolicy.warnings.data] field.
       ///
       /// [google.cloud.compute.v1.SslPolicy.warnings.data]: <doc:SslPolicy/Warnings/Data>
-      public struct Data: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Data: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// [Output Only] A key that provides more detail on the warning being
@@ -261,11 +261,11 @@
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.cloud.compute.v1.SslPolicy.warnings.data"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -582,11 +582,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.SslPolicy.warnings"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -941,11 +941,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.SslPolicy"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

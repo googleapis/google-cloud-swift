@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Prediction output format for Video Object Tracking.
-public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The resource ID of the AnnotationSpec that had been identified.
@@ -31,17 +31,17 @@ public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleClo
   /// object instance has been detected. Expressed as a number of seconds as
   /// measured from the start of the video, with fractions up to a microsecond
   /// precision, and with "s" appended at the end.
-  public var timeSegmentStart: GoogleCloudWkt.Duration? = nil
+  public var timeSegmentStart: GoogleCloudWKT.Duration? = nil
 
   /// The end, inclusive, of the video's time segment in which the
   /// object instance has been detected. Expressed as a number of seconds as
   /// measured from the start of the video, with fractions up to a microsecond
   /// precision, and with "s" appended at the end.
-  public var timeSegmentEnd: GoogleCloudWkt.Duration? = nil
+  public var timeSegmentEnd: GoogleCloudWKT.Duration? = nil
 
   /// The Model's confidence in correction of this prediction, higher
   /// value means higher confidence.
-  public var confidence: GoogleCloudWkt.FloatValue? = nil
+  public var confidence: GoogleCloudWKT.FloatValue? = nil
 
   /// All of the frames of the video in which a single object instance has been
   /// detected. The bounding boxes in the frames identify the same object.
@@ -67,26 +67,26 @@ public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleClo
   /// i.e. the rectangle over the video frame pinpointing the found
   /// AnnotationSpec. The coordinates are relative to the frame size, and the
   /// point 0,0 is in the top left of the frame.
-  public struct Frame: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Frame: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// A time (frame) of a video in which the object has been detected.
     /// Expressed as a number of seconds as measured from the
     /// start of the video, with fractions up to a microsecond precision, and
     /// with "s" appended at the end.
-    public var timeOffset: GoogleCloudWkt.Duration? = nil
+    public var timeOffset: GoogleCloudWKT.Duration? = nil
 
     /// The leftmost coordinate of the bounding box.
-    public var xMin: GoogleCloudWkt.FloatValue? = nil
+    public var xMin: GoogleCloudWKT.FloatValue? = nil
 
     /// The rightmost coordinate of the bounding box.
-    public var xMax: GoogleCloudWkt.FloatValue? = nil
+    public var xMax: GoogleCloudWKT.FloatValue? = nil
 
     /// The topmost coordinate of the bounding box.
-    public var yMin: GoogleCloudWkt.FloatValue? = nil
+    public var yMin: GoogleCloudWKT.FloatValue? = nil
 
     /// The bottommost coordinate of the bounding box.
-    public var yMax: GoogleCloudWkt.FloatValue? = nil
+    public var yMax: GoogleCloudWKT.FloatValue? = nil
 
     /// Initialize a new instance of `Frame`.
     public init() {}
@@ -108,11 +108,11 @@ public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleClo
       return
         "type.googleapis.com/google.cloud.aiplatform.v1.schema.predict.prediction.VideoObjectTrackingPredictionResult.Frame"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -120,10 +120,10 @@ public struct VideoObjectTrackingPredictionResult: Codable, Equatable, GoogleClo
     return
       "type.googleapis.com/google.cloud.aiplatform.v1.schema.predict.prediction.VideoObjectTrackingPredictionResult"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

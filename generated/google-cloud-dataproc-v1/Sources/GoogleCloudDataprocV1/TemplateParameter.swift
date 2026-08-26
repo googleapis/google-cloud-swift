@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A configurable parameter that replaces one or more fields in the template.
 /// Parameterizable fields:
@@ -26,7 +26,7 @@ import Foundation
 /// - Script variables
 /// - Main class (in HadoopJob and SparkJob)
 /// - Zone (in ClusterSelector)
-public struct TemplateParameter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TemplateParameter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Parameter name.
@@ -83,7 +83,7 @@ public struct TemplateParameter: Codable, Equatable, GoogleCloudWkt._AnyPackable
   /// - placement.clusterSelector.clusterLabels
   /// - jobs['step-id'].sparkJob.args
   ///
-  /// [google.protobuf.FieldMask]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWkt.FieldMask
+  /// [google.protobuf.FieldMask]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWKT.FieldMask
   public var fields: [Swift.String] = []
 
   /// Optional. Brief description of the parameter.
@@ -112,10 +112,10 @@ public struct TemplateParameter: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataproc.v1.TemplateParameter"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

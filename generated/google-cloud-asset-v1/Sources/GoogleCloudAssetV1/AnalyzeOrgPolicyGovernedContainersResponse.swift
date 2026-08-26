@@ -16,13 +16,13 @@
 
 import Foundation
 @_spi(GoogleCloudInternal) import GoogleCloudGax
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The response message for
 /// [AssetService.AnalyzeOrgPolicyGovernedContainers][google.cloud.asset.v1.AssetService.AnalyzeOrgPolicyGovernedContainers].
 ///
 /// [google.cloud.asset.v1.AssetService.AnalyzeOrgPolicyGovernedContainers]: <doc:AssetServiceClient/analyzeOrgPolicyGovernedContainers(request:options:)>
-public struct AnalyzeOrgPolicyGovernedContainersResponse: Codable, Equatable, GoogleCloudWkt
+public struct AnalyzeOrgPolicyGovernedContainersResponse: Codable, Equatable, GoogleCloudWKT
     ._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable
@@ -60,7 +60,7 @@ public struct AnalyzeOrgPolicyGovernedContainersResponse: Codable, Equatable, Go
   /// [AnalyzeOrgPolicyGovernedContainersRequest.constraint][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedContainersRequest.constraint].
   ///
   /// [google.cloud.asset.v1.AnalyzeOrgPolicyGovernedContainersRequest.constraint]: <doc:AnalyzeOrgPolicyGovernedContainersRequest/constraint>
-  public struct GovernedContainer: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GovernedContainer: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The [full resource name]
@@ -133,22 +133,22 @@ public struct AnalyzeOrgPolicyGovernedContainersResponse: Codable, Equatable, Go
       return
         "type.googleapis.com/google.cloud.asset.v1.AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.asset.v1.AnalyzeOrgPolicyGovernedContainersResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 
   public func _getPaginatedItems() -> [AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer]

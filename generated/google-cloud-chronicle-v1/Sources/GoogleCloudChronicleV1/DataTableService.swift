@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleCloudGax
 
@@ -312,7 +312,7 @@ extension Clients {
     /// See `DataTableServiceClient.updateDataTable`.
     func updateDataTable(
       dataTable: DataTable?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudChronicleV1.DataTable
 
     /// See `DataTableServiceClient.deleteDataTable`.
@@ -341,7 +341,7 @@ extension Clients {
     /// See `DataTableServiceClient.updateDataTableRow`.
     func updateDataTableRow(
       dataTableRow: DataTableRow?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudChronicleV1.DataTableRow
 
     /// See `DataTableServiceClient.listDataTableRows`.
@@ -661,7 +661,7 @@ extension Clients.DataTableServiceProtocol {
 
   public func updateDataTable(
     dataTable: DataTable?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudChronicleV1.DataTable {
     let request = UpdateDataTableRequest().with {
       $0.dataTable = dataTable
@@ -728,7 +728,7 @@ extension Clients.DataTableServiceProtocol {
 
   public func updateDataTableRow(
     dataTableRow: DataTableRow?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudChronicleV1.DataTableRow {
     let request = UpdateDataTableRowRequest().with {
       $0.dataTableRow = dataTableRow

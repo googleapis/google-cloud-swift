@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// Provides information about the analysis status of a discovered resource.
-public struct DiscoveryOccurrence: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DiscoveryOccurrence: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Whether the resource is continuously analyzed.
@@ -45,10 +45,10 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public var cpe: Swift.String = Swift.String()
 
   /// The last time this resource was scanned.
-  public var lastScanTime: GoogleCloudWkt.Timestamp? = nil
+  public var lastScanTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The time occurrences related to this discovery occurrence were archived.
-  public var archiveTime: GoogleCloudWkt.Timestamp? = nil
+  public var archiveTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The status of an SBOM generation.
   public var sbomStatus: DiscoveryOccurrence.SBOMStatus? = nil
@@ -60,7 +60,7 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public var files: [DiscoveryOccurrence.File] = []
 
   /// The last time vulnerability scan results changed.
-  public var lastVulnerabilityUpdateTime: GoogleCloudWkt.Timestamp? = nil
+  public var lastVulnerabilityUpdateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `DiscoveryOccurrence`.
   public init() {}
@@ -80,7 +80,7 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleCloudWkt._AnyPackab
 
   /// Indicates which analysis completed successfully. Multiple types of
   /// analysis can be performed on a single resource.
-  public struct AnalysisCompleted: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AnalysisCompleted: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var analysisType: [Swift.String] = []
@@ -104,16 +104,16 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleCloudWkt._AnyPackab
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/grafeas.v1.DiscoveryOccurrence.AnalysisCompleted"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The status of an SBOM generation.
-  public struct SBOMStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SBOMStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The progress of the SBOM generation.
@@ -248,20 +248,20 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleCloudWkt._AnyPackab
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/grafeas.v1.DiscoveryOccurrence.SBOMStatus"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The status of an vulnerability attestation generation.
-  public struct VulnerabilityAttestation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct VulnerabilityAttestation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The last time we attempted to generate an attestation.
-    public var lastAttemptTime: GoogleCloudWkt.Timestamp? = nil
+    public var lastAttemptTime: GoogleCloudWKT.Timestamp? = nil
 
     /// The success/failure state of the latest attestation attempt.
     public var state: DiscoveryOccurrence.VulnerabilityAttestation.VulnerabilityAttestationState =
@@ -394,15 +394,15 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleCloudWkt._AnyPackab
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
-  public struct File: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct File: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var name: Swift.String = Swift.String()
@@ -428,11 +428,11 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleCloudWkt._AnyPackab
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/grafeas.v1.DiscoveryOccurrence.File"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -673,10 +673,10 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/grafeas.v1.DiscoveryOccurrence"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

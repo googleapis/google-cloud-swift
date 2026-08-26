@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response message for GenerateStreamHlsToken.
-public struct GenerateStreamHlsTokenResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct GenerateStreamHlsTokenResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The generated JWT token.
@@ -30,7 +30,7 @@ public struct GenerateStreamHlsTokenResponse: Codable, Equatable, GoogleCloudWkt
   public var token: Swift.String = Swift.String()
 
   /// The expiration time of the token.
-  public var expirationTime: GoogleCloudWkt.Timestamp? = nil
+  public var expirationTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `GenerateStreamHlsTokenResponse`.
   public init() {}
@@ -51,10 +51,10 @@ public struct GenerateStreamHlsTokenResponse: Codable, Equatable, GoogleCloudWkt
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.GenerateStreamHlsTokenResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

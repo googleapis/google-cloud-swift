@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudOSLoginV1
 import GoogleCloudOSLoginCommon
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: OsLoginServiceClient, userId: String, fingerprintId: String) async throws {
   let response = try await client.updateSshPublicKey(
@@ -28,7 +28,7 @@ func sample(client: OsLoginServiceClient, userId: String, fingerprintId: String)
         $0.sshPublicKey = GoogleCloudOSLoginCommon.SshPublicKey().with {
           $0.name = "users/\(userId)/sshPublicKeys/\(fingerprintId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

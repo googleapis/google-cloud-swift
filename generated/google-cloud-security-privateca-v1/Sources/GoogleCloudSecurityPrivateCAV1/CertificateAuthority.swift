@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A
 /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
@@ -26,7 +26,7 @@ import Foundation
 ///
 /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
 /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
-public struct CertificateAuthority: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CertificateAuthority: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The resource name for this
@@ -52,7 +52,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleCloudWkt._AnyPacka
   /// Required. Immutable. The desired lifetime of the CA certificate. Used to
   /// create the "not_before_time" and "not_after_time" fields inside an X.509
   /// certificate.
-  public var lifetime: GoogleCloudWkt.Duration? = nil
+  public var lifetime: GoogleCloudWKT.Duration? = nil
 
   /// Required. Immutable. Used when issuing certificates for this
   /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
@@ -133,14 +133,14 @@ public struct CertificateAuthority: Codable, Equatable, GoogleCloudWkt._AnyPacka
   /// was created.
   ///
   /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time at which this
   /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
   /// was last updated.
   ///
   /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time at which this
   /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
@@ -150,7 +150,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleCloudWkt._AnyPacka
   ///
   /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
   /// [google.cloud.security.privateca.v1.CertificateAuthority.State.DELETED]: <doc:CertificateAuthority/State/deleted>
-  public var deleteTime: GoogleCloudWkt.Timestamp? = nil
+  public var deleteTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time at which this
   /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
@@ -160,7 +160,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleCloudWkt._AnyPacka
   ///
   /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
   /// [google.cloud.security.privateca.v1.CertificateAuthority.State.DELETED]: <doc:CertificateAuthority/State/deleted>
-  public var expireTime: GoogleCloudWkt.Timestamp? = nil
+  public var expireTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Labels with user-defined metadata.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -197,7 +197,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleCloudWkt._AnyPacka
   /// will publish content.
   ///
   /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
-  public struct AccessUrls: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AccessUrls: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The URL where this
@@ -236,11 +236,11 @@ public struct CertificateAuthority: Codable, Equatable, GoogleCloudWkt._AnyPacka
       return
         "type.googleapis.com/google.cloud.security.privateca.v1.CertificateAuthority.AccessUrls"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -249,7 +249,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleCloudWkt._AnyPacka
   /// will use.
   ///
   /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
-  public struct KeyVersionSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct KeyVersionSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var keyVersion: OneOf_KeyVersion? = nil
@@ -331,11 +331,11 @@ public struct CertificateAuthority: Codable, Equatable, GoogleCloudWkt._AnyPacka
       return
         "type.googleapis.com/google.cloud.security.privateca.v1.CertificateAuthority.KeyVersionSpec"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -343,7 +343,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleCloudWkt._AnyPacka
   /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
   ///
   /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
-  public struct UserDefinedAccessUrls: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct UserDefinedAccessUrls: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. A list of URLs where the issuer CA certificate may be
@@ -386,11 +386,11 @@ public struct CertificateAuthority: Codable, Equatable, GoogleCloudWkt._AnyPacka
       return
         "type.googleapis.com/google.cloud.security.privateca.v1.CertificateAuthority.UserDefinedAccessUrls"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -831,10 +831,10 @@ public struct CertificateAuthority: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.security.privateca.v1.CertificateAuthority"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

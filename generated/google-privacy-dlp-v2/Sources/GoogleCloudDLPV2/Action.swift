@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A task to execute on the completion of a job.
 /// See https://cloud.google.com/sensitive-data-protection/docs/concepts-actions
 /// to learn more.
-public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Action: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Extra events to execute after the job has finished.
@@ -135,7 +135,7 @@ public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// OutputStorageConfig. Only a single instance of this action can be
   /// specified.
   /// Compatible with: Inspect, Risk
-  public struct SaveFindings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SaveFindings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Location to store findings outside of DLP.
@@ -160,11 +160,11 @@ public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.Action.SaveFindings"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -173,7 +173,7 @@ public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// finished job's
   /// [`DlpJob.name`](https://cloud.google.com/sensitive-data-protection/docs/reference/rest/v2/projects.dlpJobs#DlpJob).
   /// Compatible with: Inspect, Risk
-  public struct PublishToPubSub: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PublishToPubSub: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Cloud Pub/Sub topic to send notifications to. The topic must have given
@@ -201,11 +201,11 @@ public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.Action.PublishToPubSub"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -217,7 +217,7 @@ public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [service-specific policies for Security Command
   /// Center](https://cloud.google.com/terms/service-terms). Only a single
   /// instance of this action can be specified. Compatible with: Inspect
-  public struct PublishSummaryToCscc: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PublishSummaryToCscc: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `PublishSummaryToCscc`.
@@ -239,11 +239,11 @@ public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.Action.PublishSummaryToCscc"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -267,7 +267,7 @@ public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Compatible with: Inspect
   ///
   /// [google.privacy.dlp.v2.InfoType]: <doc:InfoType>
-  public struct PublishFindingsToCloudDataCatalog: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PublishFindingsToCloudDataCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `PublishFindingsToCloudDataCatalog`.
@@ -289,11 +289,11 @@ public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.Action.PublishFindingsToCloudDataCatalog"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -310,7 +310,7 @@ public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Only a single instance of this action can be specified. This action is
   /// allowed only if all resources being scanned are BigQuery tables.
   /// Compatible with: Inspect
-  public struct PublishFindingsToDataplexCatalog: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PublishFindingsToDataplexCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `PublishFindingsToDataplexCatalog`.
@@ -332,11 +332,11 @@ public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.Action.PublishFindingsToDataplexCatalog"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -348,7 +348,7 @@ public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   ///
   /// Compatible with: Inspection of Cloud Storage
-  public struct Deidentify: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Deidentify: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// User specified deidentify templates and configs for structured,
@@ -510,18 +510,18 @@ public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.Action.Deidentify"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Sends an email when the job completes. The email goes to IAM project owners
   /// and technical [Essential
   /// Contacts](https://cloud.google.com/resource-manager/docs/managing-notification-contacts).
-  public struct JobNotificationEmails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct JobNotificationEmails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `JobNotificationEmails`.
@@ -543,11 +543,11 @@ public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.Action.JobNotificationEmails"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -555,7 +555,7 @@ public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// will publish a metric to stack driver on each infotype requested and
   /// how many findings were found for it. CustomDetectors will be bucketed
   /// as 'Custom' under the Stackdriver label 'info_type'.
-  public struct PublishToStackdriver: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PublishToStackdriver: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `PublishToStackdriver`.
@@ -577,11 +577,11 @@ public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.Action.PublishToStackdriver"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -613,10 +613,10 @@ public struct Action: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.Action"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

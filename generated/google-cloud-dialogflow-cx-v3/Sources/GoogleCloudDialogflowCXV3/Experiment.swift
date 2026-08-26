@@ -16,10 +16,10 @@
 
 #if Experiments
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents an experiment in an environment.
-  public struct Experiment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Experiment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The name of the experiment.
@@ -61,21 +61,21 @@
     public var result: Experiment.Result? = nil
 
     /// Creation time of this experiment.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Start time of this experiment.
-    public var startTime: GoogleCloudWkt.Timestamp? = nil
+    public var startTime: GoogleCloudWKT.Timestamp? = nil
 
     /// End time of this experiment.
-    public var endTime: GoogleCloudWkt.Timestamp? = nil
+    public var endTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Last update time of this experiment.
-    public var lastUpdateTime: GoogleCloudWkt.Timestamp? = nil
+    public var lastUpdateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Maximum number of days to run the experiment/rollout. If auto-rollout is
     /// not enabled, default value and maximum will be 30 days. If auto-rollout is
     /// enabled, default value and maximum will be 6 days.
-    public var experimentLength: GoogleCloudWkt.Duration? = nil
+    public var experimentLength: GoogleCloudWKT.Duration? = nil
 
     /// The history of updates to the experiment variants.
     public var variantsHistory: [VariantsHistory] = []
@@ -97,7 +97,7 @@
     }
 
     /// Definition of the experiment.
-    public struct Definition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Definition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The condition defines which subset of sessions are selected for
@@ -175,17 +175,17 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Experiment.Definition"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// The inference result which includes an objective metric to optimize and the
     /// confidence interval.
-    public struct Result: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Result: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Version variants and metrics.
@@ -193,7 +193,7 @@
 
       /// The last time the experiment's stats data was updated. Will have default
       /// value if stats have never been computed for this experiment.
-      public var lastUpdateTime: GoogleCloudWkt.Timestamp? = nil
+      public var lastUpdateTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Initialize a new instance of `Result`.
       public init() {}
@@ -213,7 +213,7 @@
 
       /// A confidence interval is a range of possible values for the experiment
       /// objective you are trying to measure.
-      public struct ConfidenceInterval: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct ConfidenceInterval: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// The confidence level used to construct the interval, i.e. there is X%
@@ -250,16 +250,16 @@
           return
             "type.googleapis.com/google.cloud.dialogflow.cx.v3.Experiment.Result.ConfidenceInterval"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Metric and corresponding confidence intervals.
-      public struct Metric: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Metric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Ratio-based metric type. Only one of type or count_type is specified in
@@ -355,16 +355,16 @@
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Experiment.Result.Metric"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Version variant and associated metrics.
-      public struct VersionMetrics: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct VersionMetrics: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// The name of the flow [Version][google.cloud.dialogflow.cx.v3.Version].
@@ -401,11 +401,11 @@
           return
             "type.googleapis.com/google.cloud.dialogflow.cx.v3.Experiment.Result.VersionMetrics"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -651,11 +651,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Experiment.Result"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -781,11 +781,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Experiment"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

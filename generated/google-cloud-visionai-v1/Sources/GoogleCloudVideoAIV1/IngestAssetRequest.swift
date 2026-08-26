@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for IngestAsset API.
-public struct IngestAssetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct IngestAssetRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   public var streamingRequest: OneOf_StreamingRequest? = nil
@@ -83,7 +83,7 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   }
 
   /// Configuration for the data.
-  public struct Config: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Config: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The resource name of the asset that the ingested data belongs
@@ -148,7 +148,7 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     }
 
     /// Type information for video data.
-    public struct VideoType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct VideoType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Container format of the video data.
@@ -272,11 +272,11 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackabl
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.visionai.v1.IngestAssetRequest.Config.VideoType"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -288,16 +288,16 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.IngestAssetRequest.Config"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Contains the data and the corresponding time range this data is for.
-  public struct TimeIndexedData: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TimeIndexedData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Data to be ingested.
@@ -325,11 +325,11 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.IngestAssetRequest.TimeIndexedData"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -345,10 +345,10 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.IngestAssetRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

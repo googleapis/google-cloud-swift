@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleIAMV1
   import GoogleLongRunning
   import GoogleRpc
@@ -751,7 +751,7 @@
       /// See `TensorboardServiceClient.updateTensorboard`.
       func updateTensorboard(
         tensorboard: Tensorboard?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> any GoogleCloudGax.PollableOperation<Tensorboard>
 
       /// See `TensorboardServiceClient.listTensorboards`.
@@ -826,7 +826,7 @@
       /// See `TensorboardServiceClient.updateTensorboardExperiment`.
       func updateTensorboardExperiment(
         tensorboardExperiment: TensorboardExperiment?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudAIPlatformV1.TensorboardExperiment
 
       /// See `TensorboardServiceClient.listTensorboardExperiments`.
@@ -893,7 +893,7 @@
       /// See `TensorboardServiceClient.updateTensorboardRun`.
       func updateTensorboardRun(
         tensorboardRun: TensorboardRun?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudAIPlatformV1.TensorboardRun
 
       /// See `TensorboardServiceClient.listTensorboardRuns`.
@@ -959,7 +959,7 @@
       /// See `TensorboardServiceClient.updateTensorboardTimeSeries`.
       func updateTensorboardTimeSeries(
         tensorboardTimeSeries: TensorboardTimeSeries?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudAIPlatformV1.TensorboardTimeSeries
 
       /// See `TensorboardServiceClient.listTensorboardTimeSeries`.
@@ -1462,7 +1462,7 @@
 
     public func updateTensorboard(
       tensorboard: Tensorboard?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Tensorboard> {
       let request = UpdateTensorboardRequest().with {
         $0.tensorboard = tensorboard
@@ -1647,7 +1647,7 @@
 
     public func updateTensorboardExperiment(
       tensorboardExperiment: TensorboardExperiment?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.TensorboardExperiment {
       let request = UpdateTensorboardExperimentRequest().with {
         $0.tensorboardExperiment = tensorboardExperiment
@@ -1814,7 +1814,7 @@
 
     public func updateTensorboardRun(
       tensorboardRun: TensorboardRun?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.TensorboardRun {
       let request = UpdateTensorboardRunRequest().with {
         $0.tensorboardRun = tensorboardRun
@@ -1978,7 +1978,7 @@
 
     public func updateTensorboardTimeSeries(
       tensorboardTimeSeries: TensorboardTimeSeries?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.TensorboardTimeSeries {
       let request = UpdateTensorboardTimeSeriesRequest().with {
         $0.tensorboardTimeSeries = tensorboardTimeSeries

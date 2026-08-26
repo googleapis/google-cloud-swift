@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [KeyManagementService.RawEncrypt][google.cloud.kms.v1.KeyManagementService.RawEncrypt].
 ///
 /// [google.cloud.kms.v1.KeyManagementService.RawEncrypt]: <doc:KeyManagementServiceClient/rawEncrypt(request:options:)>
-public struct RawEncryptRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RawEncryptRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The resource name of the
@@ -86,7 +86,7 @@ public struct RawEncryptRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
   ///
   /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   /// [google.cloud.kms.v1.RawEncryptRequest.plaintext]: <doc:RawEncryptRequest/plaintext>
-  public var plaintextCrc32C: GoogleCloudWkt.Int64Value? = nil
+  public var plaintextCrc32C: GoogleCloudWKT.Int64Value? = nil
 
   /// Optional. An optional CRC32C checksum of the
   /// [RawEncryptRequest.additional_authenticated_data][google.cloud.kms.v1.RawEncryptRequest.additional_authenticated_data].
@@ -108,7 +108,7 @@ public struct RawEncryptRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
   ///
   /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   /// [google.cloud.kms.v1.RawEncryptRequest.additional_authenticated_data]: <doc:RawEncryptRequest/additionalAuthenticatedData>
-  public var additionalAuthenticatedDataCrc32C: GoogleCloudWkt.Int64Value? = nil
+  public var additionalAuthenticatedDataCrc32C: GoogleCloudWKT.Int64Value? = nil
 
   /// Optional. A customer-supplied initialization vector that will be used for
   /// encryption. If it is not provided for AES-CBC and AES-CTR, one will be
@@ -137,7 +137,7 @@ public struct RawEncryptRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
   ///
   /// [google.cloud.kms.v1.KeyManagementService]: <doc:KeyManagementServiceClient>
   /// [google.cloud.kms.v1.RawEncryptRequest.initialization_vector]: <doc:RawEncryptRequest/initializationVector>
-  public var initializationVectorCrc32C: GoogleCloudWkt.Int64Value? = nil
+  public var initializationVectorCrc32C: GoogleCloudWKT.Int64Value? = nil
 
   /// Initialize a new instance of `RawEncryptRequest`.
   public init() {}
@@ -172,13 +172,13 @@ public struct RawEncryptRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
     self.additionalAuthenticatedData = try container.decode(
       Foundation.Data.self, forKey: .additionalAuthenticatedData)
     self.plaintextCrc32C = try container.decodeIfPresent(
-      GoogleCloudWkt.Int64Value.self, forKey: .plaintextCrc32C)
+      GoogleCloudWKT.Int64Value.self, forKey: .plaintextCrc32C)
     self.additionalAuthenticatedDataCrc32C = try container.decodeIfPresent(
-      GoogleCloudWkt.Int64Value.self, forKey: .additionalAuthenticatedDataCrc32C)
+      GoogleCloudWKT.Int64Value.self, forKey: .additionalAuthenticatedDataCrc32C)
     self.initializationVector = try container.decode(
       Foundation.Data.self, forKey: .initializationVector)
     self.initializationVectorCrc32C = try container.decodeIfPresent(
-      GoogleCloudWkt.Int64Value.self, forKey: .initializationVectorCrc32C)
+      GoogleCloudWKT.Int64Value.self, forKey: .initializationVectorCrc32C)
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -196,10 +196,10 @@ public struct RawEncryptRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.RawEncryptRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

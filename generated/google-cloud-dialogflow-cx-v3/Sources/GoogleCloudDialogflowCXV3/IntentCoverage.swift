@@ -16,11 +16,11 @@
 
 #if TestCases
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Intent coverage represents the percentage of all possible intents in the
   /// agent that are triggered in any of a parent's test cases.
-  public struct IntentCoverage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct IntentCoverage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The list of Intents present in the agent
@@ -46,7 +46,7 @@
     }
 
     /// The agent's intent.
-    public struct Intent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Intent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The intent full resource name
@@ -75,22 +75,22 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.IntentCoverage.Intent"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.IntentCoverage"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

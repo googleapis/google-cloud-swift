@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudEssentialContactsV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: EssentialContactsServiceClient, projectId: String, contactId: String)
   async throws
@@ -29,7 +29,7 @@ func sample(client: EssentialContactsServiceClient, projectId: String, contactId
         $0.contact = Contact().with {
           $0.name = "projects/\(projectId)/contacts/\(contactId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

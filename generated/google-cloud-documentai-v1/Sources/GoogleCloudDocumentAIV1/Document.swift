@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 import GoogleType
 
@@ -23,7 +23,7 @@ import GoogleType
 /// interchange format that provides insights into documents and allows for
 /// collaboration between users and Document AI to iterate and optimize for
 /// quality.
-public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Document: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. An internal identifier for document. Should be loggable (no PII).
@@ -224,7 +224,7 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// For a large document, sharding may be performed to produce several
   /// document shards. Each document shard contains this field to detail which
   /// shard it is.
-  public struct ShardInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ShardInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The 0-based index of this shard.
@@ -259,17 +259,17 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.documentai.v1.Document.ShardInfo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Annotation for common text style attributes. This adheres to CSS
   /// conventions as much as possible.
-  public struct Style: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Style: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Text anchor indexing into the
@@ -322,7 +322,7 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Font size with unit.
-    public struct FontSize: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct FontSize: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Font size for the text.
@@ -351,29 +351,29 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.documentai.v1.Document.Style.FontSize"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.documentai.v1.Document.Style"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A page in a [Document][google.cloud.documentai.v1.Document].
   ///
   /// [google.cloud.documentai.v1.Document]: <doc:Document>
-  public struct Page: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Page: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// 1-based index for current
@@ -464,7 +464,7 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Dimension for the page.
-    public struct Dimension: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Dimension: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Page width.
@@ -495,16 +495,16 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.documentai.v1.Document.Page.Dimension"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Rendered image contents for this page.
-    public struct Image: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Image: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Raw byte content of the image.
@@ -540,17 +540,17 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.documentai.v1.Document.Page.Image"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Representation for transformation matrix, intended to be compatible and
     /// used with OpenCV format for image manipulation.
-    public struct Matrix: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Matrix: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Number of rows in the matrix.
@@ -587,16 +587,16 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.documentai.v1.Document.Page.Matrix"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Visual element describing a layout unit on a page.
-    public struct Layout: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Layout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Text anchor indexing into the
@@ -767,17 +767,17 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.documentai.v1.Document.Page.Layout"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// A block has a set of lines (collected into paragraphs) that have a
     /// common line-spacing and orientation.
-    public struct Block: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Block: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
@@ -813,16 +813,16 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.documentai.v1.Document.Page.Block"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// A collection of lines that a human would perceive as a paragraph.
-    public struct Paragraph: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Paragraph: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
@@ -858,17 +858,17 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.documentai.v1.Document.Page.Paragraph"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// A collection of tokens that a human would perceive as a line.
     /// Does not cross column boundaries, can be horizontal, vertical, etc.
-    public struct Line: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Line: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
@@ -904,16 +904,16 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.documentai.v1.Document.Page.Line"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// A detected token.
-    public struct Token: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Token: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
@@ -959,7 +959,7 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       /// [Token][google.cloud.documentai.v1.Document.Page.Token].
       ///
       /// [google.cloud.documentai.v1.Document.Page.Token]: <doc:Document/Page/Token>
-      public struct DetectedBreak: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct DetectedBreak: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Detected break type.
@@ -1097,16 +1097,16 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.cloud.documentai.v1.Document.Page.Token.DetectedBreak"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Font and other text style attributes.
-      public struct StyleInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct StyleInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Font size in points (`1` point is `¹⁄₇₂` inches).
@@ -1239,27 +1239,27 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.cloud.documentai.v1.Document.Page.Token.StyleInfo"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.documentai.v1.Document.Page.Token"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// A detected symbol.
-    public struct Symbol: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Symbol: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
@@ -1291,17 +1291,17 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.documentai.v1.Document.Page.Symbol"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Detected non-text visual elements, for example, checkbox, signature etc.
     /// on the page.
-    public struct VisualElement: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct VisualElement: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
@@ -1339,16 +1339,16 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.documentai.v1.Document.Page.VisualElement"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// A table representation similar to HTML table structure.
-    public struct Table: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Table: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
@@ -1388,7 +1388,7 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       }
 
       /// A row of table cells.
-      public struct TableRow: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct TableRow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Cells that make up this row.
@@ -1413,16 +1413,16 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.cloud.documentai.v1.Document.Page.Table.TableRow"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// A cell representation inside the table.
-      public struct TableCell: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct TableCell: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
@@ -1460,27 +1460,27 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.cloud.documentai.v1.Document.Page.Table.TableCell"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.documentai.v1.Document.Page.Table"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// A form field detected on the page.
-    public struct FormField: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct FormField: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// [Layout][google.cloud.documentai.v1.Document.Page.Layout] for the
@@ -1544,16 +1544,16 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.documentai.v1.Document.Page.FormField"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// A detected barcode.
-    public struct DetectedBarcode: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DetectedBarcode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
@@ -1588,16 +1588,16 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.documentai.v1.Document.Page.DetectedBarcode"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Detected language for a structural component.
-    public struct DetectedLanguage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DetectedLanguage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The [BCP-47 language
@@ -1627,16 +1627,16 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.documentai.v1.Document.Page.DetectedLanguage"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Image quality scores for the page image.
-    public struct ImageQualityScores: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ImageQualityScores: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The overall quality score. Range `[0, 1]` where `1` is perfect quality.
@@ -1662,7 +1662,7 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       }
 
       /// Image Quality Defects
-      public struct DetectedDefect: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct DetectedDefect: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Name of the defect type. Supported values are:
@@ -1701,40 +1701,40 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.documentai.v1.Document.Page.ImageQualityScores.DetectedDefect"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.documentai.v1.Document.Page.ImageQualityScores"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.documentai.v1.Document.Page"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// An entity that could be a phrase in the text or a property that belongs to
   /// the document. It is a known entity type, such as a person, an organization,
   /// or location.
-  public struct Entity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Entity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Provenance of the entity.
@@ -1802,7 +1802,7 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Parsed and normalized entity value.
-    public struct NormalizedValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct NormalizedValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. An optional field to store a normalized string.
@@ -1962,11 +1962,11 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.documentai.v1.Document.Entity.NormalizedValue"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -2080,11 +2080,11 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.documentai.v1.Document.Entity"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -2092,7 +2092,7 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [Entities][google.cloud.documentai.v1.Document.Entity].
   ///
   /// [google.cloud.documentai.v1.Document.Entity]: <doc:Document/Entity>
-  public struct EntityRelation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct EntityRelation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Subject entity id.
@@ -2123,11 +2123,11 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.documentai.v1.Document.EntityRelation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -2135,7 +2135,7 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [Document.text][google.cloud.documentai.v1.Document.text].
   ///
   /// [google.cloud.documentai.v1.Document.text]: <doc:Document/text>
-  public struct TextAnchor: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TextAnchor: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The text segments from the
@@ -2173,7 +2173,7 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     ///
     /// [google.cloud.documentai.v1.Document.ShardInfo.text_offset]: <doc:Document/ShardInfo/textOffset>
     /// [google.cloud.documentai.v1.Document.text]: <doc:Document/text>
-    public struct TextSegment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct TextSegment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// [TextSegment][google.cloud.documentai.v1.Document.TextAnchor.TextSegment]
@@ -2211,22 +2211,22 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.documentai.v1.Document.TextAnchor.TextSegment"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.documentai.v1.Document.TextAnchor"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -2236,7 +2236,7 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// reference specific layout element types.
   ///
   /// [google.cloud.documentai.v1.Document.pages]: <doc:Document/pages>
-  public struct PageAnchor: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PageAnchor: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// One or more references to visual page elements
@@ -2259,7 +2259,7 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Represents a weak reference to a page element within a document.
-    public struct PageRef: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct PageRef: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. Index into the
@@ -2480,28 +2480,28 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.documentai.v1.Document.PageAnchor.PageRef"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.documentai.v1.Document.PageAnchor"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Structure to identify provenance relationships between annotations in
   /// different revisions.
-  public struct Provenance: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Provenance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The index of the revision that produced this element.
@@ -2537,7 +2537,7 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// The parent element the current element is based on. Used for
     /// referencing/aligning, removal and replacement operations.
-    public struct Parent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Parent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The index of the index into current revision's parent_ids list.
@@ -2570,11 +2570,11 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.documentai.v1.Document.Provenance.Parent"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -2730,16 +2730,16 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.documentai.v1.Document.Provenance"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Contains past or forward revisions of this document.
-  public struct Revision: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Revision: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Id of the revision, internally generated by doc proto storage.
@@ -2759,7 +2759,7 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// The time that the revision was created, internally generated by
     /// doc proto storage at the time of create.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Human Review information of this revision.
     public var humanReview: Document.Revision.HumanReview? = nil
@@ -2799,7 +2799,7 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       self.parent = try container.decode([Swift.Int32].self, forKey: .parent)
       self.parentIds = try container.decode([Swift.String].self, forKey: .parentIds)
       self.createTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
       self.humanReview = try container.decodeIfPresent(
         Document.Revision.HumanReview.self, forKey: .humanReview)
 
@@ -2841,7 +2841,7 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Human Review information of the document.
-    public struct HumanReview: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct HumanReview: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Human review state. For example, `requested`, `succeeded`, `rejected`.
@@ -2870,11 +2870,11 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.documentai.v1.Document.Revision.HumanReview"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -2891,16 +2891,16 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.documentai.v1.Document.Revision"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// This message is used for text changes aka. OCR corrections.
-  public struct TextChange: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TextChange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Provenance of the correction.
@@ -2939,16 +2939,16 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.documentai.v1.Document.TextChange"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Represents the annotation of a block or a chunk.
-  public struct Annotations: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Annotations: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The description of the content with this annotation.
@@ -2973,17 +2973,17 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.documentai.v1.Document.Annotations"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Represents the parsed layout of a document as a collection of blocks that
   /// the document is divided into.
-  public struct DocumentLayout: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DocumentLayout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// List of blocks in the document.
@@ -3007,7 +3007,7 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Represents a block. A block could be one of the various types (text,
     /// table, list) supported.
-    public struct DocumentLayoutBlock: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DocumentLayoutBlock: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// ID of the block.
@@ -3108,7 +3108,7 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       }
 
       /// Represents where the block starts and ends in the document.
-      public struct LayoutPageSpan: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct LayoutPageSpan: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Page where block starts in the document.
@@ -3137,16 +3137,16 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock.LayoutPageSpan"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Represents a text type block.
-      public struct LayoutTextBlock: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct LayoutTextBlock: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Text content stored in the block.
@@ -3184,16 +3184,16 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock.LayoutTextBlock"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Represents a table type block.
-      public struct LayoutTableBlock: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct LayoutTableBlock: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Header rows at the top of the table.
@@ -3228,16 +3228,16 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock.LayoutTableBlock"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Represents a row in a table.
-      public struct LayoutTableRow: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct LayoutTableRow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// A table row is a list of table cells.
@@ -3263,16 +3263,16 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock.LayoutTableRow"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Represents a cell in a table row.
-      public struct LayoutTableCell: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct LayoutTableCell: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// A table cell is a list of blocks.
@@ -3305,16 +3305,16 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock.LayoutTableCell"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Represents a list type block.
-      public struct LayoutListBlock: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct LayoutListBlock: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// List entries that constitute a list block.
@@ -3344,16 +3344,16 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock.LayoutListBlock"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Represents an entry in the list.
-      public struct LayoutListEntry: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct LayoutListEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// A list entry is a list of blocks.
@@ -3380,16 +3380,16 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock.LayoutListEntry"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Represents an image type block.
-      public struct LayoutImageBlock: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct LayoutImageBlock: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Mime type of the image. An IANA published [media type (MIME type)]
@@ -3499,11 +3499,11 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock.LayoutImageBlock"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -3522,27 +3522,27 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.documentai.v1.Document.DocumentLayout"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Represents the chunks that the document is divided into.
-  public struct ChunkedDocument: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ChunkedDocument: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// List of chunks.
@@ -3565,7 +3565,7 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Represents a chunk.
-    public struct Chunk: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Chunk: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// ID of the chunk.
@@ -3606,7 +3606,7 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       }
 
       /// Represents where the chunk starts and ends in the document.
-      public struct ChunkPageSpan: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct ChunkPageSpan: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Page where chunk starts in the document.
@@ -3635,16 +3635,16 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.documentai.v1.Document.ChunkedDocument.Chunk.ChunkPageSpan"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Represents the page header associated with the chunk.
-      public struct ChunkPageHeader: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct ChunkPageHeader: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Header in text format.
@@ -3673,16 +3673,16 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.documentai.v1.Document.ChunkedDocument.Chunk.ChunkPageHeader"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Represents the page footer associated with the chunk.
-      public struct ChunkPageFooter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct ChunkPageFooter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Footer in text format.
@@ -3711,16 +3711,16 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.documentai.v1.Document.ChunkedDocument.Chunk.ChunkPageFooter"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// The image chunk field in the chunk.
-      public struct ImageChunkField: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct ImageChunkField: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Annotation of the image chunk field.
@@ -3816,16 +3816,16 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.documentai.v1.Document.ChunkedDocument.Chunk.ImageChunkField"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// The table chunk field in the chunk.
-      public struct TableChunkField: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct TableChunkField: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Annotation of the table chunk field.
@@ -3851,17 +3851,17 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.documentai.v1.Document.ChunkedDocument.Chunk.TableChunkField"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// The chunk field in the chunk. A chunk field could be one of the various
       /// types (for example, image, table) supported.
-      public struct ChunkField: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct ChunkField: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// The type of the chunk field.
@@ -3939,40 +3939,40 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.documentai.v1.Document.ChunkedDocument.Chunk.ChunkField"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.documentai.v1.Document.ChunkedDocument.Chunk"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.documentai.v1.Document.ChunkedDocument"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Represents a blob asset. It's used to store the content of the inline blob
   /// in this document, for example, image bytes, such that it can be referenced
   /// by other fields in the document via asset ID.
-  public struct BlobAsset: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct BlobAsset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The id of the blob asset.
@@ -4005,16 +4005,16 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.documentai.v1.Document.BlobAsset"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The output of the validation given the document and the validation rules.
-  public struct EntityValidationOutput: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct EntityValidationOutput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The result of each validation rule.
@@ -4041,7 +4041,7 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Validation result for a single validation rule.
-    public struct ValidationResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ValidationResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The name of the validation rule.
@@ -4198,27 +4198,27 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.documentai.v1.Document.EntityValidationOutput.ValidationResult"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.documentai.v1.Document.EntityValidationOutput"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Entity revision.
-  public struct EntitiesRevision: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct EntitiesRevision: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The revision id.
@@ -4249,11 +4249,11 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.documentai.v1.Document.EntitiesRevision"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -4273,10 +4273,10 @@ public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.documentai.v1.Document"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

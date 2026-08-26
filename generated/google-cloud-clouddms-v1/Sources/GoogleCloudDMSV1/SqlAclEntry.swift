@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An entry for an Access Control list.
-public struct SqlAclEntry: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SqlAclEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The allowlisted value for the access control list.
@@ -69,11 +69,11 @@ public struct SqlAclEntry: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       expiration = $0
     }
     if let expireTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp?.self, forKey: .expireTime)
+      GoogleCloudWKT.Timestamp?.self, forKey: .expireTime)
     {
       try expirationCheckAndSet(.expireTime(expireTime))
     }
-    if let ttl = try container.decodeIfPresent(GoogleCloudWkt.Duration?.self, forKey: .ttl) {
+    if let ttl = try container.decodeIfPresent(GoogleCloudWKT.Duration?.self, forKey: .ttl) {
       try expirationCheckAndSet(.ttl(ttl))
     }
     self.expiration = expiration
@@ -99,18 +99,18 @@ public struct SqlAclEntry: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// The time when this access control entry expires in
     /// [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example:
     /// `2012-11-15T16:19:00.094Z`.
-    indirect case expireTime(GoogleCloudWkt.Timestamp?)
+    indirect case expireTime(GoogleCloudWKT.Timestamp?)
     /// Input only. The time-to-leave of this access control entry.
-    indirect case ttl(GoogleCloudWkt.Duration?)
+    indirect case ttl(GoogleCloudWKT.Duration?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.clouddms.v1.SqlAclEntry"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

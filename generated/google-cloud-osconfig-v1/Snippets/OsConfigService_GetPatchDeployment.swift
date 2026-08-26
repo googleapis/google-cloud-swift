@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudOSConfigV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 
 func sample(client: OsConfigServiceClient, projectId: String, patchDeploymentId: String)

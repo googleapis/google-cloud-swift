@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudContentWarehouseV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 
 func sample(projectId: String, locationId: String, documentId: String, ) async throws {

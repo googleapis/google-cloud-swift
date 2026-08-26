@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Specifies attributes of transitions between two consecutive visits on a
 /// route. Several `TransitionAttributes` may apply to the same transition: in
 /// that case, all extra costs add up and the strictest constraint or limit
 /// applies (following natural "AND" semantics).
-public struct TransitionAttributes: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TransitionAttributes: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Tags defining the set of (src->dst) transitions these attributes apply to.
@@ -77,7 +77,7 @@ public struct TransitionAttributes: Codable, Equatable, GoogleCloudWkt._AnyPacka
   ///
   /// This delay always occurs *after* finishing the source visit and *before*
   /// starting the destination visit.
-  public var delay: GoogleCloudWkt.Duration? = nil
+  public var delay: GoogleCloudWKT.Duration? = nil
 
   /// Initialize a new instance of `TransitionAttributes`.
   public init() {}
@@ -98,10 +98,10 @@ public struct TransitionAttributes: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.optimization.v1.TransitionAttributes"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

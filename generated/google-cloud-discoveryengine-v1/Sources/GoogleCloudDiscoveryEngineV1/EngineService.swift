@@ -19,7 +19,7 @@
   #if canImport(FoundationNetworking)
     import FoundationNetworking
   #endif
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleRpc
   import GoogleCloudGax
@@ -268,7 +268,7 @@
       /// See `EngineServiceClient.updateEngine`.
       func updateEngine(
         engine: Engine?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudDiscoveryEngineV1.Engine
 
       /// See `EngineServiceClient.getEngine`.
@@ -467,7 +467,7 @@
 
     public func updateEngine(
       engine: Engine?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDiscoveryEngineV1.Engine {
       let request = UpdateEngineRequest().with {
         $0.engine = engine

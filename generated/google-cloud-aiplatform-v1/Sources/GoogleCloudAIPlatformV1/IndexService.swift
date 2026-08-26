@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleIAMV1
   import GoogleLongRunning
   import GoogleRpc
@@ -408,7 +408,7 @@
       /// See `IndexServiceClient.updateIndex`.
       func updateIndex(
         index: Index?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> any GoogleCloudGax.PollableOperation<Index>
 
       /// See `IndexServiceClient.deleteIndex`.
@@ -726,7 +726,7 @@
 
     public func updateIndex(
       index: Index?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Index> {
       let request = UpdateIndexRequest().with {
         $0.index = index

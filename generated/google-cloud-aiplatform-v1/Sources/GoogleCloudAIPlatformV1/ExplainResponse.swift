@@ -16,13 +16,13 @@
 
 #if PredictionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Response message for
   /// [PredictionService.Explain][google.cloud.aiplatform.v1.PredictionService.Explain].
   ///
   /// [google.cloud.aiplatform.v1.PredictionService.Explain]: <doc:PredictionServiceClient/explain(request:options:)>
-  public struct ExplainResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ExplainResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The explanations of the Model's
@@ -44,7 +44,7 @@
     /// [PredictResponse.predictions][google.cloud.aiplatform.v1.PredictResponse.predictions].
     ///
     /// [google.cloud.aiplatform.v1.PredictResponse.predictions]: <doc:PredictResponse/predictions>
-    public var predictions: [GoogleCloudWkt.Value] = []
+    public var predictions: [GoogleCloudWKT.Value] = []
 
     /// Initialize a new instance of `ExplainResponse`.
     public init() {}
@@ -65,11 +65,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.ExplainResponse"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

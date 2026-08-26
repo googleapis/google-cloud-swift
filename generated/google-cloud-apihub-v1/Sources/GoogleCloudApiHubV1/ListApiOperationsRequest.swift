@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The [ListApiOperations][google.cloud.apihub.v1.ApiHub.ListApiOperations]
 /// method's request.
 ///
 /// [google.cloud.apihub.v1.ApiHub.ListApiOperations]: <doc:ApiHubClient/listApiOperations(request:options:)>
-public struct ListApiOperationsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ListApiOperationsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The parent which owns this collection of operations i.e., the API
@@ -132,10 +132,10 @@ public struct ListApiOperationsRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.apihub.v1.ListApiOperationsRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

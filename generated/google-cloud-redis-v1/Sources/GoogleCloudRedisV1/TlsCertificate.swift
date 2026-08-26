@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// TlsCertificate Resource
-public struct TlsCertificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TlsCertificate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Serial number, as extracted from the certificate.
@@ -30,12 +30,12 @@ public struct TlsCertificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Output only. The time when the certificate was created in [RFC
   /// 3339](https://tools.ietf.org/html/rfc3339) format, for example
   /// `2020-05-18T00:00:00.094Z`.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time when the certificate expires in [RFC
   /// 3339](https://tools.ietf.org/html/rfc3339) format, for example
   /// `2020-05-18T00:00:00.094Z`.
-  public var expireTime: GoogleCloudWkt.Timestamp? = nil
+  public var expireTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Sha1 Fingerprint of the certificate.
   public var sha1Fingerprint: Swift.String = Swift.String()
@@ -59,10 +59,10 @@ public struct TlsCertificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.redis.v1.TlsCertificate"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

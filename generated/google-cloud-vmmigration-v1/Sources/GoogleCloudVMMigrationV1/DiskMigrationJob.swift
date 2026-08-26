@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// Describes the disk which will be migrated from the source environment.
 /// The source disk has to be unattached.
-public struct DiskMigrationJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DiskMigrationJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Identifier. The identifier of the DiskMigrationJob.
@@ -30,10 +30,10 @@ public struct DiskMigrationJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var targetDetails: DiskMigrationJobTargetDetails? = nil
 
   /// Output only. The time the DiskMigrationJob resource was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The last time the DiskMigrationJob resource was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. State of the DiskMigrationJob.
   public var state: DiskMigrationJob.State = DiskMigrationJob.State()
@@ -81,9 +81,9 @@ public struct DiskMigrationJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.targetDetails = try container.decodeIfPresent(
       DiskMigrationJobTargetDetails.self, forKey: .targetDetails)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.state = try container.decode(DiskMigrationJob.State.self, forKey: .state)
     self.errors = try container.decode([GoogleRpc.Status].self, forKey: .errors)
     self.steps = try container.decode([DiskMigrationStep].self, forKey: .steps)
@@ -267,10 +267,10 @@ public struct DiskMigrationJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vmmigration.v1.DiskMigrationJob"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

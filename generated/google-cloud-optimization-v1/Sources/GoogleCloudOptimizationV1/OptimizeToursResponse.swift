@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response after solving a tour optimization problem containing the routes
 /// followed by each vehicle, the shipments which have been skipped and the
 /// overall cost of the solution.
-public struct OptimizeToursResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct OptimizeToursResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Routes computed for each vehicle; the i-th route corresponds to the i-th
@@ -75,7 +75,7 @@ public struct OptimizeToursResponse: Codable, Equatable, GoogleCloudWkt._AnyPack
   }
 
   /// Overall metrics, aggregated over all routes.
-  public struct Metrics: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Metrics: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Aggregated over the routes. Each metric is the sum (or max, for loads)
@@ -101,14 +101,14 @@ public struct OptimizeToursResponse: Codable, Equatable, GoogleCloudWkt._AnyPack
     /// [ShipmentRoute.vehicle_start_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_start_time].
     ///
     /// [google.cloud.optimization.v1.ShipmentRoute.vehicle_start_time]: <doc:ShipmentRoute/vehicleStartTime>
-    public var earliestVehicleStartTime: GoogleCloudWkt.Timestamp? = nil
+    public var earliestVehicleStartTime: GoogleCloudWKT.Timestamp? = nil
 
     /// The latest end time for a used vehicle, computed as the maximum over all
     /// used vehicles of
     /// [ShipmentRoute.vehicle_end_time][google.cloud.optimization.v1.ShipmentRoute.vehicle_end_time].
     ///
     /// [google.cloud.optimization.v1.ShipmentRoute.vehicle_end_time]: <doc:ShipmentRoute/vehicleEndTime>
-    public var latestVehicleEndTime: GoogleCloudWkt.Timestamp? = nil
+    public var latestVehicleEndTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Cost of the solution, broken down by cost-related request fields.
     /// The keys are proto paths, relative to the input OptimizeToursRequest,
@@ -143,21 +143,21 @@ public struct OptimizeToursResponse: Codable, Equatable, GoogleCloudWkt._AnyPack
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.optimization.v1.OptimizeToursResponse.Metrics"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.optimization.v1.OptimizeToursResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

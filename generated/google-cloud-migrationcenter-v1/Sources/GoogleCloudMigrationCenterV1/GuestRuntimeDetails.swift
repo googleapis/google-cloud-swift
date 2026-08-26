@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Guest OS runtime information.
-public struct GuestRuntimeDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct GuestRuntimeDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Running background services.
@@ -31,7 +31,7 @@ public struct GuestRuntimeDetails: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public var network: RuntimeNetworkInfo? = nil
 
   /// Last time the OS was booted.
-  public var lastBootTime: GoogleCloudWkt.Timestamp? = nil
+  public var lastBootTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Domain, e.g. c.stratozone-development.internal.
   public var domain: Swift.String = Swift.String()
@@ -64,10 +64,10 @@ public struct GuestRuntimeDetails: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.migrationcenter.v1.GuestRuntimeDetails"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

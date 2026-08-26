@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A reference list.
 /// Reference lists are user-defined lists of values which users can
 /// use in multiple Rules.
-public struct ReferenceList: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ReferenceList: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The resource name of the reference list.
@@ -32,7 +32,7 @@ public struct ReferenceList: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var displayName: Swift.String = Swift.String()
 
   /// Output only. The timestamp when the reference list was last updated.
-  public var revisionCreateTime: GoogleCloudWkt.Timestamp? = nil
+  public var revisionCreateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Required. A user-provided description of the reference list.
   public var description: Swift.String = Swift.String()
@@ -81,10 +81,10 @@ public struct ReferenceList: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.chronicle.v1.ReferenceList"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The organization policy constraint definition.
-public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   public var constraintDefinition: OneOf_ConstraintDefinition? = nil
@@ -84,7 +84,7 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleCloudWkt._A
   }
 
   /// The definition of a constraint.
-  public struct Constraint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Constraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The unique name of the constraint. Format of the name should be
@@ -184,7 +184,7 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleCloudWkt._A
 
     /// A `Constraint` that allows or disallows a list of string values, which
     /// are configured by an organization's policy administrator with a `Policy`.
-    public struct ListConstraint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ListConstraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Indicates whether values grouped into categories can be used in
@@ -218,11 +218,11 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleCloudWkt._A
         return
           "type.googleapis.com/google.cloud.asset.v1.AnalyzerOrgPolicyConstraint.Constraint.ListConstraint"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -231,7 +231,7 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleCloudWkt._A
     /// For example a constraint `constraints/compute.disableSerialPortAccess`.
     /// If it is enforced on a VM instance, serial port connections will not be
     /// opened to that instance.
-    public struct BooleanConstraint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct BooleanConstraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Initialize a new instance of `BooleanConstraint`.
@@ -254,11 +254,11 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleCloudWkt._A
         return
           "type.googleapis.com/google.cloud.asset.v1.AnalyzerOrgPolicyConstraint.Constraint.BooleanConstraint"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -384,16 +384,16 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleCloudWkt._A
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.asset.v1.AnalyzerOrgPolicyConstraint.Constraint"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The definition of a custom constraint.
-  public struct CustomConstraint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CustomConstraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Name of the constraint. This is unique within the organization. Format of
@@ -681,11 +681,11 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleCloudWkt._A
       return
         "type.googleapis.com/google.cloud.asset.v1.AnalyzerOrgPolicyConstraint.CustomConstraint"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -699,10 +699,10 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleCloudWkt._A
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.asset.v1.AnalyzerOrgPolicyConstraint"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// CloneJob describes the process of creating a clone of a
@@ -30,15 +30,15 @@ import GoogleRpc
 /// CloneJob being cancelled or upon failure to clone.
 ///
 /// [google.cloud.vmmigration.v1.MigratingVm]: <doc:MigratingVm>
-public struct CloneJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CloneJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The time the clone job was created (as an API call, not when
   /// it was actually created in the target).
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time the clone job was ended.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The name of the clone.
   public var name: Swift.String = Swift.String()
@@ -47,7 +47,7 @@ public struct CloneJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var state: CloneJob.State = CloneJob.State()
 
   /// Output only. The time the state was last updated.
-  public var stateTime: GoogleCloudWkt.Timestamp? = nil
+  public var stateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Provides details for the errors that led to the Clone Job's
   /// state.
@@ -90,12 +90,12 @@ public struct CloneJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
-    self.endTime = try container.decodeIfPresent(GoogleCloudWkt.Timestamp.self, forKey: .endTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.state = try container.decode(CloneJob.State.self, forKey: .state)
     self.stateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .stateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .stateTime)
     self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
     self.steps = try container.decode([CloneStep].self, forKey: .steps)
 
@@ -295,10 +295,10 @@ public struct CloneJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vmmigration.v1.CloneJob"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

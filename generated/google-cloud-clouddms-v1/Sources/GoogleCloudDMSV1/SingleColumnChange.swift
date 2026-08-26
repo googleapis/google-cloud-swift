@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Options to configure rule type SingleColumnChange.
 /// The rule is used to change the properties of a column.
@@ -26,7 +26,7 @@ import Foundation
 ///
 /// When using this rule, if a field is not specified than the destination
 /// column's configuration will be the same as the one in the source column..
-public struct SingleColumnChange: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SingleColumnChange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. Column data type name.
@@ -68,7 +68,7 @@ public struct SingleColumnChange: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public var udt: Swift.Bool = Swift.Bool()
 
   /// Optional. Custom engine specific features.
-  public var customFeatures: GoogleCloudWkt.Struct? = nil
+  public var customFeatures: GoogleCloudWKT.Struct? = nil
 
   /// Optional. Specifies the list of values allowed in the column.
   public var setValues: [Swift.String] = []
@@ -95,10 +95,10 @@ public struct SingleColumnChange: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.clouddms.v1.SingleColumnChange"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

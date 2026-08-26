@@ -16,10 +16,10 @@
 
 #if SessionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Actions are parts of events that are executed by the agent.
-  public struct EventActions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct EventActions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. If true, it won't call model to summarize function response.
@@ -28,7 +28,7 @@
 
     /// Optional. Indicates that the event is updating the state with the given
     /// delta.
-    public var stateDelta: GoogleCloudWkt.Struct? = nil
+    public var stateDelta: GoogleCloudWKT.Struct? = nil
 
     /// Optional. Indicates that the event is updating an artifact. key is the
     /// filename, value is the version.
@@ -41,7 +41,7 @@
     /// Struct key is the function call id since one function call response (from
     /// model) could correspond to multiple function calls. Struct value is the
     /// required auth config, which can be another struct.
-    public var requestedAuthConfigs: GoogleCloudWkt.Struct? = nil
+    public var requestedAuthConfigs: GoogleCloudWKT.Struct? = nil
 
     /// Optional. If set, the event transfers to the specified agent.
     public var transferAgent: Swift.String = Swift.String()
@@ -65,11 +65,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.EventActions"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

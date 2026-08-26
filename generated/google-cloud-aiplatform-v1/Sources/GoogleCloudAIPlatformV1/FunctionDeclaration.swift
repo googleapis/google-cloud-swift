@@ -16,14 +16,14 @@
 
 #if GenAiCacheService || LlmUtilityService || PredictionService || VertexRagService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Structured representation of a function declaration as defined by the
   /// [OpenAPI 3.0 specification](https://spec.openapis.org/oas/v3.0.3). Included
   /// in this declaration are the function name, description, parameters and
   /// response type. This FunctionDeclaration is a representation of a block of
   /// code that can be used as a `Tool` by the model and executed by the client.
-  public struct FunctionDeclaration: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FunctionDeclaration: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The name of the function to call.
@@ -70,7 +70,7 @@
     /// ```
     ///
     /// This field is mutually exclusive with `parameters`.
-    public var parametersJsonSchema: GoogleCloudWkt.Value? = nil
+    public var parametersJsonSchema: GoogleCloudWKT.Value? = nil
 
     /// Optional. Describes the output from this function in JSON Schema format.
     /// Reflects the Open API 3.03 Response Object. The Schema defines the type
@@ -81,7 +81,7 @@
     /// The value specified by the schema is the response value of the function.
     ///
     /// This field is mutually exclusive with `response`.
-    public var responseJsonSchema: GoogleCloudWkt.Value? = nil
+    public var responseJsonSchema: GoogleCloudWKT.Value? = nil
 
     /// Initialize a new instance of `FunctionDeclaration`.
     public init() {}
@@ -102,11 +102,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.FunctionDeclaration"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

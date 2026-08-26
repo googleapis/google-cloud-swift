@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// These messages contain information about the execution of a datascan.
 /// The monitored resource is 'DataScan'
-public struct DataScanEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DataScanEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The data source of the data scan
@@ -29,13 +29,13 @@ public struct DataScanEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var jobId: Swift.String = Swift.String()
 
   /// The time when the data scan job was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The time when the data scan job started to run.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The time when the data scan job finished.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The type of the data scan.
   public var type: DataScanEvent.ScanType = DataScanEvent.ScanType()
@@ -109,10 +109,10 @@ public struct DataScanEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.dataSource = try container.decode(Swift.String.self, forKey: .dataSource)
     self.jobId = try container.decode(Swift.String.self, forKey: .jobId)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.startTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .startTime)
-    self.endTime = try container.decodeIfPresent(GoogleCloudWkt.Timestamp.self, forKey: .endTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .startTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
     self.type = try container.decode(DataScanEvent.ScanType.self, forKey: .type)
     self.state = try container.decode(DataScanEvent.State.self, forKey: .state)
     self.message = try container.decode(Swift.String.self, forKey: .message)
@@ -205,7 +205,7 @@ public struct DataScanEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Data profile result for data scan job.
-  public struct DataProfileResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DataProfileResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The count of rows processed in the data scan job.
@@ -230,16 +230,16 @@ public struct DataScanEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.DataScanEvent.DataProfileResult"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Data quality result for data scan job.
-  public struct DataQualityResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DataQualityResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The count of rows processed in the data scan job.
@@ -295,16 +295,16 @@ public struct DataScanEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.DataScanEvent.DataQualityResult"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Applied configs for data profile type data scan job.
-  public struct DataProfileAppliedConfigs: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DataProfileAppliedConfigs: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The percentage of the records selected from the dataset for DataScan.
@@ -339,16 +339,16 @@ public struct DataScanEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.DataScanEvent.DataProfileAppliedConfigs"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Applied configs for data quality type data scan job.
-  public struct DataQualityAppliedConfigs: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DataQualityAppliedConfigs: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The percentage of the records selected from the dataset for DataScan.
@@ -379,16 +379,16 @@ public struct DataScanEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.DataScanEvent.DataQualityAppliedConfigs"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Post scan actions result for data scan job.
-  public struct PostScanActionsResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PostScanActionsResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The result of BigQuery export post scan action.
@@ -411,7 +411,7 @@ public struct DataScanEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// The result of BigQuery export post scan action.
-    public struct BigQueryExportResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct BigQueryExportResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Execution state for the BigQuery exporting.
@@ -554,22 +554,22 @@ public struct DataScanEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.dataplex.v1.DataScanEvent.PostScanActionsResult.BigQueryExportResult"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.DataScanEvent.PostScanActionsResult"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -1047,10 +1047,10 @@ public struct DataScanEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataplex.v1.DataScanEvent"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

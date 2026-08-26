@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Metadata type for the operation returned by
 /// [CreateBackup][google.bigtable.admin.v2.BigtableTableAdmin.CreateBackup].
 ///
 /// [google.bigtable.admin.v2.BigtableTableAdmin.CreateBackup]: <doc:BigtableTableAdminClient/createBackup(request:options:)>
-public struct CreateBackupMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CreateBackupMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The name of the backup being created.
@@ -31,10 +31,10 @@ public struct CreateBackupMetadata: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public var sourceTable: Swift.String = Swift.String()
 
   /// The time at which this operation started.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// If set, the time at which this operation finished or was cancelled.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `CreateBackupMetadata`.
   public init() {}
@@ -55,10 +55,10 @@ public struct CreateBackupMetadata: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.bigtable.admin.v2.CreateBackupMetadata"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

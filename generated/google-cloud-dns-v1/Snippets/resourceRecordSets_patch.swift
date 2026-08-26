@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudDNSV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: ResourceRecordSetsClient) async throws {
   let response = try await client.patch(

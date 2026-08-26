@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [VmwareEngine.UpdateVmwareEngineNetwork][google.cloud.vmwareengine.v1.VmwareEngine.UpdateVmwareEngineNetwork]
 ///
 /// [google.cloud.vmwareengine.v1.VmwareEngine.UpdateVmwareEngineNetwork]: <doc:VmwareEngineClient/updateVmwareEngineNetwork(request:options:)>
-public struct UpdateVmwareEngineNetworkRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateVmwareEngineNetworkRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. VMware Engine network description.
@@ -33,7 +33,7 @@ public struct UpdateVmwareEngineNetworkRequest: Codable, Equatable, GoogleCloudW
   /// the full request. A field will be overwritten if it is in the mask. If the
   /// user does not provide a mask then all fields will be overwritten. Only the
   /// following fields can be updated: `description`.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Optional. A request ID to identify requests. Specify a unique request ID
   /// so that if you must retry your request, the server will know to ignore
@@ -70,10 +70,10 @@ public struct UpdateVmwareEngineNetworkRequest: Codable, Equatable, GoogleCloudW
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vmwareengine.v1.UpdateVmwareEngineNetworkRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

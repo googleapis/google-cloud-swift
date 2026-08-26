@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleType
 
 /// Request message for
 /// [SearchLineageStreaming][google.cloud.datacatalog.lineage.v1.Lineage.SearchLineageStreaming].
 ///
 /// [google.cloud.datacatalog.lineage.v1.Lineage.SearchLineageStreaming]: <doc:LineageClient/searchLineageStreaming(request:options:)>
-public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The project and location to initiate the search from.
@@ -61,7 +61,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleCloudWkt.
   }
 
   /// Filters for the search.
-  public struct SearchFilters: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SearchFilters: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Types of dependencies between entities to retrieve.
@@ -98,16 +98,16 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleCloudWkt.
       return
         "type.googleapis.com/google.cloud.datacatalog.lineage.v1.SearchLineageStreamingRequest.SearchFilters"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Limits for the search results.
-  public struct SearchLimits: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SearchLimits: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The maximum depth of the search. The default value is 5 and
@@ -145,16 +145,16 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleCloudWkt.
       return
         "type.googleapis.com/google.cloud.datacatalog.lineage.v1.SearchLineageStreamingRequest.SearchLimits"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Criteria for the root of the search.
-  public struct RootCriteria: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RootCriteria: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Criteria for the root of the search.
@@ -224,11 +224,11 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleCloudWkt.
       return
         "type.googleapis.com/google.cloud.datacatalog.lineage.v1.SearchLineageStreamingRequest.RootCriteria"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -439,10 +439,10 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleCloudWkt.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datacatalog.lineage.v1.SearchLineageStreamingRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

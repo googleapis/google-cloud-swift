@@ -16,12 +16,12 @@
 
 #if BackendServices || RegionBackendServices
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Subsetting configuration for this BackendService.
   /// Currently this is applicable only for Internal TCP/UDP load balancing,
   /// Internal HTTP(S) load balancing and Traffic Director.
-  public struct Subsetting: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Subsetting: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var policy: Subsetting.Policy? = nil
@@ -160,11 +160,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.Subsetting"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

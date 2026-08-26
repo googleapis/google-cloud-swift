@@ -16,9 +16,9 @@
 
 #if InstanceGroupManagerResizeRequests || RegionInstanceGroupManagerResizeRequests
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
-  public struct InstanceGroupManagerResizeRequestStatus: Codable, Equatable, GoogleCloudWkt
+  public struct InstanceGroupManagerResizeRequestStatus: Codable, Equatable, GoogleCloudWKT
       ._AnyPackable,
     Sendable
   {
@@ -57,7 +57,7 @@
     /// The message type for the [error][google.cloud.compute.v1.InstanceGroupManagerResizeRequestStatus.error] field.
     ///
     /// [google.cloud.compute.v1.InstanceGroupManagerResizeRequestStatus.error]: <doc:InstanceGroupManagerResizeRequestStatus/Error>
-    public struct Error: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Error: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// [Output Only] The array of errors encountered while processing this
@@ -83,7 +83,7 @@
       /// The message type for the [errors][google.cloud.compute.v1.InstanceGroupManagerResizeRequestStatus.error.errors] field.
       ///
       /// [google.cloud.compute.v1.InstanceGroupManagerResizeRequestStatus.error.errors]: <doc:InstanceGroupManagerResizeRequestStatus/Error/Errors>
-      public struct Errors: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Errors: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// [Output Only] The error type identifier for this error.
@@ -123,7 +123,7 @@
         /// The message type for the [errorDetails][google.cloud.compute.v1.InstanceGroupManagerResizeRequestStatus.error.errors.errorDetails] field.
         ///
         /// [google.cloud.compute.v1.InstanceGroupManagerResizeRequestStatus.error.errors.errorDetails]: <doc:InstanceGroupManagerResizeRequestStatus/Error/Errors/ErrorDetails>
-        public struct ErrorDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct ErrorDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Error information containing structured domain, reason, and metadata.
@@ -158,11 +158,11 @@
             return
               "type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerResizeRequestStatus.error.errors.errorDetails"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
@@ -170,11 +170,11 @@
           return
             "type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerResizeRequestStatus.error.errors"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -182,22 +182,22 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerResizeRequestStatus.error"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerResizeRequestStatus"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

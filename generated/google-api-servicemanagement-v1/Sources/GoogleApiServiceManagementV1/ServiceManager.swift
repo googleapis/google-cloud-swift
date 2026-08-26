@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleApi
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -716,8 +716,8 @@ extension Clients {
 
     /// See `ServiceManagerClient.generateConfigReport`.
     func generateConfigReport(
-      newConfig: GoogleCloudWkt.`Any`?,
-      oldConfig: GoogleCloudWkt.`Any`?,
+      newConfig: GoogleCloudWKT.`Any`?,
+      oldConfig: GoogleCloudWKT.`Any`?,
     ) async throws -> GoogleApiServiceManagementV1.GenerateConfigReportResponse
 
     /// See `ServiceManagerClient.setIamPolicy`.
@@ -1292,8 +1292,8 @@ extension Clients.ServiceManagerProtocol {
   }
 
   public func generateConfigReport(
-    newConfig: GoogleCloudWkt.`Any`?,
-    oldConfig: GoogleCloudWkt.`Any`?,
+    newConfig: GoogleCloudWKT.`Any`?,
+    oldConfig: GoogleCloudWKT.`Any`?,
   ) async throws -> GoogleApiServiceManagementV1.GenerateConfigReportResponse {
     let request = GenerateConfigReportRequest().with {
       $0.newConfig = newConfig

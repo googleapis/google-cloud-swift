@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleApi
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleCloudGax
 import struct Logging.Logger
 

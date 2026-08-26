@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents the metadata of a Goldengate Connection Assignment.
-public struct GoldengateConnectionAssignment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct GoldengateConnectionAssignment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The name of the GoldengateConnectionAssignment resource in the
@@ -30,7 +30,7 @@ public struct GoldengateConnectionAssignment: Codable, Equatable, GoogleCloudWkt
   public var properties: GoldengateConnectionAssignmentProperties? = nil
 
   /// Output only. The time when the connection assignment was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. The labels or tags associated with the
   /// GoldengateConnectionAssignment.
@@ -61,10 +61,10 @@ public struct GoldengateConnectionAssignment: Codable, Equatable, GoogleCloudWkt
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.oracledatabase.v1.GoldengateConnectionAssignment"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -16,12 +16,12 @@
 
 #if Interconnects
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// MACsec configuration information for the Interconnect connection. Contains
   /// the generated Connectivity Association Key Name (CKN) and the key (CAK) for
   /// this Interconnect connection.
-  public struct InterconnectMacsecConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct InterconnectMacsecConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// A keychain placeholder describing a set of named key objects
@@ -49,11 +49,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.InterconnectMacsecConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

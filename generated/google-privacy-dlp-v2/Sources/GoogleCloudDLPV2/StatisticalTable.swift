@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An auxiliary table containing statistical information on the relative
 /// frequency of different quasi-identifiers values. It has one or several
@@ -24,7 +24,7 @@ import Foundation
 /// If a tuple is present in the data but not in the auxiliary table, the
 /// corresponding relative frequency is assumed to be zero (and thus, the
 /// tuple is highly reidentifiable).
-public struct StatisticalTable: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct StatisticalTable: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Auxiliary table location.
@@ -55,7 +55,7 @@ public struct StatisticalTable: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// A quasi-identifier column has a custom_tag, used to know which column
   /// in the data corresponds to which column in the statistical model.
-  public struct QuasiIdentifierField: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct QuasiIdentifierField: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Identifies the column.
@@ -85,21 +85,21 @@ public struct StatisticalTable: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.StatisticalTable.QuasiIdentifierField"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.StatisticalTable"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

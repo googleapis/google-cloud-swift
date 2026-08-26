@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -825,7 +825,7 @@ extension Clients {
     /// See `StreamsServiceClient.updateCluster`.
     func updateCluster(
       cluster: Cluster?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Cluster>
 
     /// See `StreamsServiceClient.deleteCluster`.
@@ -886,7 +886,7 @@ extension Clients {
     /// See `StreamsServiceClient.updateStream`.
     func updateStream(
       stream: Stream?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Stream>
 
     /// See `StreamsServiceClient.deleteStream`.
@@ -970,7 +970,7 @@ extension Clients {
     /// See `StreamsServiceClient.updateEvent`.
     func updateEvent(
       event: Event?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Event>
 
     /// See `StreamsServiceClient.deleteEvent`.
@@ -1031,7 +1031,7 @@ extension Clients {
     /// See `StreamsServiceClient.updateSeries`.
     func updateSeries(
       series: Series?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Series>
 
     /// See `StreamsServiceClient.deleteSeries`.
@@ -1476,7 +1476,7 @@ extension Clients.StreamsServiceProtocol {
 
   public func updateCluster(
     cluster: Cluster?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Cluster> {
     let request = UpdateClusterRequest().with {
       $0.cluster = cluster
@@ -1647,7 +1647,7 @@ extension Clients.StreamsServiceProtocol {
 
   public func updateStream(
     stream: Stream?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Stream> {
     let request = UpdateStreamRequest().with {
       $0.stream = stream
@@ -1875,7 +1875,7 @@ extension Clients.StreamsServiceProtocol {
 
   public func updateEvent(
     event: Event?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Event> {
     let request = UpdateEventRequest().with {
       $0.event = event
@@ -2043,7 +2043,7 @@ extension Clients.StreamsServiceProtocol {
 
   public func updateSeries(
     series: Series?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Series> {
     let request = UpdateSeriesRequest().with {
       $0.series = series

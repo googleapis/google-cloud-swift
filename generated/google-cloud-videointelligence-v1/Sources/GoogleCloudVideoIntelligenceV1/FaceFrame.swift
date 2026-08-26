@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Deprecated. No effect.
 @available(*, deprecated)
-public struct FaceFrame: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct FaceFrame: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Normalized Bounding boxes in a frame.
@@ -29,7 +29,7 @@ public struct FaceFrame: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Time-offset, relative to the beginning of the video,
   /// corresponding to the video frame for this location.
-  public var timeOffset: GoogleCloudWkt.Duration? = nil
+  public var timeOffset: GoogleCloudWKT.Duration? = nil
 
   /// Initialize a new instance of `FaceFrame`.
   public init() {}
@@ -50,10 +50,10 @@ public struct FaceFrame: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.videointelligence.v1.FaceFrame"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

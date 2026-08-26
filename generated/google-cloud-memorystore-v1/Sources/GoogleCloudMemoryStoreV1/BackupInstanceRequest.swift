@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request for `BackupInstance`.
-public struct BackupInstanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BackupInstanceRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Instance resource name using the form:
@@ -28,7 +28,7 @@ public struct BackupInstanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
 
   /// Optional. TTL for the backup to expire. Value range is 1 day to 100 years.
   /// If not specified, the default value is 100 years.
-  public var ttl: GoogleCloudWkt.Duration? = nil
+  public var ttl: GoogleCloudWKT.Duration? = nil
 
   /// Optional. The id of the backup to be created. If not specified, the
   /// default value ([YYYYMMDDHHMMSS]_[Shortened Instance UID] is used.
@@ -53,10 +53,10 @@ public struct BackupInstanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.memorystore.v1.BackupInstanceRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

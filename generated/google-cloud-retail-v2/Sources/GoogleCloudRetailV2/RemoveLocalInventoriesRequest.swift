@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [ProductService.RemoveLocalInventories][google.cloud.retail.v2.ProductService.RemoveLocalInventories]
 /// method.
 ///
 /// [google.cloud.retail.v2.ProductService.RemoveLocalInventories]: <doc:ProductServiceClient/removeLocalInventories(request:options:)>
-public struct RemoveLocalInventoriesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RemoveLocalInventoriesRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Full resource name of [Product][google.cloud.retail.v2.Product],
@@ -43,7 +43,7 @@ public struct RemoveLocalInventoriesRequest: Codable, Equatable, GoogleCloudWkt.
   /// The time when the inventory deletions are issued. Used to prevent
   /// out-of-order updates and deletions on local inventory fields. If not
   /// provided, the internal system time will be used.
-  public var removeTime: GoogleCloudWkt.Timestamp? = nil
+  public var removeTime: GoogleCloudWKT.Timestamp? = nil
 
   /// If set to true, and the [Product][google.cloud.retail.v2.Product] is not
   /// found, the local inventory removal request will still be processed and
@@ -74,10 +74,10 @@ public struct RemoveLocalInventoriesRequest: Codable, Equatable, GoogleCloudWkt.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.retail.v2.RemoveLocalInventoriesRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

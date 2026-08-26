@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Artifacts produced by a build that should be uploaded upon
 /// successful completion of all build steps.
-public struct Artifacts: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Artifacts: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A list of images to be pushed upon the successful completion of all build
@@ -98,7 +98,7 @@ public struct Artifacts: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Files in the workspace to upload to Cloud Storage upon successful
   /// completion of all build steps.
-  public struct ArtifactObjects: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ArtifactObjects: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Cloud Storage bucket and optional object path, in the form
@@ -134,17 +134,17 @@ public struct Artifacts: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.devtools.cloudbuild.v1.Artifacts.ArtifactObjects"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A Maven artifact to upload to Artifact Registry upon successful completion
   /// of all build steps.
-  public struct MavenArtifact: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MavenArtifact: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Artifact Registry repository, in the form
@@ -193,17 +193,17 @@ public struct Artifacts: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.devtools.cloudbuild.v1.Artifacts.MavenArtifact"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Go module to upload to Artifact Registry upon successful completion of all
   /// build steps. A module refers to all dependencies in a go.mod file.
-  public struct GoModule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GoModule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Artifact Registry repository name.
@@ -255,18 +255,18 @@ public struct Artifacts: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.devtools.cloudbuild.v1.Artifacts.GoModule"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Python package to upload to Artifact Registry upon successful completion
   /// of all build steps. A package can encapsulate multiple objects to be
   /// uploaded to a single repository.
-  public struct PythonPackage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PythonPackage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Artifact Registry repository, in the form
@@ -300,17 +300,17 @@ public struct Artifacts: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.devtools.cloudbuild.v1.Artifacts.PythonPackage"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Npm package to upload to Artifact Registry upon successful completion
   /// of all build steps.
-  public struct NpmPackage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct NpmPackage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Artifact Registry repository, in the form
@@ -345,21 +345,21 @@ public struct Artifacts: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.devtools.cloudbuild.v1.Artifacts.NpmPackage"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.devtools.cloudbuild.v1.Artifacts"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

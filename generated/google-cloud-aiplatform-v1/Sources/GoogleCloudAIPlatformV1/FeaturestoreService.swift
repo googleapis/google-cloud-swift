@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleIAMV1
   import GoogleLongRunning
   import GoogleRpc
@@ -894,7 +894,7 @@
       /// See `FeaturestoreServiceClient.updateFeaturestore`.
       func updateFeaturestore(
         featurestore: Featurestore?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> any GoogleCloudGax.PollableOperation<Featurestore>
 
       /// See `FeaturestoreServiceClient.deleteFeaturestore`.
@@ -967,7 +967,7 @@
       /// See `FeaturestoreServiceClient.updateEntityType`.
       func updateEntityType(
         entityType: EntityType?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudAIPlatformV1.EntityType
 
       /// See `FeaturestoreServiceClient.deleteEntityType`.
@@ -1052,7 +1052,7 @@
       /// See `FeaturestoreServiceClient.updateFeature`.
       func updateFeature(
         feature: Feature?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudAIPlatformV1.Feature
 
       /// See `FeaturestoreServiceClient.deleteFeature`.
@@ -1581,7 +1581,7 @@
 
     public func updateFeaturestore(
       featurestore: Featurestore?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Featurestore> {
       let request = UpdateFeaturestoreRequest().with {
         $0.featurestore = featurestore
@@ -1762,7 +1762,7 @@
 
     public func updateEntityType(
       entityType: EntityType?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.EntityType {
       let request = UpdateEntityTypeRequest().with {
         $0.entityType = entityType
@@ -1984,7 +1984,7 @@
 
     public func updateFeature(
       feature: Feature?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.Feature {
       let request = UpdateFeatureRequest().with {
         $0.feature = feature

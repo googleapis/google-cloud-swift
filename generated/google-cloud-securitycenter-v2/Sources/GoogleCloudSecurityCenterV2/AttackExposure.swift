@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An attack exposure contains the results of an attack path simulation run.
-public struct AttackExposure: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AttackExposure: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A number between 0 (inclusive) and infinity that represents how important
@@ -27,7 +27,7 @@ public struct AttackExposure: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var score: Swift.Double = Swift.Double()
 
   /// The most recent time the attack exposure was updated on this finding.
-  public var latestCalculationTime: GoogleCloudWkt.Timestamp? = nil
+  public var latestCalculationTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The resource name of the attack path simulation result that contains the
   /// details regarding this attack exposure score.
@@ -174,10 +174,10 @@ public struct AttackExposure: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.AttackExposure"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

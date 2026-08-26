@@ -16,13 +16,13 @@
 
 #if RegionUrlMaps || UrlMaps
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A policy that specifies how requests intended for the route's backends
   /// are shadowed to a separate mirrored backend service. The load balancer
   /// doesn't wait for responses from the shadow service. Before sending traffic
   /// to the shadow service, the host or authority header is suffixed with-shadow.
-  public struct RequestMirrorPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RequestMirrorPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The full or partial URL to the BackendService resource being
@@ -58,11 +58,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.RequestMirrorPolicy"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

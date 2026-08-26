@@ -16,11 +16,11 @@
 
 #if Participants || Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
   import GoogleType
 
   /// Represents the parameters of the conversational query.
-  public struct QueryParameters: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct QueryParameters: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The time zone of this conversational query from the
@@ -50,7 +50,7 @@
     /// If supplied, the value is used to populate the
     /// `WebhookRequest.original_detect_intent_request.payload`
     /// field sent to your webhook.
-    public var payload: GoogleCloudWkt.Struct? = nil
+    public var payload: GoogleCloudWKT.Struct? = nil
 
     /// Configures the type of sentiment analysis to perform. If not
     /// provided, sentiment analysis is not performed.
@@ -95,11 +95,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.QueryParameters"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

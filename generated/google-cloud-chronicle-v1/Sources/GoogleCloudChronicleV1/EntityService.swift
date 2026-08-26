@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleCloudGax
 
@@ -208,7 +208,7 @@ extension Clients {
     /// See `EntityServiceClient.updateWatchlist`.
     func updateWatchlist(
       watchlist: Watchlist?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudChronicleV1.Watchlist
 
     /// See `EntityServiceClient.deleteWatchlist`.
@@ -402,7 +402,7 @@ extension Clients.EntityServiceProtocol {
 
   public func updateWatchlist(
     watchlist: Watchlist?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudChronicleV1.Watchlist {
     let request = UpdateWatchlistRequest().with {
       $0.watchlist = watchlist

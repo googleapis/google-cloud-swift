@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleCloudGax
 
@@ -255,7 +255,7 @@ extension Clients {
     /// See `ApiHubCurateClient.updateCuration`.
     func updateCuration(
       curation: Curation?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudApiHubV1.Curation
 
     /// See `ApiHubCurateClient.deleteCuration`.
@@ -475,7 +475,7 @@ extension Clients.ApiHubCurateProtocol {
 
   public func updateCuration(
     curation: Curation?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudApiHubV1.Curation {
     let request = UpdateCurationRequest().with {
       $0.curation = curation

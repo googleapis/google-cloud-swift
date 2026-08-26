@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -648,7 +648,7 @@ extension Clients {
     /// See `TpuClient.updateNode`.
     func updateNode(
       node: Node?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Node>
 
     /// See `TpuClient.listQueuedResources`.
@@ -1211,7 +1211,7 @@ extension Clients.TpuProtocol {
 
   public func updateNode(
     node: Node?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Node> {
     let request = UpdateNodeRequest().with {
       $0.node = node

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// RBACRoleBinding represents a rbacrolebinding across the Fleet
-public struct RBACRoleBinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RBACRoleBinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The resource name for the rbacrolebinding
@@ -33,13 +33,13 @@ public struct RBACRoleBinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var uid: Swift.String = Swift.String()
 
   /// Output only. When the rbacrolebinding was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. When the rbacrolebinding was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. When the rbacrolebinding was deleted.
-  public var deleteTime: GoogleCloudWkt.Timestamp? = nil
+  public var deleteTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. State of the rbacrolebinding resource.
   public var state: RBACRoleBindingLifecycleState? = nil
@@ -88,11 +88,11 @@ public struct RBACRoleBinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.uid = try container.decode(Swift.String.self, forKey: .uid)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.deleteTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .deleteTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .deleteTime)
     self.state = try container.decodeIfPresent(RBACRoleBindingLifecycleState.self, forKey: .state)
     self.role = try container.decodeIfPresent(RBACRoleBinding.Role.self, forKey: .role)
     self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
@@ -138,7 +138,7 @@ public struct RBACRoleBinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Role is the type for Kubernetes roles
-  public struct Role: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Role: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// predefined_role is the Kubernetes default role to use
@@ -288,11 +288,11 @@ public struct RBACRoleBinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.gkehub.v1.RBACRoleBinding.Role"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -309,10 +309,10 @@ public struct RBACRoleBinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkehub.v1.RBACRoleBinding"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

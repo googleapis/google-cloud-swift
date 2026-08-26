@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response message for
 /// [KeyManagementService.ExportTrustedKeyWrappedCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.ExportTrustedKeyWrappedCryptoKeyVersion].
 ///
 /// [google.cloud.kms.v1.KeyManagementService.ExportTrustedKeyWrappedCryptoKeyVersion]: <doc:KeyManagementServiceClient/exportTrustedKeyWrappedCryptoKeyVersion(request:options:)>
-public struct ExportTrustedKeyWrappedCryptoKeyVersionResponse: Codable, Equatable, GoogleCloudWkt
+public struct ExportTrustedKeyWrappedCryptoKeyVersionResponse: Codable, Equatable, GoogleCloudWKT
     ._AnyPackable,
   Sendable
 {
@@ -44,7 +44,7 @@ public struct ExportTrustedKeyWrappedCryptoKeyVersionResponse: Codable, Equatabl
   /// that support this type.
   ///
   /// [google.cloud.kms.v1.ExportTrustedKeyWrappedCryptoKeyVersionResponse.wrapped_key]: <doc:ExportTrustedKeyWrappedCryptoKeyVersionResponse/wrappedKey>
-  public var wrappedKeyCrc32C: GoogleCloudWkt.Int64Value? = nil
+  public var wrappedKeyCrc32C: GoogleCloudWKT.Int64Value? = nil
 
   /// Initialize a new instance of `ExportTrustedKeyWrappedCryptoKeyVersionResponse`.
   public init() {}
@@ -71,7 +71,7 @@ public struct ExportTrustedKeyWrappedCryptoKeyVersionResponse: Codable, Equatabl
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.wrappedKey = try container.decode(Foundation.Data.self, forKey: .wrappedKey)
     self.wrappedKeyCrc32C = try container.decodeIfPresent(
-      GoogleCloudWkt.Int64Value.self, forKey: .wrappedKeyCrc32C)
+      GoogleCloudWKT.Int64Value.self, forKey: .wrappedKeyCrc32C)
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -83,10 +83,10 @@ public struct ExportTrustedKeyWrappedCryptoKeyVersionResponse: Codable, Equatabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.ExportTrustedKeyWrappedCryptoKeyVersionResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

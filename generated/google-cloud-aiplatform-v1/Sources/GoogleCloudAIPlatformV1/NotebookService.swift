@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleIAMV1
   import GoogleLongRunning
   import GoogleRpc
@@ -694,7 +694,7 @@
       /// See `NotebookServiceClient.updateNotebookRuntimeTemplate`.
       func updateNotebookRuntimeTemplate(
         notebookRuntimeTemplate: NotebookRuntimeTemplate?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudAIPlatformV1.NotebookRuntimeTemplate
 
       /// See `NotebookServiceClient.assignNotebookRuntime`.
@@ -1248,7 +1248,7 @@
 
     public func updateNotebookRuntimeTemplate(
       notebookRuntimeTemplate: NotebookRuntimeTemplate?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.NotebookRuntimeTemplate {
       let request = UpdateNotebookRuntimeTemplateRequest().with {
         $0.notebookRuntimeTemplate = notebookRuntimeTemplate

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The auto-accept setting for a group controls whether
 /// proposed spokes are automatically attached to the hub. If auto-accept is
@@ -24,7 +24,7 @@ import Foundation
 /// If auto-accept is disabled, the spoke goes to the INACTIVE
 /// state, and it must be reviewed and accepted by a hub
 /// administrator.
-public struct AutoAccept: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AutoAccept: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. A list of project ids or project numbers for which you want
@@ -51,10 +51,10 @@ public struct AutoAccept: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkconnectivity.v1.AutoAccept"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Defines a certificate map entry.
-public struct CertificateMapEntry: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CertificateMapEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A user-defined name of the Certificate Map Entry. Certificate Map Entry
@@ -30,10 +30,10 @@ public struct CertificateMapEntry: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public var description: Swift.String = Swift.String()
 
   /// Output only. The creation timestamp of a Certificate Map Entry.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The update timestamp of a Certificate Map Entry.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Set of labels associated with a Certificate Map Entry.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -81,9 +81,9 @@ public struct CertificateMapEntry: Codable, Equatable, GoogleCloudWkt._AnyPackab
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.description = try container.decode(Swift.String.self, forKey: .description)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
     self.certificates = try container.decode([Swift.String].self, forKey: .certificates)
     self.state = try container.decode(ServingState.self, forKey: .state)
@@ -241,10 +241,10 @@ public struct CertificateMapEntry: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.certificatemanager.v1.CertificateMapEntry"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

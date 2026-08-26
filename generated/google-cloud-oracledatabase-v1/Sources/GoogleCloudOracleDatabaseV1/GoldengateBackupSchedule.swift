@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The backup schedule of the GoldengateDeployment.
-public struct GoldengateBackupSchedule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct GoldengateBackupSchedule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The bucket name.
@@ -38,7 +38,7 @@ public struct GoldengateBackupSchedule: Codable, Equatable, GoogleCloudWkt._AnyP
   public var namespace: Swift.String = Swift.String()
 
   /// Output only. The timestamp of when the backup was scheduled.
-  public var backupScheduledTime: GoogleCloudWkt.Timestamp? = nil
+  public var backupScheduledTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `GoldengateBackupSchedule`.
   public init() {}
@@ -171,10 +171,10 @@ public struct GoldengateBackupSchedule: Codable, Equatable, GoogleCloudWkt._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.oracledatabase.v1.GoldengateBackupSchedule"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

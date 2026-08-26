@@ -15,19 +15,19 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Requirements that must be true before a table is scanned in discovery for the
 /// first time. There is an AND relationship between the top-level attributes.
 /// Additionally, minimum conditions with an OR relationship that must be met
 /// before Cloud DLP scans a table can be set (like a minimum row count or a
 /// minimum table age).
-public struct DiscoveryBigQueryConditions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DiscoveryBigQueryConditions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// BigQuery table must have been created after this date. Used to avoid
   /// backfilling.
-  public var createdAfter: GoogleCloudWkt.Timestamp? = nil
+  public var createdAfter: GoogleCloudWKT.Timestamp? = nil
 
   /// At least one of the conditions must be true for a table to be scanned.
   public var orConditions: DiscoveryBigQueryConditions.OrConditions? = nil
@@ -63,7 +63,7 @@ public struct DiscoveryBigQueryConditions: Codable, Equatable, GoogleCloudWkt._A
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.createdAfter = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createdAfter)
+      GoogleCloudWKT.Timestamp.self, forKey: .createdAfter)
     self.orConditions = try container.decodeIfPresent(
       DiscoveryBigQueryConditions.OrConditions.self, forKey: .orConditions)
 
@@ -105,7 +105,7 @@ public struct DiscoveryBigQueryConditions: Codable, Equatable, GoogleCloudWkt._A
 
   /// There is an OR relationship between these attributes. They are used to
   /// determine if a table should be scanned or not in Discovery.
-  public struct OrConditions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct OrConditions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Minimum number of rows that should be present before Cloud DLP
@@ -114,7 +114,7 @@ public struct DiscoveryBigQueryConditions: Codable, Equatable, GoogleCloudWkt._A
 
     /// Minimum age a table must have before Cloud DLP can profile it. Value must
     /// be 1 hour or greater.
-    public var minAge: GoogleCloudWkt.Duration? = nil
+    public var minAge: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `OrConditions`.
     public init() {}
@@ -135,11 +135,11 @@ public struct DiscoveryBigQueryConditions: Codable, Equatable, GoogleCloudWkt._A
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.DiscoveryBigQueryConditions.OrConditions"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -156,10 +156,10 @@ public struct DiscoveryBigQueryConditions: Codable, Equatable, GoogleCloudWkt._A
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.DiscoveryBigQueryConditions"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

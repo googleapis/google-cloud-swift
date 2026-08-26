@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -491,7 +491,7 @@ extension Clients {
     /// See `RepositoryManagerClient.updateConnection`.
     func updateConnection(
       connection: Connection?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Connection>
 
     /// See `RepositoryManagerClient.deleteConnection`.
@@ -893,7 +893,7 @@ extension Clients.RepositoryManagerProtocol {
 
   public func updateConnection(
     connection: Connection?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Connection> {
     let request = UpdateConnectionRequest().with {
       $0.connection = connection

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A call stack appearing in a trace.
-public struct StackTrace: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct StackTrace: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Stack frames in this stack trace. A maximum of 128 frames are allowed.
@@ -52,7 +52,7 @@ public struct StackTrace: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Represents a single stack frame in a stack trace.
-  public struct StackFrame: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct StackFrame: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The fully-qualified name that uniquely identifies the function or
@@ -101,16 +101,16 @@ public struct StackTrace: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.devtools.cloudtrace.v2.StackTrace.StackFrame"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A collection of stack frames, which can be truncated.
-  public struct StackFrames: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct StackFrames: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Stack frames in this call stack.
@@ -140,21 +140,21 @@ public struct StackTrace: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.devtools.cloudtrace.v2.StackTrace.StackFrames"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.devtools.cloudtrace.v2.StackTrace"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

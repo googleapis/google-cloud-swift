@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleIAMV1
   import GoogleLongRunning
   import GoogleRpc
@@ -879,7 +879,7 @@
       /// See `MetadataServiceClient.updateArtifact`.
       func updateArtifact(
         artifact: Artifact?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudAIPlatformV1.Artifact
 
       /// See `MetadataServiceClient.deleteArtifact`.
@@ -948,7 +948,7 @@
       /// See `MetadataServiceClient.updateContext`.
       func updateContext(
         context: Context?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudAIPlatformV1.Context
 
       /// See `MetadataServiceClient.deleteContext`.
@@ -1056,7 +1056,7 @@
       /// See `MetadataServiceClient.updateExecution`.
       func updateExecution(
         execution: Execution?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudAIPlatformV1.Execution
 
       /// See `MetadataServiceClient.deleteExecution`.
@@ -1722,7 +1722,7 @@
 
     public func updateArtifact(
       artifact: Artifact?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.Artifact {
       let request = UpdateArtifactRequest().with {
         $0.artifact = artifact
@@ -1903,7 +1903,7 @@
 
     public func updateContext(
       context: Context?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.Context {
       let request = UpdateContextRequest().with {
         $0.context = context
@@ -2176,7 +2176,7 @@
 
     public func updateExecution(
       execution: Execution?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.Execution {
       let request = UpdateExecutionRequest().with {
         $0.execution = execution

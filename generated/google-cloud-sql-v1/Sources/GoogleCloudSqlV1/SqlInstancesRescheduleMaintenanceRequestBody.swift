@@ -16,10 +16,10 @@
 
 #if SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Reschedule options for maintenance windows.
-  public struct SqlInstancesRescheduleMaintenanceRequestBody: Codable, Equatable, GoogleCloudWkt
+  public struct SqlInstancesRescheduleMaintenanceRequestBody: Codable, Equatable, GoogleCloudWKT
       ._AnyPackable,
     Sendable
   {
@@ -42,7 +42,7 @@
       return copy
     }
 
-    public struct Reschedule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Reschedule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The type of the reschedule.
@@ -53,7 +53,7 @@
       /// reschedule_type=SPECIFIC_TIME, in
       /// [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
       /// `2012-11-15T16:19:00.094Z`.
-      public var scheduleTime: GoogleCloudWkt.Timestamp? = nil
+      public var scheduleTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Initialize a new instance of `Reschedule`.
       public init() {}
@@ -75,11 +75,11 @@
         return
           "type.googleapis.com/google.cloud.sql.v1.SqlInstancesRescheduleMaintenanceRequestBody.Reschedule"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -197,11 +197,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.SqlInstancesRescheduleMaintenanceRequestBody"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

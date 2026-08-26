@@ -15,17 +15,17 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Allows customers to configure HTTP request paths that'll allow HTTP
 /// `OPTIONS` call to bypass authentication and authorization.
-public struct CorsSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CorsSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Configuration to allow HTTP `OPTIONS` calls to skip
   /// authentication and authorization. If undefined, IAP will not apply any
   /// special logic to `OPTIONS` requests.
-  public var allowHttpOptions: GoogleCloudWkt.BoolValue? = nil
+  public var allowHttpOptions: GoogleCloudWKT.BoolValue? = nil
 
   /// Initialize a new instance of `CorsSettings`.
   public init() {}
@@ -46,10 +46,10 @@ public struct CorsSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.iap.v1.CorsSettings"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

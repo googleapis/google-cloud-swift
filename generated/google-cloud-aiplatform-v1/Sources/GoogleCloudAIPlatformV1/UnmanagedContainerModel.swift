@@ -16,11 +16,11 @@
 
 #if JobService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Contains model information necessary to perform batch prediction without
   /// requiring a full model import.
-  public struct UnmanagedContainerModel: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct UnmanagedContainerModel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The path to the directory containing the Model artifact and any of its
@@ -53,11 +53,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.UnmanagedContainerModel"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

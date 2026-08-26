@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Prediction output format for Generic Object Detection.
-public struct ObjectDetectionPredictionResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ObjectDetectionPredictionResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Current timestamp.
-  public var currentTime: GoogleCloudWkt.Timestamp? = nil
+  public var currentTime: GoogleCloudWKT.Timestamp? = nil
 
   /// A list of identified boxes.
   public var identifiedBoxes: [ObjectDetectionPredictionResult.IdentifiedBox] = []
@@ -44,7 +44,7 @@ public struct ObjectDetectionPredictionResult: Codable, Equatable, GoogleCloudWk
   }
 
   /// The entity info for annotations from object detection prediction result.
-  public struct Entity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Entity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Label id.
@@ -72,16 +72,16 @@ public struct ObjectDetectionPredictionResult: Codable, Equatable, GoogleCloudWk
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.ObjectDetectionPredictionResult.Entity"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Identified box contains location and the entity of the object.
-  public struct IdentifiedBox: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct IdentifiedBox: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// An unique id for this box.
@@ -114,7 +114,7 @@ public struct ObjectDetectionPredictionResult: Codable, Equatable, GoogleCloudWk
     }
 
     /// Bounding Box in the normalized coordinates.
-    public struct NormalizedBoundingBox: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct NormalizedBoundingBox: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Min in x coordinate.
@@ -149,11 +149,11 @@ public struct ObjectDetectionPredictionResult: Codable, Equatable, GoogleCloudWk
         return
           "type.googleapis.com/google.cloud.visionai.v1.ObjectDetectionPredictionResult.IdentifiedBox.NormalizedBoundingBox"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -161,21 +161,21 @@ public struct ObjectDetectionPredictionResult: Codable, Equatable, GoogleCloudWk
       return
         "type.googleapis.com/google.cloud.visionai.v1.ObjectDetectionPredictionResult.IdentifiedBox"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.ObjectDetectionPredictionResult"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

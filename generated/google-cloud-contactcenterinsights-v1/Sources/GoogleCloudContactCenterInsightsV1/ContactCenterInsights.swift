@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -1436,7 +1436,7 @@ extension Clients {
     /// See `ContactCenterInsightsClient.updateConversation`.
     func updateConversation(
       conversation: Conversation?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudContactCenterInsightsV1.Conversation
 
     /// See `ContactCenterInsightsClient.getConversation`.
@@ -1590,7 +1590,7 @@ extension Clients {
     /// See `ContactCenterInsightsClient.updateIssueModel`.
     func updateIssueModel(
       issueModel: IssueModel?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudContactCenterInsightsV1.IssueModel
 
     /// See `ContactCenterInsightsClient.getIssueModel`.
@@ -1700,7 +1700,7 @@ extension Clients {
     /// See `ContactCenterInsightsClient.updateIssue`.
     func updateIssue(
       issue: Issue?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudContactCenterInsightsV1.Issue
 
     /// See `ContactCenterInsightsClient.deleteIssue`.
@@ -1768,7 +1768,7 @@ extension Clients {
     /// See `ContactCenterInsightsClient.updatePhraseMatcher`.
     func updatePhraseMatcher(
       phraseMatcher: PhraseMatcher?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudContactCenterInsightsV1.PhraseMatcher
 
     /// See `ContactCenterInsightsClient.calculateStats`.
@@ -1796,7 +1796,7 @@ extension Clients {
     /// See `ContactCenterInsightsClient.updateSettings`.
     func updateSettings(
       settings: Settings?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudContactCenterInsightsV1.Settings
 
     /// See `ContactCenterInsightsClient.createAnalysisRule`.
@@ -1839,7 +1839,7 @@ extension Clients {
     /// See `ContactCenterInsightsClient.updateAnalysisRule`.
     func updateAnalysisRule(
       analysisRule: AnalysisRule?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudContactCenterInsightsV1.AnalysisRule
 
     /// See `ContactCenterInsightsClient.deleteAnalysisRule`.
@@ -1911,7 +1911,7 @@ extension Clients {
     /// See `ContactCenterInsightsClient.updateView`.
     func updateView(
       view: View?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudContactCenterInsightsV1.View
 
     /// See `ContactCenterInsightsClient.deleteView`.
@@ -1956,7 +1956,7 @@ extension Clients {
     /// See `ContactCenterInsightsClient.updateQaQuestion`.
     func updateQaQuestion(
       qaQuestion: QaQuestion?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudContactCenterInsightsV1.QaQuestion
 
     /// See `ContactCenterInsightsClient.deleteQaQuestion`.
@@ -2008,7 +2008,7 @@ extension Clients {
     /// See `ContactCenterInsightsClient.updateQaScorecard`.
     func updateQaScorecard(
       qaScorecard: QaScorecard?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudContactCenterInsightsV1.QaScorecard
 
     /// See `ContactCenterInsightsClient.deleteQaScorecard`.
@@ -2139,7 +2139,7 @@ extension Clients {
     /// See `ContactCenterInsightsClient.updateFeedbackLabel`.
     func updateFeedbackLabel(
       feedbackLabel: FeedbackLabel?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudContactCenterInsightsV1.FeedbackLabel
 
     /// See `ContactCenterInsightsClient.deleteFeedbackLabel`.
@@ -2804,7 +2804,7 @@ extension Clients.ContactCenterInsightsProtocol {
 
   public func updateConversation(
     conversation: Conversation?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudContactCenterInsightsV1.Conversation {
     let request = UpdateConversationRequest().with {
       $0.conversation = conversation
@@ -3221,7 +3221,7 @@ extension Clients.ContactCenterInsightsProtocol {
 
   public func updateIssueModel(
     issueModel: IssueModel?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudContactCenterInsightsV1.IssueModel {
     let request = UpdateIssueModelRequest().with {
       $0.issueModel = issueModel
@@ -3517,7 +3517,7 @@ extension Clients.ContactCenterInsightsProtocol {
 
   public func updateIssue(
     issue: Issue?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudContactCenterInsightsV1.Issue {
     let request = UpdateIssueRequest().with {
       $0.issue = issue
@@ -3681,7 +3681,7 @@ extension Clients.ContactCenterInsightsProtocol {
 
   public func updatePhraseMatcher(
     phraseMatcher: PhraseMatcher?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudContactCenterInsightsV1.PhraseMatcher {
     let request = UpdatePhraseMatcherRequest().with {
       $0.phraseMatcher = phraseMatcher
@@ -3746,7 +3746,7 @@ extension Clients.ContactCenterInsightsProtocol {
 
   public func updateSettings(
     settings: Settings?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudContactCenterInsightsV1.Settings {
     let request = UpdateSettingsRequest().with {
       $0.settings = settings
@@ -3851,7 +3851,7 @@ extension Clients.ContactCenterInsightsProtocol {
 
   public func updateAnalysisRule(
     analysisRule: AnalysisRule?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudContactCenterInsightsV1.AnalysisRule {
     let request = UpdateAnalysisRuleRequest().with {
       $0.analysisRule = analysisRule
@@ -4034,7 +4034,7 @@ extension Clients.ContactCenterInsightsProtocol {
 
   public func updateView(
     view: View?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudContactCenterInsightsV1.View {
     let request = UpdateViewRequest().with {
       $0.view = view
@@ -4150,7 +4150,7 @@ extension Clients.ContactCenterInsightsProtocol {
 
   public func updateQaQuestion(
     qaQuestion: QaQuestion?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudContactCenterInsightsV1.QaQuestion {
     let request = UpdateQaQuestionRequest().with {
       $0.qaQuestion = qaQuestion
@@ -4276,7 +4276,7 @@ extension Clients.ContactCenterInsightsProtocol {
 
   public func updateQaScorecard(
     qaScorecard: QaScorecard?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudContactCenterInsightsV1.QaScorecard {
     let request = UpdateQaScorecardRequest().with {
       $0.qaScorecard = qaScorecard
@@ -4610,7 +4610,7 @@ extension Clients.ContactCenterInsightsProtocol {
 
   public func updateFeedbackLabel(
     feedbackLabel: FeedbackLabel?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudContactCenterInsightsV1.FeedbackLabel {
     let request = UpdateFeedbackLabelRequest().with {
       $0.feedbackLabel = feedbackLabel

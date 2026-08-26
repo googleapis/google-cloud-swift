@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A `TimeSeriesRatio` specifies two `TimeSeries` to use for computing the
 /// `good_service / total_service` ratio. The specified `TimeSeries` must have
@@ -23,7 +23,7 @@ import Foundation
 /// DELTA` or `MetricKind = CUMULATIVE`. The `TimeSeriesRatio` must specify
 /// exactly two of good, bad, and total, and the relationship `good_service +
 /// bad_service = total_service` will be assumed.
-public struct TimeSeriesRatio: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TimeSeriesRatio: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters)
@@ -64,10 +64,10 @@ public struct TimeSeriesRatio: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.v3.TimeSeriesRatio"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

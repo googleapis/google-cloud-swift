@@ -16,10 +16,10 @@
 
 #if DatasetService || ModelService || PipelineService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A trained machine learning Model.
-  public struct Model: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Model: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The resource name of the Model.
@@ -43,10 +43,10 @@
     public var versionAliases: [Swift.String] = []
 
     /// Output only. Timestamp when this version was created.
-    public var versionCreateTime: GoogleCloudWkt.Timestamp? = nil
+    public var versionCreateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Timestamp when this version was most recently updated.
-    public var versionUpdateTime: GoogleCloudWkt.Timestamp? = nil
+    public var versionUpdateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Required. The display name of the Model.
     /// The name can be up to 128 characters long and can consist of any UTF-8
@@ -90,7 +90,7 @@
     /// Unset if the Model does not have any additional information.
     ///
     /// [google.cloud.aiplatform.v1.Model.metadata_schema_uri]: <doc:Model/metadataSchemaUri>
-    public var metadata: GoogleCloudWkt.Value? = nil
+    public var metadata: GoogleCloudWKT.Value? = nil
 
     /// Output only. The formats in which this Model may be exported. If empty,
     /// this Model is not available for export.
@@ -253,10 +253,10 @@
     public var supportedOutputStorageFormats: [Swift.String] = []
 
     /// Output only. Timestamp when this Model was uploaded into Vertex AI.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Timestamp when this Model was most recently updated.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. The pointers to DeployedModels created from this Model. Note
     /// that Model could have been deployed to Endpoints in different Locations.
@@ -374,7 +374,7 @@
 
     /// Represents export format supported by the Model.
     /// All formats export to Google Cloud Storage.
-    public struct ExportFormat: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ExportFormat: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. The ID of the export format.
@@ -538,16 +538,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.Model.ExportFormat"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Stats of data used for train or evaluate the Model.
-    public struct DataStats: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DataStats: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Number of DataItems that were used for training this Model.
@@ -595,16 +595,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.Model.DataStats"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Contains information about the original Model if this Model is a copy.
-    public struct OriginalModelInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct OriginalModelInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. The resource name of the Model this Model is a copy of,
@@ -631,17 +631,17 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.Model.OriginalModelInfo"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// User input field to specify the base model source. Currently it only
     /// supports specifing the Model Garden models and Genie models.
-    public struct BaseModelSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct BaseModelSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       public var source: OneOf_Source? = nil
@@ -715,11 +715,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.Model.BaseModelSource"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -850,11 +850,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.Model"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

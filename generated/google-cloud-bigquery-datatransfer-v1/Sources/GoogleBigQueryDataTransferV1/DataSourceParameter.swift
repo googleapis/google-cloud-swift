@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A parameter used to define custom fields in a data source definition.
-public struct DataSourceParameter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DataSourceParameter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Parameter identifier.
@@ -46,10 +46,10 @@ public struct DataSourceParameter: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public var allowedValues: [Swift.String] = []
 
   /// For integer and double values specifies minimum allowed value.
-  public var minValue: GoogleCloudWkt.DoubleValue? = nil
+  public var minValue: GoogleCloudWKT.DoubleValue? = nil
 
   /// For integer and double values specifies maximum allowed value.
-  public var maxValue: GoogleCloudWkt.DoubleValue? = nil
+  public var maxValue: GoogleCloudWKT.DoubleValue? = nil
 
   /// Deprecated. This field has no effect.
   public var fields: [DataSourceParameter] = []
@@ -117,9 +117,9 @@ public struct DataSourceParameter: Codable, Equatable, GoogleCloudWkt._AnyPackab
     self.validationRegex = try container.decode(Swift.String.self, forKey: .validationRegex)
     self.allowedValues = try container.decode([Swift.String].self, forKey: .allowedValues)
     self.minValue = try container.decodeIfPresent(
-      GoogleCloudWkt.DoubleValue.self, forKey: .minValue)
+      GoogleCloudWKT.DoubleValue.self, forKey: .minValue)
     self.maxValue = try container.decodeIfPresent(
-      GoogleCloudWkt.DoubleValue.self, forKey: .maxValue)
+      GoogleCloudWKT.DoubleValue.self, forKey: .maxValue)
     self.fields = try container.decode([DataSourceParameter].self, forKey: .fields)
     self.validationDescription = try container.decode(
       Swift.String.self, forKey: .validationDescription)
@@ -293,10 +293,10 @@ public struct DataSourceParameter: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.datatransfer.v1.DataSourceParameter"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

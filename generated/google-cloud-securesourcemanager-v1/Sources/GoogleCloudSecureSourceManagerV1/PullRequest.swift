@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Metadata of a PullRequest. PullRequest is the request
 /// from a user to merge a branch (head) into another branch (base).
-public struct PullRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct PullRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Identifier. A unique identifier for a PullRequest. The number
@@ -44,14 +44,14 @@ public struct PullRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var state: PullRequest.State = PullRequest.State()
 
   /// Output only. Creation timestamp.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Last updated timestamp.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Close timestamp (if closed or merged). Cleared when pull
   /// request is re-opened.
-  public var closeTime: GoogleCloudWkt.Timestamp? = nil
+  public var closeTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `PullRequest`.
   public init() {}
@@ -70,7 +70,7 @@ public struct PullRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Branch represents a branch involved in a pull request.
-  public struct Branch: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Branch: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Name of the branch.
@@ -98,11 +98,11 @@ public struct PullRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.securesourcemanager.v1.PullRequest.Branch"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -221,10 +221,10 @@ public struct PullRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securesourcemanager.v1.PullRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

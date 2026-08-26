@@ -16,7 +16,7 @@
 
 #if DataStoreService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A singleton resource of
   /// [DataStore][google.cloud.discoveryengine.v1.DataStore]. If it's empty when
@@ -27,7 +27,7 @@
   ///
   /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
   /// [google.cloud.discoveryengine.v1.DataStore.ContentConfig.CONTENT_REQUIRED]: <doc:DataStore/ContentConfig/contentRequired>
-  public struct DocumentProcessingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DocumentProcessingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The full resource name of the Document Processing Config.
@@ -78,7 +78,7 @@
     }
 
     /// Configuration for chunking config.
-    public struct ChunkingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ChunkingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Additional configs that defines the behavior of the chunking.
@@ -138,7 +138,7 @@
       }
 
       /// Configuration for the layout based chunking.
-      public struct LayoutBasedChunkingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct LayoutBasedChunkingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// The token size limit for each chunk.
@@ -173,11 +173,11 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.DocumentProcessingConfig.ChunkingConfig.LayoutBasedChunkingConfig"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -192,16 +192,16 @@
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.DocumentProcessingConfig.ChunkingConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Related configurations applied to a specific type of document parser.
-    public struct ParsingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ParsingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Configs for document processing types.
@@ -278,7 +278,7 @@
       }
 
       /// The digital parsing configurations for documents.
-      public struct DigitalParsingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct DigitalParsingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Initialize a new instance of `DigitalParsingConfig`.
@@ -301,16 +301,16 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.DocumentProcessingConfig.ParsingConfig.DigitalParsingConfig"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// The OCR parsing configurations for documents.
-      public struct OcrParsingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct OcrParsingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// [DEPRECATED] This field is deprecated. To use the additional enhanced
@@ -342,16 +342,16 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.DocumentProcessingConfig.ParsingConfig.OcrParsingConfig"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// The layout parsing configurations for documents.
-      public struct LayoutParsingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct LayoutParsingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. If true, the LLM based annotation is added to the table
@@ -397,11 +397,11 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.DocumentProcessingConfig.ParsingConfig.LayoutParsingConfig"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -422,22 +422,22 @@
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.DocumentProcessingConfig.ParsingConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.DocumentProcessingConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

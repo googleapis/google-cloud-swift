@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleCloudGax
 
@@ -412,7 +412,7 @@ extension Clients {
     /// See `SecretManagerServiceClient.updateSecret`.
     func updateSecret(
       secret: Secret?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudSecretManagerV1.Secret
 
     /// See `SecretManagerServiceClient.deleteSecret`.
@@ -757,7 +757,7 @@ extension Clients.SecretManagerServiceProtocol {
 
   public func updateSecret(
     secret: Secret?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudSecretManagerV1.Secret {
     let request = UpdateSecretRequest().with {
       $0.secret = secret

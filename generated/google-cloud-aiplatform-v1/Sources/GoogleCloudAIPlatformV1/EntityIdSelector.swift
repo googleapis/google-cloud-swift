@@ -16,10 +16,10 @@
 
 #if FeaturestoreService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Selector for entityId. Getting ids from the given source.
-  public struct EntityIdSelector: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct EntityIdSelector: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Source column that holds entity IDs. If not provided, entity IDs are
@@ -93,11 +93,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.EntityIdSelector"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

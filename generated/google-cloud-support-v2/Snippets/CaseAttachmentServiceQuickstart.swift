@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudSupportV2
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(organizationId: String, caseId: String, ) async throws {
   let client = try GoogleCloudSupportV2.CaseAttachmentServiceClient()

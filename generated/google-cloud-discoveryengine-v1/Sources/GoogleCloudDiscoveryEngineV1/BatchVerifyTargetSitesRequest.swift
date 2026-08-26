@@ -16,14 +16,14 @@
 
 #if SiteSearchEngineService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request message for
   /// [SiteSearchEngineService.BatchVerifyTargetSites][google.cloud.discoveryengine.v1.SiteSearchEngineService.BatchVerifyTargetSites]
   /// method.
   ///
   /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.BatchVerifyTargetSites]: <doc:SiteSearchEngineServiceClient/batchVerifyTargetSites(request:options:)>
-  public struct BatchVerifyTargetSitesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct BatchVerifyTargetSitesRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The parent resource shared by all TargetSites being verified.
@@ -49,11 +49,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.BatchVerifyTargetSitesRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

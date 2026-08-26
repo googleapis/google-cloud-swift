@@ -16,13 +16,13 @@
 
 import Foundation
 @_spi(GoogleCloudInternal) import GoogleCloudGax
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response message for
 /// [VmwareEngine.ListManagementDnsZoneBindings][google.cloud.vmwareengine.v1.VmwareEngine.ListManagementDnsZoneBindings]
 ///
 /// [google.cloud.vmwareengine.v1.VmwareEngine.ListManagementDnsZoneBindings]: <doc:VmwareEngineClient/listManagementDnsZoneBindings(request:options:)>
-public struct ListManagementDnsZoneBindingsResponse: Codable, Equatable, GoogleCloudWkt
+public struct ListManagementDnsZoneBindingsResponse: Codable, Equatable, GoogleCloudWKT
     ._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable
@@ -57,11 +57,11 @@ public struct ListManagementDnsZoneBindingsResponse: Codable, Equatable, GoogleC
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vmwareengine.v1.ListManagementDnsZoneBindingsResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 
   public func _getPaginatedItems() -> [ManagementDnsZoneBinding] {

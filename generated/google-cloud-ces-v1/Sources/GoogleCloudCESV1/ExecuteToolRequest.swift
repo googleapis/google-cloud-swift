@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [ToolService.ExecuteTool][google.cloud.ces.v1.ToolService.ExecuteTool].
 ///
 /// [google.cloud.ces.v1.ToolService.ExecuteTool]: <doc:ToolServiceClient/executeTool(request:options:)>
-public struct ExecuteToolRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ExecuteToolRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The resource name of the app which the tool/toolset belongs to.
@@ -30,7 +30,7 @@ public struct ExecuteToolRequest: Codable, Equatable, GoogleCloudWkt._AnyPackabl
 
   /// Optional. The input parameters and values for the tool in JSON object
   /// format.
-  public var args: GoogleCloudWkt.Struct? = nil
+  public var args: GoogleCloudWKT.Struct? = nil
 
   /// Optional. Mock configuration for the tool execution.
   /// If this field is set, tools that call other tools will be
@@ -73,7 +73,7 @@ public struct ExecuteToolRequest: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.parent = try container.decode(Swift.String.self, forKey: .parent)
-    self.args = try container.decodeIfPresent(GoogleCloudWkt.Struct.self, forKey: .args)
+    self.args = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .args)
     self.mockConfig = try container.decodeIfPresent(MockConfig.self, forKey: .mockConfig)
 
     var toolIdentifier: OneOf_ToolIdentifier? = nil
@@ -105,11 +105,11 @@ public struct ExecuteToolRequest: Codable, Equatable, GoogleCloudWkt._AnyPackabl
       toolExecutionContext = $0
     }
     if let variables = try container.decodeIfPresent(
-      GoogleCloudWkt.Struct?.self, forKey: .variables)
+      GoogleCloudWKT.Struct?.self, forKey: .variables)
     {
       try toolExecutionContextCheckAndSet(.variables(variables))
     }
-    if let context = try container.decodeIfPresent(GoogleCloudWkt.Struct?.self, forKey: .context) {
+    if let context = try container.decodeIfPresent(GoogleCloudWKT.Struct?.self, forKey: .context) {
       try toolExecutionContextCheckAndSet(.context(context))
     }
     self.toolExecutionContext = toolExecutionContext
@@ -155,20 +155,20 @@ public struct ExecuteToolRequest: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   /// Additional context to be provided for the tool execution
   public enum OneOf_ToolExecutionContext: Codable, Equatable, Sendable {
     /// Optional. The variables that are available for the tool execution.
-    indirect case variables(GoogleCloudWkt.Struct?)
+    indirect case variables(GoogleCloudWKT.Struct?)
     /// Optional. The
     /// [ToolCallContext](https://docs.cloud.google.com/customer-engagement-ai/conversational-agents/ps/tool/python#environment
     /// for details) to be passed to the Python tool.
-    indirect case context(GoogleCloudWkt.Struct?)
+    indirect case context(GoogleCloudWKT.Struct?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.ExecuteToolRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

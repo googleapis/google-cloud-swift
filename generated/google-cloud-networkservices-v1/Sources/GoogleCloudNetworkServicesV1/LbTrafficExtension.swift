@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// `LbTrafficExtension` is a resource that lets the extension service modify the
 /// headers and payloads of both requests and responses without impacting the
 /// choice of backend services or any other security policies associated with the
 /// backend service.
-public struct LbTrafficExtension: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct LbTrafficExtension: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Identifier. Name of the `LbTrafficExtension` resource in the
@@ -30,10 +30,10 @@ public struct LbTrafficExtension: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public var name: Swift.String = Swift.String()
 
   /// Output only. The timestamp when the resource was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The timestamp when the resource was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. A human-readable description of the resource.
   public var description: Swift.String = Swift.String()
@@ -87,7 +87,7 @@ public struct LbTrafficExtension: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   /// You can set metadata at either the resource level or the extension level.
   /// The extension level metadata is recommended because you can pass a
   /// different set of metadata through each extension to the backend.
-  public var metadata: GoogleCloudWkt.Struct? = nil
+  public var metadata: GoogleCloudWKT.Struct? = nil
 
   /// Initialize a new instance of `LbTrafficExtension`.
   public init() {}
@@ -108,10 +108,10 @@ public struct LbTrafficExtension: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkservices.v1.LbTrafficExtension"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleIAMCredentialsV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample() async throws {
   let client = try GoogleIAMCredentialsV1.IAMCredentialsClient()

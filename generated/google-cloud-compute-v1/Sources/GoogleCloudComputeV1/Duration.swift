@@ -16,13 +16,13 @@
 
 #if BackendServices || FutureReservations || InstanceGroupManagerResizeRequests || InstanceGroupManagers || InstanceTemplates || Instances || LicenseCodes || Licenses || MachineImages || NodeGroups || RegionBackendServices || RegionCommitments || RegionInstanceGroupManagerResizeRequests || RegionInstanceGroupManagers || RegionInstanceTemplates || RegionInstances || RegionNotificationEndpoints || RegionUrlMaps || Reservations || UrlMaps
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A Duration represents a fixed-length span of time represented
   /// as a count of seconds and fractions of seconds at nanosecond
   /// resolution. It is independent of any calendar and concepts like "day"
   /// or "month". Range is approximately 10,000 years.
-  public struct Duration: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Duration: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Span of time that's a fraction of a second at nanosecond resolution.
@@ -55,11 +55,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.Duration"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

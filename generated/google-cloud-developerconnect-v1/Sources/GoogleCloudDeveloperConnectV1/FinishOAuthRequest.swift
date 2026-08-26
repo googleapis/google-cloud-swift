@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Message for finishing an OAuth flow.
-public struct FinishOAuthRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct FinishOAuthRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The resource name of the AccountConnector in the format
@@ -92,7 +92,7 @@ public struct FinishOAuthRequest: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   }
 
   /// The params returned by non-Google OAuth 2.0 flow redirect.
-  public struct OAuthParams: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct OAuthParams: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The code to be used for getting the token from SCM provider.
@@ -121,16 +121,16 @@ public struct FinishOAuthRequest: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.developerconnect.v1.FinishOAuthRequest.OAuthParams"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The params returned by Google OAuth flow redirects.
-  public struct GoogleOAuthParams: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GoogleOAuthParams: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The scopes returned by Google OAuth flow.
@@ -163,11 +163,11 @@ public struct FinishOAuthRequest: Codable, Equatable, GoogleCloudWkt._AnyPackabl
       return
         "type.googleapis.com/google.cloud.developerconnect.v1.FinishOAuthRequest.GoogleOAuthParams"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -182,10 +182,10 @@ public struct FinishOAuthRequest: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.developerconnect.v1.FinishOAuthRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

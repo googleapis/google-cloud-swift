@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A message within a conversation.
-public struct Message: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Message: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. The role within the conversation, e.g., user, agent.
@@ -31,7 +31,7 @@ public struct Message: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// used if the message is part of an [example][google.cloud.ces.v1.Example].
   ///
   /// [google.cloud.ces.v1.Example]: <doc:Example>
-  public var eventTime: GoogleCloudWkt.Timestamp? = nil
+  public var eventTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `Message`.
   public init() {}
@@ -52,10 +52,10 @@ public struct Message: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.Message"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

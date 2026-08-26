@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 extension ResponsePolicyRulesClient {
   /// Synthetic request message for the [create()][.responsePolicyRules.create] method.
-  public struct CreateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CreateRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
@@ -53,16 +53,16 @@ extension ResponsePolicyRulesClient {
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.responsePolicyRules.createRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Synthetic request message for the [delete()][.responsePolicyRules.delete] method.
-  public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DeleteRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
@@ -96,16 +96,16 @@ extension ResponsePolicyRulesClient {
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.responsePolicyRules.deleteRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Synthetic request message for the [get()][.responsePolicyRules.get] method.
-  public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GetRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
@@ -139,16 +139,16 @@ extension ResponsePolicyRulesClient {
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.responsePolicyRules.getRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Synthetic request message for the [list()][.responsePolicyRules.list] method.
-  public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ListRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Maximum number of results to be returned. If unspecified, the server decides how many results to return.
@@ -182,16 +182,16 @@ extension ResponsePolicyRulesClient {
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.responsePolicyRules.listRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Synthetic request message for the [patch()][.responsePolicyRules.patch] method.
-  public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PatchRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
@@ -228,16 +228,16 @@ extension ResponsePolicyRulesClient {
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.responsePolicyRules.patchRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Synthetic request message for the [update()][.responsePolicyRules.update] method.
-  public struct UpdateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct UpdateRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
@@ -274,11 +274,11 @@ extension ResponsePolicyRulesClient {
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.responsePolicyRules.updateRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 }

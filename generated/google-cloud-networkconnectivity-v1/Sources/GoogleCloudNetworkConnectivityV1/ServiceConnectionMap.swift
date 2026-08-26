@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// The ServiceConnectionMap resource.
-public struct ServiceConnectionMap: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ServiceConnectionMap: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Immutable. The name of a ServiceConnectionMap.
@@ -29,10 +29,10 @@ public struct ServiceConnectionMap: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public var name: Swift.String = Swift.String()
 
   /// Output only. Time when the ServiceConnectionMap was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Time when the ServiceConnectionMap was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// User-defined labels.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -88,7 +88,7 @@ public struct ServiceConnectionMap: Codable, Equatable, GoogleCloudWkt._AnyPacka
   }
 
   /// The PSC configurations on producer side.
-  public struct ProducerPscConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ProducerPscConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The resource path of a service attachment.
@@ -116,16 +116,16 @@ public struct ServiceConnectionMap: Codable, Equatable, GoogleCloudWkt._AnyPacka
       return
         "type.googleapis.com/google.cloud.networkconnectivity.v1.ServiceConnectionMap.ProducerPscConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Allow the producer to specify which consumers can connect to it.
-  public struct ConsumerPscConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ConsumerPscConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The consumer project where PSC connections are allowed to be created in.
@@ -318,16 +318,16 @@ public struct ServiceConnectionMap: Codable, Equatable, GoogleCloudWkt._AnyPacka
       return
         "type.googleapis.com/google.cloud.networkconnectivity.v1.ServiceConnectionMap.ConsumerPscConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// PSC connection details on consumer side.
-  public struct ConsumerPscConnection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ConsumerPscConnection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The URI of a service attachment which is the target of the PSC
@@ -551,21 +551,21 @@ public struct ServiceConnectionMap: Codable, Equatable, GoogleCloudWkt._AnyPacka
       return
         "type.googleapis.com/google.cloud.networkconnectivity.v1.ServiceConnectionMap.ConsumerPscConnection"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkconnectivity.v1.ServiceConnectionMap"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

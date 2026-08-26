@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for UpdateStoredInfoType.
-public struct UpdateStoredInfoTypeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateStoredInfoTypeRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Resource name of organization and storedInfoType to be updated,
@@ -32,7 +32,7 @@ public struct UpdateStoredInfoTypeRequest: Codable, Equatable, GoogleCloudWkt._A
   public var config: StoredInfoTypeConfig? = nil
 
   /// Mask to control which fields get updated.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `UpdateStoredInfoTypeRequest`.
   public init() {}
@@ -53,10 +53,10 @@ public struct UpdateStoredInfoTypeRequest: Codable, Equatable, GoogleCloudWkt._A
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.UpdateStoredInfoTypeRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

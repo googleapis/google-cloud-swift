@@ -16,14 +16,14 @@
 
 #if DocumentService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Response message for
   /// [DocumentService.BatchGetDocumentsMetadata][google.cloud.discoveryengine.v1.DocumentService.BatchGetDocumentsMetadata]
   /// method.
   ///
   /// [google.cloud.discoveryengine.v1.DocumentService.BatchGetDocumentsMetadata]: <doc:DocumentServiceClient/batchGetDocumentsMetadata(request:options:)>
-  public struct BatchGetDocumentsMetadataResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct BatchGetDocumentsMetadataResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The metadata of the [Document][google.cloud.discoveryengine.v1.Document]s.
@@ -50,7 +50,7 @@
     /// The metadata of a [Document][google.cloud.discoveryengine.v1.Document].
     ///
     /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
-    public struct DocumentMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DocumentMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The value of the matcher that was used to match the
@@ -68,7 +68,7 @@
       /// [Document][google.cloud.discoveryengine.v1.Document] was last indexed.
       ///
       /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
-      public var lastRefreshedTime: GoogleCloudWkt.Timestamp? = nil
+      public var lastRefreshedTime: GoogleCloudWKT.Timestamp? = nil
 
       /// The data ingestion source of the
       /// [Document][google.cloud.discoveryengine.v1.Document].
@@ -101,7 +101,7 @@
       /// [Document][google.cloud.discoveryengine.v1.Document].
       ///
       /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
-      public struct MatcherValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct MatcherValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// The value of the matcher that was used to match the
@@ -187,11 +187,11 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.BatchGetDocumentsMetadataResponse.DocumentMetadata.MatcherValue"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -199,11 +199,11 @@
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.BatchGetDocumentsMetadataResponse.DocumentMetadata"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -333,11 +333,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.BatchGetDocumentsMetadataResponse"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -16,7 +16,7 @@
 
 #if Environments || Fulfillments
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// By default, your agent responds to a matched intent with a static response.
   /// As an alternative, you can provide a more dynamic response by using
@@ -28,7 +28,7 @@
   ///
   /// For more information, see the [fulfillment
   /// guide](https://cloud.google.com/dialogflow/docs/fulfillment-overview).
-  public struct Fulfillment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Fulfillment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The unique identifier of the fulfillment.
@@ -128,7 +128,7 @@
     ///
     /// More information could be found at:
     /// https://cloud.google.com/dialogflow/docs/fulfillment-configure.
-    public struct GenericWebService: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GenericWebService: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The fulfillment URI for receiving POST requests.
@@ -172,16 +172,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.v2.Fulfillment.GenericWebService"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Whether fulfillment is enabled for the specific feature.
-    public struct Feature: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Feature: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The type of the feature that enabled for fulfillment.
@@ -304,11 +304,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.v2.Fulfillment.Feature"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -321,11 +321,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.Fulfillment"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

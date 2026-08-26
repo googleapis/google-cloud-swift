@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// App Engine target. The job will be pushed to a job handler by means
 /// of an HTTP request via an
@@ -29,7 +29,7 @@ import Foundation
 /// deadline, constitutes a failed attempt.
 ///
 /// [google.cloud.scheduler.v1.AppEngineHttpTarget.http_method]: <doc:AppEngineHttpTarget/httpMethod>
-public struct AppEngineHttpTarget: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AppEngineHttpTarget: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The HTTP method to use for the request. PATCH and OPTIONS are not
@@ -115,10 +115,10 @@ public struct AppEngineHttpTarget: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.scheduler.v1.AppEngineHttpTarget"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

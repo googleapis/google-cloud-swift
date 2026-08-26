@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleCloudGax
@@ -319,7 +319,7 @@ extension Clients {
     /// See `DnsThreatDetectorServiceClient.updateDnsThreatDetector`.
     func updateDnsThreatDetector(
       dnsThreatDetector: DnsThreatDetector?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudNetworkSecurityV1.DnsThreatDetector
 
     /// See `DnsThreatDetectorServiceClient.deleteDnsThreatDetector`.
@@ -566,7 +566,7 @@ extension Clients.DnsThreatDetectorServiceProtocol {
 
   public func updateDnsThreatDetector(
     dnsThreatDetector: DnsThreatDetector?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudNetworkSecurityV1.DnsThreatDetector {
     let request = UpdateDnsThreatDetectorRequest().with {
       $0.dnsThreatDetector = dnsThreatDetector

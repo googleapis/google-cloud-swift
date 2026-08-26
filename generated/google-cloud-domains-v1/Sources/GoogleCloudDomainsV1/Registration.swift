@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The `Registration` resource facilitates managing and configuring domain name
 /// registrations.
@@ -33,7 +33,7 @@ import Foundation
 /// the domain for transfer and retrieve the domain's transfer authorization
 /// code. Then call `RetrieveTransferParameters` to confirm that the domain is
 /// unlocked and to get values needed to build a call to `TransferDomain`.
-public struct Registration: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Registration: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Name of the `Registration` resource, in the format
@@ -44,10 +44,10 @@ public struct Registration: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var domainName: Swift.String = Swift.String()
 
   /// Output only. The creation timestamp of the `Registration` resource.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The expiration timestamp of the `Registration`.
-  public var expireTime: GoogleCloudWkt.Timestamp? = nil
+  public var expireTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The state of the `Registration`
   public var state: Registration.State = Registration.State()
@@ -367,10 +367,10 @@ public struct Registration: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.domains.v1.Registration"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

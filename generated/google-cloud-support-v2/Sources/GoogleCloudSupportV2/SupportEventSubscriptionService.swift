@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleCloudGax
 
 /// Service for managing customer support event subscriptions.
@@ -197,7 +197,7 @@ extension Clients {
     /// See `SupportEventSubscriptionServiceClient.updateSupportEventSubscription`.
     func updateSupportEventSubscription(
       supportEventSubscription: SupportEventSubscription?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudSupportV2.SupportEventSubscription
 
     /// See `SupportEventSubscriptionServiceClient.deleteSupportEventSubscription`.
@@ -362,7 +362,7 @@ extension Clients.SupportEventSubscriptionServiceProtocol {
 
   public func updateSupportEventSubscription(
     supportEventSubscription: SupportEventSubscription?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudSupportV2.SupportEventSubscription {
     let request = UpdateSupportEventSubscriptionRequest().with {
       $0.supportEventSubscription = supportEventSubscription

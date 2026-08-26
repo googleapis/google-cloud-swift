@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleRpc
   import GoogleCloudGax
@@ -342,7 +342,7 @@
       /// See `EntityTypesClient.updateEntityType`.
       func updateEntityType(
         entityType: EntityType?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudDialogflowCXV3.EntityType
 
       /// See `EntityTypesClient.deleteEntityType`.
@@ -561,7 +561,7 @@
 
     public func updateEntityType(
       entityType: EntityType?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.EntityType {
       let request = UpdateEntityTypeRequest().with {
         $0.entityType = entityType

@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -705,7 +705,7 @@ extension Clients {
     @available(*, deprecated)
     func updateDataTaxonomy(
       dataTaxonomy: DataTaxonomy?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<DataTaxonomy>
 
     /// See `DataTaxonomyServiceClient.deleteDataTaxonomy`.
@@ -784,7 +784,7 @@ extension Clients {
     @available(*, deprecated)
     func updateDataAttributeBinding(
       dataAttributeBinding: DataAttributeBinding?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<DataAttributeBinding>
 
     /// See `DataTaxonomyServiceClient.deleteDataAttributeBinding`.
@@ -863,7 +863,7 @@ extension Clients {
     @available(*, deprecated)
     func updateDataAttribute(
       dataAttribute: DataAttribute?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<DataAttribute>
 
     /// See `DataTaxonomyServiceClient.deleteDataAttribute`.
@@ -1251,7 +1251,7 @@ extension Clients.DataTaxonomyServiceProtocol {
 
   public func updateDataTaxonomy(
     dataTaxonomy: DataTaxonomy?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<DataTaxonomy> {
     let request = UpdateDataTaxonomyRequest().with {
       $0.dataTaxonomy = dataTaxonomy
@@ -1428,7 +1428,7 @@ extension Clients.DataTaxonomyServiceProtocol {
 
   public func updateDataAttributeBinding(
     dataAttributeBinding: DataAttributeBinding?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<DataAttributeBinding> {
     let request = UpdateDataAttributeBindingRequest().with {
       $0.dataAttributeBinding = dataAttributeBinding
@@ -1604,7 +1604,7 @@ extension Clients.DataTaxonomyServiceProtocol {
 
   public func updateDataAttribute(
     dataAttribute: DataAttribute?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<DataAttribute> {
     let request = UpdateDataAttributeRequest().with {
       $0.dataAttribute = dataAttribute

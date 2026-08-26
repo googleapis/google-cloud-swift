@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [SecurityCenterManagement.UpdateSecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityCenterManagement.UpdateSecurityHealthAnalyticsCustomModule].
 ///
 /// [google.cloud.securitycentermanagement.v1.SecurityCenterManagement.UpdateSecurityHealthAnalyticsCustomModule]: <doc:SecurityCenterManagementClient/updateSecurityHealthAnalyticsCustomModule(request:options:)>
-public struct UpdateSecurityHealthAnalyticsCustomModuleRequest: Codable, Equatable, GoogleCloudWkt
+public struct UpdateSecurityHealthAnalyticsCustomModuleRequest: Codable, Equatable, GoogleCloudWKT
     ._AnyPackable,
   Sendable
 {
@@ -32,7 +32,7 @@ public struct UpdateSecurityHealthAnalyticsCustomModuleRequest: Codable, Equatab
   ///
   /// If you omit this field or set it to the wildcard value `*`, then all
   /// eligible fields are updated.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Required. The resource being updated.
   public var securityHealthAnalyticsCustomModule: SecurityHealthAnalyticsCustomModule? = nil
@@ -72,10 +72,10 @@ public struct UpdateSecurityHealthAnalyticsCustomModuleRequest: Codable, Equatab
     return
       "type.googleapis.com/google.cloud.securitycentermanagement.v1.UpdateSecurityHealthAnalyticsCustomModuleRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

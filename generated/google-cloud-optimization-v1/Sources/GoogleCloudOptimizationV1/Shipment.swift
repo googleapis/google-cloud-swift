@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleType
 
 /// The shipment of a single item, from one of its pickups to one of its
@@ -23,7 +23,7 @@ import GoogleType
 /// must visit one of its pickup locations (and decrease its spare capacities
 /// accordingly), then visit one of its delivery locations later on (and
 /// therefore re-increase its spare capacities accordingly).
-public struct Shipment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Shipment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Set of pickup alternatives associated to the shipment. If not specified,
@@ -112,7 +112,7 @@ public struct Shipment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// the more constraining limit is used for each possible pickup/delivery pair.
   /// As of 2017/10, detours are only supported when travel durations do not
   /// depend on vehicles.
-  public var pickupToDeliveryAbsoluteDetourLimit: GoogleCloudWkt.Duration? = nil
+  public var pickupToDeliveryAbsoluteDetourLimit: GoogleCloudWKT.Duration? = nil
 
   /// Specifies the maximum duration from start of pickup to start of delivery of
   /// a shipment. If specified, it must be nonnegative, and the shipment must
@@ -120,7 +120,7 @@ public struct Shipment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// alternatives are selected for pickup and delivery, nor on vehicle speed.
   /// This can be specified alongside maximum detour constraints: the solution
   /// will respect both specifications.
-  public var pickupToDeliveryTimeLimit: GoogleCloudWkt.Duration? = nil
+  public var pickupToDeliveryTimeLimit: GoogleCloudWKT.Duration? = nil
 
   /// Non-empty string specifying a "type" for this shipment.
   /// This feature can be used to define incompatibilities or requirements
@@ -178,7 +178,7 @@ public struct Shipment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// (or two, see below), opening and closing times represented by time windows,
   /// and a service duration time (time spent by the vehicle once it has arrived
   /// to pickup or drop off goods).
-  public struct VisitRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct VisitRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The geo-location where the vehicle arrives when performing this
@@ -228,7 +228,7 @@ public struct Shipment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// Duration of the visit, i.e. time spent by the vehicle between arrival
     /// and departure (to be added to the possible waiting time; see
     /// `time_windows`).
-    public var duration: GoogleCloudWkt.Duration? = nil
+    public var duration: GoogleCloudWKT.Duration? = nil
 
     /// Cost to service this visit request on a vehicle route. This can be used
     /// to pay different costs for each alternative pickup or delivery of a
@@ -292,11 +292,11 @@ public struct Shipment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.optimization.v1.Shipment.VisitRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -306,7 +306,7 @@ public struct Shipment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [load_demands][google.cloud.optimization.v1.Shipment.load_demands].
   ///
   /// [google.cloud.optimization.v1.Shipment.load_demands]: <doc:Shipment/loadDemands>
-  public struct Load: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Load: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The amount by which the load of the vehicle performing the corresponding
@@ -333,21 +333,21 @@ public struct Shipment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.optimization.v1.Shipment.Load"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.optimization.v1.Shipment"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

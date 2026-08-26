@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The metadata for the Operation returned by
 /// [UpdateSchemaBundle][google.bigtable.admin.v2.BigtableTableAdmin.UpdateSchemaBundle].
 ///
 /// [google.bigtable.admin.v2.BigtableTableAdmin.UpdateSchemaBundle]: <doc:BigtableTableAdminClient/updateSchemaBundle(request:options:)>
-public struct UpdateSchemaBundleMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateSchemaBundleMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The unique name identifying this schema bundle.
@@ -30,10 +30,10 @@ public struct UpdateSchemaBundleMetadata: Codable, Equatable, GoogleCloudWkt._An
   public var name: Swift.String = Swift.String()
 
   /// The time at which this operation started.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// If set, the time at which this operation finished or was canceled.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `UpdateSchemaBundleMetadata`.
   public init() {}
@@ -54,10 +54,10 @@ public struct UpdateSchemaBundleMetadata: Codable, Equatable, GoogleCloudWkt._An
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.bigtable.admin.v2.UpdateSchemaBundleMetadata"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

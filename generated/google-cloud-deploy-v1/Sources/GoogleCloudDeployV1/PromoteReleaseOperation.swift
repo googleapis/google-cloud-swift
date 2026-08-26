@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Contains the information of an automated promote-release operation.
-public struct PromoteReleaseOperation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct PromoteReleaseOperation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The ID of the target that represents the promotion stage to
@@ -27,7 +27,7 @@ public struct PromoteReleaseOperation: Codable, Equatable, GoogleCloudWkt._AnyPa
   public var targetId: Swift.String = Swift.String()
 
   /// Output only. How long the operation will be paused.
-  public var wait: GoogleCloudWkt.Duration? = nil
+  public var wait: GoogleCloudWKT.Duration? = nil
 
   /// Output only. The name of the rollout that initiates the `AutomationRun`.
   public var rollout: Swift.String = Swift.String()
@@ -54,10 +54,10 @@ public struct PromoteReleaseOperation: Codable, Equatable, GoogleCloudWkt._AnyPa
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.deploy.v1.PromoteReleaseOperation"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

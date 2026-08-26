@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// VirtualMachinePreferences enables you to create sets of assumptions, for
 /// example, a geographical location and pricing track, for your migrated virtual
 /// machines. The set of preferences influence recommendations for migrating
 /// virtual machine assets.
-public struct VirtualMachinePreferences: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct VirtualMachinePreferences: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Target product for assets using this preference set.
@@ -77,10 +77,10 @@ public struct VirtualMachinePreferences: Codable, Equatable, GoogleCloudWkt._Any
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.migrationcenter.v1.VirtualMachinePreferences"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

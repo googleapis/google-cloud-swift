@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Google Cloud Storage destination configuration
-public struct GcsDestinationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct GcsDestinationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Path inside the Cloud Storage bucket to write data to.
@@ -30,7 +30,7 @@ public struct GcsDestinationConfig: Codable, Equatable, GoogleCloudWkt._AnyPacka
   /// The maximum duration for which new events are added before a file is
   /// closed and a new file is created. Values within the range of 15-60 seconds
   /// are allowed.
-  public var fileRotationInterval: GoogleCloudWkt.Duration? = nil
+  public var fileRotationInterval: GoogleCloudWKT.Duration? = nil
 
   /// File Format that the data should be written in.
   public var fileFormat: OneOf_FileFormat? = nil
@@ -64,7 +64,7 @@ public struct GcsDestinationConfig: Codable, Equatable, GoogleCloudWkt._AnyPacka
     self.path = try container.decode(Swift.String.self, forKey: .path)
     self.fileRotationMb = try container.decode(Swift.Int32.self, forKey: .fileRotationMb)
     self.fileRotationInterval = try container.decodeIfPresent(
-      GoogleCloudWkt.Duration.self, forKey: .fileRotationInterval)
+      GoogleCloudWKT.Duration.self, forKey: .fileRotationInterval)
 
     var fileFormat: OneOf_FileFormat? = nil
     let fileFormatCheckAndSet = {
@@ -116,10 +116,10 @@ public struct GcsDestinationConfig: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datastream.v1.GcsDestinationConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

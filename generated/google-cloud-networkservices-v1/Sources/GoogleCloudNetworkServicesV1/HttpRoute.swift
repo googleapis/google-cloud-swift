@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// HttpRoute is the resource defining how HTTP traffic should be routed by a
 /// Mesh or Gateway resource.
-public struct HttpRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct HttpRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. Name of the HttpRoute resource. It matches pattern
@@ -34,10 +34,10 @@ public struct HttpRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var description: Swift.String = Swift.String()
 
   /// Output only. The timestamp when the resource was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The timestamp when the resource was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Required. Hostnames define a set of hosts that should match against the
   /// HTTP host header to select a HttpRoute to process the request. Hostname is
@@ -107,7 +107,7 @@ public struct HttpRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Specifies how to select a route rule based on HTTP request headers.
-  public struct HeaderMatch: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct HeaderMatch: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The name of the HTTP header to match against.
@@ -208,7 +208,7 @@ public struct HttpRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Represents an integer value range.
-    public struct IntegerRange: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct IntegerRange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Start of the range (inclusive)
@@ -237,11 +237,11 @@ public struct HttpRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.HeaderMatch.IntegerRange"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -268,16 +268,16 @@ public struct HttpRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.HeaderMatch"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Specifications to match a query parameter in the request.
-  public struct QueryParameterMatch: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct QueryParameterMatch: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The name of the query parameter to match.
@@ -373,18 +373,18 @@ public struct HttpRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.QueryParameterMatch"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// RouteMatch defines specifications used to match requests. If multiple match
   /// types are set, this RouteMatch will match if ALL type of matches are
   /// matched.
-  public struct RouteMatch: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RouteMatch: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Specifies if prefix_match and full_path_match matches are case sensitive.
@@ -500,16 +500,16 @@ public struct HttpRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.RouteMatch"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Specifications of a destination to which the request should be routed to.
-  public struct Destination: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Destination: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The URL of a BackendService to route traffic to.
@@ -563,16 +563,16 @@ public struct HttpRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.Destination"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The specification for redirecting traffic.
-  public struct Redirect: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Redirect: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The host that will be used in the redirect response instead of the one
@@ -757,11 +757,11 @@ public struct HttpRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.Redirect"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -771,7 +771,7 @@ public struct HttpRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// introduced by client proxy on a percentage of requests before sending those
   /// requests to the destination service. Similarly requests can be aborted by
   /// client proxy for a percentage of requests.
-  public struct FaultInjectionPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FaultInjectionPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The specification for injecting delay to client requests.
@@ -798,11 +798,11 @@ public struct HttpRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Specification of how client requests are delayed as part of fault
     /// injection before being sent to a destination.
-    public struct Delay: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Delay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Specify a fixed delay before forwarding the request.
-      public var fixedDelay: GoogleCloudWkt.Duration? = nil
+      public var fixedDelay: GoogleCloudWKT.Duration? = nil
 
       /// The percentage of traffic on which delay will be injected.
       ///
@@ -829,17 +829,17 @@ public struct HttpRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.FaultInjectionPolicy.Delay"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Specification of how client requests are aborted as part of fault
     /// injection before being sent to a destination.
-    public struct Abort: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Abort: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The HTTP status code used to abort the request.
@@ -872,22 +872,22 @@ public struct HttpRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.FaultInjectionPolicy.Abort"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.FaultInjectionPolicy"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -900,7 +900,7 @@ public struct HttpRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// The gRPC proxyless mesh library or sidecar proxy will manage the session
   /// cookie but the client application code is responsible for copying the
   /// cookie from each RPC in the session to the next.
-  public struct StatefulSessionAffinityPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct StatefulSessionAffinityPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The cookie TTL value for the Set-Cookie header generated by
@@ -908,7 +908,7 @@ public struct HttpRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// to 86400 seconds (24 hours) inclusive.
     ///
     /// Set this to 0s to use a session cookie and disable cookie expiration.
-    public var cookieTtl: GoogleCloudWkt.Duration? = nil
+    public var cookieTtl: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `StatefulSessionAffinityPolicy`.
     public init() {}
@@ -930,17 +930,17 @@ public struct HttpRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.StatefulSessionAffinityPolicy"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The specification for modifying HTTP header in HTTP request and HTTP
   /// response.
-  public struct HeaderModifier: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct HeaderModifier: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Completely overwrite/replace the headers with given map where key is the
@@ -993,17 +993,17 @@ public struct HttpRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.HeaderModifier"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The specification for modifying the URL of the request, prior to forwarding
   /// the request to the destination.
-  public struct URLRewrite: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct URLRewrite: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Prior to forwarding the request to the selected destination, the matching
@@ -1033,16 +1033,16 @@ public struct HttpRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.URLRewrite"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The specifications for retries.
-  public struct RetryPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RetryPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Specifies one or more conditions when this retry policy applies. Valid
@@ -1074,7 +1074,7 @@ public struct HttpRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public var numRetries: Swift.Int32 = Swift.Int32()
 
     /// Specifies a non-zero timeout per retry attempt.
-    public var perTryTimeout: GoogleCloudWkt.Duration? = nil
+    public var perTryTimeout: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `RetryPolicy`.
     public init() {}
@@ -1095,11 +1095,11 @@ public struct HttpRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.RetryPolicy"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -1108,7 +1108,7 @@ public struct HttpRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// shadow service. Prior to sending traffic to the shadow service, the
   /// host/authority header is suffixed with -shadow.
   /// Mirroring is currently not supported for Cloud Run destinations.
-  public struct RequestMirrorPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RequestMirrorPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The destination the requests will be mirrored to. The weight of the
@@ -1138,16 +1138,16 @@ public struct HttpRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.RequestMirrorPolicy"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The Specification for allowing client side cross-origin requests.
-  public struct CorsPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CorsPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Specifies the list of origins that will be allowed to do CORS requests.
@@ -1203,16 +1203,16 @@ public struct HttpRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.CorsPolicy"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Static HTTP response object to be returned.
-  public struct HttpDirectResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct HttpDirectResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Status to return as part of HTTP Response. Must be a positive
@@ -1293,16 +1293,16 @@ public struct HttpRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.HttpDirectResponse"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The specifications for routing traffic and applying associated policies.
-  public struct RouteAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RouteAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The destination to which traffic should be forwarded.
@@ -1341,7 +1341,7 @@ public struct HttpRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// Specifies the timeout for selected route. Timeout is computed from the
     /// time the request has been fully processed (i.e. end of stream) up until
     /// the response has been completely processed. Timeout includes all retries.
-    public var timeout: GoogleCloudWkt.Duration? = nil
+    public var timeout: GoogleCloudWKT.Duration? = nil
 
     /// Specifies the retry policy associated with this route.
     public var retryPolicy: HttpRoute.RetryPolicy? = nil
@@ -1368,7 +1368,7 @@ public struct HttpRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// received on either the upstream or downstream connection. If not set, the
     /// default idle timeout is 1 hour. If set to 0s, the timeout will be
     /// disabled.
-    public var idleTimeout: GoogleCloudWkt.Duration? = nil
+    public var idleTimeout: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `RouteAction`.
     public init() {}
@@ -1389,17 +1389,17 @@ public struct HttpRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.RouteAction"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Specifies how to match traffic and how to route traffic when traffic is
   /// matched.
-  public struct RouteRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RouteRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// A list of matches define conditions used for matching the rule against
@@ -1435,21 +1435,21 @@ public struct HttpRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute.RouteRule"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkservices.v1.HttpRoute"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

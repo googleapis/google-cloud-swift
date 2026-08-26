@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleCloudGax
 
@@ -322,7 +322,7 @@ extension Clients {
     /// See `OsConfigServiceClient.updatePatchDeployment`.
     func updatePatchDeployment(
       patchDeployment: PatchDeployment?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudOSConfigV1.PatchDeployment
 
     /// See `OsConfigServiceClient.pausePatchDeployment`.
@@ -671,7 +671,7 @@ extension Clients.OsConfigServiceProtocol {
 
   public func updatePatchDeployment(
     patchDeployment: PatchDeployment?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudOSConfigV1.PatchDeployment {
     let request = UpdatePatchDeploymentRequest().with {
       $0.patchDeployment = patchDeployment

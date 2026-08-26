@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A TerraformVersion represents the support state the corresponding
 /// Terraform version.
-public struct TerraformVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TerraformVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The version name is in the format:
@@ -30,13 +30,13 @@ public struct TerraformVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var state: TerraformVersion.State = TerraformVersion.State()
 
   /// Output only. When the version is supported.
-  public var supportTime: GoogleCloudWkt.Timestamp? = nil
+  public var supportTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. When the version is deprecated.
-  public var deprecateTime: GoogleCloudWkt.Timestamp? = nil
+  public var deprecateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. When the version is obsolete.
-  public var obsoleteTime: GoogleCloudWkt.Timestamp? = nil
+  public var obsoleteTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `TerraformVersion`.
   public init() {}
@@ -169,10 +169,10 @@ public struct TerraformVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.config.v1.TerraformVersion"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

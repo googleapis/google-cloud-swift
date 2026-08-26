@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A mosaic layout divides the available space into a grid of blocks, and
 /// overlays the grid with tiles. Unlike `GridLayout`, tiles may span multiple
 /// grid blocks and can be placed at arbitrary locations in the grid.
-public struct MosaicLayout: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MosaicLayout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The number of columns in the mosaic grid. The number of columns must be
@@ -48,7 +48,7 @@ public struct MosaicLayout: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// A single tile in the mosaic. The placement and size of the tile are
   /// configurable.
-  public struct Tile: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Tile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The zero-indexed position of the tile in grid blocks relative to the
@@ -90,21 +90,21 @@ public struct MosaicLayout: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.dashboard.v1.MosaicLayout.Tile"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.dashboard.v1.MosaicLayout"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

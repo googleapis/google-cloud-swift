@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A ScanRun is a output-only resource representing an actual run of the scan.
 /// Next id: 12
-public struct ScanRun: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ScanRun: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The resource name of the ScanRun. The name follows the format of
@@ -35,11 +35,11 @@ public struct ScanRun: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var resultState: ScanRun.ResultState = ScanRun.ResultState()
 
   /// Output only. The time at which the ScanRun started.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time at which the ScanRun reached termination state - that the ScanRun
   /// is either finished or stopped by user.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The number of URLs crawled during this ScanRun. If the scan is in progress,
   /// the value represents the number of URLs crawled up to now.
@@ -312,10 +312,10 @@ public struct ScanRun: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.websecurityscanner.v1.ScanRun"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

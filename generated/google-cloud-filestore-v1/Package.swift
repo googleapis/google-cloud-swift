@@ -41,7 +41,7 @@ let package = Package(
         .product(name: "GoogleCloudCommon", package: "google-cloud-common"),
         .product(name: "GoogleCloudGax", package: "gax"),
         .product(name: "GoogleCloudLocation", package: "google-cloud-location"),
-        .product(name: "GoogleCloudWkt", package: "wkt"),
+        .product(name: "GoogleCloudWKT", package: "wkt"),
         .product(name: "GoogleLongRunning", package: "google-longrunning"),
         .product(name: "GoogleRpc", package: "google-rpc"),
         .product(name: "Logging", package: "swift-log"),

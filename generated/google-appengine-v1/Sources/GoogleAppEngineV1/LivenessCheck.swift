@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Health checking configuration for VM instances. Unhealthy instances
 /// are killed and replaced with new instances.
-public struct LivenessCheck: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct LivenessCheck: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The request path.
@@ -38,13 +38,13 @@ public struct LivenessCheck: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var successThreshold: Swift.UInt32 = Swift.UInt32()
 
   /// Interval between health checks.
-  public var checkInterval: GoogleCloudWkt.Duration? = nil
+  public var checkInterval: GoogleCloudWKT.Duration? = nil
 
   /// Time before the check is considered failed.
-  public var timeout: GoogleCloudWkt.Duration? = nil
+  public var timeout: GoogleCloudWKT.Duration? = nil
 
   /// The initial delay before starting to execute the checks.
-  public var initialDelay: GoogleCloudWkt.Duration? = nil
+  public var initialDelay: GoogleCloudWKT.Duration? = nil
 
   /// Initialize a new instance of `LivenessCheck`.
   public init() {}
@@ -65,10 +65,10 @@ public struct LivenessCheck: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.appengine.v1.LivenessCheck"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

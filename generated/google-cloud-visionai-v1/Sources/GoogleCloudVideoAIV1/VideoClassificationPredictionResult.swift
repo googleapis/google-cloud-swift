@@ -15,21 +15,21 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Prediction output format for Video Classification.
-public struct VideoClassificationPredictionResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct VideoClassificationPredictionResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The beginning, inclusive, of the video's time segment in which the
   /// classifications have been identified.
-  public var segmentStartTime: GoogleCloudWkt.Timestamp? = nil
+  public var segmentStartTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The end, inclusive, of the video's time segment in which the
   /// classifications have been identified. Particularly, if the end is the same
   /// as the start, it means the identification happens on a specific video
   /// frame.
-  public var segmentEndTime: GoogleCloudWkt.Timestamp? = nil
+  public var segmentEndTime: GoogleCloudWKT.Timestamp? = nil
 
   /// All of the classifications identified in the time range.
   public var classifications: [VideoClassificationPredictionResult.IdentifiedClassification] = []
@@ -53,7 +53,7 @@ public struct VideoClassificationPredictionResult: Codable, Equatable, GoogleClo
   /// Each IdentifiedClassification is one particular identification of an
   /// classification specified with the AnnotationSpec id and display_name,
   /// and the associated confidence score.
-  public struct IdentifiedClassification: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct IdentifiedClassification: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The resource ID of the AnnotationSpec that had been identified.
@@ -86,21 +86,21 @@ public struct VideoClassificationPredictionResult: Codable, Equatable, GoogleClo
       return
         "type.googleapis.com/google.cloud.visionai.v1.VideoClassificationPredictionResult.IdentifiedClassification"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.VideoClassificationPredictionResult"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,17 +15,17 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The set of all usage signals that Data Catalog stores.
 ///
 /// Note: Usually, these signals are updated daily. In rare cases, an update may
 /// fail but will be performed again on the next day.
-public struct UsageSignal: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UsageSignal: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The end timestamp of the duration of usage statistics.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. BigQuery usage statistics over each of the predefined time
   /// ranges.
@@ -60,10 +60,10 @@ public struct UsageSignal: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datacatalog.v1.UsageSignal"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -577,7 +577,7 @@ extension Clients {
     /// See `AnalyticsHubServiceClient.updateDataExchange`.
     func updateDataExchange(
       dataExchange: DataExchange?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleBigQueryAnalyticsHubV1.DataExchange
 
     /// See `AnalyticsHubServiceClient.deleteDataExchange`.
@@ -627,7 +627,7 @@ extension Clients {
     /// See `AnalyticsHubServiceClient.updateListing`.
     func updateListing(
       listing: Listing?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleBigQueryAnalyticsHubV1.Listing
 
     /// See `AnalyticsHubServiceClient.deleteListing`.
@@ -783,7 +783,7 @@ extension Clients {
     /// See `AnalyticsHubServiceClient.updateQueryTemplate`.
     func updateQueryTemplate(
       queryTemplate: QueryTemplate?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate
 
     /// See `AnalyticsHubServiceClient.deleteQueryTemplate`.
@@ -1140,7 +1140,7 @@ extension Clients.AnalyticsHubServiceProtocol {
 
   public func updateDataExchange(
     dataExchange: DataExchange?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleBigQueryAnalyticsHubV1.DataExchange {
     let request = UpdateDataExchangeRequest().with {
       $0.dataExchange = dataExchange
@@ -1263,7 +1263,7 @@ extension Clients.AnalyticsHubServiceProtocol {
 
   public func updateListing(
     listing: Listing?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleBigQueryAnalyticsHubV1.Listing {
     let request = UpdateListingRequest().with {
       $0.listing = listing
@@ -1678,7 +1678,7 @@ extension Clients.AnalyticsHubServiceProtocol {
 
   public func updateQueryTemplate(
     queryTemplate: QueryTemplate?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate {
     let request = UpdateQueryTemplateRequest().with {
       $0.queryTemplate = queryTemplate

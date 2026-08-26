@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A Blueprint contains a collection of kubernetes resources in the form of
 /// YAML files. The file contents of a blueprint are collectively known as
@@ -23,7 +23,7 @@ import Foundation
 /// Public blueprint is a TNA provided blueprint that in present in TNA's public
 /// catalog. A user can copy the public blueprint to their private catalog for
 /// further modifications.
-public struct PublicBlueprint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct PublicBlueprint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Name of the public blueprint.
@@ -65,10 +65,10 @@ public struct PublicBlueprint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.telcoautomation.v1.PublicBlueprint"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

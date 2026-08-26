@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Message describing the input / output specifications of a processor.
-public struct ProcessorIOSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ProcessorIOSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// For processors with input_channel_specs, the processor must be explicitly
@@ -56,7 +56,7 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Message for input channel specification.
-  public struct GraphInputChannelSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GraphInputChannelSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The name of the current input channel.
@@ -129,16 +129,16 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.ProcessorIOSpec.GraphInputChannelSpec"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Message for output channel specification.
-  public struct GraphOutputChannelSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GraphOutputChannelSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The name of the current output channel.
@@ -168,11 +168,11 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.ProcessorIOSpec.GraphOutputChannelSpec"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -180,7 +180,7 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// External resources are virtual nodes which are not expressed in the
   /// application graph. Each processor expresses its out-graph spec, so customer
   /// is able to override the external source or destinations to the
-  public struct InstanceResourceInputBindingSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct InstanceResourceInputBindingSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Name of the input binding, unique within the processor.
@@ -264,15 +264,15 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.visionai.v1.ProcessorIOSpec.InstanceResourceInputBindingSpec"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
-  public struct InstanceResourceOutputBindingSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct InstanceResourceOutputBindingSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Name of the output binding, unique within the processor.
@@ -305,21 +305,21 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.visionai.v1.ProcessorIOSpec.InstanceResourceOutputBindingSpec"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.ProcessorIOSpec"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

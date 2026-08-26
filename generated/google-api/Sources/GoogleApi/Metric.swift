@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A specific metric, identified by specifying values for all of the
 /// labels of a [`MetricDescriptor`][google.api.MetricDescriptor].
 ///
 /// [google.api.MetricDescriptor]: <doc:MetricDescriptor>
-public struct Metric: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Metric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// An existing metric type, see
@@ -54,10 +54,10 @@ public struct Metric: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.Metric"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

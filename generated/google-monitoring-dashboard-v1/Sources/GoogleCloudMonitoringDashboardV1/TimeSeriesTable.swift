@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A table that displays time series data.
-public struct TimeSeriesTable: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TimeSeriesTable: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The data displayed in this table.
@@ -48,7 +48,7 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Groups a time series query definition with table options.
-  public struct TableDataSet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TableDataSet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Fields for querying time series data from the
@@ -66,7 +66,7 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// series query For example, if the data is published once every 10 minutes,
     /// the `min_alignment_period` should be at least 10 minutes. It would not
     /// make sense to fetch and align data at one minute intervals.
-    public var minAlignmentPeriod: GoogleCloudWkt.Duration? = nil
+    public var minAlignmentPeriod: GoogleCloudWKT.Duration? = nil
 
     /// Optional. Table display options for configuring how the table is
     /// rendered.
@@ -91,16 +91,16 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.dashboard.v1.TimeSeriesTable.TableDataSet"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The persistent settings for a table's columns.
-  public struct ColumnSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ColumnSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The id of the column.
@@ -128,11 +128,11 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.dashboard.v1.TimeSeriesTable.ColumnSettings"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -244,10 +244,10 @@ public struct TimeSeriesTable: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.dashboard.v1.TimeSeriesTable"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

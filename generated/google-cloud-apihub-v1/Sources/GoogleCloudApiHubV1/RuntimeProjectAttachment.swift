@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Runtime project attachment represents an attachment from the runtime project
 /// to the host project. Api Hub looks for deployments in the attached runtime
 /// projects and creates corresponding resources in Api Hub for the discovered
 /// deployments.
-public struct RuntimeProjectAttachment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RuntimeProjectAttachment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The resource name of a runtime project attachment. Format:
@@ -35,7 +35,7 @@ public struct RuntimeProjectAttachment: Codable, Equatable, GoogleCloudWkt._AnyP
   public var runtimeProject: Swift.String = Swift.String()
 
   /// Output only. Create time.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `RuntimeProjectAttachment`.
   public init() {}
@@ -56,10 +56,10 @@ public struct RuntimeProjectAttachment: Codable, Equatable, GoogleCloudWkt._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.apihub.v1.RuntimeProjectAttachment"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

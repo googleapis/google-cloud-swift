@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A cloud control is a set of rules and associated metadata that you can
 /// use to define your organization's security or compliance intent.
-public struct CloudControl: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CloudControl: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Identifier. The name of the cloud control, in either of the
@@ -77,7 +77,7 @@ public struct CloudControl: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Output only. The time that the cloud control was last updated.
   /// `create_time` is used because a new cloud control is created
   /// whenever an existing cloud control is updated.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. The target resource types that are supported by the cloud
   /// control.
@@ -207,10 +207,10 @@ public struct CloudControl: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.cloudsecuritycompliance.v1.CloudControl"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

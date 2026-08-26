@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A BackupChannel imposes constraints on where clusters can be backed up.
 /// The BackupChannel should be in the same project and region
 /// as the cluster being backed up.
 /// The backup can be created only in destination_project.
-public struct LoggedBackupChannel: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct LoggedBackupChannel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The project where Backups are allowed to be stored.
@@ -53,10 +53,10 @@ public struct LoggedBackupChannel: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkebackup.logging.v1.LoggedBackupChannel"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

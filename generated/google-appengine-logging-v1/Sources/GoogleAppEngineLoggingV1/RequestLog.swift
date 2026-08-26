@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Complete log information about a single HTTP request to an App Engine
 /// application.
-public struct RequestLog: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RequestLog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Application that handled this request.
@@ -40,13 +40,13 @@ public struct RequestLog: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var ip: Swift.String = Swift.String()
 
   /// Time when the request started.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Time when the request finished.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Latency of the request.
-  public var latency: GoogleCloudWkt.Duration? = nil
+  public var latency: GoogleCloudWKT.Duration? = nil
 
   /// Number of CPU megacycles used to process request.
   public var megaCycles: Swift.Int64 = Swift.Int64()
@@ -104,7 +104,7 @@ public struct RequestLog: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var wasLoadingRequest: Swift.Bool = Swift.Bool()
 
   /// Time this request spent in the pending request queue.
-  public var pendingTime: GoogleCloudWkt.Duration? = nil
+  public var pendingTime: GoogleCloudWKT.Duration? = nil
 
   /// If the instance processing this request belongs to a manually scaled
   /// module, then this is the 0-based index of the instance. Otherwise, this
@@ -159,10 +159,10 @@ public struct RequestLog: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.appengine.logging.v1.RequestLog"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

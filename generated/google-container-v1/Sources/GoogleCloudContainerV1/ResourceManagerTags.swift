@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A map of resource manager tag keys and values to be attached to the nodes
 /// for managing Compute Engine firewalls using Network Firewall Policies.
@@ -23,7 +23,7 @@ import Foundation
 /// https://cloud.google.com/vpc/docs/tags-firewalls-overview#specifications.
 /// A maximum of 5 tag key-value pairs can be specified.
 /// Existing tags will be replaced with new values.
-public struct ResourceManagerTags: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ResourceManagerTags: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// TagKeyValue must be in one of the following formats ([KEY]=[VALUE])
@@ -51,10 +51,10 @@ public struct ResourceManagerTags: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.ResourceManagerTags"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

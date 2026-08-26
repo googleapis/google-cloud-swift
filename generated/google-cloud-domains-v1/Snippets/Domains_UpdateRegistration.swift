@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudDomainsV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleType
@@ -32,7 +32,7 @@ func sample(client: DomainsClient, projectId: String, locationId: String, regist
         $0.registration = Registration().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/registrations/\(registrationId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   let response = try await poller.wait()

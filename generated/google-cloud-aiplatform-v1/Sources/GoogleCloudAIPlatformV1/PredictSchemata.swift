@@ -16,7 +16,7 @@
 
 #if DatasetService || JobService || ModelGardenService || ModelService || PipelineService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Contains the schemata used in Model's predictions and explanations via
   /// [PredictionService.Predict][google.cloud.aiplatform.v1.PredictionService.Predict],
@@ -26,7 +26,7 @@
   /// [google.cloud.aiplatform.v1.BatchPredictionJob]: <doc:BatchPredictionJob>
   /// [google.cloud.aiplatform.v1.PredictionService.Explain]: <doc:PredictionServiceClient/explain(request:options:)>
   /// [google.cloud.aiplatform.v1.PredictionService.Predict]: <doc:PredictionServiceClient/predict(request:options:)>
-  public struct PredictSchemata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PredictSchemata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Immutable. Points to a YAML file stored on Google Cloud Storage describing
@@ -104,11 +104,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.PredictSchemata"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleApiServiceControlV2
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: ServiceControllerClient) async throws {
   let response = try await client.check(

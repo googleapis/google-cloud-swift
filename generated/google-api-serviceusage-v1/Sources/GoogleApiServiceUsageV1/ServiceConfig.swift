@@ -16,10 +16,10 @@
 
 import Foundation
 import GoogleApi
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The configuration of the service.
-public struct ServiceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ServiceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The DNS address at which this service is available.
@@ -33,7 +33,7 @@ public struct ServiceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// A list of API interfaces exported by this service. Contains only the names,
   /// versions, and method names of the interfaces.
-  public var apis: [GoogleCloudWkt.Api] = []
+  public var apis: [GoogleCloudWKT.Api] = []
 
   /// Additional API documentation. Contains only the summary and the
   /// documentation URL.
@@ -80,10 +80,10 @@ public struct ServiceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.serviceusage.v1.ServiceConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

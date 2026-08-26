@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Configuration for issuance of mTLS keys and certificates to Kubernetes pods.
-public struct MeshCertificates: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MeshCertificates: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// enable_certificates controls issuance of workload mTLS certificates.
@@ -32,7 +32,7 @@ public struct MeshCertificates: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// must be non-empty).
   ///
   /// [google.container.v1.WorkloadIdentityConfig.workload_pool]: <doc:WorkloadIdentityConfig/workloadPool>
-  public var enableCertificates: GoogleCloudWkt.BoolValue? = nil
+  public var enableCertificates: GoogleCloudWKT.BoolValue? = nil
 
   /// Initialize a new instance of `MeshCertificates`.
   public init() {}
@@ -53,10 +53,10 @@ public struct MeshCertificates: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.MeshCertificates"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

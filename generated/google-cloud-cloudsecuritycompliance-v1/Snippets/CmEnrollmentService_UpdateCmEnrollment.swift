@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudSecurityComplianceV1
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 
 func sample(client: CmEnrollmentServiceClient, organizationId: String, locationId: String)
@@ -31,7 +31,7 @@ func sample(client: CmEnrollmentServiceClient, organizationId: String, locationI
         $0.cmEnrollment = CmEnrollment().with {
           $0.name = "organizations/\(organizationId)/locations/\(locationId)/cmEnrollment"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

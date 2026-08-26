@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Privacy metric to compute for reidentification risk analysis.
-public struct PrivacyMetric: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct PrivacyMetric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Types of analysis.
@@ -118,7 +118,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Compute numerical stats over an individual column, including
   /// min, max, and quantiles.
-  public struct NumericalStatsConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct NumericalStatsConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Field to compute numerical stats on. Supported types are
@@ -144,17 +144,17 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.PrivacyMetric.NumericalStatsConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Compute numerical stats over an individual column, including
   /// number of distinct values and value count distribution.
-  public struct CategoricalStatsConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CategoricalStatsConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Field to compute categorical stats on. All column types are
@@ -182,16 +182,16 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.PrivacyMetric.CategoricalStatsConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// k-anonymity metric, used for analysis of reidentification risk.
-  public struct KAnonymityConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct KAnonymityConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Set of fields to compute k-anonymity over. When multiple fields are
@@ -232,16 +232,16 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.PrivacyMetric.KAnonymityConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// l-diversity metric, used for analysis of reidentification risk.
-  public struct LDiversityConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct LDiversityConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Set of quasi-identifiers indicating how equivalence classes are
@@ -271,11 +271,11 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.PrivacyMetric.LDiversityConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -285,7 +285,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// using publicly available data (like the US Census), or using a custom
   /// statistical model (indicated as one or several BigQuery tables), or by
   /// extrapolating from the distribution of values in the input dataset.
-  public struct KMapEstimationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct KMapEstimationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Fields considered to be quasi-identifiers. No two columns can
@@ -319,7 +319,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// A column with a semantic tag attached.
-    public struct TaggedField: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct TaggedField: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. Identifies the column.
@@ -374,7 +374,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           try tagCheckAndSet(.customTag(customTag))
         }
         if let inferred = try container.decodeIfPresent(
-          GoogleCloudWkt.Empty?.self, forKey: .inferred)
+          GoogleCloudWKT.Empty?.self, forKey: .inferred)
         {
           try tagCheckAndSet(.inferred(inferred))
         }
@@ -413,18 +413,18 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         case customTag(Swift.String)
         /// If no semantic tag is indicated, we infer the statistical model from
         /// the distribution of values in the input data
-        indirect case inferred(GoogleCloudWkt.Empty?)
+        indirect case inferred(GoogleCloudWKT.Empty?)
       }
 
       public static var _anyTypeUrl: Swift.String {
         return
           "type.googleapis.com/google.privacy.dlp.v2.PrivacyMetric.KMapEstimationConfig.TaggedField"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -435,7 +435,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// If a tuple is present in the data but not in the auxiliary table, the
     /// corresponding relative frequency is assumed to be zero (and thus, the
     /// tuple is highly reidentifiable).
-    public struct AuxiliaryTable: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AuxiliaryTable: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. Auxiliary table location.
@@ -466,7 +466,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
       /// A quasi-identifier column has a custom_tag, used to know which column
       /// in the data corresponds to which column in the statistical model.
-      public struct QuasiIdField: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct QuasiIdField: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Identifies the column.
@@ -495,11 +495,11 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.privacy.dlp.v2.PrivacyMetric.KMapEstimationConfig.AuxiliaryTable.QuasiIdField"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -507,22 +507,22 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.privacy.dlp.v2.PrivacyMetric.KMapEstimationConfig.AuxiliaryTable"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.PrivacyMetric.KMapEstimationConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -530,7 +530,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// figure out that one given individual appears in a de-identified dataset.
   /// Similarly to the k-map metric, we cannot compute δ-presence exactly without
   /// knowing the attack dataset, so we use a statistical model instead.
-  public struct DeltaPresenceEstimationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DeltaPresenceEstimationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Fields considered to be quasi-identifiers. No two fields can
@@ -566,11 +566,11 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.PrivacyMetric.DeltaPresenceEstimationConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -593,10 +593,10 @@ public struct PrivacyMetric: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.PrivacyMetric"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

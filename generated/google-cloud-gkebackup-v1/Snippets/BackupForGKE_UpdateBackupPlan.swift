@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudGKEBackupV1
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -33,7 +33,7 @@ func sample(client: BackupForGKEClient, projectId: String, locationId: String, b
         $0.backupPlan = BackupPlan().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/backupPlans/\(backupPlanId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   let response = try await poller.wait()

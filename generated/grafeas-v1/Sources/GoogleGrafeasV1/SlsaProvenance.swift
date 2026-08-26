@@ -15,9 +15,9 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
-public struct SlsaProvenance: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SlsaProvenance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   public var builder: SlsaProvenance.SlsaBuilder? = nil
@@ -55,7 +55,7 @@ public struct SlsaProvenance: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Steps taken to build the artifact.
   /// For a TaskRun, typically each container corresponds to one step in the
   /// recipe.
-  public struct SlsaRecipe: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SlsaRecipe: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// URI indicating what type of recipe was performed. It determines the
@@ -82,13 +82,13 @@ public struct SlsaProvenance: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// recipe type were "make", then this might be the flags passed to make
     /// aside from the target, which is captured in recipe.entryPoint. Depending
     /// on the recipe Type, the structure may be different.
-    public var arguments: GoogleCloudWkt.`Any`? = nil
+    public var arguments: GoogleCloudWKT.`Any`? = nil
 
     /// Any other builder-controlled inputs necessary for correctly evaluating
     /// the recipe. Usually only needed for reproducing the build but not
     /// evaluated as part of policy. Depending on the recipe Type, the structure
     /// may be different.
-    public var environment: GoogleCloudWkt.`Any`? = nil
+    public var environment: GoogleCloudWKT.`Any`? = nil
 
     /// Initialize a new instance of `SlsaRecipe`.
     public init() {}
@@ -109,17 +109,17 @@ public struct SlsaProvenance: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/grafeas.v1.SlsaProvenance.SlsaRecipe"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Indicates that the builder claims certain fields in this message to be
   /// complete.
-  public struct SlsaCompleteness: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SlsaCompleteness: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// If true, the builder claims that recipe.arguments is complete, meaning
@@ -153,16 +153,16 @@ public struct SlsaProvenance: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/grafeas.v1.SlsaProvenance.SlsaCompleteness"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Other properties of the build.
-  public struct SlsaMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SlsaMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Identifies the particular build invocation, which can be useful for
@@ -171,10 +171,10 @@ public struct SlsaProvenance: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public var buildInvocationId: Swift.String = Swift.String()
 
     /// The timestamp of when the build started.
-    public var buildStartedOn: GoogleCloudWkt.Timestamp? = nil
+    public var buildStartedOn: GoogleCloudWKT.Timestamp? = nil
 
     /// The timestamp of when the build completed.
-    public var buildFinishedOn: GoogleCloudWkt.Timestamp? = nil
+    public var buildFinishedOn: GoogleCloudWKT.Timestamp? = nil
 
     /// Indicates that the builder claims certain fields in this message to be
     /// complete.
@@ -203,15 +203,15 @@ public struct SlsaProvenance: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/grafeas.v1.SlsaProvenance.SlsaMetadata"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
-  public struct SlsaBuilder: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SlsaBuilder: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var id: Swift.String = Swift.String()
@@ -235,15 +235,15 @@ public struct SlsaProvenance: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/grafeas.v1.SlsaProvenance.SlsaBuilder"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
-  public struct Material: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Material: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var uri: Swift.String = Swift.String()
@@ -269,21 +269,21 @@ public struct SlsaProvenance: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/grafeas.v1.SlsaProvenance.Material"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/grafeas.v1.SlsaProvenance"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

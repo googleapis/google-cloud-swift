@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -973,7 +973,7 @@ extension Clients {
     /// See `BigtableTableAdminClient.updateTable`.
     func updateTable(
       table: Table?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Table>
 
     /// See `BigtableTableAdminClient.deleteTable`.
@@ -1045,7 +1045,7 @@ extension Clients {
     /// See `BigtableTableAdminClient.updateAuthorizedView`.
     func updateAuthorizedView(
       authorizedView: AuthorizedView?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<AuthorizedView>
 
     /// See `BigtableTableAdminClient.deleteAuthorizedView`.
@@ -1163,7 +1163,7 @@ extension Clients {
     /// See `BigtableTableAdminClient.updateBackup`.
     func updateBackup(
       backup: Backup?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudBigtableAdminV2.Backup
 
     /// See `BigtableTableAdminClient.deleteBackup`.
@@ -1207,7 +1207,7 @@ extension Clients {
       parent: Swift.String,
       backupId: Swift.String,
       sourceBackup: Swift.String,
-      expireTime: GoogleCloudWkt.Timestamp?,
+      expireTime: GoogleCloudWKT.Timestamp?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Backup>
 
     /// See `BigtableTableAdminClient.getIamPolicy`.
@@ -1263,7 +1263,7 @@ extension Clients {
     /// See `BigtableTableAdminClient.updateSchemaBundle`.
     func updateSchemaBundle(
       schemaBundle: SchemaBundle?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<SchemaBundle>
 
     /// See `BigtableTableAdminClient.getSchemaBundle`.
@@ -1757,7 +1757,7 @@ extension Clients.BigtableTableAdminProtocol {
 
   public func updateTable(
     table: Table?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Table> {
     let request = UpdateTableRequest().with {
       $0.table = table
@@ -1952,7 +1952,7 @@ extension Clients.BigtableTableAdminProtocol {
 
   public func updateAuthorizedView(
     authorizedView: AuthorizedView?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<AuthorizedView> {
     let request = UpdateAuthorizedViewRequest().with {
       $0.authorizedView = authorizedView
@@ -2251,7 +2251,7 @@ extension Clients.BigtableTableAdminProtocol {
 
   public func updateBackup(
     backup: Backup?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudBigtableAdminV2.Backup {
     let request = UpdateBackupRequest().with {
       $0.backup = backup
@@ -2373,7 +2373,7 @@ extension Clients.BigtableTableAdminProtocol {
     parent: Swift.String,
     backupId: Swift.String,
     sourceBackup: Swift.String,
-    expireTime: GoogleCloudWkt.Timestamp?,
+    expireTime: GoogleCloudWKT.Timestamp?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Backup> {
     let request = CopyBackupRequest().with {
       $0.parent = parent
@@ -2522,7 +2522,7 @@ extension Clients.BigtableTableAdminProtocol {
 
   public func updateSchemaBundle(
     schemaBundle: SchemaBundle?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<SchemaBundle> {
     let request = UpdateSchemaBundleRequest().with {
       $0.schemaBundle = schemaBundle

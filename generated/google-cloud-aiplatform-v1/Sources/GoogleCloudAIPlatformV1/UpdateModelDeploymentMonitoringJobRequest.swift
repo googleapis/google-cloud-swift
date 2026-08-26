@@ -16,13 +16,13 @@
 
 #if JobService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request message for
   /// [JobService.UpdateModelDeploymentMonitoringJob][google.cloud.aiplatform.v1.JobService.UpdateModelDeploymentMonitoringJob].
   ///
   /// [google.cloud.aiplatform.v1.JobService.UpdateModelDeploymentMonitoringJob]: <doc:JobServiceClient/updateModelDeploymentMonitoringJob(request:options:)>
-  public struct UpdateModelDeploymentMonitoringJobRequest: Codable, Equatable, GoogleCloudWkt
+  public struct UpdateModelDeploymentMonitoringJobRequest: Codable, Equatable, GoogleCloudWKT
       ._AnyPackable,
     Sendable
   {
@@ -56,7 +56,7 @@
     ///   * `model_deployment_monitoring_objective_configs.objective_config.training_dataset`
     ///   * `model_deployment_monitoring_objective_configs.objective_config.training_prediction_skew_detection_config`
     ///   * `model_deployment_monitoring_objective_configs.objective_config.prediction_drift_detection_config`
-    public var updateMask: GoogleCloudWkt.FieldMask? = nil
+    public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
     /// Initialize a new instance of `UpdateModelDeploymentMonitoringJobRequest`.
     public init() {}
@@ -78,11 +78,11 @@
       return
         "type.googleapis.com/google.cloud.aiplatform.v1.UpdateModelDeploymentMonitoringJobRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

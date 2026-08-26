@@ -19,7 +19,7 @@
   // snippet.show
   import Foundation
   import GoogleCloudSqlV1
-  import GoogleCloudWkt
+  import GoogleCloudWKT
 
   func sample(client: SqlDatabasesServiceClient) async throws {
     let response = try await client.patch(

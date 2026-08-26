@@ -16,14 +16,14 @@
 
 import Foundation
 import GoogleApi
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Service acts as a top-level container that manages a set of
 /// configurations and revision templates which implement a network service.
 /// Service exists to provide a singular abstraction which can be access
 /// controlled, reasoned about, and which encapsulates software lifecycle
 /// decisions such as rollout policy and team resource ownership.
-public struct Service: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Service: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The fully qualified name of this Service. In
@@ -76,18 +76,18 @@ public struct Service: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var annotations: [Swift.String: Swift.String] = [:]
 
   /// Output only. The creation time.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The last-modified time.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The deletion time. It is only populated as a response to a
   /// Delete request.
-  public var deleteTime: GoogleCloudWkt.Timestamp? = nil
+  public var deleteTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. For a deleted resource, the time after which it will be
   /// permanently deleted.
-  public var expireTime: GoogleCloudWkt.Timestamp? = nil
+  public var expireTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Email address of the authenticated creator.
   public var creator: Swift.String = Swift.String()
@@ -248,7 +248,7 @@ public struct Service: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Settings for multi-region deployment.
-  public struct MultiRegionSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MultiRegionSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. List of regions to deploy to, including primary region.
@@ -276,21 +276,21 @@ public struct Service: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.run.v2.Service.MultiRegionSettings"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.run.v2.Service"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

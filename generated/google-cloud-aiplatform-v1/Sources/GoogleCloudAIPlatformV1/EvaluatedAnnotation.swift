@@ -16,13 +16,13 @@
 
 #if ModelService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// True positive, false positive, or false negative.
   ///
   /// EvaluatedAnnotation is only available under ModelEvaluationSlice with slice
   /// of `annotationSpec` dimension.
-  public struct EvaluatedAnnotation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct EvaluatedAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Type of the EvaluatedAnnotation.
@@ -50,7 +50,7 @@
     /// [google.cloud.aiplatform.v1.EvaluatedAnnotation.evaluated_data_item_view_id]: <doc:EvaluatedAnnotation/evaluatedDataItemViewId>
     /// [google.cloud.aiplatform.v1.EvaluatedAnnotation.ground_truths]: <doc:EvaluatedAnnotation/groundTruths>
     /// [google.cloud.aiplatform.v1.ModelEvaluation.annotation_schema_uri]: <doc:ModelEvaluation/annotationSchemaUri>
-    public var predictions: [GoogleCloudWkt.Value] = []
+    public var predictions: [GoogleCloudWKT.Value] = []
 
     /// Output only. The ground truth Annotations, i.e. the Annotations that exist
     /// in the test data the Model is evaluated on.
@@ -72,11 +72,11 @@
     ///
     /// [google.cloud.aiplatform.v1.EvaluatedAnnotation.predictions]: <doc:EvaluatedAnnotation/predictions>
     /// [google.cloud.aiplatform.v1.ModelEvaluation.annotation_schema_uri]: <doc:ModelEvaluation/annotationSchemaUri>
-    public var groundTruths: [GoogleCloudWkt.Value] = []
+    public var groundTruths: [GoogleCloudWKT.Value] = []
 
     /// Output only. The data item payload that the Model predicted this
     /// EvaluatedAnnotation on.
-    public var dataItemPayload: GoogleCloudWkt.Value? = nil
+    public var dataItemPayload: GoogleCloudWKT.Value? = nil
 
     /// Output only. ID of the EvaluatedDataItemView under the same ancestor
     /// ModelEvaluation. The EvaluatedDataItemView consists of all ground truths
@@ -239,11 +239,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.EvaluatedAnnotation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

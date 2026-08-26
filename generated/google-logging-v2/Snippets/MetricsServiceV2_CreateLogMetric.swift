@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudLoggingV2
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 
 func sample(client: MetricsServiceV2Client, projectId: String) async throws {

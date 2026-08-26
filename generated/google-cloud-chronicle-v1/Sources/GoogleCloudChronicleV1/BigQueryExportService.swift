@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleCloudGax
 
@@ -153,7 +153,7 @@ extension Clients {
     /// See `BigQueryExportServiceClient.updateBigQueryExport`.
     func updateBigQueryExport(
       bigQueryExport: BigQueryExport?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudChronicleV1.BigQueryExport
 
     /// See `BigQueryExportServiceClient.provisionBigQueryExport`.
@@ -270,7 +270,7 @@ extension Clients.BigQueryExportServiceProtocol {
 
   public func updateBigQueryExport(
     bigQueryExport: BigQueryExport?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudChronicleV1.BigQueryExport {
     let request = UpdateBigQueryExportRequest().with {
       $0.bigQueryExport = bigQueryExport

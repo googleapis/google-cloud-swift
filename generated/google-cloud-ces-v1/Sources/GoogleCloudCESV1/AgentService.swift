@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -968,7 +968,7 @@ extension Clients {
     /// See `AgentServiceClient.updateApp`.
     func updateApp(
       app: App?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudCESV1.App
 
     /// See `AgentServiceClient.deleteApp`.
@@ -1052,7 +1052,7 @@ extension Clients {
     /// See `AgentServiceClient.updateAgent`.
     func updateAgent(
       agent: Agent?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudCESV1.Agent
 
     /// See `AgentServiceClient.deleteAgent`.
@@ -1107,7 +1107,7 @@ extension Clients {
     /// See `AgentServiceClient.updateExample`.
     func updateExample(
       example: Example?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudCESV1.Example
 
     /// See `AgentServiceClient.deleteExample`.
@@ -1205,7 +1205,7 @@ extension Clients {
     /// See `AgentServiceClient.updateTool`.
     func updateTool(
       tool: Tool?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudCESV1.Tool
 
     /// See `AgentServiceClient.deleteTool`.
@@ -1260,7 +1260,7 @@ extension Clients {
     /// See `AgentServiceClient.updateGuardrail`.
     func updateGuardrail(
       guardrail: Guardrail?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudCESV1.Guardrail
 
     /// See `AgentServiceClient.deleteGuardrail`.
@@ -1317,7 +1317,7 @@ extension Clients {
     /// See `AgentServiceClient.updateDeployment`.
     func updateDeployment(
       deployment: Deployment?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudCESV1.Deployment
 
     /// See `AgentServiceClient.deleteDeployment`.
@@ -1372,7 +1372,7 @@ extension Clients {
     /// See `AgentServiceClient.updateToolset`.
     func updateToolset(
       toolset: Toolset?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudCESV1.Toolset
 
     /// See `AgentServiceClient.deleteToolset`.
@@ -1983,7 +1983,7 @@ extension Clients.AgentServiceProtocol {
 
   public func updateApp(
     app: App?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudCESV1.App {
     let request = UpdateAppRequest().with {
       $0.app = app
@@ -2204,7 +2204,7 @@ extension Clients.AgentServiceProtocol {
 
   public func updateAgent(
     agent: Agent?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudCESV1.Agent {
     let request = UpdateAgentRequest().with {
       $0.agent = agent
@@ -2335,7 +2335,7 @@ extension Clients.AgentServiceProtocol {
 
   public func updateExample(
     example: Example?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudCESV1.Example {
     let request = UpdateExampleRequest().with {
       $0.example = example
@@ -2580,7 +2580,7 @@ extension Clients.AgentServiceProtocol {
 
   public func updateTool(
     tool: Tool?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudCESV1.Tool {
     let request = UpdateToolRequest().with {
       $0.tool = tool
@@ -2714,7 +2714,7 @@ extension Clients.AgentServiceProtocol {
 
   public func updateGuardrail(
     guardrail: Guardrail?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudCESV1.Guardrail {
     let request = UpdateGuardrailRequest().with {
       $0.guardrail = guardrail
@@ -2850,7 +2850,7 @@ extension Clients.AgentServiceProtocol {
 
   public func updateDeployment(
     deployment: Deployment?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudCESV1.Deployment {
     let request = UpdateDeploymentRequest().with {
       $0.deployment = deployment
@@ -2981,7 +2981,7 @@ extension Clients.AgentServiceProtocol {
 
   public func updateToolset(
     toolset: Toolset?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudCESV1.Toolset {
     let request = UpdateToolsetRequest().with {
       $0.toolset = toolset

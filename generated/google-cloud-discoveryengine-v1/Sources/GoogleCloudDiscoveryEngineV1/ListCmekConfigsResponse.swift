@@ -16,14 +16,14 @@
 
 #if CmekConfigService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Response message for
   /// [CmekConfigService.ListCmekConfigs][google.cloud.discoveryengine.v1.CmekConfigService.ListCmekConfigs]
   /// method.
   ///
   /// [google.cloud.discoveryengine.v1.CmekConfigService.ListCmekConfigs]: <doc:CmekConfigServiceClient/listCmekConfigs(request:options:)>
-  public struct ListCmekConfigsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ListCmekConfigsResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// All the customer's
@@ -51,11 +51,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.ListCmekConfigsResponse"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

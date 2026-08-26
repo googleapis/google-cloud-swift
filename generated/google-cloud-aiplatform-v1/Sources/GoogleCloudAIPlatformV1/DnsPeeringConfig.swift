@@ -16,13 +16,13 @@
 
 #if JobService || PersistentResourceService || PipelineService || ReasoningEngineService || ScheduleService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// DNS peering configuration. These configurations are used to create
   /// DNS peering zones in the Vertex tenant project VPC, enabling resolution
   /// of records within the specified domain hosted in the target network's
   /// Cloud DNS.
-  public struct DnsPeeringConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DnsPeeringConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The DNS name suffix of the zone being peered to, e.g.,
@@ -58,11 +58,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.DnsPeeringConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

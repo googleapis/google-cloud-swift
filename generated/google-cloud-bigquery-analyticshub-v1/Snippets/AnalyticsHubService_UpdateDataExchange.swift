@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleBigQueryAnalyticsHubV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -32,7 +32,7 @@ func sample(
         $0.dataExchange = DataExchange().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/dataExchanges/\(dataExchangeId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

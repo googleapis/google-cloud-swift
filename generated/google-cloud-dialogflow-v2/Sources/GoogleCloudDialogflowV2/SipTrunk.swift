@@ -16,11 +16,11 @@
 
 #if SipTrunks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// SipTrunk is the resource that represents a SIP trunk to connect to Google
   /// Telephony platform SIP trunking service.
-  public struct SipTrunk: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SipTrunk: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Identifier. The unique identifier of the SIP trunk.
@@ -57,11 +57,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.SipTrunk"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

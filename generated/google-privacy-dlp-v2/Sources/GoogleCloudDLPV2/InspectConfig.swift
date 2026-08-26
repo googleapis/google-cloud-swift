@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Configuration description of the scanning process.
 /// When used with redactContent only info_types and min_likelihood are currently
 /// used.
-public struct InspectConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct InspectConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Restricts what info_types to look for. The values must correspond to
@@ -118,7 +118,7 @@ public struct InspectConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// request. For example, use this if you want to lower the precision for
   /// PERSON_NAME without lowering the precision for the other infotypes in the
   /// request.
-  public struct InfoTypeLikelihood: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct InfoTypeLikelihood: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Type of information the likelihood threshold applies to. Only one
@@ -149,11 +149,11 @@ public struct InspectConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.InspectConfig.InfoTypeLikelihood"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -167,7 +167,7 @@ public struct InspectConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// requests. Otherwise, Cloud DLP returns an error.
   ///
   /// [google.privacy.dlp.v2.DlpService.RedactImage]: <doc:DlpServiceClient/redactImage(request:options:)>
-  public struct FindingLimits: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FindingLimits: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Max number of findings that are returned for each item scanned.
@@ -220,7 +220,7 @@ public struct InspectConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Max findings configuration per infoType, per content item or long
     /// running DlpJob.
-    public struct InfoTypeLimit: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct InfoTypeLimit: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Type of information the findings limit applies to. Only one limit per
@@ -251,32 +251,32 @@ public struct InspectConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.privacy.dlp.v2.InspectConfig.FindingLimits.InfoTypeLimit"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.InspectConfig.FindingLimits"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.InspectConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -754,7 +754,7 @@ extension Clients {
     /// See `FirewallActivationClient.updateFirewallEndpoint`.
     func updateFirewallEndpoint(
       firewallEndpoint: FirewallEndpoint?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<FirewallEndpoint>
 
     /// See `FirewallActivationClient.updateProjectFirewallEndpoint`.
@@ -768,7 +768,7 @@ extension Clients {
     /// See `FirewallActivationClient.updateProjectFirewallEndpoint`.
     func updateProjectFirewallEndpoint(
       firewallEndpoint: FirewallEndpoint?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<FirewallEndpoint>
 
     /// See `FirewallActivationClient.listFirewallEndpointAssociations`.
@@ -833,7 +833,7 @@ extension Clients {
     /// See `FirewallActivationClient.updateFirewallEndpointAssociation`.
     func updateFirewallEndpointAssociation(
       firewallEndpointAssociation: FirewallEndpointAssociation?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<FirewallEndpointAssociation>
 
     /// See `FirewallActivationClient.listLocations`.
@@ -1383,7 +1383,7 @@ extension Clients.FirewallActivationProtocol {
 
   public func updateFirewallEndpoint(
     firewallEndpoint: FirewallEndpoint?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<FirewallEndpoint> {
     let request = UpdateFirewallEndpointRequest().with {
       $0.firewallEndpoint = firewallEndpoint
@@ -1422,7 +1422,7 @@ extension Clients.FirewallActivationProtocol {
 
   public func updateProjectFirewallEndpoint(
     firewallEndpoint: FirewallEndpoint?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<FirewallEndpoint> {
     let request = UpdateFirewallEndpointRequest().with {
       $0.firewallEndpoint = firewallEndpoint
@@ -1600,7 +1600,7 @@ extension Clients.FirewallActivationProtocol {
 
   public func updateFirewallEndpointAssociation(
     firewallEndpointAssociation: FirewallEndpointAssociation?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<FirewallEndpointAssociation> {
     let request = UpdateFirewallEndpointAssociationRequest().with {
       $0.firewallEndpointAssociation = firewallEndpointAssociation

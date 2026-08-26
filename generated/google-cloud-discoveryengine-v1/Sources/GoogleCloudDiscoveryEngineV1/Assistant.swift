@@ -16,10 +16,10 @@
 
 #if AssistantService && CmekConfigService && CompletionService && ControlService && ConversationalSearchService && DataStoreService && DocumentService && EngineService && GroundedGenerationService && IdentityMappingStoreService && ProjectService && RankService && RecommendationService && SchemaService && SearchService && SearchTuningService && ServingConfigService && SessionService && SiteSearchEngineService && UserEventService && UserLicenseService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Discovery Engine Assistant resource.
-  public struct Assistant: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Assistant: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Immutable. Resource name of the assistant.
@@ -48,11 +48,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.Assistant"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

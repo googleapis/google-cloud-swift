@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The RuleDeployment resource represents the deployment state of a Rule.
-public struct RuleDeployment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RuleDeployment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The resource name of the rule deployment.
@@ -46,7 +46,7 @@ public struct RuleDeployment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Output only. The timestamp when the rule deployment archive state was last
   /// set to true. If the rule deployment's current archive state is not set to
   /// true, the field will be empty.
-  public var archiveTime: GoogleCloudWkt.Timestamp? = nil
+  public var archiveTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The run frequency of the rule deployment.
   public var runFrequency: RunFrequency = RunFrequency()
@@ -70,7 +70,7 @@ public struct RuleDeployment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// changed. This is filled regardless of the current alert state. E.g. if the
   /// current alert status is false, this timestamp will be the timestamp when
   /// the alert status was changed to false.
-  public var lastAlertStatusChangeTime: GoogleCloudWkt.Timestamp? = nil
+  public var lastAlertStatusChangeTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `RuleDeployment`.
   public init() {}
@@ -203,10 +203,10 @@ public struct RuleDeployment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.chronicle.v1.RuleDeployment"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

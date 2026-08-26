@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleIAMV1
   import GoogleLongRunning
   import GoogleRpc
@@ -1259,7 +1259,7 @@
       /// See `JobServiceClient.updateModelDeploymentMonitoringJob`.
       func updateModelDeploymentMonitoringJob(
         modelDeploymentMonitoringJob: ModelDeploymentMonitoringJob?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> any GoogleCloudGax.PollableOperation<ModelDeploymentMonitoringJob>
 
       /// See `JobServiceClient.deleteModelDeploymentMonitoringJob`.
@@ -2572,7 +2572,7 @@
 
     public func updateModelDeploymentMonitoringJob(
       modelDeploymentMonitoringJob: ModelDeploymentMonitoringJob?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<ModelDeploymentMonitoringJob> {
       let request = UpdateModelDeploymentMonitoringJobRequest().with {
         $0.modelDeploymentMonitoringJob = modelDeploymentMonitoringJob

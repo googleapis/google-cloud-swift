@@ -16,7 +16,7 @@ import Foundation
 import Testing
 import Logging
 import GoogleCloudTestHelpers
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleCloudWorkflowsV1
 
 /// Run tests for LROs.

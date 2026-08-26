@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleType
 
 /// Defines the contact information associated with a `Registration`.
@@ -23,7 +23,7 @@ import GoogleType
 /// [ICANN](https://icann.org/) requires all domain names to have associated
 /// contact information. The `registrant_contact` is considered the
 /// domain's legal owner, and often the other contacts are identical.
-public struct ContactSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ContactSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Privacy setting for the contacts associated with the `Registration`.
@@ -62,7 +62,7 @@ public struct ContactSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Details required for a contact associated with a `Registration`.
-  public struct Contact: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Contact: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Postal address of the contact.
@@ -98,21 +98,21 @@ public struct ContactSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.domains.v1.ContactSettings.Contact"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.domains.v1.ContactSettings"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -501,7 +501,7 @@ extension Clients {
 
     /// See `ReachabilityServiceClient.updateConnectivityTest`.
     func updateConnectivityTest(
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
       resource: ConnectivityTest?,
     ) async throws -> any GoogleCloudGax.PollableOperation<ConnectivityTest>
 
@@ -818,7 +818,7 @@ extension Clients.ReachabilityServiceProtocol {
   }
 
   public func updateConnectivityTest(
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
     resource: ConnectivityTest?,
   ) async throws -> any GoogleCloudGax.PollableOperation<ConnectivityTest> {
     let request = UpdateConnectivityTestRequest().with {

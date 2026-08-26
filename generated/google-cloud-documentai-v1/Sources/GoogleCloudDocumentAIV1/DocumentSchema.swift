@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The schema defines the output of the processed document by a processor.
-public struct DocumentSchema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DocumentSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Display name to show to users.
@@ -52,7 +52,7 @@ public struct DocumentSchema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// EntityType is the wrapper of a label of the corresponding model with
   /// detailed attributes and limitations for entity-based processors. Multiple
   /// types can also compose a dependency tree to represent nested types.
-  public struct EntityType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct EntityType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// User defined name for the type.
@@ -148,7 +148,7 @@ public struct DocumentSchema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Defines the a list of enum values.
-    public struct EnumValues: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct EnumValues: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The individual values that this enum values type can include.
@@ -173,16 +173,16 @@ public struct DocumentSchema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.documentai.v1.DocumentSchema.EntityType.EnumValues"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Defines properties that can be part of the entity type.
-    public struct Property: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Property: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The name of the property.  Follows the same guidelines as the
@@ -460,11 +460,11 @@ public struct DocumentSchema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.documentai.v1.DocumentSchema.EntityType.Property"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -480,16 +480,16 @@ public struct DocumentSchema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.documentai.v1.DocumentSchema.EntityType"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Metadata for global schema behavior.
-  public struct Metadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Metadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// If true, a `document` entity type can be applied to subdocument
@@ -528,21 +528,21 @@ public struct DocumentSchema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.documentai.v1.DocumentSchema.Metadata"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.documentai.v1.DocumentSchema"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

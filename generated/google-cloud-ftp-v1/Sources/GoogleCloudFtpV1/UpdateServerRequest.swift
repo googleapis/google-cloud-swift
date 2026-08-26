@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Message for updating a Server
-public struct UpdateServerRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateServerRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. Field mask is used to specify the fields to be overwritten in the
@@ -27,7 +27,7 @@ public struct UpdateServerRequest: Codable, Equatable, GoogleCloudWkt._AnyPackab
   /// the full request. A field will be overwritten if it is in the mask. If the
   /// user does not provide a mask then all fields present in the request will be
   /// overwritten.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Required. The resource being updated
   public var server: Server? = nil
@@ -66,10 +66,10 @@ public struct UpdateServerRequest: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ftp.v1.UpdateServerRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

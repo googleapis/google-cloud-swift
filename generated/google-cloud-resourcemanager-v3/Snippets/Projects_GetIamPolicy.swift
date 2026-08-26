@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudResourceManagerV3
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc

@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudTalentV4
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 
 func sample(parent: String, ) async throws {

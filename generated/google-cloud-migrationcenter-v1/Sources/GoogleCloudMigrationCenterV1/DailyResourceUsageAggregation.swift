@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleType
 
 /// Usage data aggregation for a single day.
-public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Aggregation date. Day boundaries are at midnight UTC.
@@ -54,7 +54,7 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleCloudWkt.
   }
 
   /// Statistical aggregation of samples for a single resource usage.
-  public struct Stats: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Stats: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Average usage value.
@@ -89,16 +89,16 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleCloudWkt.
       return
         "type.googleapis.com/google.cloud.migrationcenter.v1.DailyResourceUsageAggregation.Stats"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Statistical aggregation of CPU usage.
-  public struct CPU: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CPU: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// CPU utilization percentage.
@@ -123,16 +123,16 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleCloudWkt.
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.migrationcenter.v1.DailyResourceUsageAggregation.CPU"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Statistical aggregation of memory usage.
-  public struct Memory: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Memory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Memory utilization percentage.
@@ -158,16 +158,16 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleCloudWkt.
       return
         "type.googleapis.com/google.cloud.migrationcenter.v1.DailyResourceUsageAggregation.Memory"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Statistical aggregation of network usage.
-  public struct Network: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Network: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Network ingress in B/s.
@@ -196,16 +196,16 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleCloudWkt.
       return
         "type.googleapis.com/google.cloud.migrationcenter.v1.DailyResourceUsageAggregation.Network"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Statistical aggregation of disk usage.
-  public struct Disk: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Disk: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Disk I/O operations per second.
@@ -231,21 +231,21 @@ public struct DailyResourceUsageAggregation: Codable, Equatable, GoogleCloudWkt.
       return
         "type.googleapis.com/google.cloud.migrationcenter.v1.DailyResourceUsageAggregation.Disk"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.migrationcenter.v1.DailyResourceUsageAggregation"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

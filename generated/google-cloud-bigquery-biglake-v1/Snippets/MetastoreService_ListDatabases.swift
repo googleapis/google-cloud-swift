@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleBigQueryBigLakeV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(
   client: MetastoreServiceClient, projectId: String, locationId: String, catalogId: String

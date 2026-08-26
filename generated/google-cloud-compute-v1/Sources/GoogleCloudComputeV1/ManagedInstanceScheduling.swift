@@ -16,19 +16,19 @@
 
 #if InstanceGroupManagers || RegionInstanceGroupManagers
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
-  public struct ManagedInstanceScheduling: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ManagedInstanceScheduling: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The timestamp at which the underlying instance will be
     /// triggered for graceful shutdown if it is configured. This is in RFC3339 text format.
-    public var gracefulShutdownTimestamp: GoogleCloudWkt.Timestamp? = nil
+    public var gracefulShutdownTimestamp: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. The timestamp at which the managed instance will be terminated. This is
     /// in RFC3339 text
     /// format.
-    public var terminationTimestamp: GoogleCloudWkt.Timestamp? = nil
+    public var terminationTimestamp: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `ManagedInstanceScheduling`.
     public init() {}
@@ -49,11 +49,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.ManagedInstanceScheduling"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

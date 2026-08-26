@@ -16,7 +16,7 @@
 
 #if Agents && AnswerRecords && Contexts && ConversationDatasets && ConversationModels && ConversationProfiles && Conversations && Documents && EncryptionSpecService && EntityTypes && Environments && Fulfillments && GeneratorEvaluations && Generators && Intents && KnowledgeBases && Participants && SessionEntityTypes && Sessions && SipTrunks && Tools && Versions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The response message for a webhook call.
   ///
@@ -35,7 +35,7 @@
   /// Guide](https://developers.google.com/protocol-buffers/docs/proto3#json).
   ///
   /// [google.cloud.dialogflow.v2.QueryResult.diagnostic_info]: <doc:QueryResult/diagnosticInfo>
-  public struct WebhookResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct WebhookResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The text response message intended for the end-user.
@@ -76,7 +76,7 @@
     /// format](https://developers.google.com/assistant/actions/build/json/dialogflow-webhook-json)
     ///
     /// [google.cloud.dialogflow.v2.QueryResult.webhook_payload]: <doc:QueryResult/webhookPayload>
-    public var payload: GoogleCloudWkt.Struct? = nil
+    public var payload: GoogleCloudWKT.Struct? = nil
 
     /// Optional. The collection of output contexts that will overwrite currently
     /// active contexts for the session and reset their lifespans.
@@ -122,11 +122,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.WebhookResponse"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

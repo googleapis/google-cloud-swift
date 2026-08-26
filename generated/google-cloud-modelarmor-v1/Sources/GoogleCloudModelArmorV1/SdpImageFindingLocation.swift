@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Location of the finding within an image.
-public struct SdpImageFindingLocation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SdpImageFindingLocation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Bounding boxes locating the pixels within the image containing the finding.
@@ -41,7 +41,7 @@ public struct SdpImageFindingLocation: Codable, Equatable, GoogleCloudWkt._AnyPa
   }
 
   /// Bounding box encompassing a finding within an image.
-  public struct SdpBoundingBox: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SdpBoundingBox: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Top coordinate of the bounding box. (0,0) is upper left.
@@ -98,21 +98,21 @@ public struct SdpImageFindingLocation: Codable, Equatable, GoogleCloudWkt._AnyPa
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.modelarmor.v1.SdpImageFindingLocation.SdpBoundingBox"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.modelarmor.v1.SdpImageFindingLocation"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

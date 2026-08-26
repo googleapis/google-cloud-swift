@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Define a parameter's name and location. The parameter may be passed as either
 /// an HTTP header or a URL query parameter, and if both are passed the behavior
 /// is implementation-dependent.
-public struct SystemParameter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SystemParameter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Define the name of the parameter, such as "api_key" . It is case sensitive.
@@ -53,10 +53,10 @@ public struct SystemParameter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.SystemParameter"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

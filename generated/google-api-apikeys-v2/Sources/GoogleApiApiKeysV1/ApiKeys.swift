@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -353,7 +353,7 @@ extension Clients {
     /// See `ApiKeysClient.updateKey`.
     func updateKey(
       key: Key?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Key>
 
     /// See `ApiKeysClient.deleteKey`.
@@ -589,7 +589,7 @@ extension Clients.ApiKeysProtocol {
 
   public func updateKey(
     key: Key?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Key> {
     let request = UpdateKeyRequest().with {
       $0.key = key

@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// User Data for Native Dashboard
-public struct DashboardUserData: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DashboardUserData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// time when this dashboard is last viewed
-  public var lastViewedTime: GoogleCloudWkt.Timestamp? = nil
+  public var lastViewedTime: GoogleCloudWKT.Timestamp? = nil
 
   /// is dashboard pinned by user
   public var isPinned: Swift.Bool = Swift.Bool()
@@ -46,10 +46,10 @@ public struct DashboardUserData: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.chronicle.v1.DashboardUserData"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

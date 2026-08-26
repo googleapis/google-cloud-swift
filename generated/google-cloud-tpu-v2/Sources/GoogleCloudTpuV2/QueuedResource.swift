@@ -15,19 +15,19 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleType
 
 /// A QueuedResource represents a request for resources that will be placed
 /// in a queue and fulfilled when the necessary resources are available.
-public struct QueuedResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct QueuedResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Immutable. The name of the QueuedResource.
   public var name: Swift.String = Swift.String()
 
   /// Output only. The time when the QueuedResource was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. The queueing policy of the QueuedRequest.
   public var queueingPolicy: QueuedResource.QueueingPolicy? = nil
@@ -77,7 +77,7 @@ public struct QueuedResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.queueingPolicy = try container.decodeIfPresent(
       QueuedResource.QueueingPolicy.self, forKey: .queueingPolicy)
     self.state = try container.decodeIfPresent(QueuedResourceState.self, forKey: .state)
@@ -145,7 +145,7 @@ public struct QueuedResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Details of the TPU resource(s) being requested.
-  public struct Tpu: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Tpu: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The TPU node(s) being requested.
@@ -170,7 +170,7 @@ public struct QueuedResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// Details of the TPU node(s) being requested. Users can request either a
     /// single node or multiple nodes.
     /// NodeSpec provides the specification for node(s) to be created.
-    public struct NodeSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct NodeSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The parent resource name.
@@ -249,7 +249,7 @@ public struct QueuedResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       /// Parameters to specify for multislice QueuedResource requests. This
       /// message must be populated in case of multislice requests instead of
       /// node_id.
-      public struct MultisliceParams: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct MultisliceParams: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. Number of nodes with this spec. The system will attempt
@@ -284,11 +284,11 @@ public struct QueuedResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.tpu.v2.QueuedResource.Tpu.NodeSpec.MultisliceParams"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -306,27 +306,27 @@ public struct QueuedResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.tpu.v2.QueuedResource.Tpu.NodeSpec"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.tpu.v2.QueuedResource.Tpu"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Spot tier definition.
-  public struct Spot: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Spot: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `Spot`.
@@ -348,22 +348,22 @@ public struct QueuedResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.tpu.v2.QueuedResource.Spot"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Guaranteed tier definition.
-  public struct Guaranteed: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Guaranteed: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Defines the minimum duration of the guarantee. If specified,
     /// the requested resources will only be provisioned if they can be
     /// allocated for at least the given duration.
-    public var minDuration: GoogleCloudWkt.Duration? = nil
+    public var minDuration: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `Guaranteed`.
     public init() {}
@@ -384,16 +384,16 @@ public struct QueuedResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.tpu.v2.QueuedResource.Guaranteed"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Defines the policy of the QueuedRequest.
-  public struct QueueingPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct QueueingPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Time flexibility specification.
@@ -437,22 +437,22 @@ public struct QueuedResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         startTimingConstraints = $0
       }
       if let validUntilDuration = try container.decodeIfPresent(
-        GoogleCloudWkt.Duration?.self, forKey: .validUntilDuration)
+        GoogleCloudWKT.Duration?.self, forKey: .validUntilDuration)
       {
         try startTimingConstraintsCheckAndSet(.validUntilDuration(validUntilDuration))
       }
       if let validUntilTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp?.self, forKey: .validUntilTime)
+        GoogleCloudWKT.Timestamp?.self, forKey: .validUntilTime)
       {
         try startTimingConstraintsCheckAndSet(.validUntilTime(validUntilTime))
       }
       if let validAfterDuration = try container.decodeIfPresent(
-        GoogleCloudWkt.Duration?.self, forKey: .validAfterDuration)
+        GoogleCloudWKT.Duration?.self, forKey: .validAfterDuration)
       {
         try startTimingConstraintsCheckAndSet(.validAfterDuration(validAfterDuration))
       }
       if let validAfterTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp?.self, forKey: .validAfterTime)
+        GoogleCloudWKT.Timestamp?.self, forKey: .validAfterTime)
       {
         try startTimingConstraintsCheckAndSet(.validAfterTime(validAfterTime))
       }
@@ -488,15 +488,15 @@ public struct QueuedResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       /// Optional. A relative time after which resources should not be created.
       /// If the request cannot be fulfilled by this time the request will be
       /// failed.
-      indirect case validUntilDuration(GoogleCloudWkt.Duration?)
+      indirect case validUntilDuration(GoogleCloudWKT.Duration?)
       /// Optional. An absolute time after which resources should not be created.
       /// If the request cannot be fulfilled by this time the request will be
       /// failed.
-      indirect case validUntilTime(GoogleCloudWkt.Timestamp?)
+      indirect case validUntilTime(GoogleCloudWKT.Timestamp?)
       /// Optional. A relative time after which resources may be created.
-      indirect case validAfterDuration(GoogleCloudWkt.Duration?)
+      indirect case validAfterDuration(GoogleCloudWKT.Duration?)
       /// Optional. An absolute time after which resources may be created.
-      indirect case validAfterTime(GoogleCloudWkt.Timestamp?)
+      indirect case validAfterTime(GoogleCloudWKT.Timestamp?)
       /// Optional. An absolute time interval within which resources may be
       /// created.
       indirect case validInterval(GoogleType.Interval?)
@@ -505,11 +505,11 @@ public struct QueuedResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.tpu.v2.QueuedResource.QueueingPolicy"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -530,10 +530,10 @@ public struct QueuedResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.tpu.v2.QueuedResource"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

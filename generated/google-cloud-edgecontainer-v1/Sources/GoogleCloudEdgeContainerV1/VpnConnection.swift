@@ -15,20 +15,20 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A VPN connection .
-public struct VpnConnection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct VpnConnection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The resource name of VPN connection
   public var name: Swift.String = Swift.String()
 
   /// Output only. The time when the VPN connection was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time when the VPN connection was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Labels associated with this resource.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -80,7 +80,7 @@ public struct VpnConnection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Project detail of the VPC network.
-  public struct VpcProject: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct VpcProject: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The project of the VPC to connect to. If not specified, it is the same as
@@ -110,16 +110,16 @@ public struct VpnConnection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.edgecontainer.v1.VpnConnection.VpcProject"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The created connection details.
-  public struct Details: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Details: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The state of this connection.
@@ -151,7 +151,7 @@ public struct VpnConnection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// The Cloud Router info.
-    public struct CloudRouter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct CloudRouter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The associated Cloud Router name.
@@ -176,16 +176,16 @@ public struct VpnConnection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.edgecontainer.v1.VpnConnection.Details.CloudRouter"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// The Cloud VPN info.
-    public struct CloudVpn: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct CloudVpn: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The created Cloud VPN gateway name.
@@ -210,11 +210,11 @@ public struct VpnConnection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.edgecontainer.v1.VpnConnection.Details.CloudVpn"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -333,11 +333,11 @@ public struct VpnConnection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.edgecontainer.v1.VpnConnection.Details"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -449,10 +449,10 @@ public struct VpnConnection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.edgecontainer.v1.VpnConnection"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

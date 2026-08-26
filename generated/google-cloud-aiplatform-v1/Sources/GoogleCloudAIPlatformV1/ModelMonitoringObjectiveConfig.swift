@@ -16,11 +16,11 @@
 
 #if JobService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The objective configuration for model monitoring, including the information
   /// needed to detect anomalies for one particular model.
-  public struct ModelMonitoringObjectiveConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ModelMonitoringObjectiveConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Training dataset for models. This field has to be set only if
@@ -55,7 +55,7 @@
     }
 
     /// Training Dataset information.
-    public struct TrainingDataset: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct TrainingDataset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Data format of the dataset, only applicable if the input is from
@@ -171,17 +171,17 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.ModelMonitoringObjectiveConfig.TrainingDataset"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// The config for Training & Prediction data skew detection. It specifies the
     /// training dataset sources and the skew detection parameters.
-    public struct TrainingPredictionSkewDetectionConfig: Codable, Equatable, GoogleCloudWkt
+    public struct TrainingPredictionSkewDetectionConfig: Codable, Equatable, GoogleCloudWKT
         ._AnyPackable,
       Sendable
     {
@@ -221,16 +221,16 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.ModelMonitoringObjectiveConfig.TrainingPredictionSkewDetectionConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// The config for Prediction data drift detection.
-    public struct PredictionDriftDetectionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct PredictionDriftDetectionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Key is the feature name and value is the threshold. If a feature needs to
@@ -268,17 +268,17 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.ModelMonitoringObjectiveConfig.PredictionDriftDetectionConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// The config for integrating with Vertex Explainable AI. Only applicable if
     /// the Model has explanation_spec populated.
-    public struct ExplanationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ExplanationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// If want to analyze the Vertex Explainable AI feature attribute scores or
@@ -312,7 +312,7 @@
       /// attribution scores.
       ///
       /// [google.cloud.aiplatform.v1.BatchPredictionJob]: <doc:BatchPredictionJob>
-      public struct ExplanationBaseline: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct ExplanationBaseline: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// The storage format of the predictions generated BatchPrediction job.
@@ -505,11 +505,11 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.ModelMonitoringObjectiveConfig.ExplanationConfig.ExplanationBaseline"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -517,22 +517,22 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.ModelMonitoringObjectiveConfig.ExplanationConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.ModelMonitoringObjectiveConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

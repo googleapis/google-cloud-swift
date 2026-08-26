@@ -17,7 +17,7 @@
 import Foundation
 import GoogleCloudOSConfigV1
 import GoogleCloudOrgPolicyV1
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleIdentityAccessContextManagerV1
 
@@ -30,12 +30,12 @@ import GoogleIdentityAccessContextManagerV1
 /// See [Supported asset
 /// types](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
 /// for more information.
-public struct Asset: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Asset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The last update timestamp of an asset. update_time is updated when
   /// create/update/delete operation is performed.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The full name of the asset. Example:
   /// `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`
@@ -137,7 +137,7 @@ public struct Asset: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.assetType = try container.decode(Swift.String.self, forKey: .assetType)
     self.resource = try container.decodeIfPresent(Resource.self, forKey: .resource)
@@ -219,10 +219,10 @@ public struct Asset: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.asset.v1.Asset"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

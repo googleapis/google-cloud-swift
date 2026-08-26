@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Node kubelet configs.
-public struct NodeKubeletConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct NodeKubeletConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Control the CPU management policy on the node.
@@ -53,7 +53,7 @@ public struct NodeKubeletConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
   /// your pods to be in Guaranteed QoS class by specifying the CPU limits.
   ///
   /// The default value is 'true' if unspecified.
-  public var cpuCfsQuota: GoogleCloudWkt.BoolValue? = nil
+  public var cpuCfsQuota: GoogleCloudWKT.BoolValue? = nil
 
   /// Set the CPU CFS quota period value 'cpu.cfs_period_us'.
   ///
@@ -235,7 +235,7 @@ public struct NodeKubeletConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
   /// Contains config to modify node-level parameters for container restart
   /// behavior.
-  public struct CrashLoopBackOffConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CrashLoopBackOffConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The maximum duration the backoff delay can accrue to for
@@ -270,21 +270,21 @@ public struct NodeKubeletConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.NodeKubeletConfig.CrashLoopBackOffConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.NodeKubeletConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

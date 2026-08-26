@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudModelArmorV1
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: ModelArmorClient) async throws {
   let response = try await client.getLocation(

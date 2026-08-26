@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// ServiceProjectAttachment represents an attachment from a service project to a
 /// host project. Service projects contain the underlying cloud
 /// infrastructure resources, and expose these resources to the host project
 /// through a ServiceProjectAttachment. With the attachments, the host project
 /// can provide an aggregated view of resources across all service projects.
-public struct ServiceProjectAttachment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ServiceProjectAttachment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The resource name of a ServiceProjectAttachment. Format:
@@ -35,7 +35,7 @@ public struct ServiceProjectAttachment: Codable, Equatable, GoogleCloudWkt._AnyP
   public var serviceProject: Swift.String = Swift.String()
 
   /// Output only. Create time.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. A globally unique identifier (in UUID4 format) for the
   /// `ServiceProjectAttachment`.
@@ -177,10 +177,10 @@ public struct ServiceProjectAttachment: Codable, Equatable, GoogleCloudWkt._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.apphub.v1.ServiceProjectAttachment"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

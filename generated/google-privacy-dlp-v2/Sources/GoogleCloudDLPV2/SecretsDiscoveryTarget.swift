@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Discovery target for credentials and secrets in cloud resource metadata.
 ///
@@ -29,7 +29,7 @@ import Foundation
 ///
 /// Credentials and secrets discovered will be reported as vulnerabilities to
 /// Security Command Center.
-public struct SecretsDiscoveryTarget: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SecretsDiscoveryTarget: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Initialize a new instance of `SecretsDiscoveryTarget`.
@@ -51,10 +51,10 @@ public struct SecretsDiscoveryTarget: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.SecretsDiscoveryTarget"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

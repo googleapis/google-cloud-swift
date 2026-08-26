@@ -16,10 +16,10 @@
 
 #if Instances || RegionInstances
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Per-zone constraints on location policy for this zone.
-  public struct LocationPolicyLocationConstraints: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct LocationPolicyLocationConstraints: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Maximum number of items that are allowed to be placed in this zone.
@@ -45,11 +45,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.LocationPolicyLocationConstraints"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

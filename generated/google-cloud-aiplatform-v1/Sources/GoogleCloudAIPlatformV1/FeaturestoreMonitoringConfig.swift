@@ -16,10 +16,10 @@
 
 #if FeaturestoreService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Configuration of how features in Featurestore are monitored.
-  public struct FeaturestoreMonitoringConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FeaturestoreMonitoringConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The config for Snapshot Analysis Based Feature Monitoring.
@@ -66,7 +66,7 @@
     /// This type of analysis generates statistics for each Feature based on a
     /// snapshot of the latest feature value of each entities every
     /// monitoring_interval.
-    public struct SnapshotAnalysis: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SnapshotAnalysis: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The monitoring schedule for snapshot analysis.
@@ -111,11 +111,11 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig.SnapshotAnalysis"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -126,7 +126,7 @@
     /// operation.
     ///
     /// [google.cloud.aiplatform.v1.FeaturestoreService.ImportFeatureValues]: <doc:FeaturestoreServiceClient/importFeatureValues(request:options:)>
-    public struct ImportFeaturesAnalysis: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ImportFeaturesAnalysis: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Whether to enable / disable / inherite default hebavior for import
@@ -402,16 +402,16 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig.ImportFeaturesAnalysis"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// The config for Featurestore Monitoring threshold.
-    public struct ThresholdConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ThresholdConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       public var threshold: OneOf_Threshold? = nil
@@ -481,22 +481,22 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig.ThresholdConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

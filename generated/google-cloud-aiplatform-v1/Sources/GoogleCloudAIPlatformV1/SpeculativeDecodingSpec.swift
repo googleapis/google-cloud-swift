@@ -16,10 +16,10 @@
 
 #if DeploymentResourcePoolService || EndpointService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Configuration for Speculative Decoding.
-  public struct SpeculativeDecodingSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SpeculativeDecodingSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The number of speculative tokens to generate at each step.
@@ -94,7 +94,7 @@
 
     /// Draft model speculation works by using the smaller model to generate
     /// candidate tokens for speculative decoding.
-    public struct DraftModelSpeculation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DraftModelSpeculation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The resource name of the draft model.
@@ -120,18 +120,18 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.SpeculativeDecodingSpec.DraftModelSpeculation"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// N-Gram speculation works by trying to find matching tokens in the
     /// previous prompt sequence and use those as speculation for generating
     /// new tokens.
-    public struct NgramSpeculation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct NgramSpeculation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The number of last N input tokens used as ngram to search/match
@@ -160,11 +160,11 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.SpeculativeDecodingSpec.NgramSpeculation"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -179,11 +179,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.SpeculativeDecodingSpec"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

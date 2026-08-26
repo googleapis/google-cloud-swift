@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Message describing a result of an aggregation.
-public struct AggregationResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AggregationResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   public var field: Swift.String = Swift.String()
@@ -101,7 +101,7 @@ public struct AggregationResult: Codable, Equatable, GoogleCloudWkt._AnyPackable
   }
 
   /// The result of a count aggregation.
-  public struct Count: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Count: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var value: Swift.Int64 = Swift.Int64()
@@ -125,16 +125,16 @@ public struct AggregationResult: Codable, Equatable, GoogleCloudWkt._AnyPackable
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.migrationcenter.v1.AggregationResult.Count"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The result of a sum aggregation.
-  public struct Sum: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Sum: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var value: Swift.Double = Swift.Double()
@@ -158,16 +158,16 @@ public struct AggregationResult: Codable, Equatable, GoogleCloudWkt._AnyPackable
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.migrationcenter.v1.AggregationResult.Sum"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The result of a bucketed histogram aggregation.
-  public struct Histogram: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Histogram: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Buckets in the histogram.
@@ -197,7 +197,7 @@ public struct AggregationResult: Codable, Equatable, GoogleCloudWkt._AnyPackable
     /// with a field value between those bounds.
     /// The lower bound is inclusive and the upper bound is exclusive.
     /// Lower bound may be -infinity and upper bound may be infinity.
-    public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Bucket: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Lower bound - inclusive.
@@ -229,27 +229,27 @@ public struct AggregationResult: Codable, Equatable, GoogleCloudWkt._AnyPackable
         return
           "type.googleapis.com/google.cloud.migrationcenter.v1.AggregationResult.Histogram.Bucket"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.migrationcenter.v1.AggregationResult.Histogram"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The result of a frequency distribution aggregation.
-  public struct Frequency: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Frequency: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var values: [Swift.String: Swift.Int64] = [:]
@@ -273,11 +273,11 @@ public struct AggregationResult: Codable, Equatable, GoogleCloudWkt._AnyPackable
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.migrationcenter.v1.AggregationResult.Frequency"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -291,10 +291,10 @@ public struct AggregationResult: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.migrationcenter.v1.AggregationResult"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -451,7 +451,7 @@ extension Clients {
     /// See `OrganizationVpcFlowLogsServiceClient.updateVpcFlowLogsConfig`.
     func updateVpcFlowLogsConfig(
       vpcFlowLogsConfig: VpcFlowLogsConfig?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<VpcFlowLogsConfig>
 
     /// See `OrganizationVpcFlowLogsServiceClient.deleteVpcFlowLogsConfig`.
@@ -752,7 +752,7 @@ extension Clients.OrganizationVpcFlowLogsServiceProtocol {
 
   public func updateVpcFlowLogsConfig(
     vpcFlowLogsConfig: VpcFlowLogsConfig?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<VpcFlowLogsConfig> {
     let request = UpdateVpcFlowLogsConfigRequest().with {
       $0.vpcFlowLogsConfig = vpcFlowLogsConfig

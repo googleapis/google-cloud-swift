@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudApiHubV1
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 
 func sample(client: ApiHubClient, projectId: String, locationId: String, deploymentId: String)
@@ -31,7 +31,7 @@ func sample(client: ApiHubClient, projectId: String, locationId: String, deploym
         $0.deployment = Deployment().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/deployments/\(deploymentId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

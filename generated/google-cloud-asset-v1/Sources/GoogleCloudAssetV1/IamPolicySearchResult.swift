@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleIAMV1
 
 /// A result of IAM Policy search, containing information of an IAM policy.
-public struct IamPolicySearchResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct IamPolicySearchResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The full resource name of the resource associated with this IAM policy.
@@ -112,7 +112,7 @@ public struct IamPolicySearchResult: Codable, Equatable, GoogleCloudWkt._AnyPack
   }
 
   /// Explanation about the IAM policy search result.
-  public struct Explanation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Explanation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The map from roles to their included permissions that match the
@@ -142,7 +142,7 @@ public struct IamPolicySearchResult: Codable, Equatable, GoogleCloudWkt._AnyPack
     }
 
     /// IAM permissions
-    public struct Permissions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Permissions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// A list of permissions. A sample permission string: `compute.disk.get`.
@@ -168,32 +168,32 @@ public struct IamPolicySearchResult: Codable, Equatable, GoogleCloudWkt._AnyPack
         return
           "type.googleapis.com/google.cloud.asset.v1.IamPolicySearchResult.Explanation.Permissions"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.asset.v1.IamPolicySearchResult.Explanation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.asset.v1.IamPolicySearchResult"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

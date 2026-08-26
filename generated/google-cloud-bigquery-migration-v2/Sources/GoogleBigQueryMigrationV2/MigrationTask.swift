@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// A single task for a migration which has details about the configuration of
 /// the task.
-public struct MigrationTask: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MigrationTask: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Immutable. The unique identifier for the migration task. The
@@ -53,10 +53,10 @@ public struct MigrationTask: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var processingError: GoogleRpc.ErrorInfo? = nil
 
   /// Output only. Time when the task was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Time when the task was last updated.
-  public var lastUpdateTime: GoogleCloudWkt.Timestamp? = nil
+  public var lastUpdateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Provides details to errors and issues encountered while
   /// processing the task. Presence of error details does not mean that the task
@@ -128,9 +128,9 @@ public struct MigrationTask: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.processingError = try container.decodeIfPresent(
       GoogleRpc.ErrorInfo.self, forKey: .processingError)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.lastUpdateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .lastUpdateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .lastUpdateTime)
     self.resourceErrorDetails = try container.decode(
       [ResourceErrorDetail].self, forKey: .resourceErrorDetails)
     self.resourceErrorCount = try container.decode(Swift.Int32.self, forKey: .resourceErrorCount)
@@ -343,10 +343,10 @@ public struct MigrationTask: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.migration.v2.MigrationTask"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

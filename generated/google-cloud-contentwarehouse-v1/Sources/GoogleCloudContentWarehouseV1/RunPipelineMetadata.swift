@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// Metadata message of RunPipeline method.
-public struct RunPipelineMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RunPipelineMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Number of files that were processed by the pipeline.
@@ -121,7 +121,7 @@ public struct RunPipelineMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackab
   }
 
   /// The metadata message for GcsIngest pipeline.
-  public struct GcsIngestPipelineMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GcsIngestPipelineMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The input Cloud Storage folder in this pipeline.
@@ -148,16 +148,16 @@ public struct RunPipelineMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackab
       return
         "type.googleapis.com/google.cloud.contentwarehouse.v1.RunPipelineMetadata.GcsIngestPipelineMetadata"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The metadata message for Export-to-CDW pipeline.
-  public struct ExportToCdwPipelineMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ExportToCdwPipelineMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The input list of all the resource names of the documents to be exported.
@@ -189,16 +189,16 @@ public struct RunPipelineMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackab
       return
         "type.googleapis.com/google.cloud.contentwarehouse.v1.RunPipelineMetadata.ExportToCdwPipelineMetadata"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The metadata message for Process-with-DocAi pipeline.
-  public struct ProcessWithDocAiPipelineMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ProcessWithDocAiPipelineMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The input list of all the resource names of the documents to be
@@ -228,16 +228,16 @@ public struct RunPipelineMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackab
       return
         "type.googleapis.com/google.cloud.contentwarehouse.v1.RunPipelineMetadata.ProcessWithDocAiPipelineMetadata"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The status of processing a document.
-  public struct IndividualDocumentStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct IndividualDocumentStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Document identifier of an existing document.
@@ -266,11 +266,11 @@ public struct RunPipelineMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackab
       return
         "type.googleapis.com/google.cloud.contentwarehouse.v1.RunPipelineMetadata.IndividualDocumentStatus"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -288,10 +288,10 @@ public struct RunPipelineMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.contentwarehouse.v1.RunPipelineMetadata"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

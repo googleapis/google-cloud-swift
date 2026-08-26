@@ -15,17 +15,17 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Message for responding to getting an OAuth access token.
-public struct FetchAccessTokenResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct FetchAccessTokenResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The token content.
   public var token: Swift.String = Swift.String()
 
   /// Expiration timestamp. Can be empty if unknown or non-expiring.
-  public var expirationTime: GoogleCloudWkt.Timestamp? = nil
+  public var expirationTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The scopes of the access token.
   public var scopes: [Swift.String] = []
@@ -52,10 +52,10 @@ public struct FetchAccessTokenResponse: Codable, Equatable, GoogleCloudWkt._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.developerconnect.v1.FetchAccessTokenResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

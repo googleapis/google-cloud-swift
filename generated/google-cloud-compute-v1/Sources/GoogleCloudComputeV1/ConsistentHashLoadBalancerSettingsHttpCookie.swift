@@ -16,11 +16,11 @@
 
 #if BackendServices || RegionBackendServices
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The information about the HTTP Cookie on which the hash function is based
   /// for load balancing policies that use a consistent hash.
-  public struct ConsistentHashLoadBalancerSettingsHttpCookie: Codable, Equatable, GoogleCloudWkt
+  public struct ConsistentHashLoadBalancerSettingsHttpCookie: Codable, Equatable, GoogleCloudWKT
       ._AnyPackable,
     Sendable
   {
@@ -53,11 +53,11 @@
       return
         "type.googleapis.com/google.cloud.compute.v1.ConsistentHashLoadBalancerSettingsHttpCookie"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

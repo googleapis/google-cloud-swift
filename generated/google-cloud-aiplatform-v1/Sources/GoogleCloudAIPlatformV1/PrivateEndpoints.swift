@@ -16,14 +16,14 @@
 
 #if DeploymentResourcePoolService || EndpointService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// PrivateEndpoints proto is used to provide paths for users to send
   /// requests privately.
   /// To send request via private service access, use predict_http_uri,
   /// explain_http_uri or health_http_uri. To send request via private service
   /// connect, use service_attachment.
-  public struct PrivateEndpoints: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PrivateEndpoints: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Http(s) path to send prediction requests.
@@ -58,11 +58,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.PrivateEndpoints"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

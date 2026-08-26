@@ -16,11 +16,11 @@
 
 #if OrganizationSecurityPolicies || RegionSecurityPolicies || SecurityPolicies
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents a match condition that incoming traffic is evaluated against.
   /// Exactly one field must be specified.
-  public struct SecurityPolicyRuleMatcher: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SecurityPolicyRuleMatcher: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The configuration options available when specifying versioned_expr.
@@ -163,11 +163,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.SecurityPolicyRuleMatcher"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -282,7 +282,7 @@ extension Clients {
     /// See `PrincipalAccessBoundaryPoliciesClient.updatePrincipalAccessBoundaryPolicy`.
     func updatePrincipalAccessBoundaryPolicy(
       principalAccessBoundaryPolicy: PrincipalAccessBoundaryPolicy?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<PrincipalAccessBoundaryPolicy>
 
     /// See `PrincipalAccessBoundaryPoliciesClient.deletePrincipalAccessBoundaryPolicy`.
@@ -488,7 +488,7 @@ extension Clients.PrincipalAccessBoundaryPoliciesProtocol {
 
   public func updatePrincipalAccessBoundaryPolicy(
     principalAccessBoundaryPolicy: PrincipalAccessBoundaryPolicy?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<PrincipalAccessBoundaryPolicy> {
     let request = UpdatePrincipalAccessBoundaryPolicyRequest().with {
       $0.principalAccessBoundaryPolicy = principalAccessBoundaryPolicy

@@ -16,13 +16,13 @@
 
 #if InstanceGroupManagers
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   extension InstanceGroupManagersClient {
     /// Synthetic request message for the [abandonInstances()][google.cloud.compute.v1.instanceGroupManagers.abandonInstances] method.
     ///
     /// [google.cloud.compute.v1.instanceGroupManagers.abandonInstances]: <doc:InstanceGroupManagersClient/abandonInstances(request:options:)>
-    public struct AbandonInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AbandonInstancesRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The name of the managed instance group.
@@ -75,18 +75,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.instanceGroupManagers.abandonInstancesRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [aggregatedList()][google.cloud.compute.v1.instanceGroupManagers.aggregatedList] method.
     ///
     /// [google.cloud.compute.v1.instanceGroupManagers.aggregatedList]: <doc:InstanceGroupManagersClient/aggregatedList(request:options:)>
-    public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AggregatedListRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// A filter expression that filters resources listed in the response. Most
@@ -218,18 +218,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.instanceGroupManagers.aggregatedListRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [applyUpdatesToInstances()][google.cloud.compute.v1.instanceGroupManagers.applyUpdatesToInstances] method.
     ///
     /// [google.cloud.compute.v1.instanceGroupManagers.applyUpdatesToInstances]: <doc:InstanceGroupManagersClient/applyUpdatesToInstances(request:options:)>
-    public struct ApplyUpdatesToInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ApplyUpdatesToInstancesRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The name of the managed instance group, should conform to RFC1035.
@@ -267,18 +267,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.instanceGroupManagers.applyUpdatesToInstancesRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [createInstances()][google.cloud.compute.v1.instanceGroupManagers.createInstances] method.
     ///
     /// [google.cloud.compute.v1.instanceGroupManagers.createInstances]: <doc:InstanceGroupManagersClient/createInstances(request:options:)>
-    public struct CreateInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct CreateInstancesRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The name of the managed instance group.
@@ -332,18 +332,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.instanceGroupManagers.createInstancesRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.instanceGroupManagers.delete] method.
     ///
     /// [google.cloud.compute.v1.instanceGroupManagers.delete]: <doc:InstanceGroupManagersClient/delete(request:options:)>
-    public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DeleteRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The name of the managed instance group to delete.
@@ -394,18 +394,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.instanceGroupManagers.deleteRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [deleteInstances()][google.cloud.compute.v1.instanceGroupManagers.deleteInstances] method.
     ///
     /// [google.cloud.compute.v1.instanceGroupManagers.deleteInstances]: <doc:InstanceGroupManagersClient/deleteInstances(request:options:)>
-    public struct DeleteInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DeleteInstancesRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The name of the managed instance group.
@@ -462,18 +462,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.instanceGroupManagers.deleteInstancesRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [deletePerInstanceConfigs()][google.cloud.compute.v1.instanceGroupManagers.deletePerInstanceConfigs] method.
     ///
     /// [google.cloud.compute.v1.instanceGroupManagers.deletePerInstanceConfigs]: <doc:InstanceGroupManagersClient/deletePerInstanceConfigs(request:options:)>
-    public struct DeletePerInstanceConfigsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DeletePerInstanceConfigsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The name of the managed instance group.
@@ -514,18 +514,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.instanceGroupManagers.deletePerInstanceConfigsRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.instanceGroupManagers.get] method.
     ///
     /// [google.cloud.compute.v1.instanceGroupManagers.get]: <doc:InstanceGroupManagersClient/`get`(request:options:)>
-    public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GetRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The name of the managed instance group.
@@ -557,18 +557,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.instanceGroupManagers.getRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.instanceGroupManagers.insert] method.
     ///
     /// [google.cloud.compute.v1.instanceGroupManagers.insert]: <doc:InstanceGroupManagersClient/insert(request:options:)>
-    public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct InsertRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Project ID for this request.
@@ -617,18 +617,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.instanceGroupManagers.insertRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.instanceGroupManagers.list] method.
     ///
     /// [google.cloud.compute.v1.instanceGroupManagers.list]: <doc:InstanceGroupManagersClient/list(request:options:)>
-    public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ListRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// A filter expression that filters resources listed in the response. Most
@@ -750,18 +750,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.instanceGroupManagers.listRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [listErrors()][google.cloud.compute.v1.instanceGroupManagers.listErrors] method.
     ///
     /// [google.cloud.compute.v1.instanceGroupManagers.listErrors]: <doc:InstanceGroupManagersClient/listErrors(request:options:)>
-    public struct ListErrorsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ListErrorsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// A filter expression that filters resources listed in the response. Most
@@ -890,18 +890,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.instanceGroupManagers.listErrorsRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [listManagedInstances()][google.cloud.compute.v1.instanceGroupManagers.listManagedInstances] method.
     ///
     /// [google.cloud.compute.v1.instanceGroupManagers.listManagedInstances]: <doc:InstanceGroupManagersClient/listManagedInstances(request:options:)>
-    public struct ListManagedInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ListManagedInstancesRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// A filter expression that filters resources listed in the response. Most
@@ -1027,18 +1027,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.instanceGroupManagers.listManagedInstancesRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [listPerInstanceConfigs()][google.cloud.compute.v1.instanceGroupManagers.listPerInstanceConfigs] method.
     ///
     /// [google.cloud.compute.v1.instanceGroupManagers.listPerInstanceConfigs]: <doc:InstanceGroupManagersClient/listPerInstanceConfigs(request:options:)>
-    public struct ListPerInstanceConfigsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ListPerInstanceConfigsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// A filter expression that filters resources listed in the response. Most
@@ -1165,18 +1165,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.instanceGroupManagers.listPerInstanceConfigsRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [patch()][google.cloud.compute.v1.instanceGroupManagers.patch] method.
     ///
     /// [google.cloud.compute.v1.instanceGroupManagers.patch]: <doc:InstanceGroupManagersClient/patch(request:options:)>
-    public struct PatchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct PatchRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The name of the instance group manager.
@@ -1228,18 +1228,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.instanceGroupManagers.patchRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [patchPerInstanceConfigs()][google.cloud.compute.v1.instanceGroupManagers.patchPerInstanceConfigs] method.
     ///
     /// [google.cloud.compute.v1.instanceGroupManagers.patchPerInstanceConfigs]: <doc:InstanceGroupManagersClient/patchPerInstanceConfigs(request:options:)>
-    public struct PatchPerInstanceConfigsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct PatchPerInstanceConfigsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The name of the managed instance group.
@@ -1294,18 +1294,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.instanceGroupManagers.patchPerInstanceConfigsRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [recreateInstances()][google.cloud.compute.v1.instanceGroupManagers.recreateInstances] method.
     ///
     /// [google.cloud.compute.v1.instanceGroupManagers.recreateInstances]: <doc:InstanceGroupManagersClient/recreateInstances(request:options:)>
-    public struct RecreateInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct RecreateInstancesRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The name of the managed instance group.
@@ -1362,18 +1362,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.instanceGroupManagers.recreateInstancesRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [resize()][google.cloud.compute.v1.instanceGroupManagers.resize] method.
     ///
     /// [google.cloud.compute.v1.instanceGroupManagers.resize]: <doc:InstanceGroupManagersClient/resize(request:options:)>
-    public struct ResizeRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ResizeRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The name of the managed instance group.
@@ -1425,18 +1425,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.instanceGroupManagers.resizeRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [resumeInstances()][google.cloud.compute.v1.instanceGroupManagers.resumeInstances] method.
     ///
     /// [google.cloud.compute.v1.instanceGroupManagers.resumeInstances]: <doc:InstanceGroupManagersClient/resumeInstances(request:options:)>
-    public struct ResumeInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ResumeInstancesRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The name of the managed instance group.
@@ -1489,18 +1489,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.instanceGroupManagers.resumeInstancesRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [setInstanceTemplate()][google.cloud.compute.v1.instanceGroupManagers.setInstanceTemplate] method.
     ///
     /// [google.cloud.compute.v1.instanceGroupManagers.setInstanceTemplate]: <doc:InstanceGroupManagersClient/setInstanceTemplate(request:options:)>
-    public struct SetInstanceTemplateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SetInstanceTemplateRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The name of the managed instance group.
@@ -1553,18 +1553,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.instanceGroupManagers.setInstanceTemplateRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [setTargetPools()][google.cloud.compute.v1.instanceGroupManagers.setTargetPools] method.
     ///
     /// [google.cloud.compute.v1.instanceGroupManagers.setTargetPools]: <doc:InstanceGroupManagersClient/setTargetPools(request:options:)>
-    public struct SetTargetPoolsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SetTargetPoolsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The name of the managed instance group.
@@ -1617,18 +1617,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.instanceGroupManagers.setTargetPoolsRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [startInstances()][google.cloud.compute.v1.instanceGroupManagers.startInstances] method.
     ///
     /// [google.cloud.compute.v1.instanceGroupManagers.startInstances]: <doc:InstanceGroupManagersClient/startInstances(request:options:)>
-    public struct StartInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct StartInstancesRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The name of the managed instance group.
@@ -1681,18 +1681,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.instanceGroupManagers.startInstancesRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [stopInstances()][google.cloud.compute.v1.instanceGroupManagers.stopInstances] method.
     ///
     /// [google.cloud.compute.v1.instanceGroupManagers.stopInstances]: <doc:InstanceGroupManagersClient/stopInstances(request:options:)>
-    public struct StopInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct StopInstancesRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The name of the managed instance group.
@@ -1749,18 +1749,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.instanceGroupManagers.stopInstancesRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [suspendInstances()][google.cloud.compute.v1.instanceGroupManagers.suspendInstances] method.
     ///
     /// [google.cloud.compute.v1.instanceGroupManagers.suspendInstances]: <doc:InstanceGroupManagersClient/suspendInstances(request:options:)>
-    public struct SuspendInstancesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SuspendInstancesRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The name of the managed instance group.
@@ -1813,18 +1813,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.instanceGroupManagers.suspendInstancesRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [updatePerInstanceConfigs()][google.cloud.compute.v1.instanceGroupManagers.updatePerInstanceConfigs] method.
     ///
     /// [google.cloud.compute.v1.instanceGroupManagers.updatePerInstanceConfigs]: <doc:InstanceGroupManagersClient/updatePerInstanceConfigs(request:options:)>
-    public struct UpdatePerInstanceConfigsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct UpdatePerInstanceConfigsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The name of the managed instance group.
@@ -1879,11 +1879,11 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.instanceGroupManagers.updatePerInstanceConfigsRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
   }

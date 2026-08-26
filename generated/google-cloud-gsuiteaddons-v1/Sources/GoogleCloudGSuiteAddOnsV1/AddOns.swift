@@ -22,10 +22,10 @@ import GoogleAppsScriptTypeDrive
 import GoogleAppsScriptTypeGmail
 import GoogleAppsScriptTypeSheets
 import GoogleAppsScriptTypeSlides
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A Google Workspace add-on configuration.
-public struct AddOns: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AddOns: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Configuration that is common across all Google Workspace add-ons.
@@ -71,10 +71,10 @@ public struct AddOns: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gsuiteaddons.v1.AddOns"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Spec defined at
 /// https://github.com/in-toto/attestation/tree/main/spec#statement The
 /// serialized InTotoStatement will be stored as Envelope.payload.
 /// Envelope.payloadType is always "application/vnd.in-toto+json".
-public struct InTotoStatement: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct InTotoStatement: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Always `https://in-toto.io/Statement/v0.1`.
@@ -118,10 +118,10 @@ public struct InTotoStatement: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/grafeas.v1.InTotoStatement"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

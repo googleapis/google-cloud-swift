@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// IP Management configuration.
-public struct SqlIpConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SqlIpConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Whether the instance should be assigned an IPv4 address or not.
-  public var enableIpv4: GoogleCloudWkt.BoolValue? = nil
+  public var enableIpv4: GoogleCloudWKT.BoolValue? = nil
 
   /// The resource link for the VPC network from which the Cloud SQL instance is
   /// accessible for private IP. For example,
@@ -39,7 +39,7 @@ public struct SqlIpConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var allocatedIpRange: Swift.String = Swift.String()
 
   /// Whether SSL connections over IP should be enforced or not.
-  public var requireSsl: GoogleCloudWkt.BoolValue? = nil
+  public var requireSsl: GoogleCloudWKT.BoolValue? = nil
 
   /// The list of external networks that are allowed to connect to the instance
   /// using the IP. See
@@ -66,10 +66,10 @@ public struct SqlIpConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.clouddms.v1.SqlIpConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

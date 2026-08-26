@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -491,7 +491,7 @@ extension Clients {
     /// See `ManagedIdentitiesServiceClient.updateDomain`.
     func updateDomain(
       domain: Domain?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Domain>
 
     /// See `ManagedIdentitiesServiceClient.deleteDomain`.
@@ -854,7 +854,7 @@ extension Clients.ManagedIdentitiesServiceProtocol {
 
   public func updateDomain(
     domain: Domain?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Domain> {
     let request = UpdateDomainRequest().with {
       $0.domain = domain

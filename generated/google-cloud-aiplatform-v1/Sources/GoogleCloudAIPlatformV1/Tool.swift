@@ -16,7 +16,7 @@
 
 #if GenAiCacheService || LlmUtilityService || PredictionService || VertexRagService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Tool details that the model may use to generate response.
   ///
@@ -25,7 +25,7 @@
   /// knowledge and scope of the model. A Tool object should contain exactly
   /// one type of Tool (e.g FunctionDeclaration, Retrieval or
   /// GoogleSearchRetrieval).
-  public struct Tool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Tool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Function tool type.
@@ -104,7 +104,7 @@
 
     /// GoogleSearch tool type.
     /// Tool to support Google Search in Model. Powered by Google.
-    public struct GoogleSearch: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GoogleSearch: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. List of domains to be excluded from the search results.
@@ -135,17 +135,17 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.Tool.GoogleSearch"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// ParallelAiSearch tool type.
     /// A tool that uses the Parallel.ai search engine for grounding.
-    public struct ParallelAiSearch: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ParallelAiSearch: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. The API key for ParallelAiSearch.
@@ -172,7 +172,7 @@
       ///     "max_age_seconds": 3600
       ///   }
       /// }
-      public var customConfigs: GoogleCloudWkt.Struct? = nil
+      public var customConfigs: GoogleCloudWKT.Struct? = nil
 
       /// Initialize a new instance of `ParallelAiSearch`.
       public init() {}
@@ -193,17 +193,17 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.Tool.ParallelAiSearch"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// ExaAiSearch tool type.
     /// A tool that uses the Exa.ai search engine for grounding.
-    public struct ExaAiSearch: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ExaAiSearch: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The API key for ExaAiSearch.
@@ -211,7 +211,7 @@
 
       /// Optional. This field can be used to pass any parameter from the Exa.ai
       /// Search API.
-      public var customConfigs: GoogleCloudWkt.Struct? = nil
+      public var customConfigs: GoogleCloudWKT.Struct? = nil
 
       /// Initialize a new instance of `ExaAiSearch`.
       public init() {}
@@ -232,11 +232,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.Tool.ExaAiSearch"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -245,7 +245,7 @@
     ///
     /// See also [ExecutableCode]and [CodeExecutionResult] which are input and
     /// output to this tool.
-    public struct CodeExecution: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct CodeExecution: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Initialize a new instance of `CodeExecution`.
@@ -267,16 +267,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.Tool.CodeExecution"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Tool to support computer use.
-    public struct ComputerUse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ComputerUse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The environment being operated.
@@ -407,11 +407,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.Tool.ComputerUse"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -554,11 +554,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.Tool"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The ServiceConnectionToken resource.
-public struct ServiceConnectionToken: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ServiceConnectionToken: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Immutable. The name of a ServiceConnectionToken.
@@ -28,10 +28,10 @@ public struct ServiceConnectionToken: Codable, Equatable, GoogleCloudWkt._AnyPac
   public var name: Swift.String = Swift.String()
 
   /// Output only. Time when the ServiceConnectionToken was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Time when the ServiceConnectionToken was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// User-defined labels.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -48,7 +48,7 @@ public struct ServiceConnectionToken: Codable, Equatable, GoogleCloudWkt._AnyPac
   public var token: Swift.String = Swift.String()
 
   /// Output only. The time to which this token is valid.
-  public var expireTime: GoogleCloudWkt.Timestamp? = nil
+  public var expireTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. The etag is computed by the server, and may be sent on update and
   /// delete requests to ensure the client has an up-to-date value before
@@ -74,10 +74,10 @@ public struct ServiceConnectionToken: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkconnectivity.v1.ServiceConnectionToken"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

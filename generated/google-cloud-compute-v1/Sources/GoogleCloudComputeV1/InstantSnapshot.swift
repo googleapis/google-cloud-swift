@@ -16,12 +16,12 @@
 
 #if InstantSnapshots || RegionInstantSnapshots
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents a InstantSnapshot resource.
   ///
   /// You can use instant snapshots to create disk rollback points quickly..
-  public struct InstantSnapshot: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct InstantSnapshot: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. [Output Only] The architecture of the instant snapshot. Valid values are
@@ -196,7 +196,7 @@
       self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
       self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
       if let s = try container.decodeIfPresent(Swift.String.self, forKey: .labelFingerprint) {
-        guard let v = GoogleCloudWkt._DiscoveryBase64.decode(s) else {
+        guard let v = GoogleCloudWKT._DiscoveryBase64.decode(s) else {
           throw DecodingError.dataCorrupted(
             DecodingError.Context(
               codingPath: decoder.codingPath, debugDescription: "Expected url-safe encoded value")
@@ -235,7 +235,7 @@
       try container.encode(self.kind, forKey: .kind)
       if let v = labelFingerprint {
         try container.encode(
-          GoogleCloudWkt._DiscoveryBase64.encode(v), forKey: .labelFingerprint
+          GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .labelFingerprint
         )
       }
       try container.encode(self.labels, forKey: .labels)
@@ -487,11 +487,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.InstantSnapshot"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

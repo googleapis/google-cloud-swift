@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleCloudGax
 
@@ -284,7 +284,7 @@ extension Clients {
     /// See `DataAccessControlServiceClient.updateDataAccessLabel`.
     func updateDataAccessLabel(
       dataAccessLabel: DataAccessLabel?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudChronicleV1.DataAccessLabel
 
     /// See `DataAccessControlServiceClient.deleteDataAccessLabel`.
@@ -336,7 +336,7 @@ extension Clients {
     /// See `DataAccessControlServiceClient.updateDataAccessScope`.
     func updateDataAccessScope(
       dataAccessScope: DataAccessScope?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudChronicleV1.DataAccessScope
 
     /// See `DataAccessControlServiceClient.deleteDataAccessScope`.
@@ -559,7 +559,7 @@ extension Clients.DataAccessControlServiceProtocol {
 
   public func updateDataAccessLabel(
     dataAccessLabel: DataAccessLabel?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudChronicleV1.DataAccessLabel {
     let request = UpdateDataAccessLabelRequest().with {
       $0.dataAccessLabel = dataAccessLabel
@@ -684,7 +684,7 @@ extension Clients.DataAccessControlServiceProtocol {
 
   public func updateDataAccessScope(
     dataAccessScope: DataAccessScope?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudChronicleV1.DataAccessScope {
     let request = UpdateDataAccessScopeRequest().with {
       $0.dataAccessScope = dataAccessScope

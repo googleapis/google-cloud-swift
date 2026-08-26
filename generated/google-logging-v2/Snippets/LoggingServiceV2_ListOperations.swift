@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudLoggingV2
 import GoogleApi
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 
 func sample(client: LoggingServiceV2Client) async throws {

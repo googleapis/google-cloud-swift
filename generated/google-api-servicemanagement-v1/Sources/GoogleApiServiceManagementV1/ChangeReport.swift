@@ -16,13 +16,13 @@
 
 import Foundation
 import GoogleApi
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Change report associated with a particular service configuration.
 ///
 /// It contains a list of ConfigChanges based on the comparison between
 /// two service configurations.
-public struct ChangeReport: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ChangeReport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// List of changes between two service configurations.
@@ -51,10 +51,10 @@ public struct ChangeReport: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.servicemanagement.v1.ChangeReport"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

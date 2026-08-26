@@ -16,10 +16,10 @@
 
 #if VertexRagDataService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Specifies the size and overlap of chunks for RagFiles.
-  public struct RagFileChunkingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RagFileChunkingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Specifies the chunking config for RagFiles.
@@ -78,7 +78,7 @@
     }
 
     /// Specifies the fixed length chunking config.
-    public struct FixedLengthChunking: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct FixedLengthChunking: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The size of the chunks.
@@ -107,11 +107,11 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.RagFileChunkingConfig.FixedLengthChunking"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -124,11 +124,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.RagFileChunkingConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

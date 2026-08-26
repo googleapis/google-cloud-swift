@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Snapshot of the configurations used to generate the profile.
-public struct DataProfileConfigSnapshot: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DataProfileConfigSnapshot: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A copy of the inspection config used to generate this profile. This
@@ -40,7 +40,7 @@ public struct DataProfileConfigSnapshot: Codable, Equatable, GoogleCloudWkt._Any
   public var inspectTemplateName: Swift.String = Swift.String()
 
   /// Timestamp when the template was modified
-  public var inspectTemplateModifiedTime: GoogleCloudWkt.Timestamp? = nil
+  public var inspectTemplateModifiedTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `DataProfileConfigSnapshot`.
   public init() {}
@@ -61,10 +61,10 @@ public struct DataProfileConfigSnapshot: Codable, Equatable, GoogleCloudWkt._Any
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.DataProfileConfigSnapshot"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

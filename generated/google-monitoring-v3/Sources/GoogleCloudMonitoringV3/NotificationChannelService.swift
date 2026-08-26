@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleCloudGax
 
 /// The Notification Channel API provides access to configuration that
@@ -284,7 +284,7 @@ extension Clients {
 
     /// See `NotificationChannelServiceClient.updateNotificationChannel`.
     func updateNotificationChannel(
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
       notificationChannel: NotificationChannel?,
     ) async throws -> GoogleCloudMonitoringV3.NotificationChannel
 
@@ -545,7 +545,7 @@ extension Clients.NotificationChannelServiceProtocol {
   }
 
   public func updateNotificationChannel(
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
     notificationChannel: NotificationChannel?,
   ) async throws -> GoogleCloudMonitoringV3.NotificationChannel {
     let request = UpdateNotificationChannelRequest().with {

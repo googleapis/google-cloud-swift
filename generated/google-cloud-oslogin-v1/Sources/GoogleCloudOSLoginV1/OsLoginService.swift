@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudOSLoginCommon
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleCloudGax
 
 /// Cloud OS Login API
@@ -191,7 +191,7 @@ extension Clients {
     func updateSshPublicKey(
       name: Swift.String,
       sshPublicKey: GoogleCloudOSLoginCommon.SshPublicKey?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudOSLoginCommon.SshPublicKey
 
     /// See `OsLoginServiceClient.createSshPublicKey`.
@@ -398,7 +398,7 @@ extension Clients.OsLoginServiceProtocol {
   public func updateSshPublicKey(
     name: Swift.String,
     sshPublicKey: GoogleCloudOSLoginCommon.SshPublicKey?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudOSLoginCommon.SshPublicKey {
     let request = UpdateSshPublicKeyRequest().with {
       $0.name = name

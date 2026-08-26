@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Cross instance replication config.
-public struct CrossInstanceReplicationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CrossInstanceReplicationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The role of the instance in cross instance replication.
@@ -38,7 +38,7 @@ public struct CrossInstanceReplicationConfig: Codable, Equatable, GoogleCloudWkt
   public var secondaryInstances: [CrossInstanceReplicationConfig.RemoteInstance] = []
 
   /// Output only. The last time cross instance replication config was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. An output only view of all the member instances participating
   /// in the cross instance replication. This view will be provided by every
@@ -71,7 +71,7 @@ public struct CrossInstanceReplicationConfig: Codable, Equatable, GoogleCloudWkt
 
   /// Details of the remote instance associated with this instance in a cross
   /// instance replication setup.
-  public struct RemoteInstance: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RemoteInstance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The full resource path of the remote instance in
@@ -101,17 +101,17 @@ public struct CrossInstanceReplicationConfig: Codable, Equatable, GoogleCloudWkt
       return
         "type.googleapis.com/google.cloud.memorystore.v1.CrossInstanceReplicationConfig.RemoteInstance"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// An output only view of all the member instances participating in the cross
   /// instance replication.
-  public struct Membership: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Membership: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The primary instance that acts as the source of replication
@@ -142,11 +142,11 @@ public struct CrossInstanceReplicationConfig: Codable, Equatable, GoogleCloudWkt
       return
         "type.googleapis.com/google.cloud.memorystore.v1.CrossInstanceReplicationConfig.Membership"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -270,10 +270,10 @@ public struct CrossInstanceReplicationConfig: Codable, Equatable, GoogleCloudWkt
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.memorystore.v1.CrossInstanceReplicationConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

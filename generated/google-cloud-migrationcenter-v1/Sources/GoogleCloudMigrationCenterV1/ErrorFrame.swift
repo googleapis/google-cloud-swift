@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Message representing a frame which failed to be processed due to an error.
-public struct ErrorFrame: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ErrorFrame: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The identifier of the ErrorFrame.
@@ -31,7 +31,7 @@ public struct ErrorFrame: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var originalFrame: AssetFrame? = nil
 
   /// Output only. Frame ingestion time.
-  public var ingestionTime: GoogleCloudWkt.Timestamp? = nil
+  public var ingestionTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `ErrorFrame`.
   public init() {}
@@ -52,10 +52,10 @@ public struct ErrorFrame: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.migrationcenter.v1.ErrorFrame"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

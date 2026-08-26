@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// HCX activation key. A default key is created during
 /// private cloud provisioning, but this behavior is subject to change
@@ -28,7 +28,7 @@ import Foundation
 ///
 /// [google.cloud.vmwareengine.v1.VmwareEngine.CreateHcxActivationKey]: <doc:VmwareEngineClient/createHcxActivationKey(request:options:)>
 /// [google.cloud.vmwareengine.v1.VmwareEngine.ListHcxActivationKeys]: <doc:VmwareEngineClient/listHcxActivationKeys(request:options:)>
-public struct HcxActivationKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct HcxActivationKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The resource name of this HcxActivationKey.
@@ -39,7 +39,7 @@ public struct HcxActivationKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Output only. Creation time of HCX activation key.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. State of HCX activation key.
   public var state: HcxActivationKey.State = HcxActivationKey.State()
@@ -181,10 +181,10 @@ public struct HcxActivationKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vmwareengine.v1.HcxActivationKey"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

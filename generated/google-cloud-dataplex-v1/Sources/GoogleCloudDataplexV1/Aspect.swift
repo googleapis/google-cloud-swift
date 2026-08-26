@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents a single piece of metadata describing an entry or entry link.
-public struct Aspect: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Aspect: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The resource name of the type used to create this Aspect.
@@ -28,14 +28,14 @@ public struct Aspect: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var path: Swift.String = Swift.String()
 
   /// Output only. The time when the Aspect was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time when the Aspect was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Required. The content of the aspect, according to its aspect type schema.
   /// The maximum size of the field is 120KB (encoded as UTF-8).
-  public var data: GoogleCloudWkt.Struct? = nil
+  public var data: GoogleCloudWKT.Struct? = nil
 
   /// Optional. Information related to the source system of the aspect.
   public var aspectSource: AspectSource? = nil
@@ -59,10 +59,10 @@ public struct Aspect: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataplex.v1.Aspect"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

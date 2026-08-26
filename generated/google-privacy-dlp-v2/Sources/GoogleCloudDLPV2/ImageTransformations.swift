@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A type of transformation that is applied over images.
-public struct ImageTransformations: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ImageTransformations: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// List of transforms to make.
@@ -41,7 +41,7 @@ public struct ImageTransformations: Codable, Equatable, GoogleCloudWkt._AnyPacka
   }
 
   /// Configuration for determining how redaction of images should occur.
-  public struct ImageTransformation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ImageTransformation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The color to use when redacting content from an image. If not
@@ -123,7 +123,7 @@ public struct ImageTransformations: Codable, Equatable, GoogleCloudWkt._AnyPacka
     }
 
     /// Apply transformation to the selected info_types.
-    public struct SelectedInfoTypes: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SelectedInfoTypes: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. InfoTypes to apply the transformation to. Required. Provided
@@ -150,16 +150,16 @@ public struct ImageTransformations: Codable, Equatable, GoogleCloudWkt._AnyPacka
         return
           "type.googleapis.com/google.privacy.dlp.v2.ImageTransformations.ImageTransformation.SelectedInfoTypes"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Apply transformation to all findings.
-    public struct AllInfoTypes: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AllInfoTypes: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Initialize a new instance of `AllInfoTypes`.
@@ -182,16 +182,16 @@ public struct ImageTransformations: Codable, Equatable, GoogleCloudWkt._AnyPacka
         return
           "type.googleapis.com/google.privacy.dlp.v2.ImageTransformations.ImageTransformation.AllInfoTypes"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Apply to all text.
-    public struct AllText: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AllText: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Initialize a new instance of `AllText`.
@@ -214,11 +214,11 @@ public struct ImageTransformations: Codable, Equatable, GoogleCloudWkt._AnyPacka
         return
           "type.googleapis.com/google.privacy.dlp.v2.ImageTransformations.ImageTransformation.AllText"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -238,21 +238,21 @@ public struct ImageTransformations: Codable, Equatable, GoogleCloudWkt._AnyPacka
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.ImageTransformations.ImageTransformation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.ImageTransformations"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Version of a StoredInfoType, including the configuration used to build it,
 /// create timestamp, and current state.
-public struct StoredInfoTypeVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct StoredInfoTypeVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// StoredInfoType configuration.
@@ -27,7 +27,7 @@ public struct StoredInfoTypeVersion: Codable, Equatable, GoogleCloudWkt._AnyPack
 
   /// Create timestamp of the version. Read-only, determined by the system
   /// when the version is created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Stored info type version state. Read-only, updated by the system
   /// during dictionary creation.
@@ -70,10 +70,10 @@ public struct StoredInfoTypeVersion: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.StoredInfoTypeVersion"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

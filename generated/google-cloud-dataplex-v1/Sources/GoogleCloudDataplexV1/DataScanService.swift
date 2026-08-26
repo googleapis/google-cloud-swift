@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -446,7 +446,7 @@ extension Clients {
     /// See `DataScanServiceClient.updateDataScan`.
     func updateDataScan(
       dataScan: DataScan?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<DataScan>
 
     /// See `DataScanServiceClient.deleteDataScan`.
@@ -787,7 +787,7 @@ extension Clients.DataScanServiceProtocol {
 
   public func updateDataScan(
     dataScan: DataScan?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<DataScan> {
     let request = UpdateDataScanRequest().with {
       $0.dataScan = dataScan

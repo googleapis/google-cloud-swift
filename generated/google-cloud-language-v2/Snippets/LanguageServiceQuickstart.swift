@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudLanguageV2
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample() async throws {
   let client = try GoogleCloudLanguageV2.LanguageServiceClient()

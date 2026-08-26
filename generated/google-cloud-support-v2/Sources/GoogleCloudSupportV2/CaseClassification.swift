@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A Case Classification represents the topic that a case is about. It's very
 /// important to use accurate classifications, because they're
@@ -23,7 +23,7 @@ import Foundation
 ///
 /// A classification always has an ID that is its unique identifier.
 /// A valid ID is required when creating a case.
-public struct CaseClassification: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CaseClassification: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The unique ID for a classification. Must be specified for case creation.
@@ -62,10 +62,10 @@ public struct CaseClassification: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.support.v2.CaseClassification"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

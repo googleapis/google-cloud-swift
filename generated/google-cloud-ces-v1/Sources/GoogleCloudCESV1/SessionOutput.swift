@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Output for the session.
-public struct SessionOutput: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SessionOutput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Indicates the sequential order of conversation turn to which this output
@@ -35,7 +35,7 @@ public struct SessionOutput: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var diagnosticInfo: SessionOutput.DiagnosticInfo? = nil
 
   /// Context messages for external supervision guardrails.
-  public var context: [GoogleCloudWkt.`Any`] = []
+  public var context: [GoogleCloudWKT.`Any`] = []
 
   /// The type of the output.
   public var outputType: OneOf_OutputType? = nil
@@ -76,7 +76,7 @@ public struct SessionOutput: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.turnCompleted = try container.decode(Swift.Bool.self, forKey: .turnCompleted)
     self.diagnosticInfo = try container.decodeIfPresent(
       SessionOutput.DiagnosticInfo.self, forKey: .diagnosticInfo)
-    self.context = try container.decode([GoogleCloudWkt.`Any`].self, forKey: .context)
+    self.context = try container.decode([GoogleCloudWKT.`Any`].self, forKey: .context)
 
     var outputType: OneOf_OutputType? = nil
     let outputTypeCheckAndSet = {
@@ -108,7 +108,7 @@ public struct SessionOutput: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     if let endSession = try container.decodeIfPresent(EndSession?.self, forKey: .endSession) {
       try outputTypeCheckAndSet(.endSession(endSession))
     }
-    if let payload = try container.decodeIfPresent(GoogleCloudWkt.Struct?.self, forKey: .payload) {
+    if let payload = try container.decodeIfPresent(GoogleCloudWKT.Struct?.self, forKey: .payload) {
       try outputTypeCheckAndSet(.payload(payload))
     }
     self.outputType = outputType
@@ -142,7 +142,7 @@ public struct SessionOutput: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Contains execution details during the processing.
-  public struct DiagnosticInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DiagnosticInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// List of the messages that happened during the processing.
@@ -171,11 +171,11 @@ public struct SessionOutput: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ces.v1.SessionOutput.DiagnosticInfo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -198,16 +198,16 @@ public struct SessionOutput: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// Indicates the session has ended.
     indirect case endSession(EndSession?)
     /// Custom payload with structured output from the CES agent.
-    indirect case payload(GoogleCloudWkt.Struct?)
+    indirect case payload(GoogleCloudWKT.Struct?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.SessionOutput"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

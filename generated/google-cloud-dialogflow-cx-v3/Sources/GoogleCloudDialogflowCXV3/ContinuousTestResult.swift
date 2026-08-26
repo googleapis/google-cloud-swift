@@ -16,10 +16,10 @@
 
 #if Environments
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents a result from running a test case in an agent environment.
-  public struct ContinuousTestResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ContinuousTestResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The resource name for the continuous test result. Format:
@@ -35,7 +35,7 @@
     public var testCaseResults: [Swift.String] = []
 
     /// Time when the continuous testing run starts.
-    public var runTime: GoogleCloudWkt.Timestamp? = nil
+    public var runTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `ContinuousTestResult`.
     public init() {}
@@ -161,11 +161,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.ContinuousTestResult"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

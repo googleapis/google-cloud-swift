@@ -16,12 +16,12 @@
 
 #if RegionUrlMaps || UrlMaps
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Specifies the mapping between the response code that will be returned along
   /// with the custom error content and the response code returned by the backend
   /// service.
-  public struct CustomErrorResponsePolicyCustomErrorResponseRule: Codable, Equatable, GoogleCloudWkt
+  public struct CustomErrorResponsePolicyCustomErrorResponseRule: Codable, Equatable, GoogleCloudWKT
       ._AnyPackable,
     Sendable
   {
@@ -80,11 +80,11 @@
       return
         "type.googleapis.com/google.cloud.compute.v1.CustomErrorResponsePolicyCustomErrorResponseRule"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

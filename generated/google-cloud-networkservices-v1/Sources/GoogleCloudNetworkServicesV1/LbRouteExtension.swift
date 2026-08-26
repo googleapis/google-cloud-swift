@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// `LbRouteExtension` is a resource that lets you control where traffic is
 /// routed to for a given request.
-public struct LbRouteExtension: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct LbRouteExtension: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Identifier. Name of the `LbRouteExtension` resource in the
@@ -28,10 +28,10 @@ public struct LbRouteExtension: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Output only. The timestamp when the resource was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The timestamp when the resource was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. A human-readable description of the resource.
   public var description: Swift.String = Swift.String()
@@ -85,7 +85,7 @@ public struct LbRouteExtension: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// You can set metadata at either the resource level or the extension level.
   /// The extension level metadata is recommended because you can pass a
   /// different set of metadata through each extension to the backend.
-  public var metadata: GoogleCloudWkt.Struct? = nil
+  public var metadata: GoogleCloudWKT.Struct? = nil
 
   /// Initialize a new instance of `LbRouteExtension`.
   public init() {}
@@ -106,10 +106,10 @@ public struct LbRouteExtension: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkservices.v1.LbRouteExtension"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

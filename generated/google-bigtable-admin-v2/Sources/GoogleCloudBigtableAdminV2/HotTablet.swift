@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A tablet is a defined by a start and end key and is explained in
 /// https://cloud.google.com/bigtable/docs/overview#architecture and
 /// https://cloud.google.com/bigtable/docs/performance#optimization.
 /// A Hot tablet is a tablet that exhibits high average cpu usage during the time
 /// interval from start time to end time.
-public struct HotTablet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct HotTablet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The unique name of the hot tablet. Values are of the form
@@ -34,10 +34,10 @@ public struct HotTablet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var tableName: Swift.String = Swift.String()
 
   /// Output only. The start time of the hot tablet.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The end time of the hot tablet.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Tablet Start Key (inclusive).
   public var startKey: Swift.String = Swift.String()
@@ -70,10 +70,10 @@ public struct HotTablet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.bigtable.admin.v2.HotTablet"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

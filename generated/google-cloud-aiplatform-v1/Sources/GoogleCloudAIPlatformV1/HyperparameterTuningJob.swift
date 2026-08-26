@@ -16,13 +16,13 @@
 
 #if JobService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
   import GoogleRpc
 
   /// Represents a HyperparameterTuningJob. A HyperparameterTuningJob
   /// has a Study specification and multiple CustomJobs with identical
   /// CustomJob specification.
-  public struct HyperparameterTuningJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct HyperparameterTuningJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Resource name of the HyperparameterTuningJob.
@@ -60,20 +60,20 @@
     public var state: JobState = JobState()
 
     /// Output only. Time when the HyperparameterTuningJob was created.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Time when the HyperparameterTuningJob for the first time
     /// entered the `JOB_STATE_RUNNING` state.
-    public var startTime: GoogleCloudWkt.Timestamp? = nil
+    public var startTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Time when the HyperparameterTuningJob entered any of the
     /// following states: `JOB_STATE_SUCCEEDED`, `JOB_STATE_FAILED`,
     /// `JOB_STATE_CANCELLED`.
-    public var endTime: GoogleCloudWkt.Timestamp? = nil
+    public var endTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Time when the HyperparameterTuningJob was most recently
     /// updated.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Only populated when job's state is JOB_STATE_FAILED or
     /// JOB_STATE_CANCELLED.
@@ -118,11 +118,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.HyperparameterTuningJob"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

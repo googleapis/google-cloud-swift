@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A ScanRunLog is an output-only proto used for Stackdriver customer logging.
 /// It is used for logs covering the start and end of scan pipelines.
 /// Other than an added summary, this is a subset of the ScanRun.
 /// Representation in logs is either a proto Struct, or converted to JSON.
 /// Next id: 9
-public struct ScanRunLog: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ScanRunLog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Human friendly message about the event.
@@ -64,10 +64,10 @@ public struct ScanRunLog: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.websecurityscanner.v1.ScanRunLog"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

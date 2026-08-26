@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [AgentService.ImportApp][google.cloud.ces.v1.AgentService.ImportApp].
 ///
 /// [google.cloud.ces.v1.AgentService.ImportApp]: <doc:AgentServiceClient/importApp(request:options:)>
-public struct ImportAppRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ImportAppRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The parent resource name with the location of the app to import.
@@ -130,7 +130,7 @@ public struct ImportAppRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Configuration options for the app import process.
   /// These options control how the import behaves, particularly when
   /// conflicts arise with existing app data.
-  public struct ImportOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ImportOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The strategy to use when resolving conflicts during import.
@@ -277,11 +277,11 @@ public struct ImportAppRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.ces.v1.ImportAppRequest.ImportOptions"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -299,10 +299,10 @@ public struct ImportAppRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.ImportAppRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

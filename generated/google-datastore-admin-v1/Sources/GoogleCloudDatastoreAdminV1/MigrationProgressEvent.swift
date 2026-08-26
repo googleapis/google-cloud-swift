@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An event signifying the start of a new step in a [migration from Cloud
 /// Datastore to Cloud Firestore in Datastore
 /// mode](https://cloud.google.com/datastore/docs/upgrade-to-firestore).
-public struct MigrationProgressEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MigrationProgressEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The step that is starting.
@@ -96,7 +96,7 @@ public struct MigrationProgressEvent: Codable, Equatable, GoogleCloudWkt._AnyPac
   }
 
   /// Details for the `PREPARE` step.
-  public struct PrepareStepDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PrepareStepDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The concurrency mode this database will use when it reaches the
@@ -124,16 +124,16 @@ public struct MigrationProgressEvent: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.datastore.admin.v1.MigrationProgressEvent.PrepareStepDetails"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Details for the `REDIRECT_WRITES` step.
-  public struct RedirectWritesStepDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RedirectWritesStepDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Ths concurrency mode for this database.
@@ -160,11 +160,11 @@ public struct MigrationProgressEvent: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.datastore.admin.v1.MigrationProgressEvent.RedirectWritesStepDetails"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -291,10 +291,10 @@ public struct MigrationProgressEvent: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.datastore.admin.v1.MigrationProgressEvent"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

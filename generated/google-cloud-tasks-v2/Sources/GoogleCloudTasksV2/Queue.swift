@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A queue is a container of related tasks. Queues are configured to manage
 /// how those tasks are dispatched. Configurable properties include rate limits,
 /// retry options, queue types, and others.
-public struct Queue: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Queue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Caller-specified and required in
@@ -139,7 +139,7 @@ public struct Queue: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   /// [google.cloud.tasks.v2.CloudTasks.PurgeQueue]: <doc:CloudTasksClient/purgeQueue(request:options:)>
   /// [google.cloud.tasks.v2.Task.create_time]: <doc:Task/createTime>
-  public var purgeTime: GoogleCloudWkt.Timestamp? = nil
+  public var purgeTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Configuration options for writing logs to
   /// [Stackdriver Logging](https://cloud.google.com/logging/docs/). If this
@@ -301,10 +301,10 @@ public struct Queue: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.tasks.v2.Queue"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

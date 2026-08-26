@@ -16,13 +16,13 @@
 
 #if VizierService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Response message for
   /// [VizierService.SuggestTrials][google.cloud.aiplatform.v1.VizierService.SuggestTrials].
   ///
   /// [google.cloud.aiplatform.v1.VizierService.SuggestTrials]: <doc:VizierServiceClient/suggestTrials(request:options:)>
-  public struct SuggestTrialsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SuggestTrialsResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// A list of Trials.
@@ -32,10 +32,10 @@
     public var studyState: Study.State = Study.State()
 
     /// The time at which the operation was started.
-    public var startTime: GoogleCloudWkt.Timestamp? = nil
+    public var startTime: GoogleCloudWKT.Timestamp? = nil
 
     /// The time at which operation processing completed.
-    public var endTime: GoogleCloudWkt.Timestamp? = nil
+    public var endTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `SuggestTrialsResponse`.
     public init() {}
@@ -56,11 +56,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.SuggestTrialsResponse"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

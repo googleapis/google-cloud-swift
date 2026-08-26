@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// OrgPolicyViolationsPreview is a resource providing a preview of the
 /// violations that will exist if an OrgPolicy change is made.
@@ -24,7 +24,7 @@ import Foundation
 /// [ListOrgPolicyViolations][] API call. There are potentially more
 /// [OrgPolicyViolations][] than could fit in an embedded field. Thus, the use of
 /// a child resource instead of a field.
-public struct OrgPolicyViolationsPreview: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct OrgPolicyViolationsPreview: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The resource name of the `OrgPolicyViolationsPreview`. It has
@@ -70,7 +70,7 @@ public struct OrgPolicyViolationsPreview: Codable, Equatable, GoogleCloudWkt._An
   public var customConstraints: [Swift.String] = []
 
   /// Output only. Time when this `OrgPolicyViolationsPreview` was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `OrgPolicyViolationsPreview`.
   public init() {}
@@ -90,7 +90,7 @@ public struct OrgPolicyViolationsPreview: Codable, Equatable, GoogleCloudWkt._An
 
   /// A summary of the state of all resources scanned for compliance with the
   /// changed OrgPolicy.
-  public struct ResourceCounts: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ResourceCounts: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Number of resources checked for compliance.
@@ -131,21 +131,21 @@ public struct OrgPolicyViolationsPreview: Codable, Equatable, GoogleCloudWkt._An
       return
         "type.googleapis.com/google.cloud.policysimulator.v1.OrgPolicyViolationsPreview.ResourceCounts"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.policysimulator.v1.OrgPolicyViolationsPreview"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

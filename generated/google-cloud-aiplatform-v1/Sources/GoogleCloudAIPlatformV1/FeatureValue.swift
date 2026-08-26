@@ -16,10 +16,10 @@
 
 #if FeatureOnlineStoreService || FeaturestoreOnlineServingService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Value for a feature.
-  public struct FeatureValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FeatureValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Metadata of feature value.
@@ -144,7 +144,7 @@
     }
 
     /// Metadata of feature value.
-    public struct Metadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Metadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Feature generation timestamp. Typically, it is provided by user at
@@ -155,7 +155,7 @@
       /// Legacy Feature Store: For streaming ingestion, the time, aligned by days,
       /// must be no older than five years (1825 days) and no later than one year
       /// (366 days) in the future.
-      public var generateTime: GoogleCloudWkt.Timestamp? = nil
+      public var generateTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Initialize a new instance of `Metadata`.
       public init() {}
@@ -176,11 +176,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.FeatureValue.Metadata"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -211,11 +211,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.FeatureValue"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

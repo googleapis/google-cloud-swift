@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -616,7 +616,7 @@ extension Clients {
 
     /// See `CloudRedisClient.updateInstance`.
     func updateInstance(
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
       instance: Instance?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Instance>
 
@@ -698,7 +698,7 @@ extension Clients {
     func rescheduleMaintenance(
       name: Swift.String,
       rescheduleType: RescheduleMaintenanceRequest.RescheduleType,
-      scheduleTime: GoogleCloudWkt.Timestamp?,
+      scheduleTime: GoogleCloudWKT.Timestamp?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Instance>
 
     /// See `CloudRedisClient.listLocations`.
@@ -1031,7 +1031,7 @@ extension Clients.CloudRedisProtocol {
   }
 
   public func updateInstance(
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
     instance: Instance?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Instance> {
     let request = UpdateInstanceRequest().with {
@@ -1265,7 +1265,7 @@ extension Clients.CloudRedisProtocol {
   public func rescheduleMaintenance(
     name: Swift.String,
     rescheduleType: RescheduleMaintenanceRequest.RescheduleType,
-    scheduleTime: GoogleCloudWkt.Timestamp?,
+    scheduleTime: GoogleCloudWKT.Timestamp?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Instance> {
     let request = RescheduleMaintenanceRequest().with {
       $0.name = name

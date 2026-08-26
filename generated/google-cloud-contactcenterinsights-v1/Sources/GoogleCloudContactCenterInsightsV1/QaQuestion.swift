@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A single question to be scored by the Insights QA feature.
-public struct QaQuestion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct QaQuestion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The resource name of the question.
@@ -31,10 +31,10 @@ public struct QaQuestion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var abbreviation: Swift.String = Swift.String()
 
   /// Output only. The time at which this question was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The most recent time at which the question was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Question text. E.g., "Did the agent greet the customer?"
   public var questionBody: Swift.String = Swift.String()
@@ -80,7 +80,7 @@ public struct QaQuestion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Message representing a possible answer to the question.
-  public struct AnswerChoice: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AnswerChoice: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// A short string used as an identifier.
@@ -184,17 +184,17 @@ public struct QaQuestion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.contactcenterinsights.v1.QaQuestion.AnswerChoice"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A wrapper representing metrics calculated against a test-set on a LLM that
   /// was fine tuned for this question.
-  public struct Metrics: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Metrics: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Accuracy of the model. Measures the percentage of correct
@@ -220,17 +220,17 @@ public struct QaQuestion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.contactcenterinsights.v1.QaQuestion.Metrics"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Metadata about the tuning operation for the question. Will only be set if a
   /// scorecard containing this question has been tuned.
-  public struct TuningMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TuningMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Total number of valid labels provided for the question at the time of
@@ -264,21 +264,21 @@ public struct QaQuestion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.contactcenterinsights.v1.QaQuestion.TuningMetadata"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.contactcenterinsights.v1.QaQuestion"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

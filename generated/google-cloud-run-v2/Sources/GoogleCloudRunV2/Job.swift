@@ -16,11 +16,11 @@
 
 import Foundation
 import GoogleApi
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Job represents the configuration of a single job, which references a
 /// container image that is run to completion.
-public struct Job: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The fully qualified name of this Job.
@@ -67,18 +67,18 @@ public struct Job: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var annotations: [Swift.String: Swift.String] = [:]
 
   /// Output only. The creation time.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The last-modified time.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The deletion time. It is only populated as a response to a
   /// Delete request.
-  public var deleteTime: GoogleCloudWkt.Timestamp? = nil
+  public var deleteTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. For a deleted resource, the time after which it will be
   /// permamently deleted.
-  public var expireTime: GoogleCloudWkt.Timestamp? = nil
+  public var expireTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Email address of the authenticated creator.
   public var creator: Swift.String = Swift.String()
@@ -215,13 +215,13 @@ public struct Job: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
     self.annotations = try container.decode([Swift.String: Swift.String].self, forKey: .annotations)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.deleteTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .deleteTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .deleteTime)
     self.expireTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .expireTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .expireTime)
     self.creator = try container.decode(Swift.String.self, forKey: .creator)
     self.lastModifier = try container.decode(Swift.String.self, forKey: .lastModifier)
     self.client = try container.decode(Swift.String.self, forKey: .client)
@@ -315,10 +315,10 @@ public struct Job: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.run.v2.Job"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

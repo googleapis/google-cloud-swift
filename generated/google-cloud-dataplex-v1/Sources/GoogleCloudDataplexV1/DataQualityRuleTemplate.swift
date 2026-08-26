@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// DataQualityRuleTemplate represents a template which can be reused across
 /// multiple data quality rules.
-public struct DataQualityRuleTemplate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DataQualityRuleTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The name of the rule template in the format:
@@ -59,7 +59,7 @@ public struct DataQualityRuleTemplate: Codable, Equatable, GoogleCloudWkt._AnyPa
 
   /// Templatized SQL query for data quality rules. It can have parameters that
   /// can be substituted with values when a rule is created using this template.
-  public struct Sql: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Sql: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Templatized SQL query for data quality rules.
@@ -84,18 +84,18 @@ public struct DataQualityRuleTemplate: Codable, Equatable, GoogleCloudWkt._AnyPa
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.DataQualityRuleTemplate.Sql"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Description of the input parameter. It can include the type(s) supported
   /// by the parameter and intended usage. It is for information purposes only
   /// and does not affect the behavior of the rule template.
-  public struct ParameterDescription: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ParameterDescription: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Description of the input parameter. It can include the
@@ -127,21 +127,21 @@ public struct DataQualityRuleTemplate: Codable, Equatable, GoogleCloudWkt._AnyPa
       return
         "type.googleapis.com/google.cloud.dataplex.v1.DataQualityRuleTemplate.ParameterDescription"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataplex.v1.DataQualityRuleTemplate"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

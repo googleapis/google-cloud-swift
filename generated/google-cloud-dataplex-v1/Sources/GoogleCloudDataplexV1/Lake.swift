@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A lake is a centralized repository for managing enterprise data across the
 /// organization distributed across many cloud projects, and stored in a variety
@@ -25,7 +25,7 @@ import Foundation
 /// admins with tools to organize, secure and manage their data at scale, and
 /// provides data scientists and data engineers an integrated experience to
 /// easily search, discover, analyze and transform data and associated metadata.
-public struct Lake: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Lake: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The relative resource name of the lake, of the form:
@@ -40,10 +40,10 @@ public struct Lake: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var uid: Swift.String = Swift.String()
 
   /// Output only. The time when the lake was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time when the lake was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. User-defined labels for the lake.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -86,7 +86,7 @@ public struct Lake: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Settings to manage association of Dataproc Metastore with a lake.
-  public struct Metastore: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Metastore: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. A relative reference to the Dataproc Metastore
@@ -114,16 +114,16 @@ public struct Lake: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.Lake.Metastore"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Status of Lake and Dataproc Metastore service instance association.
-  public struct MetastoreStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MetastoreStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Current state of association.
@@ -133,7 +133,7 @@ public struct Lake: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public var message: Swift.String = Swift.String()
 
     /// Last update time of the metastore status of the lake.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// The URI of the endpoint used to access the Metastore service.
     public var endpoint: Swift.String = Swift.String()
@@ -276,21 +276,21 @@ public struct Lake: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.Lake.MetastoreStatus"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataplex.v1.Lake"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

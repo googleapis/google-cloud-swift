@@ -16,10 +16,10 @@
 
 #if DataStoreService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// DataStore captures global settings and configs at the DataStore level.
-  public struct DataStore: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DataStore: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Immutable. Identifier. The full resource name of the data store.
@@ -67,7 +67,7 @@
     /// [DataStore][google.cloud.discoveryengine.v1.DataStore] was created at.
     ///
     /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Optional. Configuration for advanced site search.
     public var advancedSiteSearchConfig: AdvancedSiteSearchConfig? = nil
@@ -182,7 +182,7 @@
     }
 
     /// Estimation of data size per data store.
-    public struct BillingEstimation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct BillingEstimation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Data size for structured data in terms of bytes.
@@ -195,13 +195,13 @@
       public var websiteDataSize: Swift.Int64 = Swift.Int64()
 
       /// Last updated timestamp for structured data.
-      public var structuredDataUpdateTime: GoogleCloudWkt.Timestamp? = nil
+      public var structuredDataUpdateTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Last updated timestamp for unstructured data.
-      public var unstructuredDataUpdateTime: GoogleCloudWkt.Timestamp? = nil
+      public var unstructuredDataUpdateTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Last updated timestamp for websites.
-      public var websiteDataUpdateTime: GoogleCloudWkt.Timestamp? = nil
+      public var websiteDataUpdateTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Initialize a new instance of `BillingEstimation`.
       public init() {}
@@ -222,11 +222,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.DataStore.BillingEstimation"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -362,11 +362,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.DataStore"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

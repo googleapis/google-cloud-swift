@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The Data Fusion version. This proto message stores information about certain
 /// Data Fusion version, which is used for Data Fusion version upgrade.
-public struct Version: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Version: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The version number of the Data Fusion instance, such as '6.0.1.0'.
@@ -158,10 +158,10 @@ public struct Version: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datafusion.v1.Version"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

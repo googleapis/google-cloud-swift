@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request for the `UpdateCertificateMapEntry` method.
-public struct UpdateCertificateMapEntryRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateCertificateMapEntryRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. A definition of the certificate map entry to create map entry.
@@ -27,7 +27,7 @@ public struct UpdateCertificateMapEntryRequest: Codable, Equatable, GoogleCloudW
   /// Required. The update mask applies to the resource. For the `FieldMask`
   /// definition, see
   /// https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `UpdateCertificateMapEntryRequest`.
   public init() {}
@@ -48,10 +48,10 @@ public struct UpdateCertificateMapEntryRequest: Codable, Equatable, GoogleCloudW
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.certificatemanager.v1.UpdateCertificateMapEntryRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A collection of user data indexed by row, column, and timestamp.
 /// Each table is served using the resources of its parent cluster.
-public struct Table: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Table: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The unique name of the table. Values are of the form
@@ -216,7 +216,7 @@ public struct Table: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// The state of a table's data in a particular cluster.
-  public struct ClusterState: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ClusterState: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The state of replication for the table in this cluster.
@@ -383,25 +383,25 @@ public struct Table: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.bigtable.admin.v2.Table.ClusterState"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Defines an automated backup policy for a table
-  public struct AutomatedBackupPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AutomatedBackupPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. How long the automated backups should be retained. Values must
     /// be at least 3 days and at most 90 days.
-    public var retentionPeriod: GoogleCloudWkt.Duration? = nil
+    public var retentionPeriod: GoogleCloudWKT.Duration? = nil
 
     /// How frequently automated backups should occur. The only supported value
     /// at this time is 24 hours. An undefined frequency is treated as 24 hours.
-    public var frequency: GoogleCloudWkt.Duration? = nil
+    public var frequency: GoogleCloudWKT.Duration? = nil
 
     /// Optional. A list of Cloud Bigtable zones where automated backups are
     /// allowed to be created. If empty, automated backups will be created in all
@@ -429,11 +429,11 @@ public struct Table: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.bigtable.admin.v2.Table.AutomatedBackupPolicy"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -680,10 +680,10 @@ public struct Table: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.bigtable.admin.v2.Table"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

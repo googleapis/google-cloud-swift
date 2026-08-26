@@ -16,10 +16,10 @@
 
 #if GeneratorEvaluations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Evaluation metrics for summarization generator.
-  public struct SummarizationEvaluationMetrics: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SummarizationEvaluationMetrics: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. A list of evaluation results per conversation(&summary),
@@ -59,7 +59,7 @@
     }
 
     /// Decomposition details for accuracy.
-    public struct AccuracyDecomposition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AccuracyDecomposition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. The breakdown point of the summary.
@@ -91,17 +91,17 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.SummarizationEvaluationMetrics.AccuracyDecomposition"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Decomposition details for adherence.
     @available(*, deprecated)
-    public struct AdherenceDecomposition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AdherenceDecomposition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. The breakdown point of the given instructions.
@@ -133,17 +133,17 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.SummarizationEvaluationMetrics.AdherenceDecomposition"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Rubric result of the adherence evaluation. A rubric is ued to determine
     /// if the summary adheres to all aspects of the given instructions.
-    public struct AdherenceRubric: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AdherenceRubric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. The question generated from instruction that used to
@@ -177,16 +177,16 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.SummarizationEvaluationMetrics.AdherenceRubric"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Rubric details of the completeness evaluation result.
-    public struct CompletenessRubric: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct CompletenessRubric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. The question generated from instruction that used to
@@ -217,17 +217,17 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.SummarizationEvaluationMetrics.CompletenessRubric"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Decomposition details
     @available(*, deprecated)
-    public struct Decomposition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Decomposition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// One of decomposition details.
@@ -306,17 +306,17 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.SummarizationEvaluationMetrics.Decomposition"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Evaluation result that contains one of accuracy, adherence or completeness
     /// evaluation result.
-    public struct EvaluationResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct EvaluationResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// One of evaluation result details.
@@ -404,16 +404,16 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.SummarizationEvaluationMetrics.EvaluationResult"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Evaluation result per conversation(&summary), metric and section.
-    public struct SummarizationEvaluationResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SummarizationEvaluationResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. conversation session id
@@ -459,18 +459,18 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.SummarizationEvaluationMetrics.SummarizationEvaluationResult"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Overall performance per metric. This is the aggregated score for each
     /// metric across all conversations that are selected for summarization
     /// evaluation.
-    public struct OverallScoresByMetric: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct OverallScoresByMetric: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. Metric name. e.g. accuracy, adherence, completeness.
@@ -496,16 +496,16 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.SummarizationEvaluationMetrics.OverallScoresByMetric"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// A pair of section name and input token count of the input summary section.
-    public struct SectionToken: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SectionToken: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. The name of the summary instruction.
@@ -534,17 +534,17 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.SummarizationEvaluationMetrics.SectionToken"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Aggregated evaluation result on conversation level. This conatins
     /// evaluation results of all the metrics and sections.
-    public struct ConversationDetail: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ConversationDetail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. Conversation transcript that used for summarization
@@ -582,7 +582,7 @@
 
       /// Aggregated result on metric level. This conatins the evaluation results
       /// of all the sections.
-      public struct MetricDetail: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct MetricDetail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Output only. Metrics name. e.g. accuracy, adherence, completeness.
@@ -613,7 +613,7 @@
         }
 
         /// Section level result.
-        public struct SectionDetail: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct SectionDetail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Output only. The name of the summary instruction.
@@ -650,11 +650,11 @@
             return
               "type.googleapis.com/google.cloud.dialogflow.v2.SummarizationEvaluationMetrics.ConversationDetail.MetricDetail.SectionDetail"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
@@ -662,11 +662,11 @@
           return
             "type.googleapis.com/google.cloud.dialogflow.v2.SummarizationEvaluationMetrics.ConversationDetail.MetricDetail"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -674,22 +674,22 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.SummarizationEvaluationMetrics.ConversationDetail"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.SummarizationEvaluationMetrics"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

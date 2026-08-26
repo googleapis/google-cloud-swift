@@ -17,14 +17,14 @@
 #if SiteSearchEngineService
   import Foundation
   @_spi(GoogleCloudInternal) import GoogleCloudGax
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Response message for
   /// [SiteSearchEngineService.FetchDomainVerificationStatus][google.cloud.discoveryengine.v1.SiteSearchEngineService.FetchDomainVerificationStatus]
   /// method.
   ///
   /// [google.cloud.discoveryengine.v1.SiteSearchEngineService.FetchDomainVerificationStatus]: <doc:SiteSearchEngineServiceClient/fetchDomainVerificationStatus(request:options:)>
-  public struct FetchDomainVerificationStatusResponse: Codable, Equatable, GoogleCloudWkt
+  public struct FetchDomainVerificationStatusResponse: Codable, Equatable, GoogleCloudWKT
       ._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable
@@ -60,11 +60,11 @@
       return
         "type.googleapis.com/google.cloud.discoveryengine.v1.FetchDomainVerificationStatusResponse"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
 
     public func _getPaginatedItems() -> [TargetSite] {

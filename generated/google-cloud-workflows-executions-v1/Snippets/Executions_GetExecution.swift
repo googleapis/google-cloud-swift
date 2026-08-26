@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudWorkflowsExecutionsV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(
   client: ExecutionsClient, projectId: String, locationId: String, workflowId: String,

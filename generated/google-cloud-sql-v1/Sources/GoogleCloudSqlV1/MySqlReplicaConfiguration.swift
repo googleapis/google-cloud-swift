@@ -16,10 +16,10 @@
 
 #if SqlBackupsService || SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Read-replica configuration specific to MySQL databases.
-  public struct MySqlReplicaConfiguration: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MySqlReplicaConfiguration: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Path to a SQL dump file in Google Cloud Storage from which the replica
@@ -37,10 +37,10 @@
     public var password: Swift.String = Swift.String()
 
     /// Seconds to wait between connect retries. MySQL's default is 60 seconds.
-    public var connectRetryInterval: GoogleCloudWkt.Int32Value? = nil
+    public var connectRetryInterval: GoogleCloudWKT.Int32Value? = nil
 
     /// Interval in milliseconds between replication heartbeats.
-    public var masterHeartbeatPeriod: GoogleCloudWkt.Int64Value? = nil
+    public var masterHeartbeatPeriod: GoogleCloudWKT.Int64Value? = nil
 
     /// PEM representation of the trusted CA's x509 certificate.
     public var caCertificate: Swift.String = Swift.String()
@@ -57,7 +57,7 @@
 
     /// Whether or not to check the primary instance's Common Name value in the
     /// certificate that it sends during the SSL handshake.
-    public var verifyServerCertificate: GoogleCloudWkt.BoolValue? = nil
+    public var verifyServerCertificate: GoogleCloudWKT.BoolValue? = nil
 
     /// This is always `sql#mysqlReplicaConfiguration`.
     public var kind: Swift.String = Swift.String()
@@ -81,11 +81,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.MySqlReplicaConfiguration"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

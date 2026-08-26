@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// CustomClass for biasing in speech recognition. Used to define a set of words
 /// or phrases that represents a common concept or theme likely to appear in your
 /// audio, for example a list of passenger ship names.
-public struct CustomClass: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CustomClass: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Identifier. The resource name of the CustomClass.
@@ -42,16 +42,16 @@ public struct CustomClass: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var state: CustomClass.State = CustomClass.State()
 
   /// Output only. Creation time.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The most recent time this resource was modified.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time at which this resource was requested for deletion.
-  public var deleteTime: GoogleCloudWkt.Timestamp? = nil
+  public var deleteTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time at which this resource will be purged.
-  public var expireTime: GoogleCloudWkt.Timestamp? = nil
+  public var expireTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Allows users to store small amounts of arbitrary data.
   /// Both the key and the value must be 63 characters or less each.
@@ -96,7 +96,7 @@ public struct CustomClass: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// An item of the class.
-  public struct ClassItem: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ClassItem: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The class item's value.
@@ -121,11 +121,11 @@ public struct CustomClass: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.speech.v2.CustomClass.ClassItem"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -238,10 +238,10 @@ public struct CustomClass: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.speech.v2.CustomClass"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

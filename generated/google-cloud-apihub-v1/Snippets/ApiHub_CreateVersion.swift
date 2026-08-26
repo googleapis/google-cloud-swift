@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudApiHubV1
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 
 func sample(client: ApiHubClient, projectId: String, locationId: String, apiId: String) async throws

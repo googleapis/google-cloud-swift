@@ -16,14 +16,14 @@
 
 #if DocumentService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request message for
   /// [DocumentService.BatchGetDocumentsMetadata][google.cloud.discoveryengine.v1.DocumentService.BatchGetDocumentsMetadata]
   /// method.
   ///
   /// [google.cloud.discoveryengine.v1.DocumentService.BatchGetDocumentsMetadata]: <doc:DocumentServiceClient/batchGetDocumentsMetadata(request:options:)>
-  public struct BatchGetDocumentsMetadataRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct BatchGetDocumentsMetadataRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The parent branch resource name, such as
@@ -56,7 +56,7 @@
     /// exact uris.
     ///
     /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
-    public struct UrisMatcher: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct UrisMatcher: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The exact URIs to match by.
@@ -82,11 +82,11 @@
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.BatchGetDocumentsMetadataRequest.UrisMatcher"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -94,7 +94,7 @@
     /// FHIR resource names.
     ///
     /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
-    public struct FhirMatcher: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct FhirMatcher: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The FHIR resources to match by.
@@ -122,11 +122,11 @@
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.BatchGetDocumentsMetadataRequest.FhirMatcher"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -134,7 +134,7 @@
     /// Currently supports matching by exact URIs.
     ///
     /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
-    public struct Matcher: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Matcher: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Matcher for the [Document][google.cloud.discoveryengine.v1.Document]s.
@@ -216,22 +216,22 @@
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.BatchGetDocumentsMetadataRequest.Matcher"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.BatchGetDocumentsMetadataRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

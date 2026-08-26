@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Specifies eligibility information for the service.
-public struct ServiceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ServiceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The eligibility criteria for the service.
@@ -27,7 +27,7 @@ public struct ServiceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Output only. The end time for eligibility criteria support. If not
   /// specified, no planned end time is set.
-  public var supportEndTime: GoogleCloudWkt.Timestamp? = nil
+  public var supportEndTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `ServiceConfig`.
   public init() {}
@@ -164,10 +164,10 @@ public struct ServiceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkconnectivity.v1.ServiceConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

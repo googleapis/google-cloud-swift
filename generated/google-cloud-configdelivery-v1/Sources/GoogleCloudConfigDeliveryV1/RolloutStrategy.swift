@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// RolloutStrategy defines different ways to rollout a resource bundle across
 /// a set of clusters.
-public struct RolloutStrategy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RolloutStrategy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// strategy defines how updates to a resource bundle should be rolled out
@@ -95,10 +95,10 @@ public struct RolloutStrategy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.configdelivery.v1.RolloutStrategy"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

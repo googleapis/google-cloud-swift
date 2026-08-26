@@ -16,12 +16,12 @@
 
 #if Autoscalers || RegionAutoscalers
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Configuration that allows for slower scale in so that even if Autoscaler
   /// recommends an abrupt scale in of a MIG, it will be throttled as specified
   /// by the parameters below.
-  public struct AutoscalingPolicyScaleInControl: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AutoscalingPolicyScaleInControl: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Maximum allowed number (or %) of VMs that can be deducted from the peak
@@ -53,11 +53,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.AutoscalingPolicyScaleInControl"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

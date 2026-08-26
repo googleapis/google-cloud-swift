@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The representation of a Security Health Analytics custom module at a
 /// specified level of the resource hierarchy: organization, folder, or project.
@@ -24,7 +24,7 @@ import Foundation
 /// to `INHERITED`. For example, if the module is enabled in an organization or
 /// folder, then the effective enablement state for the module is `ENABLED` in
 /// all descendant folders or projects.
-public struct EffectiveSecurityHealthAnalyticsCustomModule: Codable, Equatable, GoogleCloudWkt
+public struct EffectiveSecurityHealthAnalyticsCustomModule: Codable, Equatable, GoogleCloudWKT
     ._AnyPackable,
   Sendable
 {
@@ -174,10 +174,10 @@ public struct EffectiveSecurityHealthAnalyticsCustomModule: Codable, Equatable, 
     return
       "type.googleapis.com/google.cloud.securitycentermanagement.v1.EffectiveSecurityHealthAnalyticsCustomModule"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

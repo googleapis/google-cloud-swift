@@ -16,10 +16,10 @@
 
 #if PredictionService || SessionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Grounding chunk.
-  public struct GroundingChunk: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GroundingChunk: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Chunk type.
@@ -90,7 +90,7 @@
     }
 
     /// Chunk from the web.
-    public struct Web: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Web: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// URI reference of the chunk.
@@ -118,16 +118,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.GroundingChunk.Web"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Chunk from context retrieved by the retrieval tools.
-    public struct RetrievedContext: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct RetrievedContext: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// URI reference of the attribution.
@@ -218,18 +218,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.GroundingChunk.RetrievedContext"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// A `Maps` chunk is a piece of evidence that comes from Google Maps,
     /// containing information about places or routes. This is used to provide
     /// the user with rich, location-based information.
-    public struct Maps: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Maps: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// URI reference of the chunk.
@@ -269,7 +269,7 @@
         return copy
       }
 
-      public struct PlaceAnswerSources: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct PlaceAnswerSources: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Snippets of reviews that are used to generate the answer.
@@ -292,7 +292,7 @@
         }
 
         /// Encapsulates a review snippet.
-        public struct ReviewSnippet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct ReviewSnippet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Id of the review referencing the place.
@@ -324,11 +324,11 @@
             return
               "type.googleapis.com/google.cloud.aiplatform.v1.GroundingChunk.Maps.PlaceAnswerSources.ReviewSnippet"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
@@ -336,23 +336,23 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.GroundingChunk.Maps.PlaceAnswerSources"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Route information from Google Maps.
-      public struct Route: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Route: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// The total distance of the route, in meters.
         public var distanceMeters: Swift.Int32 = Swift.Int32()
 
         /// The total duration of the route.
-        public var duration: GoogleCloudWkt.Duration? = nil
+        public var duration: GoogleCloudWKT.Duration? = nil
 
         /// An encoded polyline of the route. See
         /// https://developers.google.com/maps/documentation/utilities/polylinealgorithm
@@ -377,22 +377,22 @@
         public static var _anyTypeUrl: Swift.String {
           return "type.googleapis.com/google.cloud.aiplatform.v1.GroundingChunk.Maps.Route"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.GroundingChunk.Maps"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -409,11 +409,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.GroundingChunk"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

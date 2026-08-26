@@ -16,10 +16,10 @@
 
 #if SiteSearchEngineService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A sitemap for the SiteSearchEngine.
-  public struct Sitemap: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Sitemap: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The fully qualified resource name of the sitemap.
@@ -28,7 +28,7 @@
     public var name: Swift.String = Swift.String()
 
     /// Output only. The sitemap's creation time.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Supported feed sources.
     public var feed: OneOf_Feed? = nil
@@ -59,7 +59,7 @@
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.name = try container.decode(Swift.String.self, forKey: .name)
       self.createTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
 
       var feed: OneOf_Feed? = nil
       let feedCheckAndSet = {
@@ -99,11 +99,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.Sitemap"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -16,14 +16,14 @@
 
 #if Playbooks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The playbook import strategy used for resource conflict resolution associated
   /// with an
   /// [ImportPlaybookRequest][google.cloud.dialogflow.cx.v3.ImportPlaybookRequest].
   ///
   /// [google.cloud.dialogflow.cx.v3.ImportPlaybookRequest]: <doc:ImportPlaybookRequest>
-  public struct PlaybookImportStrategy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PlaybookImportStrategy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Specifies the import strategy used when resolving conflicts with
@@ -60,11 +60,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.PlaybookImportStrategy"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

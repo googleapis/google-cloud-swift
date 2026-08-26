@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response message for the
 /// [DisableProcessor][google.cloud.documentai.v1.DocumentProcessorService.DisableProcessor]
 /// method. Intentionally empty proto for adding fields in future.
 ///
 /// [google.cloud.documentai.v1.DocumentProcessorService.DisableProcessor]: <doc:DocumentProcessorServiceClient/disableProcessor(request:options:)>
-public struct DisableProcessorResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DisableProcessorResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Initialize a new instance of `DisableProcessorResponse`.
@@ -44,10 +44,10 @@ public struct DisableProcessorResponse: Codable, Equatable, GoogleCloudWkt._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.documentai.v1.DisableProcessorResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

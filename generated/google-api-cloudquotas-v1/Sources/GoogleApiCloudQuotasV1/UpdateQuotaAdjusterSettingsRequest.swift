@@ -15,17 +15,17 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request for updating QuotaAdjusterSettings
-public struct UpdateQuotaAdjusterSettingsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateQuotaAdjusterSettingsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The QuotaAdjusterSettings to update.
   public var quotaAdjusterSettings: QuotaAdjusterSettings? = nil
 
   /// Optional. The list of fields to update.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Optional. If set to true, checks the syntax of the request but doesn't
   /// update the quota adjuster settings value. Note that although a request can
@@ -51,10 +51,10 @@ public struct UpdateQuotaAdjusterSettingsRequest: Codable, Equatable, GoogleClou
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.cloudquotas.v1.UpdateQuotaAdjusterSettingsRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

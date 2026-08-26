@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [KeyManagementService.ImportTrustedKeyWrappedCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.ImportTrustedKeyWrappedCryptoKeyVersion].
 ///
 /// [google.cloud.kms.v1.KeyManagementService.ImportTrustedKeyWrappedCryptoKeyVersion]: <doc:KeyManagementServiceClient/importTrustedKeyWrappedCryptoKeyVersion(request:options:)>
-public struct ImportTrustedKeyWrappedCryptoKeyVersionRequest: Codable, Equatable, GoogleCloudWkt
+public struct ImportTrustedKeyWrappedCryptoKeyVersionRequest: Codable, Equatable, GoogleCloudWKT
     ._AnyPackable,
   Sendable
 {
@@ -101,10 +101,10 @@ public struct ImportTrustedKeyWrappedCryptoKeyVersionRequest: Codable, Equatable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.ImportTrustedKeyWrappedCryptoKeyVersionRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -16,9 +16,9 @@
 
 #if ReservationSlots
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
-  public struct ReservationSlotsGetVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ReservationSlotsGetVersionRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The SBOM selection to return. Duplicate values in the list will be ignored.
@@ -147,11 +147,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.ReservationSlotsGetVersionRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

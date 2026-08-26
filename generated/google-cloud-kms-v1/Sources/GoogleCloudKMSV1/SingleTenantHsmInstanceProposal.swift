@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A
 /// [SingleTenantHsmInstanceProposal][google.cloud.kms.v1.SingleTenantHsmInstanceProposal]
@@ -24,7 +24,7 @@ import Foundation
 ///
 /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
 /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
-public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The resource name for this
@@ -39,7 +39,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWk
   /// was created.
   ///
   /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The state of the
   /// [SingleTenantHsmInstanceProposal][google.cloud.kms.v1.SingleTenantHsmInstanceProposal].
@@ -59,7 +59,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWk
   /// was deleted.
   ///
   /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
-  public var deleteTime: GoogleCloudWkt.Timestamp? = nil
+  public var deleteTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time at which the soft-deleted
   /// [SingleTenantHsmInstanceProposal][google.cloud.kms.v1.SingleTenantHsmInstanceProposal]
@@ -68,7 +68,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWk
   /// proposal, i.e. >= expire_time or (create_time + ttl).
   ///
   /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
-  public var purgeTime: GoogleCloudWkt.Timestamp? = nil
+  public var purgeTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The approval parameters for the
   /// [SingleTenantHsmInstanceProposal][google.cloud.kms.v1.SingleTenantHsmInstanceProposal].
@@ -134,13 +134,13 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWk
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.state = try container.decode(SingleTenantHsmInstanceProposal.State.self, forKey: .state)
     self.failureReason = try container.decode(Swift.String.self, forKey: .failureReason)
     self.deleteTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .deleteTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .deleteTime)
     self.purgeTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .purgeTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .purgeTime)
 
     var approvalParameters: OneOf_ApprovalParameters? = nil
     let approvalParametersCheckAndSet = {
@@ -177,11 +177,11 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWk
       expiration = $0
     }
     if let expireTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp?.self, forKey: .expireTime)
+      GoogleCloudWKT.Timestamp?.self, forKey: .expireTime)
     {
       try expirationCheckAndSet(.expireTime(expireTime))
     }
-    if let ttl = try container.decodeIfPresent(GoogleCloudWkt.Duration?.self, forKey: .ttl) {
+    if let ttl = try container.decodeIfPresent(GoogleCloudWKT.Duration?.self, forKey: .ttl) {
       try expirationCheckAndSet(.ttl(ttl))
     }
     self.expiration = expiration
@@ -297,7 +297,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWk
   /// [SingleTenantHsmInstanceProposal][google.cloud.kms.v1.SingleTenantHsmInstanceProposal].
   ///
   /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
-  public struct QuorumParameters: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct QuorumParameters: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The required numbers of approvers. This is the M value used
@@ -337,17 +337,17 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWk
       return
         "type.googleapis.com/google.cloud.kms.v1.SingleTenantHsmInstanceProposal.QuorumParameters"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Parameters for an approval that has both required challenges and a
   /// quorum.
-  public struct RequiredActionQuorumParameters: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RequiredActionQuorumParameters: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. A list of specific challenges that must be signed.
@@ -391,11 +391,11 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWk
       return
         "type.googleapis.com/google.cloud.kms.v1.SingleTenantHsmInstanceProposal.RequiredActionQuorumParameters"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -409,7 +409,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWk
   ///
   /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
   /// [google.cloud.kms.v1.SingleTenantHsmInstance.State.PENDING_TWO_FACTOR_AUTH_REGISTRATION]: <doc:SingleTenantHsmInstance/State/pendingTwoFactorAuthRegistration>
-  public struct RegisterTwoFactorAuthKeys: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RegisterTwoFactorAuthKeys: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The required numbers of approvers to set for the
@@ -447,11 +447,11 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWk
       return
         "type.googleapis.com/google.cloud.kms.v1.SingleTenantHsmInstanceProposal.RegisterTwoFactorAuthKeys"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -464,7 +464,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWk
   ///
   /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
   /// [google.cloud.kms.v1.SingleTenantHsmInstance.State.ACTIVE]: <doc:SingleTenantHsmInstance/State/active>
-  public struct DisableSingleTenantHsmInstance: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DisableSingleTenantHsmInstance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `DisableSingleTenantHsmInstance`.
@@ -487,11 +487,11 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWk
       return
         "type.googleapis.com/google.cloud.kms.v1.SingleTenantHsmInstanceProposal.DisableSingleTenantHsmInstance"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -504,7 +504,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWk
   ///
   /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
   /// [google.cloud.kms.v1.SingleTenantHsmInstance.State.DISABLED]: <doc:SingleTenantHsmInstance/State/disabled>
-  public struct EnableSingleTenantHsmInstance: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct EnableSingleTenantHsmInstance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `EnableSingleTenantHsmInstance`.
@@ -527,11 +527,11 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWk
       return
         "type.googleapis.com/google.cloud.kms.v1.SingleTenantHsmInstanceProposal.EnableSingleTenantHsmInstance"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -552,7 +552,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWk
   /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
   /// [google.cloud.kms.v1.SingleTenantHsmInstance.State.DELETED]: <doc:SingleTenantHsmInstance/State/deleted>
   /// [google.cloud.kms.v1.SingleTenantHsmInstance.State.DELETING]: <doc:SingleTenantHsmInstance/State/deleting>
-  public struct DeleteSingleTenantHsmInstance: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DeleteSingleTenantHsmInstance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `DeleteSingleTenantHsmInstance`.
@@ -575,11 +575,11 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWk
       return
         "type.googleapis.com/google.cloud.kms.v1.SingleTenantHsmInstanceProposal.DeleteSingleTenantHsmInstance"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -596,7 +596,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWk
   /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
   /// [google.cloud.kms.v1.SingleTenantHsmInstance.QuorumAuth.total_approver_count]: <doc:SingleTenantHsmInstance/QuorumAuth/totalApproverCount>
   /// [google.cloud.kms.v1.SingleTenantHsmInstance.State.ACTIVE]: <doc:SingleTenantHsmInstance/State/active>
-  public struct AddQuorumMember: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AddQuorumMember: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The public key associated with the 2FA key for the new quorum
@@ -623,11 +623,11 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWk
       return
         "type.googleapis.com/google.cloud.kms.v1.SingleTenantHsmInstanceProposal.AddQuorumMember"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -644,7 +644,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWk
   /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
   /// [google.cloud.kms.v1.SingleTenantHsmInstance.QuorumAuth.total_approver_count]: <doc:SingleTenantHsmInstance/QuorumAuth/totalApproverCount>
   /// [google.cloud.kms.v1.SingleTenantHsmInstance.State.ACTIVE]: <doc:SingleTenantHsmInstance/State/active>
-  public struct RemoveQuorumMember: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RemoveQuorumMember: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The public key associated with the 2FA key for the quorum
@@ -671,11 +671,11 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWk
       return
         "type.googleapis.com/google.cloud.kms.v1.SingleTenantHsmInstanceProposal.RemoveQuorumMember"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -694,7 +694,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWk
   /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
   /// [google.cloud.kms.v1.SingleTenantHsmInstance.State.ACTIVE]: <doc:SingleTenantHsmInstance/State/active>
   /// [google.cloud.kms.v1.SingleTenantHsmInstance.unrefreshed_duration_until_disable]: <doc:SingleTenantHsmInstance/unrefreshedDurationUntilDisable>
-  public struct RefreshSingleTenantHsmInstance: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RefreshSingleTenantHsmInstance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `RefreshSingleTenantHsmInstance`.
@@ -717,11 +717,11 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWk
       return
         "type.googleapis.com/google.cloud.kms.v1.SingleTenantHsmInstanceProposal.RefreshSingleTenantHsmInstance"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -729,7 +729,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWk
   /// The key must be in the
   /// [ACTIVE][CryptoKeyVersion.CryptoKeyVersionState.ACTIVE] state to perform
   /// this operation.
-  public struct UpgradeKeyTrust: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct UpgradeKeyTrust: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the
@@ -763,11 +763,11 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWk
       return
         "type.googleapis.com/google.cloud.kms.v1.SingleTenantHsmInstanceProposal.UpgradeKeyTrust"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -976,13 +976,13 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWk
     /// will expire if not approved and executed.
     ///
     /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
-    indirect case expireTime(GoogleCloudWkt.Timestamp?)
+    indirect case expireTime(GoogleCloudWKT.Timestamp?)
     /// Input only. The TTL for the
     /// [SingleTenantHsmInstanceProposal][google.cloud.kms.v1.SingleTenantHsmInstanceProposal].
     /// Proposals will expire after this duration.
     ///
     /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
-    indirect case ttl(GoogleCloudWkt.Duration?)
+    indirect case ttl(GoogleCloudWKT.Duration?)
   }
 
   /// The operation to perform on the
@@ -1100,10 +1100,10 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleCloudWk
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.SingleTenantHsmInstanceProposal"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

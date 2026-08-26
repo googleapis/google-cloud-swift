@@ -20,7 +20,7 @@
   import Foundation
   import GoogleCloudDialogflowCXV3
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
 
   func sample(
@@ -34,7 +34,7 @@
             $0.name =
               "projects/\(projectId)/locations/\(locationId)/agents/\(agentId)/flows/\(flowId)/transitionRouteGroups/\(transitionRouteGroupId)"
           }
-          $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+          $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
         }
     )
     print("Success: \(response)")

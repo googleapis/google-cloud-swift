@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// `Distribution` contains summary statistics for a population of values. It
 /// optionally contains a histogram representing the distribution of those values
@@ -31,7 +31,7 @@ import Foundation
 /// Although it is not forbidden, it is generally a bad idea to include
 /// non-finite values (infinities or NaNs) in the population of values, as this
 /// will render the `mean` and `sum_of_squared_deviation` fields meaningless.
-public struct Distribution: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Distribution: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The number of values in the population. Must be non-negative. This value
@@ -99,7 +99,7 @@ public struct Distribution: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// The range of the population values.
-  public struct Range: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Range: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The minimum of the population values.
@@ -127,11 +127,11 @@ public struct Distribution: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.api.Distribution.Range"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -150,7 +150,7 @@ public struct Distribution: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// of finite values: lower bound of the underflow bucket is -infinity and the
   /// upper bound of the overflow bucket is +infinity. The finite buckets are
   /// so-called because both bounds are finite.
-  public struct BucketOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct BucketOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Exactly one of these three fields must be set.
@@ -234,7 +234,7 @@ public struct Distribution: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     ///    Upper bound (0 <= i < N-1):     offset + (width * i).
     ///
     ///    Lower bound (1 <= i < N):       offset + (width * (i - 1)).
-    public struct Linear: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Linear: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Must be greater than 0.
@@ -265,11 +265,11 @@ public struct Distribution: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.api.Distribution.BucketOptions.Linear"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -283,7 +283,7 @@ public struct Distribution: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     ///    Upper bound (0 <= i < N-1):     scale * (growth_factor ^ i).
     ///
     ///    Lower bound (1 <= i < N):       scale * (growth_factor ^ (i - 1)).
-    public struct Exponential: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Exponential: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Must be greater than 0.
@@ -314,11 +314,11 @@ public struct Distribution: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.api.Distribution.BucketOptions.Exponential"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -333,7 +333,7 @@ public struct Distribution: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// The `bounds` field must contain at least one element. If `bounds` has
     /// only one element, then there are no finite buckets, and that single
     /// element is the common boundary of the overflow and underflow buckets.
-    public struct Explicit: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Explicit: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The values must be monotonically increasing.
@@ -358,11 +358,11 @@ public struct Distribution: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.api.Distribution.BucketOptions.Explicit"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -379,11 +379,11 @@ public struct Distribution: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.api.Distribution.BucketOptions"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -392,7 +392,7 @@ public struct Distribution: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// particular value added to a Distribution bucket, such as a trace ID that
   /// was active when a value was added. They may contain further information,
   /// such as a example values and timestamps, origin, etc.
-  public struct Exemplar: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Exemplar: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Value of the exemplar point. This value determines to which bucket the
@@ -400,7 +400,7 @@ public struct Distribution: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public var value: Swift.Double = Swift.Double()
 
     /// The observation (sampling) time of the above value.
-    public var timestamp: GoogleCloudWkt.Timestamp? = nil
+    public var timestamp: GoogleCloudWKT.Timestamp? = nil
 
     /// Contextual information about the example value. Examples are:
     ///
@@ -413,7 +413,7 @@ public struct Distribution: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     ///
     /// There may be only a single attachment of any given message type in a
     /// single exemplar, and this is enforced by the system.
-    public var attachments: [GoogleCloudWkt.`Any`] = []
+    public var attachments: [GoogleCloudWKT.`Any`] = []
 
     /// Initialize a new instance of `Exemplar`.
     public init() {}
@@ -434,21 +434,21 @@ public struct Distribution: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.api.Distribution.Exemplar"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.Distribution"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

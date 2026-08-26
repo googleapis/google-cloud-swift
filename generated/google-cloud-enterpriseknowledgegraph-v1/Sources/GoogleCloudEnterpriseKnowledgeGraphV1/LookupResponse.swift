@@ -15,24 +15,24 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response message for
 /// [EnterpriseKnowledgeGraphService.Lookup][google.cloud.enterpriseknowledgegraph.v1.EnterpriseKnowledgeGraphService.Lookup].
 ///
 /// [google.cloud.enterpriseknowledgegraph.v1.EnterpriseKnowledgeGraphService.Lookup]: <doc:EnterpriseKnowledgeGraphServiceClient/lookup(request:options:)>
-public struct LookupResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct LookupResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The local context applicable for the response. See more details at
   /// http://www.w3.org/TR/json-ld/#context-definitions.
-  public var context: GoogleCloudWkt.Value? = nil
+  public var context: GoogleCloudWKT.Value? = nil
 
   /// The schema type of top-level JSON-LD object, e.g. ItemList.
-  public var type: GoogleCloudWkt.Value? = nil
+  public var type: GoogleCloudWKT.Value? = nil
 
   /// The item list of search results.
-  public var itemListElement: GoogleCloudWkt.ListValue? = nil
+  public var itemListElement: GoogleCloudWKT.ListValue? = nil
 
   /// Initialize a new instance of `LookupResponse`.
   public init() {}
@@ -53,10 +53,10 @@ public struct LookupResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.enterpriseknowledgegraph.v1.LookupResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A type of analysis that can be done for a resource.
-public struct Note: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Note: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The name of the note in the form of
@@ -39,15 +39,15 @@ public struct Note: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var relatedUrl: [RelatedUrl] = []
 
   /// Time of expiration for this note. Empty if note does not expire.
-  public var expirationTime: GoogleCloudWkt.Timestamp? = nil
+  public var expirationTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time this note was created. This field can be used as a
   /// filter in list requests.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time this note was last updated. This field can be used as
   /// a filter in list requests.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Other notes related to this note.
   public var relatedNoteNames: [Swift.String] = []
@@ -104,11 +104,11 @@ public struct Note: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.kind = try container.decode(NoteKind.self, forKey: .kind)
     self.relatedUrl = try container.decode([RelatedUrl].self, forKey: .relatedUrl)
     self.expirationTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .expirationTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .expirationTime)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.relatedNoteNames = try container.decode([Swift.String].self, forKey: .relatedNoteNames)
 
     var type: OneOf_Type? = nil
@@ -249,10 +249,10 @@ public struct Note: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/grafeas.v1.Note"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

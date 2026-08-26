@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Properties of GoldengateDeployment.
-public struct GoldengateDeploymentProperties: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct GoldengateDeploymentProperties: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. OCID of the GoldengateDeployment.
@@ -75,7 +75,7 @@ public struct GoldengateDeploymentProperties: Codable, Equatable, GoogleCloudWkt
   public var deploymentBackupId: Swift.String = Swift.String()
 
   /// Output only. The time the GoldengateDeployment was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The lifecycle details of the GoldengateDeployment.
   public var lifecycleDetails: Swift.String = Swift.String()
@@ -108,7 +108,7 @@ public struct GoldengateDeploymentProperties: Codable, Equatable, GoogleCloudWkt
   public var isLatestVersion: Swift.Bool = Swift.Bool()
 
   /// Output only. The time upgrade required of the GoldengateDeployment.
-  public var upgradeRequiredTime: GoogleCloudWkt.Timestamp? = nil
+  public var upgradeRequiredTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The storage utilization in bytes of the GoldengateDeployment.
   public var storageUtilizationBytes: Swift.Int64 = Swift.Int64()
@@ -124,7 +124,7 @@ public struct GoldengateDeploymentProperties: Codable, Equatable, GoogleCloudWkt
   public var backupSchedule: GoldengateBackupSchedule? = nil
 
   /// Output only. The time of next maintenance of the GoldengateDeployment.
-  public var nextMaintenanceTime: GoogleCloudWkt.Timestamp? = nil
+  public var nextMaintenanceTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The next maintenance action type of the GoldengateDeployment.
   public var nextMaintenanceActionType: GoldengateDeploymentProperties.NextMaintenanceActionType =
@@ -135,7 +135,7 @@ public struct GoldengateDeploymentProperties: Codable, Equatable, GoogleCloudWkt
 
   /// Output only. The time ogg version supported until of the
   /// GoldengateDeployment.
-  public var oggVersionSupportEndTime: GoogleCloudWkt.Timestamp? = nil
+  public var oggVersionSupportEndTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The ingress ips of the GoldengateDeployment.
   public var ingressIps: [IngressIp] = []
@@ -145,14 +145,14 @@ public struct GoldengateDeploymentProperties: Codable, Equatable, GoogleCloudWkt
     GoldengateDeploymentProperties.GoldengateDeploymentRoleType()
 
   /// Output only. The time last backup scheduled of the GoldengateDeployment.
-  public var lastBackupScheduleTime: GoogleCloudWkt.Timestamp? = nil
+  public var lastBackupScheduleTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time next backup scheduled of the GoldengateDeployment.
-  public var nextBackupScheduleTime: GoogleCloudWkt.Timestamp? = nil
+  public var nextBackupScheduleTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time when the role of the GoldengateDeployment was
   /// changed.
-  public var roleChangeTime: GoogleCloudWkt.Timestamp? = nil
+  public var roleChangeTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The locks of the GoldengateDeployment.
   public var locks: [GoldengateDeploymentLock] = []
@@ -921,10 +921,10 @@ public struct GoldengateDeploymentProperties: Codable, Equatable, GoogleCloudWkt
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.oracledatabase.v1.GoldengateDeploymentProperties"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

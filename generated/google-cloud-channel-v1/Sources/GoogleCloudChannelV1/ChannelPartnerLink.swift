@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Entity representing a link between distributors and their indirect
 /// resellers in an n-tier resale channel.
-public struct ChannelPartnerLink: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ChannelPartnerLink: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Resource name for the channel partner link, in the format
@@ -36,10 +36,10 @@ public struct ChannelPartnerLink: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public var inviteLinkUri: Swift.String = Swift.String()
 
   /// Output only. Timestamp of when the channel partner link is created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Timestamp of when the channel partner link is updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Public identifier that a customer must use to generate a
   /// transfer token to move to this distributor-reseller combination.
@@ -67,10 +67,10 @@ public struct ChannelPartnerLink: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.channel.v1.ChannelPartnerLink"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

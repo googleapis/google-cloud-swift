@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request for UpdateAcl.
-public struct UpdateAclRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateAclRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The updated acl. Its `name` and `etag` fields must be populated.
@@ -30,7 +30,7 @@ public struct UpdateAclRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Acl resource by the update. The fields specified in the update_mask are
   /// relative to the resource, not the full request. A field will be overwritten
   /// if it is in the mask.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `UpdateAclRequest`.
   public init() {}
@@ -51,10 +51,10 @@ public struct UpdateAclRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.managedkafka.v1.UpdateAclRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

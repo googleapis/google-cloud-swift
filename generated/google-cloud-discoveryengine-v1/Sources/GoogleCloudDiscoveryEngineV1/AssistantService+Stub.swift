@@ -16,7 +16,7 @@
 
 #if AssistantService
   import Foundation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleCloudGax
 

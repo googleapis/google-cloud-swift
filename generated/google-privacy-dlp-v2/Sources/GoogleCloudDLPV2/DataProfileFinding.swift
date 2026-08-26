@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Details about a piece of potentially sensitive information that was detected
 /// when the data resource was profiled.
-public struct DataProfileFinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DataProfileFinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The content that was found. Even if the content is not textual, it
@@ -43,7 +43,7 @@ public struct DataProfileFinding: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public var findingId: Swift.String = Swift.String()
 
   /// Timestamp when the finding was detected.
-  public var timestamp: GoogleCloudWkt.Timestamp? = nil
+  public var timestamp: GoogleCloudWKT.Timestamp? = nil
 
   /// Where the content was found.
   public var location: DataProfileFindingLocation? = nil
@@ -78,10 +78,10 @@ public struct DataProfileFinding: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.DataProfileFinding"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

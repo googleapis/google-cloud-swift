@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents an instance of a Security Health Analytics custom module,
 /// including its full module name, display name, enablement state, and last
 /// updated time. You can create a custom module at the organization, folder, or
 /// project level. Custom modules that you create at the organization or folder
 /// level are inherited by the descendant folders and projects.
-public struct SecurityHealthAnalyticsCustomModule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SecurityHealthAnalyticsCustomModule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The full resource name of the custom module, in one of the
@@ -45,7 +45,7 @@ public struct SecurityHealthAnalyticsCustomModule: Codable, Equatable, GoogleClo
     SecurityHealthAnalyticsCustomModule.EnablementState()
 
   /// Output only. The time at which the custom module was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The editor that last updated the custom module.
   public var lastEditor: Swift.String = Swift.String()
@@ -195,10 +195,10 @@ public struct SecurityHealthAnalyticsCustomModule: Codable, Equatable, GoogleClo
     return
       "type.googleapis.com/google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

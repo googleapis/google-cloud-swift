@@ -16,13 +16,13 @@
 
 #if Agents
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The request message for
   /// [Agents.ValidateAgent][google.cloud.dialogflow.cx.v3.Agents.ValidateAgent].
   ///
   /// [google.cloud.dialogflow.cx.v3.Agents.ValidateAgent]: <doc:AgentsClient/validateAgent(request:options:)>
-  public struct ValidateAgentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ValidateAgentRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The agent to validate.
@@ -51,11 +51,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.ValidateAgentRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

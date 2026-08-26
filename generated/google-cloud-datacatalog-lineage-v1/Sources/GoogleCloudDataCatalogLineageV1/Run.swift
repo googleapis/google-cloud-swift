@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A lineage run represents an execution of a process that creates
 /// lineage events.
-public struct Run: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Run: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Immutable. The resource name of the run. Format:
@@ -38,13 +38,13 @@ public struct Run: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// non-semantic management (classifying, describing or labeling the run).
   ///
   /// Up to 100 attributes are allowed.
-  public var attributes: [Swift.String: GoogleCloudWkt.Value] = [:]
+  public var attributes: [Swift.String: GoogleCloudWKT.Value] = [:]
 
   /// Required. The timestamp of the start of the run.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. The timestamp of the end of the run.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Required. The state of the run.
   public var state: Run.State = Run.State()
@@ -188,10 +188,10 @@ public struct Run: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datacatalog.lineage.v1.Run"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

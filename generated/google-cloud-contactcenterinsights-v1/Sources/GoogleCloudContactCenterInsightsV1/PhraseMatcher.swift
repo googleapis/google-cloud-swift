@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The phrase matcher resource.
-public struct PhraseMatcher: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct PhraseMatcher: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The resource name of the phrase matcher.
@@ -38,7 +38,7 @@ public struct PhraseMatcher: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Output only. The timestamp of when the revision was created. It is also the
   /// create time when a new matcher is added.
-  public var revisionCreateTime: GoogleCloudWkt.Timestamp? = nil
+  public var revisionCreateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The human-readable name of the phrase matcher.
   public var displayName: Swift.String = Swift.String()
@@ -54,7 +54,7 @@ public struct PhraseMatcher: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Output only. The most recent time at which the activation status was
   /// updated.
-  public var activationUpdateTime: GoogleCloudWkt.Timestamp? = nil
+  public var activationUpdateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The role whose utterances the phrase matcher should be matched
   /// against. If the role is ROLE_UNSPECIFIED it will be matched against any
@@ -62,7 +62,7 @@ public struct PhraseMatcher: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var roleMatch: ConversationParticipant.Role = ConversationParticipant.Role()
 
   /// Output only. The most recent time at which the phrase matcher was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `PhraseMatcher`.
   public init() {}
@@ -189,10 +189,10 @@ public struct PhraseMatcher: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.contactcenterinsights.v1.PhraseMatcher"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

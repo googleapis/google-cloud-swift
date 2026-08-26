@@ -16,13 +16,13 @@
 
 #if Examples || Playbooks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Example represents a sample execution of the playbook in the conversation.
   ///
   /// An example consists of a list of ordered actions performed by end user
   /// or Dialogflow agent according the playbook instructions to fulfill the task.
-  public struct Example: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Example: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The unique identifier of the playbook example.
@@ -52,10 +52,10 @@
     public var tokenCount: Swift.Int64 = Swift.Int64()
 
     /// Output only. The timestamp of initial example creation.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Last time the example was updated.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Required. Example's output state.
     public var conversationState: OutputState = OutputState()
@@ -85,11 +85,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Example"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

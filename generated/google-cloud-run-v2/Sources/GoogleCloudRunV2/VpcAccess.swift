@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// VPC Access settings. For more information on sending traffic to a VPC
 /// network, visit https://cloud.google.com/run/docs/configuring/connecting-vpc.
-public struct VpcAccess: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct VpcAccess: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// VPC Access connector name.
@@ -54,7 +54,7 @@ public struct VpcAccess: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Direct VPC egress settings.
-  public struct NetworkInterface: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct NetworkInterface: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The VPC network that the Cloud Run resource will be able to
@@ -93,11 +93,11 @@ public struct VpcAccess: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.run.v2.VpcAccess.NetworkInterface"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -209,10 +209,10 @@ public struct VpcAccess: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.run.v2.VpcAccess"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -972,7 +972,7 @@ extension Clients {
     /// See `AppPlatformClient.updateApplication`.
     func updateApplication(
       application: Application?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Application>
 
     /// See `AppPlatformClient.deleteApplication`.
@@ -1161,7 +1161,7 @@ extension Clients {
     /// See `AppPlatformClient.updateDraft`.
     func updateDraft(
       draft: Draft?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Draft>
 
     /// See `AppPlatformClient.deleteDraft`.
@@ -1233,7 +1233,7 @@ extension Clients {
     /// See `AppPlatformClient.updateProcessor`.
     func updateProcessor(
       processor: Processor?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Processor>
 
     /// See `AppPlatformClient.deleteProcessor`.
@@ -1694,7 +1694,7 @@ extension Clients.AppPlatformProtocol {
 
   public func updateApplication(
     application: Application?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Application> {
     let request = UpdateApplicationRequest().with {
       $0.application = application
@@ -2229,7 +2229,7 @@ extension Clients.AppPlatformProtocol {
 
   public func updateDraft(
     draft: Draft?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Draft> {
     let request = UpdateDraftRequest().with {
       $0.draft = draft
@@ -2423,7 +2423,7 @@ extension Clients.AppPlatformProtocol {
 
   public func updateProcessor(
     processor: Processor?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Processor> {
     let request = UpdateProcessorRequest().with {
       $0.processor = processor

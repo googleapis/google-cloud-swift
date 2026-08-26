@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Defines a search operation using a query vector.
-public struct VectorSearch: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct VectorSearch: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The vector field to search.
@@ -26,7 +26,7 @@ public struct VectorSearch: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Optional. A JSON filter expression, e.g. {"genre": {"$eq": "sci-fi"}},
   /// represented as a google.protobuf.Struct.
-  public var filter: GoogleCloudWkt.Struct? = nil
+  public var filter: GoogleCloudWKT.Struct? = nil
 
   /// Optional. The number of nearest neighbors to return.
   public var topK: Swift.Int32? = nil
@@ -76,7 +76,7 @@ public struct VectorSearch: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.searchField = try container.decode(Swift.String.self, forKey: .searchField)
-    self.filter = try container.decodeIfPresent(GoogleCloudWkt.Struct.self, forKey: .filter)
+    self.filter = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .filter)
     self.topK = try container.decodeIfPresent(Swift.Int32.self, forKey: .topK)
     self.outputFields = try container.decodeIfPresent(OutputFields.self, forKey: .outputFields)
     self.searchHint = try container.decodeIfPresent(SearchHint.self, forKey: .searchHint)
@@ -131,10 +131,10 @@ public struct VectorSearch: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vectorsearch.v1.VectorSearch"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

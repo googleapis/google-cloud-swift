@@ -16,14 +16,14 @@
 
 #if GroundedGenerationService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Response message for the
   /// [GroundedGenerationService.CheckGrounding][google.cloud.discoveryengine.v1.GroundedGenerationService.CheckGrounding]
   /// method.
   ///
   /// [google.cloud.discoveryengine.v1.GroundedGenerationService.CheckGrounding]: <doc:GroundedGenerationServiceClient/checkGrounding(request:options:)>
-  public struct CheckGroundingResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CheckGroundingResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The support score for the input answer candidate.
@@ -59,7 +59,7 @@
     }
 
     /// Fact chunk for grounding check.
-    public struct CheckGroundingFactChunk: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct CheckGroundingFactChunk: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Text content of the fact chunk. Can be at most 10K characters long.
@@ -85,16 +85,16 @@
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.CheckGroundingResponse.CheckGroundingFactChunk"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Text and citation info for a claim in the answer candidate.
-    public struct Claim: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Claim: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Position indicating the start of the claim in the answer candidate,
@@ -160,22 +160,22 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.CheckGroundingResponse.Claim"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.CheckGroundingResponse"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

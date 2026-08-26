@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// EngineVersion controls which version of the engine is used to tune, train,
 /// and run the model.
-public struct EngineVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct EngineVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Identifier. The resource name of the EngineVersion
@@ -32,12 +32,12 @@ public struct EngineVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Output only. Planned time to stop allowing training/tuning using this
   /// version. Existing trained models can still be used for prediction/backtest.
-  public var expectedLimitationStartTime: GoogleCloudWkt.Timestamp? = nil
+  public var expectedLimitationStartTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Planned time to stop supporting the version, in addition
   /// to no training or tuning, models trained on this version
   /// can no longer be used for prediction/backtest.
-  public var expectedDecommissionTime: GoogleCloudWkt.Timestamp? = nil
+  public var expectedDecommissionTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The line of business (Retail/Commercial) this engine version
   /// is used for.
@@ -176,10 +176,10 @@ public struct EngineVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.financialservices.v1.EngineVersion"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

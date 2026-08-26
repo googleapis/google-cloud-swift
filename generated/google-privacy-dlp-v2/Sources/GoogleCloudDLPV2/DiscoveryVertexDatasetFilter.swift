@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Determines what datasets will have profiles generated within an organization
 /// or project. Includes the ability to filter by regular expression patterns
 /// on project ID or dataset regex.
-public struct DiscoveryVertexDatasetFilter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DiscoveryVertexDatasetFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Whether the filter applies to a specific set of datasets or all
@@ -115,10 +115,10 @@ public struct DiscoveryVertexDatasetFilter: Codable, Equatable, GoogleCloudWkt._
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.DiscoveryVertexDatasetFilter"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

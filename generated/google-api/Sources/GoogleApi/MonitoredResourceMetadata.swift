@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Auxiliary metadata for a [MonitoredResource][google.api.MonitoredResource]
 /// object. [MonitoredResource][google.api.MonitoredResource] objects contain the
@@ -25,7 +25,7 @@ import Foundation
 /// all types, and store the metadata in this message.
 ///
 /// [google.api.MonitoredResource]: <doc:MonitoredResource>
-public struct MonitoredResourceMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MonitoredResourceMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Values for predefined system metadata labels.
@@ -38,7 +38,7 @@ public struct MonitoredResourceMetadata: Codable, Equatable, GoogleCloudWkt._Any
   ///     { "name": "my-test-instance",
   ///       "security_group": ["a", "b", "c"],
   ///       "spot_instance": false }
-  public var systemLabels: GoogleCloudWkt.Struct? = nil
+  public var systemLabels: GoogleCloudWKT.Struct? = nil
 
   /// Output only. A map of user-defined metadata labels.
   public var userLabels: [Swift.String: Swift.String] = [:]
@@ -62,10 +62,10 @@ public struct MonitoredResourceMetadata: Codable, Equatable, GoogleCloudWkt._Any
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.MonitoredResourceMetadata"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

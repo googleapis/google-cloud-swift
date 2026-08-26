@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [UpdateDomain][google.cloud.managedidentities.v1.UpdateDomain]
-public struct UpdateDomainRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateDomainRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Mask of fields to update. At least one path must be supplied in this
@@ -30,7 +30,7 @@ public struct UpdateDomainRequest: Codable, Equatable, GoogleCloudWkt._AnyPackab
   ///  * `authorized_networks`
   ///
   /// [google.cloud.managedidentities.v1.Domain]: <doc:Domain>
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Required. Domain message with updated fields. Only supported fields specified in
   /// update_mask are updated.
@@ -55,10 +55,10 @@ public struct UpdateDomainRequest: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.managedidentities.v1.UpdateDomainRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Describes the generator configuration for a method.
-public struct MethodSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MethodSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The fully qualified name of the method, for which the options below apply.
@@ -95,12 +95,12 @@ public struct MethodSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// All default values below are from those used in the client library
   /// generators (e.g.
   /// [Java](https://github.com/googleapis/gapic-generator-java/blob/04c2faa191a9b5a10b92392fe8482279c4404803/src/main/java/com/google/api/generator/gapic/composer/common/RetrySettingsComposer.java)).
-  public struct LongRunning: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct LongRunning: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initial delay after which the first poll request will be made.
     /// Default value: 5 seconds.
-    public var initialPollDelay: GoogleCloudWkt.Duration? = nil
+    public var initialPollDelay: GoogleCloudWKT.Duration? = nil
 
     /// Multiplier to gradually increase delay between subsequent polls until it
     /// reaches max_poll_delay.
@@ -109,11 +109,11 @@ public struct MethodSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Maximum time between two subsequent poll requests.
     /// Default value: 45 seconds.
-    public var maxPollDelay: GoogleCloudWkt.Duration? = nil
+    public var maxPollDelay: GoogleCloudWKT.Duration? = nil
 
     /// Total polling timeout.
     /// Default value: 5 minutes.
-    public var totalPollTimeout: GoogleCloudWkt.Duration? = nil
+    public var totalPollTimeout: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `LongRunning`.
     public init() {}
@@ -134,21 +134,21 @@ public struct MethodSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.api.MethodSettings.LongRunning"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.MethodSettings"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

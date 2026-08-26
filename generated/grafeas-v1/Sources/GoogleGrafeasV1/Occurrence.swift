@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An instance of an analysis type that has been found on a resource.
-public struct Occurrence: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Occurrence: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The name of the occurrence in the form of
@@ -43,10 +43,10 @@ public struct Occurrence: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var remediation: Swift.String = Swift.String()
 
   /// Output only. The time this occurrence was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time this occurrence was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// https://github.com/secure-systems-lab/dsse
   public var envelope: Envelope? = nil
@@ -102,9 +102,9 @@ public struct Occurrence: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.kind = try container.decode(NoteKind.self, forKey: .kind)
     self.remediation = try container.decode(Swift.String.self, forKey: .remediation)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.envelope = try container.decodeIfPresent(Envelope.self, forKey: .envelope)
 
     var details: OneOf_Details? = nil
@@ -243,10 +243,10 @@ public struct Occurrence: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/grafeas.v1.Occurrence"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

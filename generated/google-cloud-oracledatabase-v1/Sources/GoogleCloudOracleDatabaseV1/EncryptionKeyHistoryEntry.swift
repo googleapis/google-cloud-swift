@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The history of the encryption keys used to encrypt the Autonomous Database.
-public struct EncryptionKeyHistoryEntry: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct EncryptionKeyHistoryEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The encryption key used to encrypt the Autonomous Database.
@@ -26,7 +26,7 @@ public struct EncryptionKeyHistoryEntry: Codable, Equatable, GoogleCloudWkt._Any
 
   /// Output only. The date and time when the encryption key was activated on the
   /// Autonomous Database..
-  public var activationTime: GoogleCloudWkt.Timestamp? = nil
+  public var activationTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `EncryptionKeyHistoryEntry`.
   public init() {}
@@ -47,10 +47,10 @@ public struct EncryptionKeyHistoryEntry: Codable, Equatable, GoogleCloudWkt._Any
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.oracledatabase.v1.EncryptionKeyHistoryEntry"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

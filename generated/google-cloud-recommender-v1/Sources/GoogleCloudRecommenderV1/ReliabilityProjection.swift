@@ -15,17 +15,17 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Contains information on the impact of a reliability recommendation.
-public struct ReliabilityProjection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ReliabilityProjection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Reliability risks mitigated by this recommendation.
   public var risks: [ReliabilityProjection.RiskType] = []
 
   /// Per-recommender projection.
-  public var details: GoogleCloudWkt.Struct? = nil
+  public var details: GoogleCloudWKT.Struct? = nil
 
   /// Initialize a new instance of `ReliabilityProjection`.
   public init() {}
@@ -159,10 +159,10 @@ public struct ReliabilityProjection: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.recommender.v1.ReliabilityProjection"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// This resource represents the configuration of a transfer job that runs
 /// periodically.
-public struct TransferJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TransferJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A unique name (within the transfer project) assigned when the job is
@@ -113,13 +113,13 @@ public struct TransferJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var status: TransferJob.Status = TransferJob.Status()
 
   /// Output only. The time that the transfer job was created.
-  public var creationTime: GoogleCloudWkt.Timestamp? = nil
+  public var creationTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time that the transfer job was last modified.
-  public var lastModificationTime: GoogleCloudWkt.Timestamp? = nil
+  public var lastModificationTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time that the transfer job was deleted.
-  public var deletionTime: GoogleCloudWkt.Timestamp? = nil
+  public var deletionTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The name of the most recently started TransferOperation of this JobConfig.
   /// Present if a TransferOperation has been created for this JobConfig.
@@ -259,10 +259,10 @@ public struct TransferJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storagetransfer.v1.TransferJob"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -273,7 +273,7 @@ extension Clients {
     /// See `PolicyBindingsClient.updatePolicyBinding`.
     func updatePolicyBinding(
       policyBinding: PolicyBinding?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<PolicyBinding>
 
     /// See `PolicyBindingsClient.deletePolicyBinding`.
@@ -469,7 +469,7 @@ extension Clients.PolicyBindingsProtocol {
 
   public func updatePolicyBinding(
     policyBinding: PolicyBinding?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<PolicyBinding> {
     let request = UpdatePolicyBindingRequest().with {
       $0.policyBinding = policyBinding

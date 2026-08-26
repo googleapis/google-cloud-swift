@@ -16,11 +16,11 @@
 
 import Foundation
 import GoogleCloudGKEHubConfigManagementV1
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// MembershipFeatureState contains Feature status information for a single
 /// Membership.
-public struct MembershipFeatureState: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MembershipFeatureState: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The high-level state of this Feature for a single membership.
@@ -91,10 +91,10 @@ public struct MembershipFeatureState: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkehub.v1.MembershipFeatureState"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -16,10 +16,10 @@
 
 #if VertexRagDataService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The Slack source for the ImportRagFilesRequest.
-  public struct SlackSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SlackSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The Slack channels.
@@ -42,7 +42,7 @@
     }
 
     /// SlackChannels contains the Slack channels and corresponding access token.
-    public struct SlackChannels: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SlackChannels: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The Slack channel IDs.
@@ -71,17 +71,17 @@
       }
 
       /// SlackChannel contains the Slack channel ID and the time range to import.
-      public struct SlackChannel: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct SlackChannel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. The Slack channel ID.
         public var channelId: Swift.String = Swift.String()
 
         /// Optional. The starting timestamp for messages to import.
-        public var startTime: GoogleCloudWkt.Timestamp? = nil
+        public var startTime: GoogleCloudWKT.Timestamp? = nil
 
         /// Optional. The ending timestamp for messages to import.
-        public var endTime: GoogleCloudWkt.Timestamp? = nil
+        public var endTime: GoogleCloudWKT.Timestamp? = nil
 
         /// Initialize a new instance of `SlackChannel`.
         public init() {}
@@ -103,33 +103,33 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.SlackSource.SlackChannels.SlackChannel"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.SlackSource.SlackChannels"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.SlackSource"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

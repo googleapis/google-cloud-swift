@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -551,7 +551,7 @@ extension Clients {
     /// See `OrganizationSecurityProfileGroupServiceClient.updateSecurityProfileGroup`.
     func updateSecurityProfileGroup(
       securityProfileGroup: SecurityProfileGroup?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<SecurityProfileGroup>
 
     /// See `OrganizationSecurityProfileGroupServiceClient.deleteSecurityProfileGroup`.
@@ -616,7 +616,7 @@ extension Clients {
     /// See `OrganizationSecurityProfileGroupServiceClient.updateSecurityProfile`.
     func updateSecurityProfile(
       securityProfile: SecurityProfile?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<SecurityProfile>
 
     /// See `OrganizationSecurityProfileGroupServiceClient.deleteSecurityProfile`.
@@ -962,7 +962,7 @@ extension Clients.OrganizationSecurityProfileGroupServiceProtocol {
 
   public func updateSecurityProfileGroup(
     securityProfileGroup: SecurityProfileGroup?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<SecurityProfileGroup> {
     let request = UpdateSecurityProfileGroupRequest().with {
       $0.securityProfileGroup = securityProfileGroup
@@ -1138,7 +1138,7 @@ extension Clients.OrganizationSecurityProfileGroupServiceProtocol {
 
   public func updateSecurityProfile(
     securityProfile: SecurityProfile?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<SecurityProfile> {
     let request = UpdateSecurityProfileRequest().with {
       $0.securityProfile = securityProfile

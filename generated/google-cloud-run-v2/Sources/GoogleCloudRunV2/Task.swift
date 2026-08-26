@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Task represents a single run of a container to completion.
-public struct Task: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Task: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The unique name of this Task.
@@ -50,33 +50,33 @@ public struct Task: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Output only. Represents time when the task was created by the system.
   /// It is not guaranteed to be set in happens-before order across separate
   /// operations.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Represents time when the task was scheduled to run by the
   /// system. It is not guaranteed to be set in happens-before order across
   /// separate operations.
-  public var scheduledTime: GoogleCloudWkt.Timestamp? = nil
+  public var scheduledTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Represents time when the task started to run.
   /// It is not guaranteed to be set in happens-before order across separate
   /// operations.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Represents time when the Task was completed. It is not
   /// guaranteed to be set in happens-before order across separate operations.
-  public var completionTime: GoogleCloudWkt.Timestamp? = nil
+  public var completionTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The last-modified time.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. For a deleted resource, the deletion time. It is only
   /// populated as a response to a Delete request.
-  public var deleteTime: GoogleCloudWkt.Timestamp? = nil
+  public var deleteTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. For a deleted resource, the time after which it will be
   /// permamently deleted. It is only populated as a response to a Delete
   /// request.
-  public var expireTime: GoogleCloudWkt.Timestamp? = nil
+  public var expireTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The name of the parent Job.
   public var job: Swift.String = Swift.String()
@@ -97,7 +97,7 @@ public struct Task: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Max allowed time duration the Task may be active before the system will
   /// actively try to mark it failed and kill associated containers. This applies
   /// per attempt of a task, meaning each retry can run for the full timeout.
-  public var timeout: GoogleCloudWkt.Duration? = nil
+  public var timeout: GoogleCloudWKT.Duration? = nil
 
   /// Email address of the IAM service account associated with the Task of a
   /// Job. The service account represents the identity of the
@@ -178,10 +178,10 @@ public struct Task: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.run.v2.Task"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,20 +15,20 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A test message for google.protobuf.Int64Value.
-public struct MessageWithInt64Value: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MessageWithInt64Value: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A singular field.
-  public var singular: GoogleCloudWkt.Int64Value? = nil
+  public var singular: GoogleCloudWKT.Int64Value? = nil
 
   /// A repeated field.
-  public var repeated: [GoogleCloudWkt.Int64Value] = []
+  public var repeated: [GoogleCloudWKT.Int64Value] = []
 
   /// Test google.protobuf.Int64Value as values.
-  public var map: [Swift.String: GoogleCloudWkt.Int64Value] = [:]
+  public var map: [Swift.String: GoogleCloudWKT.Int64Value] = [:]
 
   /// Initialize a new instance of `MessageWithInt64Value`.
   public init() {}
@@ -49,10 +49,10 @@ public struct MessageWithInt64Value: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.swift.sdk.test.MessageWithInt64Value"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

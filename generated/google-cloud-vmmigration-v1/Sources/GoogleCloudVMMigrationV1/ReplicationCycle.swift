@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// ReplicationCycle contains information about the current replication cycle
 /// status.
-public struct ReplicationCycle: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ReplicationCycle: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The identifier of the ReplicationCycle.
@@ -30,13 +30,13 @@ public struct ReplicationCycle: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var cycleNumber: Swift.Int32 = Swift.Int32()
 
   /// The time the replication cycle has started.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The time the replication cycle has ended.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The accumulated duration the replication cycle was paused.
-  public var totalPauseDuration: GoogleCloudWkt.Duration? = nil
+  public var totalPauseDuration: GoogleCloudWKT.Duration? = nil
 
   /// The current progress in percentage of this cycle.
   /// Was replaced by 'steps' field, which breaks down the cycle progression more
@@ -196,10 +196,10 @@ public struct ReplicationCycle: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vmmigration.v1.ReplicationCycle"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Contains metadata about how much sustainability a recommendation can save or
 /// incur.
-public struct SustainabilityProjection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SustainabilityProjection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Carbon Footprint generated in kg of CO2 equivalent.
@@ -27,7 +27,7 @@ public struct SustainabilityProjection: Codable, Equatable, GoogleCloudWkt._AnyP
   public var kgCO2E: Swift.Double = Swift.Double()
 
   /// Duration for which this sustainability applies.
-  public var duration: GoogleCloudWkt.Duration? = nil
+  public var duration: GoogleCloudWKT.Duration? = nil
 
   /// Initialize a new instance of `SustainabilityProjection`.
   public init() {}
@@ -53,7 +53,7 @@ public struct SustainabilityProjection: Codable, Equatable, GoogleCloudWkt._AnyP
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.kgCO2E = try container.decode(Swift.Double.self, forKey: .kgCO2E)
-    self.duration = try container.decodeIfPresent(GoogleCloudWkt.Duration.self, forKey: .duration)
+    self.duration = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .duration)
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -65,10 +65,10 @@ public struct SustainabilityProjection: Codable, Equatable, GoogleCloudWkt._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.recommender.v1.SustainabilityProjection"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

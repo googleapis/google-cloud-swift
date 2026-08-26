@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// ImageImportJob describes the progress and result of an image import.
-public struct ImageImportJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ImageImportJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The resource path of the ImageImportJob.
@@ -34,10 +34,10 @@ public struct ImageImportJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Output only. The time the image import was created (as an API call, not
   /// when it was actually created in the target).
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time the image import was ended.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Provides details on the error that led to the image import
   /// state in case of an error.
@@ -91,8 +91,8 @@ public struct ImageImportJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.createdResources = try container.decode([Swift.String].self, forKey: .createdResources)
     self.state = try container.decode(ImageImportJob.State.self, forKey: .state)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
-    self.endTime = try container.decodeIfPresent(GoogleCloudWkt.Timestamp.self, forKey: .endTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
     self.errors = try container.decode([GoogleRpc.Status].self, forKey: .errors)
     self.warnings = try container.decode([MigrationWarning].self, forKey: .warnings)
     self.steps = try container.decode([ImageImportStep].self, forKey: .steps)
@@ -316,10 +316,10 @@ public struct ImageImportJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vmmigration.v1.ImageImportJob"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

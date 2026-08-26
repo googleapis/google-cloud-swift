@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleCloudGax
 
@@ -270,7 +270,7 @@
       /// See `SessionEntityTypesClient.updateSessionEntityType`.
       func updateSessionEntityType(
         sessionEntityType: SessionEntityType?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudDialogflowCXV3.SessionEntityType
 
       /// See `SessionEntityTypesClient.deleteSessionEntityType`.
@@ -477,7 +477,7 @@
 
     public func updateSessionEntityType(
       sessionEntityType: SessionEntityType?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.SessionEntityType {
       let request = UpdateSessionEntityTypeRequest().with {
         $0.sessionEntityType = sessionEntityType

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A provisioning configuration.
-public struct ProvisioningConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ProvisioningConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The system-generated name of the provisioning config. This
@@ -54,7 +54,7 @@ public struct ProvisioningConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public var location: Swift.String = Swift.String()
 
   /// Output only. Last update timestamp.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. URI to Cloud Console UI view of this provisioning config.
   public var cloudConsoleUri: Swift.String = Swift.String()
@@ -230,10 +230,10 @@ public struct ProvisioningConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.baremetalsolution.v2.ProvisioningConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

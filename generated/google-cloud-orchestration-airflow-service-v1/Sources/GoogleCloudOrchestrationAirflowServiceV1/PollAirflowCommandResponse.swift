@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response to PollAirflowCommandRequest.
-public struct PollAirflowCommandResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct PollAirflowCommandResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output from the command execution. It may not contain the full output
@@ -48,7 +48,7 @@ public struct PollAirflowCommandResponse: Codable, Equatable, GoogleCloudWkt._An
   }
 
   /// Contains information about a single line from logs.
-  public struct Line: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Line: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Number of the line.
@@ -77,16 +77,16 @@ public struct PollAirflowCommandResponse: Codable, Equatable, GoogleCloudWkt._An
       return
         "type.googleapis.com/google.cloud.orchestration.airflow.service.v1.PollAirflowCommandResponse.Line"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Information about how a command ended.
-  public struct ExitInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ExitInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The exit code from the command execution.
@@ -115,11 +115,11 @@ public struct PollAirflowCommandResponse: Codable, Equatable, GoogleCloudWkt._An
       return
         "type.googleapis.com/google.cloud.orchestration.airflow.service.v1.PollAirflowCommandResponse.ExitInfo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -127,10 +127,10 @@ public struct PollAirflowCommandResponse: Codable, Equatable, GoogleCloudWkt._An
     return
       "type.googleapis.com/google.cloud.orchestration.airflow.service.v1.PollAirflowCommandResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -16,10 +16,10 @@
 
 #if ResourcePolicies
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Time window specified for daily operations.
-  public struct ResourcePolicyDailyCycle: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ResourcePolicyDailyCycle: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Defines a schedule with units measured in days. The value determines
@@ -54,11 +54,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.ResourcePolicyDailyCycle"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

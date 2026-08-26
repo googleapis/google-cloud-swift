@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Configuration options for the master authorized networks feature. Enabled
 /// master authorized networks will disallow all external traffic to access
 /// Kubernetes master through HTTPS except traffic from the given CIDR blocks,
 /// Google Compute Engine Public IPs and Google Prod IPs.
-public struct MasterAuthorizedNetworksConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MasterAuthorizedNetworksConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. Whether or not master authorized networks feature is enabled.
@@ -48,7 +48,7 @@ public struct MasterAuthorizedNetworksConfig: Codable, Equatable, GoogleCloudWkt
   }
 
   /// CIDR block with an optional name.
-  public struct CidrBlock: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CidrBlock: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// User-defined name that identifies the CIDR block.
@@ -77,11 +77,11 @@ public struct MasterAuthorizedNetworksConfig: Codable, Equatable, GoogleCloudWkt
       return
         "type.googleapis.com/google.cloud.orchestration.airflow.service.v1.MasterAuthorizedNetworksConfig.CidrBlock"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -89,10 +89,10 @@ public struct MasterAuthorizedNetworksConfig: Codable, Equatable, GoogleCloudWkt
     return
       "type.googleapis.com/google.cloud.orchestration.airflow.service.v1.MasterAuthorizedNetworksConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

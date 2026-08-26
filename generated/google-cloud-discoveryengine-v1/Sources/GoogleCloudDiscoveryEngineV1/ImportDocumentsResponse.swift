@@ -16,7 +16,7 @@
 
 #if DocumentService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
   import GoogleRpc
 
   /// Response of the
@@ -25,7 +25,7 @@
   /// google.longrunning.Operations.response field if the operation was successful.
   ///
   /// [google.cloud.discoveryengine.v1.ImportDocumentsRequest]: <doc:ImportDocumentsRequest>
-  public struct ImportDocumentsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ImportDocumentsResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// A sample of errors encountered while processing the request.
@@ -53,11 +53,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.ImportDocumentsResponse"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

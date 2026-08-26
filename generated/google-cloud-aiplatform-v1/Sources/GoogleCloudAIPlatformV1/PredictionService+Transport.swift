@@ -21,7 +21,7 @@
   #endif
   import GoogleApi
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleIAMV1
   import GoogleLongRunning
   @_spi(GoogleCloudInternal) import GoogleCloudGax
@@ -419,7 +419,7 @@
         req.setMethod(.DELETE)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         _ = try await req.rpc(
-          GoogleCloudWkt.Empty.self, timeout: options.attemptTimeout
+          GoogleCloudWKT.Empty.self, timeout: options.attemptTimeout
         ).get()
       }
 
@@ -439,7 +439,7 @@
         req.setMethod(.POST)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         _ = try await req.rpc(
-          GoogleCloudWkt.Empty.self, timeout: options.attemptTimeout
+          GoogleCloudWKT.Empty.self, timeout: options.attemptTimeout
         ).get()
       }
 

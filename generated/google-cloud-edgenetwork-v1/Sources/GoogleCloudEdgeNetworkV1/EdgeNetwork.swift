@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -880,7 +880,7 @@ extension Clients {
     /// See `EdgeNetworkClient.updateSubnet`.
     func updateSubnet(
       subnet: Subnet?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Subnet>
 
     /// See `EdgeNetworkClient.deleteSubnet`.
@@ -1033,7 +1033,7 @@ extension Clients {
     /// See `EdgeNetworkClient.updateRouter`.
     func updateRouter(
       router: Router?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Router>
 
     /// See `EdgeNetworkClient.deleteRouter`.
@@ -1703,7 +1703,7 @@ extension Clients.EdgeNetworkProtocol {
 
   public func updateSubnet(
     subnet: Subnet?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Subnet> {
     let request = UpdateSubnetRequest().with {
       $0.subnet = subnet
@@ -2111,7 +2111,7 @@ extension Clients.EdgeNetworkProtocol {
 
   public func updateRouter(
     router: Router?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Router> {
     let request = UpdateRouterRequest().with {
       $0.router = router

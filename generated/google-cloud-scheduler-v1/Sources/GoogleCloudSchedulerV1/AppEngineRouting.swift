@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// App Engine Routing.
 ///
@@ -28,7 +28,7 @@ import Foundation
 /// routing](https://cloud.google.com/appengine/docs/standard/python/how-requests-are-routed),
 /// and [App Engine Flex request
 /// routing](https://cloud.google.com/appengine/docs/flexible/python/how-requests-are-routed).
-public struct AppEngineRouting: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AppEngineRouting: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// App service.
@@ -146,10 +146,10 @@ public struct AppEngineRouting: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.scheduler.v1.AppEngineRouting"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

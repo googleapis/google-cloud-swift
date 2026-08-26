@@ -16,10 +16,10 @@
 
 #if RecommendationService || UserEventService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Media-specific user event information.
-  public struct MediaInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MediaInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The media progress time in seconds, if applicable.
@@ -28,8 +28,8 @@
     /// [MediaInfo.media_progress_duration.seconds][google.protobuf.Duration.seconds]
     /// should be set to 90.
     ///
-    /// [google.protobuf.Duration.seconds]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWkt.Duration/seconds
-    public var mediaProgressDuration: GoogleCloudWkt.Duration? = nil
+    /// [google.protobuf.Duration.seconds]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWKT.Duration/seconds
+    public var mediaProgressDuration: GoogleCloudWKT.Duration? = nil
 
     /// Media progress should be computed using only the
     /// [media_progress_duration][google.cloud.discoveryengine.v1.MediaInfo.media_progress_duration]
@@ -62,11 +62,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.MediaInfo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

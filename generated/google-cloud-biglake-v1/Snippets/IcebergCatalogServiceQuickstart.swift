@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudBiglakeV1
 import GoogleApi
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample() async throws {
   let client = try GoogleCloudBiglakeV1.IcebergCatalogServiceClient()

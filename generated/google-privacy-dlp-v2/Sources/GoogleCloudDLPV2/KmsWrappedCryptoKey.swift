@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Include to use an existing data crypto key wrapped by KMS.
 /// The wrapped key must be a 128-, 192-, or 256-bit key.
@@ -28,7 +28,7 @@ import Foundation
 ///
 /// Note: When you use Cloud KMS for cryptographic operations,
 /// [charges apply](https://cloud.google.com/kms/pricing).
-public struct KmsWrappedCryptoKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct KmsWrappedCryptoKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The wrapped data crypto key.
@@ -56,10 +56,10 @@ public struct KmsWrappedCryptoKey: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.KmsWrappedCryptoKey"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

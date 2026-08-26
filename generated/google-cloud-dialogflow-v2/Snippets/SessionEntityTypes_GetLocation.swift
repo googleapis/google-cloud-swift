@@ -20,7 +20,7 @@
   import Foundation
   import GoogleCloudDialogflowV2
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
 
   func sample(client: SessionEntityTypesClient) async throws {

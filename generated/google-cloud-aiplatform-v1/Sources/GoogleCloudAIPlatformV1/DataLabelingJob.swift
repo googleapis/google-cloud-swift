@@ -16,13 +16,13 @@
 
 #if JobService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
   import GoogleRpc
   import GoogleType
 
   /// DataLabelingJob is used to trigger a human labeling job on unlabeled data
   /// from the following Dataset:
-  public struct DataLabelingJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DataLabelingJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Resource name of the DataLabelingJob.
@@ -65,7 +65,7 @@
     public var inputsSchemaUri: Swift.String = Swift.String()
 
     /// Required. Input config parameters for the DataLabelingJob.
-    public var inputs: GoogleCloudWkt.Value? = nil
+    public var inputs: GoogleCloudWKT.Value? = nil
 
     /// Output only. The detailed state of the job.
     public var state: JobState = JobState()
@@ -79,10 +79,10 @@
     public var currentSpend: GoogleType.Money? = nil
 
     /// Output only. Timestamp when this DataLabelingJob was created.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Timestamp when this DataLabelingJob was updated most recently.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. DataLabelingJob errors. It is only populated when job's state
     /// is `JOB_STATE_FAILED` or `JOB_STATE_CANCELLED`.
@@ -139,11 +139,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.DataLabelingJob"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

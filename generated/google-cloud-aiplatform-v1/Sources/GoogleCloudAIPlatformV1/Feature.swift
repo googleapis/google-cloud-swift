@@ -16,11 +16,11 @@
 
 #if FeatureRegistryService || FeaturestoreService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Feature Metadata information.
   /// For example, color is a feature that describes an apple.
-  public struct Feature: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Feature: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Immutable. Name of the Feature.
@@ -43,11 +43,11 @@
 
     /// Output only. Only applicable for Vertex AI Feature Store (Legacy).
     /// Timestamp when this EntityType was created.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Only applicable for Vertex AI Feature Store (Legacy).
     /// Timestamp when this EntityType was most recently updated.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Optional. The labels with user-defined metadata to organize your Features.
     ///
@@ -119,7 +119,7 @@
     /// [google.cloud.aiplatform.v1.FeatureStatsAnomaly.start_time]: <doc:FeatureStatsAnomaly/startTime>
     /// [google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig.ImportFeaturesAnalysis]: <doc:FeaturestoreMonitoringConfig/ImportFeaturesAnalysis>
     /// [google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig.SnapshotAnalysis]: <doc:FeaturestoreMonitoringConfig/SnapshotAnalysis>
-    public struct MonitoringStatsAnomaly: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct MonitoringStatsAnomaly: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. The objective for each stats.
@@ -256,11 +256,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.Feature.MonitoringStatsAnomaly"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -429,11 +429,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.Feature"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

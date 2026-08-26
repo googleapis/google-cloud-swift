@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The result of an analysis.
-public struct AnalysisResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AnalysisResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The time at which the analysis ended.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Metadata discovered during analysis.
   public var metadata: OneOf_Metadata? = nil
@@ -50,7 +50,7 @@ public struct AnalysisResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.endTime = try container.decodeIfPresent(GoogleCloudWkt.Timestamp.self, forKey: .endTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
 
     var metadata: OneOf_Metadata? = nil
     let metadataCheckAndSet = {
@@ -83,7 +83,7 @@ public struct AnalysisResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Call-specific metadata created during analysis.
-  public struct CallAnalysisMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CallAnalysisMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// A list of call annotations that apply to this call.
@@ -130,11 +130,11 @@ public struct AnalysisResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.contactcenterinsights.v1.AnalysisResult.CallAnalysisMetadata"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -147,10 +147,10 @@ public struct AnalysisResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.contactcenterinsights.v1.AnalysisResult"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

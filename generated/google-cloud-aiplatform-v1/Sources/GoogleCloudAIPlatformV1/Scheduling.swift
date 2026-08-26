@@ -16,14 +16,14 @@
 
 #if JobService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// All parameters related to queuing and scheduling of custom jobs.
-  public struct Scheduling: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Scheduling: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The maximum job running time. The default is 7 days.
-    public var timeout: GoogleCloudWkt.Duration? = nil
+    public var timeout: GoogleCloudWKT.Duration? = nil
 
     /// Optional. Restarts the entire CustomJob if a worker gets restarted.
     /// This feature can be used by distributed training jobs that are not
@@ -42,7 +42,7 @@
     /// requested resources to be provisioned if the scheduling strategy is set to
     /// [Strategy.DWS_FLEX_START].
     /// If set to 0, the job will wait indefinitely. The default is 24 hours.
-    public var maxWaitDuration: GoogleCloudWkt.Duration? = nil
+    public var maxWaitDuration: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `Scheduling`.
     public init() {}
@@ -195,11 +195,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.Scheduling"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

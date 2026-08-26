@@ -19,7 +19,7 @@
   #if canImport(FoundationNetworking)
     import FoundationNetworking
   #endif
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleRpc
   import GoogleCloudGax
@@ -359,7 +359,7 @@
       /// See `DocumentServiceClient.updateDocument`.
       func updateDocument(
         document: Document?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudDiscoveryEngineV1.Document
 
       /// See `DocumentServiceClient.deleteDocument`.
@@ -589,7 +589,7 @@
 
     public func updateDocument(
       document: Document?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDiscoveryEngineV1.Document {
       let request = UpdateDocumentRequest().with {
         $0.document = document

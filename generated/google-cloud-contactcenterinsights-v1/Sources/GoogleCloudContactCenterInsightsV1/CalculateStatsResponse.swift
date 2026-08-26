@@ -15,15 +15,15 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The response for calculating conversation statistics.
-public struct CalculateStatsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CalculateStatsResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The average duration of all conversations. The average is calculated using
   /// only conversations that have a time duration.
-  public var averageDuration: GoogleCloudWkt.Duration? = nil
+  public var averageDuration: GoogleCloudWKT.Duration? = nil
 
   /// The average number of turns per conversation.
   public var averageTurnCount: Swift.Int32 = Swift.Int32()
@@ -72,11 +72,11 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleCloudWkt._AnyPac
   }
 
   /// A time series representing conversations over time.
-  public struct TimeSeries: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TimeSeries: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The duration of each interval.
-    public var intervalDuration: GoogleCloudWkt.Duration? = nil
+    public var intervalDuration: GoogleCloudWKT.Duration? = nil
 
     /// An ordered list of intervals from earliest to latest, where each interval
     /// represents the number of conversations that transpired during the time
@@ -100,11 +100,11 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleCloudWkt._AnyPac
     }
 
     /// A single interval in a time series.
-    public struct Interval: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Interval: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The start time of this interval.
-      public var startTime: GoogleCloudWkt.Timestamp? = nil
+      public var startTime: GoogleCloudWKT.Timestamp? = nil
 
       /// The number of conversations created in this interval.
       public var conversationCount: Swift.Int32 = Swift.Int32()
@@ -129,11 +129,11 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleCloudWkt._AnyPac
         return
           "type.googleapis.com/google.cloud.contactcenterinsights.v1.CalculateStatsResponse.TimeSeries.Interval"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -141,21 +141,21 @@ public struct CalculateStatsResponse: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.cloud.contactcenterinsights.v1.CalculateStatsResponse.TimeSeries"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.contactcenterinsights.v1.CalculateStatsResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

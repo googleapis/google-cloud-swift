@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The metadata for the Operation returned by CreateLogicalView.
-public struct CreateLogicalViewMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CreateLogicalViewMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The request that prompted the initiation of this CreateLogicalView
@@ -26,10 +26,10 @@ public struct CreateLogicalViewMetadata: Codable, Equatable, GoogleCloudWkt._Any
   public var originalRequest: CreateLogicalViewRequest? = nil
 
   /// The time at which this operation started.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// If set, the time at which this operation finished or was canceled.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `CreateLogicalViewMetadata`.
   public init() {}
@@ -50,10 +50,10 @@ public struct CreateLogicalViewMetadata: Codable, Equatable, GoogleCloudWkt._Any
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.bigtable.admin.v2.CreateLogicalViewMetadata"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

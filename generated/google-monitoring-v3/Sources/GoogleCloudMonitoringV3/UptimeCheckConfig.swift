@@ -16,11 +16,11 @@
 
 import Foundation
 import GoogleApi
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// This message configures which resources and services to monitor for
 /// availability.
-public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. A unique resource name for this Uptime check configuration. The
@@ -45,11 +45,11 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
   /// Currently, the only supported values are `60s` (1 minute), `300s`
   /// (5 minutes), `600s` (10 minutes), and `900s` (15 minutes). Optional,
   /// defaults to `60s`.
-  public var period: GoogleCloudWkt.Duration? = nil
+  public var period: GoogleCloudWKT.Duration? = nil
 
   /// The maximum amount of time to wait for the request to complete (must be
   /// between 1 and 60 seconds). Required.
-  public var timeout: GoogleCloudWkt.Duration? = nil
+  public var timeout: GoogleCloudWKT.Duration? = nil
 
   /// The content that is expected to appear in the data returned by the target
   /// server against which the check is run.  Currently, only the first entry
@@ -135,8 +135,8 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.period = try container.decodeIfPresent(GoogleCloudWkt.Duration.self, forKey: .period)
-    self.timeout = try container.decodeIfPresent(GoogleCloudWkt.Duration.self, forKey: .timeout)
+    self.period = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .period)
+    self.timeout = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .timeout)
     self.contentMatchers = try container.decode(
       [UptimeCheckConfig.ContentMatcher].self, forKey: .contentMatchers)
     self.checkerType = try container.decode(
@@ -232,7 +232,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
   /// The resource submessage for group checks. It can be used instead of a
   /// monitored resource, when multiple resources are being monitored.
-  public struct ResourceGroup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ResourceGroup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The group of resources being monitored. Should be only the `[GROUP_ID]`,
@@ -262,18 +262,18 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.ResourceGroup"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Information involved in sending ICMP pings alongside public HTTP/TCP
   /// checks. For HTTP, the pings are performed for each part of the redirect
   /// chain.
-  public struct PingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Number of ICMP pings. A maximum of 3 ICMP pings is currently supported.
@@ -298,16 +298,16 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.PingConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Information involved in an HTTP/HTTPS Uptime check request.
-  public struct HttpCheck: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct HttpCheck: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The HTTP request method to use for the check. If set to
@@ -504,7 +504,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
     /// URL that requires a username and password. Currently, only
     /// [Basic HTTP authentication](https://tools.ietf.org/html/rfc7617) is
     /// supported in Uptime checks.
-    public struct BasicAuthentication: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct BasicAuthentication: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The username to use when authenticating with the HTTP server.
@@ -533,17 +533,17 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
         return
           "type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.HttpCheck.BasicAuthentication"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// A status to accept. Either a status code class like "2xx", or an integer
     /// status code like "200".
-    public struct ResponseStatusCode: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ResponseStatusCode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Either a specific value or a class of status codes.
@@ -752,11 +752,11 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
         return
           "type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.HttpCheck.ResponseStatusCode"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -766,7 +766,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
     /// [OAuth token](https://developers.google.com/identity/protocols/oauth2).
     /// The token will be generated for the Monitoring service agent service
     /// account.
-    public struct ServiceAgentAuthentication: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ServiceAgentAuthentication: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Type of authentication.
@@ -892,11 +892,11 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
         return
           "type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.HttpCheck.ServiceAgentAuthentication"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -1127,16 +1127,16 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.HttpCheck"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Information required for a TCP Uptime check request.
-  public struct TcpCheck: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TcpCheck: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The TCP port on the server against which to run the check. Will be
@@ -1166,11 +1166,11 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.TcpCheck"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -1179,7 +1179,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
   /// first 4&nbsp;MB of an HTTP or HTTPS check's response (and the first
   /// 1&nbsp;MB of a TCP check's response) are examined for purposes of content
   /// matching.
-  public struct ContentMatcher: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ContentMatcher: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// String, regex or JSON content to match. Maximum 1024 bytes. An empty
@@ -1258,7 +1258,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
     /// Information needed to perform a JSONPath content match.
     /// Used for `ContentMatcherOption::MATCHES_JSON_PATH` and
     /// `ContentMatcherOption::NOT_MATCHES_JSON_PATH`.
-    public struct JsonPathMatcher: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct JsonPathMatcher: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// JSONPath within the response output pointing to the expected
@@ -1400,11 +1400,11 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
         return
           "type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.ContentMatcher.JsonPathMatcher"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -1567,11 +1567,11 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.v3.UptimeCheckConfig.ContentMatcher"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -1717,10 +1717,10 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.v3.UptimeCheckConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

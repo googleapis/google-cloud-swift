@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A resource value configuration (RVC) is a mapping configuration of user's
 /// resources to resource values. Used in Attack path simulations.
-public struct ResourceValueConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ResourceValueConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. Name for the resource value configuration
@@ -59,10 +59,10 @@ public struct ResourceValueConfig: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public var description: Swift.String = Swift.String()
 
   /// Output only. Timestamp this resource value configuration was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Timestamp this resource value configuration was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Cloud provider this configuration applies to
   public var cloudProvider: CloudProvider = CloudProvider()
@@ -93,7 +93,7 @@ public struct ResourceValueConfig: Codable, Equatable, GoogleCloudWkt._AnyPackab
   /// Resource value mapping for Sensitive Data Protection findings
   /// If any of these mappings have a resource value that is not unspecified,
   /// the resource_value field will be ignored when reading this configuration.
-  public struct SensitiveDataProtectionMapping: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SensitiveDataProtectionMapping: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Resource value mapping for high-sensitivity Sensitive Data Protection
@@ -124,21 +124,21 @@ public struct ResourceValueConfig: Codable, Equatable, GoogleCloudWkt._AnyPackab
       return
         "type.googleapis.com/google.cloud.securitycenter.v2.ResourceValueConfig.SensitiveDataProtectionMapping"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.ResourceValueConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

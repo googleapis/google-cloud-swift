@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [DataObjectService.BatchCreateDataObjects][google.cloud.vectorsearch.v1.DataObjectService.BatchCreateDataObjects].
 ///
 /// [google.cloud.vectorsearch.v1.DataObjectService.BatchCreateDataObjects]: <doc:DataObjectServiceClient/batchCreateDataObjects(request:options:)>
-public struct BatchCreateDataObjectsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BatchCreateDataObjectsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The resource name of the Collection to create the DataObjects in.
@@ -53,10 +53,10 @@ public struct BatchCreateDataObjectsRequest: Codable, Equatable, GoogleCloudWkt.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vectorsearch.v1.BatchCreateDataObjectsRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

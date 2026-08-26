@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Describes the source info for a custom processor.
-public struct CustomProcessorSourceInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CustomProcessorSourceInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The original product which holds the custom processor's functionality.
@@ -110,7 +110,7 @@ public struct CustomProcessorSourceInfo: Codable, Equatable, GoogleCloudWkt._Any
   }
 
   /// Message describes product recognizer artifact.
-  public struct ProductRecognizerArtifact: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ProductRecognizerArtifact: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Resource name of RetailProductRecognitionIndex.
@@ -142,17 +142,17 @@ public struct CustomProcessorSourceInfo: Codable, Equatable, GoogleCloudWkt._Any
       return
         "type.googleapis.com/google.cloud.visionai.v1.CustomProcessorSourceInfo.ProductRecognizerArtifact"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The schema is defined as an OpenAPI 3.0.2 [Schema
   /// Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
-  public struct ModelSchema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ModelSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Cloud Storage location to a YAML file that defines the format of a single
@@ -186,11 +186,11 @@ public struct CustomProcessorSourceInfo: Codable, Equatable, GoogleCloudWkt._Any
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.CustomProcessorSourceInfo.ModelSchema"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -317,10 +317,10 @@ public struct CustomProcessorSourceInfo: Codable, Equatable, GoogleCloudWkt._Any
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.CustomProcessorSourceInfo"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

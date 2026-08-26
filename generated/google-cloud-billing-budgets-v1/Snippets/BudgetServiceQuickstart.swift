@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudBillingBudgetsV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(billingAccountId: String, ) async throws {
   let client = try GoogleCloudBillingBudgetsV1.BudgetServiceClient()

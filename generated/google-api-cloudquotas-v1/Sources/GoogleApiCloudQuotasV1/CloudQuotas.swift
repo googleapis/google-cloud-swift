@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleCloudGax
 
 /// The Cloud Quotas API is an infrastructure service for Google Cloud that lets
@@ -205,7 +205,7 @@ extension Clients {
     /// See `CloudQuotasClient.updateQuotaPreference`.
     func updateQuotaPreference(
       quotaPreference: QuotaPreference?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleApiCloudQuotasV1.QuotaPreference
 
     /// See `CloudQuotasClient.listQuotaInfos`.
@@ -418,7 +418,7 @@ extension Clients.CloudQuotasProtocol {
 
   public func updateQuotaPreference(
     quotaPreference: QuotaPreference?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleApiCloudQuotasV1.QuotaPreference {
     let request = UpdateQuotaPreferenceRequest().with {
       $0.quotaPreference = quotaPreference

@@ -14,20 +14,20 @@
 
 import Foundation
 import Testing
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleCloudSecurityPublicCAV1
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 
 struct WellKnown: Encodable {
-  let duration: GoogleCloudWkt.Duration?
-  let durationMany: [GoogleCloudWkt.Duration]
-  let mask: GoogleCloudWkt.FieldMask?
-  let maskMany: [GoogleCloudWkt.FieldMask]
+  let duration: GoogleCloudWKT.Duration?
+  let durationMany: [GoogleCloudWKT.Duration]
+  let mask: GoogleCloudWKT.FieldMask?
+  let maskMany: [GoogleCloudWKT.FieldMask]
 }
 
 @Test func wellKnownSerialization() throws {
-  let duration = try GoogleCloudWkt.Duration(seconds: 123, nanos: 450_000_000)
-  let mask = GoogleCloudWkt.FieldMask(paths: ["user_id", "foo_bar"])
+  let duration = try GoogleCloudWKT.Duration(seconds: 123, nanos: 450_000_000)
+  let mask = GoogleCloudWKT.FieldMask(paths: ["user_id", "foo_bar"])
   let value = WellKnown(
     duration: duration,
     durationMany: [duration],
@@ -49,7 +49,7 @@ struct WellKnown: Encodable {
 }
 
 @Test func wellKnownDurationOnlySerialization() throws {
-  let duration = try GoogleCloudWkt.Duration(seconds: 123, nanos: 450_000_000)
+  let duration = try GoogleCloudWKT.Duration(seconds: 123, nanos: 450_000_000)
   let value = WellKnown(
     duration: duration,
     durationMany: [],
@@ -63,7 +63,7 @@ struct WellKnown: Encodable {
 }
 
 @Test func wellKnownMaskOnlySerialization() throws {
-  let mask = GoogleCloudWkt.FieldMask(paths: ["user_id"])
+  let mask = GoogleCloudWKT.FieldMask(paths: ["user_id"])
   let value = WellKnown(
     duration: nil,
     durationMany: [],
@@ -114,7 +114,7 @@ struct WellKnown: Encodable {
 
 @Test func testPrefixSerialization() throws {
   let encoder = _QueryParameterEncoder()
-  let duration = try GoogleCloudWkt.Duration(seconds: 123, nanos: 450_000_000)
+  let duration = try GoogleCloudWKT.Duration(seconds: 123, nanos: 450_000_000)
 
   let items = try encoder.encode(duration, prefix: "myPrefix")
   #expect(items == [URLQueryItem(name: "myPrefix", value: "123.450s")])

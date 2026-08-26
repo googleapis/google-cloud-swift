@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [ConversationalSearchService.ConversationalSearch][google.cloud.retail.v2.ConversationalSearchService.ConversationalSearch]
 /// method.
 ///
 /// [google.cloud.retail.v2.ConversationalSearchService.ConversationalSearch]: <doc:ConversationalSearchServiceClient/conversationalSearch(request:options:)>
-public struct ConversationalSearchRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ConversationalSearchRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The resource name of the search engine placement, such as
@@ -136,7 +136,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleCloudWkt._A
   }
 
   /// Search parameters.
-  public struct SearchParams: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SearchParams: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The filter string to restrict search results.
@@ -188,18 +188,18 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleCloudWkt._A
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest.SearchParams"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// This field specifies the current user answer during the conversational
   /// filtering search. This can be either user selected from suggested answers
   /// or user input plain text.
-  public struct UserAnswer: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct UserAnswer: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// This field specifies the type of user answer.
@@ -265,7 +265,7 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleCloudWkt._A
 
     /// This field specifies the selected answers during the conversational
     /// search.
-    public struct SelectedAnswer: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SelectedAnswer: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. This field specifies the selected answer which is a attribute
@@ -292,11 +292,11 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleCloudWkt._A
         return
           "type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest.UserAnswer.SelectedAnswer"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -314,17 +314,17 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleCloudWkt._A
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest.UserAnswer"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// This field specifies all conversational filtering related parameters
   /// addition to conversational retail search.
-  public struct ConversationalFilteringSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ConversationalFilteringSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. This field is deprecated. Please use
@@ -485,21 +485,21 @@ public struct ConversationalSearchRequest: Codable, Equatable, GoogleCloudWkt._A
       return
         "type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest.ConversationalFilteringSpec"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.retail.v2.ConversationalSearchRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

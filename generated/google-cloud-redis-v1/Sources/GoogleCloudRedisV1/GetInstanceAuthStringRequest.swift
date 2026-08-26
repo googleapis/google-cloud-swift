@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request for
 /// [GetInstanceAuthString][google.cloud.redis.v1.CloudRedis.GetInstanceAuthString].
 ///
 /// [google.cloud.redis.v1.CloudRedis.GetInstanceAuthString]: <doc:CloudRedisClient/getInstanceAuthString(request:options:)>
-public struct GetInstanceAuthStringRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct GetInstanceAuthStringRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Redis instance resource name using the form:
@@ -48,10 +48,10 @@ public struct GetInstanceAuthStringRequest: Codable, Equatable, GoogleCloudWkt._
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.redis.v1.GetInstanceAuthStringRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

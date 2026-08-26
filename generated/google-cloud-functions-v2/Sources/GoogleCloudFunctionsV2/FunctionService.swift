@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -404,7 +404,7 @@ extension Clients {
     /// See `FunctionServiceClient.updateFunction`.
     func updateFunction(
       function: Function?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Function>
 
     /// See `FunctionServiceClient.deleteFunction`.
@@ -698,7 +698,7 @@ extension Clients.FunctionServiceProtocol {
 
   public func updateFunction(
     function: Function?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Function> {
     let request = UpdateFunctionRequest().with {
       $0.function = function

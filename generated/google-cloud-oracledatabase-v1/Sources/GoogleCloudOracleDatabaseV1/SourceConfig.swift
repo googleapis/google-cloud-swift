@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The source configuration for the standby Autonomous Database.
-public struct SourceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. The name of the primary Autonomous Database that is used to
@@ -50,7 +50,7 @@ public struct SourceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Optional. The date and time that auto-refreshing will begin for an
   /// Autonomous Database refreshable clone. This value controls only the start
   /// time for the first refresh operation.
-  public var autoRefreshStartTime: GoogleCloudWkt.Timestamp? = nil
+  public var autoRefreshStartTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. The name of the Autonomous Database Backup resource with the
   /// format:
@@ -62,7 +62,7 @@ public struct SourceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Autonomous Database. This field is only applicable
   /// in case of BACKUP_FROM_TIMESTAMP source type and when
   /// use_latest_available_backup is false.
-  public var backupTime: GoogleCloudWkt.Timestamp? = nil
+  public var backupTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Clone from latest available backup timestamp. This field is only
   /// applicable in case of BACKUP_FROM_TIMESTAMP source type.
@@ -431,10 +431,10 @@ public struct SourceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.oracledatabase.v1.SourceConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

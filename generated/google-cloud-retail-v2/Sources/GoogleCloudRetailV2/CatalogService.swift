@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleCloudGax
 
@@ -311,7 +311,7 @@ extension Clients {
     /// See `CatalogServiceClient.updateCatalog`.
     func updateCatalog(
       catalog: Catalog?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudRetailV2.Catalog
 
     /// See `CatalogServiceClient.setDefaultBranch`.
@@ -347,7 +347,7 @@ extension Clients {
     /// See `CatalogServiceClient.updateCompletionConfig`.
     func updateCompletionConfig(
       completionConfig: CompletionConfig?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudRetailV2.CompletionConfig
 
     /// See `CatalogServiceClient.getAttributesConfig`.
@@ -366,7 +366,7 @@ extension Clients {
     /// See `CatalogServiceClient.updateAttributesConfig`.
     func updateAttributesConfig(
       attributesConfig: AttributesConfig?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudRetailV2.AttributesConfig
 
     /// See `CatalogServiceClient.addCatalogAttribute`.
@@ -521,7 +521,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func updateCatalog(
     catalog: Catalog?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudRetailV2.Catalog {
     let request = UpdateCatalogRequest().with {
       $0.catalog = catalog
@@ -605,7 +605,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func updateCompletionConfig(
     completionConfig: CompletionConfig?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudRetailV2.CompletionConfig {
     let request = UpdateCompletionConfigRequest().with {
       $0.completionConfig = completionConfig
@@ -649,7 +649,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func updateAttributesConfig(
     attributesConfig: AttributesConfig?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudRetailV2.AttributesConfig {
     let request = UpdateAttributesConfigRequest().with {
       $0.attributesConfig = attributesConfig

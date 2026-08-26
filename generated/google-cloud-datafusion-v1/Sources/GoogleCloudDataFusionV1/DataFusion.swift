@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -377,7 +377,7 @@ extension Clients {
     /// See `DataFusionClient.updateInstance`.
     func updateInstance(
       instance: Instance?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Instance>
 
     /// See `DataFusionClient.restartInstance`.
@@ -693,7 +693,7 @@ extension Clients.DataFusionProtocol {
 
   public func updateInstance(
     instance: Instance?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Instance> {
     let request = UpdateInstanceRequest().with {
       $0.instance = instance

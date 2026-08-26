@@ -15,18 +15,18 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Configuration for RCToken generated for service mesh workloads protected by
 /// IAP. RCToken are IAP generated JWTs that can be verified at the application.
 /// The RCToken is primarily used for service mesh deployments, and can be scoped
 /// to a single mesh by configuring the audience field accordingly.
-public struct CsmSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CsmSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Audience claim set in the generated RCToken. This value is not validated by
   /// IAP.
-  public var rctokenAud: GoogleCloudWkt.StringValue? = nil
+  public var rctokenAud: GoogleCloudWKT.StringValue? = nil
 
   /// Initialize a new instance of `CsmSettings`.
   public init() {}
@@ -47,10 +47,10 @@ public struct CsmSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.iap.v1.CsmSettings"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

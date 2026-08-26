@@ -15,16 +15,16 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// BackupLock represents a single lock on a Backup resource.  An unexpired
 /// lock on a Backup prevents the Backup from being deleted.
-public struct BackupLock: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BackupLock: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The time after which this lock is not considered valid and will
   /// no longer protect the Backup from deletion.
-  public var lockUntilTime: GoogleCloudWkt.Timestamp? = nil
+  public var lockUntilTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Metadata about the owner and reason for the lock.
   public var clientLockInfo: OneOf_ClientLockInfo? = nil
@@ -54,7 +54,7 @@ public struct BackupLock: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.lockUntilTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .lockUntilTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .lockUntilTime)
 
     var clientLockInfo: OneOf_ClientLockInfo? = nil
     let clientLockInfoCheckAndSet = {
@@ -106,10 +106,10 @@ public struct BackupLock: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.backupdr.v1.BackupLock"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

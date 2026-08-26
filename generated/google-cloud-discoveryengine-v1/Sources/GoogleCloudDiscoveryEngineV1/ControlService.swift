@@ -19,7 +19,7 @@
   #if canImport(FoundationNetworking)
     import FoundationNetworking
   #endif
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleCloudGax
 
@@ -210,7 +210,7 @@
       /// See `ControlServiceClient.updateControl`.
       func updateControl(
         control: Control?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudDiscoveryEngineV1.Control
 
       /// See `ControlServiceClient.getControl`.
@@ -366,7 +366,7 @@
 
     public func updateControl(
       control: Control?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDiscoveryEngineV1.Control {
       let request = UpdateControlRequest().with {
         $0.control = control

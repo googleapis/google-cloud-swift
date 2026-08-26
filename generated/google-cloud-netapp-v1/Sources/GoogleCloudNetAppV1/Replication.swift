@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Replication is a nested resource under Volume, that describes a
 /// cross-region replication relationship between 2 volumes in different
 /// regions.
-public struct Replication: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Replication: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The resource name of the Replication.
@@ -52,7 +52,7 @@ public struct Replication: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var healthy: Swift.Bool? = nil
 
   /// Output only. Replication create time.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Full name of destination volume resource.
   /// Example : "projects/{project}/locations/{location}/volumes/{volume_id}"
@@ -753,10 +753,10 @@ public struct Replication: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.netapp.v1.Replication"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

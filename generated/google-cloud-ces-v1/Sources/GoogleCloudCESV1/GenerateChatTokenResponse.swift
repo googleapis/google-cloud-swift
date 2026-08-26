@@ -15,20 +15,20 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response message for
 /// [WidgetService.GenerateChatToken][google.cloud.ces.v1.WidgetService.GenerateChatToken].
 ///
 /// [google.cloud.ces.v1.WidgetService.GenerateChatToken]: <doc:WidgetServiceClient/generateChatToken(request:options:)>
-public struct GenerateChatTokenResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct GenerateChatTokenResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The session scoped token for chat widget to authenticate with Session APIs.
   public var chatToken: Swift.String = Swift.String()
 
   /// The time at which the chat token expires.
-  public var expireTime: GoogleCloudWkt.Timestamp? = nil
+  public var expireTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `GenerateChatTokenResponse`.
   public init() {}
@@ -49,10 +49,10 @@ public struct GenerateChatTokenResponse: Codable, Equatable, GoogleCloudWkt._Any
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.GenerateChatTokenResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

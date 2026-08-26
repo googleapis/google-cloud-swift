@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents both a request to Restore some portion of a Backup into
 /// a target GKE cluster and a record of the restore operation itself.
-public struct Restore: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Restore: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The full name of the Restore resource.
@@ -31,11 +31,11 @@ public struct Restore: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var uid: Swift.String = Swift.String()
 
   /// Output only. The timestamp when this Restore resource was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The timestamp when this Restore resource was last
   /// updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. User specified descriptive string for this Restore.
   public var description: Swift.String = Swift.String()
@@ -83,7 +83,7 @@ public struct Restore: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var stateReason: Swift.String = Swift.String()
 
   /// Output only. Timestamp of when the restore operation completed.
-  public var completeTime: GoogleCloudWkt.Timestamp? = nil
+  public var completeTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Number of resources restored during the restore execution.
   public var resourcesRestoredCount: Swift.Int32 = Swift.Int32()
@@ -145,7 +145,7 @@ public struct Restore: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// scope defined in the `RestorePlan`. `exclusion_filters` take precedence
   /// over `inclusion_filters`. If a resource matches both `inclusion_filters`
   /// and `exclusion_filters`, it will not be restored.
-  public struct Filter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Filter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Selects resources for restoration. If specified, only resources
@@ -178,11 +178,11 @@ public struct Restore: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.gkebackup.v1.Restore.Filter"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -326,10 +326,10 @@ public struct Restore: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkebackup.v1.Restore"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -16,20 +16,20 @@
 
 #if SqlBackupsService || SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Maintenance window. This specifies when a Cloud SQL instance is
   /// restarted for system maintenance purposes.
-  public struct MaintenanceWindow: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MaintenanceWindow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Hour of day - 0 to 23. Specify in the UTC time zone.
-    public var hour: GoogleCloudWkt.Int32Value? = nil
+    public var hour: GoogleCloudWKT.Int32Value? = nil
 
     /// Day of week - `MONDAY`, `TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`,
     /// `SATURDAY`, or `SUNDAY`. Specify in the UTC time zone.
     /// Returned in output as an integer, 1 to 7, where `1` equals Monday.
-    public var day: GoogleCloudWkt.Int32Value? = nil
+    public var day: GoogleCloudWKT.Int32Value? = nil
 
     /// Maintenance timing settings: `canary`, `stable`, or `week5`.
     /// For more information, see [About maintenance on Cloud SQL
@@ -58,11 +58,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.MaintenanceWindow"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

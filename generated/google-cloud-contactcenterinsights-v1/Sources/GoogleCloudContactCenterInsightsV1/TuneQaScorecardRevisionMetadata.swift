@@ -15,17 +15,17 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Metadata for TuneQaScorecardRevision endpoint.
-public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The time the operation was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time the operation finished running.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The original request.
   public var request: TuneQaScorecardRevisionRequest? = nil
@@ -61,7 +61,7 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleCloudWk
   }
 
   /// Contains validation results for a question in the tuning request.
-  public struct QaQuestionDatasetValidationResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct QaQuestionDatasetValidationResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The resource path of the question whose dataset was
@@ -95,17 +95,17 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleCloudWk
       return
         "type.googleapis.com/google.cloud.contactcenterinsights.v1.TuneQaScorecardRevisionMetadata.QaQuestionDatasetValidationResult"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Contains performance metrics for each QaQuestion in the
   /// TuneScorecardRevision request.
-  public struct QaQuestionDatasetTuningMetrics: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct QaQuestionDatasetTuningMetrics: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The resource path of the question whose dataset was
@@ -134,7 +134,7 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleCloudWk
 
     /// Performance metrics for the question's dataset calculated over the tuned
     /// model.
-    public struct Metrics: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Metrics: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Accuracy of the question's dataset.
@@ -160,11 +160,11 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleCloudWk
         return
           "type.googleapis.com/google.cloud.contactcenterinsights.v1.TuneQaScorecardRevisionMetadata.QaQuestionDatasetTuningMetrics.Metrics"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -172,11 +172,11 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleCloudWk
       return
         "type.googleapis.com/google.cloud.contactcenterinsights.v1.TuneQaScorecardRevisionMetadata.QaQuestionDatasetTuningMetrics"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -184,10 +184,10 @@ public struct TuneQaScorecardRevisionMetadata: Codable, Equatable, GoogleCloudWk
     return
       "type.googleapis.com/google.cloud.contactcenterinsights.v1.TuneQaScorecardRevisionMetadata"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

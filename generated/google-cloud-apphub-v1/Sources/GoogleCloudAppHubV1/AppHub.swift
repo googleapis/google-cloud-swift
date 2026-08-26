@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -965,7 +965,7 @@ extension Clients {
     /// See `AppHubClient.updateService`.
     func updateService(
       service: Service?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Service>
 
     /// See `AppHubClient.deleteService`.
@@ -1059,7 +1059,7 @@ extension Clients {
     /// See `AppHubClient.updateWorkload`.
     func updateWorkload(
       workload: Workload?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Workload>
 
     /// See `AppHubClient.deleteWorkload`.
@@ -1123,7 +1123,7 @@ extension Clients {
     /// See `AppHubClient.updateApplication`.
     func updateApplication(
       application: Application?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Application>
 
     /// See `AppHubClient.deleteApplication`.
@@ -1855,7 +1855,7 @@ extension Clients.AppHubProtocol {
 
   public func updateService(
     service: Service?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Service> {
     let request = UpdateServiceRequest().with {
       $0.service = service
@@ -2110,7 +2110,7 @@ extension Clients.AppHubProtocol {
 
   public func updateWorkload(
     workload: Workload?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Workload> {
     let request = UpdateWorkloadRequest().with {
       $0.workload = workload
@@ -2285,7 +2285,7 @@ extension Clients.AppHubProtocol {
 
   public func updateApplication(
     application: Application?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Application> {
     let request = UpdateApplicationRequest().with {
       $0.application = application

@@ -19,7 +19,7 @@
   // snippet.show
   import Foundation
   import GoogleCloudComputeV1
-  import GoogleCloudWkt
+  import GoogleCloudWKT
 
   func sample(client: OrganizationSecurityPoliciesClient) async throws {
     let response = try await client.listPreconfiguredExpressionSets(

@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An Nvidia attestation report for GPU and NVSwitch devices.
 /// Contains necessary attestation evidence that the client collects for
 /// verification.
-public struct NvidiaAttestation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct NvidiaAttestation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The Confidential Computing feature that the attestation is for.
@@ -95,7 +95,7 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleCloudWkt._AnyPackable
   }
 
   /// GpuInfo contains the attestation evidence for a GPU device.
-  public struct GpuInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GpuInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The UUID of the GPU device.
@@ -138,16 +138,16 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleCloudWkt._AnyPackable
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.confidentialcomputing.v1.NvidiaAttestation.GpuInfo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// SwitchInfo contains the attestation evidence for a NVSwitch device.
-  public struct SwitchInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SwitchInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The UUID of the NVSwitch device.
@@ -181,16 +181,16 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleCloudWkt._AnyPackable
       return
         "type.googleapis.com/google.cloud.confidentialcomputing.v1.NvidiaAttestation.SwitchInfo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Single GPU Passthrough (SPT) attestation.
-  public struct SinglePassthroughAttestation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SinglePassthroughAttestation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Single GPU quote.
@@ -216,17 +216,17 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleCloudWkt._AnyPackable
       return
         "type.googleapis.com/google.cloud.confidentialcomputing.v1.NvidiaAttestation.SinglePassthroughAttestation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Protected PCIe (PPCIE) attestation.
   /// Eight Hopper GPUs with Four NVSwitch Passthrough.
-  public struct ProtectedPcieAttestation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ProtectedPcieAttestation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. A list of GPU infos.
@@ -255,17 +255,17 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleCloudWkt._AnyPackable
       return
         "type.googleapis.com/google.cloud.confidentialcomputing.v1.NvidiaAttestation.ProtectedPcieAttestation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// MultiGpuSecurePassthroughAttestation contains the attestation evidence
   /// for a Multi-GPU Secure Passthrough (MPT) attestation.
-  public struct MultiGpuSecurePassthroughAttestation: Codable, Equatable, GoogleCloudWkt
+  public struct MultiGpuSecurePassthroughAttestation: Codable, Equatable, GoogleCloudWKT
       ._AnyPackable,
     Sendable
   {
@@ -292,11 +292,11 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleCloudWkt._AnyPackable
       return
         "type.googleapis.com/google.cloud.confidentialcomputing.v1.NvidiaAttestation.MultiGpuSecurePassthroughAttestation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -418,10 +418,10 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.confidentialcomputing.v1.NvidiaAttestation"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

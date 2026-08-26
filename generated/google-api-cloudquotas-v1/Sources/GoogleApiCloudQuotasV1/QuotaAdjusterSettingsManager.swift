@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleCloudGax
 
 /// The Quotas Adjuster Settings API is an infrastructure service for Google
@@ -78,7 +78,7 @@ extension Clients {
     /// See `QuotaAdjusterSettingsManagerClient.updateQuotaAdjusterSettings`.
     func updateQuotaAdjusterSettings(
       quotaAdjusterSettings: QuotaAdjusterSettings?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleApiCloudQuotasV1.QuotaAdjusterSettings
 
     /// See `QuotaAdjusterSettingsManagerClient.getQuotaAdjusterSettings`.
@@ -118,7 +118,7 @@ extension Clients.QuotaAdjusterSettingsManagerProtocol {
 
   public func updateQuotaAdjusterSettings(
     quotaAdjusterSettings: QuotaAdjusterSettings?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleApiCloudQuotasV1.QuotaAdjusterSettings {
     let request = UpdateQuotaAdjusterSettingsRequest().with {
       $0.quotaAdjusterSettings = quotaAdjusterSettings

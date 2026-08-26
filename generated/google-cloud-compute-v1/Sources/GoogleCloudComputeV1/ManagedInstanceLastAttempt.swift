@@ -16,9 +16,9 @@
 
 #if InstanceGroupManagers || RegionInstanceGroupManagers
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
-  public struct ManagedInstanceLastAttempt: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ManagedInstanceLastAttempt: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. [Output Only] Encountered errors during the last attempt to create or
@@ -44,7 +44,7 @@
     /// The message type for the [errors][google.cloud.compute.v1.ManagedInstanceLastAttempt.errors] field.
     ///
     /// [google.cloud.compute.v1.ManagedInstanceLastAttempt.errors]: <doc:ManagedInstanceLastAttempt/Errors>
-    public struct Errors: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Errors: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// [Output Only] The array of errors encountered while processing this
@@ -70,7 +70,7 @@
       /// The message type for the [errors][google.cloud.compute.v1.ManagedInstanceLastAttempt.errors.errors] field.
       ///
       /// [google.cloud.compute.v1.ManagedInstanceLastAttempt.errors.errors]: <doc:ManagedInstanceLastAttempt/Errors/Errors>
-      public struct Errors: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Errors: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// [Output Only] The error type identifier for this error.
@@ -109,7 +109,7 @@
         /// The message type for the [errorDetails][google.cloud.compute.v1.ManagedInstanceLastAttempt.errors.errors.errorDetails] field.
         ///
         /// [google.cloud.compute.v1.ManagedInstanceLastAttempt.errors.errors.errorDetails]: <doc:ManagedInstanceLastAttempt/Errors/Errors/ErrorDetails>
-        public struct ErrorDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct ErrorDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Error information containing structured domain, reason, and metadata.
@@ -144,11 +144,11 @@
             return
               "type.googleapis.com/google.cloud.compute.v1.ManagedInstanceLastAttempt.errors.errors.errorDetails"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
@@ -156,33 +156,33 @@
           return
             "type.googleapis.com/google.cloud.compute.v1.ManagedInstanceLastAttempt.errors.errors"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.ManagedInstanceLastAttempt.errors"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.ManagedInstanceLastAttempt"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -49,7 +49,7 @@ let package = Package(
         .product(name: "GoogleAppsScriptTypeSlides", package: "google-apps-script-type-slides"),
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),
-        .product(name: "GoogleCloudWkt", package: "wkt"),
+        .product(name: "GoogleCloudWKT", package: "wkt"),
         .product(name: "Logging", package: "swift-log"),
       ],
     )

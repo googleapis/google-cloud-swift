@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Privileged access that this service can be used to gate.
-public struct PrivilegedAccess: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct PrivilegedAccess: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   public var accessType: OneOf_AccessType? = nil
@@ -78,7 +78,7 @@ public struct PrivilegedAccess: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// `GcpIamAccess` represents IAM based access control on a Google Cloud
   /// resource. Refer to https://cloud.google.com/iam/docs to understand more
   /// about IAM.
-  public struct GcpIamAccess: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GcpIamAccess: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The type of this resource.
@@ -107,7 +107,7 @@ public struct PrivilegedAccess: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// IAM role bindings that are created after a successful grant.
-    public struct RoleBinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct RoleBinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. IAM role to be granted.
@@ -144,11 +144,11 @@ public struct PrivilegedAccess: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.PrivilegedAccess.GcpIamAccess.RoleBinding"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -156,11 +156,11 @@ public struct PrivilegedAccess: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.PrivilegedAccess.GcpIamAccess"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -172,10 +172,10 @@ public struct PrivilegedAccess: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.PrivilegedAccess"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

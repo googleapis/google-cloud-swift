@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Workload monitoring Violation.
-public struct Violation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Violation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Immutable. Name of the Violation.
@@ -31,14 +31,14 @@ public struct Violation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var description: Swift.String = Swift.String()
 
   /// Output only. Time of the event which triggered the Violation.
-  public var beginTime: GoogleCloudWkt.Timestamp? = nil
+  public var beginTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The last time when the Violation record was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Time of the event which fixed the Violation.
   /// If the violation is ACTIVE this will be empty.
-  public var resolveTime: GoogleCloudWkt.Timestamp? = nil
+  public var resolveTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Category under which this violation is mapped.
   /// e.g. Location, Service Usage, Access, Encryption, etc.
@@ -72,7 +72,7 @@ public struct Violation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Optional. Timestamp when this violation was acknowledged last.
   /// This will be absent when acknowledged field is marked as false.
-  public var acknowledgementTime: GoogleCloudWkt.Timestamp? = nil
+  public var acknowledgementTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Immutable. Audit Log link to find business justification provided for violation
   /// exception. Format:
@@ -97,7 +97,7 @@ public struct Violation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Represents remediation guidance to resolve compliance violation for
   /// AssuredWorkload
-  public struct Remediation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Remediation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Remediation instructions to resolve violations
@@ -129,7 +129,7 @@ public struct Violation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Instructions to remediate violation
-    public struct Instructions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Instructions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Remediation instructions to resolve violation via gcloud cli
@@ -155,7 +155,7 @@ public struct Violation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       }
 
       /// Remediation instructions to resolve violation via gcloud cli
-      public struct Gcloud: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Gcloud: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Gcloud command to resolve violation
@@ -187,16 +187,16 @@ public struct Violation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.assuredworkloads.v1.Violation.Remediation.Instructions.Gcloud"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Remediation instructions to resolve violation via cloud console
-      public struct Console: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Console: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Link to console page where violations can be resolved
@@ -228,11 +228,11 @@ public struct Violation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.assuredworkloads.v1.Violation.Remediation.Instructions.Console"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -240,11 +240,11 @@ public struct Violation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.assuredworkloads.v1.Violation.Remediation.Instructions"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -384,11 +384,11 @@ public struct Violation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.assuredworkloads.v1.Violation.Remediation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -507,10 +507,10 @@ public struct Violation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.assuredworkloads.v1.Violation"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,22 +15,22 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// DatacenterConnector message describes a connector between the Source and
 /// Google Cloud, which is installed on a vmware datacenter (an OVA vm installed
 /// by the user) to connect the Datacenter to Google Cloud and support vm
 /// migration data transfer.
-public struct DatacenterConnector: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DatacenterConnector: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The time the connector was created (as an API call, not when
   /// it was actually installed).
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The last time the connector was updated with an API call.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The connector's name.
   public var name: Swift.String = Swift.String()
@@ -57,7 +57,7 @@ public struct DatacenterConnector: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public var state: DatacenterConnector.State = DatacenterConnector.State()
 
   /// Output only. The time the state was last set.
-  public var stateTime: GoogleCloudWkt.Timestamp? = nil
+  public var stateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Provides details on the state of the Datacenter Connector in
   /// case of an error.
@@ -220,10 +220,10 @@ public struct DatacenterConnector: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vmmigration.v1.DatacenterConnector"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

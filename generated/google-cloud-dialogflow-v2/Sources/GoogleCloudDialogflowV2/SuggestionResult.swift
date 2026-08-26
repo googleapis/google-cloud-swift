@@ -16,7 +16,7 @@
 
 #if Participants
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
   import GoogleRpc
 
   /// One response of different type of suggestion response which is used in
@@ -29,7 +29,7 @@
   ///
   /// [google.cloud.dialogflow.v2.HumanAgentAssistantEvent]: <doc:HumanAgentAssistantEvent>
   /// [google.cloud.dialogflow.v2.Participants.AnalyzeContent]: <doc:ParticipantsClient/analyzeContent(request:options:)>
-  public struct SuggestionResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SuggestionResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Different type of suggestion response.
@@ -146,11 +146,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.SuggestionResult"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

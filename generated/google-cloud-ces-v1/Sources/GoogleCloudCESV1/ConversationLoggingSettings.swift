@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Settings to describe the conversation logging behaviors for the app.
-public struct ConversationLoggingSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ConversationLoggingSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. Whether to disable conversation logging for the sessions.
@@ -26,7 +26,7 @@ public struct ConversationLoggingSettings: Codable, Equatable, GoogleCloudWkt._A
 
   /// Optional. Controls the retention window for the conversation.
   /// If not set, the conversation will be retained for 365 days.
-  public var retentionWindow: GoogleCloudWkt.Duration? = nil
+  public var retentionWindow: GoogleCloudWKT.Duration? = nil
 
   /// Initialize a new instance of `ConversationLoggingSettings`.
   public init() {}
@@ -47,10 +47,10 @@ public struct ConversationLoggingSettings: Codable, Equatable, GoogleCloudWkt._A
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.ConversationLoggingSettings"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -20,7 +20,7 @@ import Foundation
 import GoogleCloudFilestoreV1
 import GoogleCloudCommon
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 

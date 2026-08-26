@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A `Snooze` will prevent any alerts from being opened, and close any that
 /// are already open. The `Snooze` will work on alerts that match the
 /// criteria defined in the `Snooze`. The `Snooze` will be active from
 /// `interval.start_time` through `interval.end_time`.
-public struct Snooze: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Snooze: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Identifier. The name of the `Snooze`. The format is:
@@ -65,7 +65,7 @@ public struct Snooze: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Criteria specific to the `AlertPolicy`s that this `Snooze` applies to. The
   /// `Snooze` will suppress alerts that come from one of the `AlertPolicy`s
   /// whose names are supplied.
-  public struct Criteria: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Criteria: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The specific `AlertPolicy` names for the alert that should be snoozed.
@@ -114,21 +114,21 @@ public struct Snooze: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.v3.Snooze.Criteria"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.v3.Snooze"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

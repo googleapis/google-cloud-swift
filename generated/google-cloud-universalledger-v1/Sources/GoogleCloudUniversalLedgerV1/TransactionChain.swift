@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A transaction chain including multiple transaction units to execute in
 /// sequence.
@@ -24,7 +24,7 @@ import Foundation
 /// of the units succeed, their cumulative effects will be committed atomically
 /// to the world state. Otherwise, if any of them fails, the whole chain will be
 /// failed and none of its effects will be applied.
-public struct TransactionChain: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TransactionChain: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The individual units of the chain. Each unit must be a serialized
@@ -55,10 +55,10 @@ public struct TransactionChain: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.universalledger.v1.TransactionChain"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Metadata message for
 /// [ExecuteSingleTenantHsmInstanceProposal][google.cloud.kms.v1.HsmManagement.ExecuteSingleTenantHsmInstanceProposal]
 /// long-running operation response.
 ///
 /// [google.cloud.kms.v1.HsmManagement.ExecuteSingleTenantHsmInstanceProposal]: <doc:HsmManagementClient/executeSingleTenantHsmInstanceProposal(request:options:)>
-public struct ExecuteSingleTenantHsmInstanceProposalMetadata: Codable, Equatable, GoogleCloudWkt
+public struct ExecuteSingleTenantHsmInstanceProposalMetadata: Codable, Equatable, GoogleCloudWKT
     ._AnyPackable,
   Sendable
 {
@@ -45,10 +45,10 @@ public struct ExecuteSingleTenantHsmInstanceProposalMetadata: Codable, Equatable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.ExecuteSingleTenantHsmInstanceProposalMetadata"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// AdjustmentRule condition for image findings.
 /// This rule is silently ignored if the content being inspected is not an image.
-public struct AdjustByImageFindings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AdjustByImageFindings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A list of image-supported infoTypes—excluding [document
@@ -69,10 +69,10 @@ public struct AdjustByImageFindings: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.AdjustByImageFindings"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

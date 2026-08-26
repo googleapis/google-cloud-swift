@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Resource representation as defined by the corresponding service providing the
 /// resource for a given API version.
-public struct VersionedResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct VersionedResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// API version of the resource.
@@ -42,7 +42,7 @@ public struct VersionedResource: Codable, Equatable, GoogleCloudWkt._AnyPackable
   /// You can find the resource definition for each supported resource type in
   /// this table:
   /// `https://cloud.google.com/asset-inventory/docs/supported-asset-types`
-  public var resource: GoogleCloudWkt.Struct? = nil
+  public var resource: GoogleCloudWKT.Struct? = nil
 
   /// Initialize a new instance of `VersionedResource`.
   public init() {}
@@ -63,10 +63,10 @@ public struct VersionedResource: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.asset.v1.VersionedResource"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -16,7 +16,7 @@
 
 #if Flows || Pages || Playbooks || Sessions || TestCases || TransitionRouteGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents a response message that can be returned by a conversational agent.
   ///
@@ -35,7 +35,7 @@
   ///
   /// This approach allows for more sophisticated user experience scenarios, where
   /// the text displayed to the user may differ from what is heard.
-  public struct ResponseMessage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ResponseMessage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Response type.
@@ -103,7 +103,7 @@
       if let text = try container.decodeIfPresent(ResponseMessage.Text?.self, forKey: .text) {
         try messageCheckAndSet(.text(text))
       }
-      if let payload = try container.decodeIfPresent(GoogleCloudWkt.Struct?.self, forKey: .payload)
+      if let payload = try container.decodeIfPresent(GoogleCloudWKT.Struct?.self, forKey: .payload)
       {
         try messageCheckAndSet(.payload(payload))
       }
@@ -187,7 +187,7 @@
     }
 
     /// The text response message.
-    public struct Text: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Text: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. A collection of text response variants. If multiple variants
@@ -218,11 +218,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.ResponseMessage.Text"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -243,12 +243,12 @@
     ///
     /// [google.cloud.dialogflow.cx.v3.Page]: <doc:Page>
     /// [google.cloud.dialogflow.cx.v3.Page.entry_fulfillment]: <doc:Page/entryFulfillment>
-    public struct LiveAgentHandoff: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct LiveAgentHandoff: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Custom metadata for your handoff procedure. Dialogflow doesn't impose
       /// any structure on this.
-      public var metadata: GoogleCloudWkt.Struct? = nil
+      public var metadata: GoogleCloudWKT.Struct? = nil
 
       /// Initialize a new instance of `LiveAgentHandoff`.
       public init() {}
@@ -269,11 +269,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.ResponseMessage.LiveAgentHandoff"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -297,11 +297,11 @@
     /// [google.cloud.dialogflow.cx.v3.Page]: <doc:Page>
     /// [google.cloud.dialogflow.cx.v3.Page.entry_fulfillment]: <doc:Page/entryFulfillment>
     /// [google.cloud.dialogflow.cx.v3.ResponseMessage.ConversationSuccess]: <doc:ResponseMessage/ConversationSuccess>
-    public struct ConversationSuccess: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ConversationSuccess: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Custom metadata. Dialogflow doesn't impose any structure on this.
-      public var metadata: GoogleCloudWkt.Struct? = nil
+      public var metadata: GoogleCloudWKT.Struct? = nil
 
       /// Initialize a new instance of `ConversationSuccess`.
       public init() {}
@@ -323,17 +323,17 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.cx.v3.ResponseMessage.ConversationSuccess"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// A text or ssml response that is preferentially used for TTS output audio
     /// synthesis, as described in the comment on the ResponseMessage message.
-    public struct OutputAudioText: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct OutputAudioText: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. Whether the playback of this message can be interrupted by
@@ -416,18 +416,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.ResponseMessage.OutputAudioText"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Indicates that interaction with the Dialogflow agent has ended.
     /// This message is generated by Dialogflow only and not supposed to be
     /// defined by the user.
-    public struct EndInteraction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct EndInteraction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Initialize a new instance of `EndInteraction`.
@@ -449,16 +449,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.ResponseMessage.EndInteraction"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Specifies an audio clip to be played by the client as part of the response.
-    public struct PlayAudio: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct PlayAudio: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. URI of the audio clip. Dialogflow does not impose any
@@ -489,11 +489,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.ResponseMessage.PlayAudio"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -506,7 +506,7 @@
     /// defined by the user.
     ///
     /// [google.cloud.dialogflow.cx.v3.ResponseMessage.play_audio]: <doc:ResponseMessage/OneOf_Message/playAudio(_:)>
-    public struct MixedAudio: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct MixedAudio: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Segments this audio response is composed of.
@@ -529,7 +529,7 @@
       }
 
       /// Represents one segment of audio.
-      public struct Segment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Segment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Output only. Whether the playback of this segment can be interrupted by
@@ -614,28 +614,28 @@
           return
             "type.googleapis.com/google.cloud.dialogflow.cx.v3.ResponseMessage.MixedAudio.Segment"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.ResponseMessage.MixedAudio"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Represents the signal that telles the client to transfer the phone call
     /// connected to the agent to a third-party endpoint.
-    public struct TelephonyTransferCall: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct TelephonyTransferCall: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Endpoint to transfer the call to.
@@ -703,11 +703,11 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.cx.v3.ResponseMessage.TelephonyTransferCall"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -716,7 +716,7 @@
     /// Messenger compatible info card.
     ///
     /// Otherwise, the info card response is skipped.
-    public struct KnowledgeInfoCard: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct KnowledgeInfoCard: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Initialize a new instance of `KnowledgeInfoCard`.
@@ -738,11 +738,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.ResponseMessage.KnowledgeInfoCard"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -876,7 +876,7 @@
       /// Returns a text response.
       indirect case text(ResponseMessage.Text?)
       /// Returns a response containing a custom, platform-specific payload.
-      indirect case payload(GoogleCloudWkt.Struct?)
+      indirect case payload(GoogleCloudWKT.Struct?)
       /// Indicates that the conversation succeeded.
       indirect case conversationSuccess(ResponseMessage.ConversationSuccess?)
       /// A text or ssml response that is preferentially used for TTS output audio
@@ -921,11 +921,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.ResponseMessage"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

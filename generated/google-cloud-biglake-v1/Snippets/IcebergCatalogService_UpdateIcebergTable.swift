@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudBiglakeV1
 import GoogleApi
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: IcebergCatalogServiceClient) async throws {
   let response = try await client.updateIcebergTable(

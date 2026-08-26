@@ -16,10 +16,10 @@
 
 #if InstanceGroupManagers || RegionInstanceGroupManagers
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   public struct InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck: Codable,
-    Equatable, GoogleCloudWkt._AnyPackable,
+    Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Errors encountered during bulk instance operation.
@@ -27,7 +27,7 @@
 
     /// Output only. Timestamp of the last progress check of bulk instance
     /// operation. Timestamp is in RFC3339 text format.
-    public var timestamp: GoogleCloudWkt.Timestamp? = nil
+    public var timestamp: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck`.
     public init() {}
@@ -48,7 +48,7 @@
     /// The message type for the [error][google.cloud.compute.v1.InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck.error] field.
     ///
     /// [google.cloud.compute.v1.InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck.error]: <doc:InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck/Error>
-    public struct Error: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Error: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// [Output Only] The array of errors encountered while processing this
@@ -75,7 +75,7 @@
       /// The message type for the [errors][google.cloud.compute.v1.InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck.error.errors] field.
       ///
       /// [google.cloud.compute.v1.InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck.error.errors]: <doc:InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck/Error/Errors>
-      public struct Errors: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Errors: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// [Output Only] The error type identifier for this error.
@@ -116,7 +116,7 @@
         /// The message type for the [errorDetails][google.cloud.compute.v1.InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck.error.errors.errorDetails] field.
         ///
         /// [google.cloud.compute.v1.InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck.error.errors.errorDetails]: <doc:InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck/Error/Errors/ErrorDetails>
-        public struct ErrorDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct ErrorDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Error information containing structured domain, reason, and metadata.
@@ -151,11 +151,11 @@
             return
               "type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck.error.errors.errorDetails"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
@@ -163,11 +163,11 @@
           return
             "type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck.error.errors"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -175,11 +175,11 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck.error"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -187,11 +187,11 @@
       return
         "type.googleapis.com/google.cloud.compute.v1.InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

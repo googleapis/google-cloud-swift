@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A lineage event represents an operation on assets. Within the operation, the
 /// data flows from the source to the target defined in the links field.
-public struct LineageEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct LineageEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Immutable. The resource name of the lineage event.
@@ -36,12 +36,12 @@ public struct LineageEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Required. The beginning of the transformation which resulted in this
   /// lineage event. For streaming scenarios, it should be the beginning of the
   /// period from which the lineage is being reported.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. The end of the transformation which resulted in this lineage
   /// event.  For streaming scenarios, it should be the end of the period from
   /// which the lineage is being reported.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `LineageEvent`.
   public init() {}
@@ -62,10 +62,10 @@ public struct LineageEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datacatalog.lineage.v1.LineageEvent"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

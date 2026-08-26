@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleCloudGax
 
@@ -274,7 +274,7 @@
       /// See `SipTrunksClient.updateSipTrunk`.
       func updateSipTrunk(
         sipTrunk: SipTrunk?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudDialogflowV2.SipTrunk
 
       /// See `SipTrunksClient.listLocations`.
@@ -491,7 +491,7 @@
 
     public func updateSipTrunk(
       sipTrunk: SipTrunk?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDialogflowV2.SipTrunk {
       let request = UpdateSipTrunkRequest().with {
         $0.sipTrunk = sipTrunk

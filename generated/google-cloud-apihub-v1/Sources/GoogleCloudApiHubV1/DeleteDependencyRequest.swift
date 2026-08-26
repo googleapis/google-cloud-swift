@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The
 /// [DeleteDependency][google.cloud.apihub.v1.ApiHubDependencies.DeleteDependency]
 /// method's request.
 ///
 /// [google.cloud.apihub.v1.ApiHubDependencies.DeleteDependency]: <doc:ApiHubDependenciesClient/deleteDependency(request:options:)>
-public struct DeleteDependencyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DeleteDependencyRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The name of the dependency resource to delete.
@@ -48,10 +48,10 @@ public struct DeleteDependencyRequest: Codable, Equatable, GoogleCloudWkt._AnyPa
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.apihub.v1.DeleteDependencyRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

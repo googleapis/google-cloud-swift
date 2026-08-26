@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The inputs, outputs, and detailed explanation of the Autoscaling
 /// recommendation.
-public struct AutoscalerRecommendation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AutoscalerRecommendation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The autoscaling algorithm inputs.
@@ -45,7 +45,7 @@ public struct AutoscalerRecommendation: Codable, Equatable, GoogleCloudWkt._AnyP
   }
 
   /// The input values for the Autoscaling recommendation algorithm.
-  public struct Inputs: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Inputs: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The metrics collected by the Dataproc agent running on the cluster.
@@ -80,16 +80,16 @@ public struct AutoscalerRecommendation: Codable, Equatable, GoogleCloudWkt._AnyP
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataproc.logging.AutoscalerRecommendation.Inputs"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Autoscaler recommendations.
-  public struct Outputs: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Outputs: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The high-level autoscaling decision, such as SCALE_UP, SCALE_DOWN,
@@ -100,7 +100,7 @@ public struct AutoscalerRecommendation: Codable, Equatable, GoogleCloudWkt._AnyP
     public var recommendedClusterSize: ClusterSize? = nil
 
     /// The graceful decommission timeout for downscaling operations.
-    public var gracefulDecommissionTimeout: GoogleCloudWkt.Duration? = nil
+    public var gracefulDecommissionTimeout: GoogleCloudWKT.Duration? = nil
 
     /// Reasons why the Autoscaler didn't add or remove more workers.
     public var constraintsReached: [ConstrainingFactor] = []
@@ -135,21 +135,21 @@ public struct AutoscalerRecommendation: Codable, Equatable, GoogleCloudWkt._AnyP
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataproc.logging.AutoscalerRecommendation.Outputs"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataproc.logging.AutoscalerRecommendation"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

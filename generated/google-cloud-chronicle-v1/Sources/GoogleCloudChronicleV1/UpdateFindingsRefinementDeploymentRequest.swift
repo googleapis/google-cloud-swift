@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for UpdateFindingsRefinementDeployment method.
-public struct UpdateFindingsRefinementDeploymentRequest: Codable, Equatable, GoogleCloudWkt
+public struct UpdateFindingsRefinementDeploymentRequest: Codable, Equatable, GoogleCloudWKT
     ._AnyPackable,
   Sendable
 {
@@ -32,7 +32,7 @@ public struct UpdateFindingsRefinementDeploymentRequest: Codable, Equatable, Goo
 
   /// Required. The list of fields to update. If `*` is provided, all fields will
   /// be updated.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `UpdateFindingsRefinementDeploymentRequest`.
   public init() {}
@@ -53,10 +53,10 @@ public struct UpdateFindingsRefinementDeploymentRequest: Codable, Equatable, Goo
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.chronicle.v1.UpdateFindingsRefinementDeploymentRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

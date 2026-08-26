@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudApiHubV1
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 
 func sample(client: ApiHubClient, projectId: String, locationId: String, apiId: String) async throws
@@ -30,7 +30,7 @@ func sample(client: ApiHubClient, projectId: String, locationId: String, apiId: 
         $0.api = Api().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/apis/\(apiId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

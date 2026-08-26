@@ -15,25 +15,25 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Word-specific information for recognized words. Word information is only
 /// included in the response when certain request parameters are set, such
 /// as `enable_word_time_offsets`.
-public struct WordInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct WordInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Time offset relative to the beginning of the audio, and
   /// corresponding to the start of the spoken word. This field is only set if
   /// `enable_word_time_offsets=true` and only in the top hypothesis. This is an
   /// experimental feature and the accuracy of the time offset can vary.
-  public var startTime: GoogleCloudWkt.Duration? = nil
+  public var startTime: GoogleCloudWKT.Duration? = nil
 
   /// Time offset relative to the beginning of the audio, and
   /// corresponding to the end of the spoken word. This field is only set if
   /// `enable_word_time_offsets=true` and only in the top hypothesis. This is an
   /// experimental feature and the accuracy of the time offset can vary.
-  public var endTime: GoogleCloudWkt.Duration? = nil
+  public var endTime: GoogleCloudWKT.Duration? = nil
 
   /// The word corresponding to this set of information.
   public var word: Swift.String = Swift.String()
@@ -71,10 +71,10 @@ public struct WordInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.videointelligence.v1.WordInfo"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

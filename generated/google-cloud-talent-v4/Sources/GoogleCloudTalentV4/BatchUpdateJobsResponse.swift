@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The result of
 /// [JobService.BatchUpdateJobs][google.cloud.talent.v4.JobService.BatchUpdateJobs].
@@ -25,7 +25,7 @@ import Foundation
 ///
 /// [google.cloud.talent.v4.JobService.BatchUpdateJobs]: <doc:JobServiceClient/batchUpdateJobs(request:options:)>
 /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/OneOf_Result/response(_:)
-public struct BatchUpdateJobsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BatchUpdateJobsResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// List of job mutation results from a batch update operation. It can change
@@ -51,10 +51,10 @@ public struct BatchUpdateJobsResponse: Codable, Equatable, GoogleCloudWkt._AnyPa
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.talent.v4.BatchUpdateJobsResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Creates a new currency operator. The sender must be the platform operator.
 ///
@@ -30,7 +30,7 @@ import Foundation
 /// transaction should be sent instead.
 ///
 /// [google.cloud.universalledger.v1.TransactionCertificate]: <doc:TransactionCertificate>
-public struct CreateCurrencyOperator: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CreateCurrencyOperator: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The public key of the new currency operator. This public key will
@@ -89,10 +89,10 @@ public struct CreateCurrencyOperator: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.universalledger.v1.CreateCurrencyOperator"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

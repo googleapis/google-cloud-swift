@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// WorkerPoolRevisionTemplate describes the data a worker pool revision should
 /// have when created from a template.
-public struct WorkerPoolRevisionTemplate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct WorkerPoolRevisionTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. The unique name for the revision. If this field is omitted, it
@@ -84,7 +84,7 @@ public struct WorkerPoolRevisionTemplate: Codable, Equatable, GoogleCloudWkt._An
 
   /// Optional. If encryption_key_revocation_action is SHUTDOWN, the duration
   /// before shutting down all instances. The minimum increment is 1 hour.
-  public var encryptionKeyShutdownDuration: GoogleCloudWkt.Duration? = nil
+  public var encryptionKeyShutdownDuration: GoogleCloudWKT.Duration? = nil
 
   /// Optional. The node selector for the revision template.
   public var nodeSelector: NodeSelector? = nil
@@ -111,10 +111,10 @@ public struct WorkerPoolRevisionTemplate: Codable, Equatable, GoogleCloudWkt._An
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.run.v2.WorkerPoolRevisionTemplate"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

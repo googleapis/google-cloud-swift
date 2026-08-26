@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The public keys for a given
 /// [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. Obtained via
@@ -23,7 +23,7 @@ import Foundation
 ///
 /// [google.cloud.kms.v1.CryptoKeyVersion]: <doc:CryptoKeyVersion>
 /// [google.cloud.kms.v1.KeyManagementService.GetPublicKey]: <doc:KeyManagementServiceClient/getPublicKey(request:options:)>
-public struct PublicKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct PublicKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The public key, encoded in PEM format. For more information, see the
@@ -57,7 +57,7 @@ public struct PublicKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// NOTE: This field is in Beta.
   ///
   /// [google.cloud.kms.v1.PublicKey.pem]: <doc:PublicKey/pem>
-  public var pemCrc32C: GoogleCloudWkt.Int64Value? = nil
+  public var pemCrc32C: GoogleCloudWKT.Int64Value? = nil
 
   /// The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the
   /// [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key.
@@ -124,7 +124,7 @@ public struct PublicKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.algorithm = try container.decode(
       CryptoKeyVersion.CryptoKeyVersionAlgorithm.self, forKey: .algorithm)
     self.pemCrc32C = try container.decodeIfPresent(
-      GoogleCloudWkt.Int64Value.self, forKey: .pemCrc32C)
+      GoogleCloudWKT.Int64Value.self, forKey: .pemCrc32C)
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.protectionLevel = try container.decode(ProtectionLevel.self, forKey: .protectionLevel)
     self.publicKeyFormat = try container.decode(
@@ -288,10 +288,10 @@ public struct PublicKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.PublicKey"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

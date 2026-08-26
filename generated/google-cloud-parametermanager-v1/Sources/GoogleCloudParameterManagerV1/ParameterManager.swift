@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleCloudGax
 
 /// Service describing handlers for resources
@@ -250,7 +250,7 @@ extension Clients {
     /// See `ParameterManagerClient.updateParameter`.
     func updateParameter(
       parameter: Parameter?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudParameterManagerV1.Parameter
 
     /// See `ParameterManagerClient.deleteParameter`.
@@ -311,7 +311,7 @@ extension Clients {
     /// See `ParameterManagerClient.updateParameterVersion`.
     func updateParameterVersion(
       parameterVersion: ParameterVersion?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudParameterManagerV1.ParameterVersion
 
     /// See `ParameterManagerClient.deleteParameterVersion`.
@@ -516,7 +516,7 @@ extension Clients.ParameterManagerProtocol {
 
   public func updateParameter(
     parameter: Parameter?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudParameterManagerV1.Parameter {
     let request = UpdateParameterRequest().with {
       $0.parameter = parameter
@@ -663,7 +663,7 @@ extension Clients.ParameterManagerProtocol {
 
   public func updateParameterVersion(
     parameterVersion: ParameterVersion?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudParameterManagerV1.ParameterVersion {
     let request = UpdateParameterVersionRequest().with {
       $0.parameterVersion = parameterVersion

@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents an offer made to resellers for purchase.
 /// An offer is associated with a [Sku][google.cloud.channel.v1.Sku], has a plan
 /// for payment, a price, and defines the constraints for buying.
 ///
 /// [google.cloud.channel.v1.Sku]: <doc:Sku>
-public struct Offer: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Offer: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Resource Name of the Offer.
@@ -45,10 +45,10 @@ public struct Offer: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var priceByResources: [PriceByResource] = []
 
   /// Start of the Offer validity time.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. End of the Offer validity time.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Parameters required to use current Offer to purchase.
   public var parameterDefinitions: [ParameterDefinition] = []
@@ -75,10 +75,10 @@ public struct Offer: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.channel.v1.Offer"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

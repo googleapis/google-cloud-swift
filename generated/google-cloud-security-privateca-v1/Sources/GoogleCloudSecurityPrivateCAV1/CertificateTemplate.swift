@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A
 /// [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
 /// refers to a managed template for certificate issuance.
 ///
 /// [google.cloud.security.privateca.v1.CertificateTemplate]: <doc:CertificateTemplate>
-public struct CertificateTemplate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CertificateTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The resource name for this
@@ -53,7 +53,7 @@ public struct CertificateTemplate: Codable, Equatable, GoogleCloudWkt._AnyPackab
   /// [google.cloud.security.privateca.v1.CaPool.IssuancePolicy.maximum_lifetime]: <doc:CaPool/IssuancePolicy/maximumLifetime>
   /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
   /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
-  public var maximumLifetime: GoogleCloudWkt.Duration? = nil
+  public var maximumLifetime: GoogleCloudWKT.Duration? = nil
 
   /// Optional. A set of X.509 values that will be applied to all issued
   /// certificates that use this template. If the certificate request includes
@@ -114,14 +114,14 @@ public struct CertificateTemplate: Codable, Equatable, GoogleCloudWkt._AnyPackab
   /// was created.
   ///
   /// [google.cloud.security.privateca.v1.CertificateTemplate]: <doc:CertificateTemplate>
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time at which this
   /// [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
   /// was updated.
   ///
   /// [google.cloud.security.privateca.v1.CertificateTemplate]: <doc:CertificateTemplate>
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Labels with user-defined metadata.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -145,10 +145,10 @@ public struct CertificateTemplate: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.security.privateca.v1.CertificateTemplate"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -355,7 +355,7 @@ extension Clients {
     /// See `RuleServiceClient.updateRule`.
     func updateRule(
       rule: Rule?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudChronicleV1.Rule
 
     /// See `RuleServiceClient.deleteRule`.
@@ -456,7 +456,7 @@ extension Clients {
     /// See `RuleServiceClient.updateRuleDeployment`.
     func updateRuleDeployment(
       ruleDeployment: RuleDeployment?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudChronicleV1.RuleDeployment
 
     /// See `RuleServiceClient.listOperations`.
@@ -693,7 +693,7 @@ extension Clients.RuleServiceProtocol {
 
   public func updateRule(
     rule: Rule?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudChronicleV1.Rule {
     let request = UpdateRuleRequest().with {
       $0.rule = rule
@@ -950,7 +950,7 @@ extension Clients.RuleServiceProtocol {
 
   public func updateRuleDeployment(
     ruleDeployment: RuleDeployment?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudChronicleV1.RuleDeployment {
     let request = UpdateRuleDeploymentRequest().with {
       $0.ruleDeployment = ruleDeployment

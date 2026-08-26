@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An HdfsData resource specifies a path within an HDFS entity (e.g. a cluster).
 /// All cluster-specific settings, such as namenodes and ports, are configured on
 /// the transfer agents servicing requests, so HdfsData only contains the root
 /// path to the data in our transfer.
-public struct HdfsData: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct HdfsData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Root path to transfer files.
@@ -46,10 +46,10 @@ public struct HdfsData: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storagetransfer.v1.HdfsData"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

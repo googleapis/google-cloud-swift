@@ -16,13 +16,13 @@
 
 #if GlobalNetworkEndpointGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   extension GlobalNetworkEndpointGroupsClient {
     /// Synthetic request message for the [attachNetworkEndpoints()][google.cloud.compute.v1.globalNetworkEndpointGroups.attachNetworkEndpoints] method.
     ///
     /// [google.cloud.compute.v1.globalNetworkEndpointGroups.attachNetworkEndpoints]: <doc:GlobalNetworkEndpointGroupsClient/attachNetworkEndpoints(request:options:)>
-    public struct AttachNetworkEndpointsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AttachNetworkEndpointsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The name of the network endpoint group where you are attaching network
@@ -72,18 +72,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.globalNetworkEndpointGroups.attachNetworkEndpointsRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [delete()][google.cloud.compute.v1.globalNetworkEndpointGroups.delete] method.
     ///
     /// [google.cloud.compute.v1.globalNetworkEndpointGroups.delete]: <doc:GlobalNetworkEndpointGroupsClient/delete(request:options:)>
-    public struct DeleteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DeleteRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The name of the network endpoint group to delete. It should comply with
@@ -128,18 +128,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.globalNetworkEndpointGroups.deleteRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [detachNetworkEndpoints()][google.cloud.compute.v1.globalNetworkEndpointGroups.detachNetworkEndpoints] method.
     ///
     /// [google.cloud.compute.v1.globalNetworkEndpointGroups.detachNetworkEndpoints]: <doc:GlobalNetworkEndpointGroupsClient/detachNetworkEndpoints(request:options:)>
-    public struct DetachNetworkEndpointsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DetachNetworkEndpointsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The name of the network endpoint group where you are removing network
@@ -189,18 +189,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.globalNetworkEndpointGroups.detachNetworkEndpointsRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [get()][google.cloud.compute.v1.globalNetworkEndpointGroups.get] method.
     ///
     /// [google.cloud.compute.v1.globalNetworkEndpointGroups.get]: <doc:GlobalNetworkEndpointGroupsClient/`get`(request:options:)>
-    public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GetRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The name of the network endpoint group. It should comply with RFC1035.
@@ -228,18 +228,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.globalNetworkEndpointGroups.getRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [insert()][google.cloud.compute.v1.globalNetworkEndpointGroups.insert] method.
     ///
     /// [google.cloud.compute.v1.globalNetworkEndpointGroups.insert]: <doc:GlobalNetworkEndpointGroupsClient/insert(request:options:)>
-    public struct InsertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct InsertRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Project ID for this request.
@@ -285,18 +285,18 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.globalNetworkEndpointGroups.insertRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [list()][google.cloud.compute.v1.globalNetworkEndpointGroups.list] method.
     ///
     /// [google.cloud.compute.v1.globalNetworkEndpointGroups.list]: <doc:GlobalNetworkEndpointGroupsClient/list(request:options:)>
-    public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ListRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// A filter expression that filters resources listed in the response. Most
@@ -414,18 +414,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.globalNetworkEndpointGroups.listRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Synthetic request message for the [listNetworkEndpoints()][google.cloud.compute.v1.globalNetworkEndpointGroups.listNetworkEndpoints] method.
     ///
     /// [google.cloud.compute.v1.globalNetworkEndpointGroups.listNetworkEndpoints]: <doc:GlobalNetworkEndpointGroupsClient/listNetworkEndpoints(request:options:)>
-    public struct ListNetworkEndpointsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ListNetworkEndpointsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// A filter expression that filters resources listed in the response. Most
@@ -548,11 +548,11 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.globalNetworkEndpointGroups.listNetworkEndpointsRequest"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
   }

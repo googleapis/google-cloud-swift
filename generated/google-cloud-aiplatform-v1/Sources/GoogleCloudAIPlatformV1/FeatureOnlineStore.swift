@@ -16,12 +16,12 @@
 
 #if FeatureOnlineStoreAdminService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Vertex AI Feature Online Store provides a centralized repository for serving
   /// ML features and embedding indexes at low latency. The Feature Online Store is
   /// a top-level container.
-  public struct FeatureOnlineStore: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FeatureOnlineStore: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Identifier. Name of the FeatureOnlineStore. Format:
@@ -29,10 +29,10 @@
     public var name: Swift.String = Swift.String()
 
     /// Output only. Timestamp when this FeatureOnlineStore was created.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Timestamp when this FeatureOnlineStore was last updated.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Optional. Used to perform consistent read-modify-write updates. If not set,
     /// a blind "overwrite" update happens.
@@ -105,9 +105,9 @@
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.name = try container.decode(Swift.String.self, forKey: .name)
       self.createTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
       self.updateTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
       self.etag = try container.decode(Swift.String.self, forKey: .etag)
       self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
       self.state = try container.decode(FeatureOnlineStore.State.self, forKey: .state)
@@ -164,7 +164,7 @@
       }
     }
 
-    public struct Bigtable: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Bigtable: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. Autoscaling config applied to Bigtable Instance.
@@ -198,7 +198,7 @@
         return copy
       }
 
-      public struct AutoScaling: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct AutoScaling: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. The minimum number of nodes to scale down to. Must be greater
@@ -237,17 +237,17 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.FeatureOnlineStore.Bigtable.AutoScaling"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Metadata of the Bigtable instance. This is used by direct read access to
       /// the Bigtable in tenant project.
-      public struct BigtableMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct BigtableMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Tenant project ID.
@@ -279,27 +279,27 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.FeatureOnlineStore.Bigtable.BigtableMetadata"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.FeatureOnlineStore.Bigtable"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Optimized storage type
-    public struct Optimized: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Optimized: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Initialize a new instance of `Optimized`.
@@ -321,18 +321,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.FeatureOnlineStore.Optimized"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// The dedicated serving endpoint for this FeatureOnlineStore. Only need to
     /// set when you choose Optimized storage type. Public endpoint is provisioned
     /// by default.
-    public struct DedicatedServingEndpoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DedicatedServingEndpoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. This field will be populated with the domain name to use for
@@ -373,11 +373,11 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.FeatureOnlineStore.DedicatedServingEndpoint"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -509,11 +509,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.FeatureOnlineStore"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

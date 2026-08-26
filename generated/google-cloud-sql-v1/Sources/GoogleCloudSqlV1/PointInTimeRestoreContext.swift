@@ -16,11 +16,11 @@
 
 #if SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The context to perform a point-in-time recovery of an instance managed by
   /// Backup and Disaster Recovery (DR) Service.
-  public struct PointInTimeRestoreContext: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PointInTimeRestoreContext: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The Backup and Disaster Recovery (DR) Service Datasource URI.
@@ -29,7 +29,7 @@
     public var datasource: Swift.String? = nil
 
     /// Required. The date and time to which you want to restore the instance.
-    public var pointInTime: GoogleCloudWkt.Timestamp? = nil
+    public var pointInTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Target instance name.
     public var targetInstance: Swift.String? = nil
@@ -89,11 +89,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.PointInTimeRestoreContext"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

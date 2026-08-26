@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleCloudGax
 
@@ -265,7 +265,7 @@
       /// See `SecuritySettingsServiceClient.updateSecuritySettings`.
       func updateSecuritySettings(
         securitySettings: SecuritySettings?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudDialogflowCXV3.SecuritySettings
 
       /// See `SecuritySettingsServiceClient.listSecuritySettings`.
@@ -448,7 +448,7 @@
 
     public func updateSecuritySettings(
       securitySettings: SecuritySettings?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.SecuritySettings {
       let request = UpdateSecuritySettingsRequest().with {
         $0.securitySettings = securitySettings

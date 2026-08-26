@@ -16,13 +16,13 @@
 
 #if EntityTypes || Intents
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Inline destination for a Dialogflow operation that writes or exports objects
   /// (e.g. [intents][google.cloud.dialogflow.cx.v3.Intent]) outside of Dialogflow.
   ///
   /// [google.cloud.dialogflow.cx.v3.Intent]: <doc:Intent>
-  public struct InlineDestination: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct InlineDestination: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The uncompressed byte content for the objects.
@@ -48,11 +48,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.InlineDestination"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

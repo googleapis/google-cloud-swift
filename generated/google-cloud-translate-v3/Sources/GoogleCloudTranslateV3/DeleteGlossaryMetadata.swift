@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Stored in the
 /// [google.longrunning.Operation.metadata][google.longrunning.Operation.metadata]
 /// field returned by DeleteGlossary.
 ///
 /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
-public struct DeleteGlossaryMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DeleteGlossaryMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The name of the glossary that is being deleted.
@@ -32,7 +32,7 @@ public struct DeleteGlossaryMetadata: Codable, Equatable, GoogleCloudWkt._AnyPac
   public var state: DeleteGlossaryMetadata.State = DeleteGlossaryMetadata.State()
 
   /// The time when the operation was submitted to the server.
-  public var submitTime: GoogleCloudWkt.Timestamp? = nil
+  public var submitTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `DeleteGlossaryMetadata`.
   public init() {}
@@ -180,10 +180,10 @@ public struct DeleteGlossaryMetadata: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.translation.v3.DeleteGlossaryMetadata"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

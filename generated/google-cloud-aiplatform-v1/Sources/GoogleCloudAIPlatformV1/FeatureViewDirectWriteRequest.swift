@@ -16,13 +16,13 @@
 
 #if FeatureOnlineStoreService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request message for
   /// [FeatureOnlineStoreService.FeatureViewDirectWrite][google.cloud.aiplatform.v1.FeatureOnlineStoreService.FeatureViewDirectWrite].
   ///
   /// [google.cloud.aiplatform.v1.FeatureOnlineStoreService.FeatureViewDirectWrite]: <doc:FeatureOnlineStoreServiceClient/featureViewDirectWrite(request:options:)>
-  public struct FeatureViewDirectWriteRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FeatureViewDirectWriteRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// FeatureView resource format
@@ -49,7 +49,7 @@
     }
 
     /// A data key and associated feature values to write to the feature view.
-    public struct DataKeyAndFeatureValues: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DataKeyAndFeatureValues: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The data key.
@@ -75,7 +75,7 @@
       }
 
       /// Feature name & value pair.
-      public struct Feature: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Feature: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Feature short name.
@@ -148,11 +148,11 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.FeatureViewDirectWriteRequest.DataKeyAndFeatureValues.Feature"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -160,22 +160,22 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.FeatureViewDirectWriteRequest.DataKeyAndFeatureValues"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.FeatureViewDirectWriteRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

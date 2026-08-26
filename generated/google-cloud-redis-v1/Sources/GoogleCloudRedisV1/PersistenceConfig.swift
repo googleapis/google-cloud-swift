@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Configuration of the persistence functionality.
-public struct PersistenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct PersistenceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. Controls whether Persistence features are enabled.
@@ -36,12 +36,12 @@ public struct PersistenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
     PersistenceConfig.SnapshotPeriod()
 
   /// Output only. The next time that a snapshot attempt is scheduled to occur.
-  public var rdbNextSnapshotTime: GoogleCloudWkt.Timestamp? = nil
+  public var rdbNextSnapshotTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Date and time that the first snapshot was/will be attempted, and
   /// to which future snapshots will be aligned. If not provided, the current
   /// time will be used.
-  public var rdbSnapshotStartTime: GoogleCloudWkt.Timestamp? = nil
+  public var rdbSnapshotStartTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `PersistenceConfig`.
   public init() {}
@@ -287,10 +287,10 @@ public struct PersistenceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.redis.v1.PersistenceConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

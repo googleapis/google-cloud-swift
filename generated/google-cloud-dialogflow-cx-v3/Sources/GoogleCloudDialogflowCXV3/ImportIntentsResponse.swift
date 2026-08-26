@@ -16,13 +16,13 @@
 
 #if Intents
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The response message for
   /// [Intents.ImportIntents][google.cloud.dialogflow.cx.v3.Intents.ImportIntents].
   ///
   /// [google.cloud.dialogflow.cx.v3.Intents.ImportIntents]: <doc:IntentsClient/importIntents(request:options:)>
-  public struct ImportIntentsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ImportIntentsResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The unique identifier of the imported intents.
@@ -54,7 +54,7 @@
     /// Conflicting resources detected during the import process. Only filled when
     /// [REPORT_CONFLICT][ImportIntentsResponse.REPORT_CONFLICT] is set in the
     /// request and there are conflicts in the display names.
-    public struct ConflictingResources: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ConflictingResources: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Display names of conflicting intents.
@@ -83,22 +83,22 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.cx.v3.ImportIntentsResponse.ConflictingResources"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.ImportIntentsResponse"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

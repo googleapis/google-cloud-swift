@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The export settings for a data source.
-public struct DataSourceExportSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DataSourceExportSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Whether the data source is enabled for export.
@@ -32,7 +32,7 @@ public struct DataSourceExportSettings: Codable, Equatable, GoogleCloudWkt._AnyP
 
   /// Output only. The data freshness of the given export which represents the
   /// time bucket at which the latest event was exported.
-  public var dataFreshnessTime: GoogleCloudWkt.Timestamp? = nil
+  public var dataFreshnessTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The stored data volume of all the exports.
   public var dataVolume: Swift.Int64 = Swift.Int64()
@@ -56,10 +56,10 @@ public struct DataSourceExportSettings: Codable, Equatable, GoogleCloudWkt._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.chronicle.v1.DataSourceExportSettings"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Configuration of etcd encryption.
-public struct DatabaseEncryption: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DatabaseEncryption: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Name of CloudKMS key to use for the encryption of secrets in etcd.
@@ -59,7 +59,7 @@ public struct DatabaseEncryption: Codable, Equatable, GoogleCloudWkt._AnyPackabl
 
   /// OperationError records errors seen from CloudKMS keys
   /// encountered during updates to DatabaseEncryption configuration.
-  public struct OperationError: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct OperationError: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// CloudKMS key resource that had the error.
@@ -69,7 +69,7 @@ public struct DatabaseEncryption: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public var errorMessage: Swift.String = Swift.String()
 
     /// Time when the CloudKMS error was seen.
-    public var timestamp: GoogleCloudWkt.Timestamp? = nil
+    public var timestamp: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `OperationError`.
     public init() {}
@@ -90,11 +90,11 @@ public struct DatabaseEncryption: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.DatabaseEncryption.OperationError"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -375,10 +375,10 @@ public struct DatabaseEncryption: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.DatabaseEncryption"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

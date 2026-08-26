@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An asset identifier in Google Cloud which contains its name, type and
 /// ancestors. An asset can be any resource in the Google Cloud [resource
@@ -25,7 +25,7 @@ import Foundation
 /// See [Supported asset
 /// types](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
 /// for more information.
-public struct RelatedAsset: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RelatedAsset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The full name of the asset. Example:
@@ -74,10 +74,10 @@ public struct RelatedAsset: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.asset.v1.RelatedAsset"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

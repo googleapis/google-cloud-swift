@@ -16,14 +16,14 @@
 
 #if OrganizationSecurityPolicies || RegionSecurityPolicies || SecurityPolicies
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents a Google Cloud Armor security policy resource.
   ///
   /// Only external backend services that use load balancers can
   /// reference a security policy. For more information, see
   /// Google Cloud Armor security policy overview.
-  public struct SecurityPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SecurityPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var adaptiveProtectionConfig: SecurityPolicyAdaptiveProtectionConfig? = nil
@@ -209,7 +209,7 @@
         SecurityPolicyDdosProtectionConfig.self, forKey: .ddosProtectionConfig)
       self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
       if let s = try container.decodeIfPresent(Swift.String.self, forKey: .fingerprint) {
-        guard let v = GoogleCloudWkt._DiscoveryBase64.decode(s) else {
+        guard let v = GoogleCloudWKT._DiscoveryBase64.decode(s) else {
           throw DecodingError.dataCorrupted(
             DecodingError.Context(
               codingPath: decoder.codingPath, debugDescription: "Expected url-safe encoded value")
@@ -220,7 +220,7 @@
       self.id = try container.decodeIfPresent(Swift.UInt64.self, forKey: .id)
       self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
       if let s = try container.decodeIfPresent(Swift.String.self, forKey: .labelFingerprint) {
-        guard let v = GoogleCloudWkt._DiscoveryBase64.decode(s) else {
+        guard let v = GoogleCloudWKT._DiscoveryBase64.decode(s) else {
           throw DecodingError.dataCorrupted(
             DecodingError.Context(
               codingPath: decoder.codingPath, debugDescription: "Expected url-safe encoded value")
@@ -252,14 +252,14 @@
       try container.encode(self.description, forKey: .description)
       if let v = fingerprint {
         try container.encode(
-          GoogleCloudWkt._DiscoveryBase64.encode(v), forKey: .fingerprint
+          GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }
       try container.encode(self.id, forKey: .id)
       try container.encode(self.kind, forKey: .kind)
       if let v = labelFingerprint {
         try container.encode(
-          GoogleCloudWkt._DiscoveryBase64.encode(v), forKey: .labelFingerprint
+          GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .labelFingerprint
         )
       }
       try container.encode(self.labels, forKey: .labels)
@@ -381,11 +381,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.SecurityPolicy"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

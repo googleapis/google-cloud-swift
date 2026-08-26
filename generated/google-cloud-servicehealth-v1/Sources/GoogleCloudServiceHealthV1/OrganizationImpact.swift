@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents impact to assets at organizational level. It is a read-only view
 /// and does not allow any modifications.
-public struct OrganizationImpact: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct OrganizationImpact: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Identifier. Unique name of the organization impact in this
@@ -41,7 +41,7 @@ public struct OrganizationImpact: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public var asset: Asset? = nil
 
   /// Output only. The time when the affected project was last modified.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `OrganizationImpact`.
   public init() {}
@@ -62,10 +62,10 @@ public struct OrganizationImpact: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.servicehealth.v1.OrganizationImpact"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

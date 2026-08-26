@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Reconciliation log for session ttl event.
-public struct ReconciliationLog: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ReconciliationLog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The reconciliation algorithm inputs.
@@ -45,20 +45,20 @@ public struct ReconciliationLog: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
   /// The input values for the Reconciler recommendation algorithm.
   /// We could add more details in future if required.
-  public struct Inputs: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Inputs: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Idle duration
-    public var idleDuration: GoogleCloudWkt.Duration? = nil
+    public var idleDuration: GoogleCloudWKT.Duration? = nil
 
     /// Configured idle TTL
-    public var idleTtl: GoogleCloudWkt.Duration? = nil
+    public var idleTtl: GoogleCloudWKT.Duration? = nil
 
     /// Total session lifetime
-    public var sessionLifetime: GoogleCloudWkt.Duration? = nil
+    public var sessionLifetime: GoogleCloudWKT.Duration? = nil
 
     /// Configured ttl
-    public var ttl: GoogleCloudWkt.Duration? = nil
+    public var ttl: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `Inputs`.
     public init() {}
@@ -79,16 +79,16 @@ public struct ReconciliationLog: Codable, Equatable, GoogleCloudWkt._AnyPackable
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataproc.logging.ReconciliationLog.Inputs"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Reconciler recommendations.
-  public struct Outputs: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Outputs: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The high-level reconciliation decision.
@@ -116,21 +116,21 @@ public struct ReconciliationLog: Codable, Equatable, GoogleCloudWkt._AnyPackable
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataproc.logging.ReconciliationLog.Outputs"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataproc.logging.ReconciliationLog"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

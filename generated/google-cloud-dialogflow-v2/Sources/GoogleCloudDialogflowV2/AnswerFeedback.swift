@@ -16,11 +16,11 @@
 
 #if AnswerRecords
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents feedback the customer has about the quality & correctness of a
   /// certain answer in a conversation.
-  public struct AnswerFeedback: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AnswerFeedback: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The correctness level of the specific answer.
@@ -33,14 +33,14 @@
     public var clicked: Swift.Bool = Swift.Bool()
 
     /// Time when the answer/item was clicked.
-    public var clickTime: GoogleCloudWkt.Timestamp? = nil
+    public var clickTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Indicates whether the answer/item was displayed to the human
     /// agent in the agent desktop UI. Default to false.
     public var displayed: Swift.Bool = Swift.Bool()
 
     /// Time when the answer/item was displayed.
-    public var displayTime: GoogleCloudWkt.Timestamp? = nil
+    public var displayTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Normally, detail feedback is provided when answer is not fully correct.
     public var detailFeedback: OneOf_DetailFeedback? = nil
@@ -76,10 +76,10 @@
         AnswerFeedback.CorrectnessLevel.self, forKey: .correctnessLevel)
       self.clicked = try container.decode(Swift.Bool.self, forKey: .clicked)
       self.clickTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .clickTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .clickTime)
       self.displayed = try container.decode(Swift.Bool.self, forKey: .displayed)
       self.displayTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .displayTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .displayTime)
 
       var detailFeedback: OneOf_DetailFeedback? = nil
       let detailFeedbackCheckAndSet = {
@@ -236,11 +236,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.AnswerFeedback"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

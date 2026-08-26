@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// MaintenanceSummary contains maintenance statistics calculated based on
 /// ResourceMaintenances within the scope: project and location.
-public struct MaintenanceSummary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MaintenanceSummary: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The name of the maintenance.
@@ -37,19 +37,19 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   /// Output only. Scheduled start time of the maintenance. The maintenance will
   /// start at `maintenanceScheduledStartTime` or later, with best effort to
   /// finish before `maintenanceScheduledEndTime`.
-  public var maintenanceScheduledStartTime: GoogleCloudWkt.Timestamp? = nil
+  public var maintenanceScheduledStartTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. An estimated (best effort, not guaranteed) end time of the
   /// scheduled maintenance.
-  public var maintenanceScheduledEndTime: GoogleCloudWkt.Timestamp? = nil
+  public var maintenanceScheduledEndTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Actual date when the maintenance started. Field present only
   /// after the state changed to `RUNNING`.
-  public var maintenanceStartTime: GoogleCloudWkt.Timestamp? = nil
+  public var maintenanceStartTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Actual date when the maintenance successfully completed. Field
   /// present only after the state changed to `SUCCEEDED`.
-  public var maintenanceEndTime: GoogleCloudWkt.Timestamp? = nil
+  public var maintenanceEndTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Indicates whether the user has some control over that
   /// maintenance, either proactively before maintenance was scheduled with
@@ -82,7 +82,7 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   }
 
   /// Stats indicates the type of aggregate and the corresponding aggregates.
-  public struct Stats: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Stats: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// groupBy specifies the type of aggregate.
@@ -113,16 +113,16 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.maintenance.api.v1.MaintenanceSummary.Stats"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Aggregate is a <group, count> pair.
-  public struct Aggregate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Aggregate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Specifies what specific value of the group_by the count represents. For
@@ -152,21 +152,21 @@ public struct MaintenanceSummary: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.maintenance.api.v1.MaintenanceSummary.Aggregate"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.maintenance.api.v1.MaintenanceSummary"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

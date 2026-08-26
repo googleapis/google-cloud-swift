@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudServiceHealthV1
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(
   client: ServiceHealthClient, organizationId: String, locationId: String,

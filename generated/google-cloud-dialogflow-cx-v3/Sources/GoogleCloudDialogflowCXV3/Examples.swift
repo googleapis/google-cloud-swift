@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleCloudGax
 
@@ -274,7 +274,7 @@
       /// See `ExamplesClient.updateExample`.
       func updateExample(
         example: Example?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudDialogflowCXV3.Example
 
       /// See `ExamplesClient.listLocations`.
@@ -491,7 +491,7 @@
 
     public func updateExample(
       example: Example?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.Example {
       let request = UpdateExampleRequest().with {
         $0.example = example

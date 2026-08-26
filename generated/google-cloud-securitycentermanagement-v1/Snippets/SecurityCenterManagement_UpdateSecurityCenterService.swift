@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudSecurityCenterManagementV1
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(
   client: SecurityCenterManagementClient, projectId: String, locationId: String, serviceId: String
@@ -31,7 +31,7 @@ func sample(
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/securityCenterServices/\(serviceId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Indicates the session has terminated, due to either successful completion
 /// (e.g. user says "Good bye!" ) or an agent escalation.
@@ -23,12 +23,12 @@ import Foundation
 /// The agent will not process any further inputs after session is terminated and
 /// the client should half-close and disconnect after receiving all remaining
 /// responses from the agent.
-public struct EndSession: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct EndSession: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. Provides additional information about the end session signal,
   /// such as the reason for ending the session.
-  public var metadata: GoogleCloudWkt.Struct? = nil
+  public var metadata: GoogleCloudWKT.Struct? = nil
 
   /// Initialize a new instance of `EndSession`.
   public init() {}
@@ -49,10 +49,10 @@ public struct EndSession: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.EndSession"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

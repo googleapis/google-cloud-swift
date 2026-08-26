@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A DeploymentUnit is a container for a deployment and its dependencies.
 /// An existing deployment can be provided directly in the unit, or the unit
 /// can act as a placeholder to define the DAG, with the deployment specs
 /// supplied in a `provisionDeploymentRequest`.
-public struct DeploymentUnit: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DeploymentUnit: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The id of the deployment unit. Must be unique within the deployment group.
@@ -55,10 +55,10 @@ public struct DeploymentUnit: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.config.v1.DeploymentUnit"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

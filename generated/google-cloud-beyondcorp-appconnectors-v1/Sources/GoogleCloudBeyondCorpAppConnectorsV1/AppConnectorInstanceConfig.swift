@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// AppConnectorInstanceConfig defines the instance config of a AppConnector.
-public struct AppConnectorInstanceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AppConnectorInstanceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. A monotonically increasing number generated and maintained
@@ -27,7 +27,7 @@ public struct AppConnectorInstanceConfig: Codable, Equatable, GoogleCloudWkt._An
   public var sequenceNumber: Swift.Int64 = Swift.Int64()
 
   /// The SLM instance agent configuration.
-  public var instanceConfig: GoogleCloudWkt.`Any`? = nil
+  public var instanceConfig: GoogleCloudWKT.`Any`? = nil
 
   /// NotificationConfig defines the notification mechanism that the remote
   /// instance should subscribe to in order to receive notification.
@@ -56,10 +56,10 @@ public struct AppConnectorInstanceConfig: Codable, Equatable, GoogleCloudWkt._An
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.beyondcorp.appconnectors.v1.AppConnectorInstanceConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

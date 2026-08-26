@@ -16,7 +16,7 @@
 
 #if Participants
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The top-level message sent by the client to the
   /// [Participants.StreamingAnalyzeContent][google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent]
@@ -68,7 +68,7 @@
   /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.query_params]: <doc:StreamingAnalyzeContentRequest/queryParams>
   /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.reply_audio_config]: <doc:StreamingAnalyzeContentRequest/replyAudioConfig>
   /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.text_config]: <doc:StreamingAnalyzeContentRequest/OneOf_Config/textConfig(_:)>
-  public struct StreamingAnalyzeContentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct StreamingAnalyzeContentRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The name of the participant this text comes from.
@@ -95,7 +95,7 @@
     ///
     /// Note: this field should only be used if you are connecting to a Dialogflow
     /// CX agent.
-    public var cxParameters: GoogleCloudWkt.Struct? = nil
+    public var cxParameters: GoogleCloudWKT.Struct? = nil
 
     /// Optional. Enable full bidirectional streaming. You can keep streaming the
     /// audio until timeout, and there's no need to half close the stream to get
@@ -186,7 +186,7 @@
       self.assistQueryParams = try container.decodeIfPresent(
         AssistQueryParameters.self, forKey: .assistQueryParams)
       self.cxParameters = try container.decodeIfPresent(
-        GoogleCloudWkt.Struct.self, forKey: .cxParameters)
+        GoogleCloudWKT.Struct.self, forKey: .cxParameters)
       self.enableExtendedStreaming = try container.decode(
         Swift.Bool.self, forKey: .enableExtendedStreaming)
       self.enablePartialAutomatedAgentReply = try container.decode(
@@ -303,11 +303,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

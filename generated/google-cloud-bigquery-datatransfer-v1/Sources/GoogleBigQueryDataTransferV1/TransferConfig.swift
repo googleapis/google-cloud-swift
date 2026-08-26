@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// Represents a data transfer configuration. A transfer configuration
@@ -24,7 +24,7 @@ import GoogleRpc
 /// When a new transfer configuration is created, the specified
 /// `destination_dataset_id` is created when needed and shared with the
 /// appropriate data source service account.
-public struct TransferConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TransferConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The resource name of the transfer config.
@@ -48,7 +48,7 @@ public struct TransferConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// bq tab in the 'Setting up a data transfer' section for each data source.
   /// For example the parameters for Cloud Storage transfers are listed here:
   /// https://cloud.google.com/bigquery-transfer/docs/cloud-storage-transfer#bq
-  public var params: GoogleCloudWkt.Struct? = nil
+  public var params: GoogleCloudWKT.Struct? = nil
 
   /// Data transfer schedule.
   /// If the data source does not support a custom schedule, this should be
@@ -86,10 +86,10 @@ public struct TransferConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var disabled: Swift.Bool = Swift.Bool()
 
   /// Output only. Data transfer modification time. Ignored by server on input.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Next time when data transfer will run.
-  public var nextRunTime: GoogleCloudWkt.Timestamp? = nil
+  public var nextRunTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. State of the most recently updated transfer run.
   public var state: TransferState = TransferState()
@@ -174,7 +174,7 @@ public struct TransferConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
     self.dataSourceId = try container.decode(Swift.String.self, forKey: .dataSourceId)
-    self.params = try container.decodeIfPresent(GoogleCloudWkt.Struct.self, forKey: .params)
+    self.params = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .params)
     self.schedule = try container.decode(Swift.String.self, forKey: .schedule)
     self.scheduleOptions = try container.decodeIfPresent(
       ScheduleOptions.self, forKey: .scheduleOptions)
@@ -184,9 +184,9 @@ public struct TransferConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       Swift.Int32.self, forKey: .dataRefreshWindowDays)
     self.disabled = try container.decode(Swift.Bool.self, forKey: .disabled)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.nextRunTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .nextRunTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .nextRunTime)
     self.state = try container.decode(TransferState.self, forKey: .state)
     self.userId = try container.decode(Swift.Int64.self, forKey: .userId)
     self.datasetRegion = try container.decode(Swift.String.self, forKey: .datasetRegion)
@@ -256,10 +256,10 @@ public struct TransferConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.datatransfer.v1.TransferConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

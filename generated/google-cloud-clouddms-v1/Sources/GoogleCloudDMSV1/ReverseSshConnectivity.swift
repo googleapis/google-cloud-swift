@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The details needed to configure a reverse SSH tunnel between the source and
 /// destination databases. These details will be used when calling the
@@ -23,7 +23,7 @@ import Foundation
 /// https://cloud.google.com/database-migration/docs/reference/rest/v1/projects.locations.migrationJobs/generateSshScript)
 /// to produce the script that will help set up the reverse SSH tunnel, and to
 /// set up the VPC peering between the Cloud SQL private network and the VPC.
-public struct ReverseSshConnectivity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ReverseSshConnectivity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The IP of the virtual machine (Compute Engine) used as the
@@ -60,10 +60,10 @@ public struct ReverseSshConnectivity: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.clouddms.v1.ReverseSshConnectivity"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

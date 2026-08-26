@@ -16,10 +16,10 @@
 
 import Foundation
 import GoogleAppsScriptType
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Docs add-on manifest.
-public struct DocsAddOnManifest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DocsAddOnManifest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// If present, this overrides the configuration from
@@ -49,10 +49,10 @@ public struct DocsAddOnManifest: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.apps.script.type.docs.DocsAddOnManifest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

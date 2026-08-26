@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A limit defining a maximum distance which can be traveled. It can be either
 /// hard or soft.
 ///
 /// If a soft limit is defined, both `soft_max_meters` and
 /// `cost_per_kilometer_above_soft_max` must be defined and be nonnegative.
-public struct DistanceLimit: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DistanceLimit: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A hard limit constraining the distance to be at most max_meters. The limit
@@ -75,10 +75,10 @@ public struct DistanceLimit: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.optimization.v1.DistanceLimit"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

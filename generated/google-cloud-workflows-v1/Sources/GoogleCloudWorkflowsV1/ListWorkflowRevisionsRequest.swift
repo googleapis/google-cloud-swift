@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request for the
 /// [ListWorkflowRevisions][google.cloud.workflows.v1.Workflows.ListWorkflowRevisions]
 /// method.
 ///
 /// [google.cloud.workflows.v1.Workflows.ListWorkflowRevisions]: <doc:WorkflowsClient/listWorkflowRevisions(request:options:)>
-public struct ListWorkflowRevisionsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ListWorkflowRevisionsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Workflow for which the revisions should be listed.
@@ -57,10 +57,10 @@ public struct ListWorkflowRevisionsRequest: Codable, Equatable, GoogleCloudWkt._
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.workflows.v1.ListWorkflowRevisionsRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -16,14 +16,14 @@
 
 #if Routers
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents a Nat resource. It enables the VMs within the specified
   /// subnetworks to access Internet without external IP addresses. It specifies
   /// a list of subnetworks (and the ranges within) that want to use NAT.
   /// Customers can also provide the external IPs that would be used for NAT. GCP
   /// would auto-allocate ephemeral IPs if no external IPs are provided.
-  public struct RouterNat: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RouterNat: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The network tier to use when automatically reserving NAT IP addresses.
@@ -837,11 +837,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.RouterNat"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

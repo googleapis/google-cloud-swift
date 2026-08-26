@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -596,7 +596,7 @@ extension Clients {
     /// See `FoldersClient.updateFolder`.
     func updateFolder(
       folder: Folder?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Folder>
 
     /// See `FoldersClient.moveFolder`.
@@ -917,7 +917,7 @@ extension Clients.FoldersProtocol {
 
   public func updateFolder(
     folder: Folder?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Folder> {
     let request = UpdateFolderRequest().with {
       $0.folder = folder

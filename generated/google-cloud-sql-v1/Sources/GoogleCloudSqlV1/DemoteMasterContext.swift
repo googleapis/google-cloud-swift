@@ -16,10 +16,10 @@
 
 #if SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Database instance demote primary instance context.
-  public struct DemoteMasterContext: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DemoteMasterContext: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// This is always `sql#demoteMasterContext`.
@@ -32,7 +32,7 @@
     /// future replication failures. Change the value only if you know the reason
     /// for the GTID divergence and are confident that doing so will not cause any
     /// replication issues.
-    public var verifyGtidConsistency: GoogleCloudWkt.BoolValue? = nil
+    public var verifyGtidConsistency: GoogleCloudWKT.BoolValue? = nil
 
     /// The name of the instance which will act as on-premises primary instance
     /// in the replication setup.
@@ -64,11 +64,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.DemoteMasterContext"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An Upgrade Occurrence represents that a specific resource_url could install a
 /// specific upgrade. This presence is supplied via local sources (i.e. it is
 /// present in the mirror and the running system has noticed its availability).
 /// For Windows, both distribution and windows_update contain information for the
 /// Windows update.
-public struct UpgradeOccurrence: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpgradeOccurrence: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required for non-Windows OS. The package this Upgrade is for.
@@ -83,10 +83,10 @@ public struct UpgradeOccurrence: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/grafeas.v1.UpgradeOccurrence"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

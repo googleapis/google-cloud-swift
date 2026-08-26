@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] represents an
 /// individual cryptographic key, and the associated key material.
@@ -31,7 +31,7 @@ import Foundation
 ///
 /// [google.cloud.kms.v1.CryptoKeyVersion]: <doc:CryptoKeyVersion>
 /// [google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED]: <doc:CryptoKeyVersion/CryptoKeyVersionState/enabled>
-public struct CryptoKeyVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CryptoKeyVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The resource name for this
@@ -80,14 +80,14 @@ public struct CryptoKeyVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] was created.
   ///
   /// [google.cloud.kms.v1.CryptoKeyVersion]: <doc:CryptoKeyVersion>
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time this
   /// [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material was
   /// generated.
   ///
   /// [google.cloud.kms.v1.CryptoKeyVersion]: <doc:CryptoKeyVersion>
-  public var generateTime: GoogleCloudWkt.Timestamp? = nil
+  public var generateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time this
   /// [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material is
@@ -98,7 +98,7 @@ public struct CryptoKeyVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [google.cloud.kms.v1.CryptoKeyVersion]: <doc:CryptoKeyVersion>
   /// [google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED]: <doc:CryptoKeyVersion/CryptoKeyVersionState/destroyScheduled>
   /// [google.cloud.kms.v1.CryptoKeyVersion.state]: <doc:CryptoKeyVersion/state>
-  public var destroyTime: GoogleCloudWkt.Timestamp? = nil
+  public var destroyTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time this CryptoKeyVersion's key material was
   /// destroyed. Only present if
@@ -107,7 +107,7 @@ public struct CryptoKeyVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   /// [google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED]: <doc:CryptoKeyVersion/CryptoKeyVersionState/destroyed>
   /// [google.cloud.kms.v1.CryptoKeyVersion.state]: <doc:CryptoKeyVersion/state>
-  public var destroyEventTime: GoogleCloudWkt.Timestamp? = nil
+  public var destroyEventTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The name of the [ImportJob][google.cloud.kms.v1.ImportJob]
   /// used in the most recent import of this
@@ -123,7 +123,7 @@ public struct CryptoKeyVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// most recently imported.
   ///
   /// [google.cloud.kms.v1.CryptoKeyVersion]: <doc:CryptoKeyVersion>
-  public var importTime: GoogleCloudWkt.Timestamp? = nil
+  public var importTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The root cause of the most recent import failure. Only present
   /// if [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
@@ -1042,10 +1042,10 @@ public struct CryptoKeyVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.CryptoKeyVersion"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

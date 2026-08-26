@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -920,7 +920,7 @@ extension Clients {
     /// See `MemorystoreClient.updateInstance`.
     func updateInstance(
       instance: Instance?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Instance>
 
     /// See `MemorystoreClient.deleteInstance`.
@@ -966,7 +966,7 @@ extension Clients {
     func rescheduleMaintenance(
       name: Swift.String,
       rescheduleType: RescheduleMaintenanceRequest.RescheduleType,
-      scheduleTime: GoogleCloudWkt.Timestamp?,
+      scheduleTime: GoogleCloudWKT.Timestamp?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Instance>
 
     /// See `MemorystoreClient.listBackupCollections`.
@@ -1592,7 +1592,7 @@ extension Clients.MemorystoreProtocol {
 
   public func updateInstance(
     instance: Instance?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Instance> {
     let request = UpdateInstanceRequest().with {
       $0.instance = instance
@@ -1711,7 +1711,7 @@ extension Clients.MemorystoreProtocol {
   public func rescheduleMaintenance(
     name: Swift.String,
     rescheduleType: RescheduleMaintenanceRequest.RescheduleType,
-    scheduleTime: GoogleCloudWkt.Timestamp?,
+    scheduleTime: GoogleCloudWKT.Timestamp?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Instance> {
     let request = RescheduleMaintenanceRequest().with {
       $0.name = name

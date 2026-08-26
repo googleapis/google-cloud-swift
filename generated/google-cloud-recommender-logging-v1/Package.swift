@@ -32,7 +32,7 @@ let package = Package(
       name: "GoogleCloudRecommenderLoggingV1",
       dependencies: [
         .product(name: "GoogleCloudRecommenderV1", package: "google-cloud-recommender-v1"),
-        .product(name: "GoogleCloudWkt", package: "wkt"),
+        .product(name: "GoogleCloudWKT", package: "wkt"),
       ],
     )
   ]

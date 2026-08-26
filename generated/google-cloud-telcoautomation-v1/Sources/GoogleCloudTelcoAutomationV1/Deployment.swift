@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Deployment contains a collection of YAML files (This collection is also known
 /// as package) that can to applied on an orchestration cluster (GKE cluster with
 /// TNA addons) or a workload cluster.
-public struct Deployment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Deployment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The name of the deployment.
@@ -34,7 +34,7 @@ public struct Deployment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var sourceBlueprintRevision: Swift.String = Swift.String()
 
   /// Output only. The timestamp that the revision was created.
-  public var revisionCreateTime: GoogleCloudWkt.Timestamp? = nil
+  public var revisionCreateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. State of the deployment (DRAFT, APPLIED, DELETING).
   public var state: Deployment.State = Deployment.State()
@@ -57,10 +57,10 @@ public struct Deployment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var labels: [Swift.String: Swift.String] = [:]
 
   /// Output only. Deployment creation time.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The timestamp when the deployment was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Source provider is the author of a public blueprint, from
   /// which this deployment is created.
@@ -220,10 +220,10 @@ public struct Deployment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.telcoautomation.v1.Deployment"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

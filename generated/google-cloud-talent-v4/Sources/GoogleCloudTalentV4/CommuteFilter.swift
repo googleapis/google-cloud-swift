@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleType
 
 /// Parameters needed for commute search.
-public struct CommuteFilter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CommuteFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The method of transportation to calculate the commute time for.
@@ -31,7 +31,7 @@ public struct CommuteFilter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Required. The maximum travel time in seconds. The maximum allowed value is
   /// `3600s` (one hour). Format is `123s`.
-  public var travelDuration: GoogleCloudWkt.Duration? = nil
+  public var travelDuration: GoogleCloudWKT.Duration? = nil
 
   /// If `true`, jobs without street level addresses may also be returned.
   /// For city level addresses, the city center is used. For state and coarser
@@ -74,7 +74,7 @@ public struct CommuteFilter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.startCoordinates = try container.decodeIfPresent(
       GoogleType.LatLng.self, forKey: .startCoordinates)
     self.travelDuration = try container.decodeIfPresent(
-      GoogleCloudWkt.Duration.self, forKey: .travelDuration)
+      GoogleCloudWKT.Duration.self, forKey: .travelDuration)
     self.allowImpreciseAddresses = try container.decode(
       Swift.Bool.self, forKey: .allowImpreciseAddresses)
 
@@ -239,10 +239,10 @@ public struct CommuteFilter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.talent.v4.CommuteFilter"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A message with several interesting `oneof` fields.
-public struct MessageWithOneOf: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MessageWithOneOf: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   public var singleString: OneOf_SingleString? = nil
@@ -133,7 +133,7 @@ public struct MessageWithOneOf: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       try mixedCheckAndSet(.string(string))
     }
     if let duration = try container.decodeIfPresent(
-      GoogleCloudWkt.Duration?.self, forKey: .duration)
+      GoogleCloudWKT.Duration?.self, forKey: .duration)
     {
       try mixedCheckAndSet(.duration(duration))
     }
@@ -178,7 +178,7 @@ public struct MessageWithOneOf: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
   }
 
-  public struct Message: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Message: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var parent: Swift.String = Swift.String()
@@ -202,11 +202,11 @@ public struct MessageWithOneOf: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.swift.sdk.test.MessageWithOneOf.Message"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -226,16 +226,16 @@ public struct MessageWithOneOf: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public enum OneOf_Mixed: Codable, Equatable, Sendable {
     indirect case anotherMessage(MessageWithOneOf.Message?)
     case string(Swift.String)
-    indirect case duration(GoogleCloudWkt.Duration?)
+    indirect case duration(GoogleCloudWKT.Duration?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.swift.sdk.test.MessageWithOneOf"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -571,7 +571,7 @@ extension Clients {
     /// See `DataProductServiceClient.updateDataProduct`.
     func updateDataProduct(
       dataProduct: DataProduct?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<DataProduct>
 
     /// See `DataProductServiceClient.requestDataProductAccess`.
@@ -610,7 +610,7 @@ extension Clients {
     /// See `DataProductServiceClient.updateDataAsset`.
     func updateDataAsset(
       dataAsset: DataAsset?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<DataAsset>
 
     /// See `DataProductServiceClient.deleteDataAsset`.
@@ -1017,7 +1017,7 @@ extension Clients.DataProductServiceProtocol {
 
   public func updateDataProduct(
     dataProduct: DataProduct?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<DataProduct> {
     let request = UpdateDataProductRequest().with {
       $0.dataProduct = dataProduct
@@ -1120,7 +1120,7 @@ extension Clients.DataProductServiceProtocol {
 
   public func updateDataAsset(
     dataAsset: DataAsset?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<DataAsset> {
     let request = UpdateDataAssetRequest().with {
       $0.dataAsset = dataAsset

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for FailoverIcebergCatalog.
-public struct FailoverIcebergCatalogRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct FailoverIcebergCatalogRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The name of the catalog in the form
@@ -42,7 +42,7 @@ public struct FailoverIcebergCatalogRequest: Codable, Equatable, GoogleCloudWkt.
   /// has not yet replicated. If any data committed before this time has not
   /// replicated, the failover will not be performed and an error will be
   /// returned (also called "hard failover").
-  public var conditionalFailoverReplicationTime: GoogleCloudWkt.Timestamp? = nil
+  public var conditionalFailoverReplicationTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `FailoverIcebergCatalogRequest`.
   public init() {}
@@ -63,10 +63,10 @@ public struct FailoverIcebergCatalogRequest: Codable, Equatable, GoogleCloudWkt.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.biglake.v1.FailoverIcebergCatalogRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

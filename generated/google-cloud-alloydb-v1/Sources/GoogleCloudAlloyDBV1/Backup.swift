@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Message describing Backup object
-public struct Backup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Backup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The name of the backup resource with the format:
@@ -40,19 +40,19 @@ public struct Backup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var uid: Swift.String = Swift.String()
 
   /// Output only. Create time stamp
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Update time stamp
   ///
   /// Users should not infer any meaning from this field. Its value is generally
   /// unrelated to the timing of the backup creation operation.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Delete time stamp
-  public var deleteTime: GoogleCloudWkt.Timestamp? = nil
+  public var deleteTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Timestamp when the resource finished being created.
-  public var createCompletionTime: GoogleCloudWkt.Timestamp? = nil
+  public var createCompletionTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Labels as key value pairs
   public var labels: [Swift.String: Swift.String] = [:]
@@ -103,7 +103,7 @@ public struct Backup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Output only. The time at which after the backup is eligible to be garbage
   /// collected. It is the duration specified by the backup's retention policy,
   /// added to the backup's create_time.
-  public var expiryTime: GoogleCloudWkt.Timestamp? = nil
+  public var expiryTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The QuantityBasedExpiry of the backup, specified by the
   /// backup's retention policy. Once the expiry quantity is over retention, the
@@ -154,7 +154,7 @@ public struct Backup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   /// Safe: backup_5 (1, 3), backup_4, (2, 3), backup_3 (3, 3).
   /// Awaiting garbage collection: backup_2 (4, 3), backup_1 (5, 3)
-  public struct QuantityBasedExpiry: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct QuantityBasedExpiry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The backup's position among its backups with the same source
@@ -185,11 +185,11 @@ public struct Backup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.alloydb.v1.Backup.QuantityBasedExpiry"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -430,10 +430,10 @@ public struct Backup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.alloydb.v1.Backup"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

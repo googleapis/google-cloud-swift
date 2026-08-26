@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleRpc
   import GoogleCloudGax
@@ -436,7 +436,7 @@
       /// See `PlaybooksClient.updatePlaybook`.
       func updatePlaybook(
         playbook: Playbook?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudDialogflowCXV3.Playbook
 
       /// See `PlaybooksClient.createPlaybookVersion`.
@@ -811,7 +811,7 @@
 
     public func updatePlaybook(
       playbook: Playbook?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.Playbook {
       let request = UpdatePlaybookRequest().with {
         $0.playbook = playbook

@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// In Customer Engagement Suite (CES), an app version is a snapshot of the app
 /// at a specific point in time. It is immutable and cannot be modified once
 /// created.
-public struct AppVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AppVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The unique identifier of the app version.
@@ -38,7 +38,7 @@ public struct AppVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var creator: Swift.String = Swift.String()
 
   /// Output only. Timestamp when the app version was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The snapshot of the app when the version is created.
   public var snapshot: AppSnapshot? = nil
@@ -67,10 +67,10 @@ public struct AppVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.AppVersion"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

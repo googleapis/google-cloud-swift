@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for receiving packets.
-public struct ReceivePacketsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ReceivePacketsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Possible request types from the client.
@@ -85,7 +85,7 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
   }
 
   /// The message specifying the initial settings for the ReceivePackets session.
-  public struct SetupRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SetupRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The configurations that specify where packets are retrieved.
@@ -102,7 +102,7 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
     /// The client must either receive a `Packet` or a heart beat message before
     /// this duration expires; otherwise, the client will automatically cancel
     /// the current connection and retry.
-    public var heartbeatInterval: GoogleCloudWkt.Duration? = nil
+    public var heartbeatInterval: GoogleCloudWKT.Duration? = nil
 
     /// The grace period after which a `writes_done_request` is issued, that a
     /// `WritesDone` is expected from the client.
@@ -110,7 +110,7 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
     /// The server is free to cancel the RPC should this expire.
     ///
     /// A system default will be chosen if unset.
-    public var writesDoneGracePeriod: GoogleCloudWkt.Duration? = nil
+    public var writesDoneGracePeriod: GoogleCloudWKT.Duration? = nil
 
     /// The mode in which the consumer reads messages.
     public var consumerMode: OneOf_ConsumerMode? = nil
@@ -145,9 +145,9 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
       self.metadata = try container.decodeIfPresent(RequestMetadata.self, forKey: .metadata)
       self.receiver = try container.decode(Swift.String.self, forKey: .receiver)
       self.heartbeatInterval = try container.decodeIfPresent(
-        GoogleCloudWkt.Duration.self, forKey: .heartbeatInterval)
+        GoogleCloudWKT.Duration.self, forKey: .heartbeatInterval)
       self.writesDoneGracePeriod = try container.decodeIfPresent(
-        GoogleCloudWkt.Duration.self, forKey: .writesDoneGracePeriod)
+        GoogleCloudWKT.Duration.self, forKey: .writesDoneGracePeriod)
 
       var consumerMode: OneOf_ConsumerMode? = nil
       let consumerModeCheckAndSet = {
@@ -200,11 +200,11 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.ReceivePacketsRequest.SetupRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -221,10 +221,10 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.ReceivePacketsRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudDataCatalogV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -34,7 +34,7 @@ func sample(
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/entryGroups/\(entryGroupId)/entries/\(entryId)/tags/\(tagId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

@@ -14,12 +14,12 @@
 
 import Foundation
 import Testing
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 @Suite struct FieldsFieldMask {
   typealias T = MessageWithFieldMask
-  static func mask(_ paths: [String]) -> GoogleCloudWkt.FieldMask {
-    GoogleCloudWkt.FieldMask(paths: paths)
+  static func mask(_ paths: [String]) -> GoogleCloudWKT.FieldMask {
+    GoogleCloudWKT.FieldMask(paths: paths)
   }
 
   @Test(

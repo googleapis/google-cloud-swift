@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleCloudGax
 
@@ -265,7 +265,7 @@ extension Clients {
     /// See `FindingsRefinementServiceClient.updateFindingsRefinement`.
     func updateFindingsRefinement(
       findingsRefinement: FindingsRefinement?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudChronicleV1.FindingsRefinement
 
     /// See `FindingsRefinementServiceClient.getFindingsRefinementDeployment`.
@@ -284,7 +284,7 @@ extension Clients {
     /// See `FindingsRefinementServiceClient.updateFindingsRefinementDeployment`.
     func updateFindingsRefinementDeployment(
       findingsRefinementDeployment: FindingsRefinementDeployment?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudChronicleV1.FindingsRefinementDeployment
 
     /// See `FindingsRefinementServiceClient.listAllFindingsRefinementDeployments`.
@@ -526,7 +526,7 @@ extension Clients.FindingsRefinementServiceProtocol {
 
   public func updateFindingsRefinement(
     findingsRefinement: FindingsRefinement?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudChronicleV1.FindingsRefinement {
     let request = UpdateFindingsRefinementRequest().with {
       $0.findingsRefinement = findingsRefinement
@@ -570,7 +570,7 @@ extension Clients.FindingsRefinementServiceProtocol {
 
   public func updateFindingsRefinementDeployment(
     findingsRefinementDeployment: FindingsRefinementDeployment?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudChronicleV1.FindingsRefinementDeployment {
     let request = UpdateFindingsRefinementDeploymentRequest().with {
       $0.findingsRefinementDeployment = findingsRefinementDeployment

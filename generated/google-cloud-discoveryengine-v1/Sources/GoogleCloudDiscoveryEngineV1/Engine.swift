@@ -16,13 +16,13 @@
 
 #if EngineService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Metadata that describes the training and serving parameters of an
   /// [Engine][google.cloud.discoveryengine.v1.Engine].
   ///
   /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
-  public struct Engine: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Engine: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Immutable. Identifier. The fully qualified resource name of the engine.
@@ -41,10 +41,10 @@
     public var displayName: Swift.String = Swift.String()
 
     /// Output only. Timestamp the Recommendation Engine was created at.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Timestamp the Recommendation Engine was last updated.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Optional. The data stores associated with this engine.
     ///
@@ -134,9 +134,9 @@
       self.name = try container.decode(Swift.String.self, forKey: .name)
       self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
       self.createTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
       self.updateTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
       self.dataStoreIds = try container.decode([Swift.String].self, forKey: .dataStoreIds)
       self.solutionType = try container.decode(SolutionType.self, forKey: .solutionType)
       self.industryVertical = try container.decode(IndustryVertical.self, forKey: .industryVertical)
@@ -222,7 +222,7 @@
     }
 
     /// Configurations for a Search Engine.
-    public struct SearchEngineConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SearchEngineConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The search feature tier of this engine.
@@ -259,16 +259,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.Engine.SearchEngineConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Additional config specs for a Media Recommendation engine.
-    public struct MediaRecommendationEngineConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct MediaRecommendationEngineConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The type of engine. e.g., `recommended-for-you`.
@@ -344,7 +344,7 @@
       }
 
       /// Custom threshold for `cvr` optimization_objective.
-      public struct OptimizationObjectiveConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct OptimizationObjectiveConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. The name of the field to target. Currently supported
@@ -374,16 +374,16 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.Engine.MediaRecommendationEngineConfig.OptimizationObjectiveConfig"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// More feature configs of the selected engine type.
-      public struct EngineFeaturesConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct EngineFeaturesConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Feature related configurations applied to a specific type of meida
@@ -467,17 +467,17 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.Engine.MediaRecommendationEngineConfig.EngineFeaturesConfig"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Additional feature configurations for creating a `recommended-for-you`
       /// engine.
-      public struct RecommendedForYouFeatureConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct RecommendedForYouFeatureConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// The type of event with which the engine is queried at prediction time.
@@ -509,17 +509,17 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.Engine.MediaRecommendationEngineConfig.RecommendedForYouFeatureConfig"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Feature configurations that are required for creating a Most Popular
       /// engine.
-      public struct MostPopularFeatureConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct MostPopularFeatureConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// The time window of which the engine is queried at training and
@@ -548,11 +548,11 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.Engine.MediaRecommendationEngineConfig.MostPopularFeatureConfig"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -665,16 +665,16 @@
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.Engine.MediaRecommendationEngineConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Configurations for a Chat Engine.
-    public struct ChatEngineConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ChatEngineConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The configurationt generate the Dialogflow agent that is associated to
@@ -757,7 +757,7 @@
       ///
       /// [google.cloud.discoveryengine.v1.EngineService.GetEngine]: <doc:EngineServiceClient/getEngine(request:options:)>
       /// [google.cloud.discoveryengine.v1.EngineService.ListEngines]: <doc:EngineServiceClient/listEngines(request:options:)>
-      public struct AgentCreationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct AgentCreationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Name of the company, organization or other entity that the agent
@@ -801,27 +801,27 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.Engine.ChatEngineConfig.AgentCreationConfig"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.Engine.ChatEngineConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Common configurations for an Engine.
-    public struct CommonConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct CommonConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The name of the company, business or entity that is associated with the
@@ -847,17 +847,17 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.Engine.CommonConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Additional information of a Chat Engine.
     /// Fields in this message are output only.
-    public struct ChatEngineMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ChatEngineMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The resource name of a Dialogflow agent, that this Chat Engine refers
@@ -886,11 +886,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.Engine.ChatEngineMetadata"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -939,11 +939,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.Engine"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

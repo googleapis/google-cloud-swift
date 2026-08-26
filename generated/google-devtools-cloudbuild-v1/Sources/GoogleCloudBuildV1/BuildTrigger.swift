@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Configuration for an automated build in response to source repository
 /// changes.
-public struct BuildTrigger: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BuildTrigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The `Trigger` name with format:
@@ -68,7 +68,7 @@ public struct BuildTrigger: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var webhookConfig: WebhookConfig? = nil
 
   /// Output only. Time when the trigger was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// If true, the trigger will never automatically execute a build.
   public var disabled: Swift.Bool = Swift.Bool()
@@ -178,7 +178,7 @@ public struct BuildTrigger: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.pubsubConfig = try container.decodeIfPresent(PubsubConfig.self, forKey: .pubsubConfig)
     self.webhookConfig = try container.decodeIfPresent(WebhookConfig.self, forKey: .webhookConfig)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.disabled = try container.decode(Swift.Bool.self, forKey: .disabled)
     self.substitutions = try container.decode(
       [Swift.String: Swift.String].self, forKey: .substitutions)
@@ -277,10 +277,10 @@ public struct BuildTrigger: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.devtools.cloudbuild.v1.BuildTrigger"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

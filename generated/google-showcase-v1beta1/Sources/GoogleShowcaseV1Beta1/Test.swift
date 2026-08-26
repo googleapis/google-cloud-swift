@@ -15,9 +15,9 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
-public struct Test: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Test: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The name of the test.
@@ -57,7 +57,7 @@ public struct Test: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// to be made to test this specific test case. Ideally this would be represented
   /// by something more robust like CEL, but as of writing this, I am unsure if CEL
   /// is ready.
-  public struct Blueprint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Blueprint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The name of this blueprint.
@@ -89,7 +89,7 @@ public struct Test: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// A message representing a method invocation.
-    public struct Invocation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Invocation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The fully qualified name of the showcase method to be invoked.
@@ -117,22 +117,22 @@ public struct Test: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.showcase.v1beta1.Test.Blueprint.Invocation"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.showcase.v1beta1.Test.Blueprint"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -263,10 +263,10 @@ public struct Test: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.showcase.v1beta1.Test"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudSecretManagerV1
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 
 func sample(client: SecretManagerServiceClient, projectId: String, secretId: String) async throws {

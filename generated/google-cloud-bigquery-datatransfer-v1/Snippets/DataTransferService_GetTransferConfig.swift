@@ -19,7 +19,7 @@
 import Foundation
 import GoogleBigQueryDataTransferV1
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: DataTransferServiceClient, projectId: String, transferConfigId: String)
   async throws

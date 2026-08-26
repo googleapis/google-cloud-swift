@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudLanguageV2
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: LanguageServiceClient) async throws {
   let response = try await client.moderateText(

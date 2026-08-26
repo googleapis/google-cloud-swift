@@ -15,15 +15,15 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Ad break.
-public struct AdBreak: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AdBreak: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Start time in seconds for the ad break, relative to the output file
   /// timeline. The default is `0s`.
-  public var startTimeOffset: GoogleCloudWkt.Duration? = nil
+  public var startTimeOffset: GoogleCloudWKT.Duration? = nil
 
   /// Initialize a new instance of `AdBreak`.
   public init() {}
@@ -44,10 +44,10 @@ public struct AdBreak: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.video.transcoder.v1.AdBreak"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

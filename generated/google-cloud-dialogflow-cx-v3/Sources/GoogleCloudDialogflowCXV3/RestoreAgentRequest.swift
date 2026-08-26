@@ -16,13 +16,13 @@
 
 #if Agents
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The request message for
   /// [Agents.RestoreAgent][google.cloud.dialogflow.cx.v3.Agents.RestoreAgent].
   ///
   /// [google.cloud.dialogflow.cx.v3.Agents.RestoreAgent]: <doc:AgentsClient/restoreAgent(request:options:)>
-  public struct RestoreAgentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RestoreAgentRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The name of the agent to restore into.
@@ -110,7 +110,7 @@
     }
 
     /// Settings for restoring from a git branch
-    public struct GitSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GitSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// tracking branch for the git pull
@@ -135,11 +135,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.RestoreAgentRequest.GitSource"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -272,11 +272,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.RestoreAgentRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

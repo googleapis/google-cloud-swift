@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudCESV1
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 
@@ -32,7 +32,7 @@ func sample(client: AgentServiceClient, projectId: String, locationId: String, a
         $0.app = App().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/apps/\(appId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

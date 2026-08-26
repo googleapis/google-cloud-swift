@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request of [CreateGcpUserAccessBinding]
 /// [google.identity.accesscontextmanager.v1.AccessContextManager.CreateGcpUserAccessBinding].
-public struct CreateGcpUserAccessBindingRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CreateGcpUserAccessBindingRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Example: "organizations/256"
@@ -49,10 +49,10 @@ public struct CreateGcpUserAccessBindingRequest: Codable, Equatable, GoogleCloud
     return
       "type.googleapis.com/google.identity.accesscontextmanager.v1.CreateGcpUserAccessBindingRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

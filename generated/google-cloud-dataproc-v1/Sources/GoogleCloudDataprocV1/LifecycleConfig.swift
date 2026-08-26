@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Specifies the cluster auto-delete schedule configuration.
-public struct LifecycleConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct LifecycleConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. The duration to keep the cluster alive while idling (when no jobs
@@ -26,20 +26,20 @@ public struct LifecycleConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// deleted. Minimum value is 5 minutes; maximum value is 14 days (see JSON
   /// representation of
   /// [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
-  public var idleDeleteTtl: GoogleCloudWkt.Duration? = nil
+  public var idleDeleteTtl: GoogleCloudWKT.Duration? = nil
 
   /// Optional. The duration to keep the cluster started while idling (when no
   /// jobs are running). Passing this threshold will cause the cluster to be
   /// stopped. Minimum value is 5 minutes; maximum value is 14 days (see JSON
   /// representation of
   /// [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
-  public var idleStopTtl: GoogleCloudWkt.Duration? = nil
+  public var idleStopTtl: GoogleCloudWKT.Duration? = nil
 
   /// Output only. The time when cluster became idle (most recent job finished)
   /// and became eligible for deletion due to idleness (see JSON representation
   /// of
   /// [Timestamp](https://developers.google.com/protocol-buffers/docs/proto3#json)).
-  public var idleStartTime: GoogleCloudWkt.Timestamp? = nil
+  public var idleStartTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Either the exact time the cluster should be deleted at or
   /// the cluster maximum age.
@@ -78,11 +78,11 @@ public struct LifecycleConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.idleDeleteTtl = try container.decodeIfPresent(
-      GoogleCloudWkt.Duration.self, forKey: .idleDeleteTtl)
+      GoogleCloudWKT.Duration.self, forKey: .idleDeleteTtl)
     self.idleStopTtl = try container.decodeIfPresent(
-      GoogleCloudWkt.Duration.self, forKey: .idleStopTtl)
+      GoogleCloudWKT.Duration.self, forKey: .idleStopTtl)
     self.idleStartTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .idleStartTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .idleStartTime)
 
     var ttl: OneOf_Ttl? = nil
     let ttlCheckAndSet = {
@@ -95,12 +95,12 @@ public struct LifecycleConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       ttl = $0
     }
     if let autoDeleteTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp?.self, forKey: .autoDeleteTime)
+      GoogleCloudWKT.Timestamp?.self, forKey: .autoDeleteTime)
     {
       try ttlCheckAndSet(.autoDeleteTime(autoDeleteTime))
     }
     if let autoDeleteTtl = try container.decodeIfPresent(
-      GoogleCloudWkt.Duration?.self, forKey: .autoDeleteTtl)
+      GoogleCloudWKT.Duration?.self, forKey: .autoDeleteTtl)
     {
       try ttlCheckAndSet(.autoDeleteTtl(autoDeleteTtl))
     }
@@ -117,12 +117,12 @@ public struct LifecycleConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       stopTtl = $0
     }
     if let autoStopTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp?.self, forKey: .autoStopTime)
+      GoogleCloudWKT.Timestamp?.self, forKey: .autoStopTime)
     {
       try stopTtlCheckAndSet(.autoStopTime(autoStopTime))
     }
     if let autoStopTtl = try container.decodeIfPresent(
-      GoogleCloudWkt.Duration?.self, forKey: .autoStopTtl)
+      GoogleCloudWKT.Duration?.self, forKey: .autoStopTtl)
     {
       try stopTtlCheckAndSet(.autoStopTtl(autoStopTtl))
     }
@@ -160,12 +160,12 @@ public struct LifecycleConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// Optional. The time when cluster will be auto-deleted (see JSON
     /// representation of
     /// [Timestamp](https://developers.google.com/protocol-buffers/docs/proto3#json)).
-    indirect case autoDeleteTime(GoogleCloudWkt.Timestamp?)
+    indirect case autoDeleteTime(GoogleCloudWKT.Timestamp?)
     /// Optional. The lifetime duration of cluster. The cluster will be
     /// auto-deleted at the end of this period. Minimum value is 10 minutes;
     /// maximum value is 14 days (see JSON representation of
     /// [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
-    indirect case autoDeleteTtl(GoogleCloudWkt.Duration?)
+    indirect case autoDeleteTtl(GoogleCloudWKT.Duration?)
   }
 
   /// Either the exact time the cluster should be stopped at or
@@ -174,22 +174,22 @@ public struct LifecycleConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// Optional. The time when cluster will be auto-stopped (see JSON
     /// representation of
     /// [Timestamp](https://developers.google.com/protocol-buffers/docs/proto3#json)).
-    indirect case autoStopTime(GoogleCloudWkt.Timestamp?)
+    indirect case autoStopTime(GoogleCloudWKT.Timestamp?)
     /// Optional. The lifetime duration of the cluster. The cluster will be
     /// auto-stopped at the end of this period, calculated from the time of
     /// submission of the create or update cluster request. Minimum value is 10
     /// minutes; maximum value is 14 days (see JSON representation of
     /// [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
-    indirect case autoStopTtl(GoogleCloudWkt.Duration?)
+    indirect case autoStopTtl(GoogleCloudWKT.Duration?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataproc.v1.LifecycleConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

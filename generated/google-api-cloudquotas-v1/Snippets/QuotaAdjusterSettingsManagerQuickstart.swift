@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleApiCloudQuotasV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(projectId: String, locationId: String, ) async throws {
   let client = try GoogleApiCloudQuotasV1.QuotaAdjusterSettingsManagerClient()

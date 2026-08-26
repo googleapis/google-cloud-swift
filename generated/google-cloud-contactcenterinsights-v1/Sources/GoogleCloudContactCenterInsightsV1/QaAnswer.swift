@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An answer to a QaQuestion.
-public struct QaAnswer: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct QaAnswer: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The QaQuestion answered by this answer.
@@ -64,7 +64,7 @@ public struct QaAnswer: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   /// [google.cloud.contactcenterinsights.v1.QaAnswer]: <doc:QaAnswer>
   /// [google.cloud.contactcenterinsights.v1.QaQuestion.AnswerChoice]: <doc:QaQuestion/AnswerChoice>
-  public struct AnswerValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AnswerValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// A short string used as an identifier. Matches the value used in
@@ -181,18 +181,18 @@ public struct QaAnswer: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.contactcenterinsights.v1.QaAnswer.AnswerValue"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A question may have multiple answers from varying sources, one of which
   /// becomes the "main" answer above. AnswerSource represents each individual
   /// answer.
-  public struct AnswerSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AnswerSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// What created the answer.
@@ -325,21 +325,21 @@ public struct QaAnswer: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.contactcenterinsights.v1.QaAnswer.AnswerSource"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.contactcenterinsights.v1.QaAnswer"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

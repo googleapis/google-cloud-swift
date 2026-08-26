@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Metadata for an inserted ad break.
-public struct VodSessionAdBreak: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct VodSessionAdBreak: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// List of events that are expected to be triggered, ordered by time.
@@ -28,10 +28,10 @@ public struct VodSessionAdBreak: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public var ads: [VodSessionAd] = []
 
   /// Ad break end time in seconds relative to the start of the VOD asset.
-  public var endTimeOffset: GoogleCloudWkt.Duration? = nil
+  public var endTimeOffset: GoogleCloudWKT.Duration? = nil
 
   /// Ad break start time in seconds relative to the start of the VOD asset.
-  public var startTimeOffset: GoogleCloudWkt.Duration? = nil
+  public var startTimeOffset: GoogleCloudWKT.Duration? = nil
 
   /// Initialize a new instance of `VodSessionAdBreak`.
   public init() {}
@@ -52,10 +52,10 @@ public struct VodSessionAdBreak: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.video.stitcher.v1.VodSessionAdBreak"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

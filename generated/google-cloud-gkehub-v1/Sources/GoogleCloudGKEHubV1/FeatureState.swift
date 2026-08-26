@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// FeatureState describes the high-level state of a Feature. It may be used to
 /// describe a Feature's state at the environ-level, or per-membershop, depending
 /// on the context.
-public struct FeatureState: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct FeatureState: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The high-level, machine-readable status of this Feature.
@@ -30,7 +30,7 @@ public struct FeatureState: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var description: Swift.String = Swift.String()
 
   /// The time this status and any related Feature-specific details were updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `FeatureState`.
   public init() {}
@@ -169,10 +169,10 @@ public struct FeatureState: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkehub.v1.FeatureState"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleCloudGax
 
 /// Service describing handlers for resources
@@ -631,7 +631,7 @@ extension Clients {
     /// See `SecurityCenterManagementClient.updateSecurityHealthAnalyticsCustomModule`.
     func updateSecurityHealthAnalyticsCustomModule(
       securityHealthAnalyticsCustomModule: SecurityHealthAnalyticsCustomModule?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityHealthAnalyticsCustomModule
 
     /// See `SecurityCenterManagementClient.deleteSecurityHealthAnalyticsCustomModule`.
@@ -747,7 +747,7 @@ extension Clients {
     /// See `SecurityCenterManagementClient.updateEventThreatDetectionCustomModule`.
     func updateEventThreatDetectionCustomModule(
       eventThreatDetectionCustomModule: EventThreatDetectionCustomModule?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudSecurityCenterManagementV1.EventThreatDetectionCustomModule
 
     /// See `SecurityCenterManagementClient.deleteEventThreatDetectionCustomModule`.
@@ -795,7 +795,7 @@ extension Clients {
     /// See `SecurityCenterManagementClient.updateSecurityCenterService`.
     func updateSecurityCenterService(
       securityCenterService: SecurityCenterService?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityCenterService
 
     /// See `SecurityCenterManagementClient.listLocations`.
@@ -1228,7 +1228,7 @@ extension Clients.SecurityCenterManagementProtocol {
 
   public func updateSecurityHealthAnalyticsCustomModule(
     securityHealthAnalyticsCustomModule: SecurityHealthAnalyticsCustomModule?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityHealthAnalyticsCustomModule {
     let request = UpdateSecurityHealthAnalyticsCustomModuleRequest().with {
       $0.securityHealthAnalyticsCustomModule = securityHealthAnalyticsCustomModule
@@ -1508,7 +1508,7 @@ extension Clients.SecurityCenterManagementProtocol {
 
   public func updateEventThreatDetectionCustomModule(
     eventThreatDetectionCustomModule: EventThreatDetectionCustomModule?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudSecurityCenterManagementV1.EventThreatDetectionCustomModule {
     let request = UpdateEventThreatDetectionCustomModuleRequest().with {
       $0.eventThreatDetectionCustomModule = eventThreatDetectionCustomModule
@@ -1627,7 +1627,7 @@ extension Clients.SecurityCenterManagementProtocol {
 
   public func updateSecurityCenterService(
     securityCenterService: SecurityCenterService?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityCenterService {
     let request = UpdateSecurityCenterServiceRequest().with {
       $0.securityCenterService = securityCenterService

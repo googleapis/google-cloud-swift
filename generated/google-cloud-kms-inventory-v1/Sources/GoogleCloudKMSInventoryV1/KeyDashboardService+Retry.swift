@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudKMSV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 
 extension Clients {

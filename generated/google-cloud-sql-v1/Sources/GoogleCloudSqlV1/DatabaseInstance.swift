@@ -16,10 +16,10 @@
 
 #if SqlBackupsService || SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A Cloud SQL instance resource.
-  public struct DatabaseInstance: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DatabaseInstance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// This is always `sql#instance`.
@@ -51,7 +51,7 @@
 
     /// The maximum disk size of the instance in bytes.
     @available(*, deprecated)
-    public var maxDiskSize: GoogleCloudWkt.Int64Value? = nil
+    public var maxDiskSize: GoogleCloudWKT.Int64Value? = nil
 
     /// The current disk usage of the instance in bytes. This property has been
     /// deprecated. Use the
@@ -60,7 +60,7 @@
     /// announcement](https://groups.google.com/d/msg/google-cloud-sql-announce/I_7-F9EBhT0/BtvFtdFeAgAJ)
     /// for details.
     @available(*, deprecated)
-    public var currentDiskSize: GoogleCloudWkt.Int64Value? = nil
+    public var currentDiskSize: GoogleCloudWKT.Int64Value? = nil
 
     /// The assigned IP addresses for the instance.
     public var ipAddresses: [IpMapping] = []
@@ -149,7 +149,7 @@
     /// This status indicates whether the instance satisfies PZS.
     ///
     /// The status is reserved for future use.
-    public var satisfiesPzs: GoogleCloudWkt.BoolValue? = nil
+    public var satisfiesPzs: GoogleCloudWKT.BoolValue? = nil
 
     /// Output only. Stores the current database version running on the instance
     /// including minor version such as `MYSQL_8_0_18`.
@@ -166,7 +166,7 @@
     /// Output only. The time when the instance was created in
     /// [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
     /// `2012-11-15T16:19:00.094Z`.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. List all maintenance versions applicable on the instance
     public var availableMaintenanceVersions: [Swift.String] = []
@@ -205,16 +205,16 @@
     /// Output only. This status indicates whether the instance satisfies PZI.
     ///
     /// The status is reserved for future use.
-    public var satisfiesPzi: GoogleCloudWkt.BoolValue? = nil
+    public var satisfiesPzi: GoogleCloudWKT.BoolValue? = nil
 
     /// Input only. Whether Cloud SQL is enabled to switch storing point-in-time
     /// recovery log files from a data disk to Cloud Storage.
-    public var switchTransactionLogsToCloudStorageEnabled: GoogleCloudWkt.BoolValue? = nil
+    public var switchTransactionLogsToCloudStorageEnabled: GoogleCloudWKT.BoolValue? = nil
 
     /// Input only. Determines whether an in-place major version upgrade of
     /// replicas happens when an in-place major version upgrade of a primary
     /// instance is initiated.
-    public var includeReplicasForMajorVersionUpgrade: GoogleCloudWkt.BoolValue? = nil
+    public var includeReplicasForMajorVersionUpgrade: GoogleCloudWKT.BoolValue? = nil
 
     /// Optional. Input only. Immutable. Tag keys and tag values that are bound to
     /// this instance. You must represent each item in the map as:
@@ -242,7 +242,7 @@
 
     /// Optional. If true, instance metadata is sent to the Database Center. If
     /// false, instance metadata is not sent to the Database Center.
-    public var databaseCenterIntegrationEnabled: GoogleCloudWkt.BoolValue? = nil
+    public var databaseCenterIntegrationEnabled: GoogleCloudWKT.BoolValue? = nil
 
     /// Initialize a new instance of `DatabaseInstance`.
     public init() {}
@@ -260,7 +260,7 @@
       return copy
     }
 
-    public struct SqlFailoverReplica: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SqlFailoverReplica: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The name of the failover replica. If specified at instance creation, a
@@ -271,7 +271,7 @@
       /// The availability status of the failover replica. A false status indicates
       /// that the failover replica is out of sync. The primary instance can only
       /// failover to the failover replica when the status is true.
-      public var available: GoogleCloudWkt.BoolValue? = nil
+      public var available: GoogleCloudWKT.BoolValue? = nil
 
       /// Initialize a new instance of `SqlFailoverReplica`.
       public init() {}
@@ -292,20 +292,20 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.sql.v1.DatabaseInstance.SqlFailoverReplica"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Any scheduled maintenance for this instance.
-    public struct SqlScheduledMaintenance: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SqlScheduledMaintenance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The start time of any upcoming scheduled maintenance for this instance.
-      public var startTime: GoogleCloudWkt.Timestamp? = nil
+      public var startTime: GoogleCloudWKT.Timestamp? = nil
 
       @available(*, deprecated)
       public var canDefer: Swift.Bool = Swift.Bool()
@@ -314,7 +314,7 @@
       public var canReschedule: Swift.Bool = Swift.Bool()
 
       /// Maintenance cannot be rescheduled to start beyond this deadline.
-      public var scheduleDeadlineTime: GoogleCloudWkt.Timestamp? = nil
+      public var scheduleDeadlineTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Initialize a new instance of `SqlScheduledMaintenance`.
       public init() {}
@@ -335,16 +335,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.sql.v1.DatabaseInstance.SqlScheduledMaintenance"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// This message wraps up the information written by out-of-disk detection job.
-    public struct SqlOutOfDiskReport: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SqlOutOfDiskReport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// This field represents the state generated by the proactive database
@@ -487,16 +487,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.sql.v1.DatabaseInstance.SqlOutOfDiskReport"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Details of a single read pool node of a read pool.
-    public struct PoolNodeConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct PoolNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. The name of the read pool node, to be used for retrieving
@@ -547,11 +547,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.sql.v1.DatabaseInstance.PoolNodeConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -812,11 +812,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.DatabaseInstance"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

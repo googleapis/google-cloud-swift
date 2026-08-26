@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Http target. The job will be pushed to the job handler by means of
 /// an HTTP request via an
@@ -26,7 +26,7 @@ import Foundation
 /// returned by the redirected request is considered.
 ///
 /// [google.cloud.scheduler.v1.HttpTarget.http_method]: <doc:HttpTarget/httpMethod>
-public struct HttpTarget: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct HttpTarget: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The full URI path that the request will be sent to. This string
@@ -196,10 +196,10 @@ public struct HttpTarget: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.scheduler.v1.HttpTarget"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

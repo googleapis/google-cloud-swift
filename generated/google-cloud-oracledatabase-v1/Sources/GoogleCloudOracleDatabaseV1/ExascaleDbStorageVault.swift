@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// ExascaleDbStorageVault represents a storage vault exadb vm cluster resource.
 /// https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/ExascaleDbStorageVault/
-public struct ExascaleDbStorageVault: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ExascaleDbStorageVault: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The resource name of the ExascaleDbStorageVault.
@@ -41,7 +41,7 @@ public struct ExascaleDbStorageVault: Codable, Equatable, GoogleCloudWkt._AnyPac
   public var properties: ExascaleDbStorageVaultProperties? = nil
 
   /// Output only. The date and time when the ExascaleDbStorageVault was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The ID of the subscription entitlement associated with the
   /// ExascaleDbStorageVault.
@@ -75,10 +75,10 @@ public struct ExascaleDbStorageVault: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.oracledatabase.v1.ExascaleDbStorageVault"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

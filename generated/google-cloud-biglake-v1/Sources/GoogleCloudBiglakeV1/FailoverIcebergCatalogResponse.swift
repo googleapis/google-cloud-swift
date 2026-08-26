@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response message for FailoverIcebergCatalog.
-public struct FailoverIcebergCatalogResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct FailoverIcebergCatalogResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The min timestamp for which all namespaces and table metadata
@@ -28,7 +28,7 @@ public struct FailoverIcebergCatalogResponse: Codable, Equatable, GoogleCloudWkt
   /// initialized. NOTE: When the Cloud Storage replication watermark is
   /// available, this will represent both catalog metadata and Cloud Storage
   /// data.
-  public var replicationTime: GoogleCloudWkt.Timestamp? = nil
+  public var replicationTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `FailoverIcebergCatalogResponse`.
   public init() {}
@@ -49,10 +49,10 @@ public struct FailoverIcebergCatalogResponse: Codable, Equatable, GoogleCloudWkt
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.biglake.v1.FailoverIcebergCatalogResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

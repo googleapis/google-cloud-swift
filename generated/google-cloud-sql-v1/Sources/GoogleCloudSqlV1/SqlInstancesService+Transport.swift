@@ -19,7 +19,7 @@
   #if canImport(FoundationNetworking)
     import FoundationNetworking
   #endif
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   @_spi(GoogleCloudInternal) import GoogleCloudGax
 
   extension Clients {
@@ -153,7 +153,7 @@
             }, prefix: "finalBackupTtlDays"))
         query.append(
           contentsOf: try encoder.encode(
-            request.expiration.flatMap { (oneof) -> GoogleCloudWkt.Timestamp? in
+            request.expiration.flatMap { (oneof) -> GoogleCloudWKT.Timestamp? in
               if case let .finalBackupExpiryTime(v) = oneof { v } else { nil }
             }, prefix: "finalBackupExpiryTime"))
         query.append(

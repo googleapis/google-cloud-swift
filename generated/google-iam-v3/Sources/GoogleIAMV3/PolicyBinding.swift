@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleType
 
 /// IAM policy binding resource.
-public struct PolicyBinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct PolicyBinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The name of the policy binding, in the format
@@ -110,10 +110,10 @@ public struct PolicyBinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var condition: GoogleType.Expr? = nil
 
   /// Output only. The time when the policy binding was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time when the policy binding was most recently updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `PolicyBinding`.
   public init() {}
@@ -133,7 +133,7 @@ public struct PolicyBinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// The full resource name of the resource to which the policy will
   /// be bound. Immutable once set.
-  public struct Target: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Target: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The different types of targets that can be bound to a policy.
@@ -239,11 +239,11 @@ public struct PolicyBinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.iam.v3.PolicyBinding.Target"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -355,10 +355,10 @@ public struct PolicyBinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.iam.v3.PolicyBinding"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

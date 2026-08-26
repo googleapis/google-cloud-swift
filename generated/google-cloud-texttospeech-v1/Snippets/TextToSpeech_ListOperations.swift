@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudTextToSpeechV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 
 func sample(client: TextToSpeechClient) async throws {

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response of the AddFulfillmentPlacesRequest.  Currently empty because
 /// there is no meaningful response populated from the
@@ -23,7 +23,7 @@ import Foundation
 /// method.
 ///
 /// [google.cloud.retail.v2.ProductService.AddFulfillmentPlaces]: <doc:ProductServiceClient/addFulfillmentPlaces(request:options:)>
-public struct AddFulfillmentPlacesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AddFulfillmentPlacesResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Initialize a new instance of `AddFulfillmentPlacesResponse`.
@@ -45,10 +45,10 @@ public struct AddFulfillmentPlacesResponse: Codable, Equatable, GoogleCloudWkt._
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.retail.v2.AddFulfillmentPlacesResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

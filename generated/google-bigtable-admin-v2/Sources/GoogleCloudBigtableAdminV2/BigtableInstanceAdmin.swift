@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -825,7 +825,7 @@ extension Clients {
     /// See `BigtableInstanceAdminClient.partialUpdateInstance`.
     func partialUpdateInstance(
       instance: Instance?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Instance>
 
     /// See `BigtableInstanceAdminClient.deleteInstance`.
@@ -886,7 +886,7 @@ extension Clients {
     /// See `BigtableInstanceAdminClient.partialUpdateCluster`.
     func partialUpdateCluster(
       cluster: Cluster?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Cluster>
 
     /// See `BigtableInstanceAdminClient.deleteCluster`.
@@ -942,7 +942,7 @@ extension Clients {
     /// See `BigtableInstanceAdminClient.updateAppProfile`.
     func updateAppProfile(
       appProfile: AppProfile?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<AppProfile>
 
     /// See `BigtableInstanceAdminClient.deleteAppProfile`.
@@ -1049,7 +1049,7 @@ extension Clients {
     /// See `BigtableInstanceAdminClient.updateLogicalView`.
     func updateLogicalView(
       logicalView: LogicalView?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<LogicalView>
 
     /// See `BigtableInstanceAdminClient.deleteLogicalView`.
@@ -1109,7 +1109,7 @@ extension Clients {
     /// See `BigtableInstanceAdminClient.updateMaterializedView`.
     func updateMaterializedView(
       materializedView: MaterializedView?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<MaterializedView>
 
     /// See `BigtableInstanceAdminClient.deleteMaterializedView`.
@@ -1526,7 +1526,7 @@ extension Clients.BigtableInstanceAdminProtocol {
 
   public func partialUpdateInstance(
     instance: Instance?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Instance> {
     let request = PartialUpdateInstanceRequest().with {
       $0.instance = instance
@@ -1693,7 +1693,7 @@ extension Clients.BigtableInstanceAdminProtocol {
 
   public func partialUpdateCluster(
     cluster: Cluster?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Cluster> {
     let request = PartialUpdateClusterRequest().with {
       $0.cluster = cluster
@@ -1834,7 +1834,7 @@ extension Clients.BigtableInstanceAdminProtocol {
 
   public func updateAppProfile(
     appProfile: AppProfile?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<AppProfile> {
     let request = UpdateAppProfileRequest().with {
       $0.appProfile = appProfile
@@ -2106,7 +2106,7 @@ extension Clients.BigtableInstanceAdminProtocol {
 
   public func updateLogicalView(
     logicalView: LogicalView?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<LogicalView> {
     let request = UpdateLogicalViewRequest().with {
       $0.logicalView = logicalView
@@ -2264,7 +2264,7 @@ extension Clients.BigtableInstanceAdminProtocol {
 
   public func updateMaterializedView(
     materializedView: MaterializedView?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<MaterializedView> {
     let request = UpdateMaterializedViewRequest().with {
       $0.materializedView = materializedView

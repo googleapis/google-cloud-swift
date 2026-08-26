@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Conditions that determine which objects are transferred. Applies only
 /// to Cloud Data Sources such as S3, Azure, and Cloud Storage.
@@ -36,7 +36,7 @@ import Foundation
 /// source or destination don't support `ObjectConditions`.
 ///
 /// [google.storagetransfer.v1.PosixFilesystem]: <doc:PosixFilesystem>
-public struct ObjectConditions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ObjectConditions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Ensures that objects are not transferred until a specific minimum time
@@ -51,7 +51,7 @@ public struct ObjectConditions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   /// [google.storagetransfer.v1.TransferOperation]: <doc:TransferOperation>
   /// [google.storagetransfer.v1.TransferOperation.start_time]: <doc:TransferOperation/startTime>
-  public var minTimeElapsedSinceLastModification: GoogleCloudWkt.Duration? = nil
+  public var minTimeElapsedSinceLastModification: GoogleCloudWKT.Duration? = nil
 
   /// Ensures that objects are not transferred if a specific maximum time
   /// has elapsed since the "last modification time".
@@ -65,7 +65,7 @@ public struct ObjectConditions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   /// [google.storagetransfer.v1.TransferOperation]: <doc:TransferOperation>
   /// [google.storagetransfer.v1.TransferOperation.start_time]: <doc:TransferOperation/startTime>
-  public var maxTimeElapsedSinceLastModification: GoogleCloudWkt.Duration? = nil
+  public var maxTimeElapsedSinceLastModification: GoogleCloudWKT.Duration? = nil
 
   /// If you specify `include_prefixes`, Storage Transfer Service uses the items
   /// in the `include_prefixes` array to determine which objects to include in a
@@ -147,12 +147,12 @@ public struct ObjectConditions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// *  `last_modified_since` to the start of the day
   ///
   /// *  `last_modified_before` to the end of the day
-  public var lastModifiedSince: GoogleCloudWkt.Timestamp? = nil
+  public var lastModifiedSince: GoogleCloudWKT.Timestamp? = nil
 
   /// If specified, only objects with a "last modification time" before this
   /// timestamp and objects that don't have a "last modification time" are
   /// transferred.
-  public var lastModifiedBefore: GoogleCloudWkt.Timestamp? = nil
+  public var lastModifiedBefore: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `ObjectConditions`.
   public init() {}
@@ -173,10 +173,10 @@ public struct ObjectConditions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storagetransfer.v1.ObjectConditions"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

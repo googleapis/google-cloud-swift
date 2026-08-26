@@ -15,17 +15,17 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// RetryAttempt represents an action of retrying the failed Cloud Deploy job.
-public struct RetryAttempt: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RetryAttempt: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The index of this retry attempt.
   public var attempt: Swift.Int64 = Swift.Int64()
 
   /// Output only. How long the operation will be paused.
-  public var wait: GoogleCloudWkt.Duration? = nil
+  public var wait: GoogleCloudWKT.Duration? = nil
 
   /// Output only. Valid state of this retry action.
   public var state: RepairState = RepairState()
@@ -52,10 +52,10 @@ public struct RetryAttempt: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.deploy.v1.RetryAttempt"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A process is the definition of a data transformation operation.
-public struct Process: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Process: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Immutable. The resource name of the lineage process. Format:
@@ -38,7 +38,7 @@ public struct Process: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// process).
   ///
   /// Up to 100 attributes are allowed.
-  public var attributes: [Swift.String: GoogleCloudWkt.Value] = [:]
+  public var attributes: [Swift.String: GoogleCloudWKT.Value] = [:]
 
   /// Optional. The origin of this process and its runs and lineage events.
   public var origin: Origin? = nil
@@ -62,10 +62,10 @@ public struct Process: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datacatalog.lineage.v1.Process"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -16,20 +16,20 @@
 
 #if FeatureOnlineStoreService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Response message for
   /// [FeatureOnlineStoreService.GenerateFetchAccessToken][google.cloud.aiplatform.v1.FeatureOnlineStoreService.GenerateFetchAccessToken].
   ///
   /// [google.cloud.aiplatform.v1.FeatureOnlineStoreService.GenerateFetchAccessToken]: <doc:FeatureOnlineStoreServiceClient/generateFetchAccessToken(request:options:)>
-  public struct GenerateFetchAccessTokenResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GenerateFetchAccessTokenResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The OAuth 2.0 access token.
     public var accessToken: Swift.String = Swift.String()
 
     /// Token expiration time. This is always set
-    public var expireTime: GoogleCloudWkt.Timestamp? = nil
+    public var expireTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `GenerateFetchAccessTokenResponse`.
     public init() {}
@@ -50,11 +50,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.GenerateFetchAccessTokenResponse"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

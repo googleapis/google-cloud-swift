@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleCloudGax
 
@@ -311,7 +311,7 @@
       /// See `ParticipantsClient.updateParticipant`.
       func updateParticipant(
         participant: Participant?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudDialogflowV2.Participant
 
       /// See `ParticipantsClient.analyzeContent`.
@@ -582,7 +582,7 @@
 
     public func updateParticipant(
       participant: Participant?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDialogflowV2.Participant {
       let request = UpdateParticipantRequest().with {
         $0.participant = participant

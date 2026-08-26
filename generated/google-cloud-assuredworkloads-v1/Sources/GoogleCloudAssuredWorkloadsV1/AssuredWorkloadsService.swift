@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -217,7 +217,7 @@ extension Clients {
     /// See `AssuredWorkloadsServiceClient.updateWorkload`.
     func updateWorkload(
       workload: Workload?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudAssuredWorkloadsV1.Workload
 
     /// See `AssuredWorkloadsServiceClient.restrictAllowedResources`.
@@ -377,7 +377,7 @@ extension Clients.AssuredWorkloadsServiceProtocol {
 
   public func updateWorkload(
     workload: Workload?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudAssuredWorkloadsV1.Workload {
     let request = UpdateWorkloadRequest().with {
       $0.workload = workload

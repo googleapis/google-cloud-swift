@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudDLPV2
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: DlpServiceClient, projectId: String, locationId: String, connectionId: String)
   async throws

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Configuration for a V1 `PrivatePool`.
-public struct PrivatePoolV1Config: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct PrivatePoolV1Config: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Machine configuration for the workers in the pool.
@@ -48,7 +48,7 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleCloudWkt._AnyPackab
 
   /// Defines the configuration to be used for creating workers in
   /// the pool.
-  public struct WorkerConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct WorkerConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Machine type of a worker, such as `e2-medium`.
@@ -87,16 +87,16 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleCloudWkt._AnyPackab
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.devtools.cloudbuild.v1.PrivatePoolV1Config.WorkerConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Defines the network configuration for the pool.
-  public struct NetworkConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct NetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Immutable. The network definition that the workers are peered
@@ -249,16 +249,16 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleCloudWkt._AnyPackab
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.devtools.cloudbuild.v1.PrivatePoolV1Config.NetworkConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Defines the Private Service Connect network configuration for the pool.
-  public struct PrivateServiceConnect: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PrivateServiceConnect: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Immutable. The network attachment that the worker network
@@ -308,21 +308,21 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleCloudWkt._AnyPackab
       return
         "type.googleapis.com/google.devtools.cloudbuild.v1.PrivatePoolV1Config.PrivateServiceConnect"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.devtools.cloudbuild.v1.PrivatePoolV1Config"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

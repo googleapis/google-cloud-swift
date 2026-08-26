@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Message describing a DataSource object.
 /// Datasource object used to represent Datasource details for both admin and
 /// basic view.
-public struct DataSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DataSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Identifier. Name of the datasource to create.
@@ -38,10 +38,10 @@ public struct DataSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var labels: [Swift.String: Swift.String] = [:]
 
   /// Output only. The time when the instance was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time when the instance was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Number of backups in the data source.
   public var backupCount: Swift.Int64? = nil
@@ -105,9 +105,9 @@ public struct DataSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.state = try container.decode(DataSource.State.self, forKey: .state)
     self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.backupCount = try container.decodeIfPresent(Swift.Int64.self, forKey: .backupCount)
     self.etag = try container.decodeIfPresent(Swift.String.self, forKey: .etag)
     self.totalStoredBytes = try container.decodeIfPresent(
@@ -301,10 +301,10 @@ public struct DataSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.backupdr.v1.DataSource"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

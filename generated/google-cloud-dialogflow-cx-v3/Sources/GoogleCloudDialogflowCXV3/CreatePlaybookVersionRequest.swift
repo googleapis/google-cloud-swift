@@ -16,13 +16,13 @@
 
 #if Playbooks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The request message for
   /// [Playbooks.CreatePlaybookVersion][google.cloud.dialogflow.cx.v3.Playbooks.CreatePlaybookVersion].
   ///
   /// [google.cloud.dialogflow.cx.v3.Playbooks.CreatePlaybookVersion]: <doc:PlaybooksClient/createPlaybookVersion(request:options:)>
-  public struct CreatePlaybookVersionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CreatePlaybookVersionRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The playbook to create a version for.
@@ -52,11 +52,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.CreatePlaybookVersionRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

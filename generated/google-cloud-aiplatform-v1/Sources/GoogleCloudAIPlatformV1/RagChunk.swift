@@ -16,11 +16,11 @@
 
 #if PredictionService || SessionService || VertexRagService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A RagChunk includes the content of a chunk of a RagFile, and associated
   /// metadata.
-  public struct RagChunk: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RagChunk: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The content of the chunk.
@@ -46,7 +46,7 @@
     }
 
     /// Represents where the chunk starts and ends in the document.
-    public struct PageSpan: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct PageSpan: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Page where chunk starts in the document. Inclusive. 1-indexed.
@@ -74,22 +74,22 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.RagChunk.PageSpan"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.RagChunk"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

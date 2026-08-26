@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// BackupConfigInfo has information about how the resource is configured
 /// for Backup and about the most recent backup to this vault.
-public struct BackupConfigInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BackupConfigInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The status of the last backup to this BackupVault
@@ -28,7 +28,7 @@ public struct BackupConfigInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Output only. If the last backup were successful, this field has the
   /// consistency date.
-  public var lastSuccessfulBackupConsistencyTime: GoogleCloudWkt.Timestamp? = nil
+  public var lastSuccessfulBackupConsistencyTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. If the last backup failed, this field has the error message.
   public var lastBackupError: GoogleRpc.Status? = nil
@@ -65,7 +65,7 @@ public struct BackupConfigInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.lastBackupState = try container.decode(
       BackupConfigInfo.LastBackupState.self, forKey: .lastBackupState)
     self.lastSuccessfulBackupConsistencyTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .lastSuccessfulBackupConsistencyTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .lastSuccessfulBackupConsistencyTime)
     self.lastBackupError = try container.decodeIfPresent(
       GoogleRpc.Status.self, forKey: .lastBackupError)
 
@@ -241,10 +241,10 @@ public struct BackupConfigInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.backupdr.v1.BackupConfigInfo"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

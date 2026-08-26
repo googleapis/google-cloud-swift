@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Prediction input format for Image Segmentation.
-public struct ImageSegmentationPredictionInstance: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ImageSegmentationPredictionInstance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The image bytes to make the predictions on.
@@ -50,10 +50,10 @@ public struct ImageSegmentationPredictionInstance: Codable, Equatable, GoogleClo
     return
       "type.googleapis.com/google.cloud.aiplatform.v1.schema.predict.instance.ImageSegmentationPredictionInstance"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

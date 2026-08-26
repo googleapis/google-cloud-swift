@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Histogram result that matches
 /// [HistogramQuery][google.cloud.contentwarehouse.v1.HistogramQuery] specified
 /// in searches.
 ///
 /// [google.cloud.contentwarehouse.v1.HistogramQuery]: <doc:HistogramQuery>
-public struct HistogramQueryResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct HistogramQueryResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Requested histogram expression.
@@ -55,10 +55,10 @@ public struct HistogramQueryResult: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.contentwarehouse.v1.HistogramQueryResult"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudSupportV2
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(
   client: CaseAttachmentServiceClient, organizationId: String, caseId: String, attachmentId: String

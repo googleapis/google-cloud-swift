@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Dataproc job status.
-public struct JobStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct JobStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. A state message specifying the overall job state.
@@ -29,7 +29,7 @@ public struct JobStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var details: Swift.String = Swift.String()
 
   /// Output only. The time when this state was entered.
-  public var stateStartTime: GoogleCloudWkt.Timestamp? = nil
+  public var stateStartTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Additional state information, which includes
   /// status reported by the agent.
@@ -335,10 +335,10 @@ public struct JobStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataproc.v1.JobStatus"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

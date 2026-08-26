@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An IAM principal access boundary policy resource.
-public struct PrincipalAccessBoundaryPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct PrincipalAccessBoundaryPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The resource name of the principal access boundary policy.
@@ -46,11 +46,11 @@ public struct PrincipalAccessBoundaryPolicy: Codable, Equatable, GoogleCloudWkt.
 
   /// Output only. The time when the principal access boundary policy was
   /// created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time when the principal access boundary policy was most
   /// recently updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. The details for the principal access boundary policy.
   public var details: PrincipalAccessBoundaryPolicyDetails? = nil
@@ -74,10 +74,10 @@ public struct PrincipalAccessBoundaryPolicy: Codable, Equatable, GoogleCloudWkt.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.iam.v3.PrincipalAccessBoundaryPolicy"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

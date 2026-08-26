@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An annotation that was generated during the customer and agent interaction.
-public struct RuntimeAnnotation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RuntimeAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The unique identifier of the annotation.
@@ -27,7 +27,7 @@ public struct RuntimeAnnotation: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public var annotationId: Swift.String = Swift.String()
 
   /// The time at which this annotation was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The boundary in the conversation where the annotation starts, inclusive.
   public var startBoundary: AnnotationBoundary? = nil
@@ -79,7 +79,7 @@ public struct RuntimeAnnotation: Codable, Equatable, GoogleCloudWkt._AnyPackable
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.annotationId = try container.decode(Swift.String.self, forKey: .annotationId)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.startBoundary = try container.decodeIfPresent(
       AnnotationBoundary.self, forKey: .startBoundary)
     self.endBoundary = try container.decodeIfPresent(AnnotationBoundary.self, forKey: .endBoundary)
@@ -155,7 +155,7 @@ public struct RuntimeAnnotation: Codable, Equatable, GoogleCloudWkt._AnyPackable
   }
 
   /// Explicit input used for generating the answer
-  public struct UserInput: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct UserInput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Query text. Article Search uses this to store the input query used
@@ -295,11 +295,11 @@ public struct RuntimeAnnotation: Codable, Equatable, GoogleCloudWkt._AnyPackable
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.contactcenterinsights.v1.RuntimeAnnotation.UserInput"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -322,10 +322,10 @@ public struct RuntimeAnnotation: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.contactcenterinsights.v1.RuntimeAnnotation"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

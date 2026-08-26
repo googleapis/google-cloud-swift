@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -858,7 +858,7 @@ extension Clients {
     /// See `SpeechClient.updateRecognizer`.
     func updateRecognizer(
       recognizer: Recognizer?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Recognizer>
 
     /// See `SpeechClient.deleteRecognizer`.
@@ -894,7 +894,7 @@ extension Clients {
     func recognize(
       recognizer: Swift.String,
       config: RecognitionConfig?,
-      configMask: GoogleCloudWkt.FieldMask?,
+      configMask: GoogleCloudWKT.FieldMask?,
       content: Foundation.Data,
     ) async throws -> GoogleCloudSpeechV2.RecognizeResponse
 
@@ -902,7 +902,7 @@ extension Clients {
     func recognize(
       recognizer: Swift.String,
       config: RecognitionConfig?,
-      configMask: GoogleCloudWkt.FieldMask?,
+      configMask: GoogleCloudWKT.FieldMask?,
       uri: Swift.String,
     ) async throws -> GoogleCloudSpeechV2.RecognizeResponse
 
@@ -917,7 +917,7 @@ extension Clients {
     func batchRecognize(
       recognizer: Swift.String,
       config: RecognitionConfig?,
-      configMask: GoogleCloudWkt.FieldMask?,
+      configMask: GoogleCloudWKT.FieldMask?,
       files: [BatchRecognizeFileMetadata],
     ) async throws -> any GoogleCloudGax.PollableOperation<BatchRecognizeResponse>
 
@@ -935,7 +935,7 @@ extension Clients {
     /// See `SpeechClient.updateConfig`.
     func updateConfig(
       config: Config?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudSpeechV2.Config
 
     /// See `SpeechClient.createCustomClass`.
@@ -987,7 +987,7 @@ extension Clients {
     /// See `SpeechClient.updateCustomClass`.
     func updateCustomClass(
       customClass: CustomClass?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<CustomClass>
 
     /// See `SpeechClient.deleteCustomClass`.
@@ -1064,7 +1064,7 @@ extension Clients {
     /// See `SpeechClient.updatePhraseSet`.
     func updatePhraseSet(
       phraseSet: PhraseSet?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<PhraseSet>
 
     /// See `SpeechClient.deletePhraseSet`.
@@ -1495,7 +1495,7 @@ extension Clients.SpeechProtocol {
 
   public func updateRecognizer(
     recognizer: Recognizer?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Recognizer> {
     let request = UpdateRecognizerRequest().with {
       $0.recognizer = recognizer
@@ -1593,7 +1593,7 @@ extension Clients.SpeechProtocol {
   public func recognize(
     recognizer: Swift.String,
     config: RecognitionConfig?,
-    configMask: GoogleCloudWkt.FieldMask?,
+    configMask: GoogleCloudWKT.FieldMask?,
     content: Foundation.Data,
   ) async throws -> GoogleCloudSpeechV2.RecognizeResponse {
     let request = RecognizeRequest().with {
@@ -1608,7 +1608,7 @@ extension Clients.SpeechProtocol {
   public func recognize(
     recognizer: Swift.String,
     config: RecognitionConfig?,
-    configMask: GoogleCloudWkt.FieldMask?,
+    configMask: GoogleCloudWKT.FieldMask?,
     uri: Swift.String,
   ) async throws -> GoogleCloudSpeechV2.RecognizeResponse {
     let request = RecognizeRequest().with {
@@ -1652,7 +1652,7 @@ extension Clients.SpeechProtocol {
   public func batchRecognize(
     recognizer: Swift.String,
     config: RecognitionConfig?,
-    configMask: GoogleCloudWkt.FieldMask?,
+    configMask: GoogleCloudWKT.FieldMask?,
     files: [BatchRecognizeFileMetadata],
   ) async throws -> any GoogleCloudGax.PollableOperation<BatchRecognizeResponse> {
     let request = BatchRecognizeRequest().with {
@@ -1696,7 +1696,7 @@ extension Clients.SpeechProtocol {
 
   public func updateConfig(
     config: Config?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudSpeechV2.Config {
     let request = UpdateConfigRequest().with {
       $0.config = config
@@ -1834,7 +1834,7 @@ extension Clients.SpeechProtocol {
 
   public func updateCustomClass(
     customClass: CustomClass?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<CustomClass> {
     let request = UpdateCustomClassRequest().with {
       $0.customClass = customClass
@@ -2046,7 +2046,7 @@ extension Clients.SpeechProtocol {
 
   public func updatePhraseSet(
     phraseSet: PhraseSet?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<PhraseSet> {
     let request = UpdatePhraseSetRequest().with {
       $0.phraseSet = phraseSet

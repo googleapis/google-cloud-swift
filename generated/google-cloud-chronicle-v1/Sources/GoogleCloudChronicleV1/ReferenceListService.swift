@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleCloudGax
 
@@ -209,7 +209,7 @@ extension Clients {
     /// See `ReferenceListServiceClient.updateReferenceList`.
     func updateReferenceList(
       referenceList: ReferenceList?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudChronicleV1.ReferenceList
 
     /// See `ReferenceListServiceClient.verifyReferenceList`.
@@ -398,7 +398,7 @@ extension Clients.ReferenceListServiceProtocol {
 
   public func updateReferenceList(
     referenceList: ReferenceList?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudChronicleV1.ReferenceList {
     let request = UpdateReferenceListRequest().with {
       $0.referenceList = referenceList

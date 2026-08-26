@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The metadata associated with a spec of the API version.
-public struct SpecMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SpecMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The spec resource to be pushed to Hub's collect layer. The ID of
@@ -30,11 +30,11 @@ public struct SpecMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var originalId: Swift.String = Swift.String()
 
   /// Optional. Timestamp indicating when the spec was created at the source.
-  public var originalCreateTime: GoogleCloudWkt.Timestamp? = nil
+  public var originalCreateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Required. Timestamp indicating when the spec was last updated at the
   /// source.
-  public var originalUpdateTime: GoogleCloudWkt.Timestamp? = nil
+  public var originalUpdateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `SpecMetadata`.
   public init() {}
@@ -55,10 +55,10 @@ public struct SpecMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.apihub.v1.SpecMetadata"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

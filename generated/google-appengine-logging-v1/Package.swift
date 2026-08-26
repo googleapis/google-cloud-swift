@@ -32,7 +32,7 @@ let package = Package(
       name: "GoogleAppEngineLoggingV1",
       dependencies: [
         .product(name: "GoogleCloudLoggingType", package: "google-logging-type"),
-        .product(name: "GoogleCloudWkt", package: "wkt"),
+        .product(name: "GoogleCloudWKT", package: "wkt"),
       ],
     )
   ]

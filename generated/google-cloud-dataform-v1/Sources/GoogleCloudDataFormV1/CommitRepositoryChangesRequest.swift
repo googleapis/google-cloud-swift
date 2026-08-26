@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// `CommitRepositoryChanges` request message.
-public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The repository's name.
@@ -53,7 +53,7 @@ public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleCloudWkt
   }
 
   /// Represents a single file operation to the repository.
-  public struct FileOperation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FileOperation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The operation to perform on the file.
@@ -120,7 +120,7 @@ public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleCloudWkt
     }
 
     /// Represents the write file operation (for files added or modified).
-    public struct WriteFile: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct WriteFile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The file's contents.
@@ -146,16 +146,16 @@ public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleCloudWkt
         return
           "type.googleapis.com/google.cloud.dataform.v1.CommitRepositoryChangesRequest.FileOperation.WriteFile"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Represents the delete file operation.
-    public struct DeleteFile: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DeleteFile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Initialize a new instance of `DeleteFile`.
@@ -178,11 +178,11 @@ public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleCloudWkt
         return
           "type.googleapis.com/google.cloud.dataform.v1.CommitRepositoryChangesRequest.FileOperation.DeleteFile"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -198,21 +198,21 @@ public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleCloudWkt
       return
         "type.googleapis.com/google.cloud.dataform.v1.CommitRepositoryChangesRequest.FileOperation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataform.v1.CommitRepositoryChangesRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

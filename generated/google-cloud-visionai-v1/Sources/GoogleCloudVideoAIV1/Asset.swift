@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An asset is a resource in corpus. It represents a media object inside corpus,
 /// contains metadata and another resource annotation. Different feature could be
 /// applied to the asset to generate annotations. User could specified annotation
 /// related to the target asset.
-public struct Asset: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Asset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Resource name of the asset.
@@ -32,7 +32,7 @@ public struct Asset: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// The duration for which all media assets, associated metadata, and search
   /// documents can exist. If not set, then it will using the default ttl in the
   /// parent corpus resource.
-  public var ttl: GoogleCloudWkt.Duration? = nil
+  public var ttl: GoogleCloudWKT.Duration? = nil
 
   /// Output only. The original cloud storage source uri that is associated with
   /// this asset.
@@ -57,10 +57,10 @@ public struct Asset: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.Asset"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

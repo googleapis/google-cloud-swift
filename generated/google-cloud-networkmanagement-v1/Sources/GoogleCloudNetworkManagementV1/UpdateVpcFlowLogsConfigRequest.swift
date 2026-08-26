@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request for the `UpdateVpcFlowLogsConfig` method.
-public struct UpdateVpcFlowLogsConfigRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateVpcFlowLogsConfigRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Mask of fields to update. At least one path must be supplied in
@@ -29,7 +29,7 @@ public struct UpdateVpcFlowLogsConfigRequest: Codable, Equatable, GoogleCloudWkt
   ///     name =
   ///     "projects/my-project/locations/global/vpcFlowLogsConfigs/my-config"
   ///     state = "ENABLED" }`
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Required. Only fields specified in update_mask are updated.
   public var vpcFlowLogsConfig: VpcFlowLogsConfig? = nil
@@ -53,10 +53,10 @@ public struct UpdateVpcFlowLogsConfigRequest: Codable, Equatable, GoogleCloudWkt
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkmanagement.v1.UpdateVpcFlowLogsConfigRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

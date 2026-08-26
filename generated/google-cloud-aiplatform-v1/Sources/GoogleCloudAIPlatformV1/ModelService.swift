@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleIAMV1
   import GoogleLongRunning
   import GoogleRpc
@@ -740,7 +740,7 @@
       /// See `ModelServiceClient.updateModel`.
       func updateModel(
         model: Model?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudAIPlatformV1.Model
 
       /// See `ModelServiceClient.updateExplanationDataset`.
@@ -1344,7 +1344,7 @@
 
     public func updateModel(
       model: Model?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.Model {
       let request = UpdateModelRequest().with {
         $0.model = model

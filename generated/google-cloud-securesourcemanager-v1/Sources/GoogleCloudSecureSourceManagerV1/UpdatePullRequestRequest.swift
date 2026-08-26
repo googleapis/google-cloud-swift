@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// UpdatePullRequestRequest is the request to update a pull request.
-public struct UpdatePullRequestRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdatePullRequestRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The pull request to update.
@@ -29,7 +29,7 @@ public struct UpdatePullRequestRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   /// The fields specified in the update_mask are relative to the resource, not
   /// the full request. A field will be overwritten if it is in the mask.
   /// The special value "*" means full replacement.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `UpdatePullRequestRequest`.
   public init() {}
@@ -50,10 +50,10 @@ public struct UpdatePullRequestRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securesourcemanager.v1.UpdatePullRequestRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

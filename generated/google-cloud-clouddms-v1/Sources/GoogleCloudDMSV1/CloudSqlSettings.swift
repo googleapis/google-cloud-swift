@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Settings for creating a Cloud SQL database instance.
-public struct CloudSqlSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CloudSqlSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The database engine type and version.
@@ -42,7 +42,7 @@ public struct CloudSqlSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// The maximum size to which storage capacity can be automatically increased.
   /// The default value is 0, which specifies that there is no limit.
-  public var storageAutoResizeLimit: GoogleCloudWkt.Int64Value? = nil
+  public var storageAutoResizeLimit: GoogleCloudWKT.Int64Value? = nil
 
   /// The activation policy specifies when the instance is activated; it is
   /// applicable only when the instance state is 'RUNNABLE'. Valid values:
@@ -65,7 +65,7 @@ public struct CloudSqlSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// size, Cloud SQL automatically adds additional storage capacity. If the
   /// available storage repeatedly falls below the threshold size, Cloud SQL
   /// continues to add storage until it reaches the maximum of 30 TB.
-  public var autoStorageIncrease: GoogleCloudWkt.BoolValue? = nil
+  public var autoStorageIncrease: GoogleCloudWKT.BoolValue? = nil
 
   /// The database flags passed to the Cloud SQL instance at startup.
   /// An object containing a list of "key": value pairs.
@@ -77,7 +77,7 @@ public struct CloudSqlSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// The storage capacity available to the database, in GB.
   /// The minimum (and default) size is 10GB.
-  public var dataDiskSizeGb: GoogleCloudWkt.Int64Value? = nil
+  public var dataDiskSizeGb: GoogleCloudWKT.Int64Value? = nil
 
   /// The Google Cloud Platform zone where your Cloud SQL database instance is
   /// located.
@@ -717,10 +717,10 @@ public struct CloudSqlSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.clouddms.v1.CloudSqlSettings"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

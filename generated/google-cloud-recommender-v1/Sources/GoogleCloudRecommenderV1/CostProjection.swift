@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleType
 
 /// Contains metadata about how much money a recommendation can save or incur.
-public struct CostProjection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CostProjection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// An approximate projection on amount saved or amount incurred. Negative cost
@@ -31,7 +31,7 @@ public struct CostProjection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var cost: GoogleType.Money? = nil
 
   /// Duration for which this cost applies.
-  public var duration: GoogleCloudWkt.Duration? = nil
+  public var duration: GoogleCloudWKT.Duration? = nil
 
   /// The approximate cost savings in the billing account's local currency.
   public var costInLocalCurrency: GoogleType.Money? = nil
@@ -55,10 +55,10 @@ public struct CostProjection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.recommender.v1.CostProjection"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

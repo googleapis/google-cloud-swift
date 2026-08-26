@@ -16,10 +16,10 @@
 
 #if ConversationModels
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents evaluation result of a conversation model.
-  public struct ConversationModelEvaluation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ConversationModelEvaluation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The resource name of the evaluation. Format:
@@ -34,7 +34,7 @@
     public var evaluationConfig: EvaluationConfig? = nil
 
     /// Output only. Creation time of this model.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Human eval template in csv format.
     /// It takes real-world conversations provided through input dataset, generates
@@ -88,7 +88,7 @@
       self.evaluationConfig = try container.decodeIfPresent(
         EvaluationConfig.self, forKey: .evaluationConfig)
       self.createTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
       self.rawHumanEvalTemplateCsv = try container.decode(
         Swift.String.self, forKey: .rawHumanEvalTemplateCsv)
 
@@ -135,11 +135,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.ConversationModelEvaluation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

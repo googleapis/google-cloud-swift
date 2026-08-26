@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response message for
 /// [ValidationHelperV1.ValidateAttestationOccurrence][google.cloud.binaryauthorization.v1.ValidationHelperV1.ValidateAttestationOccurrence].
 ///
 /// [google.cloud.binaryauthorization.v1.ValidationHelperV1.ValidateAttestationOccurrence]: <doc:ValidationHelperV1Client/validateAttestationOccurrence(request:options:)>
-public struct ValidateAttestationOccurrenceResponse: Codable, Equatable, GoogleCloudWkt
+public struct ValidateAttestationOccurrenceResponse: Codable, Equatable, GoogleCloudWKT
     ._AnyPackable,
   Sendable
 {
@@ -157,10 +157,10 @@ public struct ValidateAttestationOccurrenceResponse: Codable, Equatable, GoogleC
     return
       "type.googleapis.com/google.cloud.binaryauthorization.v1.ValidateAttestationOccurrenceResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

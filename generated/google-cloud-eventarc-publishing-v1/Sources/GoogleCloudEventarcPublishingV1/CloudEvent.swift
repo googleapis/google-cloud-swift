@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// CloudEvent represents a vendor-neutral specification for defining the format
 /// of event data.
-public struct CloudEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CloudEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Identifies the event. Producers MUST ensure that source + id is
@@ -99,7 +99,7 @@ public struct CloudEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     if let textData = try container.decodeIfPresent(Swift.String.self, forKey: .textData) {
       try dataCheckAndSet(.textData(textData))
     }
-    if let protoData = try container.decodeIfPresent(GoogleCloudWkt.`Any`?.self, forKey: .protoData)
+    if let protoData = try container.decodeIfPresent(GoogleCloudWKT.`Any`?.self, forKey: .protoData)
     {
       try dataCheckAndSet(.protoData(protoData))
     }
@@ -127,7 +127,7 @@ public struct CloudEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// The following abstract data types are available for use in attributes.
-  public struct CloudEventAttributeValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CloudEventAttributeValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The value of the attribute.
@@ -191,7 +191,7 @@ public struct CloudEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         try attrCheckAndSet(.ceUriRef(ceUriRef))
       }
       if let ceTimestamp = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp?.self, forKey: .ceTimestamp)
+        GoogleCloudWKT.Timestamp?.self, forKey: .ceTimestamp)
       {
         try attrCheckAndSet(.ceTimestamp(ceTimestamp))
       }
@@ -236,18 +236,18 @@ public struct CloudEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       /// URI-reference value.
       case ceUriRef(Swift.String)
       /// Timestamp value.
-      indirect case ceTimestamp(GoogleCloudWkt.Timestamp?)
+      indirect case ceTimestamp(GoogleCloudWKT.Timestamp?)
     }
 
     public static var _anyTypeUrl: Swift.String {
       return
         "type.googleapis.com/google.cloud.eventarc.publishing.v1.CloudEvent.CloudEventAttributeValue"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -267,16 +267,16 @@ public struct CloudEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// arbitrary protocol buffer messages. For any other protocol buffer type,
     /// you must serialize your proto message into bytes, and use the
     /// `binaryData` field instead.
-    indirect case protoData(GoogleCloudWkt.`Any`?)
+    indirect case protoData(GoogleCloudWKT.`Any`?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.eventarc.publishing.v1.CloudEvent"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

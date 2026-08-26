@@ -16,13 +16,13 @@
 
 #if Playbooks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The response message for
   /// [Playbooks.ImportPlaybook][google.cloud.dialogflow.cx.v3.Playbooks.ImportPlaybook].
   ///
   /// [google.cloud.dialogflow.cx.v3.Playbooks.ImportPlaybook]: <doc:PlaybooksClient/importPlaybook(request:options:)>
-  public struct ImportPlaybookResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ImportPlaybookResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The unique identifier of the new playbook.
@@ -54,7 +54,7 @@
     /// Conflicting resources detected during the import process. Only filled when
     /// [REPORT_CONFLICTS][ImportPlaybookResponse.REPORT_CONFLICTS] is set in the
     /// request and there are conflicts in the display names.
-    public struct ConflictingResources: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ConflictingResources: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Display name of conflicting main playbook.
@@ -86,22 +86,22 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.cx.v3.ImportPlaybookResponse.ConflictingResources"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.ImportPlaybookResponse"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

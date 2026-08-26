@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An AzureBlobStorageData resource can be a data source, but not a data sink.
 /// An AzureBlobStorageData resource represents one Azure container. The storage
@@ -24,7 +24,7 @@ import Foundation
 /// In an AzureBlobStorageData resource, a blobs's name is the [Azure Blob
 /// Storage blob's key
 /// name](https://docs.microsoft.com/en-us/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata#blob-names).
-public struct AzureBlobStorageData: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AzureBlobStorageData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The name of the Azure Storage account.
@@ -108,7 +108,7 @@ public struct AzureBlobStorageData: Codable, Equatable, GoogleCloudWkt._AnyPacka
   /// To configure federated identity, see
   /// [Configure access to Microsoft Azure
   /// Storage](https://cloud.google.com/storage-transfer/docs/source-microsoft-azure#option_3_authenticate_using_federated_identity).
-  public struct FederatedIdentityConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FederatedIdentityConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The client (application) ID of the application with federated
@@ -139,21 +139,21 @@ public struct AzureBlobStorageData: Codable, Equatable, GoogleCloudWkt._AnyPacka
       return
         "type.googleapis.com/google.storagetransfer.v1.AzureBlobStorageData.FederatedIdentityConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storagetransfer.v1.AzureBlobStorageData"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

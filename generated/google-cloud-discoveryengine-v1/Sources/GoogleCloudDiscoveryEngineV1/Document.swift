@@ -16,12 +16,12 @@
 
 #if ConversationalSearchService || DocumentService || RecommendationService || SearchService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
   import GoogleRpc
 
   /// Document captures all raw metadata information of items to be recommended or
   /// searched.
-  public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Document: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Immutable. The full resource name of the document.
@@ -54,7 +54,7 @@
 
     /// Output only. This field is OUTPUT_ONLY.
     /// It contains derived data that are not in the original input document.
-    public var derivedStructData: GoogleCloudWkt.Struct? = nil
+    public var derivedStructData: GoogleCloudWKT.Struct? = nil
 
     /// Access control information for the document.
     public var aclInfo: Document.AclInfo? = nil
@@ -64,7 +64,7 @@
     ///
     /// This field is OUTPUT_ONLY. If this field is not populated, it means the
     /// document has never been indexed.
-    public var indexTime: GoogleCloudWkt.Timestamp? = nil
+    public var indexTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. The index status of the document.
     ///
@@ -122,10 +122,10 @@
       self.content = try container.decodeIfPresent(Document.Content.self, forKey: .content)
       self.parentDocumentId = try container.decode(Swift.String.self, forKey: .parentDocumentId)
       self.derivedStructData = try container.decodeIfPresent(
-        GoogleCloudWkt.Struct.self, forKey: .derivedStructData)
+        GoogleCloudWKT.Struct.self, forKey: .derivedStructData)
       self.aclInfo = try container.decodeIfPresent(Document.AclInfo.self, forKey: .aclInfo)
       self.indexTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .indexTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .indexTime)
       self.indexStatus = try container.decodeIfPresent(
         Document.IndexStatus.self, forKey: .indexStatus)
 
@@ -140,7 +140,7 @@
         data = $0
       }
       if let structData = try container.decodeIfPresent(
-        GoogleCloudWkt.Struct?.self, forKey: .structData)
+        GoogleCloudWKT.Struct?.self, forKey: .structData)
       {
         try dataCheckAndSet(.structData(structData))
       }
@@ -173,7 +173,7 @@
     }
 
     /// Unstructured data linked to this document.
-    public struct Content: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Content: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The MIME type of the content. Supported types:
@@ -283,16 +283,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.Document.Content"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// ACL Information of the Document.
-    public struct AclInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AclInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Readers of the document.
@@ -373,7 +373,7 @@
       ///     ]
       ///   }
       /// }
-      public struct AccessRestriction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct AccessRestriction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// List of principals.
@@ -402,32 +402,32 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.Document.AclInfo.AccessRestriction"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.Document.AclInfo"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Index status of the document.
-    public struct IndexStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct IndexStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The time when the document was indexed.
       /// If this field is populated, it means the document has been indexed.
-      public var indexTime: GoogleCloudWkt.Timestamp? = nil
+      public var indexTime: GoogleCloudWKT.Timestamp? = nil
 
       /// A sample of errors encountered while indexing the document.
       /// If this field is populated, the document is not indexed due to errors.
@@ -456,11 +456,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.Document.IndexStatus"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -477,7 +477,7 @@
       /// `INVALID_ARGUMENT` error is thrown.
       ///
       /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
-      indirect case structData(GoogleCloudWkt.Struct?)
+      indirect case structData(GoogleCloudWKT.Struct?)
       /// The JSON string representation of the document. It should conform to the
       /// registered [Schema][google.cloud.discoveryengine.v1.Schema] or an
       /// `INVALID_ARGUMENT` error is thrown.
@@ -489,11 +489,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.Document"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

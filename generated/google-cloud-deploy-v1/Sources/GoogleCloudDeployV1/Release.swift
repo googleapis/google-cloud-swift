@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A `Release` resource in the Cloud Deploy API.
 ///
 /// A `Release` defines a specific Skaffold configuration instance
 /// that can be deployed.
-public struct Release: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Release: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. Name of the `Release`. Format is
@@ -58,13 +58,13 @@ public struct Release: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var abandoned: Swift.Bool = Swift.Bool()
 
   /// Output only. Time at which the `Release` was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Time at which the render began.
-  public var renderStartTime: GoogleCloudWkt.Timestamp? = nil
+  public var renderStartTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Time at which the render completed.
-  public var renderEndTime: GoogleCloudWkt.Timestamp? = nil
+  public var renderEndTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Cloud Storage URI of tar.gz archive containing Skaffold
   /// configuration.
@@ -133,7 +133,7 @@ public struct Release: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Details of rendering for a single target.
-  public struct TargetRender: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TargetRender: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The resource name of the Cloud Build `Build` object that is
@@ -436,18 +436,18 @@ public struct Release: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.deploy.v1.Release.TargetRender"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// ReleaseReadyCondition contains information around the status of the
   /// Release. If a release is not ready, you cannot create a rollout with the
   /// release.
-  public struct ReleaseReadyCondition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ReleaseReadyCondition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// True if the Release is in a valid state. Otherwise at least one condition
@@ -475,17 +475,17 @@ public struct Release: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.deploy.v1.Release.ReleaseReadyCondition"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// SkaffoldSupportedCondition contains information about when support for the
   /// release's version of Skaffold ends.
-  public struct SkaffoldSupportedCondition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SkaffoldSupportedCondition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// True if the version of Skaffold used by this release is supported.
@@ -496,11 +496,11 @@ public struct Release: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// The time at which this release's version of Skaffold will enter
     /// maintenance mode.
-    public var maintenanceModeTime: GoogleCloudWkt.Timestamp? = nil
+    public var maintenanceModeTime: GoogleCloudWKT.Timestamp? = nil
 
     /// The time at which this release's version of Skaffold will no longer be
     /// supported.
-    public var supportExpirationTime: GoogleCloudWkt.Timestamp? = nil
+    public var supportExpirationTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `SkaffoldSupportedCondition`.
     public init() {}
@@ -521,16 +521,16 @@ public struct Release: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.deploy.v1.Release.SkaffoldSupportedCondition"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// ReleaseCondition contains all conditions relevant to a Release.
-  public struct ReleaseCondition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ReleaseCondition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Details around the Releases's overall status.
@@ -559,11 +559,11 @@ public struct Release: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.deploy.v1.Release.ReleaseCondition"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -682,10 +682,10 @@ public struct Release: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.deploy.v1.Release"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

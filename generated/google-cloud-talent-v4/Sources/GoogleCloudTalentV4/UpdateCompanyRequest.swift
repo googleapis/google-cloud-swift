@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request for updating a specified company.
-public struct UpdateCompanyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateCompanyRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The company resource to replace the current resource in the
@@ -39,7 +39,7 @@ public struct UpdateCompanyRequest: Codable, Equatable, GoogleCloudWkt._AnyPacka
   /// [google.cloud.talent.v4.Company]: <doc:Company>
   /// [google.cloud.talent.v4.UpdateCompanyRequest.company]: <doc:UpdateCompanyRequest/company>
   /// [google.cloud.talent.v4.UpdateCompanyRequest.update_mask]: <doc:UpdateCompanyRequest/updateMask>
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `UpdateCompanyRequest`.
   public init() {}
@@ -60,10 +60,10 @@ public struct UpdateCompanyRequest: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.talent.v4.UpdateCompanyRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

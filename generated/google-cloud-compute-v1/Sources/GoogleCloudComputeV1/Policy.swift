@@ -16,7 +16,7 @@
 
 #if BackendBuckets || BackendServices || Disks || FirewallPolicies || Images || InstanceTemplates || Instances || InstantSnapshotGroups || InstantSnapshots || InterconnectAttachmentGroups || InterconnectGroups || LicenseCodes || Licenses || MachineImages || NetworkAttachments || NetworkFirewallPolicies || NodeGroups || NodeTemplates || RegionBackendBuckets || RegionBackendServices || RegionDisks || RegionInstantSnapshotGroups || RegionInstantSnapshots || RegionNetworkFirewallPolicies || RegionSnapshots || ReservationBlocks || ReservationSubBlocks || Reservations || ResourcePolicies || ServiceAttachments || Snapshots || StoragePools || Subnetworks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// An Identity and Access Management (IAM) policy, which specifies access
   /// controls for Google Cloud resources.
@@ -89,7 +89,7 @@
   ///
   /// For a description of IAM and its features, see the
   /// [IAM documentation](https://cloud.google.com/iam/docs/).
-  public struct Policy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Policy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Specifies cloud audit logging configuration for this policy.
@@ -175,7 +175,7 @@
       self.auditConfigs = try container.decode([AuditConfig].self, forKey: .auditConfigs)
       self.bindings = try container.decode([Binding].self, forKey: .bindings)
       if let s = try container.decodeIfPresent(Swift.String.self, forKey: .etag) {
-        guard let v = GoogleCloudWkt._DiscoveryBase64.decode(s) else {
+        guard let v = GoogleCloudWKT._DiscoveryBase64.decode(s) else {
           throw DecodingError.dataCorrupted(
             DecodingError.Context(
               codingPath: decoder.codingPath, debugDescription: "Expected url-safe encoded value")
@@ -192,7 +192,7 @@
       try container.encode(self.bindings, forKey: .bindings)
       if let v = etag {
         try container.encode(
-          GoogleCloudWkt._DiscoveryBase64.encode(v), forKey: .etag
+          GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .etag
         )
       }
       try container.encode(self.version, forKey: .version)
@@ -201,11 +201,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.Policy"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

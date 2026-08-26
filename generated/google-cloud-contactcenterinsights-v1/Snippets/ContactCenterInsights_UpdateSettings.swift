@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudContactCenterInsightsV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 
@@ -30,7 +30,7 @@ func sample(client: ContactCenterInsightsClient, projectId: String, locationId: 
         $0.settings = Settings().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/settings"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

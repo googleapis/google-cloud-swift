@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Retries the failed job.
-public struct Retry: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Retry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Total number of retries. Retry is skipped if set to 0; The
@@ -27,7 +27,7 @@ public struct Retry: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Optional. How long to wait for the first retry. Default is 0, and the
   /// maximum value is 14d.
-  public var wait: GoogleCloudWkt.Duration? = nil
+  public var wait: GoogleCloudWKT.Duration? = nil
 
   /// Optional. The pattern of how wait time will be increased. Default is
   /// linear. Backoff mode will be ignored if `wait` is 0.
@@ -52,10 +52,10 @@ public struct Retry: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.deploy.v1.Retry"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

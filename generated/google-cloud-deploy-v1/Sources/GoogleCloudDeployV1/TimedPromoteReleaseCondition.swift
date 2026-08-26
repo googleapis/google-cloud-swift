@@ -15,15 +15,15 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// `TimedPromoteReleaseCondition` contains conditions specific to an Automation
 /// with a Timed Promote Release rule defined.
-public struct TimedPromoteReleaseCondition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TimedPromoteReleaseCondition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. When the next scheduled promotion(s) will occur.
-  public var nextPromotionTime: GoogleCloudWkt.Timestamp? = nil
+  public var nextPromotionTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. A list of targets involved in the upcoming timed promotion(s).
   public var targetsList: [TimedPromoteReleaseCondition.Targets] = []
@@ -45,7 +45,7 @@ public struct TimedPromoteReleaseCondition: Codable, Equatable, GoogleCloudWkt._
   }
 
   /// The targets involved in a single timed promotion.
-  public struct Targets: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Targets: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The source target ID.
@@ -73,21 +73,21 @@ public struct TimedPromoteReleaseCondition: Codable, Equatable, GoogleCloudWkt._
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.deploy.v1.TimedPromoteReleaseCondition.Targets"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.deploy.v1.TimedPromoteReleaseCondition"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

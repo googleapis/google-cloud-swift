@@ -16,14 +16,14 @@
 
 #if JobService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request message for
   /// [JobService.SearchModelDeploymentMonitoringStatsAnomalies][google.cloud.aiplatform.v1.JobService.SearchModelDeploymentMonitoringStatsAnomalies].
   ///
   /// [google.cloud.aiplatform.v1.JobService.SearchModelDeploymentMonitoringStatsAnomalies]: <doc:JobServiceClient/searchModelDeploymentMonitoringStatsAnomalies(request:options:)>
   public struct SearchModelDeploymentMonitoringStatsAnomaliesRequest: Codable, Equatable,
-    GoogleCloudWkt._AnyPackable,
+    GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. ModelDeploymentMonitoring Job resource name.
@@ -59,11 +59,11 @@
 
     /// The earliest timestamp of stats being generated.
     /// If not set, indicates fetching stats till the earliest possible one.
-    public var startTime: GoogleCloudWkt.Timestamp? = nil
+    public var startTime: GoogleCloudWKT.Timestamp? = nil
 
     /// The latest timestamp of stats being generated.
     /// If not set, indicates feching stats till the latest possible one.
-    public var endTime: GoogleCloudWkt.Timestamp? = nil
+    public var endTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `SearchModelDeploymentMonitoringStatsAnomaliesRequest`.
     public init() {}
@@ -82,7 +82,7 @@
     }
 
     /// Stats requested for specific objective.
-    public struct StatsAnomaliesObjective: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct StatsAnomaliesObjective: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       public var type: ModelDeploymentMonitoringObjectiveType =
@@ -120,11 +120,11 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.SearchModelDeploymentMonitoringStatsAnomaliesRequest.StatsAnomaliesObjective"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -132,11 +132,11 @@
       return
         "type.googleapis.com/google.cloud.aiplatform.v1.SearchModelDeploymentMonitoringStatsAnomaliesRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

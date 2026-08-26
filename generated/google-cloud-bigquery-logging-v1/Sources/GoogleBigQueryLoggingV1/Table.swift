@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Describes a BigQuery table.
 /// See the [Table](/bigquery/docs/reference/v2/tables) API resource
@@ -23,7 +23,7 @@ import Foundation
 /// Note: `Table.schema` has been deprecated in favor of `Table.schemaJson`.
 /// `Table.schema` may continue to be present in your logs during this
 /// transition.
-public struct Table: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Table: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The name of the table.
@@ -41,17 +41,17 @@ public struct Table: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// The expiration date for the table, after which the table
   /// is deleted and the storage reclaimed.
   /// If not present, the table persists indefinitely.
-  public var expireTime: GoogleCloudWkt.Timestamp? = nil
+  public var expireTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The time the table was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The time the table was last truncated
   /// by an operation with a `writeDisposition` of `WRITE_TRUNCATE`.
-  public var truncateTime: GoogleCloudWkt.Timestamp? = nil
+  public var truncateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The time the table was last modified.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The table encryption information. Set when non-default encryption is used.
   public var encryption: EncryptionInfo? = nil
@@ -75,10 +75,10 @@ public struct Table: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.logging.v1.Table"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

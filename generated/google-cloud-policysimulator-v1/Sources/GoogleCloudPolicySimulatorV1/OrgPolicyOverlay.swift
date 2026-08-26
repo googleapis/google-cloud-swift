@@ -16,10 +16,10 @@
 
 import Foundation
 import GoogleCloudOrgPolicyV2
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The proposed changes to OrgPolicy.
-public struct OrgPolicyOverlay: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct OrgPolicyOverlay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. The OrgPolicy changes to preview violations for.
@@ -58,7 +58,7 @@ public struct OrgPolicyOverlay: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// A change to an OrgPolicy.
-  public struct PolicyOverlay: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PolicyOverlay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The parent of the policy we are attaching to.
@@ -87,16 +87,16 @@ public struct OrgPolicyOverlay: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.policysimulator.v1.OrgPolicyOverlay.PolicyOverlay"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A change to an OrgPolicy custom constraint.
-  public struct CustomConstraintOverlay: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CustomConstraintOverlay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Resource the constraint is attached to.
@@ -126,21 +126,21 @@ public struct OrgPolicyOverlay: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.policysimulator.v1.OrgPolicyOverlay.CustomConstraintOverlay"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.policysimulator.v1.OrgPolicyOverlay"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

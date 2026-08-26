@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Export asset request.
-public struct ExportAssetsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ExportAssetsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The relative name of the root asset. This can only be an
@@ -32,7 +32,7 @@ public struct ExportAssetsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackab
   /// If not specified, the current time will be used. Due to delays in resource
   /// data collection and indexing, there is a volatile window during which
   /// running the same query may get different results.
-  public var readTime: GoogleCloudWkt.Timestamp? = nil
+  public var readTime: GoogleCloudWKT.Timestamp? = nil
 
   /// A list of asset types to take a snapshot for. For example:
   /// "compute.googleapis.com/Disk".
@@ -98,10 +98,10 @@ public struct ExportAssetsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.asset.v1.ExportAssetsRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

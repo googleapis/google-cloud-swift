@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A secret payload resource in the Secret Manager API. This contains the
 /// sensitive secret payload that is associated with a
 /// [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
 ///
 /// [google.cloud.secretmanager.v1.SecretVersion]: <doc:SecretVersion>
-public struct SecretPayload: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SecretPayload: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The secret data. Must be no larger than 64KiB.
@@ -87,10 +87,10 @@ public struct SecretPayload: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.secretmanager.v1.SecretPayload"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

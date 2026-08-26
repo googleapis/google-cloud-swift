@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request for the client or the agent to execute the specified tool.
-public struct ToolCall: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ToolCall: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. The unique identifier of the tool call. If populated, the client
@@ -33,7 +33,7 @@ public struct ToolCall: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Optional. The input parameters and values for the tool in JSON object
   /// format.
-  public var args: GoogleCloudWkt.Struct? = nil
+  public var args: GoogleCloudWKT.Struct? = nil
 
   /// The identifier of the tool to execute. It could be either a persisted tool
   /// or a tool from a toolset.
@@ -67,7 +67,7 @@ public struct ToolCall: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.id = try container.decode(Swift.String.self, forKey: .id)
     self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
-    self.args = try container.decodeIfPresent(GoogleCloudWkt.Struct.self, forKey: .args)
+    self.args = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .args)
 
     var toolIdentifier: OneOf_ToolIdentifier? = nil
     let toolIdentifierCheckAndSet = {
@@ -117,10 +117,10 @@ public struct ToolCall: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.ToolCall"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

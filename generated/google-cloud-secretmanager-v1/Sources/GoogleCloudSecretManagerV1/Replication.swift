@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A policy that defines the replication and encryption configuration of data.
-public struct Replication: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Replication: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The replication policy for this secret.
@@ -89,7 +89,7 @@ public struct Replication: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// restrictions.
   ///
   /// [google.cloud.secretmanager.v1.Secret]: <doc:Secret>
-  public struct Automatic: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Automatic: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The customer-managed encryption configuration of the
@@ -125,11 +125,11 @@ public struct Replication: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.secretmanager.v1.Replication.Automatic"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -140,7 +140,7 @@ public struct Replication: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   /// [google.cloud.secretmanager.v1.Replication.UserManaged.replicas]: <doc:Replication/UserManaged/replicas>
   /// [google.cloud.secretmanager.v1.Secret]: <doc:Secret>
-  public struct UserManaged: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct UserManaged: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The list of Replicas for this
@@ -171,7 +171,7 @@ public struct Replication: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// [Secret][google.cloud.secretmanager.v1.Secret].
     ///
     /// [google.cloud.secretmanager.v1.Secret]: <doc:Secret>
-    public struct Replica: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Replica: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The canonical IDs of the location to replicate data.
@@ -212,22 +212,22 @@ public struct Replication: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.secretmanager.v1.Replication.UserManaged.Replica"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.secretmanager.v1.Replication.UserManaged"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -248,10 +248,10 @@ public struct Replication: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.secretmanager.v1.Replication"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

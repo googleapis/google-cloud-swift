@@ -15,18 +15,18 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents an event in the processing of a transaction as observed by a
 /// single validator.
 ///
 /// All values reported are from the perspective of the validator handling the
 /// request and may differ from the view of other validators.
-public struct StatusEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct StatusEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The time when the event was recorded by this validator.
-  public var eventTime: GoogleCloudWkt.Timestamp? = nil
+  public var eventTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The type of the event.
   public var eventType: EventType = EventType()
@@ -53,10 +53,10 @@ public struct StatusEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.universalledger.v1.StatusEvent"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

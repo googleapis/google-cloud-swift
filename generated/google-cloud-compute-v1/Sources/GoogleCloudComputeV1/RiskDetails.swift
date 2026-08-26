@@ -16,20 +16,20 @@
 
 #if ReliabilityRisks
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Detailed insights and metrics about a detected reliability risk.
-  public struct RiskDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RiskDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The duration of the risk since it was detected.
-    public var duration: GoogleCloudWkt.Duration? = nil
+    public var duration: GoogleCloudWKT.Duration? = nil
 
     /// Insight details for global DNS risk.
     public var globalDnsInsight: RiskDetailsGlobalDnsInsight? = nil
 
     /// The last time the risk was updated.
-    public var lastUpdateTimestamp: GoogleCloudWkt.Timestamp? = nil
+    public var lastUpdateTimestamp: GoogleCloudWKT.Timestamp? = nil
 
     /// The severity of the risk.
     public var severity: RiskDetails.Severity? = nil
@@ -277,11 +277,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.RiskDetails"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

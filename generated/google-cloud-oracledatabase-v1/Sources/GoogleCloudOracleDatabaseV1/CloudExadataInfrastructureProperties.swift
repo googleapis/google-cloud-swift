@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Various properties of Exadata Infrastructure.
-public struct CloudExadataInfrastructureProperties: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CloudExadataInfrastructureProperties: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. OCID of created infra.
@@ -98,10 +98,10 @@ public struct CloudExadataInfrastructureProperties: Codable, Equatable, GoogleCl
   public var nextMaintenanceRunId: Swift.String = Swift.String()
 
   /// Output only. The time when the next maintenance run will occur.
-  public var nextMaintenanceRunTime: GoogleCloudWkt.Timestamp? = nil
+  public var nextMaintenanceRunTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time when the next security maintenance run will occur.
-  public var nextSecurityMaintenanceRunTime: GoogleCloudWkt.Timestamp? = nil
+  public var nextSecurityMaintenanceRunTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. The list of customer contacts.
   public var customerContacts: [CustomerContact] = []
@@ -285,10 +285,10 @@ public struct CloudExadataInfrastructureProperties: Codable, Equatable, GoogleCl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.oracledatabase.v1.CloudExadataInfrastructureProperties"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

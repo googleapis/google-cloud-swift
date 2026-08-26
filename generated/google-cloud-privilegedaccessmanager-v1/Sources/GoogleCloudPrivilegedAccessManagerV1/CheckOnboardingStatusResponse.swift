@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response message for `CheckOnboardingStatus` method.
-public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The service account that PAM uses to act on this resource.
@@ -47,7 +47,7 @@ public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleCloudWkt.
 
   /// Finding represents an issue which prevents PAM from functioning properly
   /// for this resource.
-  public struct Finding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Finding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var findingType: OneOf_FindingType? = nil
@@ -108,7 +108,7 @@ public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleCloudWkt.
     /// This can be fixed by granting a role that contains the missing
     /// permissions to the service account or exempting it from deny policies if
     /// they are blocking the access.
-    public struct IAMAccessDenied: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct IAMAccessDenied: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// List of permissions that are being denied.
@@ -134,11 +134,11 @@ public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleCloudWkt.
         return
           "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.CheckOnboardingStatusResponse.Finding.IAMAccessDenied"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -151,11 +151,11 @@ public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleCloudWkt.
       return
         "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.CheckOnboardingStatusResponse.Finding"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -163,10 +163,10 @@ public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleCloudWkt.
     return
       "type.googleapis.com/google.cloud.privilegedaccessmanager.v1.CheckOnboardingStatusResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

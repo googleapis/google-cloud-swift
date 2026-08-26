@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A filter for a budget, limiting the scope of the cost to calculate.
-public struct Filter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Filter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. A set of projects of the form `projects/{project}`,
@@ -78,7 +78,7 @@ public struct Filter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   ///  _Currently, multiple entries or multiple values per entry are not
   ///  allowed._
-  public var labels: [Swift.String: GoogleCloudWkt.ListValue] = [:]
+  public var labels: [Swift.String: GoogleCloudWKT.ListValue] = [:]
 
   /// Multiple options to choose the budget's time period, specifying that only
   /// usage that occurs during this time period should be included in the budget.
@@ -123,7 +123,7 @@ public struct Filter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.services = try container.decode([Swift.String].self, forKey: .services)
     self.subaccounts = try container.decode([Swift.String].self, forKey: .subaccounts)
     self.labels = try container.decode(
-      [Swift.String: GoogleCloudWkt.ListValue].self, forKey: .labels)
+      [Swift.String: GoogleCloudWKT.ListValue].self, forKey: .labels)
 
     var usagePeriod: OneOf_UsagePeriod? = nil
     let usagePeriodCheckAndSet = {
@@ -305,10 +305,10 @@ public struct Filter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.billing.budgets.v1.Filter"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

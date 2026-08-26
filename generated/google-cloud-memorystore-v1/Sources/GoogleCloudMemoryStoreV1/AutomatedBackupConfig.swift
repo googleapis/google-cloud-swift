@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleType
 
 /// The automated backup config for an instance.
-public struct AutomatedBackupConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AutomatedBackupConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. The automated backup mode. If the mode is disabled, the other
@@ -30,7 +30,7 @@ public struct AutomatedBackupConfig: Codable, Equatable, GoogleCloudWkt._AnyPack
   /// Optional. How long to keep automated backups before the backups are
   /// deleted. The value should be between 1 day and 365 days. If not specified,
   /// the default value is 35 days.
-  public var retention: GoogleCloudWkt.Duration? = nil
+  public var retention: GoogleCloudWKT.Duration? = nil
 
   /// The schedule of automated backups.
   public var schedule: OneOf_Schedule? = nil
@@ -61,7 +61,7 @@ public struct AutomatedBackupConfig: Codable, Equatable, GoogleCloudWkt._AnyPack
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.automatedBackupMode = try container.decode(
       AutomatedBackupConfig.AutomatedBackupMode.self, forKey: .automatedBackupMode)
-    self.retention = try container.decodeIfPresent(GoogleCloudWkt.Duration.self, forKey: .retention)
+    self.retention = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .retention)
 
     var schedule: OneOf_Schedule? = nil
     let scheduleCheckAndSet = {
@@ -96,7 +96,7 @@ public struct AutomatedBackupConfig: Codable, Equatable, GoogleCloudWkt._AnyPack
 
   /// This schedule allows the backup to be triggered at a fixed frequency
   /// (currently only daily is supported).
-  public struct FixedFrequencySchedule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FixedFrequencySchedule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The start time of every automated backup in UTC. It must be set
@@ -123,11 +123,11 @@ public struct AutomatedBackupConfig: Codable, Equatable, GoogleCloudWkt._AnyPack
       return
         "type.googleapis.com/google.cloud.memorystore.v1.AutomatedBackupConfig.FixedFrequencySchedule"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -245,10 +245,10 @@ public struct AutomatedBackupConfig: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.memorystore.v1.AutomatedBackupConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

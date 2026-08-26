@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudOrgPolicyV2
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: OrgPolicyClient, projectId: String, policyId: String) async throws {
   let response = try await client.updatePolicy(
@@ -27,7 +27,7 @@ func sample(client: OrgPolicyClient, projectId: String, policyId: String) async 
         $0.policy = Policy().with {
           $0.name = "projects/\(projectId)/policies/\(policyId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

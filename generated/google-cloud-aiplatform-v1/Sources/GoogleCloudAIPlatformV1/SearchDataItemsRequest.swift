@@ -16,13 +16,13 @@
 
 #if DatasetService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request message for
   /// [DatasetService.SearchDataItems][google.cloud.aiplatform.v1.DatasetService.SearchDataItems].
   ///
   /// [google.cloud.aiplatform.v1.DatasetService.SearchDataItems]: <doc:DatasetServiceClient/searchDataItems(request:options:)>
-  public struct SearchDataItemsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SearchDataItemsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The resource name of the Dataset from which to search DataItems.
@@ -75,7 +75,7 @@
     /// [DataItemView][google.cloud.aiplatform.v1.DataItemView] to read.
     ///
     /// [google.cloud.aiplatform.v1.DataItemView]: <doc:DataItemView>
-    public var fieldMask: GoogleCloudWkt.FieldMask? = nil
+    public var fieldMask: GoogleCloudWKT.FieldMask? = nil
 
     /// If set, only up to this many of Annotations will be returned per
     /// DataItemView. The maximum value is 1000. If not set, the maximum value will
@@ -145,7 +145,7 @@
       self.annotationsFilter = try container.decode(Swift.String.self, forKey: .annotationsFilter)
       self.annotationFilters = try container.decode([Swift.String].self, forKey: .annotationFilters)
       self.fieldMask = try container.decodeIfPresent(
-        GoogleCloudWkt.FieldMask.self, forKey: .fieldMask)
+        GoogleCloudWKT.FieldMask.self, forKey: .fieldMask)
       self.annotationsLimit = try container.decode(Swift.Int32.self, forKey: .annotationsLimit)
       self.pageSize = try container.decode(Swift.Int32.self, forKey: .pageSize)
       self.orderBy = try container.decode(Swift.String.self, forKey: .orderBy)
@@ -199,7 +199,7 @@
     }
 
     /// Expression that allows ranking results based on annotation's property.
-    public struct OrderByAnnotation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct OrderByAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. Saved query of the Annotation. Only Annotations belong to this
@@ -231,11 +231,11 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.SearchDataItemsRequest.OrderByAnnotation"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -250,11 +250,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.SearchDataItemsRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

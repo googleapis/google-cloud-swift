@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A snapshot of a table at a particular time. A snapshot can be used as a
 /// checkpoint for data restoration or a data source for a new table.
@@ -24,7 +24,7 @@ import Foundation
 /// feature is not currently available to most Cloud Bigtable customers. This
 /// feature might be changed in backward-incompatible ways and is not recommended
 /// for production use. It is not subject to any SLA or deprecation policy.
-public struct Snapshot: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Snapshot: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The unique name of the snapshot.
@@ -42,12 +42,12 @@ public struct Snapshot: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var dataSizeBytes: Swift.Int64 = Swift.Int64()
 
   /// Output only. The time when the snapshot is created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The time when the snapshot will be deleted. The maximum amount of time a
   /// snapshot can stay active is 365 days. If 'ttl' is not specified,
   /// the default maximum of 365 days will be used.
-  public var deleteTime: GoogleCloudWkt.Timestamp? = nil
+  public var deleteTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The current state of the snapshot.
   public var state: Snapshot.State = Snapshot.State()
@@ -181,10 +181,10 @@ public struct Snapshot: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.bigtable.admin.v2.Snapshot"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

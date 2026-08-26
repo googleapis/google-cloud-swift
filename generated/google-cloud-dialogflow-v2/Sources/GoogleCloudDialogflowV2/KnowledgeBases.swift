@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleCloudGax
 
@@ -276,7 +276,7 @@
       /// See `KnowledgeBasesClient.updateKnowledgeBase`.
       func updateKnowledgeBase(
         knowledgeBase: KnowledgeBase?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudDialogflowV2.KnowledgeBase
 
       /// See `KnowledgeBasesClient.listLocations`.
@@ -493,7 +493,7 @@
 
     public func updateKnowledgeBase(
       knowledgeBase: KnowledgeBase?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDialogflowV2.KnowledgeBase {
       let request = UpdateKnowledgeBaseRequest().with {
         $0.knowledgeBase = knowledgeBase

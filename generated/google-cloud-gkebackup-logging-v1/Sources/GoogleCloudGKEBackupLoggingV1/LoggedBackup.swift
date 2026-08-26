@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Backup as stored in Platform log. It's used to log the details of
 /// a createBackup/updateBackup request, so only fields that can be taken
 /// from API calls are included here.
-public struct LoggedBackup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct LoggedBackup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A set of custom labels supplied by user.
@@ -191,10 +191,10 @@ public struct LoggedBackup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkebackup.logging.v1.LoggedBackup"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

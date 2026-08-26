@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The protocol for the `UpdateAlertPolicy` request.
-public struct UpdateAlertPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateAlertPolicyRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. A list of alerting policy field names. If this field is not
@@ -42,7 +42,7 @@ public struct UpdateAlertPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   ///     the supplied condition includes the `name` field with that
   ///     `[CONDITION_ID]`. If the supplied condition omits the `name` field,
   ///     then a new `[CONDITION_ID]` is created.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Required. The updated alerting policy or the updated values for the
   /// fields listed in `update_mask`.
@@ -69,10 +69,10 @@ public struct UpdateAlertPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.v3.UpdateAlertPolicyRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

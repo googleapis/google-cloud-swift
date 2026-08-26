@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Contains the value and additional information on a field within
 /// a [Tag][google.cloud.datacatalog.v1.Tag].
 ///
 /// [google.cloud.datacatalog.v1.Tag]: <doc:Tag>
-public struct TagField: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TagField: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The display name of this field.
@@ -93,7 +93,7 @@ public struct TagField: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       try kindCheckAndSet(.boolValue(boolValue))
     }
     if let timestampValue = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp?.self, forKey: .timestampValue)
+      GoogleCloudWKT.Timestamp?.self, forKey: .timestampValue)
     {
       try kindCheckAndSet(.timestampValue(timestampValue))
     }
@@ -131,7 +131,7 @@ public struct TagField: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// An enum value.
-  public struct EnumValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct EnumValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The display name of the enum value.
@@ -156,11 +156,11 @@ public struct TagField: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.datacatalog.v1.TagField.EnumValue"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -175,7 +175,7 @@ public struct TagField: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// The value of a tag field with a boolean type.
     case boolValue(Swift.Bool)
     /// The value of a tag field with a timestamp type.
-    indirect case timestampValue(GoogleCloudWkt.Timestamp?)
+    indirect case timestampValue(GoogleCloudWKT.Timestamp?)
     /// The value of a tag field with an enum type.
     ///
     /// This value must be one of the allowed values listed in this enum.
@@ -191,10 +191,10 @@ public struct TagField: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datacatalog.v1.TagField"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

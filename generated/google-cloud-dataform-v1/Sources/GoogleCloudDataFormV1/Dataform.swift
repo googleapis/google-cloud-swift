@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -1268,7 +1268,7 @@ extension Clients {
     /// See `DataformClient.updateTeamFolder`.
     func updateTeamFolder(
       teamFolder: TeamFolder?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDataFormV1.TeamFolder
 
     /// See `DataformClient.deleteTeamFolder`.
@@ -1343,7 +1343,7 @@ extension Clients {
     /// See `DataformClient.updateFolder`.
     func updateFolder(
       folder: Folder?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDataFormV1.Folder
 
     /// See `DataformClient.deleteFolder`.
@@ -1450,7 +1450,7 @@ extension Clients {
     /// See `DataformClient.updateRepository`.
     func updateRepository(
       repository: Repository?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDataFormV1.Repository
 
     /// See `DataformClient.deleteRepository`.
@@ -1666,7 +1666,7 @@ extension Clients {
     /// See `DataformClient.updateReleaseConfig`.
     func updateReleaseConfig(
       releaseConfig: ReleaseConfig?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDataFormV1.ReleaseConfig
 
     /// See `DataformClient.deleteReleaseConfig`.
@@ -1760,7 +1760,7 @@ extension Clients {
     /// See `DataformClient.updateWorkflowConfig`.
     func updateWorkflowConfig(
       workflowConfig: WorkflowConfig?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDataFormV1.WorkflowConfig
 
     /// See `DataformClient.deleteWorkflowConfig`.
@@ -1839,7 +1839,7 @@ extension Clients {
     /// See `DataformClient.updateConfig`.
     func updateConfig(
       config: Config?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDataFormV1.Config
 
     /// See `DataformClient.getIamPolicy`.
@@ -2465,7 +2465,7 @@ extension Clients.DataformProtocol {
 
   public func updateTeamFolder(
     teamFolder: TeamFolder?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudDataFormV1.TeamFolder {
     let request = UpdateTeamFolderRequest().with {
       $0.teamFolder = teamFolder
@@ -2659,7 +2659,7 @@ extension Clients.DataformProtocol {
 
   public func updateFolder(
     folder: Folder?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudDataFormV1.Folder {
     let request = UpdateFolderRequest().with {
       $0.folder = folder
@@ -2934,7 +2934,7 @@ extension Clients.DataformProtocol {
 
   public func updateRepository(
     repository: Repository?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudDataFormV1.Repository {
     let request = UpdateRepositoryRequest().with {
       $0.repository = repository
@@ -3541,7 +3541,7 @@ extension Clients.DataformProtocol {
 
   public func updateReleaseConfig(
     releaseConfig: ReleaseConfig?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudDataFormV1.ReleaseConfig {
     let request = UpdateReleaseConfigRequest().with {
       $0.releaseConfig = releaseConfig
@@ -3776,7 +3776,7 @@ extension Clients.DataformProtocol {
 
   public func updateWorkflowConfig(
     workflowConfig: WorkflowConfig?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudDataFormV1.WorkflowConfig {
     let request = UpdateWorkflowConfigRequest().with {
       $0.workflowConfig = workflowConfig
@@ -3978,7 +3978,7 @@ extension Clients.DataformProtocol {
 
   public func updateConfig(
     config: Config?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudDataFormV1.Config {
     let request = UpdateConfigRequest().with {
       $0.config = config

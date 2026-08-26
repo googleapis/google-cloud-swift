@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The rule to exclude findings based on a hotword. For record inspection of
 /// tables, column names are considered hotwords. An example of this is to
 /// exclude a finding if it belongs to a BigQuery column that matches a specific
 /// pattern.
-public struct ExcludeByHotword: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ExcludeByHotword: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Regular expression pattern defining what qualifies as a hotword.
@@ -52,10 +52,10 @@ public struct ExcludeByHotword: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.ExcludeByHotword"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

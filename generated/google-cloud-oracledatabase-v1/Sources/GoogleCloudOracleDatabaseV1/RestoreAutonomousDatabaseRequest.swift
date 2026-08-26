@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The request for `AutonomousDatabase.Restore`.
-public struct RestoreAutonomousDatabaseRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RestoreAutonomousDatabaseRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The name of the Autonomous Database in the following format:
@@ -26,7 +26,7 @@ public struct RestoreAutonomousDatabaseRequest: Codable, Equatable, GoogleCloudW
   public var name: Swift.String = Swift.String()
 
   /// Required. The time and date to restore the database to.
-  public var restoreTime: GoogleCloudWkt.Timestamp? = nil
+  public var restoreTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `RestoreAutonomousDatabaseRequest`.
   public init() {}
@@ -47,10 +47,10 @@ public struct RestoreAutonomousDatabaseRequest: Codable, Equatable, GoogleCloudW
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.oracledatabase.v1.RestoreAutonomousDatabaseRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

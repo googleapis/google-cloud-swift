@@ -16,13 +16,13 @@
 
 #if NotebookService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A runtime is a virtual machine allocated to a particular user for a
   /// particular Notebook file on temporary basis with lifetime. Default runtimes
   /// have a lifetime of 18 hours, while custom runtimes last for 6 months from
   /// their creation or last upgrade.
-  public struct NotebookRuntime: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct NotebookRuntime: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The resource name of the NotebookRuntime.
@@ -39,10 +39,10 @@
     public var proxyUri: Swift.String = Swift.String()
 
     /// Output only. Timestamp when this NotebookRuntime was created.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Timestamp when this NotebookRuntime was most recently updated.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. The health state of the NotebookRuntime.
     public var healthState: NotebookRuntime.HealthState = NotebookRuntime.HealthState()
@@ -97,7 +97,7 @@
     /// expiration, system predifined runtime will be deleted.
     /// 2. User created NotebookRuntime: 6 months after last upgrade. After
     /// expiration, user created runtime will be stopped and allowed for upgrade.
-    public var expirationTime: GoogleCloudWkt.Timestamp? = nil
+    public var expirationTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. The VM os image version of NotebookRuntime.
     public var version: Swift.String = Swift.String()
@@ -409,11 +409,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.NotebookRuntime"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

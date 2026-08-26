@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// EdgeSlm represents an SLM instance which manages the lifecycle of edge
 /// components installed on Workload clusters managed by an Orchestration
 /// Cluster.
-public struct EdgeSlm: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct EdgeSlm: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Name of the EdgeSlm resource.
@@ -32,10 +32,10 @@ public struct EdgeSlm: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var orchestrationCluster: Swift.String = Swift.String()
 
   /// Output only. [Output only] Create time stamp.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. [Output only] Update time stamp.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Labels as key value pairs. The key and value should contain
   /// characters which are UTF-8 compliant and less than 50 characters.
@@ -296,10 +296,10 @@ public struct EdgeSlm: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.telcoautomation.v1.EdgeSlm"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

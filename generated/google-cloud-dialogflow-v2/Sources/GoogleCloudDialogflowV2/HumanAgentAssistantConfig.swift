@@ -16,10 +16,10 @@
 
 #if ConversationProfiles || Conversations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Defines the Human Agent Assist to connect to a conversation.
-  public struct HumanAgentAssistantConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct HumanAgentAssistantConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Pub/Sub topic on which to publish new agent assistant events.
@@ -54,7 +54,7 @@
     }
 
     /// Settings of suggestion trigger.
-    public struct SuggestionTriggerSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SuggestionTriggerSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Do not trigger if last utterance is small talk.
@@ -84,16 +84,16 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionTriggerSettings"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Config for suggestion features.
-    public struct SuggestionFeatureConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SuggestionFeatureConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The suggestion feature.
@@ -189,16 +189,16 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionFeatureConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Detail human agent assistant config.
-    public struct SuggestionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SuggestionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Configuration of different suggestion features. One feature can have only
@@ -267,16 +267,16 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Config for suggestion query.
-    public struct SuggestionQueryConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SuggestionQueryConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Maximum number of results to return. Currently, if unset, defaults to 10.
@@ -414,7 +414,7 @@
       /// Knowledge base source settings.
       ///
       /// Supported features: ARTICLE_SUGGESTION, FAQ.
-      public struct KnowledgeBaseQuerySource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct KnowledgeBaseQuerySource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. Knowledge bases to query. Format:
@@ -443,18 +443,18 @@
           return
             "type.googleapis.com/google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionQueryConfig.KnowledgeBaseQuerySource"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Document source settings.
       ///
       /// Supported features: SMART_REPLY, SMART_COMPOSE.
-      public struct DocumentQuerySource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct DocumentQuerySource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. Knowledge documents to query from. Format:
@@ -483,18 +483,18 @@
           return
             "type.googleapis.com/google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionQueryConfig.DocumentQuerySource"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Dialogflow source setting.
       ///
       /// Supported feature: DIALOGFLOW_ASSIST.
-      public struct DialogflowQuerySource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct DialogflowQuerySource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. The name of a Dialogflow virtual agent used for end user side
@@ -526,7 +526,7 @@
 
         /// The configuration used for human agent side Dialogflow assist
         /// suggestion.
-        public struct HumanAgentSideConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct HumanAgentSideConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Optional. The name of a dialogflow virtual agent used for intent
@@ -554,11 +554,11 @@
             return
               "type.googleapis.com/google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionQueryConfig.DialogflowQuerySource.HumanAgentSideConfig"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
@@ -566,17 +566,17 @@
           return
             "type.googleapis.com/google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionQueryConfig.DialogflowQuerySource"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Settings that determine how to filter recent conversation context when
       /// generating suggestions.
-      public struct ContextFilterSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct ContextFilterSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// If set to true, the last message from virtual agent (hand off message)
@@ -609,11 +609,11 @@
           return
             "type.googleapis.com/google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionQueryConfig.ContextFilterSettings"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -622,7 +622,7 @@
       ///
       /// Supported features: CONVERSATION_SUMMARIZATION,
       /// CONVERSATION_SUMMARIZATION_VOICE.
-      public struct Sections: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Sections: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// The selected sections chosen to return when requesting a summary of a
@@ -796,11 +796,11 @@
           return
             "type.googleapis.com/google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionQueryConfig.Sections"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -823,11 +823,11 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionQueryConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -835,7 +835,7 @@
     ///
     /// Supported feature: ARTICLE_SUGGESTION, SMART_COMPOSE, SMART_REPLY,
     /// CONVERSATION_SUMMARIZATION
-    public struct ConversationModelConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ConversationModelConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Conversation model resource name. Format: `projects/<Project
@@ -875,16 +875,16 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.HumanAgentAssistantConfig.ConversationModelConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Config to process conversation.
-    public struct ConversationProcessConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ConversationProcessConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Number of recent non-small-talk sentences to use as context for article
@@ -911,16 +911,16 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.HumanAgentAssistantConfig.ConversationProcessConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Configuration for analyses to run on each conversation message.
-    public struct MessageAnalysisConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct MessageAnalysisConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Enable entity extraction in conversation messages on [agent assist
@@ -1013,22 +1013,22 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.HumanAgentAssistantConfig.MessageAnalysisConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.HumanAgentAssistantConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

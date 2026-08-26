@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [UpdateProcess][google.cloud.datacatalog.lineage.v1.Lineage.UpdateProcess].
 ///
 /// [google.cloud.datacatalog.lineage.v1.Lineage.UpdateProcess]: <doc:LineageClient/updateProcess(request:options:)>
-public struct UpdateProcessRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateProcessRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The lineage process to update.
@@ -31,7 +31,7 @@ public struct UpdateProcessRequest: Codable, Equatable, GoogleCloudWkt._AnyPacka
 
   /// Optional. The list of fields to update. Currently not used. The whole
   /// message is updated.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Optional. If set to true and the process is not found, the request inserts
   /// it.
@@ -61,10 +61,10 @@ public struct UpdateProcessRequest: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datacatalog.lineage.v1.UpdateProcessRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

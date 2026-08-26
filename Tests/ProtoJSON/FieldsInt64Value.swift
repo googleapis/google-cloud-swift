@@ -14,7 +14,7 @@
 
 import Foundation
 import Testing
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 @Suite struct FieldsInt64Value {
   typealias T = MessageWithInt64Value

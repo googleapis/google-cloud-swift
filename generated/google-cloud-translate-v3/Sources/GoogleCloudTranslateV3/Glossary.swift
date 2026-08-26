@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents a glossary built from user-provided data.
-public struct Glossary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Glossary: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The resource name of the glossary. Glossary names have the form
@@ -33,10 +33,10 @@ public struct Glossary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var entryCount: Swift.Int32 = Swift.Int32()
 
   /// Output only. When CreateGlossary was called.
-  public var submitTime: GoogleCloudWkt.Timestamp? = nil
+  public var submitTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. When the glossary creation was finished.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. The display name of the glossary.
   public var displayName: Swift.String = Swift.String()
@@ -77,8 +77,8 @@ public struct Glossary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.inputConfig = try container.decodeIfPresent(GlossaryInputConfig.self, forKey: .inputConfig)
     self.entryCount = try container.decode(Swift.Int32.self, forKey: .entryCount)
     self.submitTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .submitTime)
-    self.endTime = try container.decodeIfPresent(GoogleCloudWkt.Timestamp.self, forKey: .endTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .submitTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
     self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
 
     var languages: OneOf_Languages? = nil
@@ -124,7 +124,7 @@ public struct Glossary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Used with unidirectional glossaries.
-  public struct LanguageCodePair: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct LanguageCodePair: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The ISO-639 language code of the input text, for example,
@@ -154,16 +154,16 @@ public struct Glossary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.translation.v3.Glossary.LanguageCodePair"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Used with equivalent term set glossaries.
-  public struct LanguageCodesSet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct LanguageCodesSet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The ISO-639 language code(s) for terms defined in the glossary.
@@ -190,11 +190,11 @@ public struct Glossary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.translation.v3.Glossary.LanguageCodesSet"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -209,10 +209,10 @@ public struct Glossary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.translation.v3.Glossary"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

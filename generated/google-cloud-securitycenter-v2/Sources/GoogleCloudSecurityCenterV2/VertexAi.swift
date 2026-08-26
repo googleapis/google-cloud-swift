@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Vertex AI-related information associated with the finding.
-public struct VertexAi: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct VertexAi: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Datasets associated with the finding.
@@ -44,7 +44,7 @@ public struct VertexAi: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Vertex AI dataset associated with the finding.
-  public struct Dataset: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Dataset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Resource name of the dataset, e.g.
@@ -77,16 +77,16 @@ public struct VertexAi: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.securitycenter.v2.VertexAi.Dataset"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Vertex AI training pipeline associated with the finding.
-  public struct Pipeline: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Pipeline: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Resource name of the pipeline, e.g.
@@ -115,21 +115,21 @@ public struct VertexAi: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.securitycenter.v2.VertexAi.Pipeline"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.VertexAi"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

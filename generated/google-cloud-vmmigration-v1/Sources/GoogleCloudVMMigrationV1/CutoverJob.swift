@@ -15,21 +15,21 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// CutoverJob message describes a cutover of a migrating VM. The CutoverJob is
 /// the operation of shutting down the VM, creating a snapshot and
 /// cloning the VM using the replicated snapshot.
-public struct CutoverJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CutoverJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The time the cutover job was created (as an API call, not when
   /// it was actually created in the target).
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time the cutover job had finished.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The name of the cutover job.
   public var name: Swift.String = Swift.String()
@@ -38,7 +38,7 @@ public struct CutoverJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var state: CutoverJob.State = CutoverJob.State()
 
   /// Output only. The time the state was last updated.
-  public var stateTime: GoogleCloudWkt.Timestamp? = nil
+  public var stateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The current progress in percentage of the cutover job.
   public var progressPercent: Swift.Int32 = Swift.Int32()
@@ -90,12 +90,12 @@ public struct CutoverJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
-    self.endTime = try container.decodeIfPresent(GoogleCloudWkt.Timestamp.self, forKey: .endTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
+    self.endTime = try container.decodeIfPresent(GoogleCloudWKT.Timestamp.self, forKey: .endTime)
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.state = try container.decode(CutoverJob.State.self, forKey: .state)
     self.stateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .stateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .stateTime)
     self.progressPercent = try container.decode(Swift.Int32.self, forKey: .progressPercent)
     self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
     self.stateMessage = try container.decode(Swift.String.self, forKey: .stateMessage)
@@ -299,10 +299,10 @@ public struct CutoverJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vmmigration.v1.CutoverJob"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

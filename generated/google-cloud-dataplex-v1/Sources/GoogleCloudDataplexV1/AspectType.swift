@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// AspectType is a template for creating Aspects, and represents the
 /// JSON-schema for a given Entry, for example, BigQuery Table Schema.
-public struct AspectType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AspectType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The relative resource name of the AspectType, of the form:
@@ -32,10 +32,10 @@ public struct AspectType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var uid: Swift.String = Swift.String()
 
   /// Output only. The time when the AspectType was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time when the AspectType was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Description of the AspectType.
   public var description: Swift.String = Swift.String()
@@ -80,7 +80,7 @@ public struct AspectType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Authorization for an AspectType.
-  public struct Authorization: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Authorization: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Immutable. The IAM permission grantable on the EntryGroup to allow access
@@ -107,16 +107,16 @@ public struct AspectType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.AspectType.Authorization"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// MetadataTemplate definition for an AspectType.
-  public struct MetadataTemplate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MetadataTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. Index is used to encode Template messages. The value of index
@@ -162,14 +162,14 @@ public struct AspectType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// field, you only need to set name and type in the nested
     /// MetadataTemplate. The recommended value for the name field is item, as
     /// this isn't used in the actual payload.
-    public var mapItems: GoogleCloudWkt.Recursive<AspectType.MetadataTemplate>? = nil
+    public var mapItems: GoogleCloudWKT.Recursive<AspectType.MetadataTemplate>? = nil
 
     /// Optional. If the type is array, set array_items. array_items can refer
     /// to a primitive field or a complex (record only) field. To specify a
     /// primitive field, you only need to set name and type in the nested
     /// MetadataTemplate. The recommended value for the name field is item, as
     /// this isn't used in the actual payload.
-    public var arrayItems: GoogleCloudWkt.Recursive<AspectType.MetadataTemplate>? = nil
+    public var arrayItems: GoogleCloudWKT.Recursive<AspectType.MetadataTemplate>? = nil
 
     /// Optional. You can use type id if this definition of the field needs to be
     /// reused later. The type id must be unique across the entire template. You
@@ -205,7 +205,7 @@ public struct AspectType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Definition of Enumvalue, to be used for enum fields.
-    public struct EnumValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct EnumValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. Index for the enum value. It can't be modified.
@@ -238,16 +238,16 @@ public struct AspectType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dataplex.v1.AspectType.MetadataTemplate.EnumValue"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Definition of the constraints of a field.
-    public struct Constraints: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Constraints: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. Marks this field as optional or required.
@@ -287,16 +287,16 @@ public struct AspectType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.dataplex.v1.AspectType.MetadataTemplate.Constraints"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Definition of the annotations of a field.
-    public struct Annotations: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Annotations: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. Marks a field as deprecated. You can include a deprecation
@@ -345,22 +345,22 @@ public struct AspectType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.dataplex.v1.AspectType.MetadataTemplate.Annotations"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataplex.v1.AspectType.MetadataTemplate"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -465,10 +465,10 @@ public struct AspectType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataplex.v1.AspectType"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

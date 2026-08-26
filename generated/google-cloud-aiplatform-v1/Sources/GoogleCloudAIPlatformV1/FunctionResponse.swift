@@ -16,13 +16,13 @@
 
 #if DataFoundryService || EvaluationService || GenAiCacheService || GenAiTuningService || LlmUtilityService || PredictionService || SessionService || VertexRagService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The result output from a [FunctionCall] that contains a string representing
   /// the [FunctionDeclaration.name] and a structured JSON object containing any
   /// output from the function is used as context to the model. This should contain
   /// the result of a [FunctionCall] made based on model prediction.
-  public struct FunctionResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FunctionResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The name of the function to call.
@@ -33,7 +33,7 @@
     /// Use "output" key to specify function output and "error" key to specify
     /// error details (if any). If "output" and "error" keys are not specified,
     /// then whole "response" is treated as function output.
-    public var response: GoogleCloudWkt.Struct? = nil
+    public var response: GoogleCloudWKT.Struct? = nil
 
     /// Optional. Ordered `Parts` that constitute a function response. Parts may
     /// have different IANA MIME types.
@@ -58,11 +58,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.FunctionResponse"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

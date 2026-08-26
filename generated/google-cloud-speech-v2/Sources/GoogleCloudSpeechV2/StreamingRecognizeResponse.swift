@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// `StreamingRecognizeResponse` is the only message returned to the client by
 /// `StreamingRecognize`. A series of zero or more `StreamingRecognizeResponse`
@@ -65,7 +65,7 @@ import Foundation
 ///     `error`,
 ///     `speech_event_type`, or
 ///     one or more (repeated) `results`.
-public struct StreamingRecognizeResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct StreamingRecognizeResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// This repeated list contains zero or more results that
@@ -84,7 +84,7 @@ public struct StreamingRecognizeResponse: Codable, Equatable, GoogleCloudWkt._An
     StreamingRecognizeResponse.SpeechEventType()
 
   /// Time offset between the beginning of the audio and event emission.
-  public var speechEventOffset: GoogleCloudWkt.Duration? = nil
+  public var speechEventOffset: GoogleCloudWKT.Duration? = nil
 
   /// Metadata about the recognition.
   public var metadata: RecognitionResponseMetadata? = nil
@@ -233,10 +233,10 @@ public struct StreamingRecognizeResponse: Codable, Equatable, GoogleCloudWkt._An
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.speech.v2.StreamingRecognizeResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -16,7 +16,7 @@
 
 #if AnswerRecords || Contexts || Intents || Participants || Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Dialogflow contexts are similar to natural language context. If a person says
   /// to you "they are orange", you need context in order to understand what "they"
@@ -33,7 +33,7 @@
   ///
   /// For more information about context, see the
   /// [Contexts guide](https://cloud.google.com/dialogflow/docs/contexts-overview).
-  public struct Context: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Context: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The unique identifier of the context. Format:
@@ -75,7 +75,7 @@
     /// * MapValue value: If parameter's entity type is a composite entity then use
     /// map from composite entity property names to property values, otherwise,
     /// use parameter value.
-    public var parameters: GoogleCloudWkt.Struct? = nil
+    public var parameters: GoogleCloudWKT.Struct? = nil
 
     /// Initialize a new instance of `Context`.
     public init() {}
@@ -96,11 +96,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.Context"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

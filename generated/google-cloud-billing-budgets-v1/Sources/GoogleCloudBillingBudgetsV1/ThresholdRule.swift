@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// ThresholdRule contains the definition of a threshold. Threshold rules define
 /// the triggering events used to generate a budget notification email. When a
@@ -39,7 +39,7 @@ import Foundation
 /// For more information, see
 /// [set budget threshold rules and
 /// actions](https://cloud.google.com/billing/docs/how-to/budgets#budget-actions).
-public struct ThresholdRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ThresholdRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Send an alert when this threshold is exceeded.
@@ -183,10 +183,10 @@ public struct ThresholdRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.billing.budgets.v1.ThresholdRule"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

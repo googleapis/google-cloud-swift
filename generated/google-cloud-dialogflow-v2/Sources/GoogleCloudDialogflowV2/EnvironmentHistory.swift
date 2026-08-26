@@ -17,13 +17,13 @@
 #if Environments
   import Foundation
   @_spi(GoogleCloudInternal) import GoogleCloudGax
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The response message for
   /// [Environments.GetEnvironmentHistory][google.cloud.dialogflow.v2.Environments.GetEnvironmentHistory].
   ///
   /// [google.cloud.dialogflow.v2.Environments.GetEnvironmentHistory]: <doc:EnvironmentsClient/getEnvironmentHistory(request:options:)>
-  public struct EnvironmentHistory: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct EnvironmentHistory: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable
   {
@@ -62,7 +62,7 @@
     }
 
     /// Represents an environment history entry.
-    public struct Entry: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Entry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The agent version loaded into this environment history entry.
@@ -72,7 +72,7 @@
       public var description: Swift.String = Swift.String()
 
       /// The creation time of this environment history entry.
-      public var createTime: GoogleCloudWkt.Timestamp? = nil
+      public var createTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Initialize a new instance of `Entry`.
       public init() {}
@@ -93,22 +93,22 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.v2.EnvironmentHistory.Entry"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.EnvironmentHistory"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
 
     public func _getPaginatedItems() -> [EnvironmentHistory.Entry] {

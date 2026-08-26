@@ -16,10 +16,10 @@
 
 #if IndexEndpointService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A deployment of an Index. IndexEndpoints contain one or more DeployedIndexes.
-  public struct DeployedIndex: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DeployedIndex: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The user specified ID of the DeployedIndex.
@@ -37,7 +37,7 @@
     public var displayName: Swift.String = Swift.String()
 
     /// Output only. Timestamp when the DeployedIndex was created.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Provides paths for users to send requests directly to the
     /// deployed index services running on Cloud via private services access. This
@@ -64,7 +64,7 @@
     ///
     /// [google.cloud.aiplatform.v1.GenericOperationMetadata.update_time]: <doc:GenericOperationMetadata/updateTime>
     /// [google.cloud.aiplatform.v1.Index.update_time]: <doc:Index/updateTime>
-    public var indexSyncTime: GoogleCloudWkt.Timestamp? = nil
+    public var indexSyncTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Optional. A description of resources that the DeployedIndex uses, which to
     /// large degree are decided by Vertex AI, and optionally allows only a modest
@@ -276,11 +276,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.DeployedIndex"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

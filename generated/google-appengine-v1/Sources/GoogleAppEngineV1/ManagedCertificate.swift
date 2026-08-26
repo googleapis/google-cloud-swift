@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A certificate managed by App Engine.
-public struct ManagedCertificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ManagedCertificate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Time at which the certificate was last renewed. The renewal process is
@@ -26,7 +26,7 @@ public struct ManagedCertificate: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   /// certificate expires. Renewal errors can be tracked via `ManagementStatus`.
   ///
   /// @OutputOnly
-  public var lastRenewalTime: GoogleCloudWkt.Timestamp? = nil
+  public var lastRenewalTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Status of certificate management. Refers to the most recent certificate
   /// acquisition or renewal attempt.
@@ -53,10 +53,10 @@ public struct ManagedCertificate: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.appengine.v1.ManagedCertificate"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

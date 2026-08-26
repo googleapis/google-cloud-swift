@@ -16,10 +16,10 @@
 
 #if ModelService || PredictionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Attribution that explains a particular prediction output.
-  public struct Attribution: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Attribution: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Model predicted output if the input instance is constructed
@@ -91,10 +91,10 @@
     /// [google.cloud.aiplatform.v1.ExplanationMetadata.feature_attributions_schema_uri]: <doc:ExplanationMetadata/featureAttributionsSchemaUri>
     /// [google.cloud.aiplatform.v1.ExplanationMetadata.inputs]: <doc:ExplanationMetadata/inputs>
     /// [google.cloud.aiplatform.v1.ExplanationSpec]: <doc:ExplanationSpec>
-    /// [google.protobuf.Value.list_value]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWkt.Value/OneOf_Kind/listValue(_:)
-    /// [google.protobuf.Value.number_value]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWkt.Value/OneOf_Kind/numberValue(_:)
-    /// [google.protobuf.Value.struct_value]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWkt.Value/OneOf_Kind/structValue(_:)
-    public var featureAttributions: GoogleCloudWkt.Value? = nil
+    /// [google.protobuf.Value.list_value]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWKT.Value/OneOf_Kind/listValue(_:)
+    /// [google.protobuf.Value.number_value]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWKT.Value/OneOf_Kind/numberValue(_:)
+    /// [google.protobuf.Value.struct_value]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWKT.Value/OneOf_Kind/structValue(_:)
+    public var featureAttributions: GoogleCloudWKT.Value? = nil
 
     /// Output only. The index that locates the explained prediction output.
     ///
@@ -175,11 +175,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.Attribution"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

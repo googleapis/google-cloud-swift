@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// TaskTemplate describes the data a task should have when created
 /// from a template.
-public struct TaskTemplate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TaskTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Holds the single container that defines the unit of execution for this
@@ -33,7 +33,7 @@ public struct TaskTemplate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// system will actively try to mark it failed and kill associated containers.
   /// This applies per attempt of a task, meaning each retry can run for the full
   /// timeout. Defaults to 600 seconds.
-  public var timeout: GoogleCloudWkt.Duration? = nil
+  public var timeout: GoogleCloudWKT.Duration? = nil
 
   /// Optional. Email address of the IAM service account associated with the Task
   /// of a Job. The service account represents the identity of the running task,
@@ -95,7 +95,7 @@ public struct TaskTemplate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.containers = try container.decode([Container].self, forKey: .containers)
     self.volumes = try container.decode([Volume].self, forKey: .volumes)
-    self.timeout = try container.decodeIfPresent(GoogleCloudWkt.Duration.self, forKey: .timeout)
+    self.timeout = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .timeout)
     self.serviceAccount = try container.decode(Swift.String.self, forKey: .serviceAccount)
     self.executionEnvironment = try container.decode(
       ExecutionEnvironment.self, forKey: .executionEnvironment)
@@ -150,10 +150,10 @@ public struct TaskTemplate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.run.v2.TaskTemplate"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

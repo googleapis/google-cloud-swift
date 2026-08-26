@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// A report of the results of a sequence of unary responses
-public struct SequenceReport: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SequenceReport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   public var name: Swift.String = Swift.String()
@@ -44,22 +44,22 @@ public struct SequenceReport: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Contains metrics on individual RPC Attempts in a sequence.
-  public struct Attempt: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Attempt: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The attempt number - starting at 0.
     public var attemptNumber: Swift.Int32 = Swift.Int32()
 
     /// The deadline dictated by the attempt to the server.
-    public var attemptDeadline: GoogleCloudWkt.Timestamp? = nil
+    public var attemptDeadline: GoogleCloudWKT.Timestamp? = nil
 
     /// The time that the server responded to the RPC attempt. Used for
     /// calculating attempt_delay.
-    public var responseTime: GoogleCloudWkt.Timestamp? = nil
+    public var responseTime: GoogleCloudWKT.Timestamp? = nil
 
     /// The server perceived delay between sending the last response and
     /// receiving this attempt. Used for validating attempt delay backoff.
-    public var attemptDelay: GoogleCloudWkt.Duration? = nil
+    public var attemptDelay: GoogleCloudWKT.Duration? = nil
 
     /// The status returned to the attempt.
     public var status: GoogleRpc.Status? = nil
@@ -83,21 +83,21 @@ public struct SequenceReport: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.showcase.v1beta1.SequenceReport.Attempt"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.showcase.v1beta1.SequenceReport"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

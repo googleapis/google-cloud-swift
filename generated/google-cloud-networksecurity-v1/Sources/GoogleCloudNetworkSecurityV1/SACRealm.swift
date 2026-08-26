@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents a Secure Access Connect (SAC) realm resource.
 ///
 /// A Secure Access Connect realm establishes a connection between your Google
 /// Cloud project and an SSE service.
-public struct SACRealm: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SACRealm: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. Resource name, in the form
@@ -29,10 +29,10 @@ public struct SACRealm: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Output only. Timestamp when the realm was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Timestamp when the realm was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Optional list of labels applied to the resource.
   public var labels: [Swift.String: Swift.String] = [:]
@@ -63,7 +63,7 @@ public struct SACRealm: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Key to be shared with SSE service provider to establish global handshake.
-  public struct PairingKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PairingKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Key value.
@@ -71,7 +71,7 @@ public struct SACRealm: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Output only. Timestamp in UTC of when this resource is considered
     /// expired. It expires 7 days after creation.
-    public var expireTime: GoogleCloudWkt.Timestamp? = nil
+    public var expireTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `PairingKey`.
     public init() {}
@@ -92,11 +92,11 @@ public struct SACRealm: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networksecurity.v1.SACRealm.PairingKey"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -323,10 +323,10 @@ public struct SACRealm: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networksecurity.v1.SACRealm"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for updating a Data Fusion instance.
 /// Data Fusion allows updating the labels, options, and stack driver settings.
 /// This is also used for CDF version upgrade.
-public struct UpdateInstanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateInstanceRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The instance resource that replaces the resource on the server. Currently,
@@ -34,7 +34,7 @@ public struct UpdateInstanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
   /// A field will be overwritten if it is in the mask.
   /// If the user does not provide a mask, all the supported fields (labels,
   /// options, and version currently) will be overwritten.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `UpdateInstanceRequest`.
   public init() {}
@@ -55,10 +55,10 @@ public struct UpdateInstanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datafusion.v1.UpdateInstanceRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

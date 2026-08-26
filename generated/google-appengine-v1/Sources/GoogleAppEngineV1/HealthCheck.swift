@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Health checking configuration for VM instances. Unhealthy instances
 /// are killed and replaced with new instances. Only applicable for
 /// instances in App Engine flexible environment.
-public struct HealthCheck: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct HealthCheck: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Whether to explicitly disable health checks for this instance.
@@ -43,10 +43,10 @@ public struct HealthCheck: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var restartThreshold: Swift.UInt32 = Swift.UInt32()
 
   /// Interval between health checks.
-  public var checkInterval: GoogleCloudWkt.Duration? = nil
+  public var checkInterval: GoogleCloudWKT.Duration? = nil
 
   /// Time before the health check is considered failed.
-  public var timeout: GoogleCloudWkt.Duration? = nil
+  public var timeout: GoogleCloudWKT.Duration? = nil
 
   /// Initialize a new instance of `HealthCheck`.
   public init() {}
@@ -67,10 +67,10 @@ public struct HealthCheck: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.appengine.v1.HealthCheck"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

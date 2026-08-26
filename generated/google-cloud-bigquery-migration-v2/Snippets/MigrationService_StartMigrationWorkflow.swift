@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleBigQueryMigrationV2
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: MigrationServiceClient) async throws {
   try await client.startMigrationWorkflow(

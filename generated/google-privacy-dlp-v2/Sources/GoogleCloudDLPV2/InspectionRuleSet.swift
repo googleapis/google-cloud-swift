@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Rule set for modifying a set of infoTypes to alter behavior under certain
 /// circumstances, depending on the specific details of the rules within the set.
-public struct InspectionRuleSet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct InspectionRuleSet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// List of infoTypes this rule set is applied to.
@@ -47,10 +47,10 @@ public struct InspectionRuleSet: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.InspectionRuleSet"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

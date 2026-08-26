@@ -16,12 +16,12 @@
 
 #if TestCases
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Transition coverage represents the percentage of all possible page
   /// transitions (page-level transition routes and event handlers, excluding
   /// transition route groups) present within any of a parent's test cases.
-  public struct TransitionCoverage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TransitionCoverage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The list of Transitions present in the agent.
@@ -47,7 +47,7 @@
     }
 
     /// The source or target of a transition.
-    public struct TransitionNode: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct TransitionNode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// A TransitionNode can be either a page or a flow.
@@ -126,16 +126,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.TransitionCoverage.TransitionNode"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// A transition in a page.
-    public struct Transition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Transition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The start node of a transition.
@@ -239,22 +239,22 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.TransitionCoverage.Transition"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.TransitionCoverage"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

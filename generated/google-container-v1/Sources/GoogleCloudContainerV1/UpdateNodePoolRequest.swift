@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// UpdateNodePoolRequests update a node pool's image and/or version.
-public struct UpdateNodePoolRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateNodePoolRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Deprecated. The Google Developers Console [project ID or project
@@ -191,7 +191,7 @@ public struct UpdateNodePoolRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
 
   /// The maximum duration for the nodes to exist.
   /// If unspecified, the nodes can exist indefinitely.
-  public var maxRunDuration: GoogleCloudWkt.Duration? = nil
+  public var maxRunDuration: GoogleCloudWKT.Duration? = nil
 
   /// Flex Start flag for enabling Flex Start VM.
   public var flexStart: Swift.Bool? = nil
@@ -207,7 +207,7 @@ public struct UpdateNodePoolRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
   /// Consolidation delay defines duration after which the Cluster Autoscaler can
   /// scale down underutilized nodes. If not set, nodes are scaled down by
   /// default behavior, i.e. according to the chosen autoscaling profile.
-  public var consolidationDelay: GoogleCloudWkt.Duration? = nil
+  public var consolidationDelay: GoogleCloudWKT.Duration? = nil
 
   /// The taint configuration for the node pool.
   public var taintConfig: TaintConfig? = nil
@@ -231,10 +231,10 @@ public struct UpdateNodePoolRequest: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.UpdateNodePoolRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

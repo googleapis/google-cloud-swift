@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A request to start manual transfer runs.
-public struct StartManualTransferRunsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct StartManualTransferRunsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Transfer configuration name in the form:
@@ -72,7 +72,7 @@ public struct StartManualTransferRunsRequest: Codable, Equatable, GoogleCloudWkt
       try timeCheckAndSet(.requestedTimeRange(requestedTimeRange))
     }
     if let requestedRunTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp?.self, forKey: .requestedRunTime)
+      GoogleCloudWKT.Timestamp?.self, forKey: .requestedRunTime)
     {
       try timeCheckAndSet(.requestedRunTime(requestedRunTime))
     }
@@ -95,20 +95,20 @@ public struct StartManualTransferRunsRequest: Codable, Equatable, GoogleCloudWkt
 
   /// A specification for a time range, this will request transfer runs with
   /// run_time between start_time (inclusive) and end_time (exclusive).
-  public struct TimeRange: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TimeRange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Start time of the range of transfer runs. For example,
     /// `"2017-05-25T00:00:00+00:00"`. The start_time must be strictly less than
     /// the end_time. Creates transfer runs where run_time is in the range
     /// between start_time (inclusive) and end_time (exclusive).
-    public var startTime: GoogleCloudWkt.Timestamp? = nil
+    public var startTime: GoogleCloudWKT.Timestamp? = nil
 
     /// End time of the range of transfer runs. For example,
     /// `"2017-05-30T00:00:00+00:00"`. The end_time must not be in the future.
     /// Creates transfer runs where run_time is in the range between start_time
     /// (inclusive) and end_time (exclusive).
-    public var endTime: GoogleCloudWkt.Timestamp? = nil
+    public var endTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `TimeRange`.
     public init() {}
@@ -130,11 +130,11 @@ public struct StartManualTransferRunsRequest: Codable, Equatable, GoogleCloudWkt
       return
         "type.googleapis.com/google.cloud.bigquery.datatransfer.v1.StartManualTransferRunsRequest.TimeRange"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -150,17 +150,17 @@ public struct StartManualTransferRunsRequest: Codable, Equatable, GoogleCloudWkt
     /// that are scheduled to be transferred by the scheduled transfer run.
     /// requested_run_time must be a past time and cannot include future time
     /// values.
-    indirect case requestedRunTime(GoogleCloudWkt.Timestamp?)
+    indirect case requestedRunTime(GoogleCloudWKT.Timestamp?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return
       "type.googleapis.com/google.cloud.bigquery.datatransfer.v1.StartManualTransferRunsRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A policy that specifies the conditions for resource expiration (i.e.,
 /// automatic resource deletion).
-public struct ExpirationPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ExpirationPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. Specifies the "time-to-live" duration for an associated resource.
@@ -28,7 +28,7 @@ public struct ExpirationPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// The minimum and maximum allowed values for `ttl` depend on the type of the
   /// associated resource, as well. If `ttl` is not set, the associated resource
   /// never expires.
-  public var ttl: GoogleCloudWkt.Duration? = nil
+  public var ttl: GoogleCloudWKT.Duration? = nil
 
   /// Initialize a new instance of `ExpirationPolicy`.
   public init() {}
@@ -49,10 +49,10 @@ public struct ExpirationPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.analyticshub.v1.ExpirationPolicy"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A `NotificationChannel` is a medium through which an alert is
 /// delivered when a policy violation is detected. Examples of channels
 /// include email, SMS, and third-party messaging applications. Fields
 /// containing sensitive information like authentication tokens or
 /// contact info are only partially populated on retrieval.
-public struct NotificationChannel: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct NotificationChannel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The type of the notification channel. This field matches the
@@ -103,7 +103,7 @@ public struct NotificationChannel: Codable, Equatable, GoogleCloudWkt._AnyPackab
   /// the channel. This is a more convenient approach when the change is
   /// temporary and you want to receive notifications from the same set
   /// of alerting policies on the channel at some point in the future.
-  public var enabled: GoogleCloudWkt.BoolValue? = nil
+  public var enabled: GoogleCloudWKT.BoolValue? = nil
 
   /// Record of the creation of this channel.
   public var creationRecord: MutationRecord? = nil
@@ -250,10 +250,10 @@ public struct NotificationChannel: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.v3.NotificationChannel"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

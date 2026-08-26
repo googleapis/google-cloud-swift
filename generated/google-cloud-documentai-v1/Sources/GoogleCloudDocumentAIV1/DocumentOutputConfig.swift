@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Config that controls the output of documents. All documents will be written
 /// as a JSON file.
-public struct DocumentOutputConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DocumentOutputConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The destination of the results.
@@ -78,7 +78,7 @@ public struct DocumentOutputConfig: Codable, Equatable, GoogleCloudWkt._AnyPacka
   }
 
   /// The configuration used when outputting documents.
-  public struct GcsOutputConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GcsOutputConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The Cloud Storage uri (a directory) of the output.
@@ -87,7 +87,7 @@ public struct DocumentOutputConfig: Codable, Equatable, GoogleCloudWkt._AnyPacka
     /// Specifies which fields to include in the output documents.
     /// Only supports top level document and pages field so it must be in the
     /// form of `{document_field_name}` or `pages.{page_field_name}`.
-    public var fieldMask: GoogleCloudWkt.FieldMask? = nil
+    public var fieldMask: GoogleCloudWKT.FieldMask? = nil
 
     /// Specifies the sharding config for the output document.
     public var shardingConfig: DocumentOutputConfig.GcsOutputConfig.ShardingConfig? = nil
@@ -109,7 +109,7 @@ public struct DocumentOutputConfig: Codable, Equatable, GoogleCloudWkt._AnyPacka
     }
 
     /// The sharding config for the output document.
-    public struct ShardingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ShardingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The number of pages per shard.
@@ -138,22 +138,22 @@ public struct DocumentOutputConfig: Codable, Equatable, GoogleCloudWkt._AnyPacka
         return
           "type.googleapis.com/google.cloud.documentai.v1.DocumentOutputConfig.GcsOutputConfig.ShardingConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.documentai.v1.DocumentOutputConfig.GcsOutputConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -166,10 +166,10 @@ public struct DocumentOutputConfig: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.documentai.v1.DocumentOutputConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

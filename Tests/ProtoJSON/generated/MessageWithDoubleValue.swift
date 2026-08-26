@@ -15,20 +15,20 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A test message for google.protobuf.DoubleValue.
-public struct MessageWithDoubleValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MessageWithDoubleValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A singular field.
-  public var singular: GoogleCloudWkt.DoubleValue? = nil
+  public var singular: GoogleCloudWKT.DoubleValue? = nil
 
   /// A repeated field.
-  public var repeated: [GoogleCloudWkt.DoubleValue] = []
+  public var repeated: [GoogleCloudWKT.DoubleValue] = []
 
   /// Test google.protobuf.DoubleValue as map values.
-  public var map: [Swift.String: GoogleCloudWkt.DoubleValue] = [:]
+  public var map: [Swift.String: GoogleCloudWKT.DoubleValue] = [:]
 
   /// Initialize a new instance of `MessageWithDoubleValue`.
   public init() {}
@@ -49,10 +49,10 @@ public struct MessageWithDoubleValue: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.swift.sdk.test.MessageWithDoubleValue"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

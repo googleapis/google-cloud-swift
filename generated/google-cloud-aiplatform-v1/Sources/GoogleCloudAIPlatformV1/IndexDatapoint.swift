@@ -16,10 +16,10 @@
 
 #if IndexService || MatchService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A datapoint of Index.
-  public struct IndexDatapoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct IndexDatapoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Unique identifier of the datapoint.
@@ -48,7 +48,7 @@
     public var crowdingTag: IndexDatapoint.CrowdingTag? = nil
 
     /// Optional. The key-value map of additional metadata for the datapoint.
-    public var embeddingMetadata: GoogleCloudWkt.Struct? = nil
+    public var embeddingMetadata: GoogleCloudWKT.Struct? = nil
 
     /// Initialize a new instance of `IndexDatapoint`.
     public init() {}
@@ -68,7 +68,7 @@
 
     /// Feature embedding vector for sparse index. An array of numbers whose values
     /// are located in the specified dimensions.
-    public struct SparseEmbedding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SparseEmbedding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The list of embedding values of the sparse vector.
@@ -97,17 +97,17 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.IndexDatapoint.SparseEmbedding"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Restriction of a datapoint which describe its attributes(tokens) from each
     /// of several attribute categories(namespaces).
-    public struct Restriction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Restriction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The namespace of this restriction. e.g.: color.
@@ -138,17 +138,17 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.IndexDatapoint.Restriction"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// This field allows restricts to be based on numeric comparisons rather
     /// than categorical tokens.
-    public struct NumericRestriction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct NumericRestriction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The namespace of this restriction. e.g.: cost.
@@ -383,18 +383,18 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.IndexDatapoint.NumericRestriction"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Crowding tag is a constraint on a neighbor list produced by nearest
     /// neighbor search requiring that no more than some value k' of the k
     /// neighbors returned have the same value of crowding_attribute.
-    public struct CrowdingTag: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct CrowdingTag: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The attribute value used for crowding.  The maximum number of neighbors
@@ -423,22 +423,22 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.IndexDatapoint.CrowdingTag"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.IndexDatapoint"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

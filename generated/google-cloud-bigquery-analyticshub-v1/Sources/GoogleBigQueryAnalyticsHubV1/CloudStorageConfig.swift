@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Configuration for a Cloud Storage subscription.
-public struct CloudStorageConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CloudStorageConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. User-provided name for the Cloud Storage bucket.
@@ -49,7 +49,7 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   /// The maximum duration that can elapse before a new Cloud Storage file is
   /// created. Min 1 minute, max 10 minutes, default 5 minutes. May not exceed
   /// the subscription's acknowledgement deadline.
-  public var maxDuration: GoogleCloudWkt.Duration? = nil
+  public var maxDuration: GoogleCloudWKT.Duration? = nil
 
   /// Optional. The maximum bytes that can be written to a Cloud Storage file
   /// before a new file is created. Min 1 KB, max 10 GiB. The max_bytes limit may
@@ -108,7 +108,7 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     self.filenameDatetimeFormat = try container.decode(
       Swift.String.self, forKey: .filenameDatetimeFormat)
     self.maxDuration = try container.decodeIfPresent(
-      GoogleCloudWkt.Duration.self, forKey: .maxDuration)
+      GoogleCloudWKT.Duration.self, forKey: .maxDuration)
     self.maxBytes = try container.decode(Swift.Int64.self, forKey: .maxBytes)
     self.maxMessages = try container.decode(Swift.Int64.self, forKey: .maxMessages)
     self.serviceAccountEmail = try container.decode(Swift.String.self, forKey: .serviceAccountEmail)
@@ -160,7 +160,7 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   /// Configuration for writing message data in text format.
   /// Message payloads will be written to files as raw text, separated by a
   /// newline.
-  public struct TextConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TextConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `TextConfig`.
@@ -183,17 +183,17 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
       return
         "type.googleapis.com/google.cloud.bigquery.analyticshub.v1.CloudStorageConfig.TextConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configuration for writing message data in Avro format.
   /// Message payloads and metadata will be written to files as an Avro binary.
-  public struct AvroConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AvroConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. When true, write the subscription name, message_id,
@@ -228,11 +228,11 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
       return
         "type.googleapis.com/google.cloud.bigquery.analyticshub.v1.CloudStorageConfig.AvroConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -249,10 +249,10 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.analyticshub.v1.CloudStorageConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

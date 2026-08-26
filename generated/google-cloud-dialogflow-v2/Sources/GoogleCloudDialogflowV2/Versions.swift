@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleCloudGax
 
@@ -272,7 +272,7 @@
       /// See `VersionsClient.updateVersion`.
       func updateVersion(
         version: Version?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudDialogflowV2.Version
 
       /// See `VersionsClient.deleteVersion`.
@@ -478,7 +478,7 @@
 
     public func updateVersion(
       version: Version?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDialogflowV2.Version {
       let request = UpdateVersionRequest().with {
         $0.version = version

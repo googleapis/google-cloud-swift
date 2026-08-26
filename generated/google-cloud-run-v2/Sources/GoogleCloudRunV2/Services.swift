@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -336,7 +336,7 @@ extension Clients {
     /// See `ServicesClient.updateService`.
     func updateService(
       service: Service?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Service>
 
     /// See `ServicesClient.deleteService`.
@@ -607,7 +607,7 @@ extension Clients.ServicesProtocol {
 
   public func updateService(
     service: Service?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Service> {
     let request = UpdateServiceRequest().with {
       $0.service = service

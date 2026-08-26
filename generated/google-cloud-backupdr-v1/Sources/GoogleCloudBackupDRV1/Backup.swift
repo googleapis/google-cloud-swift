@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Message describing a Backup object.
-public struct Backup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Backup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Identifier. Name of the backup to create. It must have the
@@ -32,28 +32,28 @@ public struct Backup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var description: Swift.String? = nil
 
   /// Output only. The time when the instance was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time when the instance was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Resource labels to represent user provided metadata.
   /// No labels currently defined.
   public var labels: [Swift.String: Swift.String] = [:]
 
   /// Optional. The backup can not be deleted before this time.
-  public var enforcedRetentionEndTime: GoogleCloudWkt.Timestamp? = nil
+  public var enforcedRetentionEndTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Setting for how the enforced retention end time is inherited.
   /// This value is copied from this backup's BackupVault.
   public var backupRetentionInheritance: BackupVault.BackupRetentionInheritance? = nil
 
   /// Optional. When this backup is automatically expired.
-  public var expireTime: GoogleCloudWkt.Timestamp? = nil
+  public var expireTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The point in time when this backup was captured from the
   /// source.
-  public var consistencyTime: GoogleCloudWkt.Timestamp? = nil
+  public var consistencyTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Server specified ETag to prevent updates from overwriting each
   /// other.
@@ -143,18 +143,18 @@ public struct Backup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.name = try container.decode(Swift.String.self, forKey: .name)
     self.description = try container.decodeIfPresent(Swift.String.self, forKey: .description)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
     self.enforcedRetentionEndTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .enforcedRetentionEndTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .enforcedRetentionEndTime)
     self.backupRetentionInheritance = try container.decodeIfPresent(
       BackupVault.BackupRetentionInheritance.self, forKey: .backupRetentionInheritance)
     self.expireTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .expireTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .expireTime)
     self.consistencyTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .consistencyTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .consistencyTime)
     self.etag = try container.decodeIfPresent(Swift.String.self, forKey: .etag)
     self.state = try container.decode(Backup.State.self, forKey: .state)
     self.serviceLocks = try container.decode([BackupLock].self, forKey: .serviceLocks)
@@ -294,7 +294,7 @@ public struct Backup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// GCPBackupPlanInfo captures the plan configuration details of Google Cloud
   /// resources at the time of backup.
-  public struct GCPBackupPlanInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GCPBackupPlanInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Resource name of backup plan by which workload is protected at the time
@@ -336,11 +336,11 @@ public struct Backup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.backupdr.v1.Backup.GCPBackupPlanInfo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -612,10 +612,10 @@ public struct Backup: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.backupdr.v1.Backup"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

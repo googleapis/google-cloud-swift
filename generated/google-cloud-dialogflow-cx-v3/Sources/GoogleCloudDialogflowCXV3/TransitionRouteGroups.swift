@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleCloudGax
 
@@ -295,7 +295,7 @@
       /// See `TransitionRouteGroupsClient.updateTransitionRouteGroup`.
       func updateTransitionRouteGroup(
         transitionRouteGroup: TransitionRouteGroup?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudDialogflowCXV3.TransitionRouteGroup
 
       /// See `TransitionRouteGroupsClient.deleteTransitionRouteGroup`.
@@ -502,7 +502,7 @@
 
     public func updateTransitionRouteGroup(
       transitionRouteGroup: TransitionRouteGroup?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.TransitionRouteGroup {
       let request = UpdateTransitionRouteGroupRequest().with {
         $0.transitionRouteGroup = transitionRouteGroup

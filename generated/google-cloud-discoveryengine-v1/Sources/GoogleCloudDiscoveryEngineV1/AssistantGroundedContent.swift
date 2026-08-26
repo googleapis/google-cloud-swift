@@ -16,13 +16,13 @@
 
 #if AssistantService || ConversationalSearchService || SessionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A piece of content and possibly its grounding information.
   ///
   /// Not all content needs grounding. Phrases like "Of course, I will gladly
   /// search it for you." do not need grounding.
-  public struct AssistantGroundedContent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AssistantGroundedContent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The content.
@@ -87,7 +87,7 @@
     }
 
     /// Grounding details for text sources.
-    public struct TextGroundingMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct TextGroundingMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Grounding information for parts of the text.
@@ -113,7 +113,7 @@
       }
 
       /// Grounding information for a segment of the text.
-      public struct Segment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Segment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Zero-based index indicating the start of the segment, measured in bytes
@@ -153,16 +153,16 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.AssistantGroundedContent.TextGroundingMetadata.Segment"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Referenced content and related document metadata.
-      public struct Reference: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Reference: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Referenced text content.
@@ -189,7 +189,7 @@
         }
 
         /// Document metadata.
-        public struct DocumentMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct DocumentMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Document resource name.
@@ -230,11 +230,11 @@
             return
               "type.googleapis.com/google.cloud.discoveryengine.v1.AssistantGroundedContent.TextGroundingMetadata.Reference.DocumentMetadata"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
@@ -242,11 +242,11 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.AssistantGroundedContent.TextGroundingMetadata.Reference"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -254,11 +254,11 @@
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.AssistantGroundedContent.TextGroundingMetadata"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -271,11 +271,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.AssistantGroundedContent"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

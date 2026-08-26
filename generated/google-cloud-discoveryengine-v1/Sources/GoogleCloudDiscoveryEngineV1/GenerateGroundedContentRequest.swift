@@ -16,11 +16,11 @@
 
 #if GroundedGenerationService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Top-level message sent by the client for the `GenerateGroundedContent`
   /// method.
-  public struct GenerateGroundedContentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GenerateGroundedContentRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Location resource.
@@ -83,7 +83,7 @@
     }
 
     /// Content generation specification.
-    public struct GenerationSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GenerationSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Specifies which Vertex model id to use for generation.
@@ -134,16 +134,16 @@
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GenerationSpec"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Describes the options to customize dynamic retrieval.
-    public struct DynamicRetrievalConfiguration: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DynamicRetrievalConfiguration: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Specification for the predictor for dynamic retrieval.
@@ -168,7 +168,7 @@
       }
 
       /// Describes the predictor settings for dynamic retrieval.
-      public struct DynamicRetrievalPredictor: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct DynamicRetrievalPredictor: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// The version of the predictor to be used in dynamic retrieval.
@@ -299,11 +299,11 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.DynamicRetrievalConfiguration.DynamicRetrievalPredictor"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -311,16 +311,16 @@
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.DynamicRetrievalConfiguration"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Grounding source.
-    public struct GroundingSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GroundingSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Sources.
@@ -405,7 +405,7 @@
       }
 
       /// Message to be used for grounding based on inline content.
-      public struct InlineSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct InlineSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// List of facts to be used for grounding.
@@ -437,16 +437,16 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GroundingSource.InlineSource"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Message to be used for grounding with Vertex AI Search.
-      public struct SearchSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct SearchSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// The resource name of the Engine to use.
@@ -491,16 +491,16 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GroundingSource.SearchSource"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Google Search config parameters.
-      public struct GoogleSearchSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct GoogleSearchSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. Specifies the dynamic retrieval configuration for the given
@@ -528,16 +528,16 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GroundingSource.GoogleSearchSource"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Params for using enterprise web retrieval as grounding source.
-      public struct EnterpriseWebRetrievalSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct EnterpriseWebRetrievalSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Initialize a new instance of `EnterpriseWebRetrievalSource`.
@@ -560,11 +560,11 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GroundingSource.EnterpriseWebRetrievalSource"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -586,16 +586,16 @@
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GroundingSource"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Grounding specification.
-    public struct GroundingSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GroundingSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Grounding sources.
@@ -621,22 +621,22 @@
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GroundingSpec"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.GenerateGroundedContentRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

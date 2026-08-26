@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Change stream configuration.
-public struct ChangeStreamConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ChangeStreamConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// How long the change stream should be retained. Change stream data older
@@ -26,7 +26,7 @@ public struct ChangeStreamConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   /// stream from the table.
   /// Values must be at least 1 day and at most 7 days, and will be truncated to
   /// microsecond granularity.
-  public var retentionPeriod: GoogleCloudWkt.Duration? = nil
+  public var retentionPeriod: GoogleCloudWKT.Duration? = nil
 
   /// Initialize a new instance of `ChangeStreamConfig`.
   public init() {}
@@ -47,10 +47,10 @@ public struct ChangeStreamConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.bigtable.admin.v2.ChangeStreamConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Execution configuration for a workload.
-public struct ExecutionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ExecutionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. Service account that used to execute workload.
@@ -40,7 +40,7 @@ public struct ExecutionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// the conditions are treated as `OR` conditions: the workload will be
   /// terminated when it has been idle for `idle_ttl` or when `ttl` has been
   /// exceeded, whichever occurs first.
-  public var idleTtl: GoogleCloudWkt.Duration? = nil
+  public var idleTtl: GoogleCloudWKT.Duration? = nil
 
   /// Optional. The duration after which the workload will be terminated,
   /// specified as the JSON representation for
@@ -56,7 +56,7 @@ public struct ExecutionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// are treated as `OR` conditions: the workload will be terminated when it has
   /// been idle for `idle_ttl` or when `ttl` has been exceeded, whichever occurs
   /// first.
-  public var ttl: GoogleCloudWkt.Duration? = nil
+  public var ttl: GoogleCloudWKT.Duration? = nil
 
   /// Optional. A Cloud Storage bucket used to stage workload dependencies,
   /// config files, and store workload output and other ephemeral data, such as
@@ -119,8 +119,8 @@ public struct ExecutionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.serviceAccount = try container.decode(Swift.String.self, forKey: .serviceAccount)
     self.networkTags = try container.decode([Swift.String].self, forKey: .networkTags)
     self.kmsKey = try container.decode(Swift.String.self, forKey: .kmsKey)
-    self.idleTtl = try container.decodeIfPresent(GoogleCloudWkt.Duration.self, forKey: .idleTtl)
-    self.ttl = try container.decodeIfPresent(GoogleCloudWkt.Duration.self, forKey: .ttl)
+    self.idleTtl = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .idleTtl)
+    self.ttl = try container.decodeIfPresent(GoogleCloudWKT.Duration.self, forKey: .ttl)
     self.stagingBucket = try container.decode(Swift.String.self, forKey: .stagingBucket)
     self.authenticationConfig = try container.decodeIfPresent(
       AuthenticationConfig.self, forKey: .authenticationConfig)
@@ -179,10 +179,10 @@ public struct ExecutionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataproc.v1.ExecutionConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

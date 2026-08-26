@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [UpdateTagTemplate][google.cloud.datacatalog.v1.DataCatalog.UpdateTagTemplate].
 ///
 /// [google.cloud.datacatalog.v1.DataCatalog.UpdateTagTemplate]: <doc:DataCatalogClient/updateTagTemplate(request:options:)>
-public struct UpdateTagTemplateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateTagTemplateRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The template to update. The `name` field must be set.
@@ -36,7 +36,7 @@ public struct UpdateTagTemplateRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   ///
   /// Note: Updating the `is_publicly_readable` field may require up to 12
   /// hours to take effect in search results.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `UpdateTagTemplateRequest`.
   public init() {}
@@ -57,10 +57,10 @@ public struct UpdateTagTemplateRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datacatalog.v1.UpdateTagTemplateRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

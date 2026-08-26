@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -1218,7 +1218,7 @@ extension Clients {
     /// See `CloudDeployClient.updateDeliveryPipeline`.
     func updateDeliveryPipeline(
       deliveryPipeline: DeliveryPipeline?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<DeliveryPipeline>
 
     /// See `CloudDeployClient.deleteDeliveryPipeline`.
@@ -1291,7 +1291,7 @@ extension Clients {
     /// See `CloudDeployClient.updateTarget`.
     func updateTarget(
       target: Target?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Target>
 
     /// See `CloudDeployClient.deleteTarget`.
@@ -1355,7 +1355,7 @@ extension Clients {
     /// See `CloudDeployClient.updateCustomTargetType`.
     func updateCustomTargetType(
       customTargetType: CustomTargetType?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<CustomTargetType>
 
     /// See `CloudDeployClient.deleteCustomTargetType`.
@@ -1442,7 +1442,7 @@ extension Clients {
     /// See `CloudDeployClient.updateDeployPolicy`.
     func updateDeployPolicy(
       deployPolicy: DeployPolicy?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<DeployPolicy>
 
     /// See `CloudDeployClient.deleteDeployPolicy`.
@@ -1630,7 +1630,7 @@ extension Clients {
     /// See `CloudDeployClient.updateAutomation`.
     func updateAutomation(
       automation: Automation?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Automation>
 
     /// See `CloudDeployClient.deleteAutomation`.
@@ -2292,7 +2292,7 @@ extension Clients.CloudDeployProtocol {
 
   public func updateDeliveryPipeline(
     deliveryPipeline: DeliveryPipeline?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<DeliveryPipeline> {
     let request = UpdateDeliveryPipelineRequest().with {
       $0.deliveryPipeline = deliveryPipeline
@@ -2487,7 +2487,7 @@ extension Clients.CloudDeployProtocol {
 
   public func updateTarget(
     target: Target?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Target> {
     let request = UpdateTargetRequest().with {
       $0.target = target
@@ -2661,7 +2661,7 @@ extension Clients.CloudDeployProtocol {
 
   public func updateCustomTargetType(
     customTargetType: CustomTargetType?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<CustomTargetType> {
     let request = UpdateCustomTargetTypeRequest().with {
       $0.customTargetType = customTargetType
@@ -2896,7 +2896,7 @@ extension Clients.CloudDeployProtocol {
 
   public func updateDeployPolicy(
     deployPolicy: DeployPolicy?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<DeployPolicy> {
     let request = UpdateDeployPolicyRequest().with {
       $0.deployPolicy = deployPolicy
@@ -3378,7 +3378,7 @@ extension Clients.CloudDeployProtocol {
 
   public func updateAutomation(
     automation: Automation?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Automation> {
     let request = UpdateAutomationRequest().with {
       $0.automation = automation

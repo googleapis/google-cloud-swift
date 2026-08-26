@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Relevant information for the image from the Internet.
-public struct WebDetection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct WebDetection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Deduced entities from similar images on the Internet.
@@ -60,7 +60,7 @@ public struct WebDetection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Entity deduced from similar images on the Internet.
-  public struct WebEntity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct WebEntity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Opaque entity ID.
@@ -92,16 +92,16 @@ public struct WebDetection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.vision.v1.WebDetection.WebEntity"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Metadata for online images.
-  public struct WebImage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct WebImage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The result image URL.
@@ -129,16 +129,16 @@ public struct WebDetection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.vision.v1.WebDetection.WebImage"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Metadata for web pages.
-  public struct WebPage: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct WebPage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The result web page URL.
@@ -179,16 +179,16 @@ public struct WebDetection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.vision.v1.WebDetection.WebPage"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Label to provide extra metadata for the web detection.
-  public struct WebLabel: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct WebLabel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Label for extra metadata.
@@ -218,21 +218,21 @@ public struct WebDetection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.vision.v1.WebDetection.WebLabel"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vision.v1.WebDetection"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Assignment protocol for a license pool.
-public struct AssignmentProtocol: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AssignmentProtocol: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The type of assignment protocol.
@@ -85,7 +85,7 @@ public struct AssignmentProtocol: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   }
 
   /// Allow manual assignments triggered by administrative operations only.
-  public struct ManualAssignmentType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ManualAssignmentType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `ManualAssignmentType`.
@@ -108,22 +108,22 @@ public struct AssignmentProtocol: Codable, Equatable, GoogleCloudWkt._AnyPackabl
       return
         "type.googleapis.com/google.cloud.commerce.consumer.procurement.v1.AssignmentProtocol.ManualAssignmentType"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configuration for automatic assignments handled by data plane operations.
-  public struct AutoAssignmentType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AutoAssignmentType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The time to live for an inactive license. After this time has
     /// passed, the license will be automatically unassigned from the user. Must
     /// be at least 7 days, if set. If unset, the license will never expire.
-    public var inactiveLicenseTtl: GoogleCloudWkt.Duration? = nil
+    public var inactiveLicenseTtl: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `AutoAssignmentType`.
     public init() {}
@@ -145,11 +145,11 @@ public struct AssignmentProtocol: Codable, Equatable, GoogleCloudWkt._AnyPackabl
       return
         "type.googleapis.com/google.cloud.commerce.consumer.procurement.v1.AssignmentProtocol.AutoAssignmentType"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -164,10 +164,10 @@ public struct AssignmentProtocol: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.commerce.consumer.procurement.v1.AssignmentProtocol"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

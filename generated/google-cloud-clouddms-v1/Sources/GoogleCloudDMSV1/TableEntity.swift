@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Table's parent is a schema.
-public struct TableEntity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TableEntity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Table columns.
@@ -34,7 +34,7 @@ public struct TableEntity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var triggers: [TriggerEntity] = []
 
   /// Custom engine specific features.
-  public var customFeatures: GoogleCloudWkt.Struct? = nil
+  public var customFeatures: GoogleCloudWKT.Struct? = nil
 
   /// Comment associated with the table.
   public var comment: Swift.String = Swift.String()
@@ -58,10 +58,10 @@ public struct TableEntity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.clouddms.v1.TableEntity"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

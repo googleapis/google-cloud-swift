@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudMigrationCenterV1
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 
@@ -32,7 +32,7 @@ func sample(
         $0.importJob = ImportJob().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/importJobs/\(importJobId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   let response = try await poller.wait()

@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// QuotaPreference represents the preferred quota configuration specified for
 /// a project, folder or organization. There is only one QuotaPreference
 /// resource for a quota value targeting a unique set of dimensions.
-public struct QuotaPreference: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct QuotaPreference: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required except in the CREATE requests.
@@ -57,10 +57,10 @@ public struct QuotaPreference: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var etag: Swift.String = Swift.String()
 
   /// Output only. Create time stamp
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Update time stamp
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Required. The name of the service to which the quota preference is applied.
   public var service: Swift.String = Swift.String()
@@ -106,10 +106,10 @@ public struct QuotaPreference: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.cloudquotas.v1.QuotaPreference"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

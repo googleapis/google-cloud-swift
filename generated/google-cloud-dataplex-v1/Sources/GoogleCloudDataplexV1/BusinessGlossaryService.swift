@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -512,7 +512,7 @@ extension Clients {
     /// See `BusinessGlossaryServiceClient.updateGlossary`.
     func updateGlossary(
       glossary: Glossary?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Glossary>
 
     /// See `BusinessGlossaryServiceClient.deleteGlossary`.
@@ -567,7 +567,7 @@ extension Clients {
     /// See `BusinessGlossaryServiceClient.updateGlossaryCategory`.
     func updateGlossaryCategory(
       category: GlossaryCategory?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDataplexV1.GlossaryCategory
 
     /// See `BusinessGlossaryServiceClient.deleteGlossaryCategory`.
@@ -619,7 +619,7 @@ extension Clients {
     /// See `BusinessGlossaryServiceClient.updateGlossaryTerm`.
     func updateGlossaryTerm(
       term: GlossaryTerm?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDataplexV1.GlossaryTerm
 
     /// See `BusinessGlossaryServiceClient.deleteGlossaryTerm`.
@@ -937,7 +937,7 @@ extension Clients.BusinessGlossaryServiceProtocol {
 
   public func updateGlossary(
     glossary: Glossary?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Glossary> {
     let request = UpdateGlossaryRequest().with {
       $0.glossary = glossary
@@ -1080,7 +1080,7 @@ extension Clients.BusinessGlossaryServiceProtocol {
 
   public func updateGlossaryCategory(
     category: GlossaryCategory?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudDataplexV1.GlossaryCategory {
     let request = UpdateGlossaryCategoryRequest().with {
       $0.category = category
@@ -1205,7 +1205,7 @@ extension Clients.BusinessGlossaryServiceProtocol {
 
   public func updateGlossaryTerm(
     term: GlossaryTerm?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudDataplexV1.GlossaryTerm {
     let request = UpdateGlossaryTermRequest().with {
       $0.term = term

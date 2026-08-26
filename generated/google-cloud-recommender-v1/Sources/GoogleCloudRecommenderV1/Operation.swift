@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Contains an operation for a resource loosely based on the JSON-PATCH format
 /// with support for:
@@ -26,7 +26,7 @@ import Foundation
 ///   described.
 /// * Allows extension to custom operations not natively supported by RFC6902.
 /// See https://tools.ietf.org/html/rfc6902 for details on the original RFC.
-public struct Operation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Operation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Type of this operation. Contains one of 'add', 'remove', 'replace', 'move',
@@ -87,7 +87,7 @@ public struct Operation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// ```
   /// When both path_filters and path_value_matchers are set, an implicit AND
   /// must be performed.
-  public var pathFilters: [Swift.String: GoogleCloudWkt.Value] = [:]
+  public var pathFilters: [Swift.String: GoogleCloudWKT.Value] = [:]
 
   /// Similar to path_filters, this contains set of filters to apply if `path`
   /// field refers to array elements. This is meant to support value matching
@@ -138,7 +138,7 @@ public struct Operation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.sourceResource = try container.decode(Swift.String.self, forKey: .sourceResource)
     self.sourcePath = try container.decode(Swift.String.self, forKey: .sourcePath)
     self.pathFilters = try container.decode(
-      [Swift.String: GoogleCloudWkt.Value].self, forKey: .pathFilters)
+      [Swift.String: GoogleCloudWKT.Value].self, forKey: .pathFilters)
     self.pathValueMatchers = try container.decode(
       [Swift.String: ValueMatcher].self, forKey: .pathValueMatchers)
 
@@ -152,7 +152,7 @@ public struct Operation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       }
       pathValue = $0
     }
-    if let value = try container.decodeIfPresent(GoogleCloudWkt.Value?.self, forKey: .value) {
+    if let value = try container.decodeIfPresent(GoogleCloudWKT.Value?.self, forKey: .value) {
       try pathValueCheckAndSet(.value(value))
     }
     if let valueMatcher = try container.decodeIfPresent(ValueMatcher?.self, forKey: .valueMatcher) {
@@ -188,7 +188,7 @@ public struct Operation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// Value for the `path` field. Will be set for actions:'add'/'replace'.
     /// Maybe set for action: 'test'. Either this or `value_matcher` will be set
     /// for 'test' operation. An exact match must be performed.
-    indirect case value(GoogleCloudWkt.Value?)
+    indirect case value(GoogleCloudWKT.Value?)
     /// Can be set for action 'test' for advanced matching for the value of
     /// 'path' field. Either this or `value` will be set for 'test' operation.
     indirect case valueMatcher(ValueMatcher?)
@@ -197,10 +197,10 @@ public struct Operation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.recommender.v1.Operation"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

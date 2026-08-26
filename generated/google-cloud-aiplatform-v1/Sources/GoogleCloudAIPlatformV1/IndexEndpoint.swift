@@ -16,11 +16,11 @@
 
 #if IndexEndpointService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Indexes are deployed into it. An IndexEndpoint can have multiple
   /// DeployedIndexes.
-  public struct IndexEndpoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct IndexEndpoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The resource name of the IndexEndpoint.
@@ -51,13 +51,13 @@
     public var labels: [Swift.String: Swift.String] = [:]
 
     /// Output only. Timestamp when this IndexEndpoint was created.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Timestamp when this IndexEndpoint was last updated.
     /// This timestamp is not updated when the endpoint's DeployedIndexes are
     /// updated, e.g. due to updates of the original Indexes they are the
     /// deployments of.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Optional. The full name of the Google Compute Engine
     /// [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks)
@@ -144,11 +144,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.IndexEndpoint"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleApiCloudQuotasV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: QuotaAdjusterSettingsManagerClient, projectId: String, locationId: String)
   async throws
@@ -29,7 +29,7 @@ func sample(client: QuotaAdjusterSettingsManagerClient, projectId: String, locat
         $0.quotaAdjusterSettings = QuotaAdjusterSettings().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/quotaAdjusterSettings"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

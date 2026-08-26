@@ -16,13 +16,13 @@
 
 #if InterconnectGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// [Output Only] The status of the group as configured. This has the same
   /// structure as the operational field reported by the OperationalStatus
   /// method, but does not take into account the operational status of each
   /// resource.
-  public struct InterconnectGroupConfigured: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct InterconnectGroupConfigured: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var topologyCapability: InterconnectGroupConfiguredTopologyCapability? = nil
@@ -46,11 +46,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.InterconnectGroupConfigured"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

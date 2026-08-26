@@ -16,10 +16,10 @@
 
 #if Sessions || TestCases
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The result of calling a tool's action that has been executed by the client.
-  public struct ToolCallResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ToolCallResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The [tool][google.cloud.dialogflow.cx.v3.Tool] associated with
@@ -77,7 +77,7 @@
         try resultCheckAndSet(.error(error))
       }
       if let outputParameters = try container.decodeIfPresent(
-        GoogleCloudWkt.Struct?.self, forKey: .outputParameters)
+        GoogleCloudWKT.Struct?.self, forKey: .outputParameters)
       {
         try resultCheckAndSet(.outputParameters(outputParameters))
       }
@@ -100,7 +100,7 @@
     }
 
     /// An error produced by the tool call.
-    public struct Error: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Error: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. The error message of the function.
@@ -125,11 +125,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.ToolCallResult.Error"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -138,17 +138,17 @@
       /// The tool call's error.
       indirect case error(ToolCallResult.Error?)
       /// The tool call's output parameters.
-      indirect case outputParameters(GoogleCloudWkt.Struct?)
+      indirect case outputParameters(GoogleCloudWKT.Struct?)
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.ToolCallResult"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

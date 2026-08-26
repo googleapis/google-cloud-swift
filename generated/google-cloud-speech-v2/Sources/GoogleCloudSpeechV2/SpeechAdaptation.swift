@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Provides "hints" to the speech recognizer to favor specific words and phrases
 /// in the results. PhraseSets can be specified as an inline resource, or a
 /// reference to an existing PhraseSet resource.
-public struct SpeechAdaptation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SpeechAdaptation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A list of inline or referenced PhraseSets.
@@ -48,7 +48,7 @@ public struct SpeechAdaptation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// A biasing PhraseSet, which can be either a string referencing the name of
   /// an existing PhraseSets resource, or an inline definition of a PhraseSet.
-  public struct AdaptationPhraseSet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AdaptationPhraseSet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var value: OneOf_Value? = nil
@@ -122,21 +122,21 @@ public struct SpeechAdaptation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.speech.v2.SpeechAdaptation.AdaptationPhraseSet"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.speech.v2.SpeechAdaptation"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

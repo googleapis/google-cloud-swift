@@ -16,17 +16,17 @@
 
 #if NotebookService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The idle shutdown configuration of NotebookRuntimeTemplate, which contains
   /// the idle_timeout as required field.
-  public struct NotebookIdleShutdownConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct NotebookIdleShutdownConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Duration is accurate to the second. In Notebook, Idle Timeout is
     /// accurate to minute so the range of idle_timeout (second) is: 10 * 60 ~ 1440
     /// * 60.
-    public var idleTimeout: GoogleCloudWkt.Duration? = nil
+    public var idleTimeout: GoogleCloudWKT.Duration? = nil
 
     /// Whether Idle Shutdown is disabled in this NotebookRuntimeTemplate.
     public var idleShutdownDisabled: Swift.Bool = Swift.Bool()
@@ -50,11 +50,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.NotebookIdleShutdownConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

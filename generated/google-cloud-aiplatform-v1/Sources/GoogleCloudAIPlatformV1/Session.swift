@@ -16,10 +16,10 @@
 
 #if SessionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A session contains a set of actions between users and Vertex agents.
-  public struct Session: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Session: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Identifier. The resource name of the session.
@@ -28,10 +28,10 @@
     public var name: Swift.String = Swift.String()
 
     /// Output only. Timestamp when the session was created.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Timestamp when the session was updated.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Optional. The display name of the session.
     public var displayName: Swift.String = Swift.String()
@@ -46,7 +46,7 @@
     public var labels: [Swift.String: Swift.String] = [:]
 
     /// Optional. Session specific memory which stores key conversation points.
-    public var sessionState: GoogleCloudWkt.Struct? = nil
+    public var sessionState: GoogleCloudWKT.Struct? = nil
 
     /// Required. Immutable. String id provided by the user
     public var userId: Swift.String = Swift.String()
@@ -86,13 +86,13 @@
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.name = try container.decode(Swift.String.self, forKey: .name)
       self.createTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
       self.updateTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
       self.displayName = try container.decode(Swift.String.self, forKey: .displayName)
       self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
       self.sessionState = try container.decodeIfPresent(
-        GoogleCloudWkt.Struct.self, forKey: .sessionState)
+        GoogleCloudWKT.Struct.self, forKey: .sessionState)
       self.userId = try container.decode(Swift.String.self, forKey: .userId)
 
       var expiration: OneOf_Expiration? = nil
@@ -106,11 +106,11 @@
         expiration = $0
       }
       if let expireTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp?.self, forKey: .expireTime)
+        GoogleCloudWKT.Timestamp?.self, forKey: .expireTime)
       {
         try expirationCheckAndSet(.expireTime(expireTime))
       }
-      if let ttl = try container.decodeIfPresent(GoogleCloudWkt.Duration?.self, forKey: .ttl) {
+      if let ttl = try container.decodeIfPresent(GoogleCloudWKT.Duration?.self, forKey: .ttl) {
         try expirationCheckAndSet(.ttl(ttl))
       }
       self.expiration = expiration
@@ -142,20 +142,20 @@
       /// This is *always* provided on output, regardless of what was sent
       /// on input.
       /// The minimum value is 24 hours from the time of creation.
-      indirect case expireTime(GoogleCloudWkt.Timestamp?)
+      indirect case expireTime(GoogleCloudWKT.Timestamp?)
       /// Optional. Input only. The TTL for this session.
       /// The minimum value is 24 hours.
-      indirect case ttl(GoogleCloudWkt.Duration?)
+      indirect case ttl(GoogleCloudWKT.Duration?)
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.Session"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

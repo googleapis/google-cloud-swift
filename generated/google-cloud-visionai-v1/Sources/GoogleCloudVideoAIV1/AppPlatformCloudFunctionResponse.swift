@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Message of the response from customer's Cloud Function to AppPlatform.
-public struct AppPlatformCloudFunctionResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AppPlatformCloudFunctionResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The modified annotations that is returned back to AppPlatform.
@@ -53,11 +53,11 @@ public struct AppPlatformCloudFunctionResponse: Codable, Equatable, GoogleCloudW
 
   /// A general annotation message that uses struct format to represent different
   /// concrete annotation protobufs.
-  public struct StructedOutputAnnotation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct StructedOutputAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The struct format of the actual annotation.
-    public var annotation: GoogleCloudWkt.Struct? = nil
+    public var annotation: GoogleCloudWKT.Struct? = nil
 
     /// Initialize a new instance of `StructedOutputAnnotation`.
     public init() {}
@@ -79,21 +79,21 @@ public struct AppPlatformCloudFunctionResponse: Codable, Equatable, GoogleCloudW
       return
         "type.googleapis.com/google.cloud.visionai.v1.AppPlatformCloudFunctionResponse.StructedOutputAnnotation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.AppPlatformCloudFunctionResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

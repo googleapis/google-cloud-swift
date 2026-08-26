@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The profile for a scanned table.
-public struct TableDataProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TableDataProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The name of the profile.
@@ -73,10 +73,10 @@ public struct TableDataProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var configSnapshot: DataProfileConfigSnapshot? = nil
 
   /// The time when this table was last modified
-  public var lastModifiedTime: GoogleCloudWkt.Timestamp? = nil
+  public var lastModifiedTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. The time when this table expires.
-  public var expirationTime: GoogleCloudWkt.Timestamp? = nil
+  public var expirationTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The number of columns profiled in the table.
   public var scannedColumnCount: Swift.Int64 = Swift.Int64()
@@ -98,13 +98,13 @@ public struct TableDataProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var resourceVisibility: ResourceVisibility = ResourceVisibility()
 
   /// The last time the profile was generated.
-  public var profileLastGenerated: GoogleCloudWkt.Timestamp? = nil
+  public var profileLastGenerated: GoogleCloudWKT.Timestamp? = nil
 
   /// The labels applied to the resource at the time the profile was generated.
   public var resourceLabels: [Swift.String: Swift.String] = [:]
 
   /// The time at which the table was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The BigQuery table to which the sample findings are written.
   public var sampleFindingsTable: BigQueryTable? = nil
@@ -247,10 +247,10 @@ public struct TableDataProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.TableDataProfile"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

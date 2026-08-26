@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A `CustomTargetType` resource in the Cloud Deploy API.
 ///
 /// A `CustomTargetType` defines a type of custom target that can be referenced
 /// in a `Target` in order to facilitate deploying to other systems besides the
 /// supported runtimes.
-public struct CustomTargetType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CustomTargetType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. Name of the `CustomTargetType`. Format is
@@ -61,10 +61,10 @@ public struct CustomTargetType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var labels: [Swift.String: Swift.String] = [:]
 
   /// Output only. Time at which the `CustomTargetType` was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Most recent time at which the `CustomTargetType` was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. This checksum is computed by the server based on the value of
   /// other fields, and may be sent on update and delete requests to ensure the
@@ -112,9 +112,9 @@ public struct CustomTargetType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.annotations = try container.decode([Swift.String: Swift.String].self, forKey: .annotations)
     self.labels = try container.decode([Swift.String: Swift.String].self, forKey: .labels)
     self.createTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .createTime)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
     self.etag = try container.decode(Swift.String.self, forKey: .etag)
 
     var definition: OneOf_Definition? = nil
@@ -165,10 +165,10 @@ public struct CustomTargetType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.deploy.v1.CustomTargetType"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

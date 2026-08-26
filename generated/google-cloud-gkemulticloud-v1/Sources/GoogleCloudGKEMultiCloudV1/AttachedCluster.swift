@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An Anthos cluster running on customer own infrastructure.
-public struct AttachedCluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AttachedCluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The name of this resource.
@@ -70,10 +70,10 @@ public struct AttachedCluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var reconciling: Swift.Bool = Swift.Bool()
 
   /// Output only. The time at which this cluster was registered.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time at which this cluster was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Allows clients to perform consistent read-modify-writes
   /// through optimistic concurrency control.
@@ -296,10 +296,10 @@ public struct AttachedCluster: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkemulticloud.v1.AttachedCluster"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

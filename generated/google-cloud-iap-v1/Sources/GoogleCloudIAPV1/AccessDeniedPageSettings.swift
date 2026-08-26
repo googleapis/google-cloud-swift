@@ -15,25 +15,25 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Custom content configuration for access denied page.
 /// IAP allows customers to define a custom URI to use as the error page when
 /// access is denied to users. If IAP prevents access to this page, the default
 /// IAP error page will be displayed instead.
-public struct AccessDeniedPageSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AccessDeniedPageSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The URI to be redirected to when access is denied.
-  public var accessDeniedPageUri: GoogleCloudWkt.StringValue? = nil
+  public var accessDeniedPageUri: GoogleCloudWKT.StringValue? = nil
 
   /// Whether to generate a troubleshooting URL on access denied events to this
   /// application.
-  public var generateTroubleshootingUri: GoogleCloudWkt.BoolValue? = nil
+  public var generateTroubleshootingUri: GoogleCloudWKT.BoolValue? = nil
 
   /// Whether to generate remediation token on access denied events to this
   /// application.
-  public var remediationTokenGenerationEnabled: GoogleCloudWkt.BoolValue? = nil
+  public var remediationTokenGenerationEnabled: GoogleCloudWKT.BoolValue? = nil
 
   /// Initialize a new instance of `AccessDeniedPageSettings`.
   public init() {}
@@ -54,10 +54,10 @@ public struct AccessDeniedPageSettings: Codable, Equatable, GoogleCloudWkt._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.iap.v1.AccessDeniedPageSettings"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

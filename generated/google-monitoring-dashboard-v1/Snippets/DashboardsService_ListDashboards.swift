@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudMonitoringDashboardV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: DashboardsServiceClient, parent: String) async throws {
   let items = try client.listDashboards(

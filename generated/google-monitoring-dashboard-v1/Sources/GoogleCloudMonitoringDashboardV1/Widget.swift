@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Widget contains a single dashboard component and configuration of how to
 /// present the component in the dashboard.
-public struct Widget: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Widget: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. The title of the widget.
@@ -90,7 +90,7 @@ public struct Widget: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     if let text = try container.decodeIfPresent(Text?.self, forKey: .text) {
       try contentCheckAndSet(.text(text))
     }
-    if let blank = try container.decodeIfPresent(GoogleCloudWkt.Empty?.self, forKey: .blank) {
+    if let blank = try container.decodeIfPresent(GoogleCloudWKT.Empty?.self, forKey: .blank) {
       try contentCheckAndSet(.blank(blank))
     }
     if let alertChart = try container.decodeIfPresent(AlertChart?.self, forKey: .alertChart) {
@@ -179,7 +179,7 @@ public struct Widget: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// A raw string or markdown displaying textual content.
     indirect case text(Text?)
     /// A blank space.
-    indirect case blank(GoogleCloudWkt.Empty?)
+    indirect case blank(GoogleCloudWKT.Empty?)
     /// A chart of alert policy data.
     indirect case alertChart(AlertChart?)
     /// A widget that displays time series data in a tabular format.
@@ -205,10 +205,10 @@ public struct Widget: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.dashboard.v1.Widget"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

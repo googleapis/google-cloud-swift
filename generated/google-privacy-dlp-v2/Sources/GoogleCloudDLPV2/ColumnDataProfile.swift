@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The profile for a scanned column within a table.
-public struct ColumnDataProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ColumnDataProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The name of the profile.
@@ -32,7 +32,7 @@ public struct ColumnDataProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public var state: ColumnDataProfile.State = ColumnDataProfile.State()
 
   /// The last time the profile was generated.
-  public var profileLastGenerated: GoogleCloudWkt.Timestamp? = nil
+  public var profileLastGenerated: GoogleCloudWKT.Timestamp? = nil
 
   /// The resource name of the table data profile.
   public var tableDataProfile: Swift.String = Swift.String()
@@ -533,10 +533,10 @@ public struct ColumnDataProfile: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.ColumnDataProfile"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

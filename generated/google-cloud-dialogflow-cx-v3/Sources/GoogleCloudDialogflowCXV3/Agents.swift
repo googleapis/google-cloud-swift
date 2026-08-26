@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleRpc
   import GoogleCloudGax
@@ -441,7 +441,7 @@
       /// See `AgentsClient.updateAgent`.
       func updateAgent(
         agent: Agent?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudDialogflowCXV3.Agent
 
       /// See `AgentsClient.deleteAgent`.
@@ -496,7 +496,7 @@
       /// See `AgentsClient.updateGenerativeSettings`.
       func updateGenerativeSettings(
         generativeSettings: GenerativeSettings?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudDialogflowCXV3.GenerativeSettings
 
       /// See `AgentsClient.listLocations`.
@@ -732,7 +732,7 @@
 
     public func updateAgent(
       agent: Agent?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.Agent {
       let request = UpdateAgentRequest().with {
         $0.agent = agent
@@ -886,7 +886,7 @@
 
     public func updateGenerativeSettings(
       generativeSettings: GenerativeSettings?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.GenerativeSettings {
       let request = UpdateGenerativeSettingsRequest().with {
         $0.generativeSettings = generativeSettings

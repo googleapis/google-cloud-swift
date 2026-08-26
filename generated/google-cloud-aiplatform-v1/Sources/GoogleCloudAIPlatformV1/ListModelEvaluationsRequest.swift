@@ -16,13 +16,13 @@
 
 #if ModelService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request message for
   /// [ModelService.ListModelEvaluations][google.cloud.aiplatform.v1.ModelService.ListModelEvaluations].
   ///
   /// [google.cloud.aiplatform.v1.ModelService.ListModelEvaluations]: <doc:ModelServiceClient/listModelEvaluations(request:options:)>
-  public struct ListModelEvaluationsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ListModelEvaluationsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The resource name of the Model to list the ModelEvaluations from.
@@ -47,7 +47,7 @@
     public var pageToken: Swift.String = Swift.String()
 
     /// Mask specifying which fields to read.
-    public var readMask: GoogleCloudWkt.FieldMask? = nil
+    public var readMask: GoogleCloudWKT.FieldMask? = nil
 
     /// Initialize a new instance of `ListModelEvaluationsRequest`.
     public init() {}
@@ -68,11 +68,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.ListModelEvaluationsRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

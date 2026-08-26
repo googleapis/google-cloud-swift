@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Specification for a group of BigQuery tables with the `[prefix]YYYYMMDD` name
 /// pattern.
 ///
 /// For more information, see [Introduction to partitioned tables]
 /// (https://cloud.google.com/bigquery/docs/partitioned-tables#partitioning_versus_sharding).
-public struct BigQueryDateShardedSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BigQueryDateShardedSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The Data Catalog resource name of the dataset entry the
@@ -63,10 +63,10 @@ public struct BigQueryDateShardedSpec: Codable, Equatable, GoogleCloudWkt._AnyPa
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datacatalog.v1.BigQueryDateShardedSpec"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

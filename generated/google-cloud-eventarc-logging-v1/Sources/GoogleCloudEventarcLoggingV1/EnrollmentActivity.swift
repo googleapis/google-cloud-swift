@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// Logged during the processing of an enrollment on an event in a message bus.
-public struct EnrollmentActivity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct EnrollmentActivity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The unique system generated ID associated with the event passed from the
@@ -30,7 +30,7 @@ public struct EnrollmentActivity: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public var attributes: [Swift.String: Swift.String] = [:]
 
   /// The point in time when the activity occurred.
-  public var activityTime: GoogleCloudWkt.Timestamp? = nil
+  public var activityTime: GoogleCloudWKT.Timestamp? = nil
 
   /// One of the activities that can be logged during the processing of an
   /// enrollment.
@@ -64,7 +64,7 @@ public struct EnrollmentActivity: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     self.messageUid = try container.decode(Swift.String.self, forKey: .messageUid)
     self.attributes = try container.decode([Swift.String: Swift.String].self, forKey: .attributes)
     self.activityTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .activityTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .activityTime)
 
     var activity: OneOf_Activity? = nil
     let activityCheckAndSet = {
@@ -99,7 +99,7 @@ public struct EnrollmentActivity: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   }
 
   /// Structured log message that is emitted when an event matches an enrollment.
-  public struct Matched: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Matched: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Informational details about the matched event.
@@ -131,11 +131,11 @@ public struct EnrollmentActivity: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.eventarc.logging.v1.EnrollmentActivity.Matched"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -149,10 +149,10 @@ public struct EnrollmentActivity: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.eventarc.logging.v1.EnrollmentActivity"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

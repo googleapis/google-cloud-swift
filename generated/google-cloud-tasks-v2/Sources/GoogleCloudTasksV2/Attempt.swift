@@ -15,27 +15,27 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// The status of a task attempt.
-public struct Attempt: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Attempt: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The time that this attempt was scheduled.
   ///
   /// `schedule_time` will be truncated to the nearest microsecond.
-  public var scheduleTime: GoogleCloudWkt.Timestamp? = nil
+  public var scheduleTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time that this attempt was dispatched.
   ///
   /// `dispatch_time` will be truncated to the nearest microsecond.
-  public var dispatchTime: GoogleCloudWkt.Timestamp? = nil
+  public var dispatchTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time that this attempt response was received.
   ///
   /// `response_time` will be truncated to the nearest microsecond.
-  public var responseTime: GoogleCloudWkt.Timestamp? = nil
+  public var responseTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The response from the worker for this attempt.
   ///
@@ -62,10 +62,10 @@ public struct Attempt: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.tasks.v2.Attempt"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

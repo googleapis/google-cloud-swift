@@ -16,11 +16,11 @@
 
 #if Agents && AnswerRecords && Contexts && ConversationDatasets && ConversationModels && ConversationProfiles && Conversations && Documents && EncryptionSpecService && EntityTypes && Environments && Fulfillments && GeneratorEvaluations && Generators && Intents && KnowledgeBases && Participants && SessionEntityTypes && Sessions && SipTrunks && Tools && Versions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents the contents of the original request that was passed to
   /// the `[Streaming]DetectIntent` call.
-  public struct OriginalDetectIntentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct OriginalDetectIntentRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The source of this request, e.g., `google`, `facebook`, `slack`. It is set
@@ -45,7 +45,7 @@
     /// Note: The caller ID field (`caller_id`) will be redacted for Trial
     /// Edition agents and populated with the caller ID in [E.164
     /// format](https://en.wikipedia.org/wiki/E.164) for Essentials Edition agents.
-    public var payload: GoogleCloudWkt.Struct? = nil
+    public var payload: GoogleCloudWKT.Struct? = nil
 
     /// Initialize a new instance of `OriginalDetectIntentRequest`.
     public init() {}
@@ -66,11 +66,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.OriginalDetectIntentRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

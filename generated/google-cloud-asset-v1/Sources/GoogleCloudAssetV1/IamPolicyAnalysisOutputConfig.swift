@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Output configuration for export IAM policy analysis destination.
-public struct IamPolicyAnalysisOutputConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct IamPolicyAnalysisOutputConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// IAM policy analysis export destination.
@@ -85,7 +85,7 @@ public struct IamPolicyAnalysisOutputConfig: Codable, Equatable, GoogleCloudWkt.
   }
 
   /// A Cloud Storage location.
-  public struct GcsDestination: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GcsDestination: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The URI of the Cloud Storage object. It's the same URI that is
@@ -119,16 +119,16 @@ public struct IamPolicyAnalysisOutputConfig: Codable, Equatable, GoogleCloudWkt.
       return
         "type.googleapis.com/google.cloud.asset.v1.IamPolicyAnalysisOutputConfig.GcsDestination"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A BigQuery destination.
-  public struct BigQueryDestination: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct BigQueryDestination: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The BigQuery dataset in format
@@ -292,11 +292,11 @@ public struct IamPolicyAnalysisOutputConfig: Codable, Equatable, GoogleCloudWkt.
       return
         "type.googleapis.com/google.cloud.asset.v1.IamPolicyAnalysisOutputConfig.BigQueryDestination"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -311,10 +311,10 @@ public struct IamPolicyAnalysisOutputConfig: Codable, Equatable, GoogleCloudWkt.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.asset.v1.IamPolicyAnalysisOutputConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

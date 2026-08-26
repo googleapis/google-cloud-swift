@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Message for current status of the Major Version Upgrade operation.
-public struct UpgradeClusterStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpgradeClusterStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Cluster Major Version Upgrade state.
@@ -53,7 +53,7 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleCloudWkt._AnyPacka
   }
 
   /// Status of an upgrade stage.
-  public struct StageStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct StageStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Upgrade stage.
@@ -132,22 +132,22 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleCloudWkt._AnyPacka
     }
 
     /// Timing information for the stage execution.
-    public struct StageSchedule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct StageSchedule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// When the stage is expected to start. Set only if the stage has not
       /// started yet.
-      public var estimatedStartTime: GoogleCloudWkt.Timestamp? = nil
+      public var estimatedStartTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Actual start time of the stage. Set only if the stage has started.
-      public var actualStartTime: GoogleCloudWkt.Timestamp? = nil
+      public var actualStartTime: GoogleCloudWKT.Timestamp? = nil
 
       /// When the stage is expected to end. Set only if the stage has not
       /// completed yet.
-      public var estimatedEndTime: GoogleCloudWkt.Timestamp? = nil
+      public var estimatedEndTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Actual end time of the stage. Set only if the stage has completed.
-      public var actualEndTime: GoogleCloudWkt.Timestamp? = nil
+      public var actualEndTime: GoogleCloudWKT.Timestamp? = nil
 
       /// Initialize a new instance of `StageSchedule`.
       public init() {}
@@ -169,11 +169,11 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleCloudWkt._AnyPacka
         return
           "type.googleapis.com/google.cloud.alloydb.v1.UpgradeClusterStatus.StageStatus.StageSchedule"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -187,16 +187,16 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleCloudWkt._AnyPacka
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.alloydb.v1.UpgradeClusterStatus.StageStatus"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Read pool instances upgrade specific status.
-  public struct ReadPoolInstancesUpgradeStageStatus: Codable, Equatable, GoogleCloudWkt
+  public struct ReadPoolInstancesUpgradeStageStatus: Codable, Equatable, GoogleCloudWKT
       ._AnyPackable,
     Sendable
   {
@@ -220,7 +220,7 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleCloudWkt._AnyPacka
     }
 
     /// Upgrade stats for read pool instances.
-    public struct Stats: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Stats: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Number of read pool instances for which upgrade has not started.
@@ -255,11 +255,11 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleCloudWkt._AnyPacka
         return
           "type.googleapis.com/google.cloud.alloydb.v1.UpgradeClusterStatus.ReadPoolInstancesUpgradeStageStatus.Stats"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -267,21 +267,21 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleCloudWkt._AnyPacka
       return
         "type.googleapis.com/google.cloud.alloydb.v1.UpgradeClusterStatus.ReadPoolInstancesUpgradeStageStatus"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.alloydb.v1.UpgradeClusterStatus"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

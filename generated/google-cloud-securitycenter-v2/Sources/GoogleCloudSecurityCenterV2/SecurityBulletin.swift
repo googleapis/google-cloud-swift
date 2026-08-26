@@ -15,17 +15,17 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// SecurityBulletin are notifications of vulnerabilities of Google products.
-public struct SecurityBulletin: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SecurityBulletin: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// ID of the bulletin corresponding to the vulnerability.
   public var bulletinId: Swift.String = Swift.String()
 
   /// Submission time of this Security Bulletin.
-  public var submissionTime: GoogleCloudWkt.Timestamp? = nil
+  public var submissionTime: GoogleCloudWKT.Timestamp? = nil
 
   /// This represents a version that the cluster receiving this notification
   /// should be upgraded to, based on its current version. For example, 1.15.0
@@ -50,10 +50,10 @@ public struct SecurityBulletin: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.SecurityBulletin"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

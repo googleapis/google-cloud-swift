@@ -17,14 +17,14 @@
 #if ConversationalSearchService || SearchService
   import Foundation
   @_spi(GoogleCloudInternal) import GoogleCloudGax
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Response message for
   /// [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search]
   /// method.
   ///
   /// [google.cloud.discoveryengine.v1.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>
-  public struct SearchResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SearchResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable
   {
@@ -125,7 +125,7 @@
     }
 
     /// Represents the search results.
-    public struct SearchResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SearchResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// [Document.id][google.cloud.discoveryengine.v1.Document.id] of the
@@ -171,7 +171,7 @@
       }
 
       /// A set of ranking signals.
-      public struct RankSignals: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct RankSignals: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. Keyword matching adjustment.
@@ -218,7 +218,7 @@
         }
 
         /// Custom clearbox signal represented by name and value pair.
-        public struct CustomSignal: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct CustomSignal: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Optional. Name of the signal.
@@ -248,11 +248,11 @@
             return
               "type.googleapis.com/google.cloud.discoveryengine.v1.SearchResponse.SearchResult.RankSignals.CustomSignal"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
@@ -260,27 +260,27 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.SearchResponse.SearchResult.RankSignals"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.SearchResponse.SearchResult"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// A facet result.
-    public struct Facet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Facet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The key for this facet. For example, `"colors"` or `"price"`. It matches
@@ -312,7 +312,7 @@
       }
 
       /// A facet value which contains value names and their count.
-      public struct FacetValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct FacetValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Number of items that have this facet value.
@@ -396,27 +396,27 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.SearchResponse.Facet.FacetValue"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.SearchResponse.Facet"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Summary of the top N search results specified by the summary spec.
-    public struct Summary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Summary: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The summary content.
@@ -450,7 +450,7 @@
       }
 
       /// Safety Attribute categories and their associated confidence scores.
-      public struct SafetyAttributes: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct SafetyAttributes: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// The display names of Safety Attribute categories associated with the
@@ -481,16 +481,16 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.SearchResponse.Summary.SafetyAttributes"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Citation metadata.
-      public struct CitationMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct CitationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Citations for segments.
@@ -516,16 +516,16 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.SearchResponse.Summary.CitationMetadata"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Citation info for a segment.
-      public struct Citation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Citation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Index indicates the start of the segment, measured in bytes/unicode.
@@ -557,16 +557,16 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.SearchResponse.Summary.Citation"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Citation source.
-      public struct CitationSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct CitationSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Document reference index from SummaryWithMetadata.references.
@@ -594,16 +594,16 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.SearchResponse.Summary.CitationSource"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Document reference.
-      public struct Reference: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Reference: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Title of the document.
@@ -640,7 +640,7 @@
         }
 
         /// Chunk content.
-        public struct ChunkContent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct ChunkContent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Chunk textual content.
@@ -669,11 +669,11 @@
             return
               "type.googleapis.com/google.cloud.discoveryengine.v1.SearchResponse.Summary.Reference.ChunkContent"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
@@ -681,16 +681,16 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.SearchResponse.Summary.Reference"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Summary with metadata information.
-      public struct SummaryWithMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct SummaryWithMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Summary text with no citation information.
@@ -722,11 +722,11 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.SearchResponse.Summary.SummaryWithMetadata"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -934,17 +934,17 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.SearchResponse.Summary"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Information describing query expansion including whether expansion has
     /// occurred.
-    public struct QueryExpansionInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct QueryExpansionInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Bool describing whether query expansion has occurred.
@@ -978,17 +978,17 @@
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.SearchResponse.QueryExpansionInfo"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Information describing what natural language understanding was
     /// done on the input query.
-    public struct NaturalLanguageQueryUnderstandingInfo: Codable, Equatable, GoogleCloudWkt
+    public struct NaturalLanguageQueryUnderstandingInfo: Codable, Equatable, GoogleCloudWKT
         ._AnyPackable,
       Sendable
     {
@@ -1024,7 +1024,7 @@
 
       /// The filters that were extracted from the input query represented in a
       /// structured form.
-      public struct StructuredExtractedFilter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct StructuredExtractedFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// The expression denoting the filter that was extracted from the input
@@ -1053,7 +1053,7 @@
         }
 
         /// Constraint expression of a string field.
-        public struct StringConstraint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct StringConstraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Name of the string field as defined in the schema.
@@ -1086,16 +1086,16 @@
             return
               "type.googleapis.com/google.cloud.discoveryengine.v1.SearchResponse.NaturalLanguageQueryUnderstandingInfo.StructuredExtractedFilter.StringConstraint"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
         /// Constraint expression of a number field. Example: price < 100.
-        public struct NumberConstraint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct NumberConstraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Name of the numerical field as defined in the schema.
@@ -1260,17 +1260,17 @@
             return
               "type.googleapis.com/google.cloud.discoveryengine.v1.SearchResponse.NaturalLanguageQueryUnderstandingInfo.StructuredExtractedFilter.NumberConstraint"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
         /// Constraint of a geolocation field.
         /// Name of the geolocation field as defined in the schema.
-        public struct GeolocationConstraint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct GeolocationConstraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// The name of the geolocation field as defined in the schema.
@@ -1311,16 +1311,16 @@
             return
               "type.googleapis.com/google.cloud.discoveryengine.v1.SearchResponse.NaturalLanguageQueryUnderstandingInfo.StructuredExtractedFilter.GeolocationConstraint"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
         /// Logical `And` operator.
-        public struct AndExpression: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct AndExpression: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// The expressions that were ANDed together.
@@ -1348,16 +1348,16 @@
             return
               "type.googleapis.com/google.cloud.discoveryengine.v1.SearchResponse.NaturalLanguageQueryUnderstandingInfo.StructuredExtractedFilter.AndExpression"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
         /// Logical `Or` operator.
-        public struct OrExpression: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct OrExpression: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// The expressions that were ORed together.
@@ -1385,17 +1385,17 @@
             return
               "type.googleapis.com/google.cloud.discoveryengine.v1.SearchResponse.NaturalLanguageQueryUnderstandingInfo.StructuredExtractedFilter.OrExpression"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
         /// The expression denoting the filter that was extracted from the input
         /// query.
-        public struct Expression: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct Expression: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// The expression type.
@@ -1518,11 +1518,11 @@
             return
               "type.googleapis.com/google.cloud.discoveryengine.v1.SearchResponse.NaturalLanguageQueryUnderstandingInfo.StructuredExtractedFilter.Expression"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
@@ -1530,11 +1530,11 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.SearchResponse.NaturalLanguageQueryUnderstandingInfo.StructuredExtractedFilter"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -1542,16 +1542,16 @@
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.SearchResponse.NaturalLanguageQueryUnderstandingInfo"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Information about the session.
-    public struct SessionInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SessionInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Name of the session.
@@ -1589,11 +1589,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.SearchResponse.SessionInfo"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -1705,11 +1705,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.SearchResponse"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
 
     public func _getPaginatedItems() -> [SearchResponse.SearchResult] {

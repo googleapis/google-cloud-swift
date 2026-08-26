@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An object that describes the values that you want to set for an entry and its
 /// attached aspects when you import metadata. Used when you run a metadata
@@ -27,7 +27,7 @@ import Foundation
 /// file](https://cloud.google.com/dataplex/docs/import-metadata#metadata-import-file).
 ///
 /// [google.cloud.dataplex.v1.CatalogService.CreateMetadataJob]: <doc:CatalogServiceClient/createMetadataJob(request:options:)>
-public struct ImportItem: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ImportItem: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Information about an entry and its attached aspects.
@@ -59,7 +59,7 @@ public struct ImportItem: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// metadata import file with the values and timestamps that exist in your
   /// project. For more information, see [Comparison
   /// logic](https://cloud.google.com/dataplex/docs/import-metadata#data-modification-logic).
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// The aspects to modify. Supports the following syntaxes:
   ///
@@ -100,10 +100,10 @@ public struct ImportItem: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataplex.v1.ImportItem"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -16,12 +16,12 @@
 
 #if Flows || Playbooks || Sessions || TestCases
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Defines the properties of a parameter.
   /// Used to define parameters used in the agent and the
   /// input / output parameters for each fulfillment.
-  public struct ParameterDefinition: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ParameterDefinition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Name of parameter.
@@ -57,7 +57,7 @@
     /// These types are consistent with
     /// [google.protobuf.Value][google.protobuf.Value].
     ///
-    /// [google.protobuf.Value]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWkt.Value
+    /// [google.protobuf.Value]: https://www.google.com/search?q=Swift+google.protobuf+GoogleCloudWKT.Value
     public enum ParameterType: Codable, Equatable, Sendable {
       /// Not specified. No validation will be performed.
       case unspecified
@@ -193,11 +193,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.ParameterDefinition"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

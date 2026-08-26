@@ -16,10 +16,10 @@
 
 import Foundation
 @_spi(GoogleCloudInternal) import GoogleCloudGax
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response message for DocumentService.SearchDocuments.
-public struct SearchDocumentsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SearchDocumentsResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable
 {
@@ -80,7 +80,7 @@ public struct SearchDocumentsResponse: Codable, Equatable, GoogleCloudWkt._AnyPa
   /// [SearchDocumentsResponse][google.cloud.contentwarehouse.v1.SearchDocumentsResponse]
   ///
   /// [google.cloud.contentwarehouse.v1.SearchDocumentsResponse]: <doc:SearchDocumentsResponse>
-  public struct MatchingDocument: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MatchingDocument: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Document that matches the specified
@@ -132,22 +132,22 @@ public struct SearchDocumentsResponse: Codable, Equatable, GoogleCloudWkt._AnyPa
       return
         "type.googleapis.com/google.cloud.contentwarehouse.v1.SearchDocumentsResponse.MatchingDocument"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.contentwarehouse.v1.SearchDocumentsResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 
   public func _getPaginatedItems() -> [SearchDocumentsResponse.MatchingDocument] {

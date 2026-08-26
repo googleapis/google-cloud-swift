@@ -16,22 +16,22 @@
 
 #if Advice
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Specifies a flexible time range with flexible start time and duration.
   ///
   /// It is possible to specify a contradictory time range that cannot be matched
   /// by any Interval. This causes a validation error.
-  public struct FlexibleTimeRange: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FlexibleTimeRange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
-    public var maxDuration: GoogleCloudWkt.Duration? = nil
+    public var maxDuration: GoogleCloudWKT.Duration? = nil
 
-    public var minDuration: GoogleCloudWkt.Duration? = nil
+    public var minDuration: GoogleCloudWKT.Duration? = nil
 
-    public var startTimeNotEarlierThan: GoogleCloudWkt.Timestamp? = nil
+    public var startTimeNotEarlierThan: GoogleCloudWKT.Timestamp? = nil
 
-    public var startTimeNotLaterThan: GoogleCloudWkt.Timestamp? = nil
+    public var startTimeNotLaterThan: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `FlexibleTimeRange`.
     public init() {}
@@ -52,11 +52,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.FlexibleTimeRange"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudTasksV2
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 
 func sample(client: CloudTasksClient, projectId: String, locationId: String, queueId: String)

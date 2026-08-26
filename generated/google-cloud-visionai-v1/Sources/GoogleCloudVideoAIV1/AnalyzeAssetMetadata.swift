@@ -15,20 +15,20 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Metadata for AnalyzeAsset.
-public struct AnalyzeAssetMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AnalyzeAssetMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The status of analysis on all search capabilities.
   public var analysisStatus: [AnalyzeAssetMetadata.AnalysisStatus] = []
 
   /// The start time of the operation.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The update time of the operation.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `AnalyzeAssetMetadata`.
   public init() {}
@@ -47,7 +47,7 @@ public struct AnalyzeAssetMetadata: Codable, Equatable, GoogleCloudWkt._AnyPacka
   }
 
   /// The status of analysis on each search capability.
-  public struct AnalysisStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AnalysisStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var state: AnalyzeAssetMetadata.AnalysisStatus.State = AnalyzeAssetMetadata
@@ -189,21 +189,21 @@ public struct AnalyzeAssetMetadata: Codable, Equatable, GoogleCloudWkt._AnyPacka
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.AnalyzeAssetMetadata.AnalysisStatus"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.AnalyzeAssetMetadata"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

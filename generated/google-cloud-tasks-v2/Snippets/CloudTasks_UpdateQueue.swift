@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudTasksV2
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 
 func sample(client: CloudTasksClient, projectId: String, locationId: String, queueId: String)
@@ -31,7 +31,7 @@ func sample(client: CloudTasksClient, projectId: String, locationId: String, que
         $0.queue = Queue().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/queues/\(queueId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

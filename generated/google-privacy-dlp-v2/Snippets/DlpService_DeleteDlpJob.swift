@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudDLPV2
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: DlpServiceClient, projectId: String, dlpJobId: String) async throws {
   try await client.deleteDlpJob(

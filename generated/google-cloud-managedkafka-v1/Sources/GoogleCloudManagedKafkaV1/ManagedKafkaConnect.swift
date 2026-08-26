@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -431,7 +431,7 @@ extension Clients {
     /// See `ManagedKafkaConnectClient.updateConnectCluster`.
     func updateConnectCluster(
       connectCluster: ConnectCluster?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<ConnectCluster>
 
     /// See `ManagedKafkaConnectClient.deleteConnectCluster`.
@@ -488,7 +488,7 @@ extension Clients {
     /// See `ManagedKafkaConnectClient.updateConnector`.
     func updateConnector(
       connector: Connector?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudManagedKafkaV1.Connector
 
     /// See `ManagedKafkaConnectClient.deleteConnector`.
@@ -842,7 +842,7 @@ extension Clients.ManagedKafkaConnectProtocol {
 
   public func updateConnectCluster(
     connectCluster: ConnectCluster?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<ConnectCluster> {
     let request = UpdateConnectClusterRequest().with {
       $0.connectCluster = connectCluster
@@ -985,7 +985,7 @@ extension Clients.ManagedKafkaConnectProtocol {
 
   public func updateConnector(
     connector: Connector?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudManagedKafkaV1.Connector {
     let request = UpdateConnectorRequest().with {
       $0.connector = connector

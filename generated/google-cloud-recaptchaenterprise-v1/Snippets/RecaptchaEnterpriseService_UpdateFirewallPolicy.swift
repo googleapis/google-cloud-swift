@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudRecaptchaEnterpriseV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: RecaptchaEnterpriseServiceClient, projectId: String, firewallpolicyId: String)
   async throws
@@ -29,7 +29,7 @@ func sample(client: RecaptchaEnterpriseServiceClient, projectId: String, firewal
         $0.firewallPolicy = FirewallPolicy().with {
           $0.name = "projects/\(projectId)/firewallpolicies/\(firewallpolicyId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

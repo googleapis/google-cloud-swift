@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message to edit chart in a dashboard.
-public struct EditChartRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct EditChartRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The dashboard name to edit chart in.
@@ -44,7 +44,7 @@ public struct EditChartRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Supported paths in query are -
   /// dashboard_query.query
   /// dashboard_query.input
-  public var editMask: GoogleCloudWkt.FieldMask? = nil
+  public var editMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Optional. Language Features present in the query.
   public var languageFeatures: [LanguageFeature] = []
@@ -68,10 +68,10 @@ public struct EditChartRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.chronicle.v1.EditChartRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

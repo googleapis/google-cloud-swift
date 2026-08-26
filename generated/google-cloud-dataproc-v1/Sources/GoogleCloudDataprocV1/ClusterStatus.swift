@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The status of a cluster and its instances.
-public struct ClusterStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ClusterStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The cluster's state.
@@ -29,7 +29,7 @@ public struct ClusterStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Output only. Time when this state was entered (see JSON representation of
   /// [Timestamp](https://developers.google.com/protocol-buffers/docs/proto3#json)).
-  public var stateStartTime: GoogleCloudWkt.Timestamp? = nil
+  public var stateStartTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Additional state information that includes
   /// status reported by the agent.
@@ -332,10 +332,10 @@ public struct ClusterStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataproc.v1.ClusterStatus"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

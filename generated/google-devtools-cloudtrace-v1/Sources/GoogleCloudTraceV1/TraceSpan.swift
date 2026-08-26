@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A span represents a single timed event within a trace. Spans can be nested
 /// and form a trace tree. Often, a trace contains a root span that describes the
 /// end-to-end latency of an operation and, optionally, one or more subspans for
 /// its suboperations. Spans do not need to be contiguous. There may be gaps
 /// between spans in a trace.
-public struct TraceSpan: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TraceSpan: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier for the span. Must be a 64-bit integer other than 0 and
@@ -44,10 +44,10 @@ public struct TraceSpan: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Start time of the span in nanoseconds from the UNIX epoch.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// End time of the span in nanoseconds from the UNIX epoch.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. ID of the parent span, if any.
   public var parentSpanId: Swift.UInt64 = Swift.UInt64()
@@ -216,10 +216,10 @@ public struct TraceSpan: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.devtools.cloudtrace.v1.TraceSpan"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

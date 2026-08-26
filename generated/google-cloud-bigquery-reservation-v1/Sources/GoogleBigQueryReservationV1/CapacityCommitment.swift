@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// Capacity commitment is a way to purchase compute capacity for BigQuery jobs
@@ -28,7 +28,7 @@ import GoogleRpc
 ///
 /// A capacity commitment resource exists as a child resource of the admin
 /// project.
-public struct CapacityCommitment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CapacityCommitment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The resource name of the capacity commitment, e.g.,
@@ -51,14 +51,14 @@ public struct CapacityCommitment: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   /// only for ACTIVE capacity commitments. Note after the commitment is renewed,
   /// commitment_start_time won't be changed. It refers to the start time of the
   /// original commitment.
-  public var commitmentStartTime: GoogleCloudWkt.Timestamp? = nil
+  public var commitmentStartTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The end of the current commitment period. It is applicable
   /// only for ACTIVE capacity commitments. Note after renewal,
   /// commitment_end_time is the time the renewed commitment expires. So itwould
   /// be at a time after commitment_start_time + committed period, because we
   /// don't change commitment_start_time ,
-  public var commitmentEndTime: GoogleCloudWkt.Timestamp? = nil
+  public var commitmentEndTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. For FAILED commitment plan, provides the reason of failure.
   public var failureStatus: GoogleRpc.Status? = nil
@@ -401,10 +401,10 @@ public struct CapacityCommitment: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.reservation.v1.CapacityCommitment"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

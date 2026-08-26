@@ -16,12 +16,12 @@
 
 #if TestCases
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
   import GoogleRpc
 
   /// One interaction between a human and virtual agent. The human provides some
   /// input and the virtual agent provides a response.
-  public struct ConversationTurn: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ConversationTurn: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The user input.
@@ -47,7 +47,7 @@
     }
 
     /// The input from the human user.
-    public struct UserInput: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct UserInput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Supports [text input][google.cloud.dialogflow.cx.v3.QueryInput.text],
@@ -61,7 +61,7 @@
 
       /// Parameters that need to be injected into the conversation during intent
       /// detection.
-      public var injectedParameters: GoogleCloudWkt.Struct? = nil
+      public var injectedParameters: GoogleCloudWKT.Struct? = nil
 
       /// If webhooks should be allowed to trigger in response to the user
       /// utterance. Often if parameters are injected, webhooks should not be
@@ -90,20 +90,20 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.ConversationTurn.UserInput"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// The output from the virtual agent.
-    public struct VirtualAgentOutput: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct VirtualAgentOutput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The session parameters available to the bot at this point.
-      public var sessionParameters: GoogleCloudWkt.Struct? = nil
+      public var sessionParameters: GoogleCloudWKT.Struct? = nil
 
       /// Output only. If this is part of a [result conversation
       /// turn][TestCaseResult.conversation_turns], the list of differences
@@ -115,7 +115,7 @@
       /// Required. Input only. The diagnostic
       /// [info][Session.DetectIntentResponse.QueryResult.diagnostic_info]
       /// output for the turn. Required to calculate the testing coverage.
-      public var diagnosticInfo: GoogleCloudWkt.Struct? = nil
+      public var diagnosticInfo: GoogleCloudWKT.Struct? = nil
 
       /// The [Intent][google.cloud.dialogflow.cx.v3.Intent] that triggered the
       /// response. Only name and displayName will be set.
@@ -159,22 +159,22 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.cx.v3.ConversationTurn.VirtualAgentOutput"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.ConversationTurn"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

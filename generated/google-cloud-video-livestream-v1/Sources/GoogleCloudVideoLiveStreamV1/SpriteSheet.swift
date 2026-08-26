@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Sprite sheet configuration.
-public struct SpriteSheet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SpriteSheet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Format type. The default is `jpeg`.
@@ -52,7 +52,7 @@ public struct SpriteSheet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Create sprites at regular intervals. Valid range is [1 second, 1 hour] and
   /// the default value is `10s`.
-  public var interval: GoogleCloudWkt.Duration? = nil
+  public var interval: GoogleCloudWKT.Duration? = nil
 
   /// The quality of the generated sprite sheet. Enter a value between 1
   /// and 100, where 1 is the lowest quality and 100 is the highest quality.
@@ -79,10 +79,10 @@ public struct SpriteSheet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.video.livestream.v1.SpriteSheet"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

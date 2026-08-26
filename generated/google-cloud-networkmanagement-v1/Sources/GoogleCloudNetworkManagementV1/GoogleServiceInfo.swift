@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// For display only. Details of a Google Service sending packets to a
 /// VPC network. Although the source IP might be a publicly routable address,
 /// some Google Services use special routes within Google production
 /// infrastructure to reach Compute Engine Instances.
 /// https://cloud.google.com/vpc/docs/routes#special_return_paths
-public struct GoogleServiceInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct GoogleServiceInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Source IP address.
@@ -201,10 +201,10 @@ public struct GoogleServiceInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkmanagement.v1.GoogleServiceInfo"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

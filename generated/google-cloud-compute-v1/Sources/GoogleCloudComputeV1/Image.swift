@@ -16,13 +16,13 @@
 
 #if ImageFamilyViews || Images
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents an Image resource.
   ///
   /// You can use images to create boot disks for your VM instances.
   /// For more information, read Images.
-  public struct Image: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Image: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The architecture of the image. Valid values are
@@ -311,7 +311,7 @@
         CustomerEncryptionKey.self, forKey: .imageEncryptionKey)
       self.kind = try container.decodeIfPresent(Swift.String.self, forKey: .kind)
       if let s = try container.decodeIfPresent(Swift.String.self, forKey: .labelFingerprint) {
-        guard let v = GoogleCloudWkt._DiscoveryBase64.decode(s) else {
+        guard let v = GoogleCloudWKT._DiscoveryBase64.decode(s) else {
           throw DecodingError.dataCorrupted(
             DecodingError.Context(
               codingPath: decoder.codingPath, debugDescription: "Expected url-safe encoded value")
@@ -365,7 +365,7 @@
       try container.encode(self.kind, forKey: .kind)
       if let v = labelFingerprint {
         try container.encode(
-          GoogleCloudWkt._DiscoveryBase64.encode(v), forKey: .labelFingerprint
+          GoogleCloudWKT._DiscoveryBase64.encode(v), forKey: .labelFingerprint
         )
       }
       try container.encode(self.labels, forKey: .labels)
@@ -395,7 +395,7 @@
     /// The message type for the [rawDisk][google.cloud.compute.v1.Image.rawDisk] field.
     ///
     /// [google.cloud.compute.v1.Image.rawDisk]: <doc:Image/RawDisk>
-    public struct RawDisk: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct RawDisk: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The format used to encode and transmit the block device, which should beTAR. This is just a container and transmission format and not
@@ -539,11 +539,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.compute.v1.Image.rawDisk"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -863,11 +863,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.Image"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

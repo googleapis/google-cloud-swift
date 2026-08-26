@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudRunV2
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -32,7 +32,7 @@ func sample(client: ServicesClient, projectId: String, locationId: String, servi
         $0.service = Service().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/services/\(serviceId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   let response = try await poller.wait()

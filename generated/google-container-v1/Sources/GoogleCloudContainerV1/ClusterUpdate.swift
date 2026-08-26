@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// ClusterUpdate describes an update to the cluster. Exactly one update can
 /// be applied to a cluster with each request, so at most one field can be
 /// provided.
-public struct ClusterUpdate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ClusterUpdate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The Kubernetes version to change the nodes to (typically an
@@ -768,10 +768,10 @@ public struct ClusterUpdate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.ClusterUpdate"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

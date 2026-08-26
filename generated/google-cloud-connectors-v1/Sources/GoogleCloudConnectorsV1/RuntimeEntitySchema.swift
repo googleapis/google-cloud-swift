@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Schema of a runtime entity.
-public struct RuntimeEntitySchema: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RuntimeEntitySchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Name of the entity.
@@ -44,7 +44,7 @@ public struct RuntimeEntitySchema: Codable, Equatable, GoogleCloudWkt._AnyPackab
   }
 
   /// Metadata of an entity field.
-  public struct Field: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Field: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Name of the Field.
@@ -68,12 +68,12 @@ public struct RuntimeEntitySchema: Codable, Equatable, GoogleCloudWkt._AnyPackab
 
     /// The following field specifies the default value of the Field provided
     /// by the external system if a value is not provided.
-    public var defaultValue: GoogleCloudWkt.Value? = nil
+    public var defaultValue: GoogleCloudWKT.Value? = nil
 
     /// The following map contains fields that are not explicitly mentioned
     /// above,this give connectors the flexibility to add new metadata
     /// fields.
-    public var additionalDetails: GoogleCloudWkt.Struct? = nil
+    public var additionalDetails: GoogleCloudWKT.Struct? = nil
 
     /// Initialize a new instance of `Field`.
     public init() {}
@@ -94,21 +94,21 @@ public struct RuntimeEntitySchema: Codable, Equatable, GoogleCloudWkt._AnyPackab
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.connectors.v1.RuntimeEntitySchema.Field"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.connectors.v1.RuntimeEntitySchema"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

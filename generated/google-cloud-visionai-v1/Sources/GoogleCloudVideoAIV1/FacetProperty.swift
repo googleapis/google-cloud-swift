@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Central configuration for a facet.
-public struct FacetProperty: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct FacetProperty: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Name of the facets, which are the dimensions users want to use to refine
@@ -137,7 +137,7 @@ public struct FacetProperty: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// will be aggregated via the following buckets:
   /// [-inf, 0), [0, 10), [10, 20), [20, 30), [30, inf).
   /// Notably, bucket_count <= 1 is an invalid spec.
-  public struct FixedRangeBucketSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FixedRangeBucketSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Lower bound of the bucket. NOTE: Only integer type is currently supported
@@ -170,11 +170,11 @@ public struct FacetProperty: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.FacetProperty.FixedRangeBucketSpec"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -186,7 +186,7 @@ public struct FacetProperty: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// - endpoints must be listed in ascending order. Otherwise, the SearchConfig
   ///   API will reject the facet config.
   /// - < 1 endpoints is an invalid spec.
-  public struct CustomRangeBucketSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CustomRangeBucketSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Currently, only integer type is supported for this field.
@@ -211,16 +211,16 @@ public struct FacetProperty: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.FacetProperty.CustomRangeBucketSpec"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// If bucket type is DATE, specify how date values are bucketized.
-  public struct DateTimeBucketSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DateTimeBucketSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Granularity of date type facet.
@@ -358,11 +358,11 @@ public struct FacetProperty: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.FacetProperty.DateTimeBucketSpec"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -378,10 +378,10 @@ public struct FacetProperty: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.FacetProperty"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

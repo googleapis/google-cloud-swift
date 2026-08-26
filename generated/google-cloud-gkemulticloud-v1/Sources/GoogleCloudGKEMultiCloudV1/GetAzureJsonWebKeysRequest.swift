@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// GetAzureJsonWebKeysRequest gets the public component of the keys used by the
 /// cluster to sign token requests. This will be the jwks_uri for the discover
 /// document returned by getOpenIDConfig. See the OpenID Connect
 /// Discovery 1.0 specification for details.
 @available(*, deprecated)
-public struct GetAzureJsonWebKeysRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct GetAzureJsonWebKeysRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The AzureCluster, which owns the JsonWebKeys.
@@ -49,10 +49,10 @@ public struct GetAzureJsonWebKeysRequest: Codable, Equatable, GoogleCloudWkt._An
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkemulticloud.v1.GetAzureJsonWebKeysRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

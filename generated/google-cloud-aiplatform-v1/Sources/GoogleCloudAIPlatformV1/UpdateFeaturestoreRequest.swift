@@ -16,13 +16,13 @@
 
 #if FeaturestoreService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request message for
   /// [FeaturestoreService.UpdateFeaturestore][google.cloud.aiplatform.v1.FeaturestoreService.UpdateFeaturestore].
   ///
   /// [google.cloud.aiplatform.v1.FeaturestoreService.UpdateFeaturestore]: <doc:FeaturestoreServiceClient/updateFeaturestore(request:options:)>
-  public struct UpdateFeaturestoreRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct UpdateFeaturestoreRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The Featurestore's `name` field is used to identify the
@@ -44,7 +44,7 @@
     ///   * `online_serving_config.fixed_node_count`
     ///   * `online_serving_config.scaling`
     ///   * `online_storage_ttl_days`
-    public var updateMask: GoogleCloudWkt.FieldMask? = nil
+    public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
     /// Initialize a new instance of `UpdateFeaturestoreRequest`.
     public init() {}
@@ -65,11 +65,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.UpdateFeaturestoreRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

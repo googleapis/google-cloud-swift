@@ -16,10 +16,10 @@
 
 #if SqlBackupsService || SqlConnectService || SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Database instance IP mapping
-  public struct IpMapping: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct IpMapping: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The type of this IP address. A `PRIMARY` address is a public address that
@@ -35,7 +35,7 @@
     /// [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
     /// `2012-11-15T16:19:00.094Z`. This field is only available when
     /// the IP is scheduled to be retired.
-    public var timeToRetire: GoogleCloudWkt.Timestamp? = nil
+    public var timeToRetire: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `IpMapping`.
     public init() {}
@@ -56,11 +56,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.IpMapping"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

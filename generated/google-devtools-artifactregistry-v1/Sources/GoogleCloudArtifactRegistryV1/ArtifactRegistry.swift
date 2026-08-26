@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -1218,7 +1218,7 @@ extension Clients {
     /// See `ArtifactRegistryClient.updateRepository`.
     func updateRepository(
       repository: Repository?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudArtifactRegistryV1.Repository
 
     /// See `ArtifactRegistryClient.deleteRepository`.
@@ -1325,7 +1325,7 @@ extension Clients {
     /// See `ArtifactRegistryClient.updateVersion`.
     func updateVersion(
       version: Version?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudArtifactRegistryV1.Version
 
     /// See `ArtifactRegistryClient.listFiles`.
@@ -1368,7 +1368,7 @@ extension Clients {
     /// See `ArtifactRegistryClient.updateFile`.
     func updateFile(
       file: File?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudArtifactRegistryV1.File
 
     /// See `ArtifactRegistryClient.listTags`.
@@ -1409,7 +1409,7 @@ extension Clients {
     /// See `ArtifactRegistryClient.updateTag`.
     func updateTag(
       tag: Tag?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudArtifactRegistryV1.Tag
 
     /// See `ArtifactRegistryClient.deleteTag`.
@@ -1458,7 +1458,7 @@ extension Clients {
     /// See `ArtifactRegistryClient.updateRule`.
     func updateRule(
       rule: Rule?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudArtifactRegistryV1.Rule
 
     /// See `ArtifactRegistryClient.deleteRule`.
@@ -1495,7 +1495,7 @@ extension Clients {
     /// See `ArtifactRegistryClient.updateProjectSettings`.
     func updateProjectSettings(
       projectSettings: ProjectSettings?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudArtifactRegistryV1.ProjectSettings
 
     /// See `ArtifactRegistryClient.getVpcscconfig`.
@@ -1514,7 +1514,7 @@ extension Clients {
     /// See `ArtifactRegistryClient.updateVpcscconfig`.
     func updateVpcscconfig(
       vpcscConfig: VPCSCConfig?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudArtifactRegistryV1.VPCSCConfig
 
     /// See `ArtifactRegistryClient.updatePackage`.
@@ -1524,7 +1524,7 @@ extension Clients {
     /// See `ArtifactRegistryClient.updatePackage`.
     func updatePackage(
       `package`: Package?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudArtifactRegistryV1.Package
 
     /// See `ArtifactRegistryClient.listAttachments`.
@@ -2384,7 +2384,7 @@ extension Clients.ArtifactRegistryProtocol {
 
   public func updateRepository(
     repository: Repository?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudArtifactRegistryV1.Repository {
     let request = UpdateRepositoryRequest().with {
       $0.repository = repository
@@ -2673,7 +2673,7 @@ extension Clients.ArtifactRegistryProtocol {
 
   public func updateVersion(
     version: Version?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudArtifactRegistryV1.Version {
     let request = UpdateVersionRequest().with {
       $0.version = version
@@ -2787,7 +2787,7 @@ extension Clients.ArtifactRegistryProtocol {
 
   public func updateFile(
     file: File?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudArtifactRegistryV1.File {
     let request = UpdateFileRequest().with {
       $0.file = file
@@ -2889,7 +2889,7 @@ extension Clients.ArtifactRegistryProtocol {
 
   public func updateTag(
     tag: Tag?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudArtifactRegistryV1.Tag {
     let request = UpdateTagRequest().with {
       $0.tag = tag
@@ -3012,7 +3012,7 @@ extension Clients.ArtifactRegistryProtocol {
 
   public func updateRule(
     rule: Rule?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudArtifactRegistryV1.Rule {
     let request = UpdateRuleRequest().with {
       $0.rule = rule
@@ -3111,7 +3111,7 @@ extension Clients.ArtifactRegistryProtocol {
 
   public func updateProjectSettings(
     projectSettings: ProjectSettings?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudArtifactRegistryV1.ProjectSettings {
     let request = UpdateProjectSettingsRequest().with {
       $0.projectSettings = projectSettings
@@ -3155,7 +3155,7 @@ extension Clients.ArtifactRegistryProtocol {
 
   public func updateVpcscconfig(
     vpcscConfig: VPCSCConfig?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudArtifactRegistryV1.VPCSCConfig {
     let request = UpdateVPCSCConfigRequest().with {
       $0.vpcscConfig = vpcscConfig
@@ -3178,7 +3178,7 @@ extension Clients.ArtifactRegistryProtocol {
 
   public func updatePackage(
     `package`: Package?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudArtifactRegistryV1.Package {
     let request = UpdatePackageRequest().with {
       $0.`package` = `package`

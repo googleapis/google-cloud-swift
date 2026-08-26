@@ -15,17 +15,17 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// BigQuery destination configuration
-public struct BigQueryDestinationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BigQueryDestinationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The guaranteed data freshness (in seconds) when querying tables created by
   /// the stream. Editing this field will only affect new tables created in the
   /// future, but existing tables will not be impacted. Lower values mean that
   /// queries will return fresher data, but may result in higher cost.
-  public var dataFreshness: GoogleCloudWkt.Duration? = nil
+  public var dataFreshness: GoogleCloudWKT.Duration? = nil
 
   /// Optional. Big Lake Managed Tables (BLMT) configuration.
   public var blmtConfig: BigQueryDestinationConfig.BlmtConfig? = nil
@@ -63,7 +63,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleCloudWkt._Any
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.dataFreshness = try container.decodeIfPresent(
-      GoogleCloudWkt.Duration.self, forKey: .dataFreshness)
+      GoogleCloudWKT.Duration.self, forKey: .dataFreshness)
     self.blmtConfig = try container.decodeIfPresent(
       BigQueryDestinationConfig.BlmtConfig.self, forKey: .blmtConfig)
 
@@ -137,7 +137,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleCloudWkt._Any
   }
 
   /// A single target dataset to which all data will be streamed.
-  public struct SingleTargetDataset: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SingleTargetDataset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The dataset ID of the target dataset.
@@ -165,17 +165,17 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleCloudWkt._Any
       return
         "type.googleapis.com/google.cloud.datastream.v1.BigQueryDestinationConfig.SingleTargetDataset"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Destination datasets are created so that hierarchy of the destination data
   /// objects matches the source hierarchy.
-  public struct SourceHierarchyDatasets: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SourceHierarchyDatasets: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The dataset template to use for dynamic dataset creation.
@@ -203,7 +203,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleCloudWkt._Any
     }
 
     /// Dataset template used for dynamic dataset creation.
-    public struct DatasetTemplate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DatasetTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The geographic location where the dataset should reside. See
@@ -245,11 +245,11 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleCloudWkt._Any
         return
           "type.googleapis.com/google.cloud.datastream.v1.BigQueryDestinationConfig.SourceHierarchyDatasets.DatasetTemplate"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -257,16 +257,16 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleCloudWkt._Any
       return
         "type.googleapis.com/google.cloud.datastream.v1.BigQueryDestinationConfig.SourceHierarchyDatasets"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The configuration for BLMT.
-  public struct BlmtConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct BlmtConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The Cloud Storage bucket name.
@@ -502,17 +502,17 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleCloudWkt._Any
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.datastream.v1.BigQueryDestinationConfig.BlmtConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// AppendOnly mode defines that all changes to a table will be written to the
   /// destination table.
-  public struct AppendOnly: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AppendOnly: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `AppendOnly`.
@@ -534,17 +534,17 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleCloudWkt._Any
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.datastream.v1.BigQueryDestinationConfig.AppendOnly"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Merge mode defines that all changes to a table will be merged at the
   /// destination table.
-  public struct Merge: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Merge: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `Merge`.
@@ -566,11 +566,11 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleCloudWkt._Any
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.datastream.v1.BigQueryDestinationConfig.Merge"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -592,10 +592,10 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleCloudWkt._Any
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datastream.v1.BigQueryDestinationConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

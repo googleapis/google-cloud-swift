@@ -15,17 +15,17 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Segment settings for `ts`, `fmp4` and `vtt`.
-public struct SegmentSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SegmentSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Duration of the segments in seconds. The default is `6.0s`. Note that
   /// `segmentDuration` must be greater than or equal to
   /// [`gopDuration`](#videostream), and `segmentDuration` must be divisible by
   /// [`gopDuration`](#videostream).
-  public var segmentDuration: GoogleCloudWkt.Duration? = nil
+  public var segmentDuration: GoogleCloudWKT.Duration? = nil
 
   /// Required. Create an individual segment file. The default is `false`.
   public var individualSegments: Swift.Bool = Swift.Bool()
@@ -49,10 +49,10 @@ public struct SegmentSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.video.transcoder.v1.SegmentSettings"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

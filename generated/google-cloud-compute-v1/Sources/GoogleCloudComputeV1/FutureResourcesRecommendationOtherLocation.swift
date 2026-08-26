@@ -16,11 +16,11 @@
 
 #if Advice
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Information about recommendation status for locations
   /// that were allowed but not used by the response.
-  public struct FutureResourcesRecommendationOtherLocation: Codable, Equatable, GoogleCloudWkt
+  public struct FutureResourcesRecommendationOtherLocation: Codable, Equatable, GoogleCloudWKT
       ._AnyPackable,
     Sendable
   {
@@ -180,11 +180,11 @@
       return
         "type.googleapis.com/google.cloud.compute.v1.FutureResourcesRecommendationOtherLocation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

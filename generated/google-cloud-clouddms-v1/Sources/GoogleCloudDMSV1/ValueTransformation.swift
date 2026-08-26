@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Description of data transformation during migration as part of the
 /// ConditionalColumnSetValue.
-public struct ValueTransformation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ValueTransformation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   public var filter: OneOf_Filter? = nil
@@ -68,7 +68,7 @@ public struct ValueTransformation: Codable, Equatable, GoogleCloudWkt._AnyPackab
       }
       filter = $0
     }
-    if let isNull = try container.decodeIfPresent(GoogleCloudWkt.Empty?.self, forKey: .isNull) {
+    if let isNull = try container.decodeIfPresent(GoogleCloudWKT.Empty?.self, forKey: .isNull) {
       try filterCheckAndSet(.isNull(isNull))
     }
     if let valueList = try container.decodeIfPresent(ValueListFilter?.self, forKey: .valueList) {
@@ -97,7 +97,7 @@ public struct ValueTransformation: Codable, Equatable, GoogleCloudWkt._AnyPackab
       action = $0
     }
     if let assignNull = try container.decodeIfPresent(
-      GoogleCloudWkt.Empty?.self, forKey: .assignNull)
+      GoogleCloudWKT.Empty?.self, forKey: .assignNull)
     {
       try actionCheckAndSet(.assignNull(assignNull))
     }
@@ -107,12 +107,12 @@ public struct ValueTransformation: Codable, Equatable, GoogleCloudWkt._AnyPackab
       try actionCheckAndSet(.assignSpecificValue(assignSpecificValue))
     }
     if let assignMinValue = try container.decodeIfPresent(
-      GoogleCloudWkt.Empty?.self, forKey: .assignMinValue)
+      GoogleCloudWKT.Empty?.self, forKey: .assignMinValue)
     {
       try actionCheckAndSet(.assignMinValue(assignMinValue))
     }
     if let assignMaxValue = try container.decodeIfPresent(
-      GoogleCloudWkt.Empty?.self, forKey: .assignMaxValue)
+      GoogleCloudWKT.Empty?.self, forKey: .assignMaxValue)
     {
       try actionCheckAndSet(.assignMaxValue(assignMaxValue))
     }
@@ -161,7 +161,7 @@ public struct ValueTransformation: Codable, Equatable, GoogleCloudWkt._AnyPackab
 
   public enum OneOf_Filter: Codable, Equatable, Sendable {
     /// Optional. Value is null
-    indirect case isNull(GoogleCloudWkt.Empty?)
+    indirect case isNull(GoogleCloudWKT.Empty?)
     /// Optional. Value is found in the specified list.
     indirect case valueList(ValueListFilter?)
     /// Optional. Filter on relation between source value and compare value of
@@ -174,16 +174,16 @@ public struct ValueTransformation: Codable, Equatable, GoogleCloudWkt._AnyPackab
 
   public enum OneOf_Action: Codable, Equatable, Sendable {
     /// Optional. Set to null
-    indirect case assignNull(GoogleCloudWkt.Empty?)
+    indirect case assignNull(GoogleCloudWKT.Empty?)
     /// Optional. Set to a specific value (value is converted to fit the target
     /// data type)
     indirect case assignSpecificValue(AssignSpecificValue?)
     /// Optional. Set to min_value - if integer or numeric, will use
     /// int.minvalue, etc
-    indirect case assignMinValue(GoogleCloudWkt.Empty?)
+    indirect case assignMinValue(GoogleCloudWKT.Empty?)
     /// Optional. Set to max_value - if integer or numeric, will use
     /// int.maxvalue, etc
-    indirect case assignMaxValue(GoogleCloudWkt.Empty?)
+    indirect case assignMaxValue(GoogleCloudWKT.Empty?)
     /// Optional. Allows the data to change scale
     indirect case roundScale(RoundToScale?)
     /// Optional. Applies a hash function on the data
@@ -193,10 +193,10 @@ public struct ValueTransformation: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.clouddms.v1.ValueTransformation"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

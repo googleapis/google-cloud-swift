@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Time windows constrain the time of an event, such as the arrival time at a
 /// visit, or the start and end time of a vehicle.
@@ -41,22 +41,22 @@ import Foundation
 ///
 /// [google.cloud.optimization.v1.ShipmentModel.global_end_time]: <doc:ShipmentModel/globalEndTime>
 /// [google.cloud.optimization.v1.ShipmentModel.global_start_time]: <doc:ShipmentModel/globalStartTime>
-public struct TimeWindow: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TimeWindow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The hard time window start time. If unspecified it will be set to
   /// `ShipmentModel.global_start_time`.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The hard time window end time. If unspecified it will be set to
   /// `ShipmentModel.global_end_time`.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The soft start time of the time window.
-  public var softStartTime: GoogleCloudWkt.Timestamp? = nil
+  public var softStartTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The soft end time of the time window.
-  public var softEndTime: GoogleCloudWkt.Timestamp? = nil
+  public var softEndTime: GoogleCloudWKT.Timestamp? = nil
 
   /// A cost per hour added to other costs in the model if the event occurs
   /// before soft_start_time, computed as:
@@ -103,10 +103,10 @@ public struct TimeWindow: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.optimization.v1.TimeWindow"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleCloudGax
 
@@ -137,7 +137,7 @@ extension Clients {
     /// See `LicenseManagementServiceClient.updateLicensePool`.
     func updateLicensePool(
       licensePool: LicensePool?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudCommerceConsumerProcurementV1.LicensePool
 
     /// See `LicenseManagementServiceClient.assign`.
@@ -243,7 +243,7 @@ extension Clients.LicenseManagementServiceProtocol {
 
   public func updateLicensePool(
     licensePool: LicensePool?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudCommerceConsumerProcurementV1.LicensePool {
     let request = UpdateLicensePoolRequest().with {
       $0.licensePool = licensePool

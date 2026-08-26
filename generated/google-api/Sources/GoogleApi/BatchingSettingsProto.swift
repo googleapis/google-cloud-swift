@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// `BatchingSettingsProto` specifies a set of batching thresholds, each of
 /// which acts as a trigger to send a batch of messages as a request. At least
 /// one threshold must be positive nonzero.
-public struct BatchingSettingsProto: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BatchingSettingsProto: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The number of elements of a field collected into a batch which, if
@@ -34,7 +34,7 @@ public struct BatchingSettingsProto: Codable, Equatable, GoogleCloudWkt._AnyPack
 
   /// The duration after which a batch should be sent, starting from the addition
   /// of the first message to that batch.
-  public var delayThreshold: GoogleCloudWkt.Duration? = nil
+  public var delayThreshold: GoogleCloudWKT.Duration? = nil
 
   /// The maximum number of elements collected in a batch that could be accepted
   /// by server.
@@ -72,10 +72,10 @@ public struct BatchingSettingsProto: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.BatchingSettingsProto"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

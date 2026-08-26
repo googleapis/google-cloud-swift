@@ -16,10 +16,10 @@
 
 #if JobService || VizierService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Time-based Constraint for Study
-  public struct StudyTimeConstraint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct StudyTimeConstraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var constraint: OneOf_Constraint? = nil
@@ -59,12 +59,12 @@
         constraint = $0
       }
       if let maxDuration = try container.decodeIfPresent(
-        GoogleCloudWkt.Duration?.self, forKey: .maxDuration)
+        GoogleCloudWKT.Duration?.self, forKey: .maxDuration)
       {
         try constraintCheckAndSet(.maxDuration(maxDuration))
       }
       if let endTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp?.self, forKey: .endTime)
+        GoogleCloudWKT.Timestamp?.self, forKey: .endTime)
       {
         try constraintCheckAndSet(.endTime(endTime))
       }
@@ -86,19 +86,19 @@
 
     public enum OneOf_Constraint: Codable, Equatable, Sendable {
       /// Counts the wallclock time passed since the creation of this Study.
-      indirect case maxDuration(GoogleCloudWkt.Duration?)
+      indirect case maxDuration(GoogleCloudWKT.Duration?)
       /// Compares the wallclock time to this time. Must use UTC timezone.
-      indirect case endTime(GoogleCloudWkt.Timestamp?)
+      indirect case endTime(GoogleCloudWKT.Timestamp?)
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.StudyTimeConstraint"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

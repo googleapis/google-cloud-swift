@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Result containing the properties and count of a groupBy request.
-public struct GroupResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct GroupResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Properties matching the groupBy fields in the request.
-  public var properties: [Swift.String: GoogleCloudWkt.Value] = [:]
+  public var properties: [Swift.String: GoogleCloudWKT.Value] = [:]
 
   /// Total count of resources for the given properties.
   public var count: Swift.Int64 = Swift.Int64()
@@ -46,10 +46,10 @@ public struct GroupResult: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.GroupResult"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

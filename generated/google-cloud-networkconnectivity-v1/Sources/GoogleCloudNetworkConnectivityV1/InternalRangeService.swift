@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -375,7 +375,7 @@ extension Clients {
     /// See `InternalRangeServiceClient.updateInternalRange`.
     func updateInternalRange(
       internalRange: InternalRange?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<InternalRange>
 
     /// See `InternalRangeServiceClient.deleteInternalRange`.
@@ -674,7 +674,7 @@ extension Clients.InternalRangeServiceProtocol {
 
   public func updateInternalRange(
     internalRange: InternalRange?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<InternalRange> {
     let request = UpdateInternalRangeRequest().with {
       $0.internalRange = internalRange

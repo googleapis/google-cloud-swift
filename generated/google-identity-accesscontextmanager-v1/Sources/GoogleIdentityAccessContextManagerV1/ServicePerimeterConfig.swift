@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// `ServicePerimeterConfig` specifies a set of Google Cloud resources that
 /// describe specific Service Perimeter configuration.
-public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A list of Google Cloud resources that are inside of the service perimeter.
@@ -83,7 +83,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
 
   /// Specifies how APIs are allowed to communicate within the Service
   /// Perimeter.
-  public struct VpcAccessibleServices: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct VpcAccessibleServices: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Whether to restrict API calls within the Service Perimeter to the list of
@@ -116,17 +116,17 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.VpcAccessibleServices"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// An allowed method or permission of a service specified in [ApiOperation]
   /// [google.identity.accesscontextmanager.v1.ServicePerimeterConfig.ApiOperation].
-  public struct MethodSelector: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MethodSelector: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The API method name or Cloud IAM permission name to allow.
@@ -206,16 +206,16 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.MethodSelector"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Identification for an API Operation.
-  public struct ApiOperation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ApiOperation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The name of the API whose methods or permissions the [IngressPolicy]
@@ -255,18 +255,18 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.ApiOperation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The source that [IngressPolicy]
   /// [google.identity.accesscontextmanager.v1.ServicePerimeterConfig.IngressPolicy]
   /// authorizes access from.
-  public struct IngressSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct IngressSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Allowed ingress source. It can be one of [AccessLevel]
@@ -367,11 +367,11 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.IngressSource"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -380,7 +380,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
   /// matches a request. Conditions are based on information about the source of
   /// the request. The request must satisfy what is defined in `sources` AND
   /// identity related fields in order to match.
-  public struct IngressFrom: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct IngressFrom: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Sources that this [IngressPolicy]
@@ -419,11 +419,11 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.IngressFrom"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -435,7 +435,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
   /// intended to be performed on the target resource of the request. The request
   /// must satisfy what is defined in `operations` AND `resources` in order to
   /// match.
-  public struct IngressTo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct IngressTo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// A list of [ApiOperations]
@@ -477,11 +477,11 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.IngressTo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -505,7 +505,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
   ///
   /// Individual ingress policies can be limited by restricting which
   /// services and/or actions they match using the `ingress_to` field.
-  public struct IngressPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct IngressPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Defines the conditions on the source of a request causing this
@@ -541,11 +541,11 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.IngressPolicy"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -560,7 +560,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
   /// an [IngressPolicy]
   /// [google.identity.accesscontextmanager.v1.ServicePerimeterConfig.IngressPolicy]
   /// which allows access in order for this request to succeed.
-  public struct EgressFrom: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct EgressFrom: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// A list of identities that are allowed access through this [EgressPolicy].
@@ -594,11 +594,11 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.EgressFrom"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -617,7 +617,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
   /// which allows access in order for this request to succeed. The request must
   /// match `operations` AND `resources` fields in order to be allowed egress out
   /// of the perimeter.
-  public struct EgressTo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct EgressTo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// A list of resources, currently only projects in the form
@@ -666,11 +666,11 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.EgressTo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -702,7 +702,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
   /// [google.identity.accesscontextmanager.v1.ServicePerimeterConfig.EgressFrom]
   /// and [EgressTo]
   /// [google.identity.accesscontextmanager.v1.ServicePerimeterConfig.EgressTo].
-  public struct EgressPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct EgressPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Defines conditions on the source of a request causing this [EgressPolicy]
@@ -737,11 +737,11 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig.EgressPolicy"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -865,10 +865,10 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.identity.accesscontextmanager.v1.ServicePerimeterConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

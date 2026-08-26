@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleCloudGax
 
@@ -273,7 +273,7 @@
       /// See `ToolsClient.updateTool`.
       func updateTool(
         tool: Tool?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudDialogflowV2.Tool
 
       /// See `ToolsClient.listLocations`.
@@ -488,7 +488,7 @@
 
     public func updateTool(
       tool: Tool?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDialogflowV2.Tool {
       let request = UpdateToolRequest().with {
         $0.tool = tool

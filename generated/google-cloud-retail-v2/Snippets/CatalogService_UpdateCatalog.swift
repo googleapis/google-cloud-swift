@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudRetailV2
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 
 func sample(client: CatalogServiceClient, projectId: String, locationId: String, catalogId: String)
@@ -30,7 +30,7 @@ func sample(client: CatalogServiceClient, projectId: String, locationId: String,
         $0.catalog = Catalog().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/catalogs/\(catalogId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

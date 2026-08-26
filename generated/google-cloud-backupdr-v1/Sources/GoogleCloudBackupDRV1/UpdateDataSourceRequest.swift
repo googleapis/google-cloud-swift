@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for updating a data source instance.
-public struct UpdateDataSourceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateDataSourceRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Field mask is used to specify the fields to be overwritten in the
@@ -26,7 +26,7 @@ public struct UpdateDataSourceRequest: Codable, Equatable, GoogleCloudWkt._AnyPa
   /// The fields specified in the update_mask are relative to the resource, not
   /// the full request. A field will be overwritten if it is in the mask. If the
   /// user does not provide a mask then the request will fail.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Required. The resource being updated
   public var dataSource: DataSource? = nil
@@ -68,10 +68,10 @@ public struct UpdateDataSourceRequest: Codable, Equatable, GoogleCloudWkt._AnyPa
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.backupdr.v1.UpdateDataSourceRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

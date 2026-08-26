@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Message storing the graph of the application.
-public struct ApplicationConfigs: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ApplicationConfigs: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A list of nodes  in the application graph.
@@ -44,7 +44,7 @@ public struct ApplicationConfigs: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   }
 
   /// message storing the config for event delivery
-  public struct EventDeliveryConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct EventDeliveryConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The delivery channel for the event notification, only pub/sub topic is
@@ -57,7 +57,7 @@ public struct ApplicationConfigs: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     /// be notified multiple times during this internal event that it is
     /// happening multiple times during the period of time.The same event is
     /// identified by <event_id, app_platform_metadata>.
-    public var minimalDeliveryInterval: GoogleCloudWkt.Duration? = nil
+    public var minimalDeliveryInterval: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `EventDeliveryConfig`.
     public init() {}
@@ -78,21 +78,21 @@ public struct ApplicationConfigs: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.visionai.v1.ApplicationConfigs.EventDeliveryConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.ApplicationConfigs"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -16,13 +16,13 @@
 
 #if SqlBackupsService || SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Preferred location. This specifies where a Cloud SQL instance is located.
   /// Note that if the preferred location is not available, the instance will be
   /// located as close as possible within the region. Only one location may be
   /// specified.
-  public struct LocationPreference: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct LocationPreference: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The App Engine application to follow, it must be in the same region as the
@@ -61,11 +61,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.LocationPreference"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

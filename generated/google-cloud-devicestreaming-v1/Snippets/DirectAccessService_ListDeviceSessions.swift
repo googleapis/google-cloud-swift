@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudDeviceStreamingV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: DirectAccessServiceClient, parent: String) async throws {
   let items = try client.listDeviceSessions(

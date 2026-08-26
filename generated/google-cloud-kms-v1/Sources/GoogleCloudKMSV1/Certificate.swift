@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A [Certificate][google.cloud.kms.v1.Certificate] represents an X.509
 /// certificate used to authenticate HTTPS connections to EKM replicas.
 ///
 /// [google.cloud.kms.v1.Certificate]: <doc:Certificate>
-public struct Certificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Certificate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The raw certificate bytes in DER format.
@@ -52,13 +52,13 @@ public struct Certificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [parsed][google.cloud.kms.v1.Certificate.parsed] is true.
   ///
   /// [google.cloud.kms.v1.Certificate.parsed]: <doc:Certificate/parsed>
-  public var notBeforeTime: GoogleCloudWkt.Timestamp? = nil
+  public var notBeforeTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The certificate is not valid after this time. Only present if
   /// [parsed][google.cloud.kms.v1.Certificate.parsed] is true.
   ///
   /// [google.cloud.kms.v1.Certificate.parsed]: <doc:Certificate/parsed>
-  public var notAfterTime: GoogleCloudWkt.Timestamp? = nil
+  public var notAfterTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The certificate serial number as a hex string. Only present if
   /// [parsed][google.cloud.kms.v1.Certificate.parsed] is true.
@@ -91,10 +91,10 @@ public struct Certificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.kms.v1.Certificate"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

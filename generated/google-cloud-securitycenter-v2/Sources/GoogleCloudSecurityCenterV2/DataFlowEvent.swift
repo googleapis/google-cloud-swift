@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Details about a data flow event, in which either the data is moved to or is
 /// accessed from a non-compliant geo-location, as defined in the applicable data
 /// security policy.
-public struct DataFlowEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DataFlowEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Unique identifier for data flow event.
@@ -37,7 +37,7 @@ public struct DataFlowEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var violatedLocation: Swift.String = Swift.String()
 
   /// Timestamp of data flow event.
-  public var eventTime: GoogleCloudWkt.Timestamp? = nil
+  public var eventTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `DataFlowEvent`.
   public init() {}
@@ -170,10 +170,10 @@ public struct DataFlowEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.DataFlowEvent"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

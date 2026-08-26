@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// ResourceContext provides the context we know about a resource.
 /// It is similar in concept to google.cloud.asset.v1.Resource, but focuses
 /// on the information specifically used by Simulator.
-public struct ResourceContext: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ResourceContext: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The full name of the resource. Example:
@@ -69,10 +69,10 @@ public struct ResourceContext: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.policysimulator.v1.ResourceContext"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A request message to initiate patching across Compute Engine
 /// instances.
-public struct ExecutePatchJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ExecutePatchJobRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The project in which to run this patch in the form `projects/*`
@@ -39,7 +39,7 @@ public struct ExecutePatchJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPac
 
   /// Duration of the patch job. After the duration ends, the patch job
   /// times out.
-  public var duration: GoogleCloudWkt.Duration? = nil
+  public var duration: GoogleCloudWKT.Duration? = nil
 
   /// If this patch is a dry-run only, instances are contacted but
   /// will do nothing.
@@ -70,10 +70,10 @@ public struct ExecutePatchJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.osconfig.v1.ExecutePatchJobRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

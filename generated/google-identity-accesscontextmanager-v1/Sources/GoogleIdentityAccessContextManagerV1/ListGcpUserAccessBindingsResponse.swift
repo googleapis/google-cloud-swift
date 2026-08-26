@@ -16,11 +16,11 @@
 
 import Foundation
 @_spi(GoogleCloudInternal) import GoogleCloudGax
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response of [ListGcpUserAccessBindings]
 /// [google.identity.accesscontextmanager.v1.AccessContextManager.ListGcpUserAccessBindings].
-public struct ListGcpUserAccessBindingsResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ListGcpUserAccessBindingsResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   GoogleCloudGax._PaginatedResponse,
   Sendable
 {
@@ -51,11 +51,11 @@ public struct ListGcpUserAccessBindingsResponse: Codable, Equatable, GoogleCloud
     return
       "type.googleapis.com/google.identity.accesscontextmanager.v1.ListGcpUserAccessBindingsResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 
   public func _getPaginatedItems() -> [GcpUserAccessBinding] {

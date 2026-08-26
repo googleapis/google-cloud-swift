@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request for
 /// [HubService.UpdateHub][google.cloud.networkconnectivity.v1.HubService.UpdateHub]
 /// method.
 ///
 /// [google.cloud.networkconnectivity.v1.HubService.UpdateHub]: <doc:HubServiceClient/updateHub(request:options:)>
-public struct UpdateHubRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateHubRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. In the case of an update to an existing hub, field mask is used
@@ -30,7 +30,7 @@ public struct UpdateHubRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// update_mask are relative to the resource, not the full request. A field is
   /// overwritten if it is in the mask. If the user does not provide a mask, then
   /// all fields are overwritten.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Required. The state that the hub should be in after the update.
   public var hub: Hub? = nil
@@ -70,10 +70,10 @@ public struct UpdateHubRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkconnectivity.v1.UpdateHubRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// For tracking related features.
 /// An object at time_offset with attributes, and located with
 /// normalized_bounding_box.
-public struct TimestampedObject: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TimestampedObject: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Normalized Bounding box in a frame, where the object is located.
@@ -28,7 +28,7 @@ public struct TimestampedObject: Codable, Equatable, GoogleCloudWkt._AnyPackable
 
   /// Time-offset, relative to the beginning of the video,
   /// corresponding to the video frame for this object.
-  public var timeOffset: GoogleCloudWkt.Duration? = nil
+  public var timeOffset: GoogleCloudWKT.Duration? = nil
 
   /// Optional. The attributes of the object in the bounding box.
   public var attributes: [DetectedAttribute] = []
@@ -55,10 +55,10 @@ public struct TimestampedObject: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.videointelligence.v1.TimestampedObject"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

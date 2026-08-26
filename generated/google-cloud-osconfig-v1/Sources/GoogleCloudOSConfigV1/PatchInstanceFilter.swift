@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A filter to target VM instances for patching. The targeted
 /// VMs must meet all criteria specified. So if both labels and zones are
 /// specified, the patch job targets only VMs with those labels and in those
 /// zones.
-public struct PatchInstanceFilter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct PatchInstanceFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Target all VM instances in the project. If true, no other criteria is
@@ -71,7 +71,7 @@ public struct PatchInstanceFilter: Codable, Equatable, GoogleCloudWkt._AnyPackab
   /// For example, a patch job can target VMs that have the following
   /// `GroupLabel`: `{"env":"test", "app":"web"}`. This means that the patch job
   /// is applied to VMs that have both the labels `env=test` and `app=web`.
-  public struct GroupLabel: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GroupLabel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Compute Engine instance labels that must be present for a VM
@@ -97,21 +97,21 @@ public struct PatchInstanceFilter: Codable, Equatable, GoogleCloudWkt._AnyPackab
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.osconfig.v1.PatchInstanceFilter.GroupLabel"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.osconfig.v1.PatchInstanceFilter"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

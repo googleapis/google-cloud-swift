@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// ListOrgPolicyViolationsRequest is the request message for
 /// [OrgPolicyViolationsPreviewService.ListOrgPolicyViolations][google.cloud.policysimulator.v1.OrgPolicyViolationsPreviewService.ListOrgPolicyViolations].
 ///
 /// [google.cloud.policysimulator.v1.OrgPolicyViolationsPreviewService.ListOrgPolicyViolations]: <doc:OrgPolicyViolationsPreviewServiceClient/listOrgPolicyViolations(request:options:)>
-public struct ListOrgPolicyViolationsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ListOrgPolicyViolationsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The OrgPolicyViolationsPreview to get OrgPolicyViolations from.
@@ -60,10 +60,10 @@ public struct ListOrgPolicyViolationsRequest: Codable, Equatable, GoogleCloudWkt
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.policysimulator.v1.ListOrgPolicyViolationsRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Options customizing the time based transfer schedule.
 /// Options are migrated from the original ScheduleOptions message.
-public struct TimeBasedSchedule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TimeBasedSchedule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Data transfer schedule.
@@ -41,12 +41,12 @@ public struct TimeBasedSchedule: Codable, Equatable, GoogleCloudWkt._AnyPackable
   /// scheduled at or after the start time according to a recurrence pattern
   /// defined in the schedule string. The start time can be changed at any
   /// moment.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Defines time to stop scheduling transfer runs. A transfer run cannot be
   /// scheduled at or after the end time. The end time can be changed at any
   /// moment.
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `TimeBasedSchedule`.
   public init() {}
@@ -67,10 +67,10 @@ public struct TimeBasedSchedule: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.datatransfer.v1.TimeBasedSchedule"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

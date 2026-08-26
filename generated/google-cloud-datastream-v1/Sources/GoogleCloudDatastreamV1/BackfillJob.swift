@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents a backfill job on a specific stream object.
-public struct BackfillJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BackfillJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Backfill job state.
@@ -28,10 +28,10 @@ public struct BackfillJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var trigger: BackfillJob.Trigger = BackfillJob.Trigger()
 
   /// Output only. Backfill job's start time.
-  public var lastStartTime: GoogleCloudWkt.Timestamp? = nil
+  public var lastStartTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Backfill job's end time.
-  public var lastEndTime: GoogleCloudWkt.Timestamp? = nil
+  public var lastEndTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Errors which caused the backfill job to fail.
   public var errors: [Error] = []
@@ -304,10 +304,10 @@ public struct BackfillJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datastream.v1.BackfillJob"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

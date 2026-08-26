@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -552,7 +552,7 @@ extension Clients {
     /// See `SecurityProfileGroupServiceClient.updateSecurityProfileGroup`.
     func updateSecurityProfileGroup(
       securityProfileGroup: SecurityProfileGroup?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<SecurityProfileGroup>
 
     /// See `SecurityProfileGroupServiceClient.deleteSecurityProfileGroup`.
@@ -617,7 +617,7 @@ extension Clients {
     /// See `SecurityProfileGroupServiceClient.updateSecurityProfile`.
     func updateSecurityProfile(
       securityProfile: SecurityProfile?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<SecurityProfile>
 
     /// See `SecurityProfileGroupServiceClient.deleteSecurityProfile`.
@@ -963,7 +963,7 @@ extension Clients.SecurityProfileGroupServiceProtocol {
 
   public func updateSecurityProfileGroup(
     securityProfileGroup: SecurityProfileGroup?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<SecurityProfileGroup> {
     let request = UpdateSecurityProfileGroupRequest().with {
       $0.securityProfileGroup = securityProfileGroup
@@ -1139,7 +1139,7 @@ extension Clients.SecurityProfileGroupServiceProtocol {
 
   public func updateSecurityProfile(
     securityProfile: SecurityProfile?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<SecurityProfile> {
     let request = UpdateSecurityProfileRequest().with {
       $0.securityProfile = securityProfile

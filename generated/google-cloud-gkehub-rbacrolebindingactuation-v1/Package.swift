@@ -32,7 +32,7 @@ let package = Package(
     .target(
       name: "GoogleCloudGKEHubRBACRoleBindingActuationV1",
       dependencies: [
-        .product(name: "GoogleCloudWkt", package: "wkt")
+        .product(name: "GoogleCloudWKT", package: "wkt")
       ],
     )
   ]

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Detailed product information associated with a user event.
-public struct ProductDetail: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ProductDetail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. [Product][google.cloud.retail.v2.Product] information.
@@ -49,7 +49,7 @@ public struct ProductDetail: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// For example, this field will be 2 if two products are added to the shopping
   /// cart for `purchase-complete` event. Required for `add-to-cart` and
   /// `purchase-complete` event types.
-  public var quantity: GoogleCloudWkt.Int32Value? = nil
+  public var quantity: GoogleCloudWKT.Int32Value? = nil
 
   /// Initialize a new instance of `ProductDetail`.
   public init() {}
@@ -70,10 +70,10 @@ public struct ProductDetail: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.retail.v2.ProductDetail"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -16,7 +16,7 @@
 
 #if Flows || Pages || Playbooks || Sessions || TestCases || TransitionRouteGroups
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A fulfillment can do one or more of the following actions at the same time:
   ///
@@ -39,7 +39,7 @@
   /// [google.cloud.dialogflow.cx.v3.Form]: <doc:Form>
   /// [google.cloud.dialogflow.cx.v3.Page]: <doc:Page>
   /// [google.cloud.dialogflow.cx.v3.QueryResult]: <doc:QueryResult>
-  public struct Fulfillment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Fulfillment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The list of rich message responses to present to the user.
@@ -111,14 +111,14 @@
     }
 
     /// Setting a parameter value.
-    public struct SetParameterAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SetParameterAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Display name of the parameter.
       public var parameter: Swift.String = Swift.String()
 
       /// The new value of the parameter. A null value clears the parameter.
-      public var value: GoogleCloudWkt.Value? = nil
+      public var value: GoogleCloudWKT.Value? = nil
 
       /// Initialize a new instance of `SetParameterAction`.
       public init() {}
@@ -139,17 +139,17 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Fulfillment.SetParameterAction"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// A list of cascading if-else conditions. Cases are mutually exclusive.
     /// The first one with a matching condition is selected, all the rest ignored.
-    public struct ConditionalCases: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ConditionalCases: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// A list of cascading if-else conditions.
@@ -173,7 +173,7 @@
 
       /// Each case has a Boolean condition. When it is evaluated to be True, the
       /// corresponding messages will be selected and evaluated recursively.
-      public struct Case: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Case: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// The condition to activate and select this case. Empty means the
@@ -208,7 +208,7 @@
         }
 
         /// The list of messages or conditional cases to activate for this case.
-        public struct CaseContent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+        public struct CaseContent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           Sendable
         {
           /// Either a message is returned or additional cases to be evaluated.
@@ -285,11 +285,11 @@
             return
               "type.googleapis.com/google.cloud.dialogflow.cx.v3.Fulfillment.ConditionalCases.Case.CaseContent"
           }
-          public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-            self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+          public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+            self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
           }
-          public func _pack() throws -> GoogleCloudWkt.Struct {
-            return try GoogleCloudWkt._slowAnySerialize(message: self)
+          public func _pack() throws -> GoogleCloudWKT.Struct {
+            return try GoogleCloudWKT._slowAnySerialize(message: self)
           }
         }
 
@@ -297,27 +297,27 @@
           return
             "type.googleapis.com/google.cloud.dialogflow.cx.v3.Fulfillment.ConditionalCases.Case"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Fulfillment.ConditionalCases"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Generator settings used by the LLM to generate a text response.
-    public struct GeneratorSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GeneratorSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The generator to call.
@@ -361,22 +361,22 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Fulfillment.GeneratorSettings"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Fulfillment"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

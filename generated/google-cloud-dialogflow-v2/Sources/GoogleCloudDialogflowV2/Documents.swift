@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleRpc
   import GoogleCloudGax
@@ -637,7 +637,7 @@
       /// See `DocumentsClient.updateDocument`.
       func updateDocument(
         document: Document?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> any GoogleCloudGax.PollableOperation<Document>
 
       /// See `DocumentsClient.reloadDocument`.
@@ -1000,7 +1000,7 @@
 
     public func updateDocument(
       document: Document?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Document> {
       let request = UpdateDocumentRequest().with {
         $0.document = document

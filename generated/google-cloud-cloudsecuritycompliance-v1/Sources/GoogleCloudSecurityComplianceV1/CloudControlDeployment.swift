@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A cloud control deployment represents the deployment of a particular cloud
 /// control on a target resource. Supported target resources are
 /// `organizations/{organizationID}`, `folders/{folderID}`, and
 /// `projects/{projectID}`.
-public struct CloudControlDeployment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CloudControlDeployment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The name for the cloud control deployment, in the format
@@ -53,10 +53,10 @@ public struct CloudControlDeployment: Codable, Equatable, GoogleCloudWkt._AnyPac
   public var deploymentState: DeploymentState = DeploymentState()
 
   /// Output only. The time when the resource was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time when the resource was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. To prevent concurrent updates from overwriting each other,
   /// provide the `etag` when you update a cloud control deployment. You can also
@@ -95,10 +95,10 @@ public struct CloudControlDeployment: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.cloudsecuritycompliance.v1.CloudControlDeployment"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

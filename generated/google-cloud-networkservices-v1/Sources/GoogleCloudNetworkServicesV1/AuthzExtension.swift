@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// `AuthzExtension` is a resource that allows traffic forwarding
 /// to a callout backend service to make an authorization decision.
-public struct AuthzExtension: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AuthzExtension: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Identifier. Name of the `AuthzExtension` resource in the
@@ -28,10 +28,10 @@ public struct AuthzExtension: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Output only. The timestamp when the resource was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The timestamp when the resource was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. A human-readable description of the resource.
   public var description: Swift.String = Swift.String()
@@ -71,7 +71,7 @@ public struct AuthzExtension: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Required. Specifies the timeout for each individual message on the stream.
   /// The timeout must be between 10-10000 milliseconds.
-  public var timeout: GoogleCloudWkt.Duration? = nil
+  public var timeout: GoogleCloudWKT.Duration? = nil
 
   /// Optional. Determines how the proxy behaves if the call to the extension
   /// fails or times out.
@@ -98,7 +98,7 @@ public struct AuthzExtension: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   /// `{forwarding_rule_id}` - substituted with the forwarding rule's fully
   ///   qualified resource name.
-  public var metadata: GoogleCloudWkt.Struct? = nil
+  public var metadata: GoogleCloudWKT.Struct? = nil
 
   /// Optional. List of the HTTP headers to forward to the extension
   /// (from the client). If omitted, all headers are sent.
@@ -141,10 +141,10 @@ public struct AuthzExtension: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkservices.v1.AuthzExtension"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

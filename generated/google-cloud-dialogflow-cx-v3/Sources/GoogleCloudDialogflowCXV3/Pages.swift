@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleCloudGax
 
@@ -276,7 +276,7 @@
       /// See `PagesClient.updatePage`.
       func updatePage(
         page: Page?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudDialogflowCXV3.Page
 
       /// See `PagesClient.deletePage`.
@@ -480,7 +480,7 @@
 
     public func updatePage(
       page: Page?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.Page {
       let request = UpdatePageRequest().with {
         $0.page = page

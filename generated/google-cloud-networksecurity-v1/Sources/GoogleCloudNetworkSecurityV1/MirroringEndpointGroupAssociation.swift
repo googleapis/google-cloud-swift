@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An endpoint group association represents a link between a network and an
 /// endpoint group in the organization.
@@ -24,7 +24,7 @@ import Foundation
 /// network to the endpoint group, but does not enable mirroring by itself.
 /// To enable mirroring, the user must also create a network firewall policy
 /// containing mirroring rules and associate it with the network.
-public struct MirroringEndpointGroupAssociation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MirroringEndpointGroupAssociation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Immutable. Identifier. The resource name of this endpoint group
@@ -35,11 +35,11 @@ public struct MirroringEndpointGroupAssociation: Codable, Equatable, GoogleCloud
 
   /// Output only. The timestamp when the resource was created.
   /// See https://google.aip.dev/148#timestamps.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The timestamp when the resource was most recently updated.
   /// See https://google.aip.dev/148#timestamps.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. Labels are key/value pairs that help to organize and filter
   /// resources.
@@ -94,7 +94,7 @@ public struct MirroringEndpointGroupAssociation: Codable, Equatable, GoogleCloud
 
   /// Contains details about the state of an association in a specific cloud
   /// location.
-  public struct LocationDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct LocationDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The cloud location, e.g. "us-central1-a" or "asia-south1".
@@ -232,11 +232,11 @@ public struct MirroringEndpointGroupAssociation: Codable, Equatable, GoogleCloud
       return
         "type.googleapis.com/google.cloud.networksecurity.v1.MirroringEndpointGroupAssociation.LocationDetails"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -382,10 +382,10 @@ public struct MirroringEndpointGroupAssociation: Codable, Equatable, GoogleCloud
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networksecurity.v1.MirroringEndpointGroupAssociation"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

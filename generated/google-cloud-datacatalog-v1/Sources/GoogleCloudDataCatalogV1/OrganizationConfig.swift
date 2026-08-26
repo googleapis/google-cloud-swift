@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The configuration related to the migration from Data Catalog to Dataplex that
 /// has been applied to an organization and any projects under it. It is the
@@ -23,7 +23,7 @@ import Foundation
 /// [RetrieveConfig][google.cloud.datacatalog.v1.DataCatalog.RetrieveConfig].
 ///
 /// [google.cloud.datacatalog.v1.DataCatalog.RetrieveConfig]: <doc:DataCatalogClient/retrieveConfig(request:options:)>
-public struct OrganizationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct OrganizationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Map of organizations and project resource names and their configuration.
@@ -50,10 +50,10 @@ public struct OrganizationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datacatalog.v1.OrganizationConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

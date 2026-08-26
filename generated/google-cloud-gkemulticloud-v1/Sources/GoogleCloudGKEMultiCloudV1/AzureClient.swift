@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// `AzureClient` resources hold client authentication information needed by the
 /// Anthos Multi-Cloud API to manage Azure resources on your Azure subscription.
@@ -32,7 +32,7 @@ import Foundation
 ///
 /// [google.cloud.gkemulticloud.v1.AzureCluster]: <doc:AzureCluster>
 @available(*, deprecated)
-public struct AzureClient: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AzureClient: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The name of this resource.
@@ -71,10 +71,10 @@ public struct AzureClient: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var uid: Swift.String = Swift.String()
 
   /// Output only. The time at which this resource was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time at which this client was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `AzureClient`.
   public init() {}
@@ -95,10 +95,10 @@ public struct AzureClient: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkemulticloud.v1.AzureClient"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

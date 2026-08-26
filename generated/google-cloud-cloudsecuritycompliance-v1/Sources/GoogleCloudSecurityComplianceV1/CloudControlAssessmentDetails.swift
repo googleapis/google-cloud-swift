@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The cloud control assessment details for non-manual cloud controls.
-public struct CloudControlAssessmentDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CloudControlAssessmentDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The number of findings for the cloud control.
@@ -47,10 +47,10 @@ public struct CloudControlAssessmentDetails: Codable, Equatable, GoogleCloudWkt.
     return
       "type.googleapis.com/google.cloud.cloudsecuritycompliance.v1.CloudControlAssessmentDetails"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

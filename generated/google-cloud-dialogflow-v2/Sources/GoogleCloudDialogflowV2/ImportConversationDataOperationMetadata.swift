@@ -16,7 +16,7 @@
 
 #if ConversationDatasets
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
   import GoogleRpc
 
   /// Metadata for a
@@ -24,7 +24,7 @@
   /// operation.
   ///
   /// [google.cloud.dialogflow.v2.ConversationDatasets.ImportConversationData]: <doc:ConversationDatasetsClient/importConversationData(request:options:)>
-  public struct ImportConversationDataOperationMetadata: Codable, Equatable, GoogleCloudWkt
+  public struct ImportConversationDataOperationMetadata: Codable, Equatable, GoogleCloudWKT
       ._AnyPackable,
     Sendable
   {
@@ -39,7 +39,7 @@
 
     /// Timestamp when import conversation data request was created. The time is
     /// measured on server side.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `ImportConversationDataOperationMetadata`.
     public init() {}
@@ -61,11 +61,11 @@
       return
         "type.googleapis.com/google.cloud.dialogflow.v2.ImportConversationDataOperationMetadata"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

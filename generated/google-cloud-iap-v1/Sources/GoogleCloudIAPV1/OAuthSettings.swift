@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Configuration for OAuth login&consent flow behavior as well as for OAuth
 /// Credentials.
-public struct OAuthSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct OAuthSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Domain hint to send as hd=? parameter in OAuth request flow. Enables
@@ -27,19 +27,19 @@ public struct OAuthSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// https://developers.google.com/identity/protocols/OpenIDConnect#hd-param
   /// Note: IAP does not verify that the id token's hd claim matches this value
   /// since access behavior is managed by IAM policies.
-  public var loginHint: GoogleCloudWkt.StringValue? = nil
+  public var loginHint: GoogleCloudWKT.StringValue? = nil
 
   /// Optional. OAuth 2.0 client ID used in the OAuth flow.
   /// This allows for client sharing. The risks of client sharing
   /// are outlined here:
   /// https://cloud.google.com/iap/docs/sharing-oauth-clients#risks.
-  public var clientId: GoogleCloudWkt.StringValue? = nil
+  public var clientId: GoogleCloudWKT.StringValue? = nil
 
   /// Optional. Input only. OAuth secret paired with client ID.
-  public var clientSecret: GoogleCloudWkt.StringValue? = nil
+  public var clientSecret: GoogleCloudWKT.StringValue? = nil
 
   /// Output only. OAuth secret SHA256 paired with client ID.
-  public var clientSecretSha256: GoogleCloudWkt.StringValue? = nil
+  public var clientSecretSha256: GoogleCloudWKT.StringValue? = nil
 
   /// Optional. List of client ids allowed to use IAP programmatically.
   public var programmaticClients: [Swift.String] = []
@@ -63,10 +63,10 @@ public struct OAuthSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.iap.v1.OAuthSettings"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

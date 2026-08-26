@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Configuration of the environment to use when calling Skaffold.
-public struct ExecutionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ExecutionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Usages when this configuration should be applied.
@@ -44,7 +44,7 @@ public struct ExecutionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Optional. Execution timeout for a Cloud Build Execution. This must be
   /// between 10m and 24h in seconds format. If unspecified, a default timeout of
   /// 1h is used.
-  public var executionTimeout: GoogleCloudWkt.Duration? = nil
+  public var executionTimeout: GoogleCloudWKT.Duration? = nil
 
   /// Optional. If true, additional logging will be enabled when running builds
   /// in this execution environment.
@@ -88,7 +88,7 @@ public struct ExecutionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.serviceAccount = try container.decode(Swift.String.self, forKey: .serviceAccount)
     self.artifactStorage = try container.decode(Swift.String.self, forKey: .artifactStorage)
     self.executionTimeout = try container.decodeIfPresent(
-      GoogleCloudWkt.Duration.self, forKey: .executionTimeout)
+      GoogleCloudWKT.Duration.self, forKey: .executionTimeout)
     self.verbose = try container.decode(Swift.Bool.self, forKey: .verbose)
 
     var executionEnvironment: OneOf_ExecutionEnvironment? = nil
@@ -266,10 +266,10 @@ public struct ExecutionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.deploy.v1.ExecutionConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

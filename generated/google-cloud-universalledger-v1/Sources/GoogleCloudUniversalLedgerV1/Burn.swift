@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Burns currency tokens. The sender must be a token manager and the account
 /// supplying the tokens to burn must additionally sign the transaction.
@@ -24,7 +24,7 @@ import Foundation
 /// account which customers would transfer the tokens to before they are burnt.
 /// Alternatively, the customers could directly sign the transaction in which
 /// case it would act as an atomic "transfer-and-burn" transaction.
-public struct Burn: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Burn: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The amount to burn.
@@ -63,10 +63,10 @@ public struct Burn: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.universalledger.v1.Burn"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleCloudGax
 
 /// This API allows a customer to manage accesses to cloud resources by
@@ -257,7 +257,7 @@ extension Clients {
     /// See `AccessApprovalClient.updateAccessApprovalSettings`.
     func updateAccessApprovalSettings(
       settings: AccessApprovalSettings?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudAccessApprovalV1.AccessApprovalSettings
 
     /// See `AccessApprovalClient.deleteAccessApprovalSettings`.
@@ -461,7 +461,7 @@ extension Clients.AccessApprovalProtocol {
 
   public func updateAccessApprovalSettings(
     settings: AccessApprovalSettings?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudAccessApprovalV1.AccessApprovalSettings {
     let request = UpdateAccessApprovalSettingsMessage().with {
       $0.settings = settings

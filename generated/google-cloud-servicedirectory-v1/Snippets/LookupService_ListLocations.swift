@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudServiceDirectoryV1
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: LookupServiceClient) async throws {
   let items = try client.listLocations(

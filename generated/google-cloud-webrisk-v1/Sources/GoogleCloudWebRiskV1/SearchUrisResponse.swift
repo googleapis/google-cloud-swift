@@ -15,9 +15,9 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
-public struct SearchUrisResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SearchUrisResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The threat list matches. This might be empty if the URI is on no list.
@@ -40,7 +40,7 @@ public struct SearchUrisResponse: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   }
 
   /// Contains threat information on a matching uri.
-  public struct ThreatUri: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ThreatUri: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The ThreatList this threat belongs to.
@@ -48,7 +48,7 @@ public struct SearchUrisResponse: Codable, Equatable, GoogleCloudWkt._AnyPackabl
 
     /// The cache lifetime for the returned match. Clients must not cache this
     /// response past this timestamp to avoid false positives.
-    public var expireTime: GoogleCloudWkt.Timestamp? = nil
+    public var expireTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `ThreatUri`.
     public init() {}
@@ -69,21 +69,21 @@ public struct SearchUrisResponse: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.webrisk.v1.SearchUrisResponse.ThreatUri"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.webrisk.v1.SearchUrisResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

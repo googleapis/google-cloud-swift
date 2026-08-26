@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A watchlist is a list of entities that allows for bulk operations over the
 /// included entities.
-public struct Watchlist: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Watchlist: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. Resource name of the watchlist.
@@ -47,10 +47,10 @@ public struct Watchlist: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var entityCount: Watchlist.EntityCount? = nil
 
   /// Output only. Time the watchlist was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Time the watchlist was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. User preferences for watchlist configuration.
   public var watchlistUserPreferences: WatchlistUserPreferences? = nil
@@ -72,7 +72,7 @@ public struct Watchlist: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Mechanism to populate entities in the watchlist.
-  public struct EntityPopulationMechanism: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct EntityPopulationMechanism: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Ways to populate entities in watchlist.
@@ -132,7 +132,7 @@ public struct Watchlist: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Entities are added manually.
-    public struct Manual: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Manual: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Initialize a new instance of `Manual`.
@@ -155,11 +155,11 @@ public struct Watchlist: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.chronicle.v1.Watchlist.EntityPopulationMechanism.Manual"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -173,16 +173,16 @@ public struct Watchlist: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.chronicle.v1.Watchlist.EntityPopulationMechanism"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Count of different types of entities in the watchlist.
-  public struct EntityCount: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct EntityCount: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Count of user type entities in the watchlist.
@@ -210,21 +210,21 @@ public struct Watchlist: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.chronicle.v1.Watchlist.EntityCount"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.chronicle.v1.Watchlist"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

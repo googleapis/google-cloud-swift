@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleCloudGax
 
 /// Manages contacts for important Google Cloud notifications.
@@ -165,7 +165,7 @@ extension Clients {
     /// See `EssentialContactsServiceClient.updateContact`.
     func updateContact(
       contact: Contact?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudEssentialContactsV1.Contact
 
     /// See `EssentialContactsServiceClient.listContacts`.
@@ -297,7 +297,7 @@ extension Clients.EssentialContactsServiceProtocol {
 
   public func updateContact(
     contact: Contact?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudEssentialContactsV1.Contact {
     let request = UpdateContactRequest().with {
       $0.contact = contact

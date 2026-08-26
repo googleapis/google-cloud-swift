@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudRecaptchaEnterpriseV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: RecaptchaEnterpriseServiceClient, projectId: String, keyId: String) async throws
 {
@@ -28,7 +28,7 @@ func sample(client: RecaptchaEnterpriseServiceClient, projectId: String, keyId: 
         $0.key = Key().with {
           $0.name = "projects/\(projectId)/keys/\(keyId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

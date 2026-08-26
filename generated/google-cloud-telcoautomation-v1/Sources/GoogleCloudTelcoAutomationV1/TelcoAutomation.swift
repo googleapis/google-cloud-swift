@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -861,7 +861,7 @@ extension Clients {
     /// See `TelcoAutomationClient.updateBlueprint`.
     func updateBlueprint(
       blueprint: Blueprint?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudTelcoAutomationV1.Blueprint
 
     /// See `TelcoAutomationClient.getBlueprint`.
@@ -1016,7 +1016,7 @@ extension Clients {
     /// See `TelcoAutomationClient.updateDeployment`.
     func updateDeployment(
       deployment: Deployment?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudTelcoAutomationV1.Deployment
 
     /// See `TelcoAutomationClient.getDeployment`.
@@ -1131,7 +1131,7 @@ extension Clients {
     /// See `TelcoAutomationClient.updateHydratedDeployment`.
     func updateHydratedDeployment(
       hydratedDeployment: HydratedDeployment?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudTelcoAutomationV1.HydratedDeployment
 
     /// See `TelcoAutomationClient.applyHydratedDeployment`.
@@ -1789,7 +1789,7 @@ extension Clients.TelcoAutomationProtocol {
 
   public func updateBlueprint(
     blueprint: Blueprint?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudTelcoAutomationV1.Blueprint {
     let request = UpdateBlueprintRequest().with {
       $0.blueprint = blueprint
@@ -2175,7 +2175,7 @@ extension Clients.TelcoAutomationProtocol {
 
   public func updateDeployment(
     deployment: Deployment?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudTelcoAutomationV1.Deployment {
     let request = UpdateDeploymentRequest().with {
       $0.deployment = deployment
@@ -2458,7 +2458,7 @@ extension Clients.TelcoAutomationProtocol {
 
   public func updateHydratedDeployment(
     hydratedDeployment: HydratedDeployment?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudTelcoAutomationV1.HydratedDeployment {
     let request = UpdateHydratedDeploymentRequest().with {
       $0.hydratedDeployment = hydratedDeployment

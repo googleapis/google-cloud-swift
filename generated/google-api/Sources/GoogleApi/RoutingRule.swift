@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Specifies the routing information that should be sent along with the request
 /// in the form of routing header.
@@ -380,7 +380,7 @@ import Foundation
 ///
 ///     x-goog-request-params:
 ///     table_location=instances/instance_bar&routing_id=prof_qux
-public struct RoutingRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RoutingRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A collection of Routing Parameter specifications.
@@ -410,10 +410,10 @@ public struct RoutingRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.RoutingRule"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An [attestor public
 /// key][google.cloud.binaryauthorization.v1.AttestorPublicKey] that will be used
 /// to verify attestations signed by this attestor.
 ///
 /// [google.cloud.binaryauthorization.v1.AttestorPublicKey]: <doc:AttestorPublicKey>
-public struct AttestorPublicKey: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AttestorPublicKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. A descriptive comment. This field may be updated.
@@ -126,10 +126,10 @@ public struct AttestorPublicKey: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.binaryauthorization.v1.AttestorPublicKey"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Rate limits.
 ///
@@ -28,7 +28,7 @@ import Foundation
 ///
 /// [google.cloud.tasks.v2.CloudTasks.RunTask]: <doc:CloudTasksClient/runTask(request:options:)>
 /// [google.cloud.tasks.v2.RateLimits]: <doc:RateLimits>
-public struct RateLimits: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RateLimits: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The maximum rate at which tasks are dispatched from this queue.
@@ -118,10 +118,10 @@ public struct RateLimits: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.tasks.v2.RateLimits"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

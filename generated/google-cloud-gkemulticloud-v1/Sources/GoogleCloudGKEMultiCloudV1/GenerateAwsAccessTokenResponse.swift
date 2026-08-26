@@ -15,18 +15,18 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response message for `AwsClusters.GenerateAwsAccessToken` method.
 @available(*, deprecated)
-public struct GenerateAwsAccessTokenResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct GenerateAwsAccessTokenResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Access token to authenticate to k8s api-server.
   public var accessToken: Swift.String = Swift.String()
 
   /// Output only. Timestamp at which the token will expire.
-  public var expirationTime: GoogleCloudWkt.Timestamp? = nil
+  public var expirationTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `GenerateAwsAccessTokenResponse`.
   public init() {}
@@ -47,10 +47,10 @@ public struct GenerateAwsAccessTokenResponse: Codable, Equatable, GoogleCloudWkt
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkemulticloud.v1.GenerateAwsAccessTokenResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

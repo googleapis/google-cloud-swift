@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Structured content to inspect. Up to 50,000 `Value`s per request allowed. See
 /// https://cloud.google.com/sensitive-data-protection/docs/inspecting-structured-text#inspecting_a_table
 /// to learn more.
-public struct Table: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Table: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Headers of the table.
@@ -46,7 +46,7 @@ public struct Table: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Values of the row.
-  public struct Row: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Row: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Individual cells.
@@ -71,21 +71,21 @@ public struct Table: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.Table.Row"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.Table"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

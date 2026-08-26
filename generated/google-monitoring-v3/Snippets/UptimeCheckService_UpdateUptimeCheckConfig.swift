@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudMonitoringV3
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: UptimeCheckServiceClient, projectId: String, uptimeCheckConfigId: String)
   async throws
@@ -29,7 +29,7 @@ func sample(client: UptimeCheckServiceClient, projectId: String, uptimeCheckConf
         $0.uptimeCheckConfig = UptimeCheckConfig().with {
           $0.name = "projects/\(projectId)/uptimeCheckConfigs/\(uptimeCheckConfigId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

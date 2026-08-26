@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleApi
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleRpc
   @_spi(GoogleCloudInternal) import GoogleCloudGax

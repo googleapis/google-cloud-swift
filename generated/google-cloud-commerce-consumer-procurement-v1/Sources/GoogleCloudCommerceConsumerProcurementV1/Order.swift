@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents a purchase made by a customer on Cloud Marketplace.
 /// Creating an order makes sure that both the Google backend systems
@@ -27,7 +27,7 @@ import Foundation
 ///
 /// Customers typically choose a price plan for each Product purchased when
 /// they create an order and can change their plan later, if the product allows.
-public struct Order: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Order: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The resource name of the order.
@@ -45,10 +45,10 @@ public struct Order: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var cancelledLineItems: [LineItem] = []
 
   /// Output only. The creation timestamp.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The last update timestamp.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The weak etag of the order.
   public var etag: Swift.String = Swift.String()
@@ -72,10 +72,10 @@ public struct Order: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.commerce.consumer.procurement.v1.Order"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

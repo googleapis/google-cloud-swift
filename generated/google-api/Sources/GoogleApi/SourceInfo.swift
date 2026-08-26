@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Source information used to create a Service Config
-public struct SourceInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SourceInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// All files used during config generation.
-  public var sourceFiles: [GoogleCloudWkt.`Any`] = []
+  public var sourceFiles: [GoogleCloudWKT.`Any`] = []
 
   /// Initialize a new instance of `SourceInfo`.
   public init() {}
@@ -43,10 +43,10 @@ public struct SourceInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.SourceInfo"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

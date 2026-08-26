@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleCloudGax
 
 /// Sensitive Data Protection provides access to a powerful sensitive data
@@ -925,7 +925,7 @@ extension Clients {
     func updateInspectTemplate(
       name: Swift.String,
       inspectTemplate: InspectTemplate?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDLPV2.InspectTemplate
 
     /// See `DlpServiceClient.getInspectTemplate`.
@@ -977,7 +977,7 @@ extension Clients {
     func updateDeidentifyTemplate(
       name: Swift.String,
       deidentifyTemplate: DeidentifyTemplate?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDLPV2.DeidentifyTemplate
 
     /// See `DlpServiceClient.getDeidentifyTemplate`.
@@ -1029,7 +1029,7 @@ extension Clients {
     func updateJobTrigger(
       name: Swift.String,
       jobTrigger: JobTrigger?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDLPV2.JobTrigger
 
     /// See `DlpServiceClient.hybridInspectJobTrigger`.
@@ -1093,7 +1093,7 @@ extension Clients {
     func updateDiscoveryConfig(
       name: Swift.String,
       discoveryConfig: DiscoveryConfig?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDLPV2.DiscoveryConfig
 
     /// See `DlpServiceClient.getDiscoveryConfig`.
@@ -1193,7 +1193,7 @@ extension Clients {
     func updateStoredInfoType(
       name: Swift.String,
       config: StoredInfoTypeConfig?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDLPV2.StoredInfoType
 
     /// See `DlpServiceClient.getStoredInfoType`.
@@ -1856,7 +1856,7 @@ extension Clients.DlpServiceProtocol {
   public func updateInspectTemplate(
     name: Swift.String,
     inspectTemplate: InspectTemplate?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudDLPV2.InspectTemplate {
     let request = UpdateInspectTemplateRequest().with {
       $0.name = name
@@ -1981,7 +1981,7 @@ extension Clients.DlpServiceProtocol {
   public func updateDeidentifyTemplate(
     name: Swift.String,
     deidentifyTemplate: DeidentifyTemplate?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudDLPV2.DeidentifyTemplate {
     let request = UpdateDeidentifyTemplateRequest().with {
       $0.name = name
@@ -2106,7 +2106,7 @@ extension Clients.DlpServiceProtocol {
   public func updateJobTrigger(
     name: Swift.String,
     jobTrigger: JobTrigger?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudDLPV2.JobTrigger {
     let request = UpdateJobTriggerRequest().with {
       $0.name = name
@@ -2264,7 +2264,7 @@ extension Clients.DlpServiceProtocol {
   public func updateDiscoveryConfig(
     name: Swift.String,
     discoveryConfig: DiscoveryConfig?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudDLPV2.DiscoveryConfig {
     let request = UpdateDiscoveryConfigRequest().with {
       $0.name = name
@@ -2505,7 +2505,7 @@ extension Clients.DlpServiceProtocol {
   public func updateStoredInfoType(
     name: Swift.String,
     config: StoredInfoTypeConfig?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudDLPV2.StoredInfoType {
     let request = UpdateStoredInfoTypeRequest().with {
       $0.name = name

@@ -15,17 +15,17 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for UpdateInterceptEndpointGroup.
-public struct UpdateInterceptEndpointGroupRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateInterceptEndpointGroupRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. The list of fields to update.
   /// Fields are specified relative to the endpoint group
   /// (e.g. `description`; *not* `intercept_endpoint_group.description`).
   /// See https://google.aip.dev/161 for more details.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Required. The endpoint group to update.
   public var interceptEndpointGroup: InterceptEndpointGroup? = nil
@@ -54,10 +54,10 @@ public struct UpdateInterceptEndpointGroupRequest: Codable, Equatable, GoogleClo
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networksecurity.v1.UpdateInterceptEndpointGroupRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

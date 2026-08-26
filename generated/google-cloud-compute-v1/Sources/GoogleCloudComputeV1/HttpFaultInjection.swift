@@ -16,7 +16,7 @@
 
 #if RegionUrlMaps || UrlMaps
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The specification for fault injection introduced into traffic to test
   /// the resiliency of clients to backend service failure. As part of fault
@@ -24,7 +24,7 @@
   /// introduced by the load balancer on a percentage of requests before sending
   /// those request to the backend service. Similarly requests from clients can be
   /// aborted by the load balancer for a percentage of requests.
-  public struct HttpFaultInjection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct HttpFaultInjection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The specification for how client requests are aborted as part of fault
@@ -54,11 +54,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.HttpFaultInjection"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

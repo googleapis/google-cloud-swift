@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// File information about the related binary/library used by an executable, or
 /// the script used by a script interpreter
-public struct File: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct File: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Absolute path of the file as a JSON encoded string.
@@ -67,7 +67,7 @@ public struct File: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Path of the file in terms of underlying disk/partition identifiers.
-  public struct DiskPath: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DiskPath: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// UUID of the partition (format
@@ -97,16 +97,16 @@ public struct File: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.securitycenter.v2.File.DiskPath"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Operation(s) performed on a file.
-  public struct FileOperation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FileOperation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The type of the operation
@@ -257,21 +257,21 @@ public struct File: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.securitycenter.v2.File.FileOperation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.File"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

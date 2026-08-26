@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Details of the deployment where APIs are hosted.
 /// A deployment could represent an Apigee proxy, API gateway, other Google Cloud
 /// services or non-Google Cloud services as well. A deployment entity is a root
 /// level entity in the API hub and exists independent of any API.
-public struct Deployment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Deployment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The name of the deployment.
@@ -68,10 +68,10 @@ public struct Deployment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var apiVersions: [Swift.String] = []
 
   /// Output only. The time at which the deployment was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time at which the deployment was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. The SLO for this deployment.
   /// This maps to the following system defined attribute:
@@ -150,10 +150,10 @@ public struct Deployment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.apihub.v1.Deployment"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,20 +15,20 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A test message for google.protobuf.BoolValue.
-public struct MessageWithBoolValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MessageWithBoolValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A singular field.
-  public var singular: GoogleCloudWkt.BoolValue? = nil
+  public var singular: GoogleCloudWKT.BoolValue? = nil
 
   /// A repeated field.
-  public var repeated: [GoogleCloudWkt.BoolValue] = []
+  public var repeated: [GoogleCloudWKT.BoolValue] = []
 
   /// Test google.protobuf.BoolValue as map values.
-  public var map: [Swift.String: GoogleCloudWkt.BoolValue] = [:]
+  public var map: [Swift.String: GoogleCloudWKT.BoolValue] = [:]
 
   /// Initialize a new instance of `MessageWithBoolValue`.
   public init() {}
@@ -49,10 +49,10 @@ public struct MessageWithBoolValue: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.swift.sdk.test.MessageWithBoolValue"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

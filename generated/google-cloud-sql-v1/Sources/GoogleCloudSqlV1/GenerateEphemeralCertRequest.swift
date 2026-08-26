@@ -16,10 +16,10 @@
 
 #if SqlConnectService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Ephemeral certificate creation request.
-  public struct GenerateEphemeralCertRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GenerateEphemeralCertRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Cloud SQL instance ID. This does not include the project ID.
@@ -36,10 +36,10 @@
 
     /// Optional. Optional snapshot read timestamp to trade freshness for
     /// performance.
-    public var readTime: GoogleCloudWkt.Timestamp? = nil
+    public var readTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Optional. If set, it will contain the cert valid duration.
-    public var validDuration: GoogleCloudWkt.Duration? = nil
+    public var validDuration: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `GenerateEphemeralCertRequest`.
     public init() {}
@@ -73,9 +73,9 @@
       self.publicKey = try container.decode(Swift.String.self, forKey: .publicKey)
       self.accessToken = try container.decode(Swift.String.self, forKey: .accessToken)
       self.readTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .readTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .readTime)
       self.validDuration = try container.decodeIfPresent(
-        GoogleCloudWkt.Duration.self, forKey: .validDuration)
+        GoogleCloudWKT.Duration.self, forKey: .validDuration)
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -91,11 +91,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.GenerateEphemeralCertRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

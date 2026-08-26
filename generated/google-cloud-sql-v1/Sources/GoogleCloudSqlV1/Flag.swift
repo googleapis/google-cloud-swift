@@ -16,10 +16,10 @@
 
 #if SqlFlagsService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A flag resource.
-  public struct Flag: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Flag: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// This is the name of the flag. Flag names always use underscores, not
@@ -47,20 +47,20 @@
     public var allowedStringValues: [Swift.String] = []
 
     /// For `INTEGER` flags, the minimum allowed value.
-    public var minValue: GoogleCloudWkt.Int64Value? = nil
+    public var minValue: GoogleCloudWKT.Int64Value? = nil
 
     /// For `INTEGER` flags, the maximum allowed value.
-    public var maxValue: GoogleCloudWkt.Int64Value? = nil
+    public var maxValue: GoogleCloudWKT.Int64Value? = nil
 
     /// Indicates whether changing this flag will trigger a database restart. Only
     /// applicable to Second Generation instances.
-    public var requiresRestart: GoogleCloudWkt.BoolValue? = nil
+    public var requiresRestart: GoogleCloudWKT.BoolValue? = nil
 
     /// This is always `sql#flag`.
     public var kind: Swift.String = Swift.String()
 
     /// Whether or not the flag is considered in beta.
-    public var inBeta: GoogleCloudWkt.BoolValue? = nil
+    public var inBeta: GoogleCloudWKT.BoolValue? = nil
 
     /// Use this field if only certain integers are accepted. Can be combined
     /// with min_value and max_value to add additional values.
@@ -112,13 +112,13 @@
       self.allowedStringValues = try container.decode(
         [Swift.String].self, forKey: .allowedStringValues)
       self.minValue = try container.decodeIfPresent(
-        GoogleCloudWkt.Int64Value.self, forKey: .minValue)
+        GoogleCloudWKT.Int64Value.self, forKey: .minValue)
       self.maxValue = try container.decodeIfPresent(
-        GoogleCloudWkt.Int64Value.self, forKey: .maxValue)
+        GoogleCloudWKT.Int64Value.self, forKey: .maxValue)
       self.requiresRestart = try container.decodeIfPresent(
-        GoogleCloudWkt.BoolValue.self, forKey: .requiresRestart)
+        GoogleCloudWKT.BoolValue.self, forKey: .requiresRestart)
       self.kind = try container.decode(Swift.String.self, forKey: .kind)
-      self.inBeta = try container.decodeIfPresent(GoogleCloudWkt.BoolValue.self, forKey: .inBeta)
+      self.inBeta = try container.decodeIfPresent(GoogleCloudWKT.BoolValue.self, forKey: .inBeta)
       self.allowedIntValues = try container.decode([Swift.Int64].self, forKey: .allowedIntValues)
       self.flagScope = try container.decode(SqlFlagScope.self, forKey: .flagScope)
 
@@ -138,7 +138,7 @@
         try recommendedValueCheckAndSet(.recommendedStringValue(recommendedStringValue))
       }
       if let recommendedIntValue = try container.decodeIfPresent(
-        GoogleCloudWkt.Int64Value?.self, forKey: .recommendedIntValue)
+        GoogleCloudWKT.Int64Value?.self, forKey: .recommendedIntValue)
       {
         try recommendedValueCheckAndSet(.recommendedIntValue(recommendedIntValue))
       }
@@ -174,17 +174,17 @@
       /// Recommended string value in string format for UI display.
       case recommendedStringValue(Swift.String)
       /// Recommended int value in integer format for UI display.
-      indirect case recommendedIntValue(GoogleCloudWkt.Int64Value?)
+      indirect case recommendedIntValue(GoogleCloudWKT.Int64Value?)
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.Flag"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

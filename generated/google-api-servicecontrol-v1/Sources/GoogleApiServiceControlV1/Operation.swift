@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents information regarding an operation.
-public struct Operation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Operation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identity of the operation. This must be unique within the scope of the
@@ -51,7 +51,7 @@ public struct Operation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var consumerId: Swift.String = Swift.String()
 
   /// Required. Start time of the operation.
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// End time of the operation.
   /// Required when the operation is used in
@@ -61,7 +61,7 @@ public struct Operation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   /// [google.api.servicecontrol.v1.ServiceController.Check]: <doc:ServiceControllerClient/check(request:options:)>
   /// [google.api.servicecontrol.v1.ServiceController.Report]: <doc:ServiceControllerClient/report(request:options:)>
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Labels describing the operation. Only the following labels are allowed:
   ///
@@ -106,7 +106,7 @@ public struct Operation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var userLabels: [Swift.String: Swift.String] = [:]
 
   /// Unimplemented.
-  public var extensions: [GoogleCloudWkt.`Any`] = []
+  public var extensions: [GoogleCloudWKT.`Any`] = []
 
   /// Initialize a new instance of `Operation`.
   public init() {}
@@ -228,10 +228,10 @@ public struct Operation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.servicecontrol.v1.Operation"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

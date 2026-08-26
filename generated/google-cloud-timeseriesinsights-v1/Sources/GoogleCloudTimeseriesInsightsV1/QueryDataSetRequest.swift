@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request for performing a query against a loaded DataSet.
-public struct QueryDataSetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct QueryDataSetRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Loaded DataSet to be queried in the format of
@@ -38,7 +38,7 @@ public struct QueryDataSetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackab
   ///
   /// [google.cloud.timeseriesinsights.v1.TimeseriesParams.granularity]: <doc:TimeseriesParams/granularity>
   /// [google.cloud.timeseriesinsights.v1.TimeseriesPoint]: <doc:TimeseriesPoint>
-  public var detectionTime: GoogleCloudWkt.Timestamp? = nil
+  public var detectionTime: GoogleCloudWKT.Timestamp? = nil
 
   /// How many slices are returned in
   /// [QueryDataSetResponse.slices][google.cloud.timeseriesinsights.v1.QueryDataSetResponse.slices].
@@ -100,10 +100,10 @@ public struct QueryDataSetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.timeseriesinsights.v1.QueryDataSetRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

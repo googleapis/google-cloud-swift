@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudRecaptchaEnterpriseV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: RecaptchaEnterpriseServiceClient) async throws {
   let items = try client.searchRelatedAccountGroupMemberships(

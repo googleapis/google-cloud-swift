@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A descriptor for defining project properties for a service. One service may
 /// have many consumer projects, and the service may want to behave differently
@@ -33,7 +33,7 @@ import Foundation
 ///        description: Allows usage of the API without watermarks.
 ///      - name: EXTENDED_TILE_CACHE_PERIOD
 ///        type: INT64
-public struct ProjectProperties: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ProjectProperties: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// List of per consumer project-specific properties.
@@ -58,10 +58,10 @@ public struct ProjectProperties: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.ProjectProperties"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

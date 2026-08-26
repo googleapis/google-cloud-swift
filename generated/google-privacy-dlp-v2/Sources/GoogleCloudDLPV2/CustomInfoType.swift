@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Custom information type provided by the user. Used to find domain-specific
 /// sensitive information configurable to the data in question.
-public struct CustomInfoType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CustomInfoType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// CustomInfoType can either be a new infoType, or an extension of built-in
@@ -176,7 +176,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// contains details about the size limits of dictionaries. For dictionaries
   /// that do not fit within these constraints, consider using
   /// `LargeCustomDictionaryConfig` in the `StoredInfoType` API.
-  public struct Dictionary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Dictionary: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The potential places the data can be read from.
@@ -243,7 +243,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Message defining a list of words or phrases to search for in the data.
-    public struct WordList: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct WordList: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Words or phrases defining the dictionary. The dictionary must contain
@@ -270,11 +270,11 @@ public struct CustomInfoType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.Dictionary.WordList"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -290,16 +290,16 @@ public struct CustomInfoType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.Dictionary"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Message defining a custom regular expression.
-  public struct Regex: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Regex: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Pattern defining the regular expression. Its syntax
@@ -330,11 +330,11 @@ public struct CustomInfoType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.Regex"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -346,7 +346,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// output. This should be used in conjunction with a field on the
   /// transformation such as `surrogate_info_type`. This CustomInfoType does
   /// not support the use of `detection_rules`.
-  public struct SurrogateType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SurrogateType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Initialize a new instance of `SurrogateType`.
@@ -368,17 +368,17 @@ public struct CustomInfoType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.SurrogateType"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Configuration for a custom infoType that detects key-value pairs in the
   /// metadata matching the specified regular expressions.
-  public struct MetadataKeyValueExpression: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MetadataKeyValueExpression: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The regular expression for the key. Key should be
@@ -407,11 +407,11 @@ public struct CustomInfoType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.MetadataKeyValueExpression"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -419,7 +419,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// `CustomInfoType` to alter behavior under certain circumstances, depending
   /// on the specific details of the rule. Not supported for the `surrogate_type`
   /// custom infoType.
-  public struct DetectionRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DetectionRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Type of hotword rule.
@@ -479,7 +479,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
     /// Message for specifying a window around a finding to apply a detection
     /// rule.
-    public struct Proximity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Proximity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Number of characters before the finding to consider. For tabular data,
@@ -511,17 +511,17 @@ public struct CustomInfoType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.DetectionRule.Proximity"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Message for specifying an adjustment to the likelihood of a finding as
     /// part of a detection rule.
-    public struct LikelihoodAdjustment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct LikelihoodAdjustment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// How the likelihood will be modified.
@@ -606,17 +606,17 @@ public struct CustomInfoType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.DetectionRule.LikelihoodAdjustment"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// The rule that adjusts the likelihood of findings within a certain
     /// proximity of hotwords.
-    public struct HotwordRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct HotwordRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Regular expression pattern defining what qualifies as a hotword.
@@ -659,11 +659,11 @@ public struct CustomInfoType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.DetectionRule.HotwordRule"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -676,11 +676,11 @@ public struct CustomInfoType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.DetectionRule"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -801,10 +801,10 @@ public struct CustomInfoType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.CustomInfoType"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

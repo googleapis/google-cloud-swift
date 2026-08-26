@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A Job resource represents a job posting (also referred to as a "job listing"
 /// or "job requisition"). A job belongs to a
@@ -23,7 +23,7 @@ import Foundation
 /// responsible for the job.
 ///
 /// [google.cloud.talent.v4.Company]: <doc:Company>
-public struct Job: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required during job update.
@@ -259,16 +259,16 @@ public struct Job: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// The start timestamp of the job in UTC time zone. Typically this field
   /// is used for contracting engagements. Invalid timestamps are ignored.
-  public var jobStartTime: GoogleCloudWkt.Timestamp? = nil
+  public var jobStartTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The end timestamp of the job. Typically this field is used for contracting
   /// engagements. Invalid timestamps are ignored.
-  public var jobEndTime: GoogleCloudWkt.Timestamp? = nil
+  public var jobEndTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The timestamp this job posting was most recently published. The default
   /// value is the time the request arrives at the server. Invalid timestamps are
   /// ignored.
-  public var postingPublishTime: GoogleCloudWkt.Timestamp? = nil
+  public var postingPublishTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Strongly recommended for the best service experience.
   ///
@@ -333,13 +333,13 @@ public struct Job: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [google.cloud.talent.v4.JobService.ListJobs]: <doc:JobServiceClient/listJobs(request:options:)>
   /// [google.cloud.talent.v4.JobService.UpdateJob]: <doc:JobServiceClient/updateJob(request:options:)>
   /// [google.cloud.talent.v4.UpdateJobRequest.update_mask]: <doc:UpdateJobRequest/updateMask>
-  public var postingExpireTime: GoogleCloudWkt.Timestamp? = nil
+  public var postingExpireTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The timestamp when this job posting was created.
-  public var postingCreateTime: GoogleCloudWkt.Timestamp? = nil
+  public var postingCreateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The timestamp when this job posting was last updated.
-  public var postingUpdateTime: GoogleCloudWkt.Timestamp? = nil
+  public var postingUpdateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Display name of the company listing the job.
   public var companyDisplayName: Swift.String = Swift.String()
@@ -367,7 +367,7 @@ public struct Job: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Application related details of a job posting.
-  public struct ApplicationInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ApplicationInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Use this field to specify email address(es) to which resumes or
@@ -410,16 +410,16 @@ public struct Job: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.talent.v4.Job.ApplicationInfo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Derived details about the job posting.
-  public struct DerivedInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct DerivedInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Structured locations of the job, resolved from
@@ -459,16 +459,16 @@ public struct Job: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.talent.v4.Job.DerivedInfo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Options for job processing.
-  public struct ProcessingOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ProcessingOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// If set to `true`, the service does not attempt to resolve a
@@ -511,21 +511,21 @@ public struct Job: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.talent.v4.Job.ProcessingOptions"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.talent.v4.Job"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

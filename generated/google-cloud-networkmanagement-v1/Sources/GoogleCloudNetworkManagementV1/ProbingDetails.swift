@@ -15,18 +15,18 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// Results of active probing from the last run of the test.
-public struct ProbingDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ProbingDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The overall result of active probing.
   public var result: ProbingDetails.ProbingResult = ProbingDetails.ProbingResult()
 
   /// The time that reachability was assessed through active probing.
-  public var verifyTime: GoogleCloudWkt.Timestamp? = nil
+  public var verifyTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Details about an internal failure or the cancellation of active probing.
   public var error: GoogleRpc.Status? = nil
@@ -80,7 +80,7 @@ public struct ProbingDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Representation of a network edge location as per
   /// https://cloud.google.com/vpc/docs/edge-locations.
-  public struct EdgeLocation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct EdgeLocation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Name of the metropolitan area.
@@ -105,16 +105,16 @@ public struct ProbingDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkmanagement.v1.ProbingDetails.EdgeLocation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Probing results for a single edge device.
-  public struct SingleEdgeResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SingleEdgeResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The overall result of active probing for this egress device.
@@ -162,11 +162,11 @@ public struct ProbingDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.networkmanagement.v1.ProbingDetails.SingleEdgeResponse"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -402,10 +402,10 @@ public struct ProbingDetails: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkmanagement.v1.ProbingDetails"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

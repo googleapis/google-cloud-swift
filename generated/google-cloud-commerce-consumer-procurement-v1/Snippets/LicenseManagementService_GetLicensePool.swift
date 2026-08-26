@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudCommerceConsumerProcurementV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 
 func sample(client: LicenseManagementServiceClient) async throws {

@@ -16,12 +16,12 @@
 
 #if SecuritySettingsService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents the settings related to security issues, such as data redaction
   /// and data retention. It may take hours for updates on the settings to
   /// propagate to all the related components and take effect.
-  public struct SecuritySettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SecuritySettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Resource name of the settings.
@@ -222,7 +222,7 @@
     }
 
     /// Settings for exporting audio.
-    public struct AudioExportSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AudioExportSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Cloud Storage bucket to export audio record to.
@@ -385,17 +385,17 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.cx.v3.SecuritySettings.AudioExportSettings"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Settings for exporting conversations to
     /// [Insights](https://cloud.google.com/contact-center/insights/docs).
-    public struct InsightsExportSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct InsightsExportSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// If enabled, we will automatically exports
@@ -422,11 +422,11 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.cx.v3.SecuritySettings.InsightsExportSettings"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -850,11 +850,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.SecuritySettings"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -15,15 +15,15 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Cloud SQL instance's BPA properties.
-public struct CloudSqlInstanceBackupPlanAssociationProperties: Codable, Equatable, GoogleCloudWkt
+public struct CloudSqlInstanceBackupPlanAssociationProperties: Codable, Equatable, GoogleCloudWKT
     ._AnyPackable,
   Sendable
 {
   /// Output only. The time when the instance was created.
-  public var instanceCreateTime: GoogleCloudWkt.Timestamp? = nil
+  public var instanceCreateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `CloudSqlInstanceBackupPlanAssociationProperties`.
   public init() {}
@@ -45,10 +45,10 @@ public struct CloudSqlInstanceBackupPlanAssociationProperties: Codable, Equatabl
     return
       "type.googleapis.com/google.cloud.backupdr.v1.CloudSqlInstanceBackupPlanAssociationProperties"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

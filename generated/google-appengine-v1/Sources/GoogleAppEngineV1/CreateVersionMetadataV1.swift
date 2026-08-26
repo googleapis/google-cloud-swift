@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Metadata for the given [google.longrunning.Operation][google.longrunning.Operation] during a
 /// [google.appengine.v1.CreateVersionRequest][google.appengine.v1.CreateVersionRequest].
 ///
 /// [google.appengine.v1.CreateVersionRequest]: <doc:CreateVersionRequest>
 /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
-public struct CreateVersionMetadataV1: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CreateVersionMetadataV1: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The Cloud Build ID if one was created as part of the version create.
@@ -48,10 +48,10 @@ public struct CreateVersionMetadataV1: Codable, Equatable, GoogleCloudWkt._AnyPa
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.appengine.v1.CreateVersionMetadataV1"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

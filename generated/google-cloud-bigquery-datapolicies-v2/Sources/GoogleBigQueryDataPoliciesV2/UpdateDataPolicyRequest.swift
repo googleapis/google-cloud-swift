@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for the UpdateDataPolicy method.
-public struct UpdateDataPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateDataPolicyRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Update the data policy's metadata.
@@ -33,7 +33,7 @@ public struct UpdateDataPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPa
   /// If not set, defaults to all of the fields that are allowed to update.
   ///
   /// Updates to the `name` and `dataPolicyId` fields are not allowed.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Optional. If set to true, and the data policy is not found, a new data
   /// policy will be created. In this situation, update_mask is ignored.
@@ -58,10 +58,10 @@ public struct UpdateDataPolicyRequest: Codable, Equatable, GoogleCloudWkt._AnyPa
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.bigquery.datapolicies.v2.UpdateDataPolicyRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

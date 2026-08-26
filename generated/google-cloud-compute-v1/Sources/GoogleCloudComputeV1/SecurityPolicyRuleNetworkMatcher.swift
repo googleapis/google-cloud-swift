@@ -16,11 +16,11 @@
 
 #if OrganizationSecurityPolicies || RegionSecurityPolicies || SecurityPolicies
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents a match condition that incoming network traffic is evaluated
   /// against.
-  public struct SecurityPolicyRuleNetworkMatcher: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SecurityPolicyRuleNetworkMatcher: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Destination IPv4/IPv6 addresses or CIDR prefixes, in standard text
@@ -74,11 +74,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.SecurityPolicyRuleNetworkMatcher"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

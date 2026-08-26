@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleCloudGax
 
 /// BudgetService stores Cloud Billing budgets, which define a
@@ -144,7 +144,7 @@ extension Clients {
     /// See `BudgetServiceClient.updateBudget`.
     func updateBudget(
       budget: Budget?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudBillingBudgetsV1.Budget
 
     /// See `BudgetServiceClient.getBudget`.
@@ -248,7 +248,7 @@ extension Clients.BudgetServiceProtocol {
 
   public func updateBudget(
     budget: Budget?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudBillingBudgetsV1.Budget {
     let request = UpdateBudgetRequest().with {
       $0.budget = budget

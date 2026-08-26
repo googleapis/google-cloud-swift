@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudLoggingV2
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 
@@ -29,7 +29,7 @@ func sample(client: ConfigServiceV2Client, projectId: String, sinkId: String) as
         $0.sink = LogSink().with {
           $0.name = "projects/\(projectId)/sinks/\(sinkId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

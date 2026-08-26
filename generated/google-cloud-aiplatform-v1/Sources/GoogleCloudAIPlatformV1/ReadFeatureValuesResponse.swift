@@ -16,13 +16,13 @@
 
 #if FeaturestoreOnlineServingService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Response message for
   /// [FeaturestoreOnlineServingService.ReadFeatureValues][google.cloud.aiplatform.v1.FeaturestoreOnlineServingService.ReadFeatureValues].
   ///
   /// [google.cloud.aiplatform.v1.FeaturestoreOnlineServingService.ReadFeatureValues]: <doc:FeaturestoreOnlineServingServiceClient/readFeatureValues(request:options:)>
-  public struct ReadFeatureValuesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ReadFeatureValuesResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Response header.
@@ -51,7 +51,7 @@
     }
 
     /// Metadata for requested Features.
-    public struct FeatureDescriptor: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct FeatureDescriptor: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Feature ID.
@@ -77,11 +77,11 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.ReadFeatureValuesResponse.FeatureDescriptor"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -90,7 +90,7 @@
     /// and Features.
     ///
     /// [google.cloud.aiplatform.v1.ReadFeatureValuesRequest.entity_type]: <doc:ReadFeatureValuesRequest/entityType>
-    public struct Header: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Header: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The resource name of the EntityType from the
@@ -126,16 +126,16 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.ReadFeatureValuesResponse.Header"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Entity view with Feature values.
-    public struct EntityView: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct EntityView: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// ID of the requested entity.
@@ -169,7 +169,7 @@
 
       /// Container to hold value(s), successive in time, for one Feature from the
       /// request.
-      public struct Data: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Data: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         public var data: OneOf_Data? = nil
@@ -244,33 +244,33 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.ReadFeatureValuesResponse.EntityView.Data"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.ReadFeatureValuesResponse.EntityView"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.ReadFeatureValuesResponse"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

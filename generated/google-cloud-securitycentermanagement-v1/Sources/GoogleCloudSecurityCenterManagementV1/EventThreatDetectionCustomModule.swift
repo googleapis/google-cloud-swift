@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A Security Command Center resource that contains the configuration and
 /// enablement state of a custom module, which enables Event Threat Detection to
 /// write certain findings to Security Command Center.
-public struct EventThreatDetectionCustomModule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct EventThreatDetectionCustomModule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The resource name of the Event Threat Detection custom module,
@@ -34,7 +34,7 @@ public struct EventThreatDetectionCustomModule: Codable, Equatable, GoogleCloudW
   /// Optional. Configuration for the module. For the resident module, its
   /// configuration value is defined at this level. For the inherited module, its
   /// configuration value is inherited from the ancestor module.
-  public var config: GoogleCloudWkt.Struct? = nil
+  public var config: GoogleCloudWKT.Struct? = nil
 
   /// Output only. The closest ancestor module that this module inherits the
   /// enablement state from. If empty, indicates that the custom module was
@@ -57,7 +57,7 @@ public struct EventThreatDetectionCustomModule: Codable, Equatable, GoogleCloudW
   public var description: Swift.String = Swift.String()
 
   /// Output only. The time the module was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The editor the module was last updated by.
   public var lastEditor: Swift.String = Swift.String()
@@ -198,10 +198,10 @@ public struct EventThreatDetectionCustomModule: Codable, Equatable, GoogleCloudW
     return
       "type.googleapis.com/google.cloud.securitycentermanagement.v1.EventThreatDetectionCustomModule"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

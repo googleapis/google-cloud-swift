@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A pair of time series filters that define a ratio computation. The output
 /// time series is the pair-wise division of each aligned element from the
 /// numerator and denominator time series.
-public struct TimeSeriesFilterRatio: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TimeSeriesFilterRatio: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The numerator of the ratio.
@@ -110,7 +110,7 @@ public struct TimeSeriesFilterRatio: Codable, Equatable, GoogleCloudWkt._AnyPack
 
   /// Describes a query to build the numerator or denominator of a
   /// TimeSeriesFilterRatio.
-  public struct RatioPart: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RatioPart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The [monitoring
@@ -142,11 +142,11 @@ public struct TimeSeriesFilterRatio: Codable, Equatable, GoogleCloudWkt._AnyPack
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.dashboard.v1.TimeSeriesFilterRatio.RatioPart"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -164,10 +164,10 @@ public struct TimeSeriesFilterRatio: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.dashboard.v1.TimeSeriesFilterRatio"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

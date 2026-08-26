@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudDNSV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: ChangesClient) async throws {
   let items = try client.list(

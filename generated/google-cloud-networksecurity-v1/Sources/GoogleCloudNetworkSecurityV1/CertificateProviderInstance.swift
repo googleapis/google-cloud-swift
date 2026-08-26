@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Specification of a TLS certificate provider instance. Workloads may have one
 /// or more CertificateProvider instances (plugins) and one of them is enabled
 /// and configured by specifying this message. Workloads use the values from this
 /// message to locate and load the CertificateProvider instance configuration.
-public struct CertificateProviderInstance: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CertificateProviderInstance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Plugin instance name, used to locate and load CertificateProvider
@@ -48,10 +48,10 @@ public struct CertificateProviderInstance: Codable, Equatable, GoogleCloudWkt._A
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networksecurity.v1.CertificateProviderInstance"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

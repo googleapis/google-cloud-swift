@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for the
 /// [UpdateCustomClass][google.cloud.speech.v2.Speech.UpdateCustomClass] method.
 ///
 /// [google.cloud.speech.v2.Speech.UpdateCustomClass]: <doc:SpeechClient/updateCustomClass(request:options:)>
-public struct UpdateCustomClassRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateCustomClassRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The CustomClass to update.
@@ -33,7 +33,7 @@ public struct UpdateCustomClassRequest: Codable, Equatable, GoogleCloudWkt._AnyP
 
   /// The list of fields to be updated. If empty, all fields are considered for
   /// update.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// If set, validate the request and preview the updated CustomClass, but do
   /// not actually update it.
@@ -58,10 +58,10 @@ public struct UpdateCustomClassRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.speech.v2.UpdateCustomClassRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

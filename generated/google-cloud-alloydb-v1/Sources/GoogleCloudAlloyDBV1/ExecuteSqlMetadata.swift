@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Any additional metadata information regarding the execution of the SQL
-public struct ExecuteSqlMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ExecuteSqlMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Message related to SQL execution. Marked as core content since it
@@ -32,7 +32,7 @@ public struct ExecuteSqlMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public var partialResult: Swift.Bool = Swift.Bool()
 
   /// The time duration taken to execute the sql statement.
-  public var sqlStatementExecutionDuration: GoogleCloudWkt.Duration? = nil
+  public var sqlStatementExecutionDuration: GoogleCloudWKT.Duration? = nil
 
   /// Status of SQL execution.
   public var status: ExecuteSqlMetadata.Status = ExecuteSqlMetadata.Status()
@@ -176,10 +176,10 @@ public struct ExecuteSqlMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.alloydb.v1.ExecuteSqlMetadata"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

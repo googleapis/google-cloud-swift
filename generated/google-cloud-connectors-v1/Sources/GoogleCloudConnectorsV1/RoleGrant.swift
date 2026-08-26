@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// This configuration defines all the Cloud IAM roles that needs to be granted
 /// to a particular GCP resource for the selected prinicpal like service
 /// account. These configurations will let UI display to customers what
 /// IAM roles need to be granted by them. Or these configurations can be used
 /// by the UI to render a 'grant' button to do the same on behalf of the user.
-public struct RoleGrant: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RoleGrant: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Prinicipal/Identity for whom the role need to assigned.
@@ -54,7 +54,7 @@ public struct RoleGrant: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Resource definition
-  public struct Resource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Resource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Different types of resource supported.
@@ -203,11 +203,11 @@ public struct RoleGrant: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.connectors.v1.RoleGrant.Resource"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -314,10 +314,10 @@ public struct RoleGrant: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.connectors.v1.RoleGrant"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -16,10 +16,10 @@
 
 #if SessionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// An event represents a message from either the user or agent.
-  public struct SessionEvent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SessionEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Identifier. The resource name of the event.
@@ -40,7 +40,7 @@
     public var actions: EventActions? = nil
 
     /// Required. Timestamp when the event was created on client side.
-    public var timestamp: GoogleCloudWkt.Timestamp? = nil
+    public var timestamp: GoogleCloudWKT.Timestamp? = nil
 
     /// Optional. Error code if the response is an error. Code varies by model.
     public var errorCode: Swift.String = Swift.String()
@@ -52,7 +52,7 @@
     public var eventMetadata: EventMetadata? = nil
 
     /// Optional. Weakly typed raw event data in proto struct format.
-    public var rawEvent: GoogleCloudWkt.Struct? = nil
+    public var rawEvent: GoogleCloudWKT.Struct? = nil
 
     /// Initialize a new instance of `SessionEvent`.
     public init() {}
@@ -73,11 +73,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.SessionEvent"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

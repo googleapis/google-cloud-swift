@@ -16,11 +16,11 @@
 
 #if Sessions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
   import GoogleType
 
   /// Represents the parameters of a conversational query.
-  public struct QueryParameters: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct QueryParameters: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The time zone of this conversational query from the [time zone
@@ -50,7 +50,7 @@
     ///  }
     /// }
     /// ```
-    public var payload: GoogleCloudWkt.Struct? = nil
+    public var payload: GoogleCloudWKT.Struct? = nil
 
     /// Additional parameters to be put into [session
     /// parameters][SessionInfo.parameters]. To remove a
@@ -74,7 +74,7 @@
     /// use parameter value.
     ///
     /// [SessionInfo.parameters]: <doc:SessionInfo/parameters>
-    public var parameters: GoogleCloudWkt.Struct? = nil
+    public var parameters: GoogleCloudWKT.Struct? = nil
 
     /// Scope for the parameters. If not specified, parameters will be treated as
     /// session parameters. Parameters with custom scope will not be put into
@@ -169,7 +169,7 @@
     /// By default, a Dialogflow session remains active and its data is stored for
     /// 30 minutes after the last request is sent for the session.
     /// This value should be no longer than 1 day.
-    public var sessionTtl: GoogleCloudWkt.Duration? = nil
+    public var sessionTtl: GoogleCloudWKT.Duration? = nil
 
     /// Optional. Information about the end-user to improve the relevance and
     /// accuracy of generative answers.
@@ -188,7 +188,7 @@
     ///   ]
     /// }
     /// ```
-    public var endUserMetadata: GoogleCloudWkt.Struct? = nil
+    public var endUserMetadata: GoogleCloudWKT.Struct? = nil
 
     /// Optional. Search configuration for UCS search queries.
     public var searchConfig: SearchConfig? = nil
@@ -219,11 +219,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.QueryParameters"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

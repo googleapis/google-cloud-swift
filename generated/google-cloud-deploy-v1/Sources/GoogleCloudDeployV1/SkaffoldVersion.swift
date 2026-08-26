@@ -15,21 +15,21 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleType
 
 /// Details of a supported Skaffold version.
-public struct SkaffoldVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SkaffoldVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Release version number. For example, "1.20.3".
   public var version: Swift.String = Swift.String()
 
   /// The time at which this version of Skaffold will enter maintenance mode.
-  public var maintenanceModeTime: GoogleCloudWkt.Timestamp? = nil
+  public var maintenanceModeTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The time at which this version of Skaffold will no longer be supported.
-  public var supportExpirationTime: GoogleCloudWkt.Timestamp? = nil
+  public var supportExpirationTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Date when this version is expected to no longer be supported.
   public var supportEndDate: GoogleType.Date? = nil
@@ -53,10 +53,10 @@ public struct SkaffoldVersion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.deploy.v1.SkaffoldVersion"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

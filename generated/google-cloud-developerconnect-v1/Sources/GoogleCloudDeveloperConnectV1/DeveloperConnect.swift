@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -797,7 +797,7 @@ extension Clients {
     /// See `DeveloperConnectClient.updateConnection`.
     func updateConnection(
       connection: Connection?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Connection>
 
     /// See `DeveloperConnectClient.deleteConnection`.
@@ -964,7 +964,7 @@ extension Clients {
     /// See `DeveloperConnectClient.updateAccountConnector`.
     func updateAccountConnector(
       accountConnector: AccountConnector?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<AccountConnector>
 
     /// See `DeveloperConnectClient.deleteAccountConnector`.
@@ -1470,7 +1470,7 @@ extension Clients.DeveloperConnectProtocol {
 
   public func updateConnection(
     connection: Connection?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Connection> {
     let request = UpdateConnectionRequest().with {
       $0.connection = connection
@@ -1908,7 +1908,7 @@ extension Clients.DeveloperConnectProtocol {
 
   public func updateAccountConnector(
     accountConnector: AccountConnector?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<AccountConnector> {
     let request = UpdateAccountConnectorRequest().with {
       $0.accountConnector = accountConnector

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A Case is an object that contains the details of a support case. It
 /// contains fields for the time it was created, its priority, its
@@ -44,7 +44,7 @@ import Foundation
 ///
 /// You can use either of them when calling the API. To learn more
 /// about project identifiers, see [AIP-2510](https://google.aip.dev/cloud/2510).
-public struct Case: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Case: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The resource name for the case.
@@ -71,10 +71,10 @@ public struct Case: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var state: Case.State = Case.State()
 
   /// Output only. The time this case was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time this case was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The user who created the case.
   ///
@@ -381,10 +381,10 @@ public struct Case: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.support.v2.Case"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleIAMV1
   import GoogleLongRunning
   import GoogleCloudGax
@@ -217,7 +217,7 @@
       /// See `LlmUtilityServiceClient.countTokens`.
       func countTokens(
         endpoint: Swift.String,
-        instances: [GoogleCloudWkt.Value],
+        instances: [GoogleCloudWKT.Value],
       ) async throws -> GoogleCloudAIPlatformV1.CountTokensResponse
 
       /// See `LlmUtilityServiceClient.computeTokens`.
@@ -227,7 +227,7 @@
       /// See `LlmUtilityServiceClient.computeTokens`.
       func computeTokens(
         endpoint: Swift.String,
-        instances: [GoogleCloudWkt.Value],
+        instances: [GoogleCloudWKT.Value],
       ) async throws -> GoogleCloudAIPlatformV1.ComputeTokensResponse
 
       /// See `LlmUtilityServiceClient.listLocations`.
@@ -371,7 +371,7 @@
 
     public func countTokens(
       endpoint: Swift.String,
-      instances: [GoogleCloudWkt.Value],
+      instances: [GoogleCloudWKT.Value],
     ) async throws -> GoogleCloudAIPlatformV1.CountTokensResponse {
       let request = CountTokensRequest().with {
         $0.endpoint = endpoint
@@ -394,7 +394,7 @@
 
     public func computeTokens(
       endpoint: Swift.String,
-      instances: [GoogleCloudWkt.Value],
+      instances: [GoogleCloudWKT.Value],
     ) async throws -> GoogleCloudAIPlatformV1.ComputeTokensResponse {
       let request = ComputeTokensRequest().with {
         $0.endpoint = endpoint

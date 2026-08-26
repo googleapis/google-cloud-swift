@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// Success or errors for the profile generation.
-public struct ProfileStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ProfileStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Profiling status code and optional message. The `status.code` value is 0
@@ -27,7 +27,7 @@ public struct ProfileStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var status: GoogleRpc.Status? = nil
 
   /// Time when the profile generation status was updated
-  public var timestamp: GoogleCloudWkt.Timestamp? = nil
+  public var timestamp: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `ProfileStatus`.
   public init() {}
@@ -48,10 +48,10 @@ public struct ProfileStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.ProfileStatus"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

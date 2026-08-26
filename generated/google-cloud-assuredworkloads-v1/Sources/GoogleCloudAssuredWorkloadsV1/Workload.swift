@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A Workload object for managing highly regulated workloads of cloud
 /// customers.
-public struct Workload: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Workload: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. The resource name of the workload.
@@ -47,7 +47,7 @@ public struct Workload: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var complianceRegime: Workload.ComplianceRegime = Workload.ComplianceRegime()
 
   /// Output only. Immutable. The Workload creation timestamp.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. The billing account used for the resources which are
   /// direct children of workload. This billing account is initially associated
@@ -125,7 +125,7 @@ public struct Workload: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Represent the resources that are children of this Workload.
-  public struct ResourceInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ResourceInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Resource identifier.
@@ -279,11 +279,11 @@ public struct Workload: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.assuredworkloads.v1.Workload.ResourceInfo"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -292,17 +292,17 @@ public struct Workload: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// In order to create a Keyring, callers should specify,
   /// ENCRYPTION_KEYS_PROJECT or KEYRING in ResourceSettings.resource_type field.
   @available(*, deprecated)
-  public struct KMSSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct KMSSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Input only. Immutable. The time at which the Key Management Service will automatically create a
     /// new version of the crypto key and mark it as the primary.
-    public var nextRotationTime: GoogleCloudWkt.Timestamp? = nil
+    public var nextRotationTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Required. Input only. Immutable. [next_rotation_time] will be advanced by this period when the Key
     /// Management Service automatically rotates a key. Must be at least 24 hours
     /// and at most 876,000 hours.
-    public var rotationPeriod: GoogleCloudWkt.Duration? = nil
+    public var rotationPeriod: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `KMSSettings`.
     public init() {}
@@ -323,16 +323,16 @@ public struct Workload: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.assuredworkloads.v1.Workload.KMSSettings"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Represent the custom settings for the resources to be created.
-  public struct ResourceSettings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ResourceSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Resource identifier.
@@ -372,16 +372,16 @@ public struct Workload: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.assuredworkloads.v1.Workload.ResourceSettings"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Signed Access Approvals (SAA) enrollment response.
-  public struct SaaEnrollmentResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SaaEnrollmentResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Indicates SAA enrollment status of a given workload.
@@ -636,11 +636,11 @@ public struct Workload: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.assuredworkloads.v1.Workload.SaaEnrollmentResponse"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -1027,10 +1027,10 @@ public struct Workload: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.assuredworkloads.v1.Workload"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

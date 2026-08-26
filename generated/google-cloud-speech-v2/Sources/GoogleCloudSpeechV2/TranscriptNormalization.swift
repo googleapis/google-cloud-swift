@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Transcription normalization configuration. Use transcription normalization
 /// to automatically replace parts of the transcript with phrases of your
 /// choosing. For StreamingRecognize, this normalization only applies to stable
 /// partial transcripts (stability > 0.8) and final transcripts.
-public struct TranscriptNormalization: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TranscriptNormalization: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A list of replacement entries. We will perform replacement with one entry
@@ -47,7 +47,7 @@ public struct TranscriptNormalization: Codable, Equatable, GoogleCloudWkt._AnyPa
   }
 
   /// A single replacement configuration.
-  public struct Entry: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Entry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// What to replace. Max length is 100 characters.
@@ -78,21 +78,21 @@ public struct TranscriptNormalization: Codable, Equatable, GoogleCloudWkt._AnyPa
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.speech.v2.TranscriptNormalization.Entry"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.speech.v2.TranscriptNormalization"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

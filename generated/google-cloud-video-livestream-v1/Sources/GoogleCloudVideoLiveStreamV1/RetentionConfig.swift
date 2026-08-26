@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Configuration for retention of output files.
-public struct RetentionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RetentionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The minimum duration for which the output files from the channel will
@@ -40,7 +40,7 @@ public struct RetentionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// is ignored.
   ///
   /// [google.cloud.video.livestream.v1.Manifest.segment_keep_duration]: <doc:Manifest/segmentKeepDuration>
-  public var retentionWindowDuration: GoogleCloudWkt.Duration? = nil
+  public var retentionWindowDuration: GoogleCloudWKT.Duration? = nil
 
   /// Initialize a new instance of `RetentionConfig`.
   public init() {}
@@ -61,10 +61,10 @@ public struct RetentionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.video.livestream.v1.RetentionConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

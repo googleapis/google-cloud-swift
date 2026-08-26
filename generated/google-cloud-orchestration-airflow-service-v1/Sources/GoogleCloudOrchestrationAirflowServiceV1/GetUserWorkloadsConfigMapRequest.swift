@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Get user workloads ConfigMap request.
-public struct GetUserWorkloadsConfigMapRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct GetUserWorkloadsConfigMapRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The resource name of the ConfigMap to get, in the form:
@@ -45,10 +45,10 @@ public struct GetUserWorkloadsConfigMapRequest: Codable, Equatable, GoogleCloudW
     return
       "type.googleapis.com/google.cloud.orchestration.airflow.service.v1.GetUserWorkloadsConfigMapRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

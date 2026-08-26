@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleCloudGax
 
@@ -271,7 +271,7 @@ extension Clients {
     /// See `NativeDashboardServiceClient.updateNativeDashboard`.
     func updateNativeDashboard(
       nativeDashboard: NativeDashboard?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudChronicleV1.NativeDashboard
 
     /// See `NativeDashboardServiceClient.duplicateNativeDashboard`.
@@ -320,7 +320,7 @@ extension Clients {
       name: Swift.String,
       dashboardQuery: DashboardQuery?,
       dashboardChart: DashboardChart?,
-      editMask: GoogleCloudWkt.FieldMask?,
+      editMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudChronicleV1.EditChartResponse
 
     /// See `NativeDashboardServiceClient.duplicateChart`.
@@ -567,7 +567,7 @@ extension Clients.NativeDashboardServiceProtocol {
 
   public func updateNativeDashboard(
     nativeDashboard: NativeDashboard?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudChronicleV1.NativeDashboard {
     let request = UpdateNativeDashboardRequest().with {
       $0.nativeDashboard = nativeDashboard
@@ -680,7 +680,7 @@ extension Clients.NativeDashboardServiceProtocol {
     name: Swift.String,
     dashboardQuery: DashboardQuery?,
     dashboardChart: DashboardChart?,
-    editMask: GoogleCloudWkt.FieldMask?,
+    editMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudChronicleV1.EditChartResponse {
     let request = EditChartRequest().with {
       $0.name = name

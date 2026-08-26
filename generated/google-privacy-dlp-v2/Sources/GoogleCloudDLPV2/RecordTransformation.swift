@@ -15,17 +15,17 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The field in a record to transform.
-public struct RecordTransformation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RecordTransformation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// For record transformations, provide a field.
   public var fieldId: FieldId? = nil
 
   /// Findings container modification timestamp, if applicable.
-  public var containerTimestamp: GoogleCloudWkt.Timestamp? = nil
+  public var containerTimestamp: GoogleCloudWKT.Timestamp? = nil
 
   /// Container version, if available ("generation" for Cloud Storage).
   public var containerVersion: Swift.String = Swift.String()
@@ -49,10 +49,10 @@ public struct RecordTransformation: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.RecordTransformation"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

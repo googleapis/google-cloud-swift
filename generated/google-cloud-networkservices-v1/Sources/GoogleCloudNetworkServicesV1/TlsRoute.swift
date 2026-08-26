@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// TlsRoute defines how traffic should be routed based on SNI and other matching
 /// L3 attributes.
-public struct TlsRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TlsRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. Name of the TlsRoute resource. It matches pattern
@@ -30,10 +30,10 @@ public struct TlsRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var selfLink: Swift.String = Swift.String()
 
   /// Output only. The timestamp when the resource was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The timestamp when the resource was updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. A free-text description of the resource. Max length 1024
   /// characters.
@@ -89,7 +89,7 @@ public struct TlsRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Specifies how to match traffic and how to route traffic when traffic is
   /// matched.
-  public struct RouteRule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RouteRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. RouteMatch defines the predicate used to match requests to a
@@ -119,17 +119,17 @@ public struct TlsRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.TlsRoute.RouteRule"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// RouteMatch defines the predicate used to match requests to a given action.
   /// Multiple match types are "AND"ed for evaluation.
-  public struct RouteMatch: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RouteMatch: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. SNI (server name indicator) to match against.
@@ -167,16 +167,16 @@ public struct TlsRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.TlsRoute.RouteMatch"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The specifications for routing traffic and applying associated policies.
-  public struct RouteAction: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RouteAction: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The destination services to which traffic should be forwarded.
@@ -188,7 +188,7 @@ public struct TlsRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// received on either the upstream or downstream connection. If not set, the
     /// default idle timeout is 1 hour. If set to 0s, the timeout will be
     /// disabled.
-    public var idleTimeout: GoogleCloudWkt.Duration? = nil
+    public var idleTimeout: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `RouteAction`.
     public init() {}
@@ -209,16 +209,16 @@ public struct TlsRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.TlsRoute.RouteAction"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Describe the destination for traffic to be routed to.
-  public struct RouteDestination: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RouteDestination: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The URL of a BackendService to route traffic to.
@@ -249,21 +249,21 @@ public struct TlsRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.networkservices.v1.TlsRoute.RouteDestination"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.networkservices.v1.TlsRoute"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

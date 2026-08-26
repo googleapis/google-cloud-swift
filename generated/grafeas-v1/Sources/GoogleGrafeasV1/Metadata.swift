@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Other properties of the build.
-public struct Metadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Metadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifies the particular build invocation, which can be useful for finding
@@ -27,10 +27,10 @@ public struct Metadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var buildInvocationId: Swift.String = Swift.String()
 
   /// The timestamp of when the build started.
-  public var buildStartedOn: GoogleCloudWkt.Timestamp? = nil
+  public var buildStartedOn: GoogleCloudWKT.Timestamp? = nil
 
   /// The timestamp of when the build completed.
-  public var buildFinishedOn: GoogleCloudWkt.Timestamp? = nil
+  public var buildFinishedOn: GoogleCloudWKT.Timestamp? = nil
 
   /// Indicates that the builder claims certain fields in this message to be
   /// complete.
@@ -59,10 +59,10 @@ public struct Metadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/grafeas.v1.Metadata"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

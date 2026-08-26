@@ -16,7 +16,7 @@
 
 #if PipelineService || ScheduleService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Pipeline template metadata if
   /// [PipelineJob.template_uri][google.cloud.aiplatform.v1.PipelineJob.template_uri]
@@ -24,7 +24,7 @@
   /// is Artifact Registry.
   ///
   /// [google.cloud.aiplatform.v1.PipelineJob.template_uri]: <doc:PipelineJob/templateUri>
-  public struct PipelineTemplateMetadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PipelineTemplateMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The version_name in artifact registry.
@@ -57,11 +57,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.PipelineTemplateMetadata"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

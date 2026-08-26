@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleType
 
 /// Message describing the user-specified automated backup policy.
 ///
 /// All fields in the automated backup policy are optional. Defaults for each
 /// field are provided if they are not set.
-public struct AutomatedBackupPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AutomatedBackupPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Whether automated automated backups are enabled. If not set, defaults to
@@ -35,7 +35,7 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleCloudWkt._AnyPack
   ///
   /// The backup window must be at least 5 minutes long. There is no upper bound
   /// on the window. If not set, it defaults to 1 hour.
-  public var backupWindow: GoogleCloudWkt.Duration? = nil
+  public var backupWindow: GoogleCloudWKT.Duration? = nil
 
   /// Optional. The encryption config can be specified to encrypt the
   /// backups with a customer-managed encryption key (CMEK). When this field is
@@ -102,7 +102,7 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleCloudWkt._AnyPack
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.enabled = try container.decodeIfPresent(Swift.Bool.self, forKey: .enabled)
     self.backupWindow = try container.decodeIfPresent(
-      GoogleCloudWkt.Duration.self, forKey: .backupWindow)
+      GoogleCloudWKT.Duration.self, forKey: .backupWindow)
     self.encryptionConfig = try container.decodeIfPresent(
       EncryptionConfig.self, forKey: .encryptionConfig)
     self.location = try container.decode(Swift.String.self, forKey: .location)
@@ -180,7 +180,7 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleCloudWkt._AnyPack
   /// types of schedules. For example, to have a daily backup that starts at
   /// 22:00, configure the `start_times` field to have one element "22:00" and
   /// the `days_of_week` field to have all seven days of the week.
-  public struct WeeklySchedule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct WeeklySchedule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The times during the day to start a backup. The start times are assumed
@@ -215,21 +215,21 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleCloudWkt._AnyPack
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.alloydb.v1.AutomatedBackupPolicy.WeeklySchedule"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A time based retention policy specifies that all backups within a certain
   /// time period should be retained.
-  public struct TimeBasedRetention: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct TimeBasedRetention: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The retention period.
-    public var retentionPeriod: GoogleCloudWkt.Duration? = nil
+    public var retentionPeriod: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `TimeBasedRetention`.
     public init() {}
@@ -250,17 +250,17 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleCloudWkt._AnyPack
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.alloydb.v1.AutomatedBackupPolicy.TimeBasedRetention"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A quantity based policy specifies that a certain number of the most recent
   /// successful backups should be retained.
-  public struct QuantityBasedRetention: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct QuantityBasedRetention: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The number of backups to retain.
@@ -286,11 +286,11 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleCloudWkt._AnyPack
       return
         "type.googleapis.com/google.cloud.alloydb.v1.AutomatedBackupPolicy.QuantityBasedRetention"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -325,10 +325,10 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.alloydb.v1.AutomatedBackupPolicy"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

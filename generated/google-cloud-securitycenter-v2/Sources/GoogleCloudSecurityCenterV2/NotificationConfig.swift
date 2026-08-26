@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Cloud Security Command Center (Cloud SCC) notification configs.
 ///
 /// A notification config is a Cloud SCC resource that contains the configuration
 /// to send notifications for create/update events of findings, assets and etc.
-public struct NotificationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct NotificationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The relative resource name of this notification config. See:
@@ -48,7 +48,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
 
   /// Output only. The timestamp of when the notification config was last
   /// updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The config for triggering notifications.
   public var notifyConfig: OneOf_NotifyConfig? = nil
@@ -85,7 +85,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     self.pubsubTopic = try container.decode(Swift.String.self, forKey: .pubsubTopic)
     self.serviceAccount = try container.decode(Swift.String.self, forKey: .serviceAccount)
     self.updateTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .updateTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .updateTime)
 
     var notifyConfig: OneOf_NotifyConfig? = nil
     let notifyConfigCheckAndSet = {
@@ -123,7 +123,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
 
   /// The config for streaming-based notifications, which send each event as soon
   /// as it is detected.
-  public struct StreamingConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct StreamingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Expression that defines the filter to apply across create/update events
@@ -168,11 +168,11 @@ public struct NotificationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.securitycenter.v2.NotificationConfig.StreamingConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -185,10 +185,10 @@ public struct NotificationConfig: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.NotificationConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

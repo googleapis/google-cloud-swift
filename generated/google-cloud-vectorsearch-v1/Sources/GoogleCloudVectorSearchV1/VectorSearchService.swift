@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -582,7 +582,7 @@ extension Clients {
     /// See `VectorSearchServiceClient.updateCollection`.
     func updateCollection(
       collection: Collection?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Collection>
 
     /// See `VectorSearchServiceClient.deleteCollection`.
@@ -644,7 +644,7 @@ extension Clients {
     /// See `VectorSearchServiceClient.updateIndex`.
     func updateIndex(
       index: Index?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Index>
 
     /// See `VectorSearchServiceClient.deleteIndex`.
@@ -997,7 +997,7 @@ extension Clients.VectorSearchServiceProtocol {
 
   public func updateCollection(
     collection: Collection?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Collection> {
     let request = UpdateCollectionRequest().with {
       $0.collection = collection
@@ -1166,7 +1166,7 @@ extension Clients.VectorSearchServiceProtocol {
 
   public func updateIndex(
     index: Index?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Index> {
     let request = UpdateIndexRequest().with {
       $0.index = index

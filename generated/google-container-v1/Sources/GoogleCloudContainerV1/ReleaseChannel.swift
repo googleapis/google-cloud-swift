@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// ReleaseChannel indicates which release channel a cluster is
 /// subscribed to. Release channels are arranged in order of risk.
@@ -23,7 +23,7 @@ import Foundation
 /// When a cluster is subscribed to a release channel, Google maintains
 /// both the master version and the node version. Node auto-upgrade
 /// defaults to true and cannot be disabled.
-public struct ReleaseChannel: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ReleaseChannel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// channel specifies which release channel the cluster is subscribed to.
@@ -176,10 +176,10 @@ public struct ReleaseChannel: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.ReleaseChannel"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

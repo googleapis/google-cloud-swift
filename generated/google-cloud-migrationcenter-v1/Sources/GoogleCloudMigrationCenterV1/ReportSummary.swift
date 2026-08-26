@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleType
 
 /// Describes the Summary view of a Report, which contains aggregated values
 /// for all the groups and preference sets included in this Report.
-public struct ReportSummary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ReportSummary: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Aggregate statistics for all the assets across all the groups.
@@ -46,7 +46,7 @@ public struct ReportSummary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Describes a collection of data points rendered as a Chart.
-  public struct ChartData: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ChartData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Each data point in the chart is represented as a name-value pair
@@ -71,7 +71,7 @@ public struct ReportSummary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     }
 
     /// Describes a single data point in the Chart.
-    public struct DataPoint: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct DataPoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The X-axis label for this data point.
@@ -100,28 +100,28 @@ public struct ReportSummary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.ChartData.DataPoint"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.ChartData"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Utilization Chart is a specific type of visualization which displays
   /// a metric classified into "Used" and "Free" buckets.
-  public struct UtilizationChartData: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct UtilizationChartData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Aggregate value which falls into the "Used" bucket.
@@ -150,17 +150,17 @@ public struct ReportSummary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.UtilizationChartData"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A Histogram Chart shows a distribution of values into buckets, showing
   /// a count of values which fall into a bucket.
-  public struct HistogramChartData: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct HistogramChartData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Buckets in the histogram.
@@ -190,7 +190,7 @@ public struct ReportSummary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// with a field value between those bounds.
     /// The lower bound is inclusive and the upper bound is exclusive.
     /// Lower bound may be -infinity and upper bound may be infinity.
-    public struct Bucket: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Bucket: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Lower bound - inclusive.
@@ -222,27 +222,27 @@ public struct ReportSummary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.HistogramChartData.Bucket"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.HistogramChartData"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Aggregate statistics for a collection of assets.
-  public struct AssetAggregateStats: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AssetAggregateStats: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Sum of the memory in bytes of all the assets in this collection.
@@ -294,17 +294,17 @@ public struct ReportSummary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.AssetAggregateStats"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Represents a data point tracking the count of assets allocated for a
   /// specific Machine Series.
-  public struct MachineSeriesAllocation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct MachineSeriesAllocation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The Machine Series (e.g. "E2", "N2")
@@ -333,16 +333,16 @@ public struct ReportSummary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.MachineSeriesAllocation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A set of findings that applies to assets destined for Compute Engine.
-  public struct ComputeEngineFinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ComputeEngineFinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Set of regions in which the assets were allocated.
@@ -377,16 +377,16 @@ public struct ReportSummary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.ComputeEngineFinding"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A set of findings that applies to assets destined for VMWare Engine.
-  public struct VmwareEngineFinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct VmwareEngineFinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Set of regions in which the assets were allocated
@@ -417,16 +417,16 @@ public struct ReportSummary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.VmwareEngineFinding"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Represents assets allocated to a specific VMWare Node type.
-  public struct VmwareNodeAllocation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct VmwareNodeAllocation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// VMWare node type, e.g. "ve1-standard-72"
@@ -458,16 +458,16 @@ public struct ReportSummary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.VmwareNodeAllocation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A VMWare Engine Node
-  public struct VmwareNode: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct VmwareNode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Code to identify VMware Engine node series, e.g. "ve1-standard-72". Based
@@ -494,16 +494,16 @@ public struct ReportSummary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.VmwareNode"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// A set of findings that applies to assets destined for Sole-Tenant nodes.
-  public struct SoleTenantFinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SoleTenantFinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Set of regions in which the assets are allocated
@@ -534,16 +534,16 @@ public struct ReportSummary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.SoleTenantFinding"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Represents the assets allocated to a specific Sole-Tenant node type.
-  public struct SoleTenantNodeAllocation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SoleTenantNodeAllocation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Sole Tenant node type, e.g. "m3-node-128-3904"
@@ -575,16 +575,16 @@ public struct ReportSummary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.SoleTenantNodeAllocation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Summary Findings for a specific Group/PreferenceSet combination.
-  public struct GroupPreferenceSetFinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GroupPreferenceSetFinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Display Name of the Preference Set
@@ -643,16 +643,16 @@ public struct ReportSummary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.GroupPreferenceSetFinding"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Summary Findings for a specific Group.
-  public struct GroupFinding: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GroupFinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Display Name for the Group.
@@ -690,21 +690,21 @@ public struct ReportSummary: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary.GroupFinding"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.migrationcenter.v1.ReportSummary"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

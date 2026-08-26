@@ -15,20 +15,20 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Message describing ClientConnectorService object.
-public struct ClientConnectorService: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ClientConnectorService: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Name of resource. The name is ignored during creation.
   public var name: Swift.String = Swift.String()
 
   /// Output only. [Output only] Create time stamp.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. [Output only] Update time stamp.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. User-provided name.
   /// The display name should follow certain format.
@@ -64,7 +64,7 @@ public struct ClientConnectorService: Codable, Equatable, GoogleCloudWkt._AnyPac
 
   /// Settings of how to connect to the ClientGateway.
   /// One of the following options should be set.
-  public struct Ingress: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Ingress: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var ingressConfig: OneOf_IngressConfig? = nil
@@ -122,7 +122,7 @@ public struct ClientConnectorService: Codable, Equatable, GoogleCloudWkt._AnyPac
     }
 
     /// The basic ingress config for ClientGateways.
-    public struct Config: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Config: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. Immutable. The transport protocol used between the client and
@@ -152,7 +152,7 @@ public struct ClientConnectorService: Codable, Equatable, GoogleCloudWkt._AnyPac
       /// The setting used to configure ClientGateways.
       /// It is adding routes to the client's routing table
       /// after the connection is established.
-      public struct DestinationRoute: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct DestinationRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Required. The network address of the subnet
@@ -183,11 +183,11 @@ public struct ClientConnectorService: Codable, Equatable, GoogleCloudWkt._AnyPac
           return
             "type.googleapis.com/google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorService.Ingress.Config.DestinationRoute"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -293,11 +293,11 @@ public struct ClientConnectorService: Codable, Equatable, GoogleCloudWkt._AnyPac
         return
           "type.googleapis.com/google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorService.Ingress.Config"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -310,16 +310,16 @@ public struct ClientConnectorService: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorService.Ingress"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// The details of the egress info. One of the following options should be set.
-  public struct Egress: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Egress: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var destinationType: OneOf_DestinationType? = nil
@@ -377,7 +377,7 @@ public struct ClientConnectorService: Codable, Equatable, GoogleCloudWkt._AnyPac
     }
 
     /// The peered VPC owned by the consumer project.
-    public struct PeeredVpc: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct PeeredVpc: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The name of the peered VPC owned by the consumer project.
@@ -403,11 +403,11 @@ public struct ClientConnectorService: Codable, Equatable, GoogleCloudWkt._AnyPac
         return
           "type.googleapis.com/google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorService.Egress.PeeredVpc"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -420,11 +420,11 @@ public struct ClientConnectorService: Codable, Equatable, GoogleCloudWkt._AnyPac
       return
         "type.googleapis.com/google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorService.Egress"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -567,10 +567,10 @@ public struct ClientConnectorService: Codable, Equatable, GoogleCloudWkt._AnyPac
     return
       "type.googleapis.com/google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorService"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

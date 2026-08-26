@@ -16,10 +16,10 @@
 
 #if Conversations || Participants
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents a message posted into a conversation.
-  public struct Message: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Message: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The unique identifier of the message.
@@ -42,11 +42,11 @@
     public var participantRole: Participant.Role = Participant.Role()
 
     /// Output only. The time when the message was created in Contact Center AI.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Optional. The time when the message was sent. For voice messages, this is
     /// the time when an utterance started.
-    public var sendTime: GoogleCloudWkt.Timestamp? = nil
+    public var sendTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. The annotation for the message.
     public var messageAnnotation: MessageAnnotation? = nil
@@ -73,11 +73,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.Message"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

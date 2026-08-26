@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleIAMV1
   import GoogleLongRunning
   import GoogleRpc
@@ -388,7 +388,7 @@
       /// See `ReasoningEngineServiceClient.updateReasoningEngine`.
       func updateReasoningEngine(
         reasoningEngine: ReasoningEngine?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> any GoogleCloudGax.PollableOperation<ReasoningEngine>
 
       /// See `ReasoningEngineServiceClient.deleteReasoningEngine`.
@@ -696,7 +696,7 @@
 
     public func updateReasoningEngine(
       reasoningEngine: ReasoningEngine?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<ReasoningEngine> {
       let request = UpdateReasoningEngineRequest().with {
         $0.reasoningEngine = reasoningEngine

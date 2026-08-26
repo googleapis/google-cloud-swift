@@ -16,12 +16,12 @@
 
 #if VpnGateways
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// A VPN connection contains all VPN tunnels connected from this VpnGateway
   /// to the same peer gateway. The peer gateway could either be an external VPN
   /// gateway or a Google Cloud VPN gateway.
-  public struct VpnGatewayStatusVpnConnection: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct VpnGatewayStatusVpnConnection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. URL reference to the peer external VPN gateways to which the VPN tunnels
@@ -59,11 +59,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.VpnGatewayStatusVpnConnection"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

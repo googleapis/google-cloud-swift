@@ -16,7 +16,7 @@
 
 #if Sessions || TestCases
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Configuration of the barge-in behavior. Barge-in instructs the API to return
   /// a detected utterance at a proper time while the client is playing back the
@@ -42,15 +42,15 @@
   ///
   /// No-speech event is a response with END_OF_UTTERANCE without any transcript
   /// following up.
-  public struct BargeInConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct BargeInConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Duration that is not eligible for barge-in at the beginning of the input
     /// audio.
-    public var noBargeInDuration: GoogleCloudWkt.Duration? = nil
+    public var noBargeInDuration: GoogleCloudWKT.Duration? = nil
 
     /// Total duration for the playback at the beginning of the input audio.
-    public var totalDuration: GoogleCloudWkt.Duration? = nil
+    public var totalDuration: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `BargeInConfig`.
     public init() {}
@@ -71,11 +71,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.BargeInConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -16,7 +16,7 @@
 
 #if PredictionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The [ExplanationSpec][google.cloud.aiplatform.v1.ExplanationSpec] entries
   /// that can be overridden at [online
@@ -24,7 +24,7 @@
   ///
   /// [google.cloud.aiplatform.v1.ExplanationSpec]: <doc:ExplanationSpec>
   /// [google.cloud.aiplatform.v1.PredictionService.Explain]: <doc:PredictionServiceClient/explain(request:options:)>
-  public struct ExplanationSpecOverride: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ExplanationSpecOverride: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The parameters to be overridden. Note that the
@@ -57,11 +57,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.ExplanationSpecOverride"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

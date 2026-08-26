@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Task Retry Policy is implemented on a best-effort
 /// basis.
@@ -26,16 +26,16 @@ import Foundation
 /// ConnectCluster is in rebalancing state or if the ConnectCluster is
 /// unresponsive etc. The default values for minimum and maximum backoffs are
 /// 60 seconds and 30 minutes respectively.
-public struct TaskRetryPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TaskRetryPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. The minimum amount of time to wait before retrying a failed task.
   /// This sets a lower bound for the backoff delay.
-  public var minimumBackoff: GoogleCloudWkt.Duration? = nil
+  public var minimumBackoff: GoogleCloudWKT.Duration? = nil
 
   /// Optional. The maximum amount of time to wait before retrying a failed task.
   /// This sets an upper bound for the backoff delay.
-  public var maximumBackoff: GoogleCloudWkt.Duration? = nil
+  public var maximumBackoff: GoogleCloudWKT.Duration? = nil
 
   /// Initialize a new instance of `TaskRetryPolicy`.
   public init() {}
@@ -56,10 +56,10 @@ public struct TaskRetryPolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.managedkafka.v1.TaskRetryPolicy"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

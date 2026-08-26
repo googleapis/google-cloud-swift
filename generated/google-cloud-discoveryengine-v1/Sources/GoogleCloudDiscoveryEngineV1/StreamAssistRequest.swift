@@ -16,14 +16,14 @@
 
 #if AssistantService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request for the
   /// [AssistantService.StreamAssist][google.cloud.discoveryengine.v1.AssistantService.StreamAssist]
   /// method.
   ///
   /// [google.cloud.discoveryengine.v1.AssistantService.StreamAssist]: <doc:AssistantServiceClient/streamAssist(request:options:)>
-  public struct StreamAssistRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct StreamAssistRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The resource name of the
@@ -76,7 +76,7 @@
     }
 
     /// Specification of tools that are used to serve the request.
-    public struct ToolsSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ToolsSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. Specification of the Vertex AI Search tool.
@@ -112,7 +112,7 @@
       }
 
       /// Specification of the Vertex AI Search tool.
-      public struct VertexAiSearchSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct VertexAiSearchSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. Specs defining
@@ -162,16 +162,16 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.StreamAssistRequest.ToolsSpec.VertexAiSearchSpec"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Specification of the web grounding tool.
-      public struct WebGroundingSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct WebGroundingSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Initialize a new instance of `WebGroundingSpec`.
@@ -194,16 +194,16 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.StreamAssistRequest.ToolsSpec.WebGroundingSpec"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Specification of the image generation tool.
-      public struct ImageGenerationSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct ImageGenerationSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Initialize a new instance of `ImageGenerationSpec`.
@@ -226,16 +226,16 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.StreamAssistRequest.ToolsSpec.ImageGenerationSpec"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       /// Specification of the video generation tool.
-      public struct VideoGenerationSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct VideoGenerationSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Initialize a new instance of `VideoGenerationSpec`.
@@ -258,29 +258,29 @@
           return
             "type.googleapis.com/google.cloud.discoveryengine.v1.StreamAssistRequest.ToolsSpec.VideoGenerationSpec"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.StreamAssistRequest.ToolsSpec"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Assistant generation specification for the request.
     /// This allows to override the default generation configuration at the engine
     /// level.
-    public struct GenerationSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct GenerationSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. The Vertex AI model_id used for the generative model. If not
@@ -307,22 +307,22 @@
         return
           "type.googleapis.com/google.cloud.discoveryengine.v1.StreamAssistRequest.GenerationSpec"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.StreamAssistRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

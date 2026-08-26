@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A request to update a `ServicePerimeter`.
-public struct UpdateServicePerimeterRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateServicePerimeterRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The updated `ServicePerimeter`. Syntactic correctness of the
@@ -26,7 +26,7 @@ public struct UpdateServicePerimeterRequest: Codable, Equatable, GoogleCloudWkt.
   public var servicePerimeter: ServicePerimeter? = nil
 
   /// Required. Mask to control which fields get updated. Must be non-empty.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `UpdateServicePerimeterRequest`.
   public init() {}
@@ -48,10 +48,10 @@ public struct UpdateServicePerimeterRequest: Codable, Equatable, GoogleCloudWkt.
     return
       "type.googleapis.com/google.identity.accesscontextmanager.v1.UpdateServicePerimeterRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

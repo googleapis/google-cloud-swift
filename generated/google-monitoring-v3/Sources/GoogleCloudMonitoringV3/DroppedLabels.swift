@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A set of (label, value) pairs that were removed from a Distribution
 /// time series during aggregation and then added as an attachment to a
@@ -33,7 +33,7 @@ import Foundation
 /// exemplar-to-exemplar and from distribution-to-distribution in the same
 /// stream, and there may be duplicates.  It is up to clients to resolve any
 /// ambiguities.
-public struct DroppedLabels: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DroppedLabels: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Map from label to its value, for all labels dropped in any aggregation.
@@ -58,10 +58,10 @@ public struct DroppedLabels: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.v3.DroppedLabels"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

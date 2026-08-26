@@ -16,14 +16,14 @@
 
 #if InterconnectLocations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents an Interconnect Attachment (VLAN) Location resource.
   ///
   /// You can use this resource to find location details about an Interconnect
   /// attachment (VLAN). For more information about interconnect attachments, read
   /// Creating VLAN Attachments.
-  public struct InterconnectLocation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct InterconnectLocation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. [Output Only] The postal address of the Point of Presence, each line in
@@ -604,11 +604,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.InterconnectLocation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

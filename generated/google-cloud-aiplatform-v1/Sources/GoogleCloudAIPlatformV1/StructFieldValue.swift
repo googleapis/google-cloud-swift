@@ -16,17 +16,17 @@
 
 #if FeatureOnlineStoreService || FeaturestoreOnlineServingService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// One field of a Struct (or object) type feature value.
-  public struct StructFieldValue: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct StructFieldValue: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Name of the field in the struct feature.
     public var name: Swift.String = Swift.String()
 
     /// The value for this field.
-    public var value: GoogleCloudWkt.Recursive<FeatureValue>? = nil
+    public var value: GoogleCloudWKT.Recursive<FeatureValue>? = nil
 
     /// Initialize a new instance of `StructFieldValue`.
     public init() {}
@@ -47,11 +47,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.StructFieldValue"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Configuration for exporting cluster resource usages.
-public struct ResourceUsageExportConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ResourceUsageExportConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Configuration to use BigQuery as usage export destination.
@@ -48,7 +48,7 @@ public struct ResourceUsageExportConfig: Codable, Equatable, GoogleCloudWkt._Any
   }
 
   /// Parameters for using BigQuery as the destination of resource usage export.
-  public struct BigQueryDestination: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct BigQueryDestination: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The ID of a BigQuery Dataset.
@@ -73,16 +73,16 @@ public struct ResourceUsageExportConfig: Codable, Equatable, GoogleCloudWkt._Any
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.ResourceUsageExportConfig.BigQueryDestination"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Parameters for controlling consumption metering.
-  public struct ConsumptionMeteringConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ConsumptionMeteringConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Whether to enable consumption metering for this cluster. If enabled, a
@@ -110,21 +110,21 @@ public struct ResourceUsageExportConfig: Codable, Equatable, GoogleCloudWkt._Any
       return
         "type.googleapis.com/google.container.v1.ResourceUsageExportConfig.ConsumptionMeteringConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.ResourceUsageExportConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

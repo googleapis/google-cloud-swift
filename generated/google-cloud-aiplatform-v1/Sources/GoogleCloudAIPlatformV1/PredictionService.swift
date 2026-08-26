@@ -21,7 +21,7 @@
   #endif
   import GoogleApi
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleIAMV1
   import GoogleLongRunning
   import GoogleCloudGax
@@ -318,8 +318,8 @@
       /// See `PredictionServiceClient.predict`.
       func predict(
         endpoint: Swift.String,
-        instances: [GoogleCloudWkt.Value],
-        parameters: GoogleCloudWkt.Value?,
+        instances: [GoogleCloudWKT.Value],
+        parameters: GoogleCloudWKT.Value?,
       ) async throws -> GoogleCloudAIPlatformV1.PredictResponse
 
       /// See `PredictionServiceClient.rawPredict`.
@@ -358,8 +358,8 @@
       /// See `PredictionServiceClient.explain`.
       func explain(
         endpoint: Swift.String,
-        instances: [GoogleCloudWkt.Value],
-        parameters: GoogleCloudWkt.Value?,
+        instances: [GoogleCloudWKT.Value],
+        parameters: GoogleCloudWKT.Value?,
         deployedModelId: Swift.String,
       ) async throws -> GoogleCloudAIPlatformV1.ExplainResponse
 
@@ -574,8 +574,8 @@
 
     public func predict(
       endpoint: Swift.String,
-      instances: [GoogleCloudWkt.Value],
-      parameters: GoogleCloudWkt.Value?,
+      instances: [GoogleCloudWKT.Value],
+      parameters: GoogleCloudWKT.Value?,
     ) async throws -> GoogleCloudAIPlatformV1.PredictResponse {
       let request = PredictRequest().with {
         $0.endpoint = endpoint
@@ -679,8 +679,8 @@
 
     public func explain(
       endpoint: Swift.String,
-      instances: [GoogleCloudWkt.Value],
-      parameters: GoogleCloudWkt.Value?,
+      instances: [GoogleCloudWKT.Value],
+      parameters: GoogleCloudWKT.Value?,
       deployedModelId: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.ExplainResponse {
       let request = ExplainRequest().with {

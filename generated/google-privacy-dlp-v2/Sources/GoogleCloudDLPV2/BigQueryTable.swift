@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Message defining the location of a BigQuery table. A table is uniquely
 /// identified  by its project_id, dataset_id, and table_name. Within a query
 /// a table is often referenced with a string in the format of:
 /// `<project_id>:<dataset_id>.<table_id>` or
 /// `<project_id>.<dataset_id>.<table_id>`.
-public struct BigQueryTable: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BigQueryTable: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The Google Cloud project ID of the project containing the table.
@@ -54,10 +54,10 @@ public struct BigQueryTable: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.BigQueryTable"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for `ListSkus`.
-public struct ListSkusRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ListSkusRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The name of the service.
@@ -31,7 +31,7 @@ public struct ListSkusRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// America/Los_Angeles timezone. Time range as a whole is optional. If not
   /// specified, the latest pricing will be returned (up to 12 hours old at
   /// most).
-  public var startTime: GoogleCloudWkt.Timestamp? = nil
+  public var startTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional exclusive end time of the time range for which the pricing
   /// versions will be returned. Timestamps in the future are not allowed.
@@ -39,7 +39,7 @@ public struct ListSkusRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// America/Los_Angeles timezone. Time range as a whole is optional. If not
   /// specified, the latest pricing will be returned (up to 12 hours old at
   /// most).
-  public var endTime: GoogleCloudWkt.Timestamp? = nil
+  public var endTime: GoogleCloudWKT.Timestamp? = nil
 
   /// The ISO 4217 currency code for the pricing info in the response proto.
   /// Will use the conversion rate as of start_time.
@@ -73,10 +73,10 @@ public struct ListSkusRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.billing.v1.ListSkusRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

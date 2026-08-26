@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudSecurityCenterManagementV1
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: SecurityCenterManagementClient, organizationId: String, locationId: String)
   async throws

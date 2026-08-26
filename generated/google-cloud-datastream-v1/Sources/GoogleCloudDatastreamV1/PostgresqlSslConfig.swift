@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// PostgreSQL SSL configuration information.
-public struct PostgresqlSslConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct PostgresqlSslConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The encryption settings available for PostgreSQL connection profiles.
@@ -90,7 +90,7 @@ public struct PostgresqlSslConfig: Codable, Equatable, GoogleCloudWkt._AnyPackab
   /// Message represents the option where Datastream will enforce the encryption
   /// and authenticate the server identity. ca_certificate must be set if user
   /// selects this option.
-  public struct ServerVerification: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ServerVerification: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Input only. PEM-encoded server root CA certificate.
@@ -120,11 +120,11 @@ public struct PostgresqlSslConfig: Codable, Equatable, GoogleCloudWkt._AnyPackab
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.datastream.v1.PostgresqlSslConfig.ServerVerification"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -132,7 +132,7 @@ public struct PostgresqlSslConfig: Codable, Equatable, GoogleCloudWkt._AnyPackab
   /// and authenticate the server identity as well as the client identity.
   /// ca_certificate, client_certificate and client_key must be set if user
   /// selects this option.
-  public struct ServerAndClientVerification: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ServerAndClientVerification: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Input only. PEM-encoded certificate used by the source database
@@ -177,11 +177,11 @@ public struct PostgresqlSslConfig: Codable, Equatable, GoogleCloudWkt._AnyPackab
       return
         "type.googleapis.com/google.cloud.datastream.v1.PostgresqlSslConfig.ServerAndClientVerification"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -202,10 +202,10 @@ public struct PostgresqlSslConfig: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.datastream.v1.PostgresqlSslConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

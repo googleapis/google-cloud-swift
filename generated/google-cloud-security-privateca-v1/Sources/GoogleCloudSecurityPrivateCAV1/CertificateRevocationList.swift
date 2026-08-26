@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A
 /// [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
@@ -23,7 +23,7 @@ import Foundation
 /// contains the serial numbers of certificates that should no longer be trusted.
 ///
 /// [google.cloud.security.privateca.v1.CertificateRevocationList]: <doc:CertificateRevocationList>
-public struct CertificateRevocationList: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CertificateRevocationList: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The resource name for this
@@ -60,14 +60,14 @@ public struct CertificateRevocationList: Codable, Equatable, GoogleCloudWkt._Any
   /// was created.
   ///
   /// [google.cloud.security.privateca.v1.CertificateRevocationList]: <doc:CertificateRevocationList>
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time at which this
   /// [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
   /// was updated.
   ///
   /// [google.cloud.security.privateca.v1.CertificateRevocationList]: <doc:CertificateRevocationList>
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The revision ID of this
   /// [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList].
@@ -100,7 +100,7 @@ public struct CertificateRevocationList: Codable, Equatable, GoogleCloudWkt._Any
   /// [Certificate][google.cloud.security.privateca.v1.Certificate].
   ///
   /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
-  public struct RevokedCertificate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RevokedCertificate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The resource name for the
@@ -143,11 +143,11 @@ public struct CertificateRevocationList: Codable, Equatable, GoogleCloudWkt._Any
       return
         "type.googleapis.com/google.cloud.security.privateca.v1.CertificateRevocationList.RevokedCertificate"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -271,10 +271,10 @@ public struct CertificateRevocationList: Codable, Equatable, GoogleCloudWkt._Any
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.security.privateca.v1.CertificateRevocationList"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

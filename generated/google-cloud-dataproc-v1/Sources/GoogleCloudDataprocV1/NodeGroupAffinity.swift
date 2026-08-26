@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Node Group Affinity for clusters using sole-tenant node groups.
 /// **The Dataproc `NodeGroupAffinity` resource is not related to the
 /// Dataproc [NodeGroup][google.cloud.dataproc.v1.NodeGroup] resource.**
 ///
 /// [google.cloud.dataproc.v1.NodeGroup]: <doc:NodeGroup>
-public struct NodeGroupAffinity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct NodeGroupAffinity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The URI of a
@@ -56,10 +56,10 @@ public struct NodeGroupAffinity: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataproc.v1.NodeGroupAffinity"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

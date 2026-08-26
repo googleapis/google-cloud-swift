@@ -16,10 +16,10 @@
 
 #if GeneratorEvaluations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents evaluation result of a generator.
-  public struct GeneratorEvaluation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GeneratorEvaluation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Identifier. The resource name of the evaluation. Format:
@@ -35,10 +35,10 @@
     public var generatorEvaluationConfig: GeneratorEvaluationConfig? = nil
 
     /// Output only. Creation time of this generator evaluation.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Completion time of this generator evaluation.
-    public var completeTime: GoogleCloudWkt.Timestamp? = nil
+    public var completeTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Required. The initial generator that was used when creating this
     /// evaluation. This is a copy of the generator read from storage when creating
@@ -101,9 +101,9 @@
       self.generatorEvaluationConfig = try container.decodeIfPresent(
         GeneratorEvaluationConfig.self, forKey: .generatorEvaluationConfig)
       self.createTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .createTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .createTime)
       self.completeTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .completeTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .completeTime)
       self.initialGenerator = try container.decodeIfPresent(
         Generator.self, forKey: .initialGenerator)
       self.evaluationStatus = try container.decodeIfPresent(
@@ -158,11 +158,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.GeneratorEvaluation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

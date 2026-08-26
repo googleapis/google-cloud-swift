@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 @_spi(GoogleCloudInternal) import GoogleCloudGax
@@ -232,7 +232,7 @@ extension Clients {
       req.setMethod(.DELETE)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       _ = try await req.rpc(
-        GoogleCloudWkt.Empty.self, timeout: options.attemptTimeout
+        GoogleCloudWKT.Empty.self, timeout: options.attemptTimeout
       ).get()
     }
 
@@ -252,7 +252,7 @@ extension Clients {
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       _ = try await req.rpc(
-        GoogleCloudWkt.Empty.self, timeout: options.attemptTimeout
+        GoogleCloudWKT.Empty.self, timeout: options.attemptTimeout
       ).get()
     }
   }

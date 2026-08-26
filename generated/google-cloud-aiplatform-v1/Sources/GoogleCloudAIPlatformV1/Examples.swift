@@ -16,11 +16,11 @@
 
 #if DatasetService || DeploymentResourcePoolService || EndpointService || JobService || ModelService || PipelineService || PredictionService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Example-based explainability that returns the nearest neighbors from the
   /// provided dataset.
-  public struct Examples: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Examples: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The number of neighbors to return when querying for examples.
@@ -85,7 +85,7 @@
         config = $0
       }
       if let nearestNeighborSearchConfig = try container.decodeIfPresent(
-        GoogleCloudWkt.Value?.self, forKey: .nearestNeighborSearchConfig)
+        GoogleCloudWKT.Value?.self, forKey: .nearestNeighborSearchConfig)
       {
         try configCheckAndSet(.nearestNeighborSearchConfig(nearestNeighborSearchConfig))
       }
@@ -117,7 +117,7 @@
     }
 
     /// The Cloud Storage input instances.
-    public struct ExampleGcsSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ExampleGcsSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The format in which instances are given, if not specified, assume it's
@@ -245,11 +245,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.Examples.ExampleGcsSource"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -265,7 +265,7 @@
       /// [NearestNeighborSearchConfig](https://cloud.google.com/vertex-ai/docs/explainable-ai/configuring-explanations-example-based#nearest-neighbor-search-config).
       ///
       /// [google.cloud.aiplatform.v1.Index.metadata]: <doc:Index/metadata>
-      indirect case nearestNeighborSearchConfig(GoogleCloudWkt.Value?)
+      indirect case nearestNeighborSearchConfig(GoogleCloudWKT.Value?)
       /// Simplified preset configuration, which automatically sets configuration
       /// values based on the desired query speed-precision trade-off and modality.
       indirect case presets(Presets?)
@@ -274,11 +274,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.Examples"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

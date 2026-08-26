@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudEnterpriseKnowledgeGraphV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(
   client: EnterpriseKnowledgeGraphServiceClient, projectId: String, locationId: String,

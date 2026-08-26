@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleType
 
 /// Transfers can be scheduled to recur or to run just once.
-public struct Schedule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Schedule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The start date of a transfer. Date boundaries are determined
@@ -103,7 +103,7 @@ public struct Schedule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Interval between the start of each scheduled TransferOperation. If
   /// unspecified, the default value is 24 hours. This value may not be less than
   /// 1 hour.
-  public var repeatInterval: GoogleCloudWkt.Duration? = nil
+  public var repeatInterval: GoogleCloudWKT.Duration? = nil
 
   /// Initialize a new instance of `Schedule`.
   public init() {}
@@ -124,10 +124,10 @@ public struct Schedule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storagetransfer.v1.Schedule"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

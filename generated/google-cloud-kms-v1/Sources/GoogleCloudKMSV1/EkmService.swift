@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleCloudGax
@@ -313,7 +313,7 @@ extension Clients {
     /// See `EkmServiceClient.updateEkmConnection`.
     func updateEkmConnection(
       ekmConnection: EkmConnection?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudKMSV1.EkmConnection
 
     /// See `EkmServiceClient.getEkmConfig`.
@@ -330,7 +330,7 @@ extension Clients {
     /// See `EkmServiceClient.updateEkmConfig`.
     func updateEkmConfig(
       ekmConfig: EkmConfig?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudKMSV1.EkmConfig
 
     /// See `EkmServiceClient.verifyConnectivity`.
@@ -536,7 +536,7 @@ extension Clients.EkmServiceProtocol {
 
   public func updateEkmConnection(
     ekmConnection: EkmConnection?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudKMSV1.EkmConnection {
     let request = UpdateEkmConnectionRequest().with {
       $0.ekmConnection = ekmConnection
@@ -579,7 +579,7 @@ extension Clients.EkmServiceProtocol {
 
   public func updateEkmConfig(
     ekmConfig: EkmConfig?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudKMSV1.EkmConfig {
     let request = UpdateEkmConfigRequest().with {
       $0.ekmConfig = ekmConfig

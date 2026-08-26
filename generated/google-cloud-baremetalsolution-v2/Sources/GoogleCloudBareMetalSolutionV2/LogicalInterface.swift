@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Each logical interface represents a logical abstraction of the underlying
 /// physical interface (for eg. bond, nic) of the instance. Each logical
 /// interface can effectively map to multiple network-IP pairs and still be
 /// mapped to one underlying physical interface.
-public struct LogicalInterface: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct LogicalInterface: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// List of logical network interfaces within a logical interface.
@@ -53,7 +53,7 @@ public struct LogicalInterface: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Each logical network interface is effectively a network and IP pair.
-  public struct LogicalNetworkInterface: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct LogicalNetworkInterface: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Name of the network
@@ -92,21 +92,21 @@ public struct LogicalInterface: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.baremetalsolution.v2.LogicalInterface.LogicalNetworkInterface"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.baremetalsolution.v2.LogicalInterface"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

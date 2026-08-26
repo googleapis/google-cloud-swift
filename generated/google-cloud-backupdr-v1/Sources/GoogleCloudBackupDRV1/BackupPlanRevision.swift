@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// `BackupPlanRevision` represents a snapshot of a `BackupPlan` at a point in
 /// time.
-public struct BackupPlanRevision: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BackupPlanRevision: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Identifier. The resource name of the `BackupPlanRevision`.
@@ -40,7 +40,7 @@ public struct BackupPlanRevision: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public var backupPlanSnapshot: BackupPlan? = nil
 
   /// Output only. The timestamp that the revision was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `BackupPlanRevision`.
   public init() {}
@@ -180,10 +180,10 @@ public struct BackupPlanRevision: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.backupdr.v1.BackupPlanRevision"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

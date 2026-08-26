@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// CVE stands for Common Vulnerabilities and Exposures.
 /// Information from the [CVE
 /// record](https://www.cve.org/ResourcesSupport/Glossary) that describes this
 /// vulnerability.
-public struct Cve: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Cve: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The unique identifier for the vulnerability. e.g. CVE-2021-34527
@@ -52,10 +52,10 @@ public struct Cve: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var zeroDay: Swift.Bool = Swift.Bool()
 
   /// Date the first publicly available exploit or PoC was released.
-  public var exploitReleaseDate: GoogleCloudWkt.Timestamp? = nil
+  public var exploitReleaseDate: GoogleCloudWKT.Timestamp? = nil
 
   /// Date of the earliest known exploitation.
-  public var firstExploitationDate: GoogleCloudWkt.Timestamp? = nil
+  public var firstExploitationDate: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `Cve`.
   public init() {}
@@ -328,10 +328,10 @@ public struct Cve: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.Cve"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

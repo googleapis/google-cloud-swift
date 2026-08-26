@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The request for
 /// [UpdateAuthorizedView][google.bigtable.admin.v2.BigtableTableAdmin.UpdateAuthorizedView].
 ///
 /// [google.bigtable.admin.v2.BigtableTableAdmin.UpdateAuthorizedView]: <doc:BigtableTableAdminClient/updateAuthorizedView(request:options:)>
-public struct UpdateAuthorizedViewRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateAuthorizedViewRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The AuthorizedView to update. The `name` in `authorized_view` is
@@ -37,7 +37,7 @@ public struct UpdateAuthorizedViewRequest: Codable, Equatable, GoogleCloudWkt._A
   /// empty, all fields set in the request will be overwritten. A special value
   /// `*` means to overwrite all fields (including fields not set in the
   /// request).
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Optional. If true, ignore the safety checks when updating the
   /// AuthorizedView.
@@ -62,10 +62,10 @@ public struct UpdateAuthorizedViewRequest: Codable, Equatable, GoogleCloudWkt._A
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.bigtable.admin.v2.UpdateAuthorizedViewRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

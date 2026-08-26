@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request for [RescheduleMaintenance][google.cloud.memcache.v1.CloudMemcache.RescheduleMaintenance].
 ///
 /// [google.cloud.memcache.v1.CloudMemcache.RescheduleMaintenance]: <doc:CloudMemcacheClient/rescheduleMaintenance(request:options:)>
-public struct RescheduleMaintenanceRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RescheduleMaintenanceRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Memcache instance resource name using the form:
@@ -35,7 +35,7 @@ public struct RescheduleMaintenanceRequest: Codable, Equatable, GoogleCloudWkt._
   /// Timestamp when the maintenance shall be rescheduled to if
   /// reschedule_type=SPECIFIC_TIME, in RFC 3339 format, for
   /// example `2012-11-15T16:19:00.094Z`.
-  public var scheduleTime: GoogleCloudWkt.Timestamp? = nil
+  public var scheduleTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `RescheduleMaintenanceRequest`.
   public init() {}
@@ -169,10 +169,10 @@ public struct RescheduleMaintenanceRequest: Codable, Equatable, GoogleCloudWkt._
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.memcache.v1.RescheduleMaintenanceRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

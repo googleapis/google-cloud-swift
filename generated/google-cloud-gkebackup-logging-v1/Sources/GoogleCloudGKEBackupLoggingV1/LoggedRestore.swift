@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Restore as stored in Platform log. It's used to log the update details of a
 /// updateRestore request, so only mutable and non-output_only fields are
 /// included here..
-public struct LoggedRestore: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct LoggedRestore: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Full name of the Backup resource this Restore resource used to restore
@@ -195,10 +195,10 @@ public struct LoggedRestore: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkebackup.logging.v1.LoggedRestore"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

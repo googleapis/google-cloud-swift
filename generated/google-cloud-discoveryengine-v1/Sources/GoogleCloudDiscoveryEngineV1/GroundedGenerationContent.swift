@@ -16,10 +16,10 @@
 
 #if GroundedGenerationService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Base structured datatype containing multi-part content of a message.
-  public struct GroundedGenerationContent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GroundedGenerationContent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Producer of the content. Must be either `user` or `model`.
@@ -48,7 +48,7 @@
     }
 
     /// Single part of content.
-    public struct Part: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Part: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Holder of data. It only supports text for now.
@@ -113,22 +113,22 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.discoveryengine.v1.GroundedGenerationContent.Part"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.discoveryengine.v1.GroundedGenerationContent"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

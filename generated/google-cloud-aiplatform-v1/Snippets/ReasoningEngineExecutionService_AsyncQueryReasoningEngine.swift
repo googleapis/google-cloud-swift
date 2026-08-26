@@ -21,7 +21,7 @@
   import GoogleCloudAIPlatformV1
   import GoogleApi
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleIAMV1
   import GoogleLongRunning
   import GoogleRpc

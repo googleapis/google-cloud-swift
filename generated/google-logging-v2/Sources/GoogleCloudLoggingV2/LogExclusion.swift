@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Specifies a set of log entries that are filtered out by a sink. If
 /// your Google Cloud resource receives a large volume of log entries, you can
 /// use exclusions to reduce your chargeable logs. Note that exclusions on
 /// organization-level and folder-level sinks don't apply to child resources.
 /// Note also that you cannot modify the _Required sink or exclude logs from it.
-public struct LogExclusion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct LogExclusion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. A client-assigned identifier, such as
@@ -57,12 +57,12 @@ public struct LogExclusion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Output only. The creation timestamp of the exclusion.
   ///
   /// This field may not be present for older exclusions.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The last update timestamp of the exclusion.
   ///
   /// This field may not be present for older exclusions.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `LogExclusion`.
   public init() {}
@@ -83,10 +83,10 @@ public struct LogExclusion: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.logging.v2.LogExclusion"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

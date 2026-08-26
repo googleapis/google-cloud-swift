@@ -16,10 +16,10 @@
 
 #if GenAiTuningService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Specification for an LLM based metric.
-  public struct LLMBasedMetricSpec: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct LLMBasedMetricSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Template for the prompt sent to the judge model.
@@ -32,7 +32,7 @@
     public var judgeAutoraterConfig: AutoraterConfig? = nil
 
     /// Optional. Optional additional configuration for the metric.
-    public var additionalConfig: GoogleCloudWkt.Struct? = nil
+    public var additionalConfig: GoogleCloudWKT.Struct? = nil
 
     /// Source of the rubrics to be used for evaluation.
     public var rubricsSource: OneOf_RubricsSource? = nil
@@ -71,7 +71,7 @@
       self.judgeAutoraterConfig = try container.decodeIfPresent(
         AutoraterConfig.self, forKey: .judgeAutoraterConfig)
       self.additionalConfig = try container.decodeIfPresent(
-        GoogleCloudWkt.Struct.self, forKey: .additionalConfig)
+        GoogleCloudWKT.Struct.self, forKey: .additionalConfig)
 
       var rubricsSource: OneOf_RubricsSource? = nil
       let rubricsSourceCheckAndSet = {
@@ -126,11 +126,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.LLMBasedMetricSpec"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

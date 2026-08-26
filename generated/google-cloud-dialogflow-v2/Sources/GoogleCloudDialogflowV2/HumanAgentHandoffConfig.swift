@@ -16,14 +16,14 @@
 
 #if ConversationProfiles || Conversations
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Defines the hand off to a live agent, typically on which external agent
   /// service provider to connect to a conversation.
   ///
   /// Currently, this feature is not general available, please contact Google
   /// to get access.
-  public struct HumanAgentHandoffConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct HumanAgentHandoffConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. Specifies which agent service to connect for human agent handoff.
@@ -90,7 +90,7 @@
     }
 
     /// Configuration specific to [LivePerson](https://www.liveperson.com).
-    public struct LivePersonConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct LivePersonConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. Account number of the LivePerson account to connect. This is
@@ -117,16 +117,16 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.HumanAgentHandoffConfig.LivePersonConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Configuration specific to Salesforce Live Agent.
-    public struct SalesforceLiveAgentConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct SalesforceLiveAgentConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The organization ID of the Salesforce account.
@@ -164,11 +164,11 @@
         return
           "type.googleapis.com/google.cloud.dialogflow.v2.HumanAgentHandoffConfig.SalesforceLiveAgentConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -183,11 +183,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.HumanAgentHandoffConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

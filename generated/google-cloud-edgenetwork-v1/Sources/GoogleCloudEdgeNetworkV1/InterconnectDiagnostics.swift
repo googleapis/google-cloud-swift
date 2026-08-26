@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Diagnostics information about interconnect, contains detailed and current
 /// technical information about Google's side of the connection.
-public struct InterconnectDiagnostics: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct InterconnectDiagnostics: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The MAC address of the Interconnect's bundle interface.
@@ -50,7 +50,7 @@ public struct InterconnectDiagnostics: Codable, Equatable, GoogleCloudWkt._AnyPa
   }
 
   /// Describing the status for each link on the Interconnect.
-  public struct LinkStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct LinkStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The unique ID for this link assigned during turn up by Google.
@@ -85,16 +85,16 @@ public struct InterconnectDiagnostics: Codable, Equatable, GoogleCloudWkt._AnyPa
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.edgenetwork.v1.InterconnectDiagnostics.LinkStatus"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Containing a collection of interface-related statistics objects.
-  public struct PacketCounts: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PacketCounts: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The number of packets that are delivered.
@@ -137,16 +137,16 @@ public struct InterconnectDiagnostics: Codable, Equatable, GoogleCloudWkt._AnyPa
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.edgenetwork.v1.InterconnectDiagnostics.PacketCounts"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Describing the status of a LACP link.
-  public struct LinkLACPStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct LinkLACPStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The state of a LACP link.
@@ -298,16 +298,16 @@ public struct InterconnectDiagnostics: Codable, Equatable, GoogleCloudWkt._AnyPa
       return
         "type.googleapis.com/google.cloud.edgenetwork.v1.InterconnectDiagnostics.LinkLACPStatus"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Describing a LLDP link.
-  public struct LinkLLDPStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct LinkLLDPStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The peer system's administratively assigned name.
@@ -351,21 +351,21 @@ public struct InterconnectDiagnostics: Codable, Equatable, GoogleCloudWkt._AnyPa
       return
         "type.googleapis.com/google.cloud.edgenetwork.v1.InterconnectDiagnostics.LinkLLDPStatus"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.edgenetwork.v1.InterconnectDiagnostics"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

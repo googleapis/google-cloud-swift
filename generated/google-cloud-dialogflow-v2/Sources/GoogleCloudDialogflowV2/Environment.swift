@@ -16,7 +16,7 @@
 
 #if Environments
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// You can create multiple versions of your agent and publish them to separate
   /// environments.
@@ -36,7 +36,7 @@
   ///
   /// For more information, see the [versions and environments
   /// guide](https://cloud.google.com/dialogflow/docs/agents-versions).
-  public struct Environment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Environment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The unique identifier of this agent environment.
@@ -67,7 +67,7 @@
 
     /// Output only. The last update time of this environment. This field is
     /// read-only, i.e., it cannot be set by create and update methods.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Optional. Text to speech settings for this environment.
     public var textToSpeechSettings: TextToSpeechSettings? = nil
@@ -210,11 +210,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.Environment"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

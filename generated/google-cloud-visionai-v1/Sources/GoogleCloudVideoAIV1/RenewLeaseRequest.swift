@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for renewing a lease.
-public struct RenewLeaseRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RenewLeaseRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Lease id.
@@ -31,7 +31,7 @@ public struct RenewLeaseRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public var owner: Swift.String = Swift.String()
 
   /// Lease term.
-  public var term: GoogleCloudWkt.Duration? = nil
+  public var term: GoogleCloudWKT.Duration? = nil
 
   /// Initialize a new instance of `RenewLeaseRequest`.
   public init() {}
@@ -52,10 +52,10 @@ public struct RenewLeaseRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.RenewLeaseRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

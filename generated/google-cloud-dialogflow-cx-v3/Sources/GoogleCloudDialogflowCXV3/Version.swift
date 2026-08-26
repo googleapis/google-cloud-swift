@@ -16,10 +16,10 @@
 
 #if Versions
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Represents a version of a flow.
-  public struct Version: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Version: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Format:
@@ -39,7 +39,7 @@
     public var nluSettings: NluSettings? = nil
 
     /// Output only. Create time of the version.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. The state of this version. This field is read-only and cannot
     /// be set by create and update methods.
@@ -176,11 +176,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.cx.v3.Version"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

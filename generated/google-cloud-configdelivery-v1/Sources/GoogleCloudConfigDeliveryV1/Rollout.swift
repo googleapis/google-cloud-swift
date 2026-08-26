@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Rollout resource represents an instance of `FleetPackage` rollout operation
 /// across a fleet. This is a system generated resource and will be read only for
 /// end-users. It will be primarily used by the service to process the changes in
 /// the `FleetPackage` and other changes in the environment.
-public struct Rollout: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Rollout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. Name of the Rollout. Format is
@@ -41,10 +41,10 @@ public struct Rollout: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var deletionPropagationPolicy: DeletionPropagationPolicy = DeletionPropagationPolicy()
 
   /// Output only. The time the rollout was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time the rollout was most recently updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `Rollout`.
   public init() {}
@@ -65,10 +65,10 @@ public struct Rollout: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.configdelivery.v1.Rollout"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

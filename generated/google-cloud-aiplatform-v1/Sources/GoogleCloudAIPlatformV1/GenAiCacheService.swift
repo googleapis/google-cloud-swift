@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleIAMV1
   import GoogleLongRunning
   import GoogleCloudGax
@@ -279,7 +279,7 @@
       /// See `GenAiCacheServiceClient.updateCachedContent`.
       func updateCachedContent(
         cachedContent: CachedContent?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudAIPlatformV1.CachedContent
 
       /// See `GenAiCacheServiceClient.deleteCachedContent`.
@@ -509,7 +509,7 @@
 
     public func updateCachedContent(
       cachedContent: CachedContent?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.CachedContent {
       let request = UpdateCachedContentRequest().with {
         $0.cachedContent = cachedContent

@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 extension DnsKeysClient {
   /// Synthetic request message for the [get()][.dnsKeys.get] method.
-  public struct GetRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct GetRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
@@ -56,16 +56,16 @@ extension DnsKeysClient {
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.dnsKeys.getRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Synthetic request message for the [list()][.dnsKeys.list] method.
-  public struct ListRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ListRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// An optional comma-separated list of digest types to compute and display for key signing keys. If omitted, the recommended digest type is computed and displayed.
@@ -102,11 +102,11 @@ extension DnsKeysClient {
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/.dnsKeys.listRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 }

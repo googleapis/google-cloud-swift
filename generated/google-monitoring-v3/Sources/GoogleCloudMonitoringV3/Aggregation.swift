@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Describes how to combine multiple time series to provide a different view of
 /// the data.  Aggregation of time series is done in two steps. First, each time
@@ -43,7 +43,7 @@ import Foundation
 /// individual time series data is still available for later drilldown. For more
 /// details, see [Filtering and
 /// aggregation](https://cloud.google.com/monitoring/api/v3/aggregation).
-public struct Aggregation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Aggregation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The `alignment_period` specifies a time interval, in seconds, that is used
@@ -61,7 +61,7 @@ public struct Aggregation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// charts, and 90,000 seconds (25 hours) for alerting policies.
   ///
   /// [google.monitoring.v3.TimeSeries]: <doc:TimeSeries>
-  public var alignmentPeriod: GoogleCloudWkt.Duration? = nil
+  public var alignmentPeriod: GoogleCloudWKT.Duration? = nil
 
   /// An `Aligner` describes how to bring the data points in a single
   /// time series into temporal alignment. Except for `ALIGN_NONE`, all
@@ -687,10 +687,10 @@ public struct Aggregation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.v3.Aggregation"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

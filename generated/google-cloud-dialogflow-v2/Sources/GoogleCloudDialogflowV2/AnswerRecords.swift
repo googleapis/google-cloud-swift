@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleCloudGax
 
@@ -224,7 +224,7 @@
       /// See `AnswerRecordsClient.updateAnswerRecord`.
       func updateAnswerRecord(
         answerRecord: AnswerRecord?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudDialogflowV2.AnswerRecord
 
       /// See `AnswerRecordsClient.listLocations`.
@@ -363,7 +363,7 @@
 
     public func updateAnswerRecord(
       answerRecord: AnswerRecord?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDialogflowV2.AnswerRecord {
       let request = UpdateAnswerRecordRequest().with {
         $0.answerRecord = answerRecord

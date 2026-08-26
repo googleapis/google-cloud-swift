@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudIAPV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 
 func sample(

@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudWorkflowsV1
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 
@@ -32,7 +32,7 @@ func sample(client: WorkflowsClient, projectId: String, locationId: String, work
         $0.workflow = Workflow().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/workflows/\(workflowId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   let response = try await poller.wait()

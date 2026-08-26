@@ -20,7 +20,7 @@
   import Foundation
   import GoogleCloudAIPlatformV1
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleIAMV1
   import GoogleLongRunning
   import GoogleRpc
@@ -34,7 +34,7 @@
           $0.schedule = Schedule().with {
             $0.name = "projects/\(projectId)/locations/\(locationId)/schedules/\(scheduleId)"
           }
-          $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+          $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
         }
     )
     print("Success: \(response)")

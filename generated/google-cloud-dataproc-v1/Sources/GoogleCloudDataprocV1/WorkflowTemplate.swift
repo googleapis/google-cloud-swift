@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A Dataproc workflow template resource.
-public struct WorkflowTemplate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct WorkflowTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   public var id: Swift.String = Swift.String()
@@ -47,10 +47,10 @@ public struct WorkflowTemplate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var version: Swift.Int32 = Swift.Int32()
 
   /// Output only. The time template was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time template was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. The labels to associate with this template. These labels
   /// will be propagated to all jobs and clusters created by the workflow
@@ -87,7 +87,7 @@ public struct WorkflowTemplate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [managed
   /// cluster](/dataproc/docs/concepts/workflows/using-workflows#configuring_or_selecting_a_cluster),
   /// the cluster is deleted.
-  public var dagTimeout: GoogleCloudWkt.Duration? = nil
+  public var dagTimeout: GoogleCloudWKT.Duration? = nil
 
   /// Optional. Encryption settings for encrypting workflow template job
   /// arguments.
@@ -110,7 +110,7 @@ public struct WorkflowTemplate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Encryption settings for encrypting workflow template job arguments.
-  public struct EncryptionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct EncryptionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The Cloud KMS key name to use for encrypting
@@ -162,21 +162,21 @@ public struct WorkflowTemplate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataproc.v1.WorkflowTemplate.EncryptionConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataproc.v1.WorkflowTemplate"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

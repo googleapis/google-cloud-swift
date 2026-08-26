@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleRpc
   import GoogleCloudGax
@@ -403,7 +403,7 @@
       /// See `IntentsClient.updateIntent`.
       func updateIntent(
         intent: Intent?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudDialogflowCXV3.Intent
 
       /// See `IntentsClient.deleteIntent`.
@@ -643,7 +643,7 @@
 
     public func updateIntent(
       intent: Intent?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDialogflowCXV3.Intent {
       let request = UpdateIntentRequest().with {
         $0.intent = intent

@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleGrafeasV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: GrafeasClient, projectId: String, noteId: String) async throws {
   let response = try await client.updateNote(
@@ -27,7 +27,7 @@ func sample(client: GrafeasClient, projectId: String, noteId: String) async thro
         $0.note = Note().with {
           $0.name = "projects/\(projectId)/notes/\(noteId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

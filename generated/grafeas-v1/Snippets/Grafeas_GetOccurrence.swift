@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleGrafeasV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: GrafeasClient, projectId: String, occurrenceId: String) async throws {
   let response = try await client.getOccurrence(

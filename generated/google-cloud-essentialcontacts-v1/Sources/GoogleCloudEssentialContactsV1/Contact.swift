@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A contact that will receive notifications from Google Cloud.
-public struct Contact: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Contact: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The identifier for the contact.
@@ -46,7 +46,7 @@ public struct Contact: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// The last time the validation_state was updated, either manually or
   /// automatically. A contact is considered stale if its validation state was
   /// updated more than 1 year ago.
-  public var validateTime: GoogleCloudWkt.Timestamp? = nil
+  public var validateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `Contact`.
   public init() {}
@@ -67,10 +67,10 @@ public struct Contact: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.essentialcontacts.v1.Contact"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

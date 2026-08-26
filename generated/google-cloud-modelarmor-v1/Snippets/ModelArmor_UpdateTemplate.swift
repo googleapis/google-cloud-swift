@@ -19,7 +19,7 @@
 import Foundation
 import GoogleCloudModelArmorV1
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: ModelArmorClient, projectId: String, locationId: String, templateId: String)
   async throws
@@ -30,7 +30,7 @@ func sample(client: ModelArmorClient, projectId: String, locationId: String, tem
         $0.template = Template().with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/templates/\(templateId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// PhraseSet for biasing in speech recognition. A PhraseSet is used to provide
 /// "hints" to the speech recognizer to favor specific words and phrases in the
 /// results.
-public struct PhraseSet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct PhraseSet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Identifier. The resource name of the PhraseSet.
@@ -49,16 +49,16 @@ public struct PhraseSet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var state: PhraseSet.State = PhraseSet.State()
 
   /// Output only. Creation time.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The most recent time this resource was modified.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time at which this resource was requested for deletion.
-  public var deleteTime: GoogleCloudWkt.Timestamp? = nil
+  public var deleteTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time at which this resource will be purged.
-  public var expireTime: GoogleCloudWkt.Timestamp? = nil
+  public var expireTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Allows users to store small amounts of arbitrary data.
   /// Both the key and the value must be 63 characters or less each.
@@ -110,7 +110,7 @@ public struct PhraseSet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   ///
   /// List items can also include CustomClass references containing groups of
   /// words that represent common concepts that occur in natural language.
-  public struct Phrase: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Phrase: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The phrase itself.
@@ -147,11 +147,11 @@ public struct PhraseSet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.speech.v2.PhraseSet.Phrase"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -264,10 +264,10 @@ public struct PhraseSet: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.speech.v2.PhraseSet"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A storage volume.
-public struct Volume: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Volume: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The resource name of this `Volume`.
@@ -99,7 +99,7 @@ public struct Volume: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Output only. Time after which volume will be fully deleted.
   /// It is filled only for volumes in COOLOFF state.
-  public var expireTime: GoogleCloudWkt.Timestamp? = nil
+  public var expireTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Instances this Volume is attached to.
   /// This field is set only in Get requests.
@@ -182,7 +182,7 @@ public struct Volume: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     self.workloadProfile = try container.decode(
       Volume.WorkloadProfile.self, forKey: .workloadProfile)
     self.expireTime = try container.decodeIfPresent(
-      GoogleCloudWkt.Timestamp.self, forKey: .expireTime)
+      GoogleCloudWKT.Timestamp.self, forKey: .expireTime)
     self.instances = try container.decode([Swift.String].self, forKey: .instances)
     self.attached = try container.decode(Swift.Bool.self, forKey: .attached)
   }
@@ -216,7 +216,7 @@ public struct Volume: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// Details about snapshot space reservation and usage on the storage volume.
-  public struct SnapshotReservationDetail: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SnapshotReservationDetail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The space on this storage volume reserved for snapshots, shown in GiB.
@@ -259,11 +259,11 @@ public struct Volume: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       return
         "type.googleapis.com/google.cloud.baremetalsolution.v2.Volume.SnapshotReservationDetail"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -827,10 +827,10 @@ public struct Volume: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.baremetalsolution.v2.Volume"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

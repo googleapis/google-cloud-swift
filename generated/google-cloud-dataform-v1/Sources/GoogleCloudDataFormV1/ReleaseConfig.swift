@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// Represents a Dataform release configuration.
-public struct ReleaseConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ReleaseConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The release config's name.
@@ -86,11 +86,11 @@ public struct ReleaseConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// A record of an attempt to create a compilation result for this release
   /// config.
-  public struct ScheduledReleaseRecord: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ScheduledReleaseRecord: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. The timestamp of this release attempt.
-    public var releaseTime: GoogleCloudWkt.Timestamp? = nil
+    public var releaseTime: GoogleCloudWKT.Timestamp? = nil
 
     /// The result of this release attempt.
     public var result: OneOf_Result? = nil
@@ -120,7 +120,7 @@ public struct ReleaseConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.releaseTime = try container.decodeIfPresent(
-        GoogleCloudWkt.Timestamp.self, forKey: .releaseTime)
+        GoogleCloudWKT.Timestamp.self, forKey: .releaseTime)
 
       var result: OneOf_Result? = nil
       let resultCheckAndSet = {
@@ -173,21 +173,21 @@ public struct ReleaseConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dataform.v1.ReleaseConfig.ScheduledReleaseRecord"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.dataform.v1.ReleaseConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

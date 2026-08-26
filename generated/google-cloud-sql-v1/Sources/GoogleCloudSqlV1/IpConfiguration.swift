@@ -16,14 +16,14 @@
 
 #if SqlBackupsService || SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// IP Management configuration.
-  public struct IpConfiguration: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct IpConfiguration: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Whether the instance is assigned a public IP address or not.
-    public var ipv4Enabled: GoogleCloudWkt.BoolValue? = nil
+    public var ipv4Enabled: GoogleCloudWKT.BoolValue? = nil
 
     /// The resource link for the VPC network from which the Cloud SQL instance is
     /// accessible for private IP. For example,
@@ -40,7 +40,7 @@
     /// valid client certificates. If you want to enforce SSL/TLS without enforcing
     /// the requirement for valid client certificates, then use the `ssl_mode` flag
     /// instead of the `require_ssl` flag.
-    public var requireSsl: GoogleCloudWkt.BoolValue? = nil
+    public var requireSsl: GoogleCloudWKT.BoolValue? = nil
 
     /// The list of external networks that are allowed to connect to the instance
     /// using the IP. In 'CIDR' notation, also known as 'slash' notation (for
@@ -57,7 +57,7 @@
 
     /// Controls connectivity to private IP instances from Google services,
     /// such as BigQuery.
-    public var enablePrivatePathForGoogleCloudServices: GoogleCloudWkt.BoolValue? = nil
+    public var enablePrivatePathForGoogleCloudServices: GoogleCloudWKT.BoolValue? = nil
 
     /// Specify how SSL/TLS is enforced in database connections. If you must use
     /// the `require_ssl` flag for backward compatibility, then only the following
@@ -485,11 +485,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.IpConfiguration"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

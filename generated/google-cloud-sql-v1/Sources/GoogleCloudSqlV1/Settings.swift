@@ -16,17 +16,17 @@
 
 #if SqlBackupsService || SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Database instance settings.
-  public struct Settings: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Settings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The version of instance settings. This is a required field for update
     /// method to make sure concurrent updates are handled properly. During update,
     /// use the most recent settingsVersion value for this instance and do not try
     /// to update this value.
-    public var settingsVersion: GoogleCloudWkt.Int64Value? = nil
+    public var settingsVersion: GoogleCloudWKT.Int64Value? = nil
 
     /// The App Engine app IDs that can access this instance.
     /// (Deprecated) Applied to First Generation instances only.
@@ -66,7 +66,7 @@
 
     /// The maximum size to which storage capacity can be automatically increased.
     /// The default value is 0, which specifies that there is no limit.
-    public var storageAutoResizeLimit: GoogleCloudWkt.Int64Value? = nil
+    public var storageAutoResizeLimit: GoogleCloudWKT.Int64Value? = nil
 
     /// The activation policy specifies when the instance is activated; it is
     /// applicable only when the instance state is RUNNABLE. Valid values:
@@ -83,7 +83,7 @@
 
     /// Configuration to increase storage size automatically. The default value is
     /// true.
-    public var storageAutoResize: GoogleCloudWkt.BoolValue? = nil
+    public var storageAutoResize: GoogleCloudWKT.BoolValue? = nil
 
     /// The location preference settings. This allows the instance to be located as
     /// near as possible to either an App Engine app or Compute Engine zone for
@@ -108,16 +108,16 @@
     /// Configuration specific to read replica instances. Indicates whether
     /// replication is enabled or not. WARNING: Changing this restarts the
     /// instance.
-    public var databaseReplicationEnabled: GoogleCloudWkt.BoolValue? = nil
+    public var databaseReplicationEnabled: GoogleCloudWKT.BoolValue? = nil
 
     /// Configuration specific to read replica instances. Indicates whether
     /// database flags for crash-safe replication are enabled. This property was
     /// only applicable to First Generation instances.
     @available(*, deprecated)
-    public var crashSafeReplicationEnabled: GoogleCloudWkt.BoolValue? = nil
+    public var crashSafeReplicationEnabled: GoogleCloudWKT.BoolValue? = nil
 
     /// The size of data disk, in GB. The data disk size minimum is 10GB.
-    public var dataDiskSizeGb: GoogleCloudWkt.Int64Value? = nil
+    public var dataDiskSizeGb: GoogleCloudWKT.Int64Value? = nil
 
     /// Active Directory configuration, relevant only for Cloud SQL for SQL Server.
     public var activeDirectoryConfig: SqlActiveDirectoryConfig? = nil
@@ -153,7 +153,7 @@
     public var connectorEnforcement: Settings.ConnectorEnforcement = Settings.ConnectorEnforcement()
 
     /// Configuration to protect against accidental instance deletion.
-    public var deletionProtectionEnabled: GoogleCloudWkt.BoolValue? = nil
+    public var deletionProtectionEnabled: GoogleCloudWKT.BoolValue? = nil
 
     /// Server timezone, relevant only for Cloud SQL for SQL Server.
     public var timeZone: Swift.String = Swift.String()
@@ -167,24 +167,24 @@
 
     /// Optional. Configuration value for recreation of replica after certain
     /// replication lag
-    public var replicationLagMaxSeconds: GoogleCloudWkt.Int32Value? = nil
+    public var replicationLagMaxSeconds: GoogleCloudWKT.Int32Value? = nil
 
     /// Optional. When this parameter is set to true, Cloud SQL instances can
     /// connect to Vertex AI to pass requests for real-time predictions and
     /// insights to the AI. The default value is false. This applies only to Cloud
     /// SQL for MySQL and Cloud SQL for PostgreSQL instances.
-    public var enableGoogleMlIntegration: GoogleCloudWkt.BoolValue? = nil
+    public var enableGoogleMlIntegration: GoogleCloudWKT.BoolValue? = nil
 
     /// Optional. By default, Cloud SQL instances have schema extraction disabled
     /// for Dataplex. When this parameter is set to true, schema extraction for
     /// Dataplex on Cloud SQL instances is activated.
-    public var enableDataplexIntegration: GoogleCloudWkt.BoolValue? = nil
+    public var enableDataplexIntegration: GoogleCloudWKT.BoolValue? = nil
 
     /// Optional. When this parameter is set to true, Cloud SQL retains backups of
     /// the instance even after the instance is deleted. The ON_DEMAND backup will
     /// be retained until customer deletes the backup or the project. The AUTOMATED
     /// backup will be retained based on the backups retention setting.
-    public var retainBackupsOnDelete: GoogleCloudWkt.BoolValue? = nil
+    public var retainBackupsOnDelete: GoogleCloudWKT.BoolValue? = nil
 
     /// Optional. Provisioned number of I/O operations per second for the data
     /// disk. This field is only used for hyperdisk-balanced disk types.
@@ -205,7 +205,7 @@
 
     /// Optional. Whether the replica is in accelerated mode. This feature is in
     /// private preview and requires allowlisting to take effect.
-    public var acceleratedReplicaMode: GoogleCloudWkt.BoolValue? = nil
+    public var acceleratedReplicaMode: GoogleCloudWKT.BoolValue? = nil
 
     /// Optional. Cloud SQL for MySQL auto-upgrade configuration. When this
     /// parameter is set to true, auto-upgrade is enabled for MySQL 8.0 minor
@@ -681,11 +681,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.Settings"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

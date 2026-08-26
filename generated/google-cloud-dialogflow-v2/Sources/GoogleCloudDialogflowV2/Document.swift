@@ -16,7 +16,7 @@
 
 #if Documents
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
   import GoogleRpc
 
   /// A knowledge document to be used by a
@@ -29,7 +29,7 @@
   /// only use `projects.knowledgeBases.documents`.
   ///
   /// [google.cloud.dialogflow.v2.KnowledgeBase]: <doc:KnowledgeBase>
-  public struct Document: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Document: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. The document resource name.
@@ -166,13 +166,13 @@
     }
 
     /// The status of a reload attempt.
-    public struct ReloadStatus: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ReloadStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The time of a reload attempt.
       /// This reload may have been triggered automatically or manually and may
       /// not have succeeded.
-      public var time: GoogleCloudWkt.Timestamp? = nil
+      public var time: GoogleCloudWKT.Timestamp? = nil
 
       /// The status of a reload attempt or the initial load.
       public var status: GoogleRpc.Status? = nil
@@ -196,11 +196,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.v2.Document.ReloadStatus"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -477,11 +477,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.Document"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

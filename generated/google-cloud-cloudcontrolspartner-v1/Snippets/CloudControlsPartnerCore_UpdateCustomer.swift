@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudControlsPartnerV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(
   client: CloudControlsPartnerCoreClient, organizationId: String, locationId: String,
@@ -31,7 +31,7 @@ func sample(
           $0.name =
             "organizations/\(organizationId)/locations/\(locationId)/customers/\(customerId)"
         }
-        $0.updateMask = GoogleCloudWkt.FieldMask(paths: ["field.path1", "field.path2"])
+        $0.updateMask = GoogleCloudWKT.FieldMask(paths: ["field.path1", "field.path2"])
       }
   )
   print("Success: \(response)")

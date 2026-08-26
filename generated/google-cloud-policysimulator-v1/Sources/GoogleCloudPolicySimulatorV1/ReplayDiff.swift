@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The difference between the results of evaluating an access tuple under
 /// the current (baseline) policies and under the proposed (simulated) policies.
 /// This difference explains how a principal's access could change if the
 /// proposed policies were applied.
-public struct ReplayDiff: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ReplayDiff: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A summary and comparison of the principal's access under the current
@@ -53,10 +53,10 @@ public struct ReplayDiff: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.policysimulator.v1.ReplayDiff"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

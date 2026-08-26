@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Specifies the Event-driven transfer options. Event-driven transfers listen to
 /// an event stream to transfer updated files.
-public struct EventStream: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct EventStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Specifies a unique name of the resource such as AWS SQS
@@ -32,12 +32,12 @@ public struct EventStream: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// listening for events from this stream. If no start time is specified or
   /// start time is in the past, Storage Transfer Service starts listening
   /// immediately.
-  public var eventStreamStartTime: GoogleCloudWkt.Timestamp? = nil
+  public var eventStreamStartTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Specifies the data and time at which Storage Transfer Service stops
   /// listening for events from this stream. After this time, any transfers in
   /// progress will complete, but no new transfers are initiated.
-  public var eventStreamExpirationTime: GoogleCloudWkt.Timestamp? = nil
+  public var eventStreamExpirationTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `EventStream`.
   public init() {}
@@ -58,10 +58,10 @@ public struct EventStream: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.storagetransfer.v1.EventStream"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Message describing a ContinuousBackupSource.
-public struct ContinuousBackupSource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ContinuousBackupSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The source cluster from which to restore. This cluster must have
@@ -27,7 +27,7 @@ public struct ContinuousBackupSource: Codable, Equatable, GoogleCloudWkt._AnyPac
   public var cluster: Swift.String = Swift.String()
 
   /// Required. The point in time to restore to.
-  public var pointInTime: GoogleCloudWkt.Timestamp? = nil
+  public var pointInTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `ContinuousBackupSource`.
   public init() {}
@@ -48,10 +48,10 @@ public struct ContinuousBackupSource: Codable, Equatable, GoogleCloudWkt._AnyPac
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.alloydb.v1.ContinuousBackupSource"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

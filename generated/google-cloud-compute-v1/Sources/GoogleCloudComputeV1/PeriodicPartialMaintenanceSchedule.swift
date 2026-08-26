@@ -16,12 +16,12 @@
 
 #if RegionZones || Zones
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The periodic partial maintenance schedule includes 52 weeks worth of
   /// maintenance windows.
   /// LINT.IfChange(PeriodicPartialMaintenanceSchedule)
-  public struct PeriodicPartialMaintenanceSchedule: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PeriodicPartialMaintenanceSchedule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The maintenance type in which the zone is during the given window.
@@ -284,11 +284,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.PeriodicPartialMaintenanceSchedule"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

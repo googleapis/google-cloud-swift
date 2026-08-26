@@ -16,10 +16,10 @@
 
 #if PipelineService || ScheduleService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The runtime detail of a pipeline executor.
-  public struct PipelineTaskExecutorDetail: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PipelineTaskExecutorDetail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var details: OneOf_Details? = nil
@@ -86,7 +86,7 @@
 
     /// The detail of a container execution. It contains the job names of the
     /// lifecycle of a container execution.
-    public struct ContainerDetail: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct ContainerDetail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. The name of the
@@ -144,16 +144,16 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.PipelineTaskExecutorDetail.ContainerDetail"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// The detailed info for a custom job executor.
-    public struct CustomJobDetail: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct CustomJobDetail: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. The name of the
@@ -189,11 +189,11 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.PipelineTaskExecutorDetail.CustomJobDetail"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -207,11 +207,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.PipelineTaskExecutorDetail"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

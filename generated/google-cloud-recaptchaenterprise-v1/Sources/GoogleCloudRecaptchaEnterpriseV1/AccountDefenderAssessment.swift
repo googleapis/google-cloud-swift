@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Account defense risk assessment.
-public struct AccountDefenderAssessment: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AccountDefenderAssessment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. Labels for this request.
@@ -44,7 +44,7 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleCloudWkt._Any
   }
 
   /// Account takeover risk assessment.
-  public struct AccountTakeoverVerdict: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AccountTakeoverVerdict: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Account takeover attempt probability.
@@ -81,16 +81,16 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleCloudWkt._Any
       return
         "type.googleapis.com/google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment.AccountTakeoverVerdict"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Risk explainability reasons for Account defense.
-  public struct AccountRiskReason: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AccountRiskReason: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. A risk reason associated with this request.
@@ -244,16 +244,16 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleCloudWkt._Any
       return
         "type.googleapis.com/google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment.AccountRiskReason"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   /// Trust explainability reasons for Account defense.
-  public struct AccountTrustReason: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct AccountTrustReason: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. A trust reason associated with this request.
@@ -404,11 +404,11 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleCloudWkt._Any
       return
         "type.googleapis.com/google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment.AccountTrustReason"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -539,10 +539,10 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleCloudWkt._Any
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

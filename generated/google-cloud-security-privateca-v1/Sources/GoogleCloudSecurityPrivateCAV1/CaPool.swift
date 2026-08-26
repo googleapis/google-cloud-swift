@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A [CaPool][google.cloud.security.privateca.v1.CaPool] represents a group of
 /// [CertificateAuthorities][google.cloud.security.privateca.v1.CertificateAuthority]
@@ -27,7 +27,7 @@ import Foundation
 ///
 /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
 /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
-public struct CaPool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct CaPool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The resource name for this
@@ -110,7 +110,7 @@ public struct CaPool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
   /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
   /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
-  public struct PublishingOptions: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct PublishingOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. When true, publishes each
@@ -280,11 +280,11 @@ public struct CaPool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.security.privateca.v1.CaPool.PublishingOptions"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -292,7 +292,7 @@ public struct CaPool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [CaPool][google.cloud.security.privateca.v1.CaPool].
   ///
   /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
-  public struct IssuancePolicy: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct IssuancePolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Optional. If any
@@ -317,7 +317,7 @@ public struct CaPool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
     /// [google.cloud.security.privateca.v1.CaPool.IssuancePolicy.allow_requester_specified_not_before_time]: <doc:CaPool/IssuancePolicy/allowRequesterSpecifiedNotBeforeTime>
     /// [google.cloud.security.privateca.v1.CaPool.IssuancePolicy.backdate_duration]: <doc:CaPool/IssuancePolicy/backdateDuration>
-    public var backdateDuration: GoogleCloudWkt.Duration? = nil
+    public var backdateDuration: GoogleCloudWKT.Duration? = nil
 
     /// Optional. If set to true, allows requesters to specify the
     /// [requested_not_before_time][google.cloud.security.privateca.v1.Certificate.requested_not_before_time]
@@ -347,7 +347,7 @@ public struct CaPool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     ///
     /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
     /// [google.cloud.security.privateca.v1.CertificateAuthority]: <doc:CertificateAuthority>
-    public var maximumLifetime: GoogleCloudWkt.Duration? = nil
+    public var maximumLifetime: GoogleCloudWKT.Duration? = nil
 
     /// Optional. If specified, then only methods allowed in the
     /// [IssuanceModes][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.IssuanceModes]
@@ -434,7 +434,7 @@ public struct CaPool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
     /// [google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType]: <doc:CaPool/IssuancePolicy/AllowedKeyType>
     /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
-    public struct AllowedKeyType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AllowedKeyType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       public var keyType: OneOf_KeyType? = nil
@@ -505,7 +505,7 @@ public struct CaPool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       ///
       /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
       /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
-      public struct RsaKeyType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct RsaKeyType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. The minimum allowed RSA modulus size (inclusive), in bits.
@@ -538,11 +538,11 @@ public struct CaPool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType.RsaKeyType"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -552,7 +552,7 @@ public struct CaPool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       ///
       /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
       /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
-      public struct EcKeyType: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct EcKeyType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. A signature algorithm that must be used. If this is
@@ -702,11 +702,11 @@ public struct CaPool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
           return
             "type.googleapis.com/google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType.EcKeyType"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -721,11 +721,11 @@ public struct CaPool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -737,7 +737,7 @@ public struct CaPool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// [google.cloud.security.privateca.v1.CaPool]: <doc:CaPool>
     /// [google.cloud.security.privateca.v1.CaPool.IssuancePolicy.IssuanceModes]: <doc:CaPool/IssuancePolicy/IssuanceModes>
     /// [google.cloud.security.privateca.v1.Certificate]: <doc:Certificate>
-    public struct IssuanceModes: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct IssuanceModes: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. When true, allows callers to create
@@ -776,22 +776,22 @@ public struct CaPool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
         return
           "type.googleapis.com/google.cloud.security.privateca.v1.CaPool.IssuancePolicy.IssuanceModes"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.security.privateca.v1.CaPool.IssuancePolicy"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -906,10 +906,10 @@ public struct CaPool: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.security.privateca.v1.CaPool"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

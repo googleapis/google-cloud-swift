@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -582,7 +582,7 @@ extension Clients {
     /// See `PrivilegedAccessManagerClient.updateEntitlement`.
     func updateEntitlement(
       entitlement: Entitlement?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Entitlement>
 
     /// See `PrivilegedAccessManagerClient.listGrants`.
@@ -1030,7 +1030,7 @@ extension Clients.PrivilegedAccessManagerProtocol {
 
   public func updateEntitlement(
     entitlement: Entitlement?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Entitlement> {
     let request = UpdateEntitlementRequest().with {
       $0.entitlement = entitlement

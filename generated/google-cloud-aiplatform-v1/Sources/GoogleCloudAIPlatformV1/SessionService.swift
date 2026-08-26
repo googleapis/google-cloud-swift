@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleIAMV1
   import GoogleLongRunning
   import GoogleRpc
@@ -415,7 +415,7 @@
       /// See `SessionServiceClient.updateSession`.
       func updateSession(
         session: Session?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudAIPlatformV1.Session
 
       /// See `SessionServiceClient.deleteSession`.
@@ -750,7 +750,7 @@
 
     public func updateSession(
       session: Session?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudAIPlatformV1.Session {
       let request = UpdateSessionRequest().with {
         $0.session = session

@@ -15,18 +15,18 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Schema typically has no parent entity, but can have a parent entity
 /// DatabaseInstance (for database engines which support it).  For some database
 /// engines, the terms  schema and user can be used interchangeably when they
 /// refer to a namespace or a collection of other database entities. Can store
 /// additional information which is schema specific.
-public struct SchemaEntity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SchemaEntity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Custom engine specific features.
-  public var customFeatures: GoogleCloudWkt.Struct? = nil
+  public var customFeatures: GoogleCloudWKT.Struct? = nil
 
   /// Initialize a new instance of `SchemaEntity`.
   public init() {}
@@ -47,10 +47,10 @@ public struct SchemaEntity: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.clouddms.v1.SchemaEntity"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

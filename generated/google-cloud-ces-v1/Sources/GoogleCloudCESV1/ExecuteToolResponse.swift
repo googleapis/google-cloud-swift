@@ -15,23 +15,23 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Response message for
 /// [ToolService.ExecuteTool][google.cloud.ces.v1.ToolService.ExecuteTool].
 ///
 /// [google.cloud.ces.v1.ToolService.ExecuteTool]: <doc:ToolServiceClient/executeTool(request:options:)>
-public struct ExecuteToolResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ExecuteToolResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The tool execution result in JSON object format.
   /// Use "output" key to specify tool response and "error" key to specify
   /// error details (if any). If "output" and "error" keys are not specified,
   /// then whole "response" is treated as tool execution result.
-  public var response: GoogleCloudWkt.Struct? = nil
+  public var response: GoogleCloudWKT.Struct? = nil
 
   /// The variable values at the end of the tool execution.
-  public var variables: GoogleCloudWkt.Struct? = nil
+  public var variables: GoogleCloudWKT.Struct? = nil
 
   /// Citations that provide the source information for the tool's execution.
   public var citations: Citations? = nil
@@ -70,8 +70,8 @@ public struct ExecuteToolResponse: Codable, Equatable, GoogleCloudWkt._AnyPackab
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    self.response = try container.decodeIfPresent(GoogleCloudWkt.Struct.self, forKey: .response)
-    self.variables = try container.decodeIfPresent(GoogleCloudWkt.Struct.self, forKey: .variables)
+    self.response = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .response)
+    self.variables = try container.decodeIfPresent(GoogleCloudWKT.Struct.self, forKey: .variables)
     self.citations = try container.decodeIfPresent(Citations.self, forKey: .citations)
     self.googleSearchSuggestions = try container.decodeIfPresent(
       GoogleSearchSuggestions.self, forKey: .googleSearchSuggestions)
@@ -124,10 +124,10 @@ public struct ExecuteToolResponse: Codable, Equatable, GoogleCloudWkt._AnyPackab
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.ces.v1.ExecuteToolResponse"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -16,13 +16,13 @@
 
 #if VertexRagService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request message for
   /// [VertexRagService.RetrieveContexts][google.cloud.aiplatform.v1.VertexRagService.RetrieveContexts].
   ///
   /// [google.cloud.aiplatform.v1.VertexRagService.RetrieveContexts]: <doc:VertexRagServiceClient/retrieveContexts(request:options:)>
-  public struct RetrieveContextsRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct RetrieveContextsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The resource name of the Location from which to retrieve
@@ -96,7 +96,7 @@
     }
 
     /// The data source for Vertex RagStore.
-    public struct VertexRagStore: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct VertexRagStore: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Optional. The representation of the rag source. It can be used to specify
@@ -127,7 +127,7 @@
       }
 
       /// The definition of the Rag resource.
-      public struct RagResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct RagResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Optional. RagCorpora resource name.
@@ -159,11 +159,11 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.RetrieveContextsRequest.VertexRagStore.RagResource"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -171,11 +171,11 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.RetrieveContextsRequest.VertexRagStore"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -188,11 +188,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.RetrieveContextsRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

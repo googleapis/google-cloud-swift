@@ -16,7 +16,7 @@
 
 #if UserLicenseService
   import Foundation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleRpc
   import GoogleCloudGax

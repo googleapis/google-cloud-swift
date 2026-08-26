@@ -16,14 +16,14 @@
 
 #if Advice
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Recommendation for single resources specification, to be created in the
   /// future.
-  public struct FutureResourcesRecommendation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FutureResourcesRecommendation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
-    public var endTime: GoogleCloudWkt.Timestamp? = nil
+    public var endTime: GoogleCloudWKT.Timestamp? = nil
 
     /// The advised location for resource usage. When a zone, in format
     /// 'zones/'.
@@ -42,7 +42,7 @@
     /// Type of recommendation. Currently only FUTURE_RESERVATION is supported.
     public var recommendationType: FutureResourcesRecommendation.RecommendationType? = nil
 
-    public var startTime: GoogleCloudWkt.Timestamp? = nil
+    public var startTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Initialize a new instance of `FutureResourcesRecommendation`.
     public init() {}
@@ -163,11 +163,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.FutureResourcesRecommendation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

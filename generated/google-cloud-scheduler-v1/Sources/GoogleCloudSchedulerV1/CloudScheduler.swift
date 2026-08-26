@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleCloudGax
 
 /// The Cloud Scheduler API allows external entities to reliably
@@ -243,7 +243,7 @@ extension Clients {
     /// See `CloudSchedulerClient.updateJob`.
     func updateJob(
       job: Job?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudSchedulerV1.Job
 
     /// See `CloudSchedulerClient.deleteJob`.
@@ -443,7 +443,7 @@ extension Clients.CloudSchedulerProtocol {
 
   public func updateJob(
     job: Job?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudSchedulerV1.Job {
     let request = UpdateJobRequest().with {
       $0.job = job

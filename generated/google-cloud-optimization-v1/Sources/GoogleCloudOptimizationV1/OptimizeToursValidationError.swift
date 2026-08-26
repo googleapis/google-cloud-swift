@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Describes an error encountered when validating an `OptimizeToursRequest`.
-public struct OptimizeToursValidationError: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct OptimizeToursValidationError: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A validation error is defined by the pair (`code`, `display_name`) which
@@ -319,14 +319,14 @@ public struct OptimizeToursValidationError: Codable, Equatable, GoogleCloudWkt._
   /// ```
   /// We however omit top-level entities such as `OptimizeToursRequest` or
   /// `ShipmentModel` to avoid crowding the message.
-  public struct FieldReference: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FieldReference: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Name of the field, e.g., "vehicles".
     public var name: Swift.String = Swift.String()
 
     /// Recursively nested sub-field, if needed.
-    public var subField: GoogleCloudWkt.Recursive<OptimizeToursValidationError.FieldReference>? =
+    public var subField: GoogleCloudWKT.Recursive<OptimizeToursValidationError.FieldReference>? =
       nil
 
     public var indexOrKey: OneOf_IndexOrKey? = nil
@@ -358,7 +358,7 @@ public struct OptimizeToursValidationError: Codable, Equatable, GoogleCloudWkt._
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.name = try container.decode(Swift.String.self, forKey: .name)
       self.subField = try container.decodeIfPresent(
-        GoogleCloudWkt.Recursive<OptimizeToursValidationError.FieldReference>.self,
+        GoogleCloudWKT.Recursive<OptimizeToursValidationError.FieldReference>.self,
         forKey: .subField)
 
       var indexOrKey: OneOf_IndexOrKey? = nil
@@ -406,21 +406,21 @@ public struct OptimizeToursValidationError: Codable, Equatable, GoogleCloudWkt._
       return
         "type.googleapis.com/google.cloud.optimization.v1.OptimizeToursValidationError.FieldReference"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.optimization.v1.OptimizeToursValidationError"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

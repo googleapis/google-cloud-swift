@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleCloudEnterpriseKnowledgeGraphV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: EnterpriseKnowledgeGraphServiceClient) async throws {
   let response = try await client.lookup(

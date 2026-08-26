@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// Details information about an error encountered during job execution or
 /// the results of an unsuccessful activation of the JobTrigger.
-public struct Error: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Error: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Detailed error codes and messages.
@@ -28,7 +28,7 @@ public struct Error: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// The times the error occurred. List includes the oldest timestamp and the
   /// last 9 timestamps.
-  public var timestamps: [GoogleCloudWkt.Timestamp] = []
+  public var timestamps: [GoogleCloudWKT.Timestamp] = []
 
   /// Additional information about the error.
   public var extraInfo: Error.ErrorExtraInfo = Error.ErrorExtraInfo()
@@ -157,10 +157,10 @@ public struct Error: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.privacy.dlp.v2.Error"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

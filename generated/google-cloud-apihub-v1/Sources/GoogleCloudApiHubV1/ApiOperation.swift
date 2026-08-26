@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents an operation contained in an API version in the API Hub.
 /// An operation is added/updated/deleted in an API version when a new spec is
@@ -26,7 +26,7 @@ import Foundation
 /// creation of apiOperation can be possible only for version with no parsed
 /// operations and update/delete can be possible only for operations created via
 /// create API.
-public struct ApiOperation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ApiOperation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The name of the operation.
@@ -52,10 +52,10 @@ public struct ApiOperation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var details: OperationDetails? = nil
 
   /// Output only. The time at which the operation was created.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The time at which the operation was last updated.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Optional. The list of user defined attributes associated with the API
   /// operation resource. The key is the attribute name. It will be of the
@@ -86,10 +86,10 @@ public struct ApiOperation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.apihub.v1.ApiOperation"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -18,7 +18,7 @@ import Foundation
 #if canImport(FoundationNetworking)
   import FoundationNetworking
 #endif
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -885,7 +885,7 @@ extension Clients {
     /// See `VideoStitcherServiceClient.updateCdnKey`.
     func updateCdnKey(
       cdnKey: CdnKey?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<CdnKey>
 
     /// See `VideoStitcherServiceClient.createVodSession`.
@@ -1022,7 +1022,7 @@ extension Clients {
     /// See `VideoStitcherServiceClient.updateSlate`.
     func updateSlate(
       slate: Slate?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Slate>
 
     /// See `VideoStitcherServiceClient.deleteSlate`.
@@ -1118,7 +1118,7 @@ extension Clients {
     /// See `VideoStitcherServiceClient.updateLiveConfig`.
     func updateLiveConfig(
       liveConfig: LiveConfig?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<LiveConfig>
 
     /// See `VideoStitcherServiceClient.createVodConfig`.
@@ -1183,7 +1183,7 @@ extension Clients {
     /// See `VideoStitcherServiceClient.updateVodConfig`.
     func updateVodConfig(
       vodConfig: VodConfig?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<VodConfig>
 
     /// See `VideoStitcherServiceClient.listOperations`.
@@ -1648,7 +1648,7 @@ extension Clients.VideoStitcherServiceProtocol {
 
   public func updateCdnKey(
     cdnKey: CdnKey?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<CdnKey> {
     let request = UpdateCdnKeyRequest().with {
       $0.cdnKey = cdnKey
@@ -2001,7 +2001,7 @@ extension Clients.VideoStitcherServiceProtocol {
 
   public func updateSlate(
     slate: Slate?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Slate> {
     let request = UpdateSlateRequest().with {
       $0.slate = slate
@@ -2255,7 +2255,7 @@ extension Clients.VideoStitcherServiceProtocol {
 
   public func updateLiveConfig(
     liveConfig: LiveConfig?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<LiveConfig> {
     let request = UpdateLiveConfigRequest().with {
       $0.liveConfig = liveConfig
@@ -2430,7 +2430,7 @@ extension Clients.VideoStitcherServiceProtocol {
 
   public func updateVodConfig(
     vodConfig: VodConfig?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<VodConfig> {
     let request = UpdateVodConfigRequest().with {
       $0.vodConfig = vodConfig

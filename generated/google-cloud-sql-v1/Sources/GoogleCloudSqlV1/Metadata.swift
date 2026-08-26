@@ -16,15 +16,15 @@
 
 #if SqlInstancesService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The additional metadata information regarding the execution of the SQL
   /// statements.
-  public struct Metadata: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Metadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The time taken to execute the SQL statements.
-    public var sqlStatementExecutionTime: GoogleCloudWkt.Duration? = nil
+    public var sqlStatementExecutionTime: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `Metadata`.
     public init() {}
@@ -45,11 +45,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.sql.v1.Metadata"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

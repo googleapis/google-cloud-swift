@@ -16,13 +16,13 @@
 
 #if Documents
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request message for
   /// [Documents.UpdateDocument][google.cloud.dialogflow.v2.Documents.UpdateDocument].
   ///
   /// [google.cloud.dialogflow.v2.Documents.UpdateDocument]: <doc:DocumentsClient/updateDocument(request:options:)>
-  public struct UpdateDocumentRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct UpdateDocumentRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The document to update.
@@ -31,7 +31,7 @@
     /// Optional. Not specified means `update all`.
     /// Currently, only `display_name` can be updated, an InvalidArgument will be
     /// returned for attempting to update other fields.
-    public var updateMask: GoogleCloudWkt.FieldMask? = nil
+    public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
     /// Initialize a new instance of `UpdateDocumentRequest`.
     public init() {}
@@ -52,11 +52,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.UpdateDocumentRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

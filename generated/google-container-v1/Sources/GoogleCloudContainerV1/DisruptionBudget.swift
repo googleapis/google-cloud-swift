@@ -15,27 +15,27 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// DisruptionBudget defines the upgrade disruption budget for the cluster
 /// control plane.
-public struct DisruptionBudget: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DisruptionBudget: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. The minimum duration between two minor version upgrades of the
   /// control plane.
-  public var minorVersionDisruptionInterval: GoogleCloudWkt.Duration? = nil
+  public var minorVersionDisruptionInterval: GoogleCloudWKT.Duration? = nil
 
   /// Optional. The minimum duration between two patch version upgrades of the
   /// control plane.
-  public var patchVersionDisruptionInterval: GoogleCloudWkt.Duration? = nil
+  public var patchVersionDisruptionInterval: GoogleCloudWKT.Duration? = nil
 
   /// Output only. The last time a minor version upgrade was performed on the
   /// control plane.
-  public var lastMinorVersionDisruptionTime: GoogleCloudWkt.Timestamp? = nil
+  public var lastMinorVersionDisruptionTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The last time a disruption was performed on the control plane.
-  public var lastDisruptionTime: GoogleCloudWkt.Timestamp? = nil
+  public var lastDisruptionTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Initialize a new instance of `DisruptionBudget`.
   public init() {}
@@ -56,10 +56,10 @@ public struct DisruptionBudget: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.container.v1.DisruptionBudget"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

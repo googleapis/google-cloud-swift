@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The uncompressed threat entries in hash format.
 /// Hashes can be anywhere from 4 to 32 bytes in size. A large majority are 4
@@ -25,7 +25,7 @@ import Foundation
 /// Used for sending ThreatEntryAdditons to clients that do not support
 /// compression, or when sending non-4-byte hashes to clients that do support
 /// compression.
-public struct RawHashes: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RawHashes: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The number of bytes for each prefix encoded below.  This field can be
@@ -57,10 +57,10 @@ public struct RawHashes: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.webrisk.v1.RawHashes"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

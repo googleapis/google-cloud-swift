@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for updating a license pool.
-public struct UpdateLicensePoolRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateLicensePoolRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The license pool to update.
@@ -29,7 +29,7 @@ public struct UpdateLicensePoolRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   public var licensePool: LicensePool? = nil
 
   /// Required. The list of fields to update.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Initialize a new instance of `UpdateLicensePoolRequest`.
   public init() {}
@@ -51,10 +51,10 @@ public struct UpdateLicensePoolRequest: Codable, Equatable, GoogleCloudWkt._AnyP
     return
       "type.googleapis.com/google.cloud.commerce.consumer.procurement.v1.UpdateLicensePoolRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

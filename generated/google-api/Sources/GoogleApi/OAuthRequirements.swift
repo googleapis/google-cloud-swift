@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// OAuth scopes are a way to define data and permissions on data. For example,
 /// there are scopes defined for "Read-only access to Google Calendar" and
@@ -35,7 +35,7 @@ import Foundation
 /// Please note that even though each of the canonical scopes is enough for a
 /// request to be accepted and passed to the backend, a request can still fail
 /// due to the backend requiring additional scopes or permissions.
-public struct OAuthRequirements: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct OAuthRequirements: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The list of publicly documented OAuth scopes that are allowed access. An
@@ -67,10 +67,10 @@ public struct OAuthRequirements: Codable, Equatable, GoogleCloudWkt._AnyPackable
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.api.OAuthRequirements"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

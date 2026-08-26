@@ -16,13 +16,13 @@
 
 #if FeatureOnlineStoreService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Response message for
   /// [FeatureOnlineStoreService.FetchFeatureValues][google.cloud.aiplatform.v1.FeatureOnlineStoreService.FetchFeatureValues]
   ///
   /// [google.cloud.aiplatform.v1.FeatureOnlineStoreService.FetchFeatureValues]: <doc:FeatureOnlineStoreServiceClient/fetchFeatureValues(request:options:)>
-  public struct FetchFeatureValuesResponse: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct FetchFeatureValuesResponse: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The data key associated with this response.
@@ -74,7 +74,7 @@
         try formatCheckAndSet(.keyValues(keyValues))
       }
       if let protoStruct = try container.decodeIfPresent(
-        GoogleCloudWkt.Struct?.self, forKey: .protoStruct)
+        GoogleCloudWKT.Struct?.self, forKey: .protoStruct)
       {
         try formatCheckAndSet(.protoStruct(protoStruct))
       }
@@ -97,7 +97,7 @@
 
     /// Response structure in the format of key (feature name) and (feature) value
     /// pair.
-    public struct FeatureNameValuePairList: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct FeatureNameValuePairList: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// List of feature names and values.
@@ -121,7 +121,7 @@
       }
 
       /// Feature name & value pair.
-      public struct FeatureNameValuePair: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct FeatureNameValuePair: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// Feature short name.
@@ -191,11 +191,11 @@
           return
             "type.googleapis.com/google.cloud.aiplatform.v1.FetchFeatureValuesResponse.FeatureNameValuePairList.FeatureNameValuePair"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -203,11 +203,11 @@
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.FetchFeatureValuesResponse.FeatureNameValuePairList"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -215,17 +215,17 @@
       /// Feature values in KeyValue format.
       indirect case keyValues(FetchFeatureValuesResponse.FeatureNameValuePairList?)
       /// Feature values in proto Struct format.
-      indirect case protoStruct(GoogleCloudWkt.Struct?)
+      indirect case protoStruct(GoogleCloudWKT.Struct?)
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.FetchFeatureValuesResponse"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

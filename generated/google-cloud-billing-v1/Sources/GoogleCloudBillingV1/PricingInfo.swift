@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents the pricing information for a SKU at a single point of time.
-public struct PricingInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct PricingInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The timestamp from which this pricing was effective within the requested
@@ -27,7 +27,7 @@ public struct PricingInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// request. If a time range was not specified in the request this field will
   /// be equivalent to a time within the last 12 hours, indicating the latest
   /// pricing info.
-  public var effectiveTime: GoogleCloudWkt.Timestamp? = nil
+  public var effectiveTime: GoogleCloudWKT.Timestamp? = nil
 
   /// An optional human readable summary of the pricing information, has a
   /// maximum length of 256 characters.
@@ -66,10 +66,10 @@ public struct PricingInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.billing.v1.PricingInfo"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

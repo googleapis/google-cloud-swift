@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// KubernetesResource contains the YAML manifests and configuration for
 /// Membership Kubernetes resources in the cluster. After CreateMembership or
 /// UpdateMembership, these resources should be re-applied in the cluster.
-public struct KubernetesResource: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct KubernetesResource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Input only. The YAML representation of the Membership CR. This field is
@@ -73,10 +73,10 @@ public struct KubernetesResource: Codable, Equatable, GoogleCloudWkt._AnyPackabl
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.gkehub.v1.KubernetesResource"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

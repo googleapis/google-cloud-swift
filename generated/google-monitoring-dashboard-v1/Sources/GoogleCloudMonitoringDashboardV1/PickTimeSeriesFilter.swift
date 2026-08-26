@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleType
 
 /// Describes a ranking-based time series filter. Each input time series is
@@ -25,7 +25,7 @@ import GoogleType
 /// For example, if `ranking_method` is `METHOD_MEAN`,`direction` is `BOTTOM`,
 /// and `num_time_series` is 3, then the 3 times series with the lowest mean
 /// values will pass through the filter.
-public struct PickTimeSeriesFilter: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct PickTimeSeriesFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// `ranking_method` is applied to each time series independently to produce
@@ -294,10 +294,10 @@ public struct PickTimeSeriesFilter: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.dashboard.v1.PickTimeSeriesFilter"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

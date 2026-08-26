@@ -16,7 +16,7 @@
 
 #if JobService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
   import GoogleRpc
 
   /// A job that uses a
@@ -28,7 +28,7 @@
   ///
   /// [google.cloud.aiplatform.v1.BatchPredictionJob.input_config]: <doc:BatchPredictionJob/inputConfig>
   /// [google.cloud.aiplatform.v1.BatchPredictionJob.model]: <doc:BatchPredictionJob/model>
-  public struct BatchPredictionJob: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct BatchPredictionJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Output only. Resource name of the BatchPredictionJob.
@@ -89,7 +89,7 @@
     /// [google.cloud.aiplatform.v1.BatchPredictionJob.model]: <doc:BatchPredictionJob/model>
     /// [google.cloud.aiplatform.v1.Model.predict_schemata]: <doc:Model/predictSchemata>
     /// [google.cloud.aiplatform.v1.PredictSchemata.parameters_schema_uri]: <doc:PredictSchemata/parametersSchemaUri>
-    public var modelParameters: GoogleCloudWkt.Value? = nil
+    public var modelParameters: GoogleCloudWKT.Value? = nil
 
     /// Required. The Configuration specifying where output predictions should
     /// be written.
@@ -209,18 +209,18 @@
     public var completionStats: CompletionStats? = nil
 
     /// Output only. Time when the BatchPredictionJob was created.
-    public var createTime: GoogleCloudWkt.Timestamp? = nil
+    public var createTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Time when the BatchPredictionJob for the first time entered
     /// the `JOB_STATE_RUNNING` state.
-    public var startTime: GoogleCloudWkt.Timestamp? = nil
+    public var startTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Time when the BatchPredictionJob entered any of the following
     /// states: `JOB_STATE_SUCCEEDED`, `JOB_STATE_FAILED`, `JOB_STATE_CANCELLED`.
-    public var endTime: GoogleCloudWkt.Timestamp? = nil
+    public var endTime: GoogleCloudWKT.Timestamp? = nil
 
     /// Output only. Time when the BatchPredictionJob was most recently updated.
-    public var updateTime: GoogleCloudWkt.Timestamp? = nil
+    public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
     /// The labels with user-defined metadata to organize BatchPredictionJobs.
     ///
@@ -275,7 +275,7 @@
     ///
     /// [google.cloud.aiplatform.v1.BatchPredictionJob]: <doc:BatchPredictionJob>
     /// [google.cloud.aiplatform.v1.Model.supported_input_storage_formats]: <doc:Model/supportedInputStorageFormats>
-    public struct InputConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct InputConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The format in which instances are given, must be one of the
@@ -376,17 +376,17 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.BatchPredictionJob.InputConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     /// Configuration defining how to transform batch prediction input instances to
     /// the instances that the Model accepts.
-    public struct InstanceConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct InstanceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// The format of the instance that the Model accepts. Vertex AI will
@@ -513,11 +513,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.BatchPredictionJob.InstanceConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -529,7 +529,7 @@
     ///
     /// [google.cloud.aiplatform.v1.BatchPredictionJob]: <doc:BatchPredictionJob>
     /// [google.cloud.aiplatform.v1.Model.supported_output_storage_formats]: <doc:Model/supportedOutputStorageFormats>
-    public struct OutputConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct OutputConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Required. The format in which Vertex AI gives the predictions, must be
@@ -678,11 +678,11 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.BatchPredictionJob.OutputConfig"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -691,7 +691,7 @@
     /// [output_config][google.cloud.aiplatform.v1.BatchPredictionJob.output_config].
     ///
     /// [google.cloud.aiplatform.v1.BatchPredictionJob.output_config]: <doc:BatchPredictionJob/outputConfig>
-    public struct OutputInfo: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct OutputInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Output only. The name of the BigQuery table created, in
@@ -793,22 +793,22 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.aiplatform.v1.BatchPredictionJob.OutputInfo"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.BatchPredictionJob"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

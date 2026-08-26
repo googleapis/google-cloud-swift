@@ -20,7 +20,7 @@
     import FoundationNetworking
   #endif
   import GoogleCloudLocation
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleIAMV1
   import GoogleLongRunning
   import GoogleRpc
@@ -574,7 +574,7 @@
       /// See `FeatureOnlineStoreAdminServiceClient.updateFeatureOnlineStore`.
       func updateFeatureOnlineStore(
         featureOnlineStore: FeatureOnlineStore?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> any GoogleCloudGax.PollableOperation<FeatureOnlineStore>
 
       /// See `FeatureOnlineStoreAdminServiceClient.deleteFeatureOnlineStore`.
@@ -640,7 +640,7 @@
       /// See `FeatureOnlineStoreAdminServiceClient.updateFeatureView`.
       func updateFeatureView(
         featureView: FeatureView?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> any GoogleCloudGax.PollableOperation<FeatureView>
 
       /// See `FeatureOnlineStoreAdminServiceClient.deleteFeatureView`.
@@ -1047,7 +1047,7 @@
 
     public func updateFeatureOnlineStore(
       featureOnlineStore: FeatureOnlineStore?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<FeatureOnlineStore> {
       let request = UpdateFeatureOnlineStoreRequest().with {
         $0.featureOnlineStore = featureOnlineStore
@@ -1224,7 +1224,7 @@
 
     public func updateFeatureView(
       featureView: FeatureView?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<FeatureView> {
       let request = UpdateFeatureViewRequest().with {
         $0.featureView = featureView

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Contains what resources are changing and how they are changing.
-public struct RecommendationContent: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RecommendationContent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Operations to one or more Google Cloud resources grouped in such a way
@@ -27,7 +27,7 @@ public struct RecommendationContent: Codable, Equatable, GoogleCloudWkt._AnyPack
   public var operationGroups: [OperationGroup] = []
 
   /// Condensed overview information about the recommendation.
-  public var overview: GoogleCloudWkt.Struct? = nil
+  public var overview: GoogleCloudWKT.Struct? = nil
 
   /// Initialize a new instance of `RecommendationContent`.
   public init() {}
@@ -48,10 +48,10 @@ public struct RecommendationContent: Codable, Equatable, GoogleCloudWkt._AnyPack
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.recommender.v1.RecommendationContent"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

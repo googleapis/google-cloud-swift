@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Provides configuration information for the StreamingRecognize request.
-public struct StreamingRecognitionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct StreamingRecognitionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. Features and audio metadata to use for the Automatic Speech
@@ -48,7 +48,7 @@ public struct StreamingRecognitionConfig: Codable, Equatable, GoogleCloudWkt._An
   ///
   /// [google.cloud.speech.v2.Recognizer.default_recognition_config]: <doc:Recognizer/defaultRecognitionConfig>
   /// [google.cloud.speech.v2.StreamingRecognitionConfig.config]: <doc:StreamingRecognitionConfig/config>
-  public var configMask: GoogleCloudWkt.FieldMask? = nil
+  public var configMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Speech recognition features to enable specific to streaming audio
   /// recognition requests.
@@ -73,10 +73,10 @@ public struct StreamingRecognitionConfig: Codable, Equatable, GoogleCloudWkt._An
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.speech.v2.StreamingRecognitionConfig"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

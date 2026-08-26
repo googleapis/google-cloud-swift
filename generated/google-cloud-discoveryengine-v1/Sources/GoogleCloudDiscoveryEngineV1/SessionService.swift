@@ -19,7 +19,7 @@
   #if canImport(FoundationNetworking)
     import FoundationNetworking
   #endif
-  import GoogleCloudWkt
+  import GoogleCloudWKT
   import GoogleLongRunning
   import GoogleCloudGax
 
@@ -204,7 +204,7 @@
       /// See `SessionServiceClient.updateSession`.
       func updateSession(
         session: Session?,
-        updateMask: GoogleCloudWkt.FieldMask?,
+        updateMask: GoogleCloudWKT.FieldMask?,
       ) async throws -> GoogleCloudDiscoveryEngineV1.Session
 
       /// See `SessionServiceClient.getSession`.
@@ -358,7 +358,7 @@
 
     public func updateSession(
       session: Session?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudDiscoveryEngineV1.Session {
       let request = UpdateSessionRequest().with {
         $0.session = session

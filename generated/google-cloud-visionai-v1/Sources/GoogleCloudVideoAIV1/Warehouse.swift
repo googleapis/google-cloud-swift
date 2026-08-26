@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -1462,7 +1462,7 @@ extension Clients {
     /// See `WarehouseClient.updateAsset`.
     func updateAsset(
       asset: Asset?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudVideoAIV1.Asset
 
     /// See `WarehouseClient.getAsset`.
@@ -1570,7 +1570,7 @@ extension Clients {
     /// See `WarehouseClient.updateIndex`.
     func updateIndex(
       index: Index?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Index>
 
     /// See `WarehouseClient.getIndex`.
@@ -1634,7 +1634,7 @@ extension Clients {
     /// See `WarehouseClient.updateCorpus`.
     func updateCorpus(
       corpus: Corpus?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudVideoAIV1.Corpus
 
     /// See `WarehouseClient.listCorpora`.
@@ -1683,7 +1683,7 @@ extension Clients {
     /// See `WarehouseClient.updateDataSchema`.
     func updateDataSchema(
       dataSchema: DataSchema?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudVideoAIV1.DataSchema
 
     /// See `WarehouseClient.getDataSchema`.
@@ -1758,7 +1758,7 @@ extension Clients {
     /// See `WarehouseClient.updateAnnotation`.
     func updateAnnotation(
       annotation: Annotation?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudVideoAIV1.Annotation
 
     /// See `WarehouseClient.deleteAnnotation`.
@@ -1801,7 +1801,7 @@ extension Clients {
     /// See `WarehouseClient.updateSearchConfig`.
     func updateSearchConfig(
       searchConfig: SearchConfig?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudVideoAIV1.SearchConfig
 
     /// See `WarehouseClient.getSearchConfig`.
@@ -1853,7 +1853,7 @@ extension Clients {
     /// See `WarehouseClient.updateSearchHypernym`.
     func updateSearchHypernym(
       searchHypernym: SearchHypernym?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudVideoAIV1.SearchHypernym
 
     /// See `WarehouseClient.getSearchHypernym`.
@@ -1954,7 +1954,7 @@ extension Clients {
     /// See `WarehouseClient.updateIndexEndpoint`.
     func updateIndexEndpoint(
       indexEndpoint: IndexEndpoint?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<IndexEndpoint>
 
     /// See `WarehouseClient.deleteIndexEndpoint`.
@@ -2028,7 +2028,7 @@ extension Clients {
     /// See `WarehouseClient.updateCollection`.
     func updateCollection(
       collection: Collection?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> GoogleCloudVideoAIV1.Collection
 
     /// See `WarehouseClient.listCollections`.
@@ -2660,7 +2660,7 @@ extension Clients.WarehouseProtocol {
 
   public func updateAsset(
     asset: Asset?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudVideoAIV1.Asset {
     let request = UpdateAssetRequest().with {
       $0.asset = asset
@@ -2986,7 +2986,7 @@ extension Clients.WarehouseProtocol {
 
   public func updateIndex(
     index: Index?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Index> {
     let request = UpdateIndexRequest().with {
       $0.index = index
@@ -3156,7 +3156,7 @@ extension Clients.WarehouseProtocol {
 
   public func updateCorpus(
     corpus: Corpus?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudVideoAIV1.Corpus {
     let request = UpdateCorpusRequest().with {
       $0.corpus = corpus
@@ -3287,7 +3287,7 @@ extension Clients.WarehouseProtocol {
 
   public func updateDataSchema(
     dataSchema: DataSchema?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudVideoAIV1.DataSchema {
     let request = UpdateDataSchemaRequest().with {
       $0.dataSchema = dataSchema
@@ -3470,7 +3470,7 @@ extension Clients.WarehouseProtocol {
 
   public func updateAnnotation(
     annotation: Annotation?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudVideoAIV1.Annotation {
     let request = UpdateAnnotationRequest().with {
       $0.annotation = annotation
@@ -3589,7 +3589,7 @@ extension Clients.WarehouseProtocol {
 
   public func updateSearchConfig(
     searchConfig: SearchConfig?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudVideoAIV1.SearchConfig {
     let request = UpdateSearchConfigRequest().with {
       $0.searchConfig = searchConfig
@@ -3714,7 +3714,7 @@ extension Clients.WarehouseProtocol {
 
   public func updateSearchHypernym(
     searchHypernym: SearchHypernym?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudVideoAIV1.SearchHypernym {
     let request = UpdateSearchHypernymRequest().with {
       $0.searchHypernym = searchHypernym
@@ -3985,7 +3985,7 @@ extension Clients.WarehouseProtocol {
 
   public func updateIndexEndpoint(
     indexEndpoint: IndexEndpoint?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<IndexEndpoint> {
     let request = UpdateIndexEndpointRequest().with {
       $0.indexEndpoint = indexEndpoint
@@ -4200,7 +4200,7 @@ extension Clients.WarehouseProtocol {
 
   public func updateCollection(
     collection: Collection?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> GoogleCloudVideoAIV1.Collection {
     let request = UpdateCollectionRequest().with {
       $0.collection = collection

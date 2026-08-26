@@ -16,13 +16,13 @@
 
 #if JobService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request message for
   /// [JobService.ListModelDeploymentMonitoringJobs][google.cloud.aiplatform.v1.JobService.ListModelDeploymentMonitoringJobs].
   ///
   /// [google.cloud.aiplatform.v1.JobService.ListModelDeploymentMonitoringJobs]: <doc:JobServiceClient/listModelDeploymentMonitoringJobs(request:options:)>
-  public struct ListModelDeploymentMonitoringJobsRequest: Codable, Equatable, GoogleCloudWkt
+  public struct ListModelDeploymentMonitoringJobsRequest: Codable, Equatable, GoogleCloudWKT
       ._AnyPackable,
     Sendable
   {
@@ -59,7 +59,7 @@
     public var pageToken: Swift.String = Swift.String()
 
     /// Mask specifying which fields to read
-    public var readMask: GoogleCloudWkt.FieldMask? = nil
+    public var readMask: GoogleCloudWKT.FieldMask? = nil
 
     /// Initialize a new instance of `ListModelDeploymentMonitoringJobsRequest`.
     public init() {}
@@ -81,11 +81,11 @@
       return
         "type.googleapis.com/google.cloud.aiplatform.v1.ListModelDeploymentMonitoringJobsRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

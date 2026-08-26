@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
@@ -1221,7 +1221,7 @@ extension Clients {
     /// See `ConfigClient.updateDeployment`.
     func updateDeployment(
       deployment: Deployment?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Deployment>
 
     /// See `ConfigClient.deleteDeployment`.
@@ -1481,7 +1481,7 @@ extension Clients {
     /// See `ConfigClient.updateAutoMigrationConfig`.
     func updateAutoMigrationConfig(
       autoMigrationConfig: AutoMigrationConfig?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<AutoMigrationConfig>
 
     /// See `ConfigClient.getDeploymentGroup`.
@@ -1519,7 +1519,7 @@ extension Clients {
     /// See `ConfigClient.updateDeploymentGroup`.
     func updateDeploymentGroup(
       deploymentGroup: DeploymentGroup?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<DeploymentGroup>
 
     /// See `ConfigClient.deleteDeploymentGroup`.
@@ -2135,7 +2135,7 @@ extension Clients.ConfigProtocol {
 
   public func updateDeployment(
     deployment: Deployment?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Deployment> {
     let request = UpdateDeploymentRequest().with {
       $0.deployment = deployment
@@ -2828,7 +2828,7 @@ extension Clients.ConfigProtocol {
 
   public func updateAutoMigrationConfig(
     autoMigrationConfig: AutoMigrationConfig?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<AutoMigrationConfig> {
     let request = UpdateAutoMigrationConfigRequest().with {
       $0.autoMigrationConfig = autoMigrationConfig
@@ -2929,7 +2929,7 @@ extension Clients.ConfigProtocol {
 
   public func updateDeploymentGroup(
     deploymentGroup: DeploymentGroup?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<DeploymentGroup> {
     let request = UpdateDeploymentGroupRequest().with {
       $0.deploymentGroup = deploymentGroup

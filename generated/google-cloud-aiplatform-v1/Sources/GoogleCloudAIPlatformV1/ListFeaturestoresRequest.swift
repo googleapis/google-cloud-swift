@@ -16,13 +16,13 @@
 
 #if FeaturestoreService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request message for
   /// [FeaturestoreService.ListFeaturestores][google.cloud.aiplatform.v1.FeaturestoreService.ListFeaturestores].
   ///
   /// [google.cloud.aiplatform.v1.FeaturestoreService.ListFeaturestores]: <doc:FeaturestoreServiceClient/listFeaturestores(request:options:)>
-  public struct ListFeaturestoresRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ListFeaturestoresRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The resource name of the Location to list Featurestores.
@@ -78,7 +78,7 @@
     public var orderBy: Swift.String = Swift.String()
 
     /// Mask specifying which fields to read.
-    public var readMask: GoogleCloudWkt.FieldMask? = nil
+    public var readMask: GoogleCloudWKT.FieldMask? = nil
 
     /// Initialize a new instance of `ListFeaturestoresRequest`.
     public init() {}
@@ -99,11 +99,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.ListFeaturestoresRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

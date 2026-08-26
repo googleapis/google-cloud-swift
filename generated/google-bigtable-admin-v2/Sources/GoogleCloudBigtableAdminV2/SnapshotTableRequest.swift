@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [google.bigtable.admin.v2.BigtableTableAdmin.SnapshotTable][google.bigtable.admin.v2.BigtableTableAdmin.SnapshotTable]
@@ -26,7 +26,7 @@ import Foundation
 /// for production use. It is not subject to any SLA or deprecation policy.
 ///
 /// [google.bigtable.admin.v2.BigtableTableAdmin.SnapshotTable]: <doc:BigtableTableAdminClient/snapshotTable(request:options:)>
-public struct SnapshotTableRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct SnapshotTableRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. The unique name of the table to have the snapshot taken.
@@ -49,7 +49,7 @@ public struct SnapshotTableRequest: Codable, Equatable, GoogleCloudWkt._AnyPacka
   /// created. Once 'ttl' expires, the snapshot will get deleted. The maximum
   /// amount of time a snapshot can stay active is 7 days. If 'ttl' is not
   /// specified, the default value of 24 hours will be used.
-  public var ttl: GoogleCloudWkt.Duration? = nil
+  public var ttl: GoogleCloudWKT.Duration? = nil
 
   /// Description of the snapshot.
   public var description: Swift.String = Swift.String()
@@ -73,10 +73,10 @@ public struct SnapshotTableRequest: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.bigtable.admin.v2.SnapshotTableRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

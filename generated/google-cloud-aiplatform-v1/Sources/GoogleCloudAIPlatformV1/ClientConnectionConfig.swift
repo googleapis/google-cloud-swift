@@ -16,14 +16,14 @@
 
 #if EndpointService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Configurations (e.g. inference timeout) that are applied on your endpoints.
-  public struct ClientConnectionConfig: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct ClientConnectionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Customizable online prediction request timeout.
-    public var inferenceTimeout: GoogleCloudWkt.Duration? = nil
+    public var inferenceTimeout: GoogleCloudWKT.Duration? = nil
 
     /// Initialize a new instance of `ClientConnectionConfig`.
     public init() {}
@@ -44,11 +44,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.ClientConnectionConfig"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Configures how to deliver Findings to BigQuery Instance.
-public struct BigQueryExport: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct BigQueryExport: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Identifier. The relative resource name of this export. See:
@@ -69,12 +69,12 @@ public struct BigQueryExport: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// Output only. The time at which the BigQuery export was created.
   /// This field is set by the server and will be ignored if provided on export
   /// on creation.
-  public var createTime: GoogleCloudWkt.Timestamp? = nil
+  public var createTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. The most recent time at which the BigQuery export was updated.
   /// This field is set by the server and will be ignored if provided on export
   /// creation or update.
-  public var updateTime: GoogleCloudWkt.Timestamp? = nil
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
 
   /// Output only. Email address of the user who last edited the BigQuery export.
   /// This field is set by the server and will be ignored if provided on export
@@ -104,10 +104,10 @@ public struct BigQueryExport: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.securitycenter.v2.BigQueryExport"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

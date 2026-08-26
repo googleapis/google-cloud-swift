@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// HTTP/JSON error representation as defined in
 /// https://google.aip.dev/193#http11json-representation,
-public struct RestError: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RestError: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   public var error: RestError.Status? = nil
@@ -41,7 +41,7 @@ public struct RestError: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     return copy
   }
 
-  public struct Status: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Status: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The HTTP status code that corresponds to `google.rpc.Status.code`.
@@ -54,7 +54,7 @@ public struct RestError: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public var status: GoogleRpc.Code = GoogleRpc.Code()
 
     /// This corresponds to `google.rpc.Status.details`.
-    public var details: [GoogleCloudWkt.`Any`] = []
+    public var details: [GoogleCloudWKT.`Any`] = []
 
     /// Initialize a new instance of `Status`.
     public init() {}
@@ -75,21 +75,21 @@ public struct RestError: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.showcase.v1beta1.RestError.Status"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.showcase.v1beta1.RestError"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

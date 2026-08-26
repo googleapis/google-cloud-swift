@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Parameters that control the sensitivity and other options for the time series
 /// forecast.
-public struct ForecastParams: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct ForecastParams: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. Penalize variations between the actual and forecasted values smaller than
@@ -70,7 +70,7 @@ public struct ForecastParams: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// [EvaluatedSlice.forecast]: <doc:EvaluatedSlice/forecast>
   /// [google.cloud.timeseriesinsights.v1.QueryDataSetRequest.detection_time]: <doc:QueryDataSetRequest/detectionTime>
   /// [google.cloud.timeseriesinsights.v1.TimeseriesParams.granularity]: <doc:TimeseriesParams/granularity>
-  public var horizonDuration: GoogleCloudWkt.Duration? = nil
+  public var horizonDuration: GoogleCloudWKT.Duration? = nil
 
   /// Initialize a new instance of `ForecastParams`.
   public init() {}
@@ -217,10 +217,10 @@ public struct ForecastParams: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.timeseriesinsights.v1.ForecastParams"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

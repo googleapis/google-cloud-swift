@@ -15,13 +15,13 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for
 /// [CertificateAuthorityService.UpdateCertificate][google.cloud.security.privateca.v1.CertificateAuthorityService.UpdateCertificate].
 ///
 /// [google.cloud.security.privateca.v1.CertificateAuthorityService.UpdateCertificate]: <doc:CertificateAuthorityServiceClient/updateCertificate(request:options:)>
-public struct UpdateCertificateRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateCertificateRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Required. [Certificate][google.cloud.security.privateca.v1.Certificate]
@@ -31,7 +31,7 @@ public struct UpdateCertificateRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   public var certificate: Certificate? = nil
 
   /// Required. A list of fields to be updated in this request.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Optional. An ID to identify requests. Specify a unique request ID so that
   /// if you must retry your request, the server will know to ignore the request
@@ -67,10 +67,10 @@ public struct UpdateCertificateRequest: Codable, Equatable, GoogleCloudWkt._AnyP
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.security.privateca.v1.UpdateCertificateRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

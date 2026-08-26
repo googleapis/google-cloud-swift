@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Message of content of appPlatform event
-public struct AppPlatformEventBody: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AppPlatformEventBody: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Human readable string of the event like "There are more than 6 people in
@@ -27,7 +27,7 @@ public struct AppPlatformEventBody: Codable, Equatable, GoogleCloudWkt._AnyPacka
 
   /// For the case of Pub/Sub, it will be stored in the message attributes.
   /// ​​pubsub.proto
-  public var payload: GoogleCloudWkt.Struct? = nil
+  public var payload: GoogleCloudWKT.Struct? = nil
 
   /// User defined Event Id, used to classify event, within a delivery interval,
   /// events from the same application instance with the same id will be
@@ -54,10 +54,10 @@ public struct AppPlatformEventBody: Codable, Equatable, GoogleCloudWkt._AnyPacka
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.visionai.v1.AppPlatformEventBody"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

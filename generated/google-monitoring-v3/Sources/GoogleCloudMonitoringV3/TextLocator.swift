@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A locator for text. Indicates a particular part of the text of a request or
 /// of an object referenced in the request.
@@ -37,7 +37,7 @@ import Foundation
 ///   }
 ///
 /// refers to the part of the text: "fox".
-public struct TextLocator: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TextLocator: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The source of the text. The source may be a field in the request, in which
@@ -59,7 +59,7 @@ public struct TextLocator: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// some object (e.g. a macro in the time series query language text) and a
   /// location is to be designated in that object's text, `nested_locator`
   /// identifies the location within that object.
-  public var nestedLocator: GoogleCloudWkt.Recursive<TextLocator>? = nil
+  public var nestedLocator: GoogleCloudWKT.Recursive<TextLocator>? = nil
 
   /// When `nested_locator` is set, this field gives the reason for the nesting.
   /// Usually, the reason is a macro invocation. In that case, the macro name
@@ -86,7 +86,7 @@ public struct TextLocator: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   }
 
   /// The position of a byte within the text.
-  public struct Position: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Position: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The line, starting with 1, where the byte is positioned.
@@ -115,21 +115,21 @@ public struct TextLocator: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.monitoring.v3.TextLocator.Position"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.monitoring.v3.TextLocator"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

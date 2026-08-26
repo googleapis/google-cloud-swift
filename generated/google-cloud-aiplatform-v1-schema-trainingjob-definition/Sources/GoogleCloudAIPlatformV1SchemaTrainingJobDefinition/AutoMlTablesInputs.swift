@@ -15,9 +15,9 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
-public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The type of prediction the Model is to produce.
@@ -202,7 +202,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     }
   }
 
-  public struct Transformation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Transformation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The transformation that the training pipeline will apply to the input
@@ -320,7 +320,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWkt._AnyPackabl
 
     /// Training pipeline will infer the proper transformation based on the
     /// statistic of dataset.
-    public struct AutoTransformation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct AutoTransformation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       public var columnName: Swift.String = Swift.String()
@@ -345,11 +345,11 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWkt._AnyPackabl
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.schema.trainingjob.definition.AutoMlTablesInputs.Transformation.AutoTransformation"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -363,7 +363,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     ///    Otherwise, this transformation is not applied and the value is
     ///    considered a missing value.
     /// *  A boolean value that indicates whether the value is valid.
-    public struct NumericTransformation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct NumericTransformation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       public var columnName: Swift.String = Swift.String()
@@ -394,11 +394,11 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWkt._AnyPackabl
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.schema.trainingjob.definition.AutoMlTablesInputs.Transformation.NumericTransformation"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -411,7 +411,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     /// *  Categories that appear less than 5 times in the training dataset are
     ///    treated as the "unknown" category. The "unknown" category gets its own
     ///    special lookup index and resulting embedding.
-    public struct CategoricalTransformation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct CategoricalTransformation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       public var columnName: Swift.String = Swift.String()
@@ -436,11 +436,11 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWkt._AnyPackabl
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.schema.trainingjob.definition.AutoMlTablesInputs.Transformation.CategoricalTransformation"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -451,7 +451,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     /// *  Invalid numerical values (for example, values that fall outside of a
     ///    typical timestamp range, or are extreme values) receive no special
     ///    treatment and are not removed.
-    public struct TimestampTransformation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct TimestampTransformation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       public var columnName: Swift.String = Swift.String()
@@ -495,11 +495,11 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWkt._AnyPackabl
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.schema.trainingjob.definition.AutoMlTablesInputs.Transformation.TimestampTransformation"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -514,7 +514,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     /// *  Tokenization is based on unicode script boundaries.
     /// *  Missing values get their own lookup index and resulting embedding.
     /// *  Stop-words receive no special treatment and are not removed.
-    public struct TextTransformation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct TextTransformation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       public var columnName: Swift.String = Swift.String()
@@ -539,11 +539,11 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWkt._AnyPackabl
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.schema.trainingjob.definition.AutoMlTablesInputs.Transformation.TextTransformation"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -552,7 +552,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     /// *  All transformations for Numerical types applied to the average of the
     ///    all elements.
     /// *  The average of empty arrays is treated as zero.
-    public struct NumericArrayTransformation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct NumericArrayTransformation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       public var columnName: Swift.String = Swift.String()
@@ -583,11 +583,11 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWkt._AnyPackabl
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.schema.trainingjob.definition.AutoMlTablesInputs.Transformation.NumericArrayTransformation"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -599,7 +599,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     ///    Combine the embedding of all elements into a single embedding using
     ///    the mean.
     /// *  Empty arrays treated as an embedding of zeroes.
-    public struct CategoricalArrayTransformation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct CategoricalArrayTransformation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       public var columnName: Swift.String = Swift.String()
@@ -624,11 +624,11 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWkt._AnyPackabl
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.schema.trainingjob.definition.AutoMlTablesInputs.Transformation.CategoricalArrayTransformation"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -639,7 +639,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     ///    a space (" ") as a delimiter, and then treat the result as a single
     ///    text value. Apply the transformations for Text columns.
     /// *  Empty arrays treated as an empty text.
-    public struct TextArrayTransformation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct TextArrayTransformation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       public var columnName: Swift.String = Swift.String()
@@ -664,11 +664,11 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWkt._AnyPackabl
         return
           "type.googleapis.com/google.cloud.aiplatform.v1.schema.trainingjob.definition.AutoMlTablesInputs.Transformation.TextArrayTransformation"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
@@ -690,11 +690,11 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWkt._AnyPackabl
       return
         "type.googleapis.com/google.cloud.aiplatform.v1.schema.trainingjob.definition.AutoMlTablesInputs.Transformation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -714,10 +714,10 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleCloudWkt._AnyPackabl
     return
       "type.googleapis.com/google.cloud.aiplatform.v1.schema.trainingjob.definition.AutoMlTablesInputs"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

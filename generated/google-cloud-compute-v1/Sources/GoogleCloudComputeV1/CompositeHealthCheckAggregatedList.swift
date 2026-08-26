@@ -17,10 +17,10 @@
 #if RegionCompositeHealthChecks
   import Foundation
   @_spi(GoogleCloudInternal) import GoogleCloudGax
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Contains a list of CompositeHealthChecksScopedList.
-  public struct CompositeHealthCheckAggregatedList: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct CompositeHealthCheckAggregatedList: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     GoogleCloudGax._PaginatedResponse,
     Sendable
   {
@@ -68,7 +68,7 @@
     /// The message type for the [warning][google.cloud.compute.v1.CompositeHealthCheckAggregatedList.warning] field.
     ///
     /// [google.cloud.compute.v1.CompositeHealthCheckAggregatedList.warning]: <doc:CompositeHealthCheckAggregatedList/Warning>
-    public struct Warning: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct Warning: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// [Output Only] A warning code, if applicable. For example, Compute
@@ -108,7 +108,7 @@
       /// The message type for the [data][google.cloud.compute.v1.CompositeHealthCheckAggregatedList.warning.data] field.
       ///
       /// [google.cloud.compute.v1.CompositeHealthCheckAggregatedList.warning.data]: <doc:CompositeHealthCheckAggregatedList/Warning/Data>
-      public struct Data: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+      public struct Data: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         Sendable
       {
         /// [Output Only] A key that provides more detail on the warning being
@@ -143,11 +143,11 @@
           return
             "type.googleapis.com/google.cloud.compute.v1.CompositeHealthCheckAggregatedList.warning.data"
         }
-        public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-          self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
         }
-        public func _pack() throws -> GoogleCloudWkt.Struct {
-          return try GoogleCloudWkt._slowAnySerialize(message: self)
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
         }
       }
 
@@ -465,22 +465,22 @@
         return
           "type.googleapis.com/google.cloud.compute.v1.CompositeHealthCheckAggregatedList.warning"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.compute.v1.CompositeHealthCheckAggregatedList"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
 
     public func _getPaginatedItems() -> [(Swift.String, CompositeHealthChecksScopedList)] {

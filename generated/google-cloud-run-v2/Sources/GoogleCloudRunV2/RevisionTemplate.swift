@@ -15,11 +15,11 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// RevisionTemplate describes the data a revision should have when created from
 /// a template.
-public struct RevisionTemplate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct RevisionTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. The unique name for the revision. If this field is omitted, it
@@ -61,7 +61,7 @@ public struct RevisionTemplate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public var vpcAccess: VpcAccess? = nil
 
   /// Optional. Max allowed time for an instance to respond to a request.
-  public var timeout: GoogleCloudWkt.Duration? = nil
+  public var timeout: GoogleCloudWKT.Duration? = nil
 
   /// Optional. Email address of the IAM service account associated with the
   /// revision of the service. The service account represents the identity of the
@@ -98,7 +98,7 @@ public struct RevisionTemplate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// Optional. If encryption_key_revocation_action is SHUTDOWN, the duration
   /// before shutting down all instances. The minimum increment is 1 hour.
-  public var encryptionKeyShutdownDuration: GoogleCloudWkt.Duration? = nil
+  public var encryptionKeyShutdownDuration: GoogleCloudWKT.Duration? = nil
 
   /// Optional. Enable session affinity.
   public var sessionAffinity: Swift.Bool = Swift.Bool()
@@ -131,10 +131,10 @@ public struct RevisionTemplate: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.run.v2.RevisionTemplate"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

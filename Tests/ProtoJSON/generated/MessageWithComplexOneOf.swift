@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A message with a more complex `oneof` field.
-public struct MessageWithComplexOneOf: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct MessageWithComplexOneOf: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   public var complex: OneOf_Complex? = nil
@@ -68,7 +68,7 @@ public struct MessageWithComplexOneOf: Codable, Equatable, GoogleCloudWkt._AnyPa
       }
       complex = $0
     }
-    if let null = try container.decodeIfPresent(GoogleCloudWkt.NullValue.self, forKey: .null) {
+    if let null = try container.decodeIfPresent(GoogleCloudWKT.NullValue.self, forKey: .null) {
       try complexCheckAndSet(.null(null))
     }
     if let boolValue = try container.decodeIfPresent(Swift.Bool.self, forKey: .boolValue) {
@@ -103,15 +103,15 @@ public struct MessageWithComplexOneOf: Codable, Equatable, GoogleCloudWkt._AnyPa
       try complexCheckAndSet(.inner(inner))
     }
     if let duration = try container.decodeIfPresent(
-      GoogleCloudWkt.Duration?.self, forKey: .duration)
+      GoogleCloudWKT.Duration?.self, forKey: .duration)
     {
       try complexCheckAndSet(.duration(duration))
     }
-    if let value = try container.decodeIfPresent(GoogleCloudWkt.Value?.self, forKey: .value) {
+    if let value = try container.decodeIfPresent(GoogleCloudWKT.Value?.self, forKey: .value) {
       try complexCheckAndSet(.value(value))
     }
     if let optionalDouble = try container.decodeIfPresent(
-      GoogleCloudWkt.DoubleValue?.self, forKey: .optionalDouble)
+      GoogleCloudWKT.DoubleValue?.self, forKey: .optionalDouble)
     {
       try complexCheckAndSet(.optionalDouble(optionalDouble))
     }
@@ -153,7 +153,7 @@ public struct MessageWithComplexOneOf: Codable, Equatable, GoogleCloudWkt._AnyPa
     }
   }
 
-  public struct Inner: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Inner: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     public var strings: [Swift.String] = []
@@ -177,11 +177,11 @@ public struct MessageWithComplexOneOf: Codable, Equatable, GoogleCloudWkt._AnyPa
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.swift.sdk.test.MessageWithComplexOneOf.Inner"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
@@ -281,7 +281,7 @@ public struct MessageWithComplexOneOf: Codable, Equatable, GoogleCloudWkt._AnyPa
   }
 
   public enum OneOf_Complex: Codable, Equatable, Sendable {
-    case null(GoogleCloudWkt.NullValue)
+    case null(GoogleCloudWKT.NullValue)
     case boolValue(Swift.Bool)
     case bytesValue(Foundation.Data)
     case stringValue(Swift.String)
@@ -291,18 +291,18 @@ public struct MessageWithComplexOneOf: Codable, Equatable, GoogleCloudWkt._AnyPa
     case int64(Swift.Int64)
     case `enum`(MessageWithComplexOneOf.TestEnum)
     indirect case inner(MessageWithComplexOneOf.Inner?)
-    indirect case duration(GoogleCloudWkt.Duration?)
-    indirect case value(GoogleCloudWkt.Value?)
-    indirect case optionalDouble(GoogleCloudWkt.DoubleValue?)
+    indirect case duration(GoogleCloudWKT.Duration?)
+    indirect case value(GoogleCloudWKT.Value?)
+    indirect case optionalDouble(GoogleCloudWKT.DoubleValue?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.swift.sdk.test.MessageWithComplexOneOf"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

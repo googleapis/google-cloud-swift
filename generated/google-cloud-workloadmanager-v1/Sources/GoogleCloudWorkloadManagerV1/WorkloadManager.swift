@@ -19,7 +19,7 @@ import Foundation
   import FoundationNetworking
 #endif
 import GoogleCloudLocation
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 import GoogleCloudGax
@@ -510,7 +510,7 @@ extension Clients {
     /// See `WorkloadManagerClient.updateEvaluation`.
     func updateEvaluation(
       evaluation: Evaluation?,
-      updateMask: GoogleCloudWkt.FieldMask?,
+      updateMask: GoogleCloudWKT.FieldMask?,
     ) async throws -> any GoogleCloudGax.PollableOperation<Evaluation>
 
     /// See `WorkloadManagerClient.deleteEvaluation`.
@@ -930,7 +930,7 @@ extension Clients.WorkloadManagerProtocol {
 
   public func updateEvaluation(
     evaluation: Evaluation?,
-    updateMask: GoogleCloudWkt.FieldMask?,
+    updateMask: GoogleCloudWKT.FieldMask?,
   ) async throws -> any GoogleCloudGax.PollableOperation<Evaluation> {
     let request = UpdateEvaluationRequest().with {
       $0.evaluation = evaluation

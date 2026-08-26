@@ -16,10 +16,10 @@
 
 #if ConversationModels
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// The evaluation metrics for smart reply model.
-  public struct SmartReplyMetrics: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct SmartReplyMetrics: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Percentage of target participant messages in the evaluation dataset for
@@ -50,7 +50,7 @@
     }
 
     /// Evaluation metrics when retrieving `n` smart replies with the model.
-    public struct TopNMetrics: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+    public struct TopNMetrics: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Sendable
     {
       /// Number of retrieved smart replies. For example, when `n` is 3, this
@@ -83,22 +83,22 @@
       public static var _anyTypeUrl: Swift.String {
         return "type.googleapis.com/google.cloud.dialogflow.v2.SmartReplyMetrics.TopNMetrics"
       }
-      public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-        self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
       }
-      public func _pack() throws -> GoogleCloudWkt.Struct {
-        return try GoogleCloudWkt._slowAnySerialize(message: self)
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
       }
     }
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.dialogflow.v2.SmartReplyMetrics"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

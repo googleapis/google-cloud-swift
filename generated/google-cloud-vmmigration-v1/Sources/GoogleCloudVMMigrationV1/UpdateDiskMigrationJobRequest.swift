@@ -15,10 +15,10 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Request message for 'UpdateDiskMigrationJob' request.
-public struct UpdateDiskMigrationJobRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct UpdateDiskMigrationJobRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. Field mask is used to specify the fields to be overwritten in the
@@ -27,7 +27,7 @@ public struct UpdateDiskMigrationJobRequest: Codable, Equatable, GoogleCloudWkt.
   /// the full request. A field will be overwritten if it is in the mask. If the
   /// user does not provide a mask, then a mask equivalent to all fields that are
   /// populated (have a non-empty value), will be implied.
-  public var updateMask: GoogleCloudWkt.FieldMask? = nil
+  public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
   /// Required. The update request body.
   public var diskMigrationJob: DiskMigrationJob? = nil
@@ -66,10 +66,10 @@ public struct UpdateDiskMigrationJobRequest: Codable, Equatable, GoogleCloudWkt.
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.cloud.vmmigration.v1.UpdateDiskMigrationJobRequest"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

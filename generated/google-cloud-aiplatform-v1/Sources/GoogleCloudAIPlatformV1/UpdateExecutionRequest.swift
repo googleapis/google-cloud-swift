@@ -16,13 +16,13 @@
 
 #if MetadataService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Request message for
   /// [MetadataService.UpdateExecution][google.cloud.aiplatform.v1.MetadataService.UpdateExecution].
   ///
   /// [google.cloud.aiplatform.v1.MetadataService.UpdateExecution]: <doc:MetadataServiceClient/updateExecution(request:options:)>
-  public struct UpdateExecutionRequest: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct UpdateExecutionRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// Required. The Execution containing updates.
@@ -34,7 +34,7 @@
     public var execution: Execution? = nil
 
     /// Optional. A FieldMask indicating which fields should be updated.
-    public var updateMask: GoogleCloudWkt.FieldMask? = nil
+    public var updateMask: GoogleCloudWKT.FieldMask? = nil
 
     /// If set to true, and the [Execution][google.cloud.aiplatform.v1.Execution]
     /// is not found, a new [Execution][google.cloud.aiplatform.v1.Execution] is
@@ -62,11 +62,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.UpdateExecutionRequest"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif

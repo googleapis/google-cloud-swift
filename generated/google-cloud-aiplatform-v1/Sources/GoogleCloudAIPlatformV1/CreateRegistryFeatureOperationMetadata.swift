@@ -16,10 +16,10 @@
 
 #if DataFoundryService && DatasetService && DeploymentResourcePoolService && EndpointService && EvaluationService && FeatureOnlineStoreAdminService && FeatureOnlineStoreService && FeatureRegistryService && FeaturestoreOnlineServingService && FeaturestoreService && GenAiCacheService && GenAiTuningService && IndexEndpointService && IndexService && JobService && LlmUtilityService && MatchService && MetadataService && MigrationService && ModelGardenService && ModelService && NotebookService && PersistentResourceService && PipelineService && PredictionService && ReasoningEngineExecutionService && ReasoningEngineService && ScheduleService && SessionService && SpecialistPoolService && TensorboardService && VertexRagDataService && VertexRagService && VizierService
   import Foundation
-  @_spi(GoogleCloudInternal) import GoogleCloudWkt
+  @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
   /// Details of operations that perform create FeatureGroup.
-  public struct CreateRegistryFeatureOperationMetadata: Codable, Equatable, GoogleCloudWkt
+  public struct CreateRegistryFeatureOperationMetadata: Codable, Equatable, GoogleCloudWKT
       ._AnyPackable,
     Sendable
   {
@@ -45,11 +45,11 @@
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.cloud.aiplatform.v1.CreateRegistryFeatureOperationMetadata"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 #endif
