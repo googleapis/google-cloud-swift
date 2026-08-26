@@ -15,12 +15,12 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import GoogleRpc
 
 /// This resource represents a long-running operation that is the result of a
 /// network API call.
-public struct Operation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Operation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The server-assigned name, which is only unique within the same service that
@@ -32,7 +32,7 @@ public struct Operation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// contains progress information and common metadata such as create time.
   /// Some services might not provide such metadata.  Any method that returns a
   /// long-running operation should document the metadata type, if any.
-  public var metadata: GoogleCloudWkt.`Any`? = nil
+  public var metadata: GoogleCloudWKT.`Any`? = nil
 
   /// If the value is `false`, it means the operation is still in progress.
   /// If `true`, the operation is completed, and either `error` or `response` is
@@ -72,7 +72,7 @@ public struct Operation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.name = try container.decode(Swift.String.self, forKey: .name)
-    self.metadata = try container.decodeIfPresent(GoogleCloudWkt.`Any`.self, forKey: .metadata)
+    self.metadata = try container.decodeIfPresent(GoogleCloudWKT.`Any`.self, forKey: .metadata)
     self.done = try container.decode(Swift.Bool.self, forKey: .done)
 
     var result: OneOf_Result? = nil
@@ -88,7 +88,7 @@ public struct Operation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     if let error = try container.decodeIfPresent(GoogleRpc.Status?.self, forKey: .error) {
       try resultCheckAndSet(.error(error))
     }
-    if let response = try container.decodeIfPresent(GoogleCloudWkt.`Any`?.self, forKey: .response) {
+    if let response = try container.decodeIfPresent(GoogleCloudWKT.`Any`?.self, forKey: .response) {
       try resultCheckAndSet(.response(response))
     }
     self.result = result
@@ -125,16 +125,16 @@ public struct Operation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// is the original method name.  For example, if the original method name
     /// is `TakeSnapshot()`, the inferred response type is
     /// `TakeSnapshotResponse`.
-    indirect case response(GoogleCloudWkt.`Any`?)
+    indirect case response(GoogleCloudWKT.`Any`?)
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.longrunning.Operation"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

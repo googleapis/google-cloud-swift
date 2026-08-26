@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents a color in the RGBA color space. This representation is designed
 /// for simplicity of conversion to and from color representations in various
@@ -141,7 +141,7 @@ import Foundation
 ///     };
 ///
 ///     // ...
-public struct Color: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Color: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The amount of red in the color as a value in the interval [0, 1].
@@ -164,7 +164,7 @@ public struct Color: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   /// possible to distinguish between a default value and the value being unset.
   /// If omitted, this color object is rendered as a solid color
   /// (as if the alpha value had been explicitly given a value of 1.0).
-  public var alpha: GoogleCloudWkt.FloatValue? = nil
+  public var alpha: GoogleCloudWKT.FloatValue? = nil
 
   /// Initialize a new instance of `Color`.
   public init() {}
@@ -185,10 +185,10 @@ public struct Color: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.type.Color"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

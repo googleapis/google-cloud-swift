@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleIAMV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample() async throws {
   let client = try GoogleIAMV1.IAMPolicyClient()

@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// The `Status` type defines a logical error model that is suitable for
 /// different programming environments, including REST APIs and RPC APIs. It is
@@ -24,7 +24,7 @@ import Foundation
 ///
 /// You can find out more about this error model and how to work with it in the
 /// [API Design Guide](https://cloud.google.com/apis/design/errors).
-public struct Status: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct Status: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The status code, which should be an enum value of
@@ -43,7 +43,7 @@ public struct Status: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// A list of messages that carry the error details.  There is a common set of
   /// message types for APIs to use.
-  public var details: [GoogleCloudWkt.`Any`] = []
+  public var details: [GoogleCloudWKT.`Any`] = []
 
   /// Initialize a new instance of `Status`.
   public init() {}
@@ -64,10 +64,10 @@ public struct Status: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.rpc.Status"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

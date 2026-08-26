@@ -18,7 +18,7 @@
 // snippet.show
 import Foundation
 import GoogleIAMV1
-import GoogleCloudWkt
+import GoogleCloudWKT
 
 func sample(client: IAMPolicyClient) async throws {
   let response = try await client.testIamPermissions(

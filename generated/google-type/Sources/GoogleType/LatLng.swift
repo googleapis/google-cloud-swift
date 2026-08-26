@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// An object that represents a latitude/longitude pair. This is expressed as a
 /// pair of doubles to represent degrees latitude and degrees longitude. Unless
 /// specified otherwise, this object must conform to the
 /// <a href="https://en.wikipedia.org/wiki/World_Geodetic_System#1984_version">
 /// WGS84 standard</a>. Values must be within normalized ranges.
-public struct LatLng: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct LatLng: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// The latitude in degrees. It must be in the range [-90.0, +90.0].
@@ -50,10 +50,10 @@ public struct LatLng: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.type.LatLng"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

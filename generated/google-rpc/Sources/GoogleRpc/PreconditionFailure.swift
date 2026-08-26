@@ -15,14 +15,14 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Describes what preconditions have failed.
 ///
 /// For example, if an RPC failed because it required the Terms of Service to be
 /// acknowledged, it could list the terms of service violation in the
 /// PreconditionFailure message.
-public struct PreconditionFailure: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct PreconditionFailure: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Describes all precondition violations.
@@ -45,7 +45,7 @@ public struct PreconditionFailure: Codable, Equatable, GoogleCloudWkt._AnyPackab
   }
 
   /// A message type used to describe a single precondition failure.
-  public struct Violation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Violation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The type of PreconditionFailure. We recommend using a service-specific
@@ -83,21 +83,21 @@ public struct PreconditionFailure: Codable, Equatable, GoogleCloudWkt._AnyPackab
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.rpc.PreconditionFailure.Violation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.rpc.PreconditionFailure"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -120,7 +120,7 @@ default:
       - name: GoogleCloudRecommenderV1
         path: generated/google-cloud-recommender-v1
         api_package: google.cloud.recommender.v1
-      - name: GoogleCloudWkt
+      - name: GoogleCloudWKT
         path: packages/wkt
         api_package: google.protobuf
         spi: GoogleCloudInternal
@@ -1218,20 +1218,20 @@ libraries:
   - name: google-cloud-wkt
     version: 0.1.0-preview
     copyright_year: "2026"
-    output: packages/wkt/Sources/GoogleCloudWkt/generated
+    output: packages/wkt/Sources/GoogleCloudWKT/generated
     roots:
       - protobuf-src
     swift:
-      library_name_override: GoogleCloudWkt
+      library_name_override: GoogleCloudWKT
       include_list:
         - api.proto
         - type.proto
         - source_context.proto
       modules:
-        - output: packages/wkt/Sources/GoogleCloudWkt/generated/messages
+        - output: packages/wkt/Sources/GoogleCloudWKT/generated/messages
           api_path: google/protobuf
           module_type: default
-        - output: packages/wkt/Sources/GoogleCloudWkt/generated/version
+        - output: packages/wkt/Sources/GoogleCloudWKT/generated/version
           api_path: google/protobuf
           module_type: package-version
   - name: google-cloud-workflows-executions-v1

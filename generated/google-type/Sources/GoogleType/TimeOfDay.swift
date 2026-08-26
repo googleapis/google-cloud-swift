@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents a time of day. The date and time zone are either not significant
 /// or are specified elsewhere. An API may choose to allow leap seconds. Related
@@ -23,7 +23,7 @@ import Foundation
 /// `google.protobuf.Timestamp`.
 ///
 /// [google.type.Date]: <doc:Date>
-public struct TimeOfDay: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct TimeOfDay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Hours of a day in 24 hour format. Must be greater than or equal to 0 and
@@ -63,10 +63,10 @@ public struct TimeOfDay: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.type.TimeOfDay"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

@@ -14,14 +14,14 @@
 
 import Foundation
 import GoogleCloudGax
-import GoogleCloudWkt
+import GoogleCloudWKT
 import GoogleRpc
 
 extension Operation {
   // Extracts the state of an operation.
   public func _extractStatus<Response>(_ type: Response.Type) throws
     -> GoogleCloudGax._PollableOperationImpl<Response>.State
-  where Response: GoogleCloudWkt._AnyPackable {
+  where Response: GoogleCloudWKT._AnyPackable {
     guard self.done else {
       return .init(done: false, result: nil)
     }

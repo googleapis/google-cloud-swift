@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Describes how a quota check failed.
 ///
@@ -28,7 +28,7 @@ import Foundation
 ///
 /// Also see RetryInfo and Help types for other details about handling a
 /// quota failure.
-public struct QuotaFailure: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct QuotaFailure: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Describes all quota violations.
@@ -52,7 +52,7 @@ public struct QuotaFailure: Codable, Equatable, GoogleCloudWkt._AnyPackable,
 
   /// A message type used to describe a single quota violation.  For example, a
   /// daily quota or a custom quota that was exceeded.
-  public struct Violation: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+  public struct Violation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
     /// The subject on which the quota check failed.
@@ -153,21 +153,21 @@ public struct QuotaFailure: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.rpc.QuotaFailure.Violation"
     }
-    public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-      self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
     }
-    public func _pack() throws -> GoogleCloudWkt.Struct {
-      return try GoogleCloudWkt._slowAnySerialize(message: self)
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
     }
   }
 
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.rpc.QuotaFailure"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }

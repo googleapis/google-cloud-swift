@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleCloudWkt
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Represents civil time (or occasionally physical time).
 ///
@@ -41,7 +41,7 @@ import Foundation
 ///
 /// This type is more flexible than some applications may want. Make sure to
 /// document and validate your application's limitations.
-public struct DateTime: Codable, Equatable, GoogleCloudWkt._AnyPackable,
+public struct DateTime: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Optional. Year of date. Must be from 1 to 9999, or 0 if specifying a
@@ -128,7 +128,7 @@ public struct DateTime: Codable, Equatable, GoogleCloudWkt._AnyPackable,
       timeOffset = $0
     }
     if let utcOffset = try container.decodeIfPresent(
-      GoogleCloudWkt.Duration?.self, forKey: .utcOffset)
+      GoogleCloudWKT.Duration?.self, forKey: .utcOffset)
     {
       try timeOffsetCheckAndSet(.utcOffset(utcOffset))
     }
@@ -167,7 +167,7 @@ public struct DateTime: Codable, Equatable, GoogleCloudWkt._AnyPackable,
     /// UTC offset. Must be whole seconds, between -18 hours and +18 hours.
     /// For example, a UTC offset of -4:00 would be represented as
     /// { seconds: -14400 }.
-    indirect case utcOffset(GoogleCloudWkt.Duration?)
+    indirect case utcOffset(GoogleCloudWKT.Duration?)
     /// Time zone.
     indirect case timeZone(TimeZone?)
   }
@@ -175,10 +175,10 @@ public struct DateTime: Codable, Equatable, GoogleCloudWkt._AnyPackable,
   public static var _anyTypeUrl: Swift.String {
     return "type.googleapis.com/google.type.DateTime"
   }
-  public init(fromAny any: GoogleCloudWkt.`Any`) throws {
-    self = try GoogleCloudWkt._slowAnyDeserialize(Self.self, from: any)
+  public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+    self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
   }
-  public func _pack() throws -> GoogleCloudWkt.Struct {
-    return try GoogleCloudWkt._slowAnySerialize(message: self)
+  public func _pack() throws -> GoogleCloudWKT.Struct {
+    return try GoogleCloudWKT._slowAnySerialize(message: self)
   }
 }
