@@ -47,7 +47,7 @@ public protocol StorageProtocol {
     options: UploadOptions
   ) async throws -> Object
 
-  /// Reads (downloads) an object from Cloud Storage as an async sequence of Data chunks.
+  /// Reads (downloads) an object from Cloud Storage as an async sequence of AnyByteStorage chunks.
   func readObject(
     from bucket: String,
     object: String,

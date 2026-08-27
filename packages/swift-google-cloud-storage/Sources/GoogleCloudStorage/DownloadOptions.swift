@@ -14,7 +14,7 @@
 
 import Foundation
 @_spi(GoogleCloudInternal) import GoogleCloudGax
-import struct NIOCore.ByteBuffer
+import NIOCore
 
 /// Specifies a byte range for ranged reads.
 public enum ReadObjectRange: Sendable, Hashable, Equatable {
@@ -342,9 +342,9 @@ public struct ReadObjectMetadata: Sendable, Hashable, Equatable {
   }
 }
 
-/// An asynchronous sequence of `ByteBuffer` chunks representing an object payload being downloaded.
+/// An asynchronous sequence of `AnyByteStorage` chunks representing an object payload being downloaded.
 public struct ReadObjectSequence: AsyncSequence, Sendable {
-  public typealias Element = NIOCore.ByteBuffer
+  public typealias Element = AnyByteStorage
 
   private let coordinator: ReadObjectCoordinator
 
@@ -354,7 +354,7 @@ public struct ReadObjectSequence: AsyncSequence, Sendable {
 
   /// An asynchronous iterator for iterating over chunks of downloaded object payload data.
   public struct AsyncIterator: AsyncIteratorProtocol {
-    public typealias Element = NIOCore.ByteBuffer
+    public typealias Element = AnyByteStorage
 
     private let coordinator: ReadObjectCoordinator
 
@@ -362,8 +362,8 @@ public struct ReadObjectSequence: AsyncSequence, Sendable {
       self.coordinator = coordinator
     }
 
-    /// Advances to the next `ByteBuffer` chunk in the downloaded object payload stream.
-    public mutating func next() async throws -> NIOCore.ByteBuffer? {
+    /// Advances to the next `AnyByteStorage` chunk in the downloaded object payload stream.
+    public mutating func next() async throws -> AnyByteStorage? {
       try await coordinator.nextChunk()
     }
   }
@@ -451,7 +451,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
     return try await ensureInitialFetch()
   }
 
-  package func nextChunk() async throws -> NIOCore.ByteBuffer? {
+  package func nextChunk() async throws -> AnyByteStorage? {
     guard !isFinished && !isCancelled else { return nil }
 
     if case .prefix(0) = options.range {
@@ -471,11 +471,12 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
           let chunk = try await it.next()
           self.streamIterator = it
           if let chunk {
-            bytesReceived += UInt64(chunk.readableBytes)
+            let storage = AnyByteStorage(chunk)
+            bytesReceived += UInt64(storage.count)
             resumeState.details.bytesDownloaded = bytesReceived
             resumeLoop.onProgress(state: &resumeState)
-            updateChecksums(with: chunk)
-            return chunk
+            updateChecksums(with: storage)
+            return storage
           } else {
             try validateChecksumsAtEOF()
             isFinished = true
@@ -485,11 +486,12 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
           let chunk = try await it.next()
           self.bodyIterator = it
           if let chunk {
-            bytesReceived += UInt64(chunk.readableBytes)
+            let storage = AnyByteStorage(chunk)
+            bytesReceived += UInt64(storage.count)
             resumeState.details.bytesDownloaded = bytesReceived
             resumeLoop.onProgress(state: &resumeState)
-            updateChecksums(with: chunk)
-            return chunk
+            updateChecksums(with: storage)
+            return storage
           } else {
             try validateChecksumsAtEOF()
             isFinished = true
@@ -527,9 +529,9 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
     return nil
   }
 
-  private func updateChecksums(with chunk: NIOCore.ByteBuffer) {
+  private func updateChecksums(with chunk: AnyByteStorage) {
     guard crc32cCalculator != nil || md5Calculator != nil else { return }
-    chunk.withUnsafeReadableBytes { buffer in
+    chunk.withUnsafeBytes { buffer in
       crc32cCalculator?.update(buffer)
       md5Calculator?.update(buffer)
     }

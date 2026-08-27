@@ -65,7 +65,7 @@ struct StorageClientDownloadChecksumIntegrationTests {
     let result = storage.readObject(from: fixture.bucketName, object: fixture.objectName)
     var downloadedData = Data()
     for try await chunk in result.body {
-      downloadedData.append(contentsOf: chunk.readableBytesView)
+      downloadedData.append(contentsOf: chunk)
     }
     #expect(downloadedData == fixture.data)
   }
@@ -81,7 +81,7 @@ struct StorageClientDownloadChecksumIntegrationTests {
       from: fixture.bucketName, object: fixture.objectName, options: options)
     var downloadedData = Data()
     for try await chunk in result.body {
-      downloadedData.append(contentsOf: chunk.readableBytesView)
+      downloadedData.append(contentsOf: chunk)
     }
     #expect(downloadedData == fixture.data)
   }
@@ -97,7 +97,7 @@ struct StorageClientDownloadChecksumIntegrationTests {
       from: fixture.bucketName, object: fixture.objectName, options: options)
     var downloadedData = Data()
     for try await chunk in result.body {
-      downloadedData.append(contentsOf: chunk.readableBytesView)
+      downloadedData.append(contentsOf: chunk)
     }
     #expect(downloadedData == fixture.data)
   }
@@ -114,7 +114,7 @@ struct StorageClientDownloadChecksumIntegrationTests {
       from: fixture.bucketName, object: fixture.objectName, options: crcOptions)
     var crcData = Data()
     for try await chunk in crcResult.body {
-      crcData.append(contentsOf: chunk.readableBytesView)
+      crcData.append(contentsOf: chunk)
     }
     #expect(crcData == fixture.data)
 
@@ -126,7 +126,7 @@ struct StorageClientDownloadChecksumIntegrationTests {
       from: fixture.bucketName, object: fixture.objectName, options: md5Options)
     var md5Data = Data()
     for try await chunk in md5Result.body {
-      md5Data.append(contentsOf: chunk.readableBytesView)
+      md5Data.append(contentsOf: chunk)
     }
     #expect(md5Data == fixture.data)
 
@@ -139,7 +139,7 @@ struct StorageClientDownloadChecksumIntegrationTests {
       from: fixture.bucketName, object: fixture.objectName, options: dualOptions)
     var dualData = Data()
     for try await chunk in dualResult.body {
-      dualData.append(contentsOf: chunk.readableBytesView)
+      dualData.append(contentsOf: chunk)
     }
     #expect(dualData == fixture.data)
   }
@@ -155,7 +155,7 @@ struct StorageClientDownloadChecksumIntegrationTests {
       from: fixture.bucketName, object: fixture.objectName, options: options)
     var downloadedData = Data()
     for try await chunk in result.body {
-      downloadedData.append(contentsOf: chunk.readableBytesView)
+      downloadedData.append(contentsOf: chunk)
     }
     #expect(downloadedData == fixture.data)
   }
@@ -204,7 +204,7 @@ struct StorageClientDownloadChecksumIntegrationTests {
       from: fixture.bucketName, object: fixture.objectName, options: rangedAutoOptions)
     var rangedAutoData = Data()
     for try await chunk in rangedAutoResult.body {
-      rangedAutoData.append(contentsOf: chunk.readableBytesView)
+      rangedAutoData.append(contentsOf: chunk)
     }
     #expect(rangedAutoData == fixture.data.subdata(in: 0..<10))
 
@@ -225,7 +225,7 @@ struct StorageClientDownloadChecksumIntegrationTests {
       from: fixture.bucketName, object: fixture.objectName, options: rangedCrcOptions)
     var rangedCrcData = Data()
     for try await chunk in rangedCrcResult.body {
-      rangedCrcData.append(contentsOf: chunk.readableBytesView)
+      rangedCrcData.append(contentsOf: chunk)
     }
     #expect(rangedCrcData == rangeSlice)
 
@@ -238,7 +238,7 @@ struct StorageClientDownloadChecksumIntegrationTests {
       from: fixture.bucketName, object: fixture.objectName, options: rangedMd5Options)
     var rangedMd5Data = Data()
     for try await chunk in rangedMd5Result.body {
-      rangedMd5Data.append(contentsOf: chunk.readableBytesView)
+      rangedMd5Data.append(contentsOf: chunk)
     }
     #expect(rangedMd5Data == rangeSlice)
   }

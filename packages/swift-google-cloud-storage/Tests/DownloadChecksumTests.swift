@@ -58,7 +58,7 @@ import Testing
 
     var receivedData = Data()
     for try await chunk in result.body {
-      receivedData.append(contentsOf: chunk.readableBytesView)
+      receivedData.append(contentsOf: chunk)
     }
     #expect(receivedData == payload)
   }
@@ -137,7 +137,7 @@ import Testing
 
     var receivedData = Data()
     for try await chunk in result.body {
-      receivedData.append(contentsOf: chunk.readableBytesView)
+      receivedData.append(contentsOf: chunk)
     }
     #expect(receivedData == payload)
   }
@@ -215,7 +215,7 @@ import Testing
 
     var receivedData = Data()
     for try await chunk in result.body {
-      receivedData.append(contentsOf: chunk.readableBytesView)
+      receivedData.append(contentsOf: chunk)
     }
     #expect(receivedData == payload)
 
@@ -279,7 +279,7 @@ import Testing
 
     var receivedData = Data()
     for try await chunk in result.body {
-      receivedData.append(contentsOf: chunk.readableBytesView)
+      receivedData.append(contentsOf: chunk)
     }
     #expect(receivedData == payload)
 
@@ -347,7 +347,7 @@ import Testing
 
     var receivedData = Data()
     for try await chunk in result.body {
-      receivedData.append(contentsOf: chunk.readableBytesView)
+      receivedData.append(contentsOf: chunk)
     }
     #expect(receivedData == payload)
 
@@ -395,7 +395,7 @@ import Testing
 
     var receivedData = Data()
     for try await chunk in result.body {
-      receivedData.append(contentsOf: chunk.readableBytesView)
+      receivedData.append(contentsOf: chunk)
     }
     #expect(receivedData == payload)
   }
@@ -434,7 +434,7 @@ import Testing
 
     var receivedData = Data()
     for try await chunk in result.body {
-      receivedData.append(contentsOf: chunk.readableBytesView)
+      receivedData.append(contentsOf: chunk)
     }
     #expect(receivedData == payload)
 
@@ -485,7 +485,7 @@ import Testing
 
     var receivedData = Data()
     for try await chunk in result.body {
-      receivedData.append(contentsOf: chunk.readableBytesView)
+      receivedData.append(contentsOf: chunk)
     }
     #expect(receivedData == payload)
   }
@@ -522,7 +522,7 @@ import Testing
 
     var receivedData = Data()
     for try await chunk in result.body {
-      receivedData.append(contentsOf: chunk.readableBytesView)
+      receivedData.append(contentsOf: chunk)
     }
     #expect(receivedData == rangePayload)
   }
@@ -570,7 +570,7 @@ import Testing
 
     var receivedData = Data()
     for try await chunk in result.body {
-      receivedData.append(contentsOf: chunk.readableBytesView)
+      receivedData.append(contentsOf: chunk)
     }
     #expect(receivedData == rangePayload)
 
@@ -621,7 +621,7 @@ import Testing
 
     var receivedData = Data()
     for try await chunk in result.body {
-      receivedData.append(contentsOf: chunk.readableBytesView)
+      receivedData.append(contentsOf: chunk)
     }
     #expect(receivedData == uncompressedPayload)
   }
@@ -675,7 +675,7 @@ import Testing
 
     var receivedData = Data()
     for try await chunk in result.body {
-      receivedData.append(contentsOf: chunk.readableBytesView)
+      receivedData.append(contentsOf: chunk)
     }
     #expect(receivedData == fullPayload)
   }
@@ -708,7 +708,7 @@ import Testing
 
     var receivedData = Data()
     for try await chunk in result.body {
-      receivedData.append(contentsOf: chunk.readableBytesView)
+      receivedData.append(contentsOf: chunk)
     }
     #expect(receivedData == payload)
   }

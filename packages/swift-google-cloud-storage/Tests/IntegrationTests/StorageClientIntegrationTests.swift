@@ -70,7 +70,7 @@ struct StorageClientIntegrationTests {
 
     var downloadedData = Data()
     for try await chunk in result.body {
-      downloadedData.append(contentsOf: chunk.readableBytesView)
+      downloadedData.append(contentsOf: chunk)
     }
     #expect(downloadedData == data)
     let downloadedString = String(data: downloadedData, encoding: .utf8)
@@ -139,7 +139,7 @@ struct StorageClientIntegrationTests {
 
     var downloadedData = Data()
     for try await chunk in result.body {
-      downloadedData.append(contentsOf: chunk.readableBytesView)
+      downloadedData.append(contentsOf: chunk)
     }
     #expect(downloadedData == data)
     let downloadedString = String(data: downloadedData, encoding: .utf8)
@@ -323,7 +323,7 @@ struct StorageClientIntegrationTests {
 
     var downloadedData = Data()
     for try await chunk in result.body {
-      downloadedData.append(contentsOf: chunk.readableBytesView)
+      downloadedData.append(contentsOf: chunk)
     }
     #expect(downloadedData == data)
     let downloadedString = String(data: downloadedData, encoding: .utf8)
@@ -397,7 +397,7 @@ struct StorageClientIntegrationTests {
 
     var downloadedData = Data()
     for try await chunk in result.body {
-      downloadedData.append(contentsOf: chunk.readableBytesView)
+      downloadedData.append(contentsOf: chunk)
     }
     #expect(downloadedData == data)
 
@@ -560,7 +560,7 @@ struct StorageClientGzipDownloadIntegrationTests {
 
     var downloadedData = Data()
     for try await chunk in result.body {
-      downloadedData.append(contentsOf: chunk.readableBytesView)
+      downloadedData.append(contentsOf: chunk)
     }
     // GCS serves uncompressed raw content
     #expect(downloadedData == Self.rawGzipData)
@@ -601,7 +601,7 @@ struct StorageClientGzipDownloadIntegrationTests {
 
     var downloadedData = Data()
     for try await chunk in result.body {
-      downloadedData.append(contentsOf: chunk.readableBytesView)
+      downloadedData.append(contentsOf: chunk)
     }
     // Downloader receives the original gzip-compressed file
     #expect(downloadedData == Self.compressedGzipData)
@@ -641,7 +641,7 @@ struct StorageClientGzipDownloadIntegrationTests {
 
     var downloadedData = Data()
     for try await chunk in result.body {
-      downloadedData.append(contentsOf: chunk.readableBytesView)
+      downloadedData.append(contentsOf: chunk)
     }
     // Downloader receives the original gzip-compressed file because of Cache-Control: no-transform
     #expect(downloadedData == Self.compressedGzipData)
@@ -707,7 +707,7 @@ struct StorageClientRangedDownloadIntegrationTests {
 
     var downloadedData = Data()
     for try await chunk in result.body {
-      downloadedData.append(contentsOf: chunk.readableBytesView)
+      downloadedData.append(contentsOf: chunk)
     }
     let downloadedString = String(data: downloadedData, encoding: .utf8) ?? ""
     #expect(downloadedString == expectedContent)
@@ -728,7 +728,7 @@ struct StorageClientRangedDownloadIntegrationTests {
 
     var downloadedData = Data()
     for try await chunk in result.body {
-      downloadedData.append(contentsOf: chunk.readableBytesView)
+      downloadedData.append(contentsOf: chunk)
     }
     #expect(downloadedData.isEmpty)
   }
