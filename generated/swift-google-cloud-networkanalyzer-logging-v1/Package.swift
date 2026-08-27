@@ -25,7 +25,7 @@ let package = Package(
       name: "GoogleCloudNetworkAnalyzerLoggingV1", targets: ["GoogleCloudNetworkAnalyzerLoggingV1"])
   ],
   dependencies: [
-    .package(path: "../../packages/swift-google-wkt")
+    .package(url: "https://github.com/googleapis/swift-google-wkt", from: "0.1.0-preview")
   ],
   targets: [
     .target(

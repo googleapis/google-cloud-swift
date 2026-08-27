@@ -40,9 +40,13 @@ flags=(
     # Use the versions from `Package.resolved`.
     --disable-automatic-resolution
 )
+source "${SCRIPT_DIR}/package-dependencies.sh"
+
 for dir in "${packages[@]}"; do
     [[ -f "${dir}/Package.swift" ]] || continue
     count=$((count + 1))
+
+    edit_package_dependencies "${dir}"
 
     echo "::group::--- Building ${dir} ---"
     if swift build --build-tests "${flags[@]}" --package-path "${dir}"; then
@@ -51,19 +55,25 @@ for dir in "${packages[@]}"; do
         echo "::endgroup::"
         echo "::error:: ✗ ${dir} failed to build" >&2
         errors=$((errors + 1))
+        restore_package_dependencies "${dir}"
         continue
     fi
 
-    [[ -d "${dir}/Tests" ]] || continue
-    echo "::info:: --- Testing ${dir} ---"
-    if swift test "${flags[@]}" --quiet --package-path "${dir}"; then
-        echo "::notice:: ✓ ${dir} passed"
-        echo "::endgroup::"
+    if [[ -d "${dir}/Tests" ]]; then
+        echo "::info:: --- Testing ${dir} ---"
+        if swift test "${flags[@]}" --quiet --package-path "${dir}"; then
+            echo "::notice:: ✓ ${dir} passed"
+            echo "::endgroup::"
+        else
+            echo "::endgroup::"
+            echo "::error:: ✗ ${dir} failed"
+            errors=$((errors + 1))
+        fi
     else
         echo "::endgroup::"
-        echo "::error:: ✗ ${dir} failed"
-        errors=$((errors + 1))
     fi
+
+    restore_package_dependencies "${dir}"
 done
 
 echo ""

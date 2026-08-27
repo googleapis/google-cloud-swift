@@ -94,9 +94,9 @@ let package = Package(
   ],
   dependencies: [
     .package(path: "../../generated/swift-google-api"),
-    .package(path: "../../packages/swift-google-auth"),
+    .package(url: "https://github.com/googleapis/swift-google-auth", from: "0.0.0-preview"),
     .package(path: "../../packages/swift-google-gax"),
-    .package(path: "../../packages/swift-google-wkt"),
+    .package(url: "https://github.com/googleapis/swift-google-wkt", from: "0.1.0-preview"),
     .package(path: "../../generated/swift-google-longrunning"),
     .package(path: "../../generated/swift-google-rpc"),
     .package(path: "../../generated/swift-google-type"),

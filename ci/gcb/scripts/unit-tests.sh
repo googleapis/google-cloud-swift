@@ -17,7 +17,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || (cd "${SCRIPT_DIR}/../.." && pwd))"
 
 source "${SCRIPT_DIR}/fetch.sh"
 source "${SCRIPT_DIR}/build-flags.sh"
@@ -26,6 +26,8 @@ errors=0
 count=0
 
 flags=("${build_flags[@]}")
+source "${REPO_ROOT}/ci/package-dependencies.sh"
+
 mapfile -t packages < <(find . \( -name Sources -o -name .build -o -name .build-cache -o -name generated \) -prune -o -type f -name Package.swift -exec dirname {} \; | sort -u)
 for dir in "${packages[@]}"; do
     [[ -f "${dir}/Package.swift" ]] || continue
@@ -35,6 +37,8 @@ for dir in "${packages[@]}"; do
         name="top-level package"
     fi
 
+    edit_package_dependencies "${dir}"
+
     echo; echo; echo "--- Building ${name} ---"
     if swift build --build-tests "${flags[@]}" --package-path "${dir}" >${dir}/.build.log 2>&1; then
         echo "✓ ${name} built successfully"
@@ -42,18 +46,22 @@ for dir in "${packages[@]}"; do
         cat ${dir}/.build.log
         echo "✗ ${name} failed to build"
         errors=$((errors + 1))
+        restore_package_dependencies "${dir}"
         continue
     fi
 
-    [[ -d "${dir}/Tests" ]] || continue
-    echo "--- Testing ${name} ---"
-    if swift test "${flags[@]}" --quiet --package-path "${dir}" >${dir}/.test.log 2>&1; then
-        echo "✓ ${name} passed"
-    else
-        cat ${dir}/.test.log
-        echo "✗ ${name} failed"
-        errors=$((errors + 1))
+    if [[ -d "${dir}/Tests" ]]; then
+        echo "--- Testing ${name} ---"
+        if swift test "${flags[@]}" --quiet --package-path "${dir}" >${dir}/.test.log 2>&1; then
+            echo "✓ ${name} passed"
+        else
+            cat ${dir}/.test.log
+            echo "✗ ${name} failed"
+            errors=$((errors + 1))
+        fi
     fi
+
+    restore_package_dependencies "${dir}"
 done
 
 echo; echo; echo "${count} local package(s) tested, ${errors} failure(s)."

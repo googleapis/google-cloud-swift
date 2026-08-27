@@ -25,9 +25,9 @@ let package = Package(
       name: "GoogleCloudBinaryAuthorizationV1", targets: ["GoogleCloudBinaryAuthorizationV1"])
   ],
   dependencies: [
-    .package(path: "../../packages/swift-google-auth"),
+    .package(url: "https://github.com/googleapis/swift-google-auth", from: "0.0.0-preview"),
     .package(path: "../../packages/swift-google-gax"),
-    .package(path: "../../packages/swift-google-wkt"),
+    .package(url: "https://github.com/googleapis/swift-google-wkt", from: "0.1.0-preview"),
     .package(path: "../../generated/swift-grafeas-v1"),
     .package(path: "../../generated/swift-google-iam-v1"),
     .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),

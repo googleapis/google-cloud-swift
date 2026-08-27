@@ -26,9 +26,9 @@ let package = Package(
       targets: ["GoogleIdentityAccessContextManagerV1"])
   ],
   dependencies: [
-    .package(path: "../../packages/swift-google-auth"),
+    .package(url: "https://github.com/googleapis/swift-google-auth", from: "0.0.0-preview"),
     .package(path: "../../packages/swift-google-gax"),
-    .package(path: "../../packages/swift-google-wkt"),
+    .package(url: "https://github.com/googleapis/swift-google-wkt", from: "0.1.0-preview"),
     .package(path: "../../generated/swift-google-iam-v1"),
     .package(path: "../../generated/swift-google-identity-accesscontextmanager-type"),
     .package(path: "../../generated/swift-google-longrunning"),

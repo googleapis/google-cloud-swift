@@ -24,7 +24,7 @@ let package = Package(
     .library(name: "GoogleBigQueryLoggingV1", targets: ["GoogleBigQueryLoggingV1"])
   ],
   dependencies: [
-    .package(path: "../../packages/swift-google-wkt"),
+    .package(url: "https://github.com/googleapis/swift-google-wkt", from: "0.1.0-preview"),
     .package(path: "../../generated/swift-google-iam-v1"),
     .package(path: "../../generated/swift-google-rpc"),
   ],

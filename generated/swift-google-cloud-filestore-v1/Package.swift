@@ -24,11 +24,11 @@ let package = Package(
     .library(name: "GoogleCloudFilestoreV1", targets: ["GoogleCloudFilestoreV1"])
   ],
   dependencies: [
-    .package(path: "../../packages/swift-google-auth"),
+    .package(url: "https://github.com/googleapis/swift-google-auth", from: "0.0.0-preview"),
     .package(path: "../../generated/swift-google-cloud-common"),
     .package(path: "../../packages/swift-google-gax"),
     .package(path: "../../generated/swift-google-cloud-location"),
-    .package(path: "../../packages/swift-google-wkt"),
+    .package(url: "https://github.com/googleapis/swift-google-wkt", from: "0.1.0-preview"),
     .package(path: "../../generated/swift-google-longrunning"),
     .package(path: "../../generated/swift-google-rpc"),
     .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),

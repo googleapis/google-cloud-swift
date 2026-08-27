@@ -37,9 +37,13 @@ flags=(
     -Xswiftc -Wwarning
     -Xswiftc DeprecatedDeclaration
 )
+source "${SCRIPT_DIR}/package-dependencies.sh"
+
 for dir in "${generated[@]}"; do
     [[ -f "${dir}/Package.swift" ]] || continue
     count=$((count + 1))
+
+    edit_package_dependencies "${dir}"
 
     echo "::group:: --- Building ${dir} ---"
     if swift build --build-tests "${flags[@]}" --package-path "${dir}"; then
@@ -50,6 +54,8 @@ for dir in "${generated[@]}"; do
         echo "::error:: ✗ ${dir} failed to build"
         errors=$((errors + 1))
     fi
+
+    restore_package_dependencies "${dir}"
 done
 
 echo ""

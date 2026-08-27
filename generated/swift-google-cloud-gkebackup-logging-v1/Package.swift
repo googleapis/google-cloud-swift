@@ -24,7 +24,7 @@ let package = Package(
     .library(name: "GoogleCloudGKEBackupLoggingV1", targets: ["GoogleCloudGKEBackupLoggingV1"])
   ],
   dependencies: [
-    .package(path: "../../packages/swift-google-wkt"),
+    .package(url: "https://github.com/googleapis/swift-google-wkt", from: "0.1.0-preview"),
     .package(path: "../../generated/swift-google-rpc"),
   ],
   targets: [

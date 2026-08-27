@@ -15,7 +15,7 @@
 # limitations under the License.
 
 # Performs a repository subtree split using `git subtree split` for a specified
-# path from the repository root (e.g., packages/auth, generated/swift-google-rpc)
+# path from the repository root (e.g., packages/swift-google-auth, generated/swift-google-rpc)
 # while preserving full commit history, placing the subtree contents at the root,
 # and ensuring essential root files (LICENSE, CODE_OF_CONDUCT.md, CONTRIBUTING.md)
 # are preserved on every commit across the split history.

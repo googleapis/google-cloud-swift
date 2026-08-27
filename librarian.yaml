@@ -72,7 +72,8 @@ default:
         path: generated/swift-google-apps-script-type-slides
         api_package: google.apps.script.type.slides
       - name: GoogleCloudAuth
-        path: packages/swift-google-auth
+        url: https://github.com/googleapis/swift-google-auth
+        version: 0.0.0-preview
         required_by_services: true
       - name: GoogleCloudCommon
         path: generated/swift-google-cloud-common
@@ -121,7 +122,8 @@ default:
         path: generated/swift-google-cloud-recommender-v1
         api_package: google.cloud.recommender.v1
       - name: GoogleCloudWKT
-        path: packages/swift-google-wkt
+        url: https://github.com/googleapis/swift-google-wkt
+        version: 0.1.0-preview
         api_package: google.protobuf
         spi: GoogleCloudInternal
       - name: GoogleGrafeasV1
