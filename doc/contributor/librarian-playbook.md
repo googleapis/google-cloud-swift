@@ -79,7 +79,7 @@ default:
   swift:
     dependencies:
       - name: GoogleIAMV2
-        path: generated/google-iam-v2
+        path: generated/swift-google-iam-v2
         api_package: google.iam.v2
 ```
 

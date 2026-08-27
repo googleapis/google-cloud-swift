@@ -29,8 +29,8 @@ count=0
 # This is a subset of the generated code, because it is too slow to build
 # everything.
 generated=(
-  "generated/google-cloud-secretmanager-v1"
-  "generated/google-cloud-security-publicca-v1"
+  "generated/swift-google-cloud-secretmanager-v1"
+  "generated/swift-google-cloud-security-publicca-v1"
 )
 flags=(
     -Xswiftc -warnings-as-errors

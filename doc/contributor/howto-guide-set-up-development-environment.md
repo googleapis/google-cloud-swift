@@ -98,7 +98,7 @@ stest --package-path packages/wkt
 or to verify the generated code compiles:
 
 ```bash
-stest --package-path generated/google-cloud-secretmanager-v1
+stest --package-path generated/swift-google-cloud-secretmanager-v1
 ```
 
 You can customize these aliases even further. Consider

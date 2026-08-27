@@ -65,7 +65,7 @@ index 949f55e..3a15eda 100644
      name: "Quickstart",
 +    platforms: [ .macOS(.v15), ],
      dependencies: [
-         .package(path: "google-cloud-swift/generated/google-cloud-secretmanager-v1"),
+         .package(path: "google-cloud-swift/generated/swift-google-cloud-secretmanager-v1"),
      ],
 ```
 
@@ -79,7 +79,7 @@ index 949f55e..3a15eda 100644
 1. Then add the secret manager package within this download as a dependency:
    ```bash
    swift package add-dependency \
-     google-cloud-swift/generated/google-cloud-secretmanager-v1 --type path
+     google-cloud-swift/generated/swift-google-cloud-secretmanager-v1 --type path
    ```
 1. And add the specific module as a dependency of your executable:
    ```bash

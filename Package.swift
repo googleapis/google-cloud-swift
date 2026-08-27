@@ -86,7 +86,7 @@ let package = Package(
     .testTarget(
       name: "DiscoveryBasedClient",
       dependencies: [
-        .product(name: "GoogleCloudComputeV1", package: "google-cloud-compute-v1"),
+        .product(name: "GoogleCloudComputeV1", package: "swift-google-cloud-compute-v1"),
         .product(name: "GoogleCloudWKT", package: "wkt"),
         .product(name: "GoogleCloudTestHelpers", package: "test-helpers"),
       ],
@@ -95,10 +95,11 @@ let package = Package(
     .testTarget(
       name: "ProtoBasedClient",
       dependencies: [
-        .product(name: "GoogleCloudSecretManagerV1", package: "google-cloud-secretmanager-v1"),
-        .product(name: "GoogleCloudWorkflowsV1", package: "google-cloud-workflows-v1"),
-        .product(name: "GoogleCloudLocation", package: "google-cloud-location"),
-        .product(name: "GoogleIAMV1", package: "google-iam-v1"),
+        .product(
+          name: "GoogleCloudSecretManagerV1", package: "swift-google-cloud-secretmanager-v1"),
+        .product(name: "GoogleCloudWorkflowsV1", package: "swift-google-cloud-workflows-v1"),
+        .product(name: "GoogleCloudLocation", package: "swift-google-cloud-location"),
+        .product(name: "GoogleIAMV1", package: "swift-google-iam-v1"),
         .product(name: "GoogleCloudGax", package: "gax"),
         .product(name: "GoogleCloudWKT", package: "wkt"),
         .product(name: "GoogleCloudStorage", package: "storage"),
@@ -111,7 +112,8 @@ let package = Package(
       name: "Any",
       dependencies: [
         .product(name: "GoogleCloudWKT", package: "wkt"),
-        .product(name: "GoogleCloudSecretManagerV1", package: "google-cloud-secretmanager-v1"),
+        .product(
+          name: "GoogleCloudSecretManagerV1", package: "swift-google-cloud-secretmanager-v1"),
       ],
     ),
     .testTarget(
@@ -120,13 +122,14 @@ let package = Package(
         .product(name: "GoogleCloudGax", package: "gax"),
         .product(name: "GoogleCloudWKT", package: "wkt"),
         .product(
-          name: "GoogleCloudSecurityPublicCAV1", package: "google-cloud-security-publicca-v1"),
+          name: "GoogleCloudSecurityPublicCAV1", package: "swift-google-cloud-security-publicca-v1"),
       ],
     ),
     .executableTarget(
       name: "Endurance",
       dependencies: [
-        .product(name: "GoogleCloudSecretManagerV1", package: "google-cloud-secretmanager-v1"),
+        .product(
+          name: "GoogleCloudSecretManagerV1", package: "swift-google-cloud-secretmanager-v1"),
         .product(name: "GoogleCloudGax", package: "gax"),
         .product(name: "GoogleCloudWKT", package: "wkt"),
         .product(name: "GoogleCloudTestHelpers", package: "test-helpers"),
@@ -184,13 +187,13 @@ func selectGeneratedPackages() -> [Generated] {
 /// for each test.
 func generatedPackagesStatic() -> [Generated] {
   return [
-    .init(name: "google-cloud-location", module: "GoogleCloudLocation"),
-    .init(name: "google-iam-v1", module: "GoogleIAMV1"),
-    .init(name: "google-cloud-secretmanager-v1", module: "GoogleCloudSecretManagerV1"),
-    .init(name: "google-cloud-security-publicca-v1", module: "GoogleCloudSecurityPublicCAV1"),
-    .init(name: "google-cloud-workflows-v1", module: "GoogleCloudWorkflowsV1"),
+    .init(name: "swift-google-cloud-location", module: "GoogleCloudLocation"),
+    .init(name: "swift-google-iam-v1", module: "GoogleIAMV1"),
+    .init(name: "swift-google-cloud-secretmanager-v1", module: "GoogleCloudSecretManagerV1"),
+    .init(name: "swift-google-cloud-security-publicca-v1", module: "GoogleCloudSecurityPublicCAV1"),
+    .init(name: "swift-google-cloud-workflows-v1", module: "GoogleCloudWorkflowsV1"),
     .init(
-      name: "google-cloud-compute-v1", module: "GoogleCloudComputeV1",
+      name: "swift-google-cloud-compute-v1", module: "GoogleCloudComputeV1",
       traits: ["Instances", "Images", "ZoneOperations"]),
   ]
 }

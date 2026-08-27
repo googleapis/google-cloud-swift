@@ -15,7 +15,7 @@
 # limitations under the License.
 
 # Performs a repository subtree split using `git subtree split` for a specified
-# path from the repository root (e.g., packages/auth, generated/google-rpc)
+# path from the repository root (e.g., packages/auth, generated/swift-google-rpc)
 # while preserving full commit history, placing the subtree contents at the root,
 # and ensuring essential root files (LICENSE, CODE_OF_CONDUCT.md, CONTRIBUTING.md)
 # are preserved on every commit across the split history.
@@ -71,7 +71,7 @@ ${COLOR_BOLD}USAGE${COLOR_RESET}
     ${0##*/} [OPTIONS] <PATH>
 
 ${COLOR_BOLD}DESCRIPTION${COLOR_RESET}
-    Splits a subdirectory path (e.g., 'packages/auth', 'generated/google-rpc')
+    Splits a subdirectory path (e.g., 'packages/auth', 'generated/swift-google-rpc')
     from the monorepo into a standalone commit history using 'git subtree split',
     placing the subtree contents at the root. Preserves commit history, author info,
     timestamps, and commit messages.
@@ -82,7 +82,7 @@ ${COLOR_BOLD}DESCRIPTION${COLOR_RESET}
       - CONTRIBUTING.md
 
 ${COLOR_BOLD}ARGUMENTS${COLOR_RESET}
-    <PATH>                      Relative path from repository root (e.g. 'packages/auth', 'generated/google-rpc').
+    <PATH>                      Relative path from repository root (e.g. 'packages/auth', 'generated/swift-google-rpc').
     -p, --path <path>           Alternative flag to specify the relative path from repository root.
 
 ${COLOR_BOLD}ROOT FILES OPTIONS${COLOR_RESET}
@@ -112,14 +112,14 @@ ${COLOR_BOLD}EXAMPLES${COLOR_RESET}
     # 1. Split 'packages/auth' and output the commit SHA:
     ${0##*/} packages/auth
 
-    # 2. Split a generated package 'generated/google-rpc':
-    ${0##*/} generated/google-rpc
+    # 2. Split a generated package 'generated/swift-google-rpc':
+    ${0##*/} generated/swift-google-rpc
 
     # 3. Split using --path flag and update a local branch 'split/auth':
     ${0##*/} -p packages/auth -b split/auth
 
     # 4. Split and push directly to a standalone GitHub repository:
-    ${0##*/} generated/google-rpc --remote git@github.com:googleapis/swift-google-rpc.git --remote-branch main
+    ${0##*/} generated/swift-google-rpc --remote git@github.com:googleapis/swift-google-rpc.git --remote-branch main
 
     # 5. Split from a release tag and push with a tag:
     ${0##*/} packages/auth -o v1.0.0 --tag v1.0.0 -r git@github.com:googleapis/swift-google-cloud-auth.git --push-tag
@@ -423,7 +423,7 @@ main() {
     done
 
     if [[ -z "${target_path}" ]]; then
-        log_error "Missing required target path. Example: '${0##*/} packages/auth' or '${0##*/} generated/google-rpc'."
+        log_error "Missing required target path. Example: '${0##*/} packages/auth' or '${0##*/} generated/swift-google-rpc'."
         echo "Run '${0##*/} --help' for usage."
         exit 1
     fi

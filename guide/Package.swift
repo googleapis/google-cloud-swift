@@ -27,9 +27,9 @@ let package = Package(
   dependencies: [
     .package(path: "../packages/gax"),
     .package(path: "../packages/auth"),
-    .package(path: "../generated/google-cloud-secretmanager-v1"),
-    .package(path: "../generated/google-cloud-language-v2"),
-    .package(path: "../generated/google-cloud-workflows-v1"),
+    .package(path: "../generated/swift-google-cloud-secretmanager-v1"),
+    .package(path: "../generated/swift-google-cloud-language-v2"),
+    .package(path: "../generated/swift-google-cloud-workflows-v1"),
     .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
   ],
   targets: [
@@ -38,9 +38,10 @@ let package = Package(
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "auth"),
         .product(name: "GoogleCloudGax", package: "gax"),
-        .product(name: "GoogleCloudSecretManagerV1", package: "google-cloud-secretmanager-v1"),
-        .product(name: "GoogleCloudLanguageV2", package: "google-cloud-language-v2"),
-        .product(name: "GoogleCloudWorkflowsV1", package: "google-cloud-workflows-v1"),
+        .product(
+          name: "GoogleCloudSecretManagerV1", package: "swift-google-cloud-secretmanager-v1"),
+        .product(name: "GoogleCloudLanguageV2", package: "swift-google-cloud-language-v2"),
+        .product(name: "GoogleCloudWorkflowsV1", package: "swift-google-cloud-workflows-v1"),
         .product(name: "Logging", package: "swift-log"),
       ]
     )

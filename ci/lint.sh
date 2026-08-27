@@ -35,9 +35,9 @@ else
     subset=(
         "packages"
         "guide"
-        "generated/google-cloud-secretmanager-v1"
-        "generated/google-cloud-workflows-v1"
-        "generated/google-cloud-compute-v1"
+        "generated/swift-google-cloud-secretmanager-v1"
+        "generated/swift-google-cloud-workflows-v1"
+        "generated/swift-google-cloud-compute-v1"
     )
 fi
 

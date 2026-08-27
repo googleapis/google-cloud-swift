@@ -145,9 +145,9 @@ We will use `google-cloud-secretmanager-v1` as an example. Start by removing the
 existing library:
 
 ```shell
-git rm -fr generated/google-cloud-secretmanager-v1
+git rm -fr generated/swift-google-cloud-secretmanager-v1
 # Remove the library from `librarian.yaml`
-git commit -m"Remove for testing" generated/google-cloud-secretmanager-v1
+git commit -m"Remove for testing" generated/swift-google-cloud-secretmanager-v1
 ```
 
 Now add the library back (get the library name from librarian yaml):
