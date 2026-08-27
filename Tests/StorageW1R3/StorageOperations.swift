@@ -70,7 +70,7 @@ enum StorageOperations {
     var transferSize = 0
     do {
       for try await chunk in readTask.body {
-        transferSize += chunk.readableBytes
+        transferSize += chunk.count
       }
       return (transferSize, nil)
     } catch {
