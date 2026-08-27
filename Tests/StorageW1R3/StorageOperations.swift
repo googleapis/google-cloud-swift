@@ -37,9 +37,8 @@ enum StorageOperations {
       }
     }
 
-    let task = client.upload(data, to: bucketName, as: objectName, options: options)
     do {
-      return try await task.value
+      return try await client.upload(data, to: bucketName, as: objectName, options: options)
     } catch {
       // If precondition failed (412), check if object already exists
       if let reqError = error as? RequestError,
