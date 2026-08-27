@@ -68,50 +68,30 @@ The library handles GCS 256 KiB chunk alignment internally by buffering reads fr
 *   *Description:* Define `UploadSource` and `Seekable` independently, but use protocol composition (`some UploadSource & Seekable` or generic constraints `<S: UploadSource & Seekable>`) in the method signatures where seekability is required.
 *   *Why Rejected:* While this solves the value semantics bug and maintains compile-time safety, it adds syntactic noise to the API signatures (e.g., `resumeUpload(_ source: some UploadSource & Seekable, ...)`). Inheriting `SeekableUploadSource: UploadSource` provides a cleaner, more self-documenting API hierarchy for this specific domain.
 
-## 3. Progress & Resumability
+### 3. Return Type & Resumability
 
-To support progress reporting and resilience, the `upload` API returns an `UploadTask` rather than blocking until completion.
+### Direct Return Type (`Object`)
 
-### `UploadStatus` Design
-The `UploadTask` exposes a stream of `UploadStatus` objects:
+The `upload` and `resumeUpload` APIs directly return the created `GoogleCloudStorage.Object` asynchronously (`async throws -> Object`) rather than returning an `UploadTask` handle or stream wrapper. This provides a simple, clean, and idiomatic async Swift API for object uploads:
 
 ```swift
-public struct UploadStatus: Sendable {
-    public let fractionCompleted: Double?
-    public let bytesUploaded: Int64
-    public let totalBytes: Int64?
-    public let sessionURI: URL?
-}
+let object = try await storageClient.upload(fileURL, to: "my-bucket", as: "file.txt")
 ```
 
-*   **`sessionURI`:** This is the GCS Resumable Upload session URI. It is `nil` for Simple Uploads. For Resumable Uploads, it is populated as soon as the session is established and remains constant.
+Observability into individual upload chunks is omitted from the return type for simplicity. If chunk progress or status events are needed in the future, they can be implemented using an observer pattern (e.g., passing a progress handler/delegate in `UploadOptions`).
 
-### Alternatives Considered for Resumption
+### Resumability Strategy: Persistent vs. Transient
 
-#### File Integrity Validation (Robustness vs. Consistency)
-*   *Description:* Store file metadata (modification date and size) in a wrapper struct (e.g., `ResumableSession`) and validate it before resuming to prevent silent data corruption if the file was modified.
-*   *Why Rejected:*
-    1.  **Consistency:** Other Google Cloud Storage client libraries (Go, Java, Python, etc.) do not perform this validation; they rely on the developer to ensure the file has not changed. We should align with standard GCS SDK behavior.
-    2.  **Complexity:** Adds extra complexity to the public API (introducing `ResumableSession` instead of a raw `URL` for the session).
-    3.  **Developer Responsibility:** File integrity management is left to the developer if their use case requires it.
+We differentiate support for resumption based on the input source:
 
-#### Explicit Abort/DELETE vs. Client-Side Cancellation
-*   *Description:* GCS allows aborting a resumable upload by sending an HTTP `DELETE` request to the Session URI, which immediately discards the accumulated data on the server. We considered exposing an `abort()` method or an `abort` parameter on `cancel()` to trigger this.
-*   *Why Rejected:*
-    1.  **Consistency:** Other Google Cloud client libraries do not typically support this level of complexity for cancellation; they standardise on client-side cancellation (simply stopping the request).
-    2.  **No Cost Impact:** Incomplete GCS resumable uploads are automatically cleaned up by GCS after 7 days, and users are not charged for the storage of incomplete uploads in the meantime.
-    3.  **Simplicity:** Local-only cancellation (cancelling the Swift `Task` and aborting the active network connection) is simpler to implement and sufficient for most use cases.
-
-#### iOS Background Transfer Service (Platform-Specific Resumability)
-*   *Description:* iOS has a unique background execution model. If the app is suspended or terminated, standard Swift Concurrency tasks and network connections are killed. To support large uploads in the background, iOS uses a system daemon (`nsurlsessiond`) that takes over the transfer. This requires a decoupled, identifier-based API and a centralized event stream to allow "re-binding" to transfers after an app relaunch.
-*   *Why Rejected:*
-    1.  **Target Environment:** The current version of this SDK targets non-iOS environments (e.g., server-side Swift on Linux, macOS CLI tools) where process suspension by a mobile OS is not a factor.
-    2.  **API Complexity:** Supporting iOS background transfers requires a completely different API paradigm (fire-and-forget identifier-based uploads + centralized event streams on the client) which would clutter the API for non-iOS developers.
-*   *Future Design Path:* If iOS support is required in the future, we would introduce:
-    *   `storageClient.uploadInBackground(_ fileURL: URL, withIdentifier: String, ...)`
-    *   `storageClient.backgroundUploadEvents: AsyncStream<BackgroundUploadEvent>`
-    *   A re-binding mechanism for the App Delegate: `storageClient.rebindBackgroundUpload(identifier:completionHandler:)`
-    *   Background uploads would be strictly limited to `URL` (File) inputs.
+1.  **Persistent Resumption (Process-Level):**
+    *   **Supported for:** Sources conforming to `SeekableUploadSource` (e.g., `FileSource`, `BytesSource`).
+    *   **Mechanism:** If an upload fails with a resumable session established, the caller can resume the upload using `client.resumeUpload(source, uploadId: uploadId)`.
+    *   **How it works:** The library queries GCS using the `uploadId` (session URI) with a `bytes */*` status query. GCS returns the received byte range in the `Range` header (or 200 OK if already completed). The library seeks the source to align with GCS and resumes uploading the remaining chunks.
+2.  **Transient Resumption (In-Memory/Active Session):**
+    *   **Supported for:** All `UploadSource` types.
+    *   **Mechanism:** Automatic retries by the library's internal retry and resume loop during an active upload session.
+    *   **Limitation for Streams:** Non-seekable streams (`StreamSource`) cannot be "rewound" if the process terminates, so process-level resumption is not supported for them.
 
 ### Robustness & Error Handling
 
@@ -119,7 +99,7 @@ To ensure high reliability, the library handles several critical edge cases duri
 
 #### 1. File Truncation / Mutation on Resume
 If a file is truncated on disk after an upload is interrupted, its size may be smaller than the offset GCS claims to have received. Attempting to seek to the GCS-reported offset would fail.
-*   **Mitigation:** Before resuming, the library compares the current local file size against the GCS-reported offset. If `localSize < gcsOffset`, the library aborts the resume and throws `UploadError.localFileTooSmall`.
+*   **Mitigation:** Before resuming, the library compares the current local file size against the GCS-reported offset. If `localSize < gcsOffset`, the library aborts the resume and throws `UploadError.localSourceTooSmall`.
 
 #### 2. Session Expiration
 GCS Resumable Session URIs expire after 7 days. If a developer attempts to resume using an expired URI, GCS returns a `404 Not Found` or `400 Bad Request`.
@@ -127,25 +107,7 @@ GCS Resumable Session URIs expire after 7 days. If a developer attempts to resum
 
 #### 3. Data Integrity (Checksums)
 To prevent network corruption, GCS supports MD5 and CRC32C checksum validation.
-*   **Mitigation:** The library supports automatic client-side checksumming. By default, it will calculate the CRC32C (or MD5) of the uploaded data and send it to GCS. GCS will validate this against the received data and reject the upload if there is a mismatch. This is configured via `UploadOptions.validation`.
-
-### Multicasting Status Updates (Unicast Limitation)
-Swift's `AsyncStream` is unicast by default. If multiple observers (e.g., a UI progress bar and a logger) try to consume the same stream, it will lead to unexpected behavior or missed events.
-
-To support multiple observers, `UploadTask` does not expose a single public property stream. Instead, it exposes a factory method `makeStatusStream()`. Internally, the library will use a multicast broadcaster (backed by an actor) to distribute status updates to all active streams created by this method.
-
-### Resumability Strategy: Persistent vs. Transient
-
-We differentiate support for resumption based on the input source:
-
-1.  **Persistent Resumption (Process-Level):**
-    *   **Supported for:** Sources conforming to `SeekableUploadSource` (e.g., `FileSource`).
-    *   **Mechanism:** The developer can save the `sessionURI` from `UploadStatus`. If the app crashes/terminates, they can call `client.resumeUpload(fileSource, withSession: sessionURI)`.
-    *   **How it works:** The library queries GCS using the `sessionURI`. GCS returns the received byte range. The library calls `source.seek(to:)` to align the source with GCS and resumes.
-2.  **Transient Resumption (In-Memory/Active Session):**
-    *   **Supported for:** All `UploadSource` types.
-    *   **Mechanism:** Automatic retries by the library during an active upload session.
-    *   **Limitation for Streams:** Non-seekable streams (`StreamSource`) cannot be "rewound" if the process dies, so process-level resumption is not supported for them.
+*   **Mitigation:** The library supports automatic client-side checksumming. By default, it calculates CRC32C (or MD5) and includes the hashes in `x-goog-hash` headers. GCS validates this against the received data and rejects the upload if there is a mismatch. This is configured via `UploadOptions.checksums`.
 
 ## 4. Proposed Swift Interface
 
@@ -224,75 +186,32 @@ public enum UploadError: Error, Sendable {
     /// The resumable session has expired (usually after 7 days) or was not found.
     case sessionExpired(sessionURI: URL, underlyingError: Error?)
 
-    /// The upload was cancelled by the user.
-    case cancelled
-
     /// GCS returned an unexpected response.
     case unexpectedServerResponse(statusCode: Int, message: String)
-
-    /// Network error during upload.
-    case networkError(underlyingError: Error)
 }
 ```
 
-### `ChecksumValidation`
+### `ChecksumOptions`
 Strategy for data integrity validation.
 
 ```swift
-public enum ChecksumValidation: Sendable {
-    /// Do not perform client-side checksum validation.
-    case none
+public struct ChecksumOptions: Sendable, Hashable {
+    public var crc32c: ChecksumValue?
+    public var md5: ChecksumValue?
 
-    /// Automatically calculate and validate CRC32C (recommended).
-    case crc32c
+    public enum ChecksumValue: Sendable, Hashable, ExpressibleByStringLiteral, ExpressibleByIntegerLiteral {
+        case auto
+        case value(String)
 
-    /// Automatically calculate and validate MD5.
-    case md5
-}
-```
-
-### `UploadStatus`
-Represents the current state of an ongoing upload.
-
-```swift
-public struct UploadStatus: Sendable {
-    /// The fraction of the upload completed (0.0 to 1.0).
-    /// This is `nil` if the total size is unknown (e.g., streaming).
-    public let fractionCompleted: Double?
-
-    /// The number of bytes successfully received by GCS.
-    public let bytesUploaded: Int64
-
-    /// The total bytes to upload. Nil if the size is unknown (streaming).
-    public let totalBytes: Int64?
-
-    /// The GCS Session URI.
-    /// This is `nil` if the library chose a "Simple Upload".
-    /// It becomes populated as soon as the Resumable Session is created.
-    public let sessionURI: URL?
-}
-```
-
-### `UploadTask`
-A handle to an ongoing upload, allowing for progress monitoring, cancellation, and awaiting the final result.
-
-```swift
-public struct UploadTask: Sendable {
-    /// Creates a new stream to observe the upload progress and status.
-    /// Multiple observers can call this to get their own independent stream.
-    /// The stream completes when the upload finishes or fails.
-    public func makeStatusStream() -> AsyncStream<UploadStatus>
-
-    /// The final result of the upload.
-    /// Awaiting this will suspend until the upload is complete.
-    public var value: Object {
-        get async throws
+        public init(stringLiteral value: String)
+        public init(_ intValue: UInt32)
+        public init(integerLiteral value: UInt64)
     }
 
-    /// Cancels the ongoing upload (client-side).
-    /// If cancelled, `value` will throw a `CancellationError`.
-    /// Note: The GCS resumable session on the server will remain active until it expires (usually 7 days).
-    public func cancel()
+    public init(crc32c: ChecksumValue? = .auto, md5: ChecksumValue? = nil)
+
+    public static var `default`: ChecksumOptions { ChecksumOptions(crc32c: .auto, md5: nil) }
+    public static var none: ChecksumOptions { ChecksumOptions(crc32c: nil, md5: nil) }
 }
 ```
 
@@ -319,11 +238,11 @@ public struct UploadMetadata: Sendable {
 }
 ```
 
-### `CustomerEncryptionKey`
+### `CustomerEncryptionKeyOptions`
 Options for Customer-Supplied Encryption Keys (CSEK).
 
 ```swift
-public struct CustomerEncryptionKey: Sendable {
+public struct CustomerEncryptionKeyOptions: Sendable {
     public let algorithm: String
     public let keyBase64: String
     public let keyHashBase64: String
@@ -340,18 +259,15 @@ public struct UploadOptions: Sendable {
     public var chunkSize: Int
     public var preconditions: StoragePreconditions?
     public var kmsKeyName: String?
-    public var customerEncryptionKey: CustomerEncryptionKey?
-    public var validation: ChecksumValidation
+    public var customerEncryptionKey: CustomerEncryptionKeyOptions?
+    public var checksums: ChecksumOptions
+    public var resumableUploadThreshold: Int
+    public var resumePolicy: (any ResumePolicy<UploadDetails>)?
+    public var backoffPolicy: (any BackoffPolicy)?
 
     public static var `default`: UploadOptions { UploadOptions() }
 
-    public init(
-        chunkSize: Int = 8 * 1024 * 1024,
-        preconditions: StoragePreconditions? = nil,
-        kmsKeyName: String? = nil,
-        customerEncryptionKey: CustomerEncryptionKey? = nil,
-        validation: ChecksumValidation = .crc32c
-    )
+    public init(...)
 }
 ```
 
@@ -368,27 +284,27 @@ extension StorageClient {
     ///   - objectName: The destination GCS object name.
     ///   - metadata: Optional metadata to associate with the object.
     ///   - options: Configuration options for the upload.
-    /// - Returns: An `UploadTask` to monitor and control the upload.
+    /// - Returns: The created GCS `Object`.
     public func upload(
         _ source: some UploadSource,
         to bucket: String,
         as objectName: String,
         metadata: UploadMetadata? = nil,
         options: UploadOptions = .default
-    ) -> UploadTask
+    ) async throws -> Object
 
-    /// Resumes a previously interrupted file upload using a saved session URI.
+    /// Resumes a previously interrupted file upload using a saved upload ID or session URI.
     ///
     /// - Parameters:
     ///   - source: The seekable upload source (must match the original source).
-    ///   - sessionURI: The saved GCS Session URI.
+    ///   - uploadId: The saved GCS Session URI or upload ID.
     ///   - options: Configuration options for the upload.
-    /// - Returns: An `UploadTask` to monitor and control the resumed upload.
+    /// - Returns: The created GCS `Object`.
     public func resumeUpload(
         _ source: some SeekableUploadSource,
-        withSession sessionURI: URL,
+        uploadId: String,
         options: UploadOptions = .default
-    ) -> UploadTask
+    ) async throws -> Object
 
     // --- Convenience Overloads ---
 
@@ -399,9 +315,7 @@ extension StorageClient {
         as objectName: String,
         metadata: UploadMetadata? = nil,
         options: UploadOptions = .default
-    ) -> UploadTask {
-        return self.upload(FileSource(fileURL: fileURL), to: bucket, as: objectName, metadata: metadata, options: options)
-    }
+    ) async throws -> Object
 
     /// Convenience upload method for in-memory Data.
     public func upload(
@@ -410,23 +324,18 @@ extension StorageClient {
         as objectName: String,
         metadata: UploadMetadata? = nil,
         options: UploadOptions = .default
-    ) -> UploadTask {
-        return self.upload(BytesSource(data: data), to: bucket, as: objectName, metadata: metadata, options: options)
-    }
+    ) async throws -> Object
 }
 ```
 
-## 5. Concurrency & Thread Safety
+## 5. Concurrency & Cancellation
 
-In modern Swift, APIs must be designed with data-race safety in mind.
+In modern Swift, APIs are designed with Swift Concurrency and data-race safety in mind.
 
-### `Sendable` Conformance
-Even if developers do not intentionally share an `UploadTask` across threads, Swift Concurrency will likely jump threads (e.g., initiating the upload in a background context, observing progress on the `@MainActor` for UI updates, and calling `cancel()` from a UI action).
+### Asynchronous Execution & Sendability
+All upload operations are `async throws` functions that execute within the caller's Swift Concurrency context. Input parameters, sources, and options conform to `Sendable`, allowing uploads to be initiated across concurrency domains without data races.
 
-Therefore, `UploadTask` is designed to be `Sendable`.
+### Cooperative Cancellation
+Upload operations support standard Swift Concurrency cancellation. If the calling `Task` is cancelled, the internal upload loops check `Task.isCancelled` between chunks and abort active network requests with `CancellationError`.
 
-### Implementation Strategy for thread-safety:
-To keep `UploadTask` as a lightweight `struct` while ensuring thread safety:
-1.  **Immutable Struct:** `UploadTask` will contain only `let` constants.
-2.  **Cooperative Cancellation:** The `cancel()` method will not mutate the `UploadTask` struct itself. Instead, it will forward the cancellation to an internal, thread-safe reference (such as a native Swift `Task` handle or a thread-safe state machine).
-    *   Calling `task.cancel()` will trigger cooperative cancellation on the underlying asynchronous operation, which the library's internal upload loop will detect and handle by aborting the HTTP requests.
+Note: Client-side cancellation leaves any in-progress resumable session on GCS until it expires (typically after 7 days). GCS automatically cleans up expired sessions at no additional storage charge.
