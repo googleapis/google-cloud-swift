@@ -25,8 +25,8 @@ let package = Package(
     .library(name: "UserGuide", targets: ["UserGuide"])
   ],
   dependencies: [
-    .package(path: "../packages/gax"),
-    .package(path: "../packages/auth"),
+    .package(path: "../packages/swift-google-auth"),
+    .package(path: "../packages/swift-google-gax"),
     .package(path: "../generated/swift-google-cloud-secretmanager-v1"),
     .package(path: "../generated/swift-google-cloud-language-v2"),
     .package(path: "../generated/swift-google-cloud-workflows-v1"),
@@ -36,8 +36,8 @@ let package = Package(
     .target(
       name: "UserGuide",
       dependencies: [
-        .product(name: "GoogleCloudAuth", package: "auth"),
-        .product(name: "GoogleCloudGax", package: "gax"),
+        .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
+        .product(name: "GoogleCloudGax", package: "swift-google-gax"),
         .product(
           name: "GoogleCloudSecretManagerV1", package: "swift-google-cloud-secretmanager-v1"),
         .product(name: "GoogleCloudLanguageV2", package: "swift-google-cloud-language-v2"),

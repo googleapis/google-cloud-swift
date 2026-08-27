@@ -47,11 +47,11 @@ let package = Package(
   ],
   dependencies: [
     // Reference local packages via paths
-    .package(path: "./packages/auth"),
-    .package(path: "./packages/gax"),
+    .package(path: "./packages/swift-google-auth"),
+    .package(path: "./packages/swift-google-gax"),
+    .package(path: "./packages/swift-google-wkt"),
+    .package(path: "./packages/swift-google-cloud-storage"),
     .package(path: "./packages/test-helpers"),
-    .package(path: "./packages/wkt"),
-    .package(path: "./packages/storage"),
     .package(path: "./guide"),
     .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
     .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.5.0"),
@@ -63,23 +63,23 @@ let package = Package(
       name: "AllModules",
       dependencies: [
         .product(name: "UserGuide", package: "guide"),
-        .product(name: "GoogleCloudAuth", package: "auth"),
-        .product(name: "GoogleCloudGax", package: "gax"),
-        .product(name: "GoogleCloudWKT", package: "wkt"),
+        .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
+        .product(name: "GoogleCloudGax", package: "swift-google-gax"),
+        .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
       ] + generatedModules,
     ),
     .testTarget(
       name: "Discovery",
       dependencies: [
-        .product(name: "GoogleCloudWKT", package: "wkt")
+        .product(name: "GoogleCloudWKT", package: "swift-google-wkt")
       ],
       exclude: ["disco/"],
     ),
     .testTarget(
       name: "ProtoJSON",
       dependencies: [
-        .product(name: "GoogleCloudGax", package: "gax"),
-        .product(name: "GoogleCloudWKT", package: "wkt"),
+        .product(name: "GoogleCloudGax", package: "swift-google-gax"),
+        .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
       ],
       exclude: ["protos/"],
     ),
@@ -87,7 +87,7 @@ let package = Package(
       name: "DiscoveryBasedClient",
       dependencies: [
         .product(name: "GoogleCloudComputeV1", package: "swift-google-cloud-compute-v1"),
-        .product(name: "GoogleCloudWKT", package: "wkt"),
+        .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
         .product(name: "GoogleCloudTestHelpers", package: "test-helpers"),
       ],
       exclude: ["README.md"],
@@ -100,9 +100,9 @@ let package = Package(
         .product(name: "GoogleCloudWorkflowsV1", package: "swift-google-cloud-workflows-v1"),
         .product(name: "GoogleCloudLocation", package: "swift-google-cloud-location"),
         .product(name: "GoogleIAMV1", package: "swift-google-iam-v1"),
-        .product(name: "GoogleCloudGax", package: "gax"),
-        .product(name: "GoogleCloudWKT", package: "wkt"),
-        .product(name: "GoogleCloudStorage", package: "storage"),
+        .product(name: "GoogleCloudGax", package: "swift-google-gax"),
+        .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
+        .product(name: "GoogleCloudStorage", package: "swift-google-cloud-storage"),
         .product(name: "GoogleCloudTestHelpers", package: "test-helpers"),
         .product(name: "InMemoryLogging", package: "swift-log"),
       ],
@@ -111,7 +111,7 @@ let package = Package(
     .testTarget(
       name: "Any",
       dependencies: [
-        .product(name: "GoogleCloudWKT", package: "wkt"),
+        .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
         .product(
           name: "GoogleCloudSecretManagerV1", package: "swift-google-cloud-secretmanager-v1"),
       ],
@@ -119,8 +119,8 @@ let package = Package(
     .testTarget(
       name: "QueryParameter",
       dependencies: [
-        .product(name: "GoogleCloudGax", package: "gax"),
-        .product(name: "GoogleCloudWKT", package: "wkt"),
+        .product(name: "GoogleCloudGax", package: "swift-google-gax"),
+        .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
         .product(
           name: "GoogleCloudSecurityPublicCAV1", package: "swift-google-cloud-security-publicca-v1"),
       ],
@@ -130,8 +130,8 @@ let package = Package(
       dependencies: [
         .product(
           name: "GoogleCloudSecretManagerV1", package: "swift-google-cloud-secretmanager-v1"),
-        .product(name: "GoogleCloudGax", package: "gax"),
-        .product(name: "GoogleCloudWKT", package: "wkt"),
+        .product(name: "GoogleCloudGax", package: "swift-google-gax"),
+        .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
         .product(name: "GoogleCloudTestHelpers", package: "test-helpers"),
       ],
       path: "Tests/Endurance",
@@ -141,9 +141,9 @@ let package = Package(
       name: "StorageW1R3",
       dependencies: [
         .product(name: "ArgumentParser", package: "swift-argument-parser"),
-        .product(name: "GoogleCloudStorage", package: "storage"),
-        .product(name: "GoogleCloudAuth", package: "auth"),
-        .product(name: "GoogleCloudGax", package: "gax"),
+        .product(name: "GoogleCloudStorage", package: "swift-google-cloud-storage"),
+        .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
+        .product(name: "GoogleCloudGax", package: "swift-google-gax"),
         .product(name: "Logging", package: "swift-log"),
       ],
       path: "Tests/StorageW1R3",

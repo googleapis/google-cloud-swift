@@ -72,7 +72,7 @@ default:
         path: generated/swift-google-apps-script-type-slides
         api_package: google.apps.script.type.slides
       - name: GoogleCloudAuth
-        path: packages/auth
+        path: packages/swift-google-auth
         required_by_services: true
       - name: GoogleCloudCommon
         path: generated/swift-google-cloud-common
@@ -93,7 +93,7 @@ default:
         path: generated/swift-google-cloud-gkehub-rbacrolebindingactuation-v1
         api_package: google.cloud.gkehub.rbacrolebindingactuation.v1
       - name: GoogleCloudGax
-        path: packages/gax
+        path: packages/swift-google-gax
         required_by_services: true
         spi: GoogleCloudInternal
       - name: GoogleCloudKMSV1
@@ -121,7 +121,7 @@ default:
         path: generated/swift-google-cloud-recommender-v1
         api_package: google.cloud.recommender.v1
       - name: GoogleCloudWKT
-        path: packages/wkt
+        path: packages/swift-google-wkt
         api_package: google.protobuf
         spi: GoogleCloudInternal
       - name: GoogleGrafeasV1
@@ -320,10 +320,10 @@ libraries:
   - name: google-cloud-auth
     version: 0.0.0-preview
     copyright_year: "2026"
-    output: packages/auth/Sources/GoogleCloudAuth/generated
+    output: packages/swift-google-auth/Sources/GoogleCloudAuth/generated
     swift:
       modules:
-        - output: packages/auth/Sources/GoogleCloudAuth/generated
+        - output: packages/swift-google-auth/Sources/GoogleCloudAuth/generated
           api_path: ""
           module_type: package-version
   - name: google-cloud-backupdr-logging-v1
@@ -672,10 +672,10 @@ libraries:
   - name: google-cloud-gax
     version: 0.0.0-preview
     copyright_year: "2026"
-    output: packages/gax/Sources/GoogleCloudGax/generated
+    output: packages/swift-google-gax/Sources/GoogleCloudGax/generated
     swift:
       modules:
-        - output: packages/gax/Sources/GoogleCloudGax/generated
+        - output: packages/swift-google-gax/Sources/GoogleCloudGax/generated
           api_path: ""
           module_type: package-version
   - name: google-cloud-gkebackup-logging-v1
@@ -1001,11 +1001,11 @@ libraries:
   - name: google-cloud-storage
     version: 0.0.0-preview
     copyright_year: "2026"
-    output: packages/storage/Sources/generated/StorageControlProtos
+    output: packages/swift-google-cloud-storage/Sources/generated/StorageControlProtos
     swift:
       library_name_override: GoogleCloudStorage
       modules:
-        - output: packages/storage/Sources/generated/StorageControlProtos
+        - output: packages/swift-google-cloud-storage/Sources/generated/StorageControlProtos
           api_path: google/storage/control/v2
           module_type: swift-protobuf
           include_list:
@@ -1017,23 +1017,23 @@ libraries:
             - ../../../rpc/status.proto
             - ../../../type/expr.proto
             - ../../../type/interval.proto
-        - output: packages/storage/Sources/GoogleCloudStorage/generated/StorageControl
+        - output: packages/swift-google-cloud-storage/Sources/GoogleCloudStorage/generated/StorageControl
           service_config: google/storage/control/v2/storage_v2.yaml
           api_path: google/storage/control/v2
           module_type: grpc-client
           module_path: StorageControlProtos
-        - output: packages/storage/Sources/GoogleCloudStorage/generated/StorageControl/Convert/StorageControl
+        - output: packages/swift-google-cloud-storage/Sources/GoogleCloudStorage/generated/StorageControl/Convert/StorageControl
           api_path: google/storage/control/v2
           module_type: convert-swift
           module_path: StorageControlProtos
-        - output: packages/storage/Sources/GoogleCloudStorage/generated/StorageControl/Convert/GoogleType
+        - output: packages/swift-google-cloud-storage/Sources/GoogleCloudStorage/generated/StorageControl/Convert/GoogleType
           api_path: google/type
           module_type: convert-swift
           include_list:
             - interval.proto
             - expr.proto
           module_path: StorageControlProtos
-        - output: packages/storage/Sources/generated/StorageProtos
+        - output: packages/swift-google-cloud-storage/Sources/generated/StorageProtos
           api_path: google/storage/v2
           module_type: swift-protobuf
           include_list:
@@ -1044,7 +1044,7 @@ libraries:
             - ../../rpc/status.proto
             - ../../type/date.proto
             - ../../type/expr.proto
-        - output: packages/storage/Sources/GoogleCloudStorage/generated/Storage
+        - output: packages/swift-google-cloud-storage/Sources/GoogleCloudStorage/generated/Storage
           service_config: google/storage/v2/storage_v2.yaml
           api_path: google/storage/v2
           module_type: grpc-client
@@ -1064,7 +1064,7 @@ libraries:
             - .google.storage.v2.Storage.RewriteObject
             - .google.storage.v2.Storage.MoveObject
           module_path: StorageProtos
-        - output: packages/storage/Sources/GoogleCloudStorage/generated/Storage/Convert/Storage
+        - output: packages/swift-google-cloud-storage/Sources/GoogleCloudStorage/generated/Storage/Convert/Storage
           api_path: google/storage/v2
           module_type: convert-swift
           included_ids:
@@ -1083,28 +1083,28 @@ libraries:
             - .google.storage.v2.Storage.RewriteObject
             - .google.storage.v2.Storage.MoveObject
           module_path: StorageProtos
-        - output: packages/storage/Sources/GoogleCloudStorage/generated/StorageControl
+        - output: packages/swift-google-cloud-storage/Sources/GoogleCloudStorage/generated/StorageControl
           api_path: google/storage/v2
           module_type: storage
-        - output: packages/storage/Sources/GoogleCloudStorage/generated/Storage/Convert/GoogleType
+        - output: packages/swift-google-cloud-storage/Sources/GoogleCloudStorage/generated/Storage/Convert/GoogleType
           api_path: google/type
           module_type: convert-swift
           include_list:
             - date.proto
           module_path: StorageProtos
-        - output: packages/storage/Sources/GoogleCloudStorage/generated/StorageControl/Convert/GoogleRpc
+        - output: packages/swift-google-cloud-storage/Sources/GoogleCloudStorage/generated/StorageControl/Convert/GoogleRpc
           api_path: google/rpc
           module_type: convert-swift
           include_list:
             - status.proto
           module_path: StorageControlProtos
-        - output: packages/storage/Sources/GoogleCloudStorage/generated/StorageControl/Convert/GoogleLongRunning
+        - output: packages/swift-google-cloud-storage/Sources/GoogleCloudStorage/generated/StorageControl/Convert/GoogleLongRunning
           api_path: google/longrunning
           module_type: convert-swift
           include_list:
             - operations.proto
           module_path: StorageControlProtos
-        - output: packages/storage/Sources/GoogleCloudStorage/generated/StorageControl/Convert/GoogleIAMV1
+        - output: packages/swift-google-cloud-storage/Sources/GoogleCloudStorage/generated/StorageControl/Convert/GoogleIAMV1
           api_path: google/iam/v1
           module_type: convert-swift
           include_list:
@@ -1218,7 +1218,7 @@ libraries:
   - name: google-cloud-wkt
     version: 0.1.0-preview
     copyright_year: "2026"
-    output: packages/wkt/Sources/GoogleCloudWKT/generated
+    output: packages/swift-google-wkt/Sources/GoogleCloudWKT/generated
     roots:
       - protobuf-src
     swift:
@@ -1228,10 +1228,10 @@ libraries:
         - type.proto
         - source_context.proto
       modules:
-        - output: packages/wkt/Sources/GoogleCloudWKT/generated/messages
+        - output: packages/swift-google-wkt/Sources/GoogleCloudWKT/generated/messages
           api_path: google/protobuf
           module_type: default
-        - output: packages/wkt/Sources/GoogleCloudWKT/generated/version
+        - output: packages/swift-google-wkt/Sources/GoogleCloudWKT/generated/version
           api_path: google/protobuf
           module_type: package-version
   - name: google-cloud-workflows-executions-v1

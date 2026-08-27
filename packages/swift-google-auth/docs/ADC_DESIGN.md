@@ -100,16 +100,16 @@ optimization and behavior.
 
 # Implementation details
 
--   `packages/auth/Sources/GoogleCloudAuth/ADCPath.swift`: Handles AIP-4110 path
+-   `packages/swift-google-auth/Sources/GoogleCloudAuth/ADCPath.swift`: Handles AIP-4110 path
     precedence.
--   `packages/auth/Sources/GoogleCloudAuth/ADCResolver.swift`: Reads raw JSON
+-   `packages/swift-google-auth/Sources/GoogleCloudAuth/ADCResolver.swift`: Reads raw JSON
     file data from the resolved path.
--   `packages/auth/Sources/GoogleCloudAuth/ADC.swift`: Orchestrates JSON
+-   `packages/swift-google-auth/Sources/GoogleCloudAuth/ADC.swift`: Orchestrates JSON
     decoding, quota project injection, and registry delegation.
--   `packages/auth/Sources/GoogleCloudAuth/CredentialParserRegistry.swift`:
+-   `packages/swift-google-auth/Sources/GoogleCloudAuth/CredentialParserRegistry.swift`:
     Contains the `CredentialParserRegistry` class and `CredentialSourceParser`
     protocol.
--   `packages/auth/Sources/GoogleCloudAuth/Credentials.swift`: Maintains the
+-   `packages/swift-google-auth/Sources/GoogleCloudAuth/Credentials.swift`: Maintains the
     public `CredentialsConfiguration` enum.
 
 # Testing Parity
@@ -117,7 +117,7 @@ optimization and behavior.
 The native Swift implementation will map directly to the established test
 suites:
 
-### Unit Tests (`packages/auth/Tests/ADCResolverTests.swift` & `ADCPathTests.swift`)
+### Unit Tests (`packages/swift-google-auth/Tests/ADCResolverTests.swift` & `ADCPathTests.swift`)
 
 -   **Path Resolution**: `adc_well_known_path_windows`,
     `adc_well_known_path_posix`, `adc_path_from_env`

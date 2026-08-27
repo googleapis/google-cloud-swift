@@ -1,13 +1,13 @@
 # Design Specification - Swift Service Account Authentication
 
-This document defines the design and implementation specifications for the native Swift **Service Account Authentication** feature in the `GoogleCloudAuth` package (`packages/auth`). This feature enables applications to authenticate using a Google Service Account JSON key file natively in Swift, eliminating the existing Rust FFI bridge while retaining 100% feature and test parity with the Rust SDK.
+This document defines the design and implementation specifications for the native Swift **Service Account Authentication** feature in the `GoogleCloudAuth` package (`packages/swift-google-auth`). This feature enables applications to authenticate using a Google Service Account JSON key file natively in Swift, eliminating the existing Rust FFI bridge while retaining 100% feature and test parity with the Rust SDK.
 
 ---
 
 ## 1. Objective & Scope
 
 ### Objective
-To implement a secure, unified, and thread-safe native Swift Service Account Authentication engine inside `google-cloud-swift` (`packages/auth`), supporting access token generation (self-signed JWTs) and 1-to-1 test parity.
+To implement a secure, unified, and thread-safe native Swift Service Account Authentication engine inside `google-cloud-swift` (`packages/swift-google-auth`), supporting access token generation (self-signed JWTs) and 1-to-1 test parity.
 
 ### In-Scope
 1.  **Access Token Credentials**: Generating OAuth2 access tokens (self-signed JWS/JWT assertions) natively in Swift using a unified, cross-platform cryptographic library.

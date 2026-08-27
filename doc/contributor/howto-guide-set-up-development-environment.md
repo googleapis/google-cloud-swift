@@ -73,7 +73,7 @@ swift test
 ## Run the unit tests for a specific package
 
 ```bash
-swift test --quiet --package-path packages/gax
+swift test --quiet --package-path packages/swift-google-gax
 ```
 
 ## Sharing a build cache
@@ -92,7 +92,7 @@ alias stest='swift test --scratch-path $(git rev-parse --show-toplevel)/.build-c
 Then use these aliases to speed up testing:
 
 ```bash
-stest --package-path packages/wkt
+stest --package-path packages/swift-google-wkt
 ```
 
 or to verify the generated code compiles:
@@ -217,7 +217,7 @@ env GOOGLE_CLOUD_PROJECT=${P_ID} \
 env GOOGLE_CLOUD_PROJECT=${P_ID} \
   GOOGLE_CLOUD_SWIFT_TEST_BUCKET="${P_ID}-bucket" \
   GOOGLE_CLOUD_SWIFT_TEST_SERVICE_ACCOUNT=swift-sdk-test@${P_ID}.iam.gserviceaccount.com \
-  swift test --package-path packages/storage
+  swift test --package-path packages/swift-google-cloud-storage
 ```
 
 ## Preview Documentation
