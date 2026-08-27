@@ -77,8 +77,7 @@ import Testing
       for: chunkUrl)
 
     let client = try makeClient(registry: registry)
-    let task = client.upload(source, to: bucket, as: objectName)
-    let object = try await task.value
+    let object = try await client.upload(source, to: bucket, as: objectName)
 
     #expect(object.name == objectName)
     let requests = registry.recordedRequests()
@@ -102,10 +101,9 @@ import Testing
 
     let client = try makeClient(
       registry: registry, uploadResumePolicy: NeverResume<UploadDetails>())
-    let task = client.upload(source, to: bucket, as: objectName)
 
     let error = await expectError(RequestError.self) {
-      _ = try await task.value
+      _ = try await client.upload(source, to: bucket, as: objectName)
     }
     if case .io(let underlying as URLError) = error {
       #expect(underlying.code == URLError.cannotConnectToHost)
@@ -134,10 +132,9 @@ import Testing
       for: startUrl)
 
     let client = try makeClient(registry: registry)
-    let task = client.upload(source, to: bucket, as: objectName)
 
     await #expect(throws: DummyError.self) {
-      _ = try await task.value
+      _ = try await client.upload(source, to: bucket, as: objectName)
     }
   }
 
@@ -157,10 +154,9 @@ import Testing
       for: startUrl)
 
     let client = try makeClient(registry: registry, uploadResumePolicy: NeverResume())
-    let task = client.upload(source, to: bucket, as: objectName)
 
     let error = await expectError(RequestError.self) {
-      _ = try await task.value
+      _ = try await client.upload(source, to: bucket, as: objectName)
     }
     if case .io(let underlying as URLError) = error {
       #expect(underlying.code == .cannotConnectToHost)
@@ -193,10 +189,9 @@ import Testing
       for: chunkUrl)
 
     let client = try makeClient(registry: registry)
-    let task = client.upload(source, to: bucket, as: objectName)
 
     let error = await expectError(RequestError.self) {
-      try await task.value
+      try await client.upload(source, to: bucket, as: objectName)
     }
     if case .http(let details) = error {
       #expect(details.http_status_code == 500)
@@ -239,8 +234,7 @@ import Testing
       for: queryUrl)
 
     let client = try makeClient(registry: registry)
-    let task = client.resumeUpload(source, uploadId: queryUrl.absoluteString)
-    let object = try await task.value
+    let object = try await client.resumeUpload(source, uploadId: queryUrl.absoluteString)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -296,9 +290,7 @@ import Testing
       for: queryUrl)
 
     let client = try makeClient(registry: registry)
-    let task = client.resumeUpload(source, uploadId: queryUrl.absoluteString)
-
-    let object = try await task.value
+    let object = try await client.resumeUpload(source, uploadId: queryUrl.absoluteString)
     #expect(object.name == objectName)
 
     let requests = registry.recordedRequests()
@@ -325,10 +317,9 @@ import Testing
       for: queryUrl)
 
     let client = try makeClient(registry: registry)
-    let task = client.resumeUpload(source, uploadId: queryUrl.absoluteString)
 
     await #expect(throws: DummyError.self) {
-      _ = try await task.value
+      _ = try await client.resumeUpload(source, uploadId: queryUrl.absoluteString)
     }
   }
 
@@ -369,22 +360,10 @@ import Testing
       for: chunkUrl)
 
     let client = try makeClient(registry: registry)
-    let task = client.upload(source, to: bucket, as: objectName)
-
-    var statuses: [UploadStatus] = []
-    for await status in task.makeStatusStream() {
-      statuses.append(status)
-    }
-
-    let object = try await task.value
+    let object = try await client.upload(source, to: bucket, as: objectName)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
-    #expect(statuses.count >= 3)
-    if let firstStatus = statuses.first, let lastStatus = statuses.last {
-      #expect(firstStatus.bytesUploaded == 0)
-      #expect(lastStatus.bytesUploaded == Int64(data.count))
-    }
   }
 
   /// Tests resuming an upload session that GCS has already fully completed, returning HTTP 200 and object metadata directly.
@@ -404,8 +383,7 @@ import Testing
       for: queryUrl)
 
     let client = try makeClient(registry: registry)
-    let task = client.resumeUpload(source, uploadId: queryUrl.absoluteString)
-    let object = try await task.value
+    let object = try await client.resumeUpload(source, uploadId: queryUrl.absoluteString)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -433,8 +411,7 @@ import Testing
       for: queryUrl)
 
     let client = try makeClient(registry: registry)
-    let task = client.resumeUpload(source, uploadId: queryUrl.absoluteString)
-    let object = try await task.value
+    let object = try await client.resumeUpload(source, uploadId: queryUrl.absoluteString)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -456,10 +433,9 @@ import Testing
       for: queryUrl)
 
     let client = try makeClient(registry: registry)
-    let task = client.resumeUpload(source, uploadId: queryUrl.absoluteString)
 
     let error = await expectError(RequestError.self) {
-      try await task.value
+      try await client.resumeUpload(source, uploadId: queryUrl.absoluteString)
     }
     if case .http(let details) = error {
       #expect(details.http_status_code == 404)
@@ -486,10 +462,9 @@ import Testing
       for: startUrl)
 
     let client = try makeClient(registry: registry)
-    let task = client.upload(source, to: bucket, as: objectName)
 
     let error = await expectUploadError {
-      try await task.value
+      try await client.upload(source, to: bucket, as: objectName)
     }
     if case .unexpectedServerResponse(let statusCode, let message) = error {
       #expect(statusCode == 200)
@@ -515,10 +490,9 @@ import Testing
       for: queryUrl)
 
     let client = try makeClient(registry: registry)
-    let task = client.resumeUpload(source, uploadId: queryUrl.absoluteString)
 
     let error = await expectError(RequestError.self) {
-      try await task.value
+      try await client.resumeUpload(source, uploadId: queryUrl.absoluteString)
     }
     if case .http(let details) = error {
       #expect(details.http_status_code == 499)
@@ -543,10 +517,9 @@ import Testing
       for: queryUrl)
 
     let client = try makeClient(registry: registry)
-    let task = client.resumeUpload(source, uploadId: queryUrl.absoluteString)
 
     let error = await expectUploadError {
-      try await task.value
+      try await client.resumeUpload(source, uploadId: queryUrl.absoluteString)
     }
     if case .localSourceTooSmall(let localSize, let gcsOffset) = error {
       #expect(localSize == 100)
@@ -598,8 +571,7 @@ import Testing
 
     let client = try makeClient(registry: registry)
     let uploadOptions = UploadOptions().with { $0.customerEncryptionKey = csek }
-    let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
-    let object = try await task.value
+    let object = try await client.upload(source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
     #expect(object.customerEncryption?.keySha256 == sample.keyHashBase64)
@@ -650,8 +622,7 @@ import Testing
       for: chunkUrl)
 
     let client = try makeClient(registry: registry)
-    let task = client.upload(source, to: bucket, as: objectName)
-    let object = try await task.value
+    let object = try await client.upload(source, to: bucket, as: objectName)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -684,8 +655,7 @@ import Testing
       for: queryUrl)
 
     let client = try makeClient(registry: registry)
-    let task = client.resumeUpload(source, uploadId: queryUrl.absoluteString)
-    let object = try await task.value
+    let object = try await client.resumeUpload(source, uploadId: queryUrl.absoluteString)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -733,8 +703,7 @@ import Testing
       for: chunkUrl)
 
     let client = try makeClient(registry: registry)
-    let task = client.upload(source, to: bucket, as: objectName)
-    let object = try await task.value
+    let object = try await client.upload(source, to: bucket, as: objectName)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -771,8 +740,7 @@ import Testing
       for: queryUrl)
 
     let client = try makeClient(registry: registry)
-    let task = client.resumeUpload(source, uploadId: queryUrl.absoluteString)
-    let object = try await task.value
+    let object = try await client.resumeUpload(source, uploadId: queryUrl.absoluteString)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -815,8 +783,7 @@ import Testing
       for: chunkUrl)
 
     let client = try makeClient(registry: registry)
-    let task = client.upload(source, to: bucket, as: objectName)
-    let object = try await task.value
+    let object = try await client.upload(source, to: bucket, as: objectName)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -861,8 +828,7 @@ import Testing
 
     let client = try makeClient(registry: registry)
     let uploadOptions = UploadOptions().with { $0.chunkSize = chunkSize }
-    let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
-    let object = try await task.value
+    let object = try await client.upload(source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -906,8 +872,7 @@ import Testing
       for: queryUrl)
 
     let client = try makeClient(registry: registry)
-    let task = client.resumeUpload(source, uploadId: queryUrl.absoluteString)
-    let object = try await task.value
+    let object = try await client.resumeUpload(source, uploadId: queryUrl.absoluteString)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -946,8 +911,7 @@ import Testing
       for: chunkUrl)
 
     let client = try makeClient(registry: registry)
-    let task = client.upload(source, to: bucket, as: objectName)
-    let object = try await task.value
+    let object = try await client.upload(source, to: bucket, as: objectName)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -984,8 +948,7 @@ import Testing
       for: chunkUrl)
 
     let client = try makeClient(registry: registry)
-    let task = client.upload(source, to: bucket, as: objectName)
-    let object = try await task.value
+    let object = try await client.upload(source, to: bucket, as: objectName)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -1018,8 +981,7 @@ import Testing
       for: chunkUrl)
 
     let client = try makeClient(registry: registry)
-    let task = client.upload(source, to: bucket, as: objectName)
-    let object = try await task.value
+    let object = try await client.upload(source, to: bucket, as: objectName)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -1075,8 +1037,7 @@ import Testing
 
     let client = try makeClient(registry: registry)
     let uploadOptions = UploadOptions().with { $0.chunkSize = 5 * 1024 * 1024 }
-    let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
-    let object = try await task.value
+    let object = try await client.upload(source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -1114,8 +1075,7 @@ import Testing
       for: chunkUrl)
 
     let client = try makeClient(registry: registry)
-    let task = client.upload(source, to: bucket, as: objectName)
-    let object = try await task.value
+    let object = try await client.upload(source, to: bucket, as: objectName)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -1166,9 +1126,8 @@ import Testing
     let uploadOptions = UploadOptions().with {
       $0.checksums = ChecksumOptions(crc32c: nil, md5: .auto)
     }
-    let task = client.resumeUpload(
+    let object = try await client.resumeUpload(
       source, uploadId: queryUrl.absoluteString, options: uploadOptions)
-    let object = try await task.value
 
     #expect(object.name == objectName)
 
@@ -1218,9 +1177,8 @@ import Testing
     let uploadOptions = UploadOptions().with {
       $0.checksums = ChecksumOptions(crc32c: nil, md5: .auto)
     }
-    let task = client.resumeUpload(
+    let object = try await client.resumeUpload(
       source, uploadId: queryUrl.absoluteString, options: uploadOptions)
-    let object = try await task.value
 
     #expect(object.name == objectName)
 
@@ -1288,8 +1246,7 @@ import Testing
     let uploadOptions = UploadOptions().with {
       $0.chunkSize = 8 * 1024 * 1024
     }
-    let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
-    let object = try await task.value
+    let object = try await client.upload(source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -1371,14 +1328,8 @@ import Testing
     let uploadOptions = UploadOptions().with {
       $0.chunkSize = chunkSize
     }
-    let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
-
-    var statuses: [UploadStatus] = []
-    for await status in task.makeStatusStream() {
-      statuses.append(status)
-    }
-
-    let object = try await task.value
+    let object = try await client.upload(
+      source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -1404,12 +1355,6 @@ import Testing
         == "bytes \(partialCommitted)-\(totalSize - 1)/\(totalSize)")
     // Verify exact data payload sent in the resumed chunk
     #expect(requests[4].httpBody == data.subdata(in: partialCommitted..<totalSize))
-
-    // Status stream should emit: 0 (start), 8MB (chunk 1), 12MB (after status query recovery), 16MB (completion)
-    #expect(
-      statuses.map(\.bytesUploaded) == [
-        0, Int64(chunkSize), Int64(partialCommitted), Int64(totalSize),
-      ])
   }
 
   /// Tests that when the first chunk upload fails with 503 and partial data was committed by GCS,
@@ -1465,14 +1410,8 @@ import Testing
     let uploadOptions = UploadOptions().with {
       $0.chunkSize = chunkSize
     }
-    let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
-
-    var statuses: [UploadStatus] = []
-    for await status in task.makeStatusStream() {
-      statuses.append(status)
-    }
-
-    let object = try await task.value
+    let object = try await client.upload(
+      source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -1489,8 +1428,6 @@ import Testing
       requests[3].value(forHTTPHeaderField: "Content-Range")
         == "bytes \(partialCommitted)-\(totalSize - 1)/\(totalSize)")
     #expect(requests[3].httpBody == data.subdata(in: partialCommitted..<totalSize))
-
-    #expect(statuses.map(\.bytesUploaded) == [0, Int64(partialCommitted), Int64(totalSize)])
   }
 
   /// Tests that a transient error during `resumeUpload` status query is retried by `_RetryLoop`.
@@ -1530,8 +1467,7 @@ import Testing
       registry: registry,
       clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(3)
     )
-    let task = client.resumeUpload(source, uploadId: queryUrl.absoluteString)
-    let object = try await task.value
+    let object = try await client.resumeUpload(source, uploadId: queryUrl.absoluteString)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -1585,8 +1521,7 @@ import Testing
       registry: registry,
       clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(3)
     )
-    let task = client.upload(source, to: bucket, as: objectName)
-    let object = try await task.value
+    let object = try await client.upload(source, to: bucket, as: objectName)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -1678,8 +1613,7 @@ import Testing
     let uploadOptions = UploadOptions().with {
       $0.chunkSize = chunkSize
     }
-    let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
-    let object = try await task.value
+    let object = try await client.upload(source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -1775,8 +1709,7 @@ import Testing
       registry: registry,
       clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(4)
     )
-    let task = client.upload(source, to: bucket, as: objectName)
-    let object = try await task.value
+    let object = try await client.upload(source, to: bucket, as: objectName)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -1845,8 +1778,7 @@ import Testing
       registry: registry,
       clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(4)
     )
-    let task = client.upload(source, to: bucket, as: objectName)
-    let object = try await task.value
+    let object = try await client.upload(source, to: bucket, as: objectName)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -1884,10 +1816,8 @@ import Testing
     let uploadOptions = UploadOptions().with {
       $0.resumePolicy = NeverResume()
     }
-    let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
-
     let error = await expectError(RequestError.self) {
-      try await task.value
+      try await client.upload(source, to: bucket, as: objectName, options: uploadOptions)
     }
     #expect(error != nil)
     let requests = registry.recordedRequests()
@@ -1914,221 +1844,12 @@ import Testing
 
     let client = try makeClient(
       registry: registry, uploadResumePolicy: NeverResume<UploadDetails>())
-    let task = client.upload(source, to: bucket, as: objectName)
-
     let error = await expectError(RequestError.self) {
-      try await task.value
+      try await client.upload(source, to: bucket, as: objectName)
     }
     #expect(error != nil)
     let requests = registry.recordedRequests()
     #expect(requests.count == 1)
-  }
-
-  /// Tests that a multi-chunk resumable upload emits exactly one status event per stage without duplicate completion events (#2).
-  @Test func resumableUploadStatusStreamHasNoDuplicateCompletionStatus() async throws {
-    let registry = MockRegistry.create()
-    let bucket = "test-bucket"
-    let objectName = "test-resumable-no-dup-status"
-    let chunkSize = 8 * 1024 * 1024
-    let fileSize = 10 * 1024 * 1024  // 10MB -> 8MB chunk 1 + 2MB chunk 2
-    let data = Data(repeating: 0xAA, count: fileSize)
-    let source = BytesSource(data: data)
-
-    let startUrl = registry.url(
-      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
-    let chunkUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=no-dup-status-id")
-
-    registry.register(
-      response: .success(
-        statusCode: 200, data: Data(),
-        headers: ["Location": chunkUrl.absoluteString]),
-      for: startUrl)
-    registry.register(
-      response: .success(
-        statusCode: 308, data: Data(),
-        headers: ["Range": "bytes=0-\(chunkSize - 1)"]),
-      for: chunkUrl)
-    registry.register(
-      response: .success(
-        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: fileSize),
-        headers: nil),
-      for: chunkUrl)
-
-    let client = try makeClient(registry: registry)
-    let task = client.upload(source, to: bucket, as: objectName)
-
-    var statuses: [UploadStatus] = []
-    for await status in task.makeStatusStream() {
-      statuses.append(status)
-    }
-
-    let object = try await task.value
-    #expect(object.name == objectName)
-    #expect(object.bucket == "projects/_/buckets/\(bucket)")
-    #expect(statuses.count == 3)
-    #expect(statuses.map(\.bytesUploaded) == [0, Int64(chunkSize), Int64(fileSize)])
-    #expect(statuses.map(\.totalBytes) == [Int64(fileSize), Int64(fileSize), Int64(fileSize)])
-    #expect(statuses.allSatisfy { $0.uploadId == chunkUrl.absoluteString })
-  }
-
-  /// Tests that a single-chunk resumable upload emits initial and final status events without duplicates (#2).
-  @Test func resumableUploadSingleChunkStatusStreamHasNoDuplicateCompletionStatus() async throws {
-    let registry = MockRegistry.create()
-    let bucket = "test-bucket"
-    let objectName = "test-single-chunk-resumable"
-    let fileSize = 10 * 1024 * 1024
-    let data = Data(repeating: 0xBB, count: fileSize)
-    let source = BytesSource(data: data)
-
-    let startUrl = registry.url(
-      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
-    let chunkUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=single-chunk-id")
-
-    registry.register(
-      response: .success(
-        statusCode: 200, data: Data(),
-        headers: ["Location": chunkUrl.absoluteString]),
-      for: startUrl)
-    registry.register(
-      response: .success(
-        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: fileSize),
-        headers: nil),
-      for: chunkUrl)
-
-    let client = try makeClient(registry: registry)
-    let uploadOptions = UploadOptions().with {
-      $0.chunkSize = 16 * 1024 * 1024
-    }
-    let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
-
-    var statuses: [UploadStatus] = []
-    for await status in task.makeStatusStream() {
-      statuses.append(status)
-    }
-
-    let object = try await task.value
-    #expect(object.name == objectName)
-    #expect(object.bucket == "projects/_/buckets/\(bucket)")
-    #expect(statuses.count == 2)
-    #expect(statuses.map(\.bytesUploaded) == [0, Int64(fileSize)])
-    #expect(statuses.map(\.totalBytes) == [Int64(fileSize), Int64(fileSize)])
-    #expect(statuses.allSatisfy { $0.uploadId == chunkUrl.absoluteString })
-  }
-
-  /// Tests that `resumeUpload` emits an initial status event with the server's committed byte offset upon querying status (#3).
-  @Test func resumeUploadStatusStreamEmitsInitialCommittedBytes() async throws {
-    let registry = MockRegistry.create()
-    let bucket = "test-bucket"
-    let objectName = "test-resume-initial-status"
-    let fileSize = 10 * 1024 * 1024
-    let committedBytes = 2 * 1024 * 1024  // 2MB already uploaded
-    let data = Data(repeating: 0xCC, count: fileSize)
-    let source = BytesSource(data: data)
-
-    let queryUrl = registry.url(
-      "/upload/storage/v1/b/\(bucket)/o?upload_id=resume-initial-status-id")
-
-    // Status query returns 308 with 2MB already uploaded
-    registry.register(
-      response: .success(
-        statusCode: 308, data: Data(),
-        headers: ["Range": "bytes=0-\(committedBytes - 1)"]),
-      for: queryUrl)
-    // Upload of remaining 8MB completes with 200
-    registry.register(
-      response: .success(
-        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: fileSize),
-        headers: nil),
-      for: queryUrl)
-
-    let client = try makeClient(registry: registry)
-    let task = client.resumeUpload(source, uploadId: queryUrl.absoluteString)
-
-    var statuses: [UploadStatus] = []
-    for await status in task.makeStatusStream() {
-      statuses.append(status)
-    }
-
-    let object = try await task.value
-    #expect(object.name == objectName)
-    #expect(object.bucket == "projects/_/buckets/\(bucket)")
-    #expect(statuses.count == 2)
-    #expect(statuses.first?.bytesUploaded == Int64(committedBytes))
-    #expect(statuses.map(\.bytesUploaded) == [Int64(committedBytes), Int64(fileSize)])
-    #expect(statuses.map(\.totalBytes) == [Int64(fileSize), Int64(fileSize)])
-    #expect(statuses.allSatisfy { $0.uploadId == queryUrl.absoluteString })
-  }
-
-  /// Tests that `resumeUpload` across multiple chunks emits initial committed bytes and each chunk progress without duplicates (#2 & #3).
-  @Test func resumeUploadMultiChunkStatusStreamEmitsInitialCommittedBytes() async throws {
-    let registry = MockRegistry.create()
-    let bucket = "test-bucket"
-    let objectName = "test-resume-multi-chunk-status"
-    let chunkSize = 2 * 1024 * 1024  // 2MB chunks
-    let fileSize = 10 * 1024 * 1024  // 10MB total
-    let initialCommitted = 2 * 1024 * 1024  // 2MB already on server
-    let data = Data(repeating: 0xDD, count: fileSize)
-    let source = BytesSource(data: data)
-
-    let queryUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=resume-multi-chunk-id")
-
-    // Status query returns 308 (0-2MB uploaded)
-    registry.register(
-      response: .success(
-        statusCode: 308, data: Data(),
-        headers: ["Range": "bytes=0-\(initialCommitted - 1)"]),
-      for: queryUrl)
-    // Chunk 2: 2MB..4MB (308, Range: 0-4MB-1)
-    registry.register(
-      response: .success(
-        statusCode: 308, data: Data(),
-        headers: ["Range": "bytes=0-\(2 * chunkSize - 1)"]),
-      for: queryUrl)
-    // Chunk 3: 4MB..6MB (308, Range: 0-6MB-1)
-    registry.register(
-      response: .success(
-        statusCode: 308, data: Data(),
-        headers: ["Range": "bytes=0-\(3 * chunkSize - 1)"]),
-      for: queryUrl)
-    // Chunk 4: 6MB..8MB (308, Range: 0-8MB-1)
-    registry.register(
-      response: .success(
-        statusCode: 308, data: Data(),
-        headers: ["Range": "bytes=0-\(4 * chunkSize - 1)"]),
-      for: queryUrl)
-    // Chunk 5: 8MB..10MB (200, Done)
-    registry.register(
-      response: .success(
-        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: fileSize),
-        headers: nil),
-      for: queryUrl)
-
-    let client = try makeClient(registry: registry)
-    let uploadOptions = UploadOptions().with {
-      $0.chunkSize = chunkSize
-    }
-    let task = client.resumeUpload(
-      source, uploadId: queryUrl.absoluteString, options: uploadOptions)
-
-    var statuses: [UploadStatus] = []
-    for await status in task.makeStatusStream() {
-      statuses.append(status)
-    }
-
-    let object = try await task.value
-    #expect(object.name == objectName)
-    #expect(object.bucket == "projects/_/buckets/\(bucket)")
-    #expect(statuses.count == 5)
-    #expect(
-      statuses.map(\.bytesUploaded) == [
-        Int64(initialCommitted),
-        Int64(2 * chunkSize),
-        Int64(3 * chunkSize),
-        Int64(4 * chunkSize),
-        Int64(fileSize),
-      ])
-    #expect(statuses.map(\.totalBytes) == Array(repeating: Int64(fileSize), count: 5))
-    #expect(statuses.allSatisfy { $0.uploadId == queryUrl.absoluteString })
   }
 
   /// Tests that configuring a lower `resumableUploadThreshold` on `UploadOptions` causes a payload < 8MB to use resumable upload.
@@ -2172,8 +1893,7 @@ import Testing
     let uploadOptions = UploadOptions().with {
       $0.resumableUploadThreshold = 512 * 1024  // 512KB threshold
     }
-    let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
-    let object = try await task.value
+    let object = try await client.upload(source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -2224,8 +1944,7 @@ import Testing
     let uploadOptions = UploadOptions().with {
       $0.resumableUploadThreshold = 0
     }
-    let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
-    let object = try await task.value
+    let object = try await client.upload(source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -2273,8 +1992,7 @@ import Testing
       for: sessionUrl)
 
     let client = try makeClient(registry: registry, uploadThreshold: 512 * 1024)
-    let task = client.upload(source, to: bucket, as: objectName)
-    let object = try await task.value
+    let object = try await client.upload(source, to: bucket, as: objectName)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -2326,8 +2044,7 @@ import Testing
     let uploadOptions = UploadOptions().with {
       $0.resumableUploadThreshold = 1 * 1024 * 1024
     }
-    let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
-    let object = try await task.value
+    let object = try await client.upload(source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -2366,8 +2083,7 @@ import Testing
     let uploadOptions = UploadOptions().with {
       $0.resumableUploadThreshold = 0
     }
-    let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
-    let object = try await task.value
+    let object = try await client.upload(source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -2411,8 +2127,7 @@ import Testing
         $0.ifGenerationMatch = 0
       }
     }
-    let task = client.upload(data, to: bucket, as: objectName, options: uploadOptions)
-    let object = try await task.value
+    let object = try await client.upload(data, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -2456,8 +2171,8 @@ import Testing
     let uploadOptions = UploadOptions().with {
       $0.resumableUploadThreshold = 0
     }
-    let task = client.upload(fileURL, to: bucket, as: objectName, options: uploadOptions)
-    let object = try await task.value
+    let object = try await client.upload(
+      fileURL, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -2500,8 +2215,8 @@ import Testing
     let uploadOptions = UploadOptions().with {
       $0.resumableUploadThreshold = 0
     }
-    let task = client.upload(source, to: bucketResource, as: objectName, options: uploadOptions)
-    let object = try await task.value
+    let object = try await client.upload(
+      source, to: bucketResource, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
     #expect(object.bucket == bucketResource)

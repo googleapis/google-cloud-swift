@@ -22,14 +22,14 @@ public protocol StorageProtocol {
     to bucket: String,
     as objectName: String,
     options: UploadOptions
-  ) -> UploadTask
+  ) async throws -> Object
 
   /// Resumes a previously interrupted file upload using a saved upload ID (Session URI).
   func resumeUpload(
     _ source: some SeekableUploadSource,
     uploadId: String,
     options: UploadOptions
-  ) -> UploadTask
+  ) async throws -> Object
 
   /// Convenience upload method for a local file URL.
   func upload(
@@ -37,7 +37,7 @@ public protocol StorageProtocol {
     to bucket: String,
     as objectName: String,
     options: UploadOptions
-  ) -> UploadTask
+  ) async throws -> Object
 
   /// Convenience upload method for in-memory Data.
   func upload(
@@ -45,7 +45,7 @@ public protocol StorageProtocol {
     to bucket: String,
     as objectName: String,
     options: UploadOptions
-  ) -> UploadTask
+  ) async throws -> Object
 
   /// Reads (downloads) an object from Cloud Storage as an async sequence of Data chunks.
   func readObject(

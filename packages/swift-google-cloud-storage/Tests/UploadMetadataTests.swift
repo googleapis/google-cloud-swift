@@ -133,8 +133,8 @@ import Testing
       $0.predefinedAcl = .publicRead
     }
 
-    let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
-    let object = try await task.value
+    let object = try await client.upload(
+      source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -201,8 +201,8 @@ import Testing
       $0.predefinedAcl = .private
     }
 
-    let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
-    let object = try await task.value
+    let object = try await client.upload(
+      source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
     #expect(object.contentType == "image/png")
@@ -374,8 +374,8 @@ import Testing
       }
     }
 
-    let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
-    let object = try await task.value
+    let object = try await client.upload(
+      source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -439,8 +439,8 @@ import Testing
       }
     }
 
-    let task = client.upload(source, to: bucket, as: objectName, options: uploadOptions)
-    let object = try await task.value
+    let object = try await client.upload(
+      source, to: bucket, as: objectName, options: uploadOptions)
 
     #expect(object.name == objectName)
     #expect(object.contexts?.custom["batch_id"]?.value == "2026_Q3")

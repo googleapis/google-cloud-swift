@@ -464,7 +464,7 @@ public struct UploadMetadata: Sendable, Codable, Equatable {
 ///   }
 /// }
 ///
-/// let task = storageClient.upload(
+/// let object = try await storageClient.upload(
 ///   fileURL,
 ///   to: "my-bucket",
 ///   as: "data/report.csv",

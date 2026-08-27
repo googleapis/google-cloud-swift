@@ -41,8 +41,7 @@ struct StorageClientDownloadChecksumIntegrationTests {
     let data = Data(content.utf8)
 
     let storageClient = try StorageClient()
-    let uploadTask = storageClient.upload(data, to: bucketName, as: objName)
-    let obj = try await uploadTask.value
+    let obj = try await storageClient.upload(data, to: bucketName, as: objName)
     #expect(obj.bucket == "projects/_/buckets/\(bucketName)")
     #expect(obj.name == objName)
 

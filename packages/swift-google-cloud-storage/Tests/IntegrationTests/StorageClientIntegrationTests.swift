@@ -41,22 +41,11 @@ struct StorageClientIntegrationTests {
     }
 
     let storage = try StorageClient()
-    let task = storage.upload(fileURL, to: bucketName, as: objectName)
+    let object = try await storage.upload(fileURL, to: bucketName, as: objectName)
 
-    var statusUpdates = [UploadStatus]()
-    for await status in task.makeStatusStream() {
-      statusUpdates.append(status)
-      print(
-        "Status: bytes=\(status.bytesUploaded), total=\(status.totalBytes ?? -1), ID=\(status.uploadId ?? "nil")"
-      )
-    }
-
-    let object = try await task.value
     #expect(object.bucket == bucketResource)
     #expect(object.name == objectName)
     #expect(object.size == Int64(content.utf8.count))
-    // Simple Upload - only 1 status update
-    #expect(statusUpdates.count == 1)
 
     print("Upload successful: \(object)")
   }
@@ -68,8 +57,7 @@ struct StorageClientIntegrationTests {
 
     let storage = try StorageClient()
 
-    let uploadTask = storage.upload(data, to: bucketName, as: objectName)
-    let uploadedObject = try await uploadTask.value
+    let uploadedObject = try await storage.upload(data, to: bucketName, as: objectName)
     #expect(uploadedObject.bucket == bucketResource)
     #expect(uploadedObject.name == objectName)
 
@@ -98,8 +86,7 @@ struct StorageClientIntegrationTests {
 
     let storage = try StorageClient()
 
-    let uploadTask = storage.upload(data, to: bucketName, as: objectName)
-    let uploadedObject = try await uploadTask.value
+    let uploadedObject = try await storage.upload(data, to: bucketName, as: objectName)
     #expect(uploadedObject.bucket == bucketResource)
     #expect(uploadedObject.name == objectName)
 
@@ -138,8 +125,7 @@ struct StorageClientIntegrationTests {
 
     let storage = try StorageClient()
 
-    let uploadTask = storage.upload(data, to: bucketName, as: objectName)
-    let uploadedObject = try await uploadTask.value
+    let uploadedObject = try await storage.upload(data, to: bucketName, as: objectName)
     #expect(uploadedObject.bucket == bucketResource)
     #expect(uploadedObject.name == objectName)
     #expect(uploadedObject.size == Int64(data.count))
@@ -173,223 +159,13 @@ struct StorageClientIntegrationTests {
     }
 
     let storage = try StorageClient()
-    let task = storage.upload(fileURL, to: bucketName, as: objectName)
+    let object = try await storage.upload(fileURL, to: bucketName, as: objectName)
 
-    var statusUpdates = [UploadStatus]()
-    for await status in task.makeStatusStream() {
-      statusUpdates.append(status)
-      print(
-        "Status: bytes=\(status.bytesUploaded), total=\(status.totalBytes ?? -1), ID=\(status.uploadId ?? "nil")"
-      )
-    }
-
-    let object = try await task.value
     #expect(object.bucket == bucketResource)
     #expect(object.name == objectName)
     #expect(object.size == Int64(fileSize))
-
-    // Verify that it was a resumable upload by checking for upload ID in status updates
-    let hasUploadId = statusUpdates.contains { $0.uploadId != nil }
-    #expect(hasUploadId)
-    // Statuses: Start -> First Chunk -> Final Upload
-    #expect(statusUpdates.count == 3)
 
     print("Large upload successful: \(object)")
-  }
-
-  @Test func testFailedResumableUploadAndResume() async throws {
-    let objectName = "test-failed-resumable-\(UUID().uuidString).bin"
-
-    let fileSize = 10 * 1024 * 1024  // 10MB
-    let data = Data(repeating: 42, count: fileSize)
-    let fileURL = FileManager.default.temporaryDirectory.appendingPathComponent(objectName)
-    try data.write(to: fileURL)
-    defer {
-      try? FileManager.default.removeItem(at: fileURL)
-    }
-
-    let storage = try StorageClient()
-
-    // Set chunk size to 2MB and configure failing source to throw after 4MB read
-    let chunkSize = 2 * 1024 * 1024
-    let failAfterBytes = Int64(4 * 1024 * 1024)
-    let options = UploadOptions().with { $0.chunkSize = chunkSize }
-    let failingSource = FailingUploadSource(fileURL: fileURL, failAfterBytes: failAfterBytes)
-
-    let task = storage.upload(failingSource, to: bucketName, as: objectName, options: options)
-
-    var statusUpdates = [UploadStatus]()
-    for await status in task.makeStatusStream() {
-      statusUpdates.append(status)
-      print(
-        "Failed test status: bytes=\(status.bytesUploaded), total=\(status.totalBytes ?? -1), ID=\(status.uploadId ?? "nil")"
-      )
-    }
-
-    // Verify that upload task failed with SimulatedUploadError
-    do {
-      _ = try await task.value
-      Issue.record("Expected upload to fail, but it succeeded")
-    } catch is FailingUploadSource.SimulatedUploadError {
-      // Expected error
-    } catch {
-      Issue.record("Expected SimulatedUploadError, got \(error)")
-    }
-
-    // Extract the upload ID from the recorded status updates
-    let uploadId = statusUpdates.compactMap(\.uploadId).first
-    #expect(uploadId != nil)
-    guard let uploadId = uploadId else {
-      Issue.record("No uploadId captured before upload failure")
-      return
-    }
-
-    // ChecksummedSource looks ahead 1 chunk to detect the final chunk.
-    // Reading chunk 1 (2MB) triggers a lookahead read for chunk 2 (2MB), advancing bytesRead to 4MB.
-    // When chunk 2 is processed, the lookahead for chunk 3 fails because bytesRead reached 4MB.
-    // Thus, GCS receives 1 chunk (2MB) before the upload task fails.
-    let expectedUploadedBytes = Int64(2 * 1024 * 1024)
-    let lastUploadedBytes = statusUpdates.last?.bytesUploaded ?? 0
-    #expect(lastUploadedBytes == expectedUploadedBytes)
-
-    // Now resume the upload using full FileSource and original uploadId
-    let fileSource = FileSource(fileURL: fileURL)
-    let resumeTask = storage.resumeUpload(fileSource, uploadId: uploadId, options: options)
-
-    var resumeStatusUpdates = [UploadStatus]()
-    for await status in resumeTask.makeStatusStream() {
-      resumeStatusUpdates.append(status)
-      print(
-        "Resumed status: bytes=\(status.bytesUploaded), total=\(status.totalBytes ?? -1), ID=\(status.uploadId ?? "nil")"
-      )
-    }
-
-    let object = try await resumeTask.value
-    #expect(object.bucket == bucketResource)
-    #expect(object.name == objectName)
-    #expect(object.size == Int64(fileSize))
-
-    // Verify resume status starts at the 2MB offset reported by GCS
-    if let firstResumeStatus = resumeStatusUpdates.first {
-      #expect(firstResumeStatus.bytesUploaded == expectedUploadedBytes)
-    }
-
-    print("Resumed upload successful: \(object)")
-  }
-
-  @Test func testResumedFailedUploadWithChecksumValidation() async throws {
-    let objectName = "test-resumed-checksum-\(UUID().uuidString).bin"
-
-    let fileSize = 10 * 1024 * 1024  // 10MB payload
-    let data = Data(repeating: 55, count: fileSize)
-    let fileURL = FileManager.default.temporaryDirectory.appendingPathComponent(objectName)
-    try data.write(to: fileURL)
-    defer {
-      try? FileManager.default.removeItem(at: fileURL)
-    }
-
-    let storage = try StorageClient()
-
-    // Set 2MB chunk size and fail source after 4MB read
-    let chunkSize = 2 * 1024 * 1024
-    let failAfterBytes = Int64(4 * 1024 * 1024)
-    let uploadOptions = UploadOptions().with {
-      $0.checksums = ChecksumOptions(crc32c: .auto)
-      $0.chunkSize = chunkSize
-    }
-    let failingSource = FailingUploadSource(fileURL: fileURL, failAfterBytes: failAfterBytes)
-
-    let task = storage.upload(
-      failingSource, to: bucketName, as: objectName, options: uploadOptions)
-
-    var statusUpdates = [UploadStatus]()
-    for await status in task.makeStatusStream() {
-      statusUpdates.append(status)
-    }
-
-    do {
-      _ = try await task.value
-      Issue.record("Expected upload to fail, but it succeeded")
-    } catch is FailingUploadSource.SimulatedUploadError {
-      // Expected error
-    } catch {
-      Issue.record("Expected SimulatedUploadError, got \(error)")
-    }
-
-    guard let uploadId = statusUpdates.compactMap(\.uploadId).first else {
-      Issue.record("No uploadId captured before failure")
-      return
-    }
-
-    // Resume upload with automatic CRC32C checksum calculation handled by our SDK
-    let resumeOptions = UploadOptions().with {
-      $0.checksums = ChecksumOptions(crc32c: .auto)
-      $0.chunkSize = chunkSize
-    }
-    let fileSource = FileSource(fileURL: fileURL)
-    let resumeTask = storage.resumeUpload(fileSource, uploadId: uploadId, options: resumeOptions)
-
-    let object = try await resumeTask.value
-    #expect(object.bucket == bucketResource)
-    #expect(object.name == objectName)
-    #expect(object.size == Int64(fileSize))
-    print("Resumed upload with automatic checksum validation successful: \(object)")
-  }
-
-  @Test func testResumedFailedUploadWithNewSourceInstance() async throws {
-    let objectName = "test-resumed-new-source-\(UUID().uuidString).bin"
-
-    let fileSize = 10 * 1024 * 1024  // 10MB payload
-    let data = Data(repeating: 77, count: fileSize)
-    let fileURL = FileManager.default.temporaryDirectory.appendingPathComponent(objectName)
-    try data.write(to: fileURL)
-    defer {
-      try? FileManager.default.removeItem(at: fileURL)
-    }
-
-    let storage = try StorageClient()
-
-    let chunkSize = 2 * 1024 * 1024
-    let failAfterBytes = Int64(4 * 1024 * 1024)
-    let uploadOptions = UploadOptions().with {
-      $0.checksums = ChecksumOptions(crc32c: .auto)
-      $0.chunkSize = chunkSize
-    }
-    let failingSource = FailingUploadSource(fileURL: fileURL, failAfterBytes: failAfterBytes)
-
-    let task = storage.upload(
-      failingSource, to: bucketName, as: objectName, options: uploadOptions)
-
-    var statusUpdates = [UploadStatus]()
-    for await status in task.makeStatusStream() {
-      statusUpdates.append(status)
-    }
-
-    do {
-      _ = try await task.value
-      Issue.record("Expected upload to fail, but it succeeded")
-    } catch is FailingUploadSource.SimulatedUploadError {
-      // Expected error
-    } catch {
-      Issue.record("Expected SimulatedUploadError, got \(error)")
-    }
-
-    guard let uploadId = statusUpdates.compactMap(\.uploadId).first else {
-      Issue.record("No uploadId captured before failure")
-      return
-    }
-
-    // Resume upload with a brand new source instance referencing the same file
-    let newSourceInstance = FileSource(fileURL: fileURL)
-    let resumeTask = storage.resumeUpload(
-      newSourceInstance, uploadId: uploadId, options: uploadOptions)
-
-    let object = try await resumeTask.value
-    #expect(object.bucket == bucketResource)
-    #expect(object.name == objectName)
-    #expect(object.size == Int64(fileSize))
-    #expect(object.checksums?.crc32C != nil)
-    print("Resumed upload with new source instance and CRC32C checksumming successful: \(object)")
   }
 
   @Test func testSimpleUploadWithChecksumValidation() async throws {
@@ -405,9 +181,9 @@ struct StorageClientIntegrationTests {
       }
 
       let options = UploadOptions().with { $0.validation = validation }
-      let task = storage.upload(fileURL, to: bucketName, as: objectName, options: options)
+      let object = try await storage.upload(
+        fileURL, to: bucketName, as: objectName, options: options)
 
-      let object = try await task.value
       #expect(object.bucket == bucketResource)
       #expect(object.name == objectName)
       #expect(object.size == Int64(content.utf8.count))
@@ -433,9 +209,9 @@ struct StorageClientIntegrationTests {
       }
 
       let options = UploadOptions().with { $0.validation = validation }
-      let task = storage.upload(fileURL, to: bucketName, as: objectName, options: options)
+      let object = try await storage.upload(
+        fileURL, to: bucketName, as: objectName, options: options)
 
-      let object = try await task.value
       #expect(object.bucket == bucketResource)
       #expect(object.name == objectName)
       #expect(object.size == Int64(fileSize))
@@ -458,9 +234,9 @@ struct StorageClientIntegrationTests {
     let options = UploadOptions().with {
       $0.checksums = ChecksumOptions(crc32c: .auto, md5: .auto)
     }
-    let task = storage.upload(fileURL, to: bucketName, as: objectName, options: options)
+    let object = try await storage.upload(
+      fileURL, to: bucketName, as: objectName, options: options)
 
-    let object = try await task.value
     #expect(object.bucket == bucketResource)
     #expect(object.name == objectName)
     #expect(object.size == Int64(content.utf8.count))
@@ -485,10 +261,9 @@ struct StorageClientIntegrationTests {
     let options = UploadOptions().with {
       $0.checksums = ChecksumOptions(crc32c: "AAAAAA==")
     }
-    let task = storage.upload(fileURL, to: bucketName, as: objectName, options: options)
 
     do {
-      _ = try await task.value
+      _ = try await storage.upload(fileURL, to: bucketName, as: objectName, options: options)
       Issue.record("Expected GCS to reject upload with bad checksum, but it succeeded")
     } catch RequestError.service(let serviceError) {
       #expect(serviceError.message.contains("doesn't match"))
@@ -517,8 +292,8 @@ struct StorageClientIntegrationTests {
     let uploadOptions = UploadOptions().with {
       $0.customerEncryptionKey = csek
     }
-    let uploadTask = storage.upload(data, to: bucketName, as: objectName, options: uploadOptions)
-    let uploadedObject = try await uploadTask.value
+    let uploadedObject = try await storage.upload(
+      data, to: bucketName, as: objectName, options: uploadOptions)
     #expect(uploadedObject.bucket == bucketResource)
     #expect(uploadedObject.name == objectName)
     #expect(uploadedObject.size == Int64(data.count))
@@ -574,9 +349,9 @@ struct StorageClientIntegrationTests {
     let options = UploadOptions().with {
       $0.customerEncryptionKey = csek
     }
-    let task = storage.upload(fileURL, to: bucketName, as: objectName, options: options)
+    let object = try await storage.upload(
+      fileURL, to: bucketName, as: objectName, options: options)
 
-    let object = try await task.value
     #expect(object.bucket == bucketResource)
     #expect(object.name == objectName)
     #expect(object.size == Int64(content.utf8.count))
@@ -603,9 +378,9 @@ struct StorageClientIntegrationTests {
     let options = UploadOptions().with {
       $0.customerEncryptionKey = csek
     }
-    let task = storage.upload(fileURL, to: bucketName, as: objectName, options: options)
+    let object = try await storage.upload(
+      fileURL, to: bucketName, as: objectName, options: options)
 
-    let object = try await task.value
     #expect(object.bucket == bucketResource)
     #expect(object.name == objectName)
     #expect(object.size == Int64(fileSize))
@@ -650,9 +425,9 @@ struct StorageClientIntegrationTests {
       $0.metadata = metadata
     }
 
-    let task = storage.upload(fileURL, to: bucketName, as: objectName, options: options)
+    let object = try await storage.upload(
+      fileURL, to: bucketName, as: objectName, options: options)
 
-    let object = try await task.value
     #expect(object.bucket == bucketResource)
     #expect(object.name == objectName)
     #expect(object.contentType == "text/plain")
@@ -683,9 +458,9 @@ struct StorageClientIntegrationTests {
       }
     }
 
-    let task = storage.upload(fileURL, to: bucketName, as: objectName, options: options)
+    let object = try await storage.upload(
+      fileURL, to: bucketName, as: objectName, options: options)
 
-    let object = try await task.value
     #expect(object.bucket == bucketResource)
     #expect(object.name == objectName)
     #expect(object.contexts?.custom["environment"]?.value == "integration-test")
@@ -701,9 +476,8 @@ struct StorageClientIntegrationTests {
       chunkSize: 4 * 1024 * 1024, totalChunks: 0, totalSize: nil)
 
     let storage = try StorageClient()
-    let task = storage.upload(source, to: bucketName, as: objectName)
+    let object = try await storage.upload(source, to: bucketName, as: objectName)
 
-    let object = try await task.value
     #expect(object.bucket == bucketResource)
     #expect(object.name == objectName)
     #expect(object.size == 0)
@@ -723,9 +497,9 @@ struct StorageClientIntegrationTests {
 
     let storage = try StorageClient()
     let options = UploadOptions().with { $0.chunkSize = chunkSize }
-    let task = storage.upload(source, to: bucketName, as: objectName, options: options)
+    let object = try await storage.upload(
+      source, to: bucketName, as: objectName, options: options)
 
-    let object = try await task.value
     #expect(object.bucket == bucketResource)
     #expect(object.name == objectName)
     #expect(object.size == expectedTotalSize)
@@ -768,9 +542,8 @@ struct StorageClientGzipDownloadIntegrationTests {
       $0.metadata = uploadMetadata
     }
 
-    let uploadTask = storage.upload(
+    let uploadedObject = try await storage.upload(
       Self.compressedGzipData, to: bucketName, as: objectName, options: uploadOptions)
-    let uploadedObject = try await uploadTask.value
     #expect(uploadedObject.bucket == bucketResource)
     #expect(uploadedObject.name == objectName)
     #expect(uploadedObject.contentEncoding == "gzip")
@@ -809,9 +582,8 @@ struct StorageClientGzipDownloadIntegrationTests {
       $0.metadata = uploadMetadata
     }
 
-    let uploadTask = storage.upload(
+    let uploadedObject = try await storage.upload(
       Self.compressedGzipData, to: bucketName, as: objectName, options: uploadOptions)
-    let uploadedObject = try await uploadTask.value
     #expect(uploadedObject.bucket == bucketResource)
     #expect(uploadedObject.name == objectName)
     #expect(uploadedObject.contentEncoding == "gzip")
@@ -853,9 +625,8 @@ struct StorageClientGzipDownloadIntegrationTests {
       $0.metadata = uploadMetadata
     }
 
-    let uploadTask = storage.upload(
+    let uploadedObject = try await storage.upload(
       Self.compressedGzipData, to: bucketName, as: objectName, options: uploadOptions)
-    let uploadedObject = try await uploadTask.value
     #expect(uploadedObject.bucket == bucketResource)
     #expect(uploadedObject.name == objectName)
     #expect(uploadedObject.contentEncoding == "gzip")
@@ -901,8 +672,7 @@ struct StorageClientRangedDownloadIntegrationTests {
     let data = Data(content.utf8)
 
     let storageClient = try StorageClient()
-    let uploadTask = storageClient.upload(data, to: bucket, as: objName)
-    let obj = try await uploadTask.value
+    let obj = try await storageClient.upload(data, to: bucket, as: objName)
     #expect(obj.bucket == "projects/_/buckets/\(bucket)")
     #expect(obj.name == objName)
 
@@ -1010,39 +780,5 @@ private struct IntegrationDynamicSource: UploadSource {
     let byteVal = UInt8((currentChunk + 1) % 256)
     currentChunk += 1
     return Data(repeating: byteVal, count: count)
-  }
-}
-
-private struct FailingUploadSource: SeekableUploadSource {
-  struct SimulatedUploadError: Error {}
-
-  private var fileSource: FileSource
-  let failAfterBytes: Int64
-  private var bytesRead: Int64 = 0
-
-  var totalSize: Int64? {
-    fileSource.totalSize
-  }
-
-  init(fileURL: URL, failAfterBytes: Int64) {
-    self.fileSource = FileSource(fileURL: fileURL)
-    self.failAfterBytes = failAfterBytes
-  }
-
-  mutating func read(maxBytes: Int) async throws -> Data? {
-    guard bytesRead < failAfterBytes else {
-      throw SimulatedUploadError()
-    }
-    let bytesToRead = min(Int64(maxBytes), failAfterBytes - bytesRead)
-    guard let chunk = try await fileSource.read(maxBytes: Int(bytesToRead)) else {
-      return nil
-    }
-    bytesRead += Int64(chunk.count)
-    return chunk
-  }
-
-  mutating func seek(to offset: Int64) async throws {
-    try await fileSource.seek(to: offset)
-    bytesRead = offset
   }
 }

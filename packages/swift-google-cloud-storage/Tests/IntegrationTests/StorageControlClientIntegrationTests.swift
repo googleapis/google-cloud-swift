@@ -47,8 +47,8 @@ struct StorageControlClientIntegrationTests: Sendable {
     let controlClient = try StorageControlClient()
 
     // Seed objects for deletion test
-    _ = try await storageClient.upload(data, to: bucketName, as: file1).value
-    _ = try await storageClient.upload(data, to: bucketName, as: file2).value
+    _ = try await storageClient.upload(data, to: bucketName, as: file1)
+    _ = try await storageClient.upload(data, to: bucketName, as: file2)
 
     do {
       // List objects with prefix via streaming AsyncSequence
@@ -112,9 +112,9 @@ struct StorageControlClientIntegrationTests: Sendable {
     let controlClient = try StorageControlClient()
 
     // Seed test objects using data-plane veneer
-    _ = try await storageClient.upload(data, to: bucketName, as: file1).value
-    _ = try await storageClient.upload(data, to: bucketName, as: file2).value
-    _ = try await storageClient.upload(data, to: bucketName, as: file3).value
+    _ = try await storageClient.upload(data, to: bucketName, as: file1)
+    _ = try await storageClient.upload(data, to: bucketName, as: file2)
+    _ = try await storageClient.upload(data, to: bucketName, as: file3)
 
     do {
       // Unary list with prefix and pageSize
@@ -190,7 +190,7 @@ struct StorageControlClientIntegrationTests: Sendable {
     let controlClient = try StorageControlClient()
 
     // Upload initial object
-    let uploaded = try await storageClient.upload(data, to: bucketName, as: originalName).value
+    let uploaded = try await storageClient.upload(data, to: bucketName, as: originalName)
     #expect(uploaded.name == originalName)
     #expect(uploaded.bucket == bucketResource)
 
@@ -287,7 +287,7 @@ struct StorageControlClientIntegrationTests: Sendable {
     let storageClient = try StorageClient()
     let controlClient = try StorageControlClient()
 
-    let uploaded = try await storageClient.upload(data, to: bucketName, as: uniqueName).value
+    let uploaded = try await storageClient.upload(data, to: bucketName, as: uniqueName)
 
     do {
       // Attempt delete with invalid generation precondition
