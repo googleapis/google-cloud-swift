@@ -24,15 +24,15 @@ let package = Package(
     .library(name: "GoogleCloudDNSV1", targets: ["GoogleCloudDNSV1"])
   ],
   dependencies: [
-    .package(path: "../../packages/gax"),
-    .package(path: "../../packages/wkt"),
+    .package(path: "../../packages/swift-google-gax"),
+    .package(path: "../../packages/swift-google-wkt"),
   ],
   targets: [
     .target(
       name: "GoogleCloudDNSV1",
       dependencies: [
-        .product(name: "GoogleCloudGax", package: "gax"),
-        .product(name: "GoogleCloudWKT", package: "wkt"),
+        .product(name: "GoogleCloudGax", package: "swift-google-gax"),
+        .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
       ],
     )
   ]

@@ -24,20 +24,20 @@ let package = Package(
     .library(name: "GoogleCloudOSLoginV1", targets: ["GoogleCloudOSLoginV1"])
   ],
   dependencies: [
-    .package(path: "../../packages/auth"),
-    .package(path: "../../packages/gax"),
+    .package(path: "../../packages/swift-google-auth"),
+    .package(path: "../../packages/swift-google-gax"),
     .package(path: "../../generated/swift-google-cloud-oslogin-common"),
-    .package(path: "../../packages/wkt"),
+    .package(path: "../../packages/swift-google-wkt"),
     .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
   ],
   targets: [
     .target(
       name: "GoogleCloudOSLoginV1",
       dependencies: [
-        .product(name: "GoogleCloudAuth", package: "auth"),
-        .product(name: "GoogleCloudGax", package: "gax"),
+        .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
+        .product(name: "GoogleCloudGax", package: "swift-google-gax"),
         .product(name: "GoogleCloudOSLoginCommon", package: "swift-google-cloud-oslogin-common"),
-        .product(name: "GoogleCloudWKT", package: "wkt"),
+        .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
         .product(name: "Logging", package: "swift-log"),
       ],
     )

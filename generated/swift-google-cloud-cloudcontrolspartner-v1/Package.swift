@@ -24,9 +24,9 @@ let package = Package(
     .library(name: "GoogleCloudControlsPartnerV1", targets: ["GoogleCloudControlsPartnerV1"])
   ],
   dependencies: [
-    .package(path: "../../packages/auth"),
-    .package(path: "../../packages/gax"),
-    .package(path: "../../packages/wkt"),
+    .package(path: "../../packages/swift-google-auth"),
+    .package(path: "../../packages/swift-google-gax"),
+    .package(path: "../../packages/swift-google-wkt"),
     .package(path: "../../generated/swift-google-type"),
     .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
   ],
@@ -34,9 +34,9 @@ let package = Package(
     .target(
       name: "GoogleCloudControlsPartnerV1",
       dependencies: [
-        .product(name: "GoogleCloudAuth", package: "auth"),
-        .product(name: "GoogleCloudGax", package: "gax"),
-        .product(name: "GoogleCloudWKT", package: "wkt"),
+        .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
+        .product(name: "GoogleCloudGax", package: "swift-google-gax"),
+        .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
         .product(name: "GoogleType", package: "swift-google-type"),
         .product(name: "Logging", package: "swift-log"),
       ],

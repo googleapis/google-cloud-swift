@@ -25,14 +25,14 @@ let package = Package(
   ],
   dependencies: [
     .package(path: "../../generated/swift-google-cloud-datastream-v1"),
-    .package(path: "../../packages/wkt"),
+    .package(path: "../../packages/swift-google-wkt"),
   ],
   targets: [
     .target(
       name: "GoogleCloudDatastreamLoggingV1",
       dependencies: [
         .product(name: "GoogleCloudDatastreamV1", package: "swift-google-cloud-datastream-v1"),
-        .product(name: "GoogleCloudWKT", package: "wkt"),
+        .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
       ],
     )
   ]

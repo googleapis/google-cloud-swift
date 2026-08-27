@@ -24,9 +24,9 @@ let package = Package(
     .library(name: "GoogleIAMV3", targets: ["GoogleIAMV3"])
   ],
   dependencies: [
-    .package(path: "../../packages/auth"),
-    .package(path: "../../packages/gax"),
-    .package(path: "../../packages/wkt"),
+    .package(path: "../../packages/swift-google-auth"),
+    .package(path: "../../packages/swift-google-gax"),
+    .package(path: "../../packages/swift-google-wkt"),
     .package(path: "../../generated/swift-google-longrunning"),
     .package(path: "../../generated/swift-google-rpc"),
     .package(path: "../../generated/swift-google-type"),
@@ -36,9 +36,9 @@ let package = Package(
     .target(
       name: "GoogleIAMV3",
       dependencies: [
-        .product(name: "GoogleCloudAuth", package: "auth"),
-        .product(name: "GoogleCloudGax", package: "gax"),
-        .product(name: "GoogleCloudWKT", package: "wkt"),
+        .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
+        .product(name: "GoogleCloudGax", package: "swift-google-gax"),
+        .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
         .product(name: "GoogleLongRunning", package: "swift-google-longrunning"),
         .product(name: "GoogleRpc", package: "swift-google-rpc"),
         .product(name: "GoogleType", package: "swift-google-type"),

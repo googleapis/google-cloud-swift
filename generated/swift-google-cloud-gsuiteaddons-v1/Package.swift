@@ -31,9 +31,9 @@ let package = Package(
     .package(path: "../../generated/swift-google-apps-script-type-gmail"),
     .package(path: "../../generated/swift-google-apps-script-type-sheets"),
     .package(path: "../../generated/swift-google-apps-script-type-slides"),
-    .package(path: "../../packages/auth"),
-    .package(path: "../../packages/gax"),
-    .package(path: "../../packages/wkt"),
+    .package(path: "../../packages/swift-google-auth"),
+    .package(path: "../../packages/swift-google-gax"),
+    .package(path: "../../packages/swift-google-wkt"),
     .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
   ],
   targets: [
@@ -50,9 +50,9 @@ let package = Package(
           name: "GoogleAppsScriptTypeSheets", package: "swift-google-apps-script-type-sheets"),
         .product(
           name: "GoogleAppsScriptTypeSlides", package: "swift-google-apps-script-type-slides"),
-        .product(name: "GoogleCloudAuth", package: "auth"),
-        .product(name: "GoogleCloudGax", package: "gax"),
-        .product(name: "GoogleCloudWKT", package: "wkt"),
+        .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
+        .product(name: "GoogleCloudGax", package: "swift-google-gax"),
+        .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
         .product(name: "Logging", package: "swift-log"),
       ],
     )

@@ -25,13 +25,13 @@ let package = Package(
       name: "GoogleCloudNetworkAnalyzerLoggingV1", targets: ["GoogleCloudNetworkAnalyzerLoggingV1"])
   ],
   dependencies: [
-    .package(path: "../../packages/wkt")
+    .package(path: "../../packages/swift-google-wkt")
   ],
   targets: [
     .target(
       name: "GoogleCloudNetworkAnalyzerLoggingV1",
       dependencies: [
-        .product(name: "GoogleCloudWKT", package: "wkt")
+        .product(name: "GoogleCloudWKT", package: "swift-google-wkt")
       ],
     )
   ]

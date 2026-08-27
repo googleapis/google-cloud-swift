@@ -24,10 +24,10 @@ let package = Package(
     .library(name: "GoogleCloudPolicySimulatorV1", targets: ["GoogleCloudPolicySimulatorV1"])
   ],
   dependencies: [
-    .package(path: "../../packages/auth"),
-    .package(path: "../../packages/gax"),
+    .package(path: "../../packages/swift-google-auth"),
+    .package(path: "../../packages/swift-google-gax"),
     .package(path: "../../generated/swift-google-cloud-orgpolicy-v2"),
-    .package(path: "../../packages/wkt"),
+    .package(path: "../../packages/swift-google-wkt"),
     .package(path: "../../generated/swift-google-iam-v1"),
     .package(path: "../../generated/swift-google-longrunning"),
     .package(path: "../../generated/swift-google-rpc"),
@@ -38,10 +38,10 @@ let package = Package(
     .target(
       name: "GoogleCloudPolicySimulatorV1",
       dependencies: [
-        .product(name: "GoogleCloudAuth", package: "auth"),
-        .product(name: "GoogleCloudGax", package: "gax"),
+        .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
+        .product(name: "GoogleCloudGax", package: "swift-google-gax"),
         .product(name: "GoogleCloudOrgPolicyV2", package: "swift-google-cloud-orgpolicy-v2"),
-        .product(name: "GoogleCloudWKT", package: "wkt"),
+        .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
         .product(name: "GoogleIAMV1", package: "swift-google-iam-v1"),
         .product(name: "GoogleLongRunning", package: "swift-google-longrunning"),
         .product(name: "GoogleRpc", package: "swift-google-rpc"),

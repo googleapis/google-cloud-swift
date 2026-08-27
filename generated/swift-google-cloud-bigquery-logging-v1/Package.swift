@@ -24,7 +24,7 @@ let package = Package(
     .library(name: "GoogleBigQueryLoggingV1", targets: ["GoogleBigQueryLoggingV1"])
   ],
   dependencies: [
-    .package(path: "../../packages/wkt"),
+    .package(path: "../../packages/swift-google-wkt"),
     .package(path: "../../generated/swift-google-iam-v1"),
     .package(path: "../../generated/swift-google-rpc"),
   ],
@@ -32,7 +32,7 @@ let package = Package(
     .target(
       name: "GoogleBigQueryLoggingV1",
       dependencies: [
-        .product(name: "GoogleCloudWKT", package: "wkt"),
+        .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
         .product(name: "GoogleIAMV1", package: "swift-google-iam-v1"),
         .product(name: "GoogleRpc", package: "swift-google-rpc"),
       ],

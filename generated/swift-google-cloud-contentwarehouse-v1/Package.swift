@@ -24,10 +24,10 @@ let package = Package(
     .library(name: "GoogleCloudContentWarehouseV1", targets: ["GoogleCloudContentWarehouseV1"])
   ],
   dependencies: [
-    .package(path: "../../packages/auth"),
+    .package(path: "../../packages/swift-google-auth"),
     .package(path: "../../generated/swift-google-cloud-documentai-v1"),
-    .package(path: "../../packages/gax"),
-    .package(path: "../../packages/wkt"),
+    .package(path: "../../packages/swift-google-gax"),
+    .package(path: "../../packages/swift-google-wkt"),
     .package(path: "../../generated/swift-google-iam-v1"),
     .package(path: "../../generated/swift-google-longrunning"),
     .package(path: "../../generated/swift-google-rpc"),
@@ -38,10 +38,10 @@ let package = Package(
     .target(
       name: "GoogleCloudContentWarehouseV1",
       dependencies: [
-        .product(name: "GoogleCloudAuth", package: "auth"),
+        .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
         .product(name: "GoogleCloudDocumentAIV1", package: "swift-google-cloud-documentai-v1"),
-        .product(name: "GoogleCloudGax", package: "gax"),
-        .product(name: "GoogleCloudWKT", package: "wkt"),
+        .product(name: "GoogleCloudGax", package: "swift-google-gax"),
+        .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
         .product(name: "GoogleIAMV1", package: "swift-google-iam-v1"),
         .product(name: "GoogleLongRunning", package: "swift-google-longrunning"),
         .product(name: "GoogleRpc", package: "swift-google-rpc"),

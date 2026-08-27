@@ -26,13 +26,13 @@ let package = Package(
       targets: ["GoogleCloudAIPlatformV1SchemaPredictPrediction"])
   ],
   dependencies: [
-    .package(path: "../../packages/wkt")
+    .package(path: "../../packages/swift-google-wkt")
   ],
   targets: [
     .target(
       name: "GoogleCloudAIPlatformV1SchemaPredictPrediction",
       dependencies: [
-        .product(name: "GoogleCloudWKT", package: "wkt")
+        .product(name: "GoogleCloudWKT", package: "swift-google-wkt")
       ],
     )
   ]

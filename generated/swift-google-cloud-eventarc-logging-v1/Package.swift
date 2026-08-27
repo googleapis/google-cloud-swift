@@ -24,14 +24,14 @@ let package = Package(
     .library(name: "GoogleCloudEventarcLoggingV1", targets: ["GoogleCloudEventarcLoggingV1"])
   ],
   dependencies: [
-    .package(path: "../../packages/wkt"),
+    .package(path: "../../packages/swift-google-wkt"),
     .package(path: "../../generated/swift-google-rpc"),
   ],
   targets: [
     .target(
       name: "GoogleCloudEventarcLoggingV1",
       dependencies: [
-        .product(name: "GoogleCloudWKT", package: "wkt"),
+        .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
         .product(name: "GoogleRpc", package: "swift-google-rpc"),
       ],
     )
