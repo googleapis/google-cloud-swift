@@ -342,9 +342,9 @@ public struct ReadObjectMetadata: Sendable, Hashable, Equatable {
   }
 }
 
-/// An asynchronous sequence of `AnyByteStorage` chunks representing an object payload being downloaded.
+/// An asynchronous sequence of `ByteBuffer` chunks representing an object payload being downloaded.
 public struct ReadObjectSequence: AsyncSequence, Sendable {
-  public typealias Element = AnyByteStorage
+  public typealias Element = GoogleCloudGax.ByteBuffer
 
   private let coordinator: ReadObjectCoordinator
 
@@ -354,7 +354,7 @@ public struct ReadObjectSequence: AsyncSequence, Sendable {
 
   /// An asynchronous iterator for iterating over chunks of downloaded object payload data.
   public struct AsyncIterator: AsyncIteratorProtocol {
-    public typealias Element = AnyByteStorage
+    public typealias Element = GoogleCloudGax.ByteBuffer
 
     private let coordinator: ReadObjectCoordinator
 
@@ -362,8 +362,8 @@ public struct ReadObjectSequence: AsyncSequence, Sendable {
       self.coordinator = coordinator
     }
 
-    /// Advances to the next `AnyByteStorage` chunk in the downloaded object payload stream.
-    public mutating func next() async throws -> AnyByteStorage? {
+    /// Advances to the next `ByteBuffer` chunk in the downloaded object payload stream.
+    public mutating func next() async throws -> GoogleCloudGax.ByteBuffer? {
       try await coordinator.nextChunk()
     }
   }
@@ -451,7 +451,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
     return try await ensureInitialFetch()
   }
 
-  package func nextChunk() async throws -> AnyByteStorage? {
+  package func nextChunk() async throws -> GoogleCloudGax.ByteBuffer? {
     guard !isFinished && !isCancelled else { return nil }
 
     if case .prefix(0) = options.range {
@@ -471,7 +471,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
           let chunk = try await it.next()
           self.streamIterator = it
           if let chunk {
-            let storage = AnyByteStorage(chunk)
+            let storage = GoogleCloudGax.ByteBuffer(chunk)
             bytesReceived += UInt64(storage.count)
             resumeState.details.bytesDownloaded = bytesReceived
             resumeLoop.onProgress(state: &resumeState)
@@ -486,7 +486,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
           let chunk = try await it.next()
           self.bodyIterator = it
           if let chunk {
-            let storage = AnyByteStorage(chunk)
+            let storage = GoogleCloudGax.ByteBuffer(chunk)
             bytesReceived += UInt64(storage.count)
             resumeState.details.bytesDownloaded = bytesReceived
             resumeLoop.onProgress(state: &resumeState)
@@ -529,7 +529,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
     return nil
   }
 
-  private func updateChecksums(with chunk: AnyByteStorage) {
+  private func updateChecksums(with chunk: GoogleCloudGax.ByteBuffer) {
     guard crc32cCalculator != nil || md5Calculator != nil else { return }
     chunk.withUnsafeBytes { buffer in
       crc32cCalculator?.update(buffer)

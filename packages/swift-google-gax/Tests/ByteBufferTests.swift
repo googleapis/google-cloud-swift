@@ -17,9 +17,9 @@ import GoogleCloudGax
 import NIOCore
 import Testing
 
-@Suite struct AnyByteStorageTests {
+@Suite struct ByteBufferTests {
   @Test func initEmpty() {
-    let empty = AnyByteStorage()
+    let empty = GoogleCloudGax.ByteBuffer()
     #expect(empty.isEmpty)
     #expect(empty.count == 0)
     #expect(empty.byteArray.isEmpty)
@@ -29,7 +29,7 @@ import Testing
 
   @Test func initWithData() {
     let original = Data([0x01, 0x02, 0x03, 0x04])
-    let storage = AnyByteStorage(original)
+    let storage = GoogleCloudGax.ByteBuffer(original)
     #expect(!storage.isEmpty)
     #expect(storage.count == 4)
     #expect(storage.data == original)
@@ -43,7 +43,7 @@ import Testing
   @Test func initWithByteBuffer() {
     var buffer = ByteBufferAllocator().buffer(capacity: 8)
     buffer.writeBytes([0x0A, 0x0B, 0x0C, 0x0D])
-    let storage = AnyByteStorage(buffer)
+    let storage = GoogleCloudGax.ByteBuffer(buffer)
     #expect(!storage.isEmpty)
     #expect(storage.count == 4)
     #expect(storage.data == Data([0x0A, 0x0B, 0x0C, 0x0D]))
@@ -53,7 +53,7 @@ import Testing
 
   @Test func initWithByteArray() {
     let bytes: [UInt8] = [0xDE, 0xAD, 0xBE, 0xEF]
-    let storage = AnyByteStorage(bytes)
+    let storage = GoogleCloudGax.ByteBuffer(bytes)
     #expect(storage.count == 4)
     #expect(storage.byteArray == bytes)
     #expect(storage.data == Data(bytes))
@@ -62,21 +62,21 @@ import Testing
   @Test func initWithRawBufferPointer() {
     let bytes: [UInt8] = [10, 20, 30]
     bytes.withUnsafeBytes { rawBuffer in
-      let storage = AnyByteStorage(rawBuffer)
+      let storage = GoogleCloudGax.ByteBuffer(rawBuffer)
       #expect(storage.count == 3)
       #expect(storage.byteArray == bytes)
     }
   }
 
   @Test func arrayLiteral() {
-    let storage: AnyByteStorage = [1, 2, 3]
+    let storage: GoogleCloudGax.ByteBuffer = [1, 2, 3]
     #expect(storage.count == 3)
     #expect(storage.byteArray == [1, 2, 3])
   }
 
   @Test func withUnsafeBytes() throws {
     let expected: [UInt8] = [100, 101, 102]
-    let dataStorage = AnyByteStorage(Data(expected))
+    let dataStorage = GoogleCloudGax.ByteBuffer(Data(expected))
     let dataResult = dataStorage.withUnsafeBytes { ptr in
       Array(ptr)
     }
@@ -84,7 +84,7 @@ import Testing
 
     var buffer = ByteBufferAllocator().buffer(capacity: 3)
     buffer.writeBytes(expected)
-    let bufferStorage = AnyByteStorage(buffer)
+    let bufferStorage = GoogleCloudGax.ByteBuffer(buffer)
     let bufferResult = bufferStorage.withUnsafeBytes { ptr in
       Array(ptr)
     }
@@ -94,7 +94,7 @@ import Testing
   @Test func collectionAccessWithDataOffset() {
     let baseData = Data([0, 1, 2, 3, 4, 5, 6, 7])
     let subData = baseData.subdata(in: 2..<6)  // contains [2, 3, 4, 5], startIndex may not be 0
-    let storage = AnyByteStorage(subData)
+    let storage = GoogleCloudGax.ByteBuffer(subData)
 
     #expect(storage.count == 4)
     #expect(storage[0] == 2)
@@ -114,7 +114,7 @@ import Testing
     buffer.writeBytes([99, 99, 10, 20, 30, 40])
     buffer.moveReaderIndex(forwardBy: 2)  // skip first 2 bytes
 
-    let storage = AnyByteStorage(buffer)
+    let storage = GoogleCloudGax.ByteBuffer(buffer)
     #expect(storage.count == 4)
     #expect(storage[0] == 10)
     #expect(storage[1] == 20)
@@ -130,16 +130,16 @@ import Testing
 
   @Test func equalityAndHashing() {
     let bytes: [UInt8] = [1, 2, 3, 4, 5]
-    let dataStorage = AnyByteStorage(Data(bytes))
+    let dataStorage = GoogleCloudGax.ByteBuffer(Data(bytes))
 
     var buffer = ByteBufferAllocator().buffer(capacity: 5)
     buffer.writeBytes(bytes)
-    let bufferStorage = AnyByteStorage(buffer)
+    let bufferStorage = GoogleCloudGax.ByteBuffer(buffer)
 
-    let arrayStorage = AnyByteStorage(bytes)
-    let emptyStorage1 = AnyByteStorage()
-    let emptyStorage2 = AnyByteStorage(Data())
-    let differentStorage = AnyByteStorage([1, 2, 3, 4, 6])
+    let arrayStorage = GoogleCloudGax.ByteBuffer(bytes)
+    let emptyStorage1 = GoogleCloudGax.ByteBuffer()
+    let emptyStorage2 = GoogleCloudGax.ByteBuffer(Data())
+    let differentStorage = GoogleCloudGax.ByteBuffer([1, 2, 3, 4, 6])
 
     #expect(dataStorage == bufferStorage)
     #expect(dataStorage == arrayStorage)
@@ -148,7 +148,7 @@ import Testing
     #expect(dataStorage != differentStorage)
     #expect(dataStorage != emptyStorage1)
 
-    var set = Set<AnyByteStorage>()
+    var set = Set<GoogleCloudGax.ByteBuffer>()
     set.insert(dataStorage)
     #expect(set.contains(bufferStorage))
     #expect(set.contains(arrayStorage))
@@ -157,14 +157,14 @@ import Testing
   }
 
   @Test func description() {
-    let dataStorage = AnyByteStorage(Data([1, 2, 3]))
+    let dataStorage = GoogleCloudGax.ByteBuffer(Data([1, 2, 3]))
     #expect(dataStorage.description == "3 bytes")
     #expect(dataStorage.debugDescription.contains("Data"))
 
     var buffer = ByteBufferAllocator().buffer(capacity: 2)
     buffer.writeBytes([1, 2])
-    let bufferStorage = AnyByteStorage(buffer)
+    let bufferStorage = GoogleCloudGax.ByteBuffer(buffer)
     #expect(bufferStorage.description == "2 bytes")
-    #expect(bufferStorage.debugDescription.contains("ByteBuffer"))
+    #expect(bufferStorage.debugDescription.contains("NIOCore.ByteBuffer"))
   }
 }

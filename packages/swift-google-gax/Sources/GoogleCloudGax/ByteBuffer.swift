@@ -16,13 +16,13 @@ import Foundation
 import NIOCore
 import NIOFoundationCompat
 
-/// A type-erased container representing a sequence of bytes backed either by `Foundation.Data`
+/// A container representing a sequence of bytes backed either by `Foundation.Data`
 /// or `NIOCore.ByteBuffer` without unnecessary memory copying.
-public struct AnyByteStorage: Sendable {
+public struct ByteBuffer: Sendable {
   @usableFromInline
   internal enum Storage: Sendable {
     case data(Data)
-    case byteBuffer(ByteBuffer)
+    case byteBuffer(NIOCore.ByteBuffer)
   }
 
   @usableFromInline
@@ -30,31 +30,31 @@ public struct AnyByteStorage: Sendable {
 
   // MARK: - Initializers
 
-  /// Creates a byte storage wrapping a `Foundation.Data` instance (zero-copy).
+  /// Creates a byte buffer wrapping a `Foundation.Data` instance (zero-copy).
   @inlinable
   public init(_ data: Data) {
     self.storage = .data(data)
   }
 
-  /// Creates a byte storage wrapping a `NIOCore.ByteBuffer` instance (zero-copy).
+  /// Creates a byte buffer wrapping a `NIOCore.ByteBuffer` instance (zero-copy).
   @inlinable
-  public init(_ buffer: ByteBuffer) {
+  public init(_ buffer: NIOCore.ByteBuffer) {
     self.storage = .byteBuffer(buffer)
   }
 
-  /// Creates an empty byte storage instance.
+  /// Creates an empty byte buffer instance.
   @inlinable
   public init() {
     self.storage = .data(Data())
   }
 
-  /// Creates a byte storage from an array of bytes.
+  /// Creates a byte buffer from an array of bytes.
   @inlinable
   public init(_ bytes: [UInt8]) {
     self.storage = .data(Data(bytes))
   }
 
-  /// Creates a byte storage from a contiguous raw buffer pointer.
+  /// Creates a byte buffer from a contiguous raw buffer pointer.
   @inlinable
   public init(_ bufferPointer: UnsafeRawBufferPointer) {
     self.storage = .data(Data(bufferPointer))
@@ -63,7 +63,7 @@ public struct AnyByteStorage: Sendable {
 
 // MARK: - Core Properties & Accessors
 
-extension AnyByteStorage {
+extension ByteBuffer {
   /// The total number of readable bytes stored.
   @inlinable
   public var count: Int {
@@ -75,7 +75,7 @@ extension AnyByteStorage {
     }
   }
 
-  /// Indicates whether the storage contains zero bytes.
+  /// Indicates whether the buffer contains zero bytes.
   @inlinable
   public var isEmpty: Bool {
     count == 0
@@ -95,7 +95,7 @@ extension AnyByteStorage {
   /// The underlying contents as a `Foundation.Data` instance.
   ///
   /// - Returns: The original `Data` with zero copies if backed by `Data`,
-  ///   or copies the bytes into a new `Data` instance if backed by `ByteBuffer`.
+  ///   or copies the bytes into a new `Data` instance if backed by `NIOCore.ByteBuffer`.
   @inlinable
   public var data: Data {
     switch storage {
@@ -108,10 +108,10 @@ extension AnyByteStorage {
 
   /// The underlying contents as a `NIOCore.ByteBuffer` instance.
   ///
-  /// - Returns: The original `ByteBuffer` with zero copies if backed by `ByteBuffer`,
-  ///   or copies the bytes into a new `ByteBuffer` instance if backed by `Data`.
+  /// - Returns: The original `NIOCore.ByteBuffer` with zero copies if backed by `NIOCore.ByteBuffer`,
+  ///   or copies the bytes into a new `NIOCore.ByteBuffer` instance if backed by `Data`.
   @inlinable
-  public var byteBuffer: ByteBuffer {
+  public var byteBuffer: NIOCore.ByteBuffer {
     switch storage {
     case .byteBuffer(let buffer):
       return buffer
@@ -133,7 +133,7 @@ extension AnyByteStorage {
 
 // MARK: - RandomAccessCollection Conformance
 
-extension AnyByteStorage: RandomAccessCollection {
+extension ByteBuffer: RandomAccessCollection {
   public typealias Element = UInt8
   public typealias Index = Int
 
@@ -157,8 +157,8 @@ extension AnyByteStorage: RandomAccessCollection {
 
 // MARK: - Equatable & Hashable
 
-extension AnyByteStorage: Equatable {
-  public static func == (lhs: AnyByteStorage, rhs: AnyByteStorage) -> Bool {
+extension ByteBuffer: Equatable {
+  public static func == (lhs: ByteBuffer, rhs: ByteBuffer) -> Bool {
     guard lhs.count == rhs.count else { return false }
     if lhs.isEmpty { return true }
     return lhs.withUnsafeBytes { lhsBytes in
@@ -172,7 +172,7 @@ extension AnyByteStorage: Equatable {
   }
 }
 
-extension AnyByteStorage: Hashable {
+extension ByteBuffer: Hashable {
   public func hash(into hasher: inout Hasher) {
     withUnsafeBytes { hasher.combine(bytes: $0) }
   }
@@ -180,13 +180,13 @@ extension AnyByteStorage: Hashable {
 
 // MARK: - Literal & Description Conformances
 
-extension AnyByteStorage: ExpressibleByArrayLiteral {
+extension ByteBuffer: ExpressibleByArrayLiteral {
   public init(arrayLiteral elements: UInt8...) {
     self.init(Data(elements))
   }
 }
 
-extension AnyByteStorage: CustomStringConvertible, CustomDebugStringConvertible {
+extension ByteBuffer: CustomStringConvertible, CustomDebugStringConvertible {
   public var description: String {
     "\(count) bytes"
   }
@@ -195,8 +195,8 @@ extension AnyByteStorage: CustomStringConvertible, CustomDebugStringConvertible 
     let backing: String
     switch storage {
     case .data: backing = "Data"
-    case .byteBuffer: backing = "ByteBuffer"
+    case .byteBuffer: backing = "NIOCore.ByteBuffer"
     }
-    return "AnyByteStorage(\(count) bytes, backing: \(backing))"
+    return "ByteBuffer(\(count) bytes, backing: \(backing))"
   }
 }
