@@ -125,7 +125,7 @@ default:
         api_package: google.protobuf
         spi: GoogleCloudInternal
       - name: GoogleGrafeasV1
-        path: generated/grafeas-v1
+        path: generated/swift-grafeas-v1
         api_package: grafeas.v1
       - name: GoogleIAMV1
         path: generated/swift-google-iam-v1
