@@ -23,6 +23,7 @@ fileprivate let maxStaleness = 48 * hour
 /// Cleans up any stale buckets in the given project.
 public func cleanupStaleTestBuckets(client: StorageControlClient, projectId: String) async {
   var bucketNames: [String] = []
+  var requesterNames: [String] = []
   do {
     let deadline = Int(Date().timeIntervalSince1970) - maxStaleness
     let buckets = try client.listBuckets(
@@ -35,16 +36,29 @@ public func cleanupStaleTestBuckets(client: StorageControlClient, projectId: Str
         continue
       }
       bucketNames.append(b.name)
+      if let v = b.billing?.requesterPays, v {
+        requesterNames.append(b.name)
+      }
     }
   } catch {
     print("ERROR listing buckets for cleanup: \(error)")
   }
-  await cleanupTestBuckets(client: client, bucketNames: bucketNames)
+  await clearRequesterFlags(client: client, bucketNames: requesterNames)
+  await sweepTestBuckets(client: client, bucketNames: bucketNames)
 }
 
-/// Cleans up the provide list of test buckets.
+/// Cleans up the provided list of test buckets.
+///
+/// This is called immediately after running an integration test.
 public func cleanupTestBuckets(client: StorageControlClient, bucketNames: [String]) async {
+  // Many of the buckets created in tests are created as part of a sample. We don't want to show
+  // the labels we use for cleanup, as that complicates the example. So the first thing we do is
+  // add all the labels that mark the bucket as part of an integration test. We also  reset any
+  // attributes that make it hard to delete the bucket.
   await markTestBuckets(client: client, bucketNames: bucketNames)
+  // After this we clear the contents and delete the bucket. Rarely this fails either some failed
+  // request, or the contents have some retention period. In that case, the bucket will be deleted
+  // in a few days, as the integration tests call `cleanupStaleTestBuckets()`.
   await sweepTestBuckets(client: client, bucketNames: bucketNames)
 }
 
@@ -52,7 +66,7 @@ public func cleanupTestBuckets(client: StorageControlClient, bucketNames: [Strin
 ///
 /// When testing the samples, we create any number of buckets. This function marks the buckets for
 /// garbage collection. Normally `sweepTestBuckets` step will attempt to delete the buckets too.
-public func markTestBuckets(client: StorageControlClient, bucketNames: [String]) async {
+func markTestBuckets(client: StorageControlClient, bucketNames: [String]) async {
   for name in bucketNames {
     do {
       let bucket = Bucket().with {
@@ -74,11 +88,37 @@ public func markTestBuckets(client: StorageControlClient, bucketNames: [String])
   }
 }
 
+/// Resets the requesterPays flag so we can easily delete the bucket.
+///
+/// On buckets with `requesterPays == false` we need to do a number of
+/// When testing the samples, we create any number of buckets. This function marks the buckets for
+/// garbage collection. Normally `sweepTestBuckets` step will attempt to delete the buckets too.
+func clearRequesterFlags(client: StorageControlClient, bucketNames: [String]) async {
+  for name in bucketNames {
+    do {
+      let bucket = Bucket().with {
+        $0.name = name
+        $0.billing = .init().with { $0.requesterPays = false }
+      }
+      let options = RequestOptions().with {
+        $0.idempotency = true
+      }
+      let _ = try await client.updateBucket(
+        request: .init().with {
+          $0.bucket = bucket
+          $0.updateMask = .init(paths: ["billing.requester_pays"])
+        }, options: options)
+    } catch {
+      print("ERROR clearing requester pays bucket \(name): \(error)")
+    }
+  }
+}
+
 /// Deletes a number of test bucket and their contents.
 ///
 /// When testing the samples, we create any number of buckets. This function deletes buckets based
 /// on their id.
-public func sweepTestBuckets(client: StorageControlClient, bucketNames: [String]) async {
+func sweepTestBuckets(client: StorageControlClient, bucketNames: [String]) async {
   for name in bucketNames {
     do {
       let bucket: Bucket

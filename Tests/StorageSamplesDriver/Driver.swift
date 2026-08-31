@@ -28,11 +28,15 @@ import Testing
         client: client, projectId: projectId, bucketNames: &bucketNames)
       await StorageSamples.cleanupTestBuckets(client: client, bucketNames: bucketNames)
     } catch {
+      // Automatically clean up any buckets created during the test, even after an error. Some may
+      // still leak, due to crashes in the test, or because they have contents with a retention
+      // period.
       await StorageSamples.cleanupTestBuckets(client: client, bucketNames: bucketNames)
       throw error
     }
   }
 
+  /// Deletes stale buckets that are not cleaned up by their tests.
   @Test(.enabled(if: Self.enabled())) func stale() async throws {
     let projectId = ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"]!
     let client = try Self.makeClient()
