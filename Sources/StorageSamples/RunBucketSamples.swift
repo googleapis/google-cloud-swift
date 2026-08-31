@@ -32,6 +32,8 @@ public func runBucketSamples(
 
   print("running createBucket() sample")
   try await createBucket(client: client, projectId: projectId, bucketId: id)
+  print("running listBuckets() sample")
+  try await listBuckets(client: client, projectId: projectId)
   print("running deleteBucket() sample")
   try await deleteBucket(client: client, projectId: projectId, bucketId: id)
 }
