@@ -30,7 +30,7 @@ import Foundation
 /// Unfortunately the system types conforming to the `Decoder` protocol are not public, they cannot be named to implement
 /// any wrapper types. The approach is to use an `Interceptor<T>` type that implements `Decodable` and wraps the `any Decoder`
 /// it receives.
-@_spi(GoogleCloudInternal) public class _ProtoJSONDecoder {
+@_spi(GoogleCloudInternal) final public class _ProtoJSONDecoder {
   public init() {}
 
   public func decode<T>(_ type: T.Type, from: Data) throws -> T where T: Decodable {
