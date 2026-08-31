@@ -149,6 +149,24 @@ let package = Package(
       path: "Tests/StorageW1R3",
       exclude: ["README.md"]
     ),
+    .target(
+      name: "StorageSamples",
+      dependencies: [
+        .product(name: "GoogleCloudStorage", package: "swift-google-cloud-storage"),
+        .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
+        .product(name: "GoogleCloudGax", package: "swift-google-gax"),
+        .product(name: "Logging", package: "swift-log"),
+      ],
+    ),
+    .testTarget(
+      name: "StorageSamplesDriver",
+      dependencies: [
+        "StorageSamples",
+        .product(name: "GoogleCloudStorage", package: "swift-google-cloud-storage"),
+        .product(name: "Logging", package: "swift-log"),
+      ],
+      path: "Tests/StorageSamplesDriver",
+    ),
   ]
 )
 
