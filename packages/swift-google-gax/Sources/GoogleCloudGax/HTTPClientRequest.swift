@@ -79,40 +79,40 @@ enum _RequestBody: Sendable {
     self.headers.replaceOrAdd(name: "Content-Type", value: ofContentType)
   }
 
-  public mutating func setBody<S: AsyncSequence & Sendable>(
+  public mutating func setBody<S>(
     stream: S,
     length: Int64? = nil
-  ) where S.Element == NIOCore.ByteBuffer {
+  ) where S: AsyncSequence & Sendable, S.Element == NIOCore.ByteBuffer {
     let bodyLength: AsyncHTTPClient.HTTPClientRequest.Body.Length =
       length.map { .known($0) } ?? .unknown
     self.body = .custom(.stream(stream, length: bodyLength))
   }
 
-  public mutating func setBody<S: AsyncSequence & Sendable>(
+  public mutating func setBody<S>(
     stream: S,
     ofContentType: String,
     length: Int64? = nil
-  ) where S.Element == NIOCore.ByteBuffer {
+  ) where S: AsyncSequence & Sendable, S.Element == NIOCore.ByteBuffer {
     let bodyLength: AsyncHTTPClient.HTTPClientRequest.Body.Length =
       length.map { .known($0) } ?? .unknown
     self.body = .custom(.stream(stream, length: bodyLength))
     self.headers.replaceOrAdd(name: "Content-Type", value: ofContentType)
   }
 
-  public mutating func setBody<S: AsyncSequence & Sendable>(
+  public mutating func setBody<S>(
     stream: S,
     length: Int64? = nil
-  ) where S.Element == Data {
+  ) where S: AsyncSequence & Sendable, S.Element == Data {
     let bodyLength: AsyncHTTPClient.HTTPClientRequest.Body.Length =
       length.map { .known($0) } ?? .unknown
     self.body = .custom(.stream(stream.map { NIOCore.ByteBuffer(data: $0) }, length: bodyLength))
   }
 
-  public mutating func setBody<S: AsyncSequence & Sendable>(
+  public mutating func setBody<S>(
     stream: S,
     ofContentType: String,
     length: Int64? = nil
-  ) where S.Element == Data {
+  ) where S: AsyncSequence & Sendable, S.Element == Data {
     let bodyLength: AsyncHTTPClient.HTTPClientRequest.Body.Length =
       length.map { .known($0) } ?? .unknown
     self.body = .custom(.stream(stream.map { NIOCore.ByteBuffer(data: $0) }, length: bodyLength))
