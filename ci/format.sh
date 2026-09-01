@@ -55,6 +55,9 @@ count=0
 # assignment as a workaround, and set IFS to avoid breaking on spaces.
 IFS=$'\n'
 packages=($(git ls-files "${subset[@]}" | grep '/Package.swift' | xargs -I{} dirname {} | sort))
+if [[ "$1" != "push" ]]; then
+  packages+=(".")
+fi
 unset IFS
 for dir in "${packages[@]}"; do
     [[ -f "${dir}/Package.swift" ]] || continue
