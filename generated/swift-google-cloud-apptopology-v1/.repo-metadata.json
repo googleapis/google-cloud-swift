@@ -1,0 +1,14 @@
+{
+    "api_id": "apptopology.googleapis.com",
+    "api_shortname": "apptopology",
+    "client_documentation": "https://swiftpackageindex.com/googleapis/google-cloud-apptopology-v1/documentation",
+    "distribution_name": "google-cloud-apptopology-v1",
+    "issue_tracker": "https://issuetracker.google.com/issues/new?component=2121875",
+    "language": "swift",
+    "library_type": "GAPIC_AUTO",
+    "name": "apptopology",
+    "name_pretty": "App Topology",
+    "product_documentation": "https://docs.cloud.google.com/app-topology",
+    "release_level": "preview",
+    "repo": "googleapis/google-cloud-swift"
+}
