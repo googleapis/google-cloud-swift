@@ -37,6 +37,8 @@ flags=(
     -Xswiftc DeprecatedDeclaration
     --scratch-path "$(git rev-parse --show-toplevel)/.build-cache"
     --build-path "$(git rev-parse --show-toplevel)/.build"
+    # Use the versions from `Package.resolved`.
+    --disable-automatic-resolution
 )
 for dir in "${packages[@]}"; do
     [[ -f "${dir}/Package.swift" ]] || continue
