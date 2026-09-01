@@ -23,7 +23,7 @@ import AsyncHTTPClient
 import NIOCore
 import NIOHTTP1
 
-@Suite struct HTTPClientV2Tests {
+@Suite struct HTTPClientTests {
   @Test(arguments: [
     // A `?` in the path results in a percent-encoded `?` == %3F
     ("/path?$name=value", "path%3F$name=value"),
