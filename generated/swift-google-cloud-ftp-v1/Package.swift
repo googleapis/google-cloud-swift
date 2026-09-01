@@ -18,10 +18,10 @@
 import PackageDescription
 
 let package = Package(
-  name: "GoogleCloudFtpV1",
+  name: "GoogleCloudFTPV1",
   platforms: [.macOS(.v15)],
   products: [
-    .library(name: "GoogleCloudFtpV1", targets: ["GoogleCloudFtpV1"])
+    .library(name: "GoogleCloudFTPV1", targets: ["GoogleCloudFTPV1"])
   ],
   dependencies: [
     .package(path: "../../packages/swift-google-auth"),
@@ -34,7 +34,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "GoogleCloudFtpV1",
+      name: "GoogleCloudFTPV1",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
         .product(name: "GoogleCloudGax", package: "swift-google-gax"),

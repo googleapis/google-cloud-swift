@@ -17,14 +17,14 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudFtpV1
+import GoogleCloudFTPV1
 import GoogleCloudLocation
 import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
 
 func sample(projectId: String, locationId: String, ) async throws {
-  let client = try GoogleCloudFtpV1.CloudFtpClient()
+  let client = try GoogleCloudFTPV1.CloudFtpClient()
   let items = try client.listServers(
     byItem: ListServersRequest()
       .with {

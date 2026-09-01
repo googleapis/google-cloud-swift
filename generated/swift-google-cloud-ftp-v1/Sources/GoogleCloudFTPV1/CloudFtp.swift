@@ -49,7 +49,7 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// @Snippet(path: "CloudFtp_ListServers")
   public func listServers(
     request: ListServersRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudFtpV1.ListServersResponse {
+  ) async throws -> GoogleCloudFTPV1.ListServersResponse {
     try await self.inner.listServers(request: request, options: options)
   }
 
@@ -59,7 +59,7 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   public func listServers(
     byItem: ListServersRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Server, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudFtpV1.ListServersResponse in
+    let listRpc = { (token: Swift.String) async throws -> GoogleCloudFTPV1.ListServersResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listServers(request: request, options: options)
@@ -72,7 +72,7 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// @Snippet(path: "CloudFtp_GetServer")
   public func getServer(
     request: GetServerRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudFtpV1.Server {
+  ) async throws -> GoogleCloudFTPV1.Server {
     try await self.inner.getServer(request: request, options: options)
   }
 
@@ -186,7 +186,7 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// @Snippet(path: "CloudFtp_ListUsers")
   public func listUsers(
     request: ListUsersRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudFtpV1.ListUsersResponse {
+  ) async throws -> GoogleCloudFTPV1.ListUsersResponse {
     try await self.inner.listUsers(request: request, options: options)
   }
 
@@ -196,7 +196,7 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   public func listUsers(
     byItem: ListUsersRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<User, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudFtpV1.ListUsersResponse in
+    let listRpc = { (token: Swift.String) async throws -> GoogleCloudFTPV1.ListUsersResponse in
       var request = byItem
       request.pageToken = token
       return try await self.listUsers(request: request, options: options)
@@ -209,7 +209,7 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// @Snippet(path: "CloudFtp_GetUser")
   public func getUser(
     request: GetUserRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudFtpV1.User {
+  ) async throws -> GoogleCloudFTPV1.User {
     try await self.inner.getUser(request: request, options: options)
   }
 
@@ -526,7 +526,7 @@ extension Clients {
   public protocol CloudFtpProtocol {
     /// See `CloudFtpClient.listServers`.
     func listServers(request: ListServersRequest) async throws
-      -> GoogleCloudFtpV1.ListServersResponse
+      -> GoogleCloudFTPV1.ListServersResponse
 
     /// See `CloudFtpClient.listServers`.
     func listServers(
@@ -539,12 +539,12 @@ extension Clients {
     ) throws -> any AsyncSequence<Server, Swift.Error>
 
     /// See `CloudFtpClient.getServer`.
-    func getServer(request: GetServerRequest) async throws -> GoogleCloudFtpV1.Server
+    func getServer(request: GetServerRequest) async throws -> GoogleCloudFTPV1.Server
 
     /// See `CloudFtpClient.getServer`.
     func getServer(
       name: Swift.String,
-    ) async throws -> GoogleCloudFtpV1.Server
+    ) async throws -> GoogleCloudFTPV1.Server
 
     /// See `CloudFtpClient.createServer`.
     func createServer(request: CreateServerRequest) async throws -> GoogleLongRunning.Operation
@@ -586,7 +586,7 @@ extension Clients {
     ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void>
 
     /// See `CloudFtpClient.listUsers`.
-    func listUsers(request: ListUsersRequest) async throws -> GoogleCloudFtpV1.ListUsersResponse
+    func listUsers(request: ListUsersRequest) async throws -> GoogleCloudFTPV1.ListUsersResponse
 
     /// See `CloudFtpClient.listUsers`.
     func listUsers(
@@ -599,12 +599,12 @@ extension Clients {
     ) throws -> any AsyncSequence<User, Swift.Error>
 
     /// See `CloudFtpClient.getUser`.
-    func getUser(request: GetUserRequest) async throws -> GoogleCloudFtpV1.User
+    func getUser(request: GetUserRequest) async throws -> GoogleCloudFTPV1.User
 
     /// See `CloudFtpClient.getUser`.
     func getUser(
       name: Swift.String,
-    ) async throws -> GoogleCloudFtpV1.User
+    ) async throws -> GoogleCloudFTPV1.User
 
     /// See `CloudFtpClient.createUser`.
     func createUser(request: CreateUserRequest) async throws -> GoogleLongRunning.Operation
@@ -716,7 +716,7 @@ extension Clients {
     /// See `CloudFtpClient.listServers`.
     func listServers(
       request: ListServersRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudFtpV1.ListServersResponse
+    ) async throws -> GoogleCloudFTPV1.ListServersResponse
 
     /// See `CloudFtpClient.listServers`.
     func listServers(
@@ -726,7 +726,7 @@ extension Clients {
     /// See `CloudFtpClient.getServer`.
     func getServer(
       request: GetServerRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudFtpV1.Server
+    ) async throws -> GoogleCloudFTPV1.Server
 
     /// See `CloudFtpClient.createServer`.
     func createServer(
@@ -761,7 +761,7 @@ extension Clients {
     /// See `CloudFtpClient.listUsers`.
     func listUsers(
       request: ListUsersRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudFtpV1.ListUsersResponse
+    ) async throws -> GoogleCloudFTPV1.ListUsersResponse
 
     /// See `CloudFtpClient.listUsers`.
     func listUsers(
@@ -771,7 +771,7 @@ extension Clients {
     /// See `CloudFtpClient.getUser`.
     func getUser(
       request: GetUserRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudFtpV1.User
+    ) async throws -> GoogleCloudFTPV1.User
 
     /// See `CloudFtpClient.createUser`.
     func createUser(
@@ -863,14 +863,14 @@ extension Clients {
 // Default implementations
 extension Clients.CloudFtpProtocol {
   public func listServers(request: ListServersRequest) async throws
-    -> GoogleCloudFtpV1.ListServersResponse
+    -> GoogleCloudFTPV1.ListServersResponse
   {
     try await self.listServers(request: request, options: .init())
   }
 
   public func listServers(
     request: ListServersRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudFtpV1.ListServersResponse {
+  ) async throws -> GoogleCloudFTPV1.ListServersResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -883,7 +883,7 @@ extension Clients.CloudFtpProtocol {
   public func listServers(
     byItem: ListServersRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Server, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudFtpV1.ListServersResponse in
+    let listRpc = { (token: Swift.String) async throws -> GoogleCloudFTPV1.ListServersResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -898,19 +898,19 @@ extension Clients.CloudFtpProtocol {
     return try self.listServers(byItem: request)
   }
 
-  public func getServer(request: GetServerRequest) async throws -> GoogleCloudFtpV1.Server {
+  public func getServer(request: GetServerRequest) async throws -> GoogleCloudFTPV1.Server {
     try await self.getServer(request: request, options: .init())
   }
 
   public func getServer(
     request: GetServerRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudFtpV1.Server {
+  ) async throws -> GoogleCloudFTPV1.Server {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getServer(
     name: Swift.String,
-  ) async throws -> GoogleCloudFtpV1.Server {
+  ) async throws -> GoogleCloudFTPV1.Server {
     let request = GetServerRequest().with {
       $0.name = name
     }
@@ -1032,14 +1032,14 @@ extension Clients.CloudFtpProtocol {
   }
 
   public func listUsers(request: ListUsersRequest) async throws
-    -> GoogleCloudFtpV1.ListUsersResponse
+    -> GoogleCloudFTPV1.ListUsersResponse
   {
     try await self.listUsers(request: request, options: .init())
   }
 
   public func listUsers(
     request: ListUsersRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudFtpV1.ListUsersResponse {
+  ) async throws -> GoogleCloudFTPV1.ListUsersResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
@@ -1052,7 +1052,7 @@ extension Clients.CloudFtpProtocol {
   public func listUsers(
     byItem: ListUsersRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<User, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudFtpV1.ListUsersResponse in
+    let listRpc = { (token: Swift.String) async throws -> GoogleCloudFTPV1.ListUsersResponse in
       throw GoogleCloudGax.RequestError.unimplemented
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
@@ -1067,19 +1067,19 @@ extension Clients.CloudFtpProtocol {
     return try self.listUsers(byItem: request)
   }
 
-  public func getUser(request: GetUserRequest) async throws -> GoogleCloudFtpV1.User {
+  public func getUser(request: GetUserRequest) async throws -> GoogleCloudFTPV1.User {
     try await self.getUser(request: request, options: .init())
   }
 
   public func getUser(
     request: GetUserRequest, options: GoogleCloudGax.RequestOptions
-  ) async throws -> GoogleCloudFtpV1.User {
+  ) async throws -> GoogleCloudFTPV1.User {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
   public func getUser(
     name: Swift.String,
-  ) async throws -> GoogleCloudFtpV1.User {
+  ) async throws -> GoogleCloudFTPV1.User {
     let request = GetUserRequest().with {
       $0.name = name
     }

@@ -22,45 +22,53 @@ import GoogleCloudLocation
 import GoogleCloudWKT
 import GoogleLongRunning
 import GoogleRpc
-@_spi(GoogleCloudInternal) import GoogleCloudGax
+import GoogleCloudGax
+import struct Logging.Logger
 
 extension Clients {
-  final class CloudFtpRetry: CloudFtpStub {
+  final class CloudFtpLogging: CloudFtpStub {
     let inner: any CloudFtpStub
-    let options: GoogleCloudGax.ClientOptions
+    let logger: Logger
 
-    public init(_ inner: any CloudFtpStub, options: GoogleCloudGax.ClientOptions) {
+    public init(_ inner: any CloudFtpStub, logger: Logger) {
+      var logger = logger
+      logger[metadataKey: "gcp.artifact.id"] = "google-cloud-ftp-v1"
+      logger[metadataKey: "gcp.client.service"] = "ftp"
+      logger[metadataKey: "gcp.experimental.swift.client"] = "CloudFtp"
       self.inner = inner
-      self.options = options
+      self.logger = logger
     }
 
     func _intercept<Input, Output>(
       request: Input,
       options: GoogleCloudGax.RequestOptions,
-      idempotent: Swift.Bool,
+      name: Swift.String,
       action: (Input, GoogleCloudGax.RequestOptions) async throws -> Output,
     ) async throws -> Output {
-      let loop = GoogleCloudGax._RetryLoop(
-        options: options, withDefault: self.options, idempotent: idempotent,
-      )
-      let attempt = { (attemptTimeout: Swift.Duration?) async throws -> Output in
-        var attemptOptions = options
-        attemptOptions.attemptTimeout = attemptTimeout
-        return try await action(request, attemptOptions)
+      var logger = logger
+      logger[metadataKey: "gcp.experimental.swift.request.id"] = "\(UUID())"
+      logger[metadataKey: "gcp.experimental.swift.method"] = .string(name)
+      logger.debug("enter  : \(request) \(options)")
+      do {
+        let output = try await action(request, options)
+        logger.debug("success: \(request) \(options) \(output)")
+        return output
+      } catch let error {
+        logger.debug("error  : \(request) \(options) \(error)")
+        throw error
       }
-      return try await loop.run(attempt: attempt)
     }
 
     public func listServers(
       request: ListServersRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudFtpV1.ListServersResponse {
+    ) async throws -> GoogleCloudFTPV1.ListServersResponse {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: true,
+        name: "listServers",
         action: {
           (r: ListServersRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudFtpV1.ListServersResponse
+            -> GoogleCloudFTPV1.ListServersResponse
           in
           return try await self.inner.listServers(request: r, options: o)
         })
@@ -68,14 +76,14 @@ extension Clients {
 
     public func getServer(
       request: GetServerRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudFtpV1.Server {
+    ) async throws -> GoogleCloudFTPV1.Server {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: true,
+        name: "getServer",
         action: {
           (r: GetServerRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudFtpV1.Server
+            -> GoogleCloudFTPV1.Server
           in
           return try await self.inner.getServer(request: r, options: o)
         })
@@ -87,7 +95,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "createServer",
         action: {
           (r: CreateServerRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongRunning.Operation
@@ -102,7 +110,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "updateServer",
         action: {
           (r: UpdateServerRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongRunning.Operation
@@ -117,7 +125,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "deleteServer",
         action: {
           (r: DeleteServerRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongRunning.Operation
@@ -128,14 +136,14 @@ extension Clients {
 
     public func listUsers(
       request: ListUsersRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudFtpV1.ListUsersResponse {
+    ) async throws -> GoogleCloudFTPV1.ListUsersResponse {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: true,
+        name: "listUsers",
         action: {
           (r: ListUsersRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudFtpV1.ListUsersResponse
+            -> GoogleCloudFTPV1.ListUsersResponse
           in
           return try await self.inner.listUsers(request: r, options: o)
         })
@@ -143,14 +151,14 @@ extension Clients {
 
     public func getUser(
       request: GetUserRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudFtpV1.User {
+    ) async throws -> GoogleCloudFTPV1.User {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: true,
+        name: "getUser",
         action: {
           (r: GetUserRequest, o: GoogleCloudGax.RequestOptions) async throws
-            -> GoogleCloudFtpV1.User
+            -> GoogleCloudFTPV1.User
           in
           return try await self.inner.getUser(request: r, options: o)
         })
@@ -162,7 +170,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "createUser",
         action: {
           (r: CreateUserRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongRunning.Operation
@@ -177,7 +185,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "updateUser",
         action: {
           (r: UpdateUserRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongRunning.Operation
@@ -192,7 +200,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "deleteUser",
         action: {
           (r: DeleteUserRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongRunning.Operation
@@ -207,7 +215,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "startServer",
         action: {
           (r: StartServerRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongRunning.Operation
@@ -222,7 +230,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "stopServer",
         action: {
           (r: StopServerRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongRunning.Operation
@@ -237,7 +245,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: true,
+        name: "listLocations",
         action: {
           (r: GoogleCloudLocation.ListLocationsRequest, o: GoogleCloudGax.RequestOptions)
             async throws -> GoogleCloudLocation.ListLocationsResponse
@@ -252,7 +260,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: true,
+        name: "getLocation",
         action: {
           (r: GoogleCloudLocation.GetLocationRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleCloudLocation.Location
@@ -267,7 +275,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: true,
+        name: "listOperations",
         action: {
           (r: GoogleLongRunning.ListOperationsRequest, o: GoogleCloudGax.RequestOptions)
             async throws -> GoogleLongRunning.ListOperationsResponse
@@ -282,7 +290,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: true,
+        name: "getOperation",
         action: {
           (r: GoogleLongRunning.GetOperationRequest, o: GoogleCloudGax.RequestOptions) async throws
             -> GoogleLongRunning.Operation
@@ -297,7 +305,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "deleteOperation",
         action: {
           (r: GoogleLongRunning.DeleteOperationRequest, o: GoogleCloudGax.RequestOptions)
             async throws -> Void in
@@ -311,7 +319,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        name: "cancelOperation",
         action: {
           (r: GoogleLongRunning.CancelOperationRequest, o: GoogleCloudGax.RequestOptions)
             async throws -> Void in

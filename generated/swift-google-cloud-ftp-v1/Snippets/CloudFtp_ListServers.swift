@@ -17,7 +17,7 @@
 
 // snippet.show
 import Foundation
-import GoogleCloudFtpV1
+import GoogleCloudFTPV1
 import GoogleCloudLocation
 import GoogleCloudWKT
 import GoogleLongRunning
@@ -40,7 +40,7 @@ func sample(client: CloudFtpClient, projectId: String, locationId: String) async
 struct SnippetRunner {
   static func main() async throws {
     do {
-      let client = try GoogleCloudFtpV1.CloudFtpClient()
+      let client = try GoogleCloudFTPV1.CloudFtpClient()
       try await sample(client: client, projectId: "[placeholder]", locationId: "[placeholder]")
     } catch {
       print("Error: \(error)")

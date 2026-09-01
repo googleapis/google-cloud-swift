@@ -671,6 +671,8 @@ libraries:
   - name: google-cloud-ftp-v1
     version: 0.0.0-preview
     copyright_year: "2026"
+    swift:
+      library_name_override: GoogleCloudFTPV1
   - name: google-cloud-functions-v2
     version: 0.1.0-preview
     copyright_year: "2026"

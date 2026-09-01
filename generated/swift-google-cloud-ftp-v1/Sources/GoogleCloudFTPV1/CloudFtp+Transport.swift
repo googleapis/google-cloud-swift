@@ -37,7 +37,7 @@ extension Clients {
 
     public func listServers(
       request: ListServersRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudFtpV1.ListServersResponse {
+    ) async throws -> GoogleCloudFTPV1.ListServersResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -57,13 +57,13 @@ extension Clients {
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
-        GoogleCloudFtpV1.ListServersResponse.self, timeout: options.attemptTimeout
+        GoogleCloudFTPV1.ListServersResponse.self, timeout: options.attemptTimeout
       ).get()
     }
 
     public func getServer(
       request: GetServerRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudFtpV1.Server {
+    ) async throws -> GoogleCloudFTPV1.Server {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -79,7 +79,7 @@ extension Clients {
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
-        GoogleCloudFtpV1.Server.self, timeout: options.attemptTimeout
+        GoogleCloudFTPV1.Server.self, timeout: options.attemptTimeout
       ).get()
     }
 
@@ -157,7 +157,7 @@ extension Clients {
 
     public func listUsers(
       request: ListUsersRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudFtpV1.ListUsersResponse {
+    ) async throws -> GoogleCloudFTPV1.ListUsersResponse {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
@@ -177,13 +177,13 @@ extension Clients {
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
-        GoogleCloudFtpV1.ListUsersResponse.self, timeout: options.attemptTimeout
+        GoogleCloudFTPV1.ListUsersResponse.self, timeout: options.attemptTimeout
       ).get()
     }
 
     public func getUser(
       request: GetUserRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudFtpV1.User {
+    ) async throws -> GoogleCloudFTPV1.User {
       let path = try { () throws -> Swift.String in
         guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
           throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
@@ -199,7 +199,7 @@ extension Clients {
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
-        GoogleCloudFtpV1.User.self, timeout: options.attemptTimeout
+        GoogleCloudFTPV1.User.self, timeout: options.attemptTimeout
       ).get()
     }
 

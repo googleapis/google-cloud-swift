@@ -25,11 +25,11 @@ extension Clients {
   protocol CloudFtpStub: Sendable {
     func listServers(
       request: ListServersRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudFtpV1.ListServersResponse
+    ) async throws -> GoogleCloudFTPV1.ListServersResponse
 
     func getServer(
       request: GetServerRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudFtpV1.Server
+    ) async throws -> GoogleCloudFTPV1.Server
 
     func createServer(
       request: CreateServerRequest, options: GoogleCloudGax.RequestOptions
@@ -45,11 +45,11 @@ extension Clients {
 
     func listUsers(
       request: ListUsersRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudFtpV1.ListUsersResponse
+    ) async throws -> GoogleCloudFTPV1.ListUsersResponse
 
     func getUser(
       request: GetUserRequest, options: GoogleCloudGax.RequestOptions
-    ) async throws -> GoogleCloudFtpV1.User
+    ) async throws -> GoogleCloudFTPV1.User
 
     func createUser(
       request: CreateUserRequest, options: GoogleCloudGax.RequestOptions
