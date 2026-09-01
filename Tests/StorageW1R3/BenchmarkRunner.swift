@@ -101,7 +101,7 @@ extension StorageW1R3 {
         await self.deleteBatch(
           iterationId: iterationId,
           counters: counters,
-          credentials: credentials,
+          client: controlClient,
           batch: currentBatch
         )
       }
@@ -115,7 +115,7 @@ extension StorageW1R3 {
       iterationId: IterationId(
         task: taskIndex, taskStartInstant: taskStartInstant, iteration: iterations),
       counters: counters,
-      credentials: credentials,
+      client: controlClient,
       batch: deletes
     )
   }
@@ -204,7 +204,7 @@ extension StorageW1R3 {
   private func deleteBatch(
     iterationId: IterationId,
     counters: BenchmarkCounters,
-    credentials: GoogleCloudAuth.Credentials,
+    client: StorageControlClient,
     batch: [GoogleCloudStorage.Object],
   ) async {
     if batch.isEmpty {
@@ -219,7 +219,7 @@ extension StorageW1R3 {
 
     do {
       try await StorageOperations.batchDelete(
-        credentials: credentials, batch: batch
+        client: client, batch: batch
       )
       let sample = deleteBuilder.success()
       self.emitSample(sample)
