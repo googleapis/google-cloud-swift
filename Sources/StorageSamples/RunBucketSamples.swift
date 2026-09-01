@@ -36,6 +36,41 @@ public func runBucketSamples(
   try await listBuckets(client: client, projectId: projectId)
   print("running deleteBucket() sample")
   try await deleteBucket(client: client, projectId: projectId, bucketId: id)
+
+  let classLocationId = randomBucketId()
+  bucketNames.append("projects/_/buckets/\(classLocationId)")
+  print("running createBucketClassLocation() sample")
+  try await createBucketClassLocation(
+    client: client, projectId: projectId, bucketId: classLocationId)
+
+  let dualRegionId = randomBucketId()
+  bucketNames.append("projects/_/buckets/\(dualRegionId)")
+  print("running createBucketDualRegion() sample")
+  try await createBucketDualRegion(client: client, projectId: projectId, bucketId: dualRegionId)
+
+  let turboReplicationId = randomBucketId()
+  bucketNames.append("projects/_/buckets/\(turboReplicationId)")
+  print("running createBucketTurboReplication() sample")
+  try await createBucketTurboReplication(
+    client: client, projectId: projectId, bucketId: turboReplicationId)
+
+  let hierarchicalNamespaceId = randomBucketId()
+  bucketNames.append("projects/_/buckets/\(hierarchicalNamespaceId)")
+  print("running createBucketHierarchicalNamespace() sample")
+  try await createBucketHierarchicalNamespace(
+    client: client, projectId: projectId, bucketId: hierarchicalNamespaceId)
+
+  let encryptionEnforcementId = randomBucketId()
+  bucketNames.append("projects/_/buckets/\(encryptionEnforcementId)")
+  print("running createBucketWithEncryptionEnforcement() sample")
+  try await createBucketWithEncryptionEnforcement(
+    client: client, projectId: projectId, bucketId: encryptionEnforcementId)
+
+  let objectRetentionId = randomBucketId()
+  bucketNames.append("projects/_/buckets/\(objectRetentionId)")
+  print("running createBucketWithObjectRetention() sample")
+  try await createBucketWithObjectRetention(
+    client: client, projectId: projectId, bucketId: objectRetentionId)
 }
 
 /// Generates a random bucket ID.
