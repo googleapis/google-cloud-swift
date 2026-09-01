@@ -14,11 +14,12 @@
 
 import Foundation
 @testable import GoogleCloudStorage
+import NIOCore
 import Testing
 
-@Suite struct UploadSourceTests {
+@Suite struct BytesSourceTests {
   /// Tests BytesSource seeking to valid and invalid offsets.
-  @Test func bytesSourceSeek() async throws {
+  @Test func seek() async throws {
     let data = Data([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
     var source = BytesSource(data: data)
 
@@ -51,43 +52,36 @@ import Testing
     }
   }
 
-  /// Tests FileSource seeking to valid and invalid offsets.
-  @Test func fileSourceSeek() async throws {
-    let tempDirectory = FileManager.default.temporaryDirectory
-    let fileURL = tempDirectory.appendingPathComponent("test_source_\(UUID().uuidString).txt")
-    let data = Data(repeating: 65, count: 100)
-    try data.write(to: fileURL)
-    defer {
-      try? FileManager.default.removeItem(at: fileURL)
-    }
+  /// Tests reading chunks using Data and ByteBuffer initializers.
+  @Test func readChunks() async throws {
+    let data = Data([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+    var dataSrc = BytesSource(data: data)
 
-    var source = FileSource(fileURL: fileURL)
-    #expect(source.totalSize == 100)
+    let chunk1 = try await dataSrc.read(maxBytes: 4)
+    #expect(chunk1 == [0, 1, 2, 3])
 
-    // Seek to valid offset
-    try await source.seek(to: 50)
-    let chunk = try await source.read(maxBytes: 100)
-    #expect(chunk?.count == 50)
+    let chunk2 = try await dataSrc.read(maxBytes: 4)
+    #expect(chunk2 == [4, 5, 6, 7])
 
-    // Seek to negative offset
-    let negativeErr = await expectError(UploadError.self) {
-      try await source.seek(to: -5)
-    }
-    if case .internalError(let message) = negativeErr {
-      #expect(message == "Invalid seek offset: -5")
-    } else {
-      Issue.record("Expected .internalError, got \(String(describing: negativeErr))")
-    }
+    let chunk3 = try await dataSrc.read(maxBytes: 4)
+    #expect(chunk3 == [8, 9])
 
-    // Seek past end of file
-    let pastEndErr = await expectError(UploadError.self) {
-      try await source.seek(to: 200)
-    }
-    if case .localSourceTooSmall(let localSize, let gcsOffset) = pastEndErr {
-      #expect(localSize == 100)
-      #expect(gcsOffset == 200)
-    } else {
-      Issue.record("Expected .localSourceTooSmall, got \(String(describing: pastEndErr))")
-    }
+    let chunk4 = try await dataSrc.read(maxBytes: 4)
+    #expect(chunk4 == nil)
+
+    // With NIOCore buffer storage
+    var nioBuf = NIOCore.ByteBuffer()
+    nioBuf.writeBytes([10, 11, 12, 13])
+    var nioSrc = BytesSource(buffer: GoogleCloudStorage.ByteBuffer(nioBuf))
+    #expect(nioSrc.totalSize == 4)
+
+    let nioChunk1 = try await nioSrc.read(maxBytes: 2)
+    #expect(nioChunk1 == [10, 11])
+
+    let nioChunk2 = try await nioSrc.read(maxBytes: 5)
+    #expect(nioChunk2 == [12, 13])
+
+    let nioChunk3 = try await nioSrc.read(maxBytes: 1)
+    #expect(nioChunk3 == nil)
   }
 }
