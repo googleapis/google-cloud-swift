@@ -14,6 +14,7 @@
 
 import Crypto
 import Foundation
+import NIOCore
 @_spi(GoogleCloudInternal) import struct GoogleCloudGax._CRC32C
 
 /// A protocol for incremental checksum computation.
@@ -37,6 +38,11 @@ extension ChecksumCalculator {
   /// Convenience helper for ByteBuffer chunks.
   mutating func update(_ buffer: ByteBuffer) {
     buffer.withUnsafeBytes { update($0) }
+  }
+
+  /// Convenience helper for NIOCore.ByteBuffer chunks.
+  mutating func update(_ buffer: NIOCore.ByteBuffer) {
+    buffer.withUnsafeReadableBytes { update($0) }
   }
 }
 

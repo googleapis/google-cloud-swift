@@ -17,6 +17,7 @@ import Foundation
 import GoogleCloudAuth
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 @_spi(GoogleCloudInternal) @testable import GoogleCloudStorage
+import NIOCore
 import Testing
 
 @Suite struct SimpleUploadTests {
