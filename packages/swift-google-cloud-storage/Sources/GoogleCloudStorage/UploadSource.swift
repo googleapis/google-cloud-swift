@@ -31,4 +31,3 @@ public protocol SeekableUploadSource: UploadSource {
   /// Seeks to a specific byte offset.
   mutating func seek(to offset: Int64) async throws
 }
-

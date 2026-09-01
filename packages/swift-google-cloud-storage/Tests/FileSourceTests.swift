@@ -69,10 +69,10 @@ import Testing
 
     var source = FileSource(fileURL: fileURL)
     let first = try await source.read(maxBytes: 5)
-    #expect(first == Data("Hello".utf8))
+    #expect(first == GoogleCloudStorage.ByteBuffer(Data("Hello".utf8)))
 
     let second = try await source.read(maxBytes: 100)
-    #expect(second == Data(", World!".utf8))
+    #expect(second == GoogleCloudStorage.ByteBuffer(Data(", World!".utf8)))
 
     let third = try await source.read(maxBytes: 10)
     #expect(third == nil)
