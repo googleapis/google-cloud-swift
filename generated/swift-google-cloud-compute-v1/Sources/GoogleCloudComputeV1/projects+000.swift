@@ -1143,24 +1143,28 @@
       return try self.listXpnHosts(byItem: request)
     }
 
+    @available(*, deprecated)
     public func moveDisk(request: ProjectsClient.MoveDiskRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
       try await self.moveDisk(request: request, options: .init())
     }
 
+    @available(*, deprecated)
     public func moveDisk(
       request: ProjectsClient.MoveDiskRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
+    @available(*, deprecated)
     public func moveDisk(
       withPolling: ProjectsClient.MoveDiskRequest
     ) async throws -> any GoogleCloudGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       try await self.moveDisk(withPolling: withPolling, options: .init())
     }
 
+    @available(*, deprecated)
     public func moveDisk(
       withPolling: ProjectsClient.MoveDiskRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<GoogleCloudComputeV1.Operation> {
@@ -1173,6 +1177,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
+    @available(*, deprecated)
     public func moveDisk(
       project: Swift.String,
       body: DiskMoveRequest?,
@@ -1184,24 +1189,28 @@
       return try await self.moveDisk(withPolling: request)
     }
 
+    @available(*, deprecated)
     public func moveInstance(request: ProjectsClient.MoveInstanceRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
       try await self.moveInstance(request: request, options: .init())
     }
 
+    @available(*, deprecated)
     public func moveInstance(
       request: ProjectsClient.MoveInstanceRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
       throw GoogleCloudGax.RequestError.unimplemented
     }
 
+    @available(*, deprecated)
     public func moveInstance(
       withPolling: ProjectsClient.MoveInstanceRequest
     ) async throws -> any GoogleCloudGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       try await self.moveInstance(withPolling: withPolling, options: .init())
     }
 
+    @available(*, deprecated)
     public func moveInstance(
       withPolling: ProjectsClient.MoveInstanceRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> any GoogleCloudGax.PollableOperation<GoogleCloudComputeV1.Operation> {
@@ -1214,6 +1223,7 @@
         initialState: .init(done: false, result: nil), poll: poll)
     }
 
+    @available(*, deprecated)
     public func moveInstance(
       project: Swift.String,
       body: InstanceMoveRequest?,

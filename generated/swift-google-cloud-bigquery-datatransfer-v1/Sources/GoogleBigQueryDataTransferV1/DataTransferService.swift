@@ -775,18 +775,21 @@ extension Clients.DataTransferServiceProtocol {
     return try self.listTransferConfigs(byItem: request)
   }
 
+  @available(*, deprecated)
   public func scheduleTransferRuns(request: ScheduleTransferRunsRequest) async throws
     -> GoogleBigQueryDataTransferV1.ScheduleTransferRunsResponse
   {
     try await self.scheduleTransferRuns(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func scheduleTransferRuns(
     request: ScheduleTransferRunsRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleBigQueryDataTransferV1.ScheduleTransferRunsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func scheduleTransferRuns(
     parent: Swift.String,
     startTime: GoogleCloudWKT.Timestamp?,

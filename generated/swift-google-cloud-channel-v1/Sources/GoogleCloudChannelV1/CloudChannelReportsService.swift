@@ -435,24 +435,29 @@ extension Clients {
 }
 
 // Default implementations
+@available(*, deprecated)
 extension Clients.CloudChannelReportsServiceProtocol {
+  @available(*, deprecated)
   public func runReportJob(request: RunReportJobRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.runReportJob(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func runReportJob(
     request: RunReportJobRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func runReportJob(withPolling: RunReportJobRequest) async throws -> any GoogleCloudGax
     .PollableOperation<RunReportJobResponse>
   {
     try await self.runReportJob(withPolling: withPolling, options: .init())
   }
 
+  @available(*, deprecated)
   public func runReportJob(
     withPolling: RunReportJobRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<RunReportJobResponse> {
@@ -464,24 +469,28 @@ extension Clients.CloudChannelReportsServiceProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
+  @available(*, deprecated)
   public func fetchReportResults(request: FetchReportResultsRequest) async throws
     -> GoogleCloudChannelV1.FetchReportResultsResponse
   {
     try await self.fetchReportResults(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func fetchReportResults(
     request: FetchReportResultsRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.FetchReportResultsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func fetchReportResults(
     byItem: FetchReportResultsRequest
   ) throws -> any AsyncSequence<Row, Swift.Error> {
     try self.fetchReportResults(byItem: byItem, options: .init())
   }
 
+  @available(*, deprecated)
   public func fetchReportResults(
     byItem: FetchReportResultsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Row, Swift.Error> {
@@ -492,6 +501,7 @@ extension Clients.CloudChannelReportsServiceProtocol {
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
+  @available(*, deprecated)
   public func fetchReportResults(
     reportJob: Swift.String,
   ) throws -> any AsyncSequence<Row, Swift.Error> {
@@ -501,24 +511,28 @@ extension Clients.CloudChannelReportsServiceProtocol {
     return try self.fetchReportResults(byItem: request)
   }
 
+  @available(*, deprecated)
   public func listReports(request: ListReportsRequest) async throws
     -> GoogleCloudChannelV1.ListReportsResponse
   {
     try await self.listReports(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func listReports(
     request: ListReportsRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ListReportsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func listReports(
     byItem: ListReportsRequest
   ) throws -> any AsyncSequence<Report, Swift.Error> {
     try self.listReports(byItem: byItem, options: .init())
   }
 
+  @available(*, deprecated)
   public func listReports(
     byItem: ListReportsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Report, Swift.Error> {
@@ -529,6 +543,7 @@ extension Clients.CloudChannelReportsServiceProtocol {
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
+  @available(*, deprecated)
   public func listReports(
     parent: Swift.String,
   ) throws -> any AsyncSequence<Report, Swift.Error> {

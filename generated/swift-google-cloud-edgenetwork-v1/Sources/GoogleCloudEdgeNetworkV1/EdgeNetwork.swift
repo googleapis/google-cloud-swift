@@ -1365,24 +1365,28 @@ extension Clients.EdgeNetworkProtocol {
     return try await self.initializeZone(request: request)
   }
 
+  @available(*, deprecated)
   public func listZones(request: ListZonesRequest) async throws
     -> GoogleCloudEdgeNetworkV1.ListZonesResponse
   {
     try await self.listZones(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func listZones(
     request: ListZonesRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudEdgeNetworkV1.ListZonesResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func listZones(
     byItem: ListZonesRequest
   ) throws -> any AsyncSequence<Zone, Swift.Error> {
     try self.listZones(byItem: byItem, options: .init())
   }
 
+  @available(*, deprecated)
   public func listZones(
     byItem: ListZonesRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Zone, Swift.Error> {
@@ -1393,6 +1397,7 @@ extension Clients.EdgeNetworkProtocol {
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
+  @available(*, deprecated)
   public func listZones(
     parent: Swift.String,
   ) throws -> any AsyncSequence<Zone, Swift.Error> {
@@ -1402,16 +1407,19 @@ extension Clients.EdgeNetworkProtocol {
     return try self.listZones(byItem: request)
   }
 
+  @available(*, deprecated)
   public func getZone(request: GetZoneRequest) async throws -> GoogleCloudEdgeNetworkV1.Zone {
     try await self.getZone(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func getZone(
     request: GetZoneRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudEdgeNetworkV1.Zone {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func getZone(
     name: Swift.String,
   ) async throws -> GoogleCloudEdgeNetworkV1.Zone {

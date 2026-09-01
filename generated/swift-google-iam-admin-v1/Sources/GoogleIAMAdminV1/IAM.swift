@@ -1315,16 +1315,19 @@ extension Clients.IAMProtocol {
     try await self.enableServiceAccountKey(request: request)
   }
 
+  @available(*, deprecated)
   public func signBlob(request: SignBlobRequest) async throws -> GoogleIAMAdminV1.SignBlobResponse {
     try await self.signBlob(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func signBlob(
     request: SignBlobRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleIAMAdminV1.SignBlobResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func signBlob(
     name: Swift.String,
     bytesToSign: Foundation.Data,
@@ -1336,16 +1339,19 @@ extension Clients.IAMProtocol {
     return try await self.signBlob(request: request)
   }
 
+  @available(*, deprecated)
   public func signJwt(request: SignJwtRequest) async throws -> GoogleIAMAdminV1.SignJwtResponse {
     try await self.signJwt(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func signJwt(
     request: SignJwtRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleIAMAdminV1.SignJwtResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func signJwt(
     name: Swift.String,
     payload: Swift.String,

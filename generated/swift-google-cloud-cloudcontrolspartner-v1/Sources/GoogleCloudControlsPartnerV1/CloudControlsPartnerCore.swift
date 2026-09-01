@@ -549,24 +549,28 @@ extension Clients.CloudControlsPartnerCoreProtocol {
     return try await self.getPartnerPermissions(request: request)
   }
 
+  @available(*, deprecated)
   public func listAccessApprovalRequests(request: ListAccessApprovalRequestsRequest) async throws
     -> GoogleCloudControlsPartnerV1.ListAccessApprovalRequestsResponse
   {
     try await self.listAccessApprovalRequests(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func listAccessApprovalRequests(
     request: ListAccessApprovalRequestsRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudControlsPartnerV1.ListAccessApprovalRequestsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func listAccessApprovalRequests(
     byItem: ListAccessApprovalRequestsRequest
   ) throws -> any AsyncSequence<AccessApprovalRequest, Swift.Error> {
     try self.listAccessApprovalRequests(byItem: byItem, options: .init())
   }
 
+  @available(*, deprecated)
   public func listAccessApprovalRequests(
     byItem: ListAccessApprovalRequestsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<AccessApprovalRequest, Swift.Error> {
@@ -578,6 +582,7 @@ extension Clients.CloudControlsPartnerCoreProtocol {
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
+  @available(*, deprecated)
   public func listAccessApprovalRequests(
     parent: Swift.String,
   ) throws -> any AsyncSequence<AccessApprovalRequest, Swift.Error> {

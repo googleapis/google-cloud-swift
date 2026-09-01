@@ -1535,24 +1535,28 @@ extension Clients.ReservationServiceProtocol {
     try await self.deleteAssignment(request: request)
   }
 
+  @available(*, deprecated)
   public func searchAssignments(request: SearchAssignmentsRequest) async throws
     -> GoogleBigQueryReservationV1.SearchAssignmentsResponse
   {
     try await self.searchAssignments(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func searchAssignments(
     request: SearchAssignmentsRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.SearchAssignmentsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func searchAssignments(
     byItem: SearchAssignmentsRequest
   ) throws -> any AsyncSequence<Assignment, Swift.Error> {
     try self.searchAssignments(byItem: byItem, options: .init())
   }
 
+  @available(*, deprecated)
   public func searchAssignments(
     byItem: SearchAssignmentsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Assignment, Swift.Error> {
@@ -1563,6 +1567,7 @@ extension Clients.ReservationServiceProtocol {
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
+  @available(*, deprecated)
   public func searchAssignments(
     parent: Swift.String,
     query: Swift.String,

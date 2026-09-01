@@ -1662,25 +1662,30 @@ extension Clients {
 }
 
 // Default implementations
+@available(*, deprecated)
 extension Clients.DataCatalogProtocol {
+  @available(*, deprecated)
   public func searchCatalog(request: SearchCatalogRequest) async throws
     -> GoogleCloudDataCatalogV1.SearchCatalogResponse
   {
     try await self.searchCatalog(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func searchCatalog(
     request: SearchCatalogRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.SearchCatalogResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func searchCatalog(
     byItem: SearchCatalogRequest
   ) throws -> any AsyncSequence<SearchCatalogResult, Swift.Error> {
     try self.searchCatalog(byItem: byItem, options: .init())
   }
 
+  @available(*, deprecated)
   public func searchCatalog(
     byItem: SearchCatalogRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<SearchCatalogResult, Swift.Error> {
@@ -1691,6 +1696,7 @@ extension Clients.DataCatalogProtocol {
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
+  @available(*, deprecated)
   public func searchCatalog(
     scope: SearchCatalogRequest.Scope?,
     query: Swift.String,
@@ -1702,18 +1708,21 @@ extension Clients.DataCatalogProtocol {
     return try self.searchCatalog(byItem: request)
   }
 
+  @available(*, deprecated)
   public func createEntryGroup(request: CreateEntryGroupRequest) async throws
     -> GoogleCloudDataCatalogV1.EntryGroup
   {
     try await self.createEntryGroup(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func createEntryGroup(
     request: CreateEntryGroupRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.EntryGroup {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func createEntryGroup(
     parent: Swift.String,
     entryGroupId: Swift.String,
@@ -1727,18 +1736,21 @@ extension Clients.DataCatalogProtocol {
     return try await self.createEntryGroup(request: request)
   }
 
+  @available(*, deprecated)
   public func getEntryGroup(request: GetEntryGroupRequest) async throws
     -> GoogleCloudDataCatalogV1.EntryGroup
   {
     try await self.getEntryGroup(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func getEntryGroup(
     request: GetEntryGroupRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.EntryGroup {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func getEntryGroup(
     name: Swift.String,
   ) async throws -> GoogleCloudDataCatalogV1.EntryGroup {
@@ -1748,6 +1760,7 @@ extension Clients.DataCatalogProtocol {
     return try await self.getEntryGroup(request: request)
   }
 
+  @available(*, deprecated)
   public func getEntryGroup(
     name: Swift.String,
     readMask: GoogleCloudWKT.FieldMask?,
@@ -1759,18 +1772,21 @@ extension Clients.DataCatalogProtocol {
     return try await self.getEntryGroup(request: request)
   }
 
+  @available(*, deprecated)
   public func updateEntryGroup(request: UpdateEntryGroupRequest) async throws
     -> GoogleCloudDataCatalogV1.EntryGroup
   {
     try await self.updateEntryGroup(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func updateEntryGroup(
     request: UpdateEntryGroupRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.EntryGroup {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func updateEntryGroup(
     entryGroup: EntryGroup?,
   ) async throws -> GoogleCloudDataCatalogV1.EntryGroup {
@@ -1780,6 +1796,7 @@ extension Clients.DataCatalogProtocol {
     return try await self.updateEntryGroup(request: request)
   }
 
+  @available(*, deprecated)
   public func updateEntryGroup(
     entryGroup: EntryGroup?,
     updateMask: GoogleCloudWKT.FieldMask?,
@@ -1791,16 +1808,19 @@ extension Clients.DataCatalogProtocol {
     return try await self.updateEntryGroup(request: request)
   }
 
+  @available(*, deprecated)
   public func deleteEntryGroup(request: DeleteEntryGroupRequest) async throws {
     try await self.deleteEntryGroup(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func deleteEntryGroup(
     request: DeleteEntryGroupRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func deleteEntryGroup(
     name: Swift.String,
   ) async throws {
@@ -1810,24 +1830,28 @@ extension Clients.DataCatalogProtocol {
     try await self.deleteEntryGroup(request: request)
   }
 
+  @available(*, deprecated)
   public func listEntryGroups(request: ListEntryGroupsRequest) async throws
     -> GoogleCloudDataCatalogV1.ListEntryGroupsResponse
   {
     try await self.listEntryGroups(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func listEntryGroups(
     request: ListEntryGroupsRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.ListEntryGroupsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func listEntryGroups(
     byItem: ListEntryGroupsRequest
   ) throws -> any AsyncSequence<EntryGroup, Swift.Error> {
     try self.listEntryGroups(byItem: byItem, options: .init())
   }
 
+  @available(*, deprecated)
   public func listEntryGroups(
     byItem: ListEntryGroupsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<EntryGroup, Swift.Error> {
@@ -1838,6 +1862,7 @@ extension Clients.DataCatalogProtocol {
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
+  @available(*, deprecated)
   public func listEntryGroups(
     parent: Swift.String,
   ) throws -> any AsyncSequence<EntryGroup, Swift.Error> {
@@ -1847,18 +1872,21 @@ extension Clients.DataCatalogProtocol {
     return try self.listEntryGroups(byItem: request)
   }
 
+  @available(*, deprecated)
   public func createEntry(request: CreateEntryRequest) async throws
     -> GoogleCloudDataCatalogV1.Entry
   {
     try await self.createEntry(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func createEntry(
     request: CreateEntryRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.Entry {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func createEntry(
     parent: Swift.String,
     entryId: Swift.String,
@@ -1872,18 +1900,21 @@ extension Clients.DataCatalogProtocol {
     return try await self.createEntry(request: request)
   }
 
+  @available(*, deprecated)
   public func updateEntry(request: UpdateEntryRequest) async throws
     -> GoogleCloudDataCatalogV1.Entry
   {
     try await self.updateEntry(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func updateEntry(
     request: UpdateEntryRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.Entry {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func updateEntry(
     entry: Entry?,
   ) async throws -> GoogleCloudDataCatalogV1.Entry {
@@ -1893,6 +1924,7 @@ extension Clients.DataCatalogProtocol {
     return try await self.updateEntry(request: request)
   }
 
+  @available(*, deprecated)
   public func updateEntry(
     entry: Entry?,
     updateMask: GoogleCloudWKT.FieldMask?,
@@ -1904,16 +1936,19 @@ extension Clients.DataCatalogProtocol {
     return try await self.updateEntry(request: request)
   }
 
+  @available(*, deprecated)
   public func deleteEntry(request: DeleteEntryRequest) async throws {
     try await self.deleteEntry(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func deleteEntry(
     request: DeleteEntryRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func deleteEntry(
     name: Swift.String,
   ) async throws {
@@ -1923,16 +1958,19 @@ extension Clients.DataCatalogProtocol {
     try await self.deleteEntry(request: request)
   }
 
+  @available(*, deprecated)
   public func getEntry(request: GetEntryRequest) async throws -> GoogleCloudDataCatalogV1.Entry {
     try await self.getEntry(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func getEntry(
     request: GetEntryRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.Entry {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func getEntry(
     name: Swift.String,
   ) async throws -> GoogleCloudDataCatalogV1.Entry {
@@ -1942,36 +1980,42 @@ extension Clients.DataCatalogProtocol {
     return try await self.getEntry(request: request)
   }
 
+  @available(*, deprecated)
   public func lookupEntry(request: LookupEntryRequest) async throws
     -> GoogleCloudDataCatalogV1.Entry
   {
     try await self.lookupEntry(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func lookupEntry(
     request: LookupEntryRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.Entry {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func listEntries(request: ListEntriesRequest) async throws
     -> GoogleCloudDataCatalogV1.ListEntriesResponse
   {
     try await self.listEntries(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func listEntries(
     request: ListEntriesRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.ListEntriesResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func listEntries(
     byItem: ListEntriesRequest
   ) throws -> any AsyncSequence<Entry, Swift.Error> {
     try self.listEntries(byItem: byItem, options: .init())
   }
 
+  @available(*, deprecated)
   public func listEntries(
     byItem: ListEntriesRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Entry, Swift.Error> {
@@ -1982,6 +2026,7 @@ extension Clients.DataCatalogProtocol {
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
+  @available(*, deprecated)
   public func listEntries(
     parent: Swift.String,
   ) throws -> any AsyncSequence<Entry, Swift.Error> {
@@ -1991,42 +2036,49 @@ extension Clients.DataCatalogProtocol {
     return try self.listEntries(byItem: request)
   }
 
+  @available(*, deprecated)
   public func modifyEntryOverview(request: ModifyEntryOverviewRequest) async throws
     -> GoogleCloudDataCatalogV1.EntryOverview
   {
     try await self.modifyEntryOverview(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func modifyEntryOverview(
     request: ModifyEntryOverviewRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.EntryOverview {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func modifyEntryContacts(request: ModifyEntryContactsRequest) async throws
     -> GoogleCloudDataCatalogV1.Contacts
   {
     try await self.modifyEntryContacts(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func modifyEntryContacts(
     request: ModifyEntryContactsRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.Contacts {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func createTagTemplate(request: CreateTagTemplateRequest) async throws
     -> GoogleCloudDataCatalogV1.TagTemplate
   {
     try await self.createTagTemplate(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func createTagTemplate(
     request: CreateTagTemplateRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.TagTemplate {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func createTagTemplate(
     parent: Swift.String,
     tagTemplateId: Swift.String,
@@ -2040,18 +2092,21 @@ extension Clients.DataCatalogProtocol {
     return try await self.createTagTemplate(request: request)
   }
 
+  @available(*, deprecated)
   public func getTagTemplate(request: GetTagTemplateRequest) async throws
     -> GoogleCloudDataCatalogV1.TagTemplate
   {
     try await self.getTagTemplate(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func getTagTemplate(
     request: GetTagTemplateRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.TagTemplate {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func getTagTemplate(
     name: Swift.String,
   ) async throws -> GoogleCloudDataCatalogV1.TagTemplate {
@@ -2061,18 +2116,21 @@ extension Clients.DataCatalogProtocol {
     return try await self.getTagTemplate(request: request)
   }
 
+  @available(*, deprecated)
   public func updateTagTemplate(request: UpdateTagTemplateRequest) async throws
     -> GoogleCloudDataCatalogV1.TagTemplate
   {
     try await self.updateTagTemplate(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func updateTagTemplate(
     request: UpdateTagTemplateRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.TagTemplate {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func updateTagTemplate(
     tagTemplate: TagTemplate?,
   ) async throws -> GoogleCloudDataCatalogV1.TagTemplate {
@@ -2082,6 +2140,7 @@ extension Clients.DataCatalogProtocol {
     return try await self.updateTagTemplate(request: request)
   }
 
+  @available(*, deprecated)
   public func updateTagTemplate(
     tagTemplate: TagTemplate?,
     updateMask: GoogleCloudWKT.FieldMask?,
@@ -2093,16 +2152,19 @@ extension Clients.DataCatalogProtocol {
     return try await self.updateTagTemplate(request: request)
   }
 
+  @available(*, deprecated)
   public func deleteTagTemplate(request: DeleteTagTemplateRequest) async throws {
     try await self.deleteTagTemplate(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func deleteTagTemplate(
     request: DeleteTagTemplateRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func deleteTagTemplate(
     name: Swift.String,
     force: Swift.Bool,
@@ -2114,18 +2176,21 @@ extension Clients.DataCatalogProtocol {
     try await self.deleteTagTemplate(request: request)
   }
 
+  @available(*, deprecated)
   public func createTagTemplateField(request: CreateTagTemplateFieldRequest) async throws
     -> GoogleCloudDataCatalogV1.TagTemplateField
   {
     try await self.createTagTemplateField(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func createTagTemplateField(
     request: CreateTagTemplateFieldRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.TagTemplateField {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func createTagTemplateField(
     parent: Swift.String,
     tagTemplateFieldId: Swift.String,
@@ -2139,18 +2204,21 @@ extension Clients.DataCatalogProtocol {
     return try await self.createTagTemplateField(request: request)
   }
 
+  @available(*, deprecated)
   public func updateTagTemplateField(request: UpdateTagTemplateFieldRequest) async throws
     -> GoogleCloudDataCatalogV1.TagTemplateField
   {
     try await self.updateTagTemplateField(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func updateTagTemplateField(
     request: UpdateTagTemplateFieldRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.TagTemplateField {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func updateTagTemplateField(
     name: Swift.String,
     tagTemplateField: TagTemplateField?,
@@ -2162,6 +2230,7 @@ extension Clients.DataCatalogProtocol {
     return try await self.updateTagTemplateField(request: request)
   }
 
+  @available(*, deprecated)
   public func updateTagTemplateField(
     name: Swift.String,
     tagTemplateField: TagTemplateField?,
@@ -2175,18 +2244,21 @@ extension Clients.DataCatalogProtocol {
     return try await self.updateTagTemplateField(request: request)
   }
 
+  @available(*, deprecated)
   public func renameTagTemplateField(request: RenameTagTemplateFieldRequest) async throws
     -> GoogleCloudDataCatalogV1.TagTemplateField
   {
     try await self.renameTagTemplateField(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func renameTagTemplateField(
     request: RenameTagTemplateFieldRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.TagTemplateField {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func renameTagTemplateField(
     name: Swift.String,
     newTagTemplateFieldId: Swift.String,
@@ -2198,18 +2270,21 @@ extension Clients.DataCatalogProtocol {
     return try await self.renameTagTemplateField(request: request)
   }
 
+  @available(*, deprecated)
   public func renameTagTemplateFieldEnumValue(request: RenameTagTemplateFieldEnumValueRequest)
     async throws -> GoogleCloudDataCatalogV1.TagTemplateField
   {
     try await self.renameTagTemplateFieldEnumValue(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func renameTagTemplateFieldEnumValue(
     request: RenameTagTemplateFieldEnumValueRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.TagTemplateField {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func renameTagTemplateFieldEnumValue(
     name: Swift.String,
     newEnumValueDisplayName: Swift.String,
@@ -2221,16 +2296,19 @@ extension Clients.DataCatalogProtocol {
     return try await self.renameTagTemplateFieldEnumValue(request: request)
   }
 
+  @available(*, deprecated)
   public func deleteTagTemplateField(request: DeleteTagTemplateFieldRequest) async throws {
     try await self.deleteTagTemplateField(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func deleteTagTemplateField(
     request: DeleteTagTemplateFieldRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func deleteTagTemplateField(
     name: Swift.String,
     force: Swift.Bool,
@@ -2242,16 +2320,19 @@ extension Clients.DataCatalogProtocol {
     try await self.deleteTagTemplateField(request: request)
   }
 
+  @available(*, deprecated)
   public func createTag(request: CreateTagRequest) async throws -> GoogleCloudDataCatalogV1.Tag {
     try await self.createTag(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func createTag(
     request: CreateTagRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.Tag {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func createTag(
     parent: Swift.String,
     tag: Tag?,
@@ -2263,16 +2344,19 @@ extension Clients.DataCatalogProtocol {
     return try await self.createTag(request: request)
   }
 
+  @available(*, deprecated)
   public func updateTag(request: UpdateTagRequest) async throws -> GoogleCloudDataCatalogV1.Tag {
     try await self.updateTag(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func updateTag(
     request: UpdateTagRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.Tag {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func updateTag(
     tag: Tag?,
   ) async throws -> GoogleCloudDataCatalogV1.Tag {
@@ -2282,6 +2366,7 @@ extension Clients.DataCatalogProtocol {
     return try await self.updateTag(request: request)
   }
 
+  @available(*, deprecated)
   public func updateTag(
     tag: Tag?,
     updateMask: GoogleCloudWKT.FieldMask?,
@@ -2293,16 +2378,19 @@ extension Clients.DataCatalogProtocol {
     return try await self.updateTag(request: request)
   }
 
+  @available(*, deprecated)
   public func deleteTag(request: DeleteTagRequest) async throws {
     try await self.deleteTag(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func deleteTag(
     request: DeleteTagRequest, options: GoogleCloudGax.RequestOptions
   ) async throws {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func deleteTag(
     name: Swift.String,
   ) async throws {
@@ -2312,24 +2400,28 @@ extension Clients.DataCatalogProtocol {
     try await self.deleteTag(request: request)
   }
 
+  @available(*, deprecated)
   public func listTags(request: ListTagsRequest) async throws
     -> GoogleCloudDataCatalogV1.ListTagsResponse
   {
     try await self.listTags(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func listTags(
     request: ListTagsRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.ListTagsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func listTags(
     byItem: ListTagsRequest
   ) throws -> any AsyncSequence<Tag, Swift.Error> {
     try self.listTags(byItem: byItem, options: .init())
   }
 
+  @available(*, deprecated)
   public func listTags(
     byItem: ListTagsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Tag, Swift.Error> {
@@ -2340,6 +2432,7 @@ extension Clients.DataCatalogProtocol {
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 
+  @available(*, deprecated)
   public func listTags(
     parent: Swift.String,
   ) throws -> any AsyncSequence<Tag, Swift.Error> {
@@ -2349,24 +2442,28 @@ extension Clients.DataCatalogProtocol {
     return try self.listTags(byItem: request)
   }
 
+  @available(*, deprecated)
   public func reconcileTags(request: ReconcileTagsRequest) async throws
     -> GoogleLongRunning.Operation
   {
     try await self.reconcileTags(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func reconcileTags(
     request: ReconcileTagsRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func reconcileTags(withPolling: ReconcileTagsRequest) async throws -> any GoogleCloudGax
     .PollableOperation<ReconcileTagsResponse>
   {
     try await self.reconcileTags(withPolling: withPolling, options: .init())
   }
 
+  @available(*, deprecated)
   public func reconcileTags(
     withPolling: ReconcileTagsRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<ReconcileTagsResponse> {
@@ -2378,18 +2475,21 @@ extension Clients.DataCatalogProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
+  @available(*, deprecated)
   public func starEntry(request: StarEntryRequest) async throws
     -> GoogleCloudDataCatalogV1.StarEntryResponse
   {
     try await self.starEntry(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func starEntry(
     request: StarEntryRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.StarEntryResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func starEntry(
     name: Swift.String,
   ) async throws -> GoogleCloudDataCatalogV1.StarEntryResponse {
@@ -2399,18 +2499,21 @@ extension Clients.DataCatalogProtocol {
     return try await self.starEntry(request: request)
   }
 
+  @available(*, deprecated)
   public func unstarEntry(request: UnstarEntryRequest) async throws
     -> GoogleCloudDataCatalogV1.UnstarEntryResponse
   {
     try await self.unstarEntry(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func unstarEntry(
     request: UnstarEntryRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.UnstarEntryResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func unstarEntry(
     name: Swift.String,
   ) async throws -> GoogleCloudDataCatalogV1.UnstarEntryResponse {
@@ -2420,18 +2523,21 @@ extension Clients.DataCatalogProtocol {
     return try await self.unstarEntry(request: request)
   }
 
+  @available(*, deprecated)
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
     try await self.setIamPolicy(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func setIamPolicy(
     resource: Swift.String,
     policy: GoogleIAMV1.Policy?,
@@ -2443,18 +2549,21 @@ extension Clients.DataCatalogProtocol {
     return try await self.setIamPolicy(request: request)
   }
 
+  @available(*, deprecated)
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
     try await self.getIamPolicy(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func getIamPolicy(
     resource: Swift.String,
   ) async throws -> GoogleIAMV1.Policy {
@@ -2464,36 +2573,42 @@ extension Clients.DataCatalogProtocol {
     return try await self.getIamPolicy(request: request)
   }
 
+  @available(*, deprecated)
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
     try await self.testIamPermissions(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func importEntries(request: ImportEntriesRequest) async throws
     -> GoogleLongRunning.Operation
   {
     try await self.importEntries(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func importEntries(
     request: ImportEntriesRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func importEntries(withPolling: ImportEntriesRequest) async throws -> any GoogleCloudGax
     .PollableOperation<ImportEntriesResponse>
   {
     try await self.importEntries(withPolling: withPolling, options: .init())
   }
 
+  @available(*, deprecated)
   public func importEntries(
     withPolling: ImportEntriesRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> any GoogleCloudGax.PollableOperation<ImportEntriesResponse> {
@@ -2505,36 +2620,42 @@ extension Clients.DataCatalogProtocol {
       initialState: .init(done: false, result: nil), poll: poll)
   }
 
+  @available(*, deprecated)
   public func setConfig(request: SetConfigRequest) async throws
     -> GoogleCloudDataCatalogV1.MigrationConfig
   {
     try await self.setConfig(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func setConfig(
     request: SetConfigRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.MigrationConfig {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func retrieveConfig(request: RetrieveConfigRequest) async throws
     -> GoogleCloudDataCatalogV1.OrganizationConfig
   {
     try await self.retrieveConfig(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func retrieveConfig(
     request: RetrieveConfigRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.OrganizationConfig {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func retrieveEffectiveConfig(request: RetrieveEffectiveConfigRequest) async throws
     -> GoogleCloudDataCatalogV1.MigrationConfig
   {
     try await self.retrieveEffectiveConfig(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func retrieveEffectiveConfig(
     request: RetrieveEffectiveConfigRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.MigrationConfig {

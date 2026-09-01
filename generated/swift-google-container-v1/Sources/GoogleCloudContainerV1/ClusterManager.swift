@@ -1369,18 +1369,21 @@ extension Clients.ClusterManagerProtocol {
     return try await self.setAddonsConfig(request: request)
   }
 
+  @available(*, deprecated)
   public func setLocations(request: SetLocationsRequest) async throws
     -> GoogleCloudContainerV1.Operation
   {
     try await self.setLocations(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func setLocations(
     request: SetLocationsRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func setLocations(
     projectId: Swift.String,
     zone: Swift.String,
@@ -1396,6 +1399,7 @@ extension Clients.ClusterManagerProtocol {
     return try await self.setLocations(request: request)
   }
 
+  @available(*, deprecated)
   public func setLocations(
     name: Swift.String,
     locations: [Swift.String],

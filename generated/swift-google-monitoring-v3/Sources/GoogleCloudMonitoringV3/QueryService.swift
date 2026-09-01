@@ -106,24 +106,28 @@ extension Clients {
 
 // Default implementations
 extension Clients.QueryServiceProtocol {
+  @available(*, deprecated)
   public func queryTimeSeries(request: QueryTimeSeriesRequest) async throws
     -> GoogleCloudMonitoringV3.QueryTimeSeriesResponse
   {
     try await self.queryTimeSeries(request: request, options: .init())
   }
 
+  @available(*, deprecated)
   public func queryTimeSeries(
     request: QueryTimeSeriesRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.QueryTimeSeriesResponse {
     throw GoogleCloudGax.RequestError.unimplemented
   }
 
+  @available(*, deprecated)
   public func queryTimeSeries(
     byItem: QueryTimeSeriesRequest
   ) throws -> any AsyncSequence<TimeSeriesData, Swift.Error> {
     try self.queryTimeSeries(byItem: byItem, options: .init())
   }
 
+  @available(*, deprecated)
   public func queryTimeSeries(
     byItem: QueryTimeSeriesRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<TimeSeriesData, Swift.Error> {
