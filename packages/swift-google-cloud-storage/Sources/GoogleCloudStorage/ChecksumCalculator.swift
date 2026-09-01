@@ -33,6 +33,11 @@ extension ChecksumCalculator {
   mutating func update(_ data: Data) {
     data.withUnsafeBytes { update($0) }
   }
+
+  /// Convenience helper for ByteBuffer chunks.
+  mutating func update(_ buffer: ByteBuffer) {
+    buffer.withUnsafeBytes { update($0) }
+  }
 }
 
 /// CRC32C (Castagnoli) checksum calculator.

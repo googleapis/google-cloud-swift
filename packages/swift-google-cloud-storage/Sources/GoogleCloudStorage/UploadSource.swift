@@ -13,12 +13,13 @@
 // limitations under the License.
 
 import Foundation
+import NIOCore
 
 /// Represents a data source that can be read from sequentially.
 public protocol UploadSource: Sendable {
   /// Reads the next chunk of data, up to `maxBytes`.
   /// Returns `nil` when the source is exhausted.
-  mutating func read(maxBytes: Int) async throws -> Data?
+  mutating func read(maxBytes: Int) async throws -> ByteBuffer?
 
   /// The total size of the source, if known.
   var totalSize: Int64? { get }
@@ -49,7 +50,7 @@ public struct FileSource: SeekableUploadSource {
     self.fileURL = fileURL
   }
 
-  public mutating func read(maxBytes: Int) async throws -> Data? {
+  public mutating func read(maxBytes: Int) async throws -> ByteBuffer? {
     let handle = try FileHandle(forReadingFrom: fileURL)
     defer {
       try? handle.close()
@@ -59,7 +60,7 @@ public struct FileSource: SeekableUploadSource {
       return nil
     }
     offset += Int64(data.count)
-    return data
+    return ByteBuffer(data)
   }
 
   public mutating func seek(to offset: Int64) async throws {
@@ -73,22 +74,39 @@ public struct FileSource: SeekableUploadSource {
   }
 }
 
-/// An upload source that wraps in-memory Data.
+/// An upload source that wraps in-memory bytes or buffers.
 public struct BytesSource: SeekableUploadSource {
-  public let data: Data
+  public let buffer: ByteBuffer
   public var totalSize: Int64? {
-    return Int64(data.count)
+    return Int64(buffer.count)
   }
   private var offset: Int64 = 0
 
-  public init(data: Data) {
-    self.data = data
+  public init(buffer: ByteBuffer) {
+    self.buffer = buffer
   }
 
-  public mutating func read(maxBytes: Int) async throws -> Data? {
-    guard maxBytes > 0, offset < data.count else { return nil }
-    let end = min(offset + Int64(maxBytes), Int64(data.count))
-    let chunk = data.subdata(in: Int(offset)..<Int(end))
+  public init(data: Data) {
+    self.buffer = ByteBuffer(data)
+  }
+
+  public mutating func read(maxBytes: Int) async throws -> ByteBuffer? {
+    guard maxBytes > 0, offset < buffer.count else { return nil }
+    let end = min(offset + Int64(maxBytes), Int64(buffer.count))
+    let countToRead = Int(end - offset)
+    let chunk: ByteBuffer
+    switch buffer.storage {
+    case .data(let data):
+      chunk = ByteBuffer(data.subdata(in: Int(offset)..<Int(end)))
+    case .byteBuffer(let nioBuffer):
+      var slice = nioBuffer
+      slice.moveReaderIndex(to: nioBuffer.readerIndex + Int(offset))
+      if let subSlice = slice.readSlice(length: countToRead) {
+        chunk = ByteBuffer(subSlice)
+      } else {
+        chunk = ByteBuffer()
+      }
+    }
     offset = end
     return chunk
   }
@@ -97,7 +115,7 @@ public struct BytesSource: SeekableUploadSource {
     guard offset >= 0 else {
       throw UploadError.internalError("Invalid seek offset: \(offset)")
     }
-    let size = Int64(data.count)
+    let size = Int64(buffer.count)
     guard offset <= size else {
       throw UploadError.localSourceTooSmall(localSize: size, gcsOffset: offset)
     }
@@ -105,46 +123,74 @@ public struct BytesSource: SeekableUploadSource {
   }
 }
 
-/// An upload source that wraps an arbitrary AsyncSequence of Data chunks.
-public struct StreamSource<S: AsyncSequence>: UploadSource where S.Element == Data, S: Sendable {
-  private final class IteratorBox: @unchecked Sendable {
-    var iterator: S.AsyncIterator?
+/// An upload source that wraps an arbitrary AsyncSequence of ByteBuffer, Data, or NIOCore.ByteBuffer chunks.
+public struct StreamSource: UploadSource {
+  private final class StateBox: @unchecked Sendable {
+    var nextChunk: () async throws -> NIOCore.ByteBuffer?
 
-    init(iterator: S.AsyncIterator) {
-      self.iterator = iterator
+    init(nextChunk: @escaping () async throws -> NIOCore.ByteBuffer?) {
+      self.nextChunk = nextChunk
     }
   }
 
   public var totalSize: Int64? { return totalSizeValue }
   private let totalSizeValue: Int64?
-  private let box: IteratorBox
-  private var buffer = Data()
+  private let stateBox: StateBox
+  private var buffer = NIOCore.ByteBuffer()
 
-  public init(sequence: S, totalSize: Int64? = nil) {
-    self.box = IteratorBox(iterator: sequence.makeAsyncIterator())
+  public init<S: AsyncSequence & Sendable>(
+    sequence: S,
+    totalSize: Int64? = nil
+  ) where S.Element == ByteBuffer {
     self.totalSizeValue = totalSize
+    var iterator = sequence.makeAsyncIterator()
+    self.stateBox = StateBox {
+      guard let next = try await iterator.next() else { return nil }
+      return next.byteBuffer
+    }
   }
 
-  public mutating func read(maxBytes: Int) async throws -> Data? {
+  public init<S: AsyncSequence & Sendable>(
+    sequence: S,
+    totalSize: Int64? = nil
+  ) where S.Element == Data {
+    self.totalSizeValue = totalSize
+    var iterator = sequence.makeAsyncIterator()
+    self.stateBox = StateBox {
+      guard let next = try await iterator.next() else { return nil }
+      return ByteBuffer(next).byteBuffer
+    }
+  }
+
+  public init<S: AsyncSequence & Sendable>(
+    sequence: S,
+    totalSize: Int64? = nil
+  ) where S.Element == NIOCore.ByteBuffer {
+    self.totalSizeValue = totalSize
+    var iterator = sequence.makeAsyncIterator()
+    self.stateBox = StateBox {
+      try await iterator.next()
+    }
+  }
+
+  public mutating func read(maxBytes: Int) async throws -> ByteBuffer? {
     guard maxBytes > 0 else { return nil }
-    while buffer.count < maxBytes {
-      guard box.iterator != nil else {
+    while buffer.readableBytes < maxBytes {
+      guard let nextChunk = try await stateBox.nextChunk() else {
         break
       }
-      guard let nextChunk = try await box.iterator?.next() else {
-        box.iterator = nil
-        break
-      }
-      buffer.append(nextChunk)
+      var next = nextChunk
+      buffer.writeBuffer(&next)
     }
 
-    guard !buffer.isEmpty else {
+    guard buffer.readableBytes > 0 else {
       return nil
     }
 
-    let chunkSize = min(maxBytes, buffer.count)
-    let chunk = buffer.subdata(in: 0..<chunkSize)
-    buffer.removeSubrange(0..<chunkSize)
-    return chunk
+    let chunkSize = min(maxBytes, buffer.readableBytes)
+    guard let slice = buffer.readSlice(length: chunkSize) else {
+      return nil
+    }
+    return ByteBuffer(slice)
   }
 }

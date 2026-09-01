@@ -27,7 +27,7 @@ import Testing
     // Seek to valid offset
     try await source.seek(to: 5)
     let chunk = try await source.read(maxBytes: 10)
-    #expect(chunk == Data([5, 6, 7, 8, 9]))
+    #expect(chunk == [5, 6, 7, 8, 9])
 
     // Seek to negative offset
     let negativeErr = await expectError(UploadError.self) {

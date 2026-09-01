@@ -774,11 +774,11 @@ private struct IntegrationDynamicSource: UploadSource {
     self.totalSize = totalSize
   }
 
-  mutating func read(maxBytes: Int) async throws -> Data? {
+  mutating func read(maxBytes: Int) async throws -> GoogleCloudStorage.ByteBuffer? {
     guard currentChunk < totalChunks else { return nil }
     let count = min(maxBytes, chunkSize)
     let byteVal = UInt8((currentChunk + 1) % 256)
     currentChunk += 1
-    return Data(repeating: byteVal, count: count)
+    return GoogleCloudStorage.ByteBuffer(Data(repeating: byteVal, count: count))
   }
 }

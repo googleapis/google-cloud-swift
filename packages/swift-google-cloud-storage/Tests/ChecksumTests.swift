@@ -31,14 +31,14 @@ import Testing
     // Read first chunk
     let chunk1 = try await checksummedSource.readChunk(maxBytes: 7)
     #expect(chunk1 != nil)
-    #expect(chunk1!.data == data1)
+    #expect(chunk1!.data == ByteBuffer(data1))
     #expect(chunk1!.isLast == false)
     #expect(chunk1!.checksum == nil)
 
     // Read second chunk
     let chunk2 = try await checksummedSource.readChunk(maxBytes: 7)
     #expect(chunk2 != nil)
-    #expect(chunk2!.data == data2)
+    #expect(chunk2!.data == ByteBuffer(data2))
     #expect(chunk2!.isLast == true)
     #expect(chunk2!.checksum != nil)
 
@@ -57,14 +57,14 @@ import Testing
     // Read first chunk
     let chunk1 = try await checksummedSource.readChunk(maxBytes: 7)
     #expect(chunk1 != nil)
-    #expect(chunk1!.data == data1)
+    #expect(chunk1!.data == ByteBuffer(data1))
     #expect(chunk1!.isLast == false)
     #expect(chunk1!.checksum == nil)
 
     // Read second chunk
     let chunk2 = try await checksummedSource.readChunk(maxBytes: 7)
     #expect(chunk2 != nil)
-    #expect(chunk2!.data == data2)
+    #expect(chunk2!.data == ByteBuffer(data2))
     #expect(chunk2!.isLast == true)
     #expect(chunk2!.checksum != nil)
 
@@ -219,10 +219,10 @@ import Testing
       private var readCompleted = false
       init(data: Data) { self.data = data }
       var totalSize: Int64? { Int64(data.count) }
-      mutating func read(maxBytes: Int) async throws -> Data? {
+      mutating func read(maxBytes: Int) async throws -> ByteBuffer? {
         if readCompleted { return nil }
         readCompleted = true
-        return data
+        return ByteBuffer(data)
       }
     }
 
@@ -232,7 +232,7 @@ import Testing
 
     let chunk = try await checksummedSource.readChunk(maxBytes: 100)
     #expect(chunk != nil)
-    #expect(chunk?.data == data)
+    #expect(chunk?.data == ByteBuffer(data))
     #expect(chunk?.isLast == true)
     #expect(chunk?.checksum != nil)
   }
@@ -253,7 +253,7 @@ import Testing
     var allData = Data()
     var finalChecksum: String? = nil
     while let chunk = try await checksummedSource.readChunk(maxBytes: 5) {
-      allData.append(chunk.data)
+      allData.append(contentsOf: chunk.data)
       if chunk.isLast {
         finalChecksum = chunk.checksum
       }
@@ -279,7 +279,7 @@ import Testing
     var remainingData = Data()
     var finalChecksum: String? = nil
     while let chunk = try await checksummedSource.readChunk(maxBytes: 5) {
-      remainingData.append(chunk.data)
+      remainingData.append(contentsOf: chunk.data)
       if chunk.isLast {
         finalChecksum = chunk.checksum
       }
