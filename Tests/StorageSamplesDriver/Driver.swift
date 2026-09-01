@@ -36,6 +36,22 @@ import Testing
     }
   }
 
+  @Test(.enabled(if: Self.enabled())) func runObjectSamples() async throws {
+    let projectId = ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"]!
+    let controlClient = try Self.makeClient()
+    let dataClient = try Self.makeDataClient()
+    var bucketNames: [String] = []
+    do {
+      try await StorageSamples.runObjectSamples(
+        controlClient: controlClient, dataClient: dataClient, projectId: projectId,
+        bucketNames: &bucketNames)
+      await StorageSamples.cleanupTestBuckets(client: controlClient, bucketNames: bucketNames)
+    } catch {
+      await StorageSamples.cleanupTestBuckets(client: controlClient, bucketNames: bucketNames)
+      throw error
+    }
+  }
+
   /// Deletes stale buckets that are not cleaned up by their tests.
   @Test(.enabled(if: Self.enabled())) func stale() async throws {
     let projectId = ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"]!
@@ -49,6 +65,10 @@ import Testing
         $0.backoffPolicy = ExponentialBackoff(
           clamping: .init().with { $0.initialDelay = .seconds(2) })
       })
+  }
+
+  static func makeDataClient() throws -> StorageClient {
+    try StorageClient()
   }
 
   static func enabled() -> Bool {
