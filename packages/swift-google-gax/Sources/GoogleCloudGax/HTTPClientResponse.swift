@@ -56,6 +56,12 @@ import struct NIOCore.ByteBuffer
     try await data(upTo: Self.defaultMaximumResponseSize)
   }
 
+  public consuming func drain() async {
+    do {
+      for try await _ in self.response.body {}
+    } catch {}
+  }
+
   public func isError() -> Bool {
     !(200...300).contains(self.response.status.code)
   }
