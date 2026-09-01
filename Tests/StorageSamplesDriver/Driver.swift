@@ -26,6 +26,8 @@ import Testing
     do {
       try await StorageSamples.runBucketSamples(
         client: client, projectId: projectId, bucketNames: &bucketNames)
+      try await StorageSamples.runFolderSamples(
+        client: client, projectId: projectId, bucketNames: &bucketNames)
       await StorageSamples.cleanupTestBuckets(client: client, bucketNames: bucketNames)
     } catch {
       // Automatically clean up any buckets created during the test, even after an error. Some may
