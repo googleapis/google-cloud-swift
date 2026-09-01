@@ -28,6 +28,8 @@ IZ = "IZ"
 
 [default]
 extend-ignore-re = [
-    # Wwarning seems like a typo, but it is not.
-    "-Xswiftc -Wwarning"
+  # Wwarning seems like a typo, but it is not.
+  "-Xswiftc -Wwarning",
+  # NAM4 looks like NAME, but it is intentional.
+  "NAM4",
 ]
