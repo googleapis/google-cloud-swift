@@ -93,6 +93,11 @@
     /// `PENDING_STOP` state or there is a programmed stop scheduled.
     public var shutdownDetails: ManagedInstanceShutdownDetails? = nil
 
+    /// Output only. The eventual status of the instance. The instance group
+    /// manager will not be identified as stable till each managed instance reaches
+    /// its targetStatus.
+    public var targetStatus: ManagedInstance.TargetStatus? = nil
+
     /// Output only. [Output Only] Intended version of this instance.
     public var version: ManagedInstanceVersion? = nil
 
@@ -474,6 +479,135 @@
         case .suspended: return try container.encode(9)
         case .suspending: return try container.encode(10)
         case .terminated: return try container.encode(11)
+        case .unknownIntValue(let v): return try container.encode(v)
+        case .unknownStringValue(let v): return try container.encode(v)
+        }
+      }
+    }
+
+    /// The enumerated type for the [targetStatus][google.cloud.compute.v1.ManagedInstance.targetStatus] field.
+    ///
+    /// [google.cloud.compute.v1.ManagedInstance.targetStatus]: <doc:ManagedInstance/TargetStatus>
+    public enum TargetStatus: Codable, Equatable, Sendable {
+      /// The managed instance will eventually be ABANDONED, i.e. dissociated
+      /// from the managed instance group.
+      case abandoned
+      /// The managed instance will eventually be DELETED.
+      case deleted
+      /// Only present to map the STATUS_INVALID value.
+      case invalid
+      /// The managed instance will eventually reach status RUNNING.
+      case running
+      /// The managed instance will eventually reach status TERMINATED.
+      case stopped
+      /// The managed instance will eventually reach status SUSPENDED.
+      case suspended
+      /// Encodes an unknown integer value.
+      ///
+      /// The most common cause for an unknown values is for the service to send
+      /// a value unknown to the library. We recommend you update your library to
+      /// the latest version.
+      case unknownIntValue(Int)
+      /// Encodes an unknown string value.
+      ///
+      /// The most common cause for an unknown values is for the service to send
+      /// a value unknown to the library. We recommend you update your library to
+      /// the latest version.
+      case unknownStringValue(String)
+
+      public init() {
+        self = .abandoned
+      }
+
+      /// Returns the integer value associated with the enumeration.
+      ///
+      /// If the enumeration was initialized with an unknown string value, this returns `nil`.
+      public var intValue: Int? {
+        switch self {
+        case .abandoned: return 0
+        case .deleted: return 1
+        case .invalid: return 2
+        case .running: return 3
+        case .stopped: return 4
+        case .suspended: return 5
+        case .unknownIntValue(let v): return v
+        case .unknownStringValue: return nil
+        }
+      }
+
+      /// Returns the string value (or name) associated with the enumeration.
+      ///
+      /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
+      public var stringValue: Swift.String? {
+        switch self {
+        case .abandoned: return "ABANDONED"
+        case .deleted: return "DELETED"
+        case .invalid: return "INVALID"
+        case .running: return "RUNNING"
+        case .stopped: return "STOPPED"
+        case .suspended: return "SUSPENDED"
+        case .unknownIntValue: return nil
+        case .unknownStringValue(let v): return v
+        }
+      }
+
+      /// Initialize from a string value.
+      ///
+      /// If the value is unknown, this initializes to [`unknownStringValue`](doc:TargetStatus/unknownStringValue(_:)).
+      public init(stringValue: Swift.String) {
+        switch stringValue {
+        case "ABANDONED": self = .abandoned
+        case "DELETED": self = .deleted
+        case "INVALID": self = .invalid
+        case "RUNNING": self = .running
+        case "STOPPED": self = .stopped
+        case "SUSPENDED": self = .suspended
+        default: self = .unknownStringValue(stringValue)
+        }
+      }
+
+      /// Initialize from an integer value.
+      ///
+      /// If the value is unknown, this initializes to [`unknownIntValue`](doc:TargetStatus/unknownIntValue(_:)).
+      public init(intValue: Int) {
+        switch intValue {
+        case 0: self = .abandoned
+        case 1: self = .deleted
+        case 2: self = .invalid
+        case 3: self = .running
+        case 4: self = .stopped
+        case 5: self = .suspended
+        default: self = .unknownIntValue(intValue)
+        }
+      }
+
+      public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let v = try? container.decode(Int.self) {
+          self.init(intValue: v)
+          return
+        }
+        if let s = try? container.decode(String.self) {
+          if let v = Int(s) {
+            self.init(intValue: v)
+          } else {
+            self.init(stringValue: s)
+          }
+          return
+        }
+        throw DecodingError.dataCorruptedError(
+          in: container, debugDescription: "Expected enum value, must be integer or string.")
+      }
+
+      public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .abandoned: return try container.encode(0)
+        case .deleted: return try container.encode(1)
+        case .invalid: return try container.encode(2)
+        case .running: return try container.encode(3)
+        case .stopped: return try container.encode(4)
+        case .suspended: return try container.encode(5)
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

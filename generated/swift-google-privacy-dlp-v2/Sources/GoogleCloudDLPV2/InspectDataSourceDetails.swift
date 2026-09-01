@@ -24,7 +24,7 @@ public struct InspectDataSourceDetails: Codable, Equatable, GoogleCloudWKT._AnyP
   /// The configuration used for this job.
   public var requestedOptions: InspectDataSourceDetails.RequestedOptions? = nil
 
-  /// A summary of the outcome of this inspection job.
+  /// Output only. A summary of the outcome of this inspection job.
   public var result: InspectDataSourceDetails.Result? = nil
 
   /// Initialize a new instance of `InspectDataSourceDetails`.
@@ -47,8 +47,8 @@ public struct InspectDataSourceDetails: Codable, Equatable, GoogleCloudWKT._AnyP
   public struct RequestedOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
-    /// If run with an InspectTemplate, a snapshot of its state at the time of
-    /// this run.
+    /// Output only. If run with an InspectTemplate, a snapshot of its state at
+    /// the time of this run.
     public var snapshotInspectTemplate: InspectTemplate? = nil
 
     /// Inspect config.

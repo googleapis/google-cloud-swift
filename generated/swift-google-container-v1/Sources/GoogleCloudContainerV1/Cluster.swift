@@ -271,6 +271,15 @@ public struct Cluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The current software version of the master endpoint.
   public var currentMasterVersion: Swift.String = Swift.String()
 
+  /// Output only. The current emulated version of the master endpoint.
+  /// The version is in minor version format, e.g. 1.30.
+  /// No value or empty string means the cluster has no emulated version.
+  public var currentEmulatedVersion: Swift.String = Swift.String()
+
+  /// Optional. The rollback safe upgrade information of the cluster.
+  /// This field is used when user manually triggers a rollback safe upgrade.
+  public var rollbackSafeUpgrade: RollbackSafeUpgrade? = nil
+
   /// Output only. Deprecated, use
   /// [NodePools.version](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools)
   /// instead. The current version of the node software components. If they are
@@ -499,6 +508,8 @@ public struct Cluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     case endpoint = "endpoint"
     case initialClusterVersion = "initialClusterVersion"
     case currentMasterVersion = "currentMasterVersion"
+    case currentEmulatedVersion = "currentEmulatedVersion"
+    case rollbackSafeUpgrade = "rollbackSafeUpgrade"
     case currentNodeVersion = "currentNodeVersion"
     case createTime = "createTime"
     case status = "status"
@@ -609,6 +620,10 @@ public struct Cluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       Swift.String.self, forKey: .initialClusterVersion)
     self.currentMasterVersion = try container.decode(
       Swift.String.self, forKey: .currentMasterVersion)
+    self.currentEmulatedVersion = try container.decode(
+      Swift.String.self, forKey: .currentEmulatedVersion)
+    self.rollbackSafeUpgrade = try container.decodeIfPresent(
+      RollbackSafeUpgrade.self, forKey: .rollbackSafeUpgrade)
     self.currentNodeVersion = try container.decode(Swift.String.self, forKey: .currentNodeVersion)
     self.createTime = try container.decode(Swift.String.self, forKey: .createTime)
     self.status = try container.decode(Cluster.Status.self, forKey: .status)
@@ -719,6 +734,8 @@ public struct Cluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(self.endpoint, forKey: .endpoint)
     try container.encode(self.initialClusterVersion, forKey: .initialClusterVersion)
     try container.encode(self.currentMasterVersion, forKey: .currentMasterVersion)
+    try container.encode(self.currentEmulatedVersion, forKey: .currentEmulatedVersion)
+    try container.encode(self.rollbackSafeUpgrade, forKey: .rollbackSafeUpgrade)
     try container.encode(self.currentNodeVersion, forKey: .currentNodeVersion)
     try container.encode(self.createTime, forKey: .createTime)
     try container.encode(self.status, forKey: .status)

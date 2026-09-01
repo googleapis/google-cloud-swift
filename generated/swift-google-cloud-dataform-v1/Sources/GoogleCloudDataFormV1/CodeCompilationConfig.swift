@@ -60,6 +60,11 @@ public struct CodeCompilationConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// within the Git repository.
   public var pipelineConfig: PipelineConfig? = nil
 
+  /// Output only. Whether OpenLineage events are emitted for actions in this
+  /// workflow. Reflects the `lineage.enabled` setting from
+  /// `workflow_settings.yaml`.
+  public var lineageEnabled: Swift.Bool? = nil
+
   /// Initialize a new instance of `CodeCompilationConfig`.
   public init() {}
 

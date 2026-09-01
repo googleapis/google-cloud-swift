@@ -69,8 +69,8 @@ public struct Deployment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Format: `gs://{bucket}/{object}`.
   public var errorLogs: Swift.String = Swift.String()
 
-  /// Optional. User-defined location of Cloud Build logs and artifacts in Google
-  /// Cloud Storage. Format: `gs://{bucket}/{folder}`
+  /// User-defined location of Cloud Build logs and artifacts in Google Cloud
+  /// Storage. Format: `gs://{bucket}/{folder}`
   ///
   /// A default bucket will be bootstrapped if the field is not set or empty.
   /// Default bucket format: `gs://<project number>-<region>-blueprint-config`
@@ -94,8 +94,8 @@ public struct Deployment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Not all resource types are supported, refer to documentation.
   public var importExistingResources: Swift.Bool? = nil
 
-  /// Optional. The user-specified Cloud Build worker pool resource in which the
-  /// Cloud Build job will execute. Format:
+  /// The user-specified Cloud Build worker pool resource in which the Cloud
+  /// Build job will execute. Format:
   /// `projects/{project}/locations/{location}/workerPools/{workerPoolId}`.
   /// If this field is unspecified, the default Cloud Build worker pool will be
   /// used.
@@ -104,7 +104,7 @@ public struct Deployment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Current lock state of the deployment.
   public var lockState: Deployment.LockState = Deployment.LockState()
 
-  /// Optional. The user-specified Terraform version constraint.
+  /// The user-specified Terraform version constraint.
   /// Example: "=1.3.10".
   public var tfVersionConstraint: Swift.String? = nil
 

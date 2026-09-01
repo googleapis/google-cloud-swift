@@ -212,6 +212,10 @@ public struct UpdateNodePoolRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// The taint configuration for the node pool.
   public var taintConfig: TaintConfig? = nil
 
+  /// Optional. Specifies the maintenance policy for the node pool, including
+  /// maintenance exclusion options.
+  public var maintenancePolicy: NodePool.NodePoolMaintenancePolicy? = nil
+
   /// Initialize a new instance of `UpdateNodePoolRequest`.
   public init() {}
 

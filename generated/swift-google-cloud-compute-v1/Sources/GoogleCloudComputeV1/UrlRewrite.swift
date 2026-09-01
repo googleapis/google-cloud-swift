@@ -62,6 +62,9 @@
     /// Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
     public var pathTemplateRewrite: Swift.String? = nil
 
+    /// The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
+    public var regexRewrite: RegexRewrite? = nil
+
     /// Initialize a new instance of `UrlRewrite`.
     public init() {}
 

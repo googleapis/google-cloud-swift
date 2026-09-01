@@ -163,5 +163,9 @@ extension Clients {
     func fetchNodePoolUpgradeInfo(
       request: FetchNodePoolUpgradeInfoRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.NodePoolUpgradeInfo
+
+    func completeControlPlaneUpgrade(
+      request: CompleteControlPlaneUpgradeRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudContainerV1.Operation
   }
 }

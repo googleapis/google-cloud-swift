@@ -18,7 +18,7 @@ import Foundation
 @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// Configuration for a risk analysis job. See
-/// https://cloud.google.com/sensitive-data-protection/docs/concepts-risk-analysis
+/// https://docs.cloud.google.com/sensitive-data-protection/docs/concepts-risk-analysis
 /// to learn more.
 public struct RiskAnalysisJobConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable

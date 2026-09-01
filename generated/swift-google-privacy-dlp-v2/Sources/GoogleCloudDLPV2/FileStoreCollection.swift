@@ -30,7 +30,7 @@ public struct FileStoreCollection: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// For a resource to match the tag filters, the resource must have all of the
   /// provided tags attached. Tags refer to Resource Manager tags bound to the
   /// resource or its ancestors. For more information, see [Manage
-  /// schedules](https://cloud.google.com/sensitive-data-protection/docs/profile-project-cloud-storage#manage-schedules).
+  /// schedules](https://docs.cloud.google.com/sensitive-data-protection/docs/profile-project-cloud-storage#manage-schedules).
   public var includeTags: TagFilters? = nil
 
   /// The first filter containing a pattern that matches a file store will be

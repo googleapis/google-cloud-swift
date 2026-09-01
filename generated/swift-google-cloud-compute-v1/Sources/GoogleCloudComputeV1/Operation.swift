@@ -68,6 +68,9 @@
     /// this field will be populated.
     public var error: Operation.Error? = nil
 
+    /// Output only. Metadata for GetHealth operations.
+    public var getHealthOperationMetadata: GetHealthOperationMetadata? = nil
+
     public var getVersionOperationMetadata: GetVersionOperationMetadata? = nil
 
     /// [Output Only] If the operation fails, this field contains the HTTP error

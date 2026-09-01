@@ -24,8 +24,8 @@ public struct RoundCertificate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. The ID of the round for which the certificate is for.
   public var roundId: Swift.Int64 = Swift.Int64()
 
-  /// Output only. The human readable validator identifier. This is used to
-  /// lookup the public key against which the `validator_signatures` is verified.
+  /// Output only. The human readable validator identifier. This is used to look
+  /// up the public key against which the `validator_signatures` is verified.
   public var validatorId: Swift.String = Swift.String()
 
   /// Output only. The hex representation of the homomorphic digest over the

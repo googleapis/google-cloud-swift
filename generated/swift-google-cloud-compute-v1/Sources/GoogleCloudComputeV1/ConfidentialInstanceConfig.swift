@@ -48,6 +48,8 @@
     ///
     /// [google.cloud.compute.v1.ConfidentialInstanceConfig.confidentialInstanceType]: <doc:ConfidentialInstanceConfig/ConfidentialInstanceType>
     public enum ConfidentialInstanceType: Codable, Equatable, Sendable {
+      /// Bare Metal Secure AI.
+      case bmsai
       /// Arm Confidential Compute Architecture.
       case cca
       /// No type specified. Do not use this value.
@@ -72,7 +74,7 @@
       case unknownStringValue(String)
 
       public init() {
-        self = .cca
+        self = .bmsai
       }
 
       /// Returns the integer value associated with the enumeration.
@@ -80,11 +82,12 @@
       /// If the enumeration was initialized with an unknown string value, this returns `nil`.
       public var intValue: Int? {
         switch self {
-        case .cca: return 0
-        case .unspecified: return 1
-        case .sev: return 2
-        case .sevSnp: return 3
-        case .tdx: return 4
+        case .bmsai: return 0
+        case .cca: return 1
+        case .unspecified: return 2
+        case .sev: return 3
+        case .sevSnp: return 4
+        case .tdx: return 5
         case .unknownIntValue(let v): return v
         case .unknownStringValue: return nil
         }
@@ -95,6 +98,7 @@
       /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
       public var stringValue: Swift.String? {
         switch self {
+        case .bmsai: return "BMSAI"
         case .cca: return "CCA"
         case .unspecified: return "CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED"
         case .sev: return "SEV"
@@ -110,6 +114,7 @@
       /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ConfidentialInstanceType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
+        case "BMSAI": self = .bmsai
         case "CCA": self = .cca
         case "CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED": self = .unspecified
         case "SEV": self = .sev
@@ -124,11 +129,12 @@
       /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ConfidentialInstanceType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
-        case 0: self = .cca
-        case 1: self = .unspecified
-        case 2: self = .sev
-        case 3: self = .sevSnp
-        case 4: self = .tdx
+        case 0: self = .bmsai
+        case 1: self = .cca
+        case 2: self = .unspecified
+        case 3: self = .sev
+        case 4: self = .sevSnp
+        case 5: self = .tdx
         default: self = .unknownIntValue(intValue)
         }
       }
@@ -154,11 +160,12 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .cca: return try container.encode(0)
-        case .unspecified: return try container.encode(1)
-        case .sev: return try container.encode(2)
-        case .sevSnp: return try container.encode(3)
-        case .tdx: return try container.encode(4)
+        case .bmsai: return try container.encode(0)
+        case .cca: return try container.encode(1)
+        case .unspecified: return try container.encode(2)
+        case .sev: return try container.encode(3)
+        case .sevSnp: return try container.encode(4)
+        case .tdx: return try container.encode(5)
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -114,9 +114,12 @@ public struct CapacityCommitment: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     /// ACTIVE. After that, they are not in a committed period anymore and can be
     /// removed any time.
     case monthly
+    /// Deprecated: Flex commitments are deprecated. Please use Edition-based
+    /// capacity commitments.
     /// Flex commitments have committed period of 1 minute after becoming ACTIVE.
     /// After that, they are not in a committed period anymore and can be removed
     /// any time.
+    @available(*, deprecated)
     case flex
     /// Annual commitments have a committed period of 365 days after becoming
     /// ACTIVE. After that they are converted to a new commitment based on the

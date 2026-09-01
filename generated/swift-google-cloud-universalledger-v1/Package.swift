@@ -27,6 +27,7 @@ let package = Package(
     .package(path: "../../packages/swift-google-auth"),
     .package(path: "../../packages/swift-google-gax"),
     .package(path: "../../packages/swift-google-wkt"),
+    .package(path: "../../generated/swift-google-rpc"),
     .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
   ],
   targets: [
@@ -36,6 +37,7 @@ let package = Package(
         .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
         .product(name: "GoogleCloudGax", package: "swift-google-gax"),
         .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
+        .product(name: "GoogleRpc", package: "swift-google-rpc"),
         .product(name: "Logging", package: "swift-log"),
       ],
     )

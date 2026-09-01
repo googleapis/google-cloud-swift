@@ -377,6 +377,9 @@ public struct ClusterUpdate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The desired control plane egress control config for the cluster.
   public var desiredControlPlaneEgress: ControlPlaneEgress? = nil
 
+  /// Optional. The desired rollback safe upgrade configuration.
+  public var desiredRollbackSafeUpgrade: RollbackSafeUpgrade? = nil
+
   /// The desired managed open telemetry configuration.
   public var desiredManagedOpentelemetryConfig: ManagedOpenTelemetryConfig? = nil
 
@@ -389,6 +392,9 @@ public struct ClusterUpdate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   /// Optional. The desired NodeCreationConfig for the cluster.
   public var desiredNodeCreationConfig: NodeCreationConfig? = nil
+
+  /// Optional. The desired emulated version for the cluster.
+  public var desiredEmulatedVersion: Swift.String? = nil
 
   /// Initialize a new instance of `ClusterUpdate`.
   public init() {}
@@ -485,11 +491,13 @@ public struct ClusterUpdate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     case desiredSecretSyncConfig = "desiredSecretSyncConfig"
     case desiredPrivilegedAdmissionConfig = "desiredPrivilegedAdmissionConfig"
     case desiredControlPlaneEgress = "desiredControlPlaneEgress"
+    case desiredRollbackSafeUpgrade = "desiredRollbackSafeUpgrade"
     case desiredManagedOpentelemetryConfig = "desiredManagedOpentelemetryConfig"
     case desiredAutopilotClusterPolicyConfig = "desiredAutopilotClusterPolicyConfig"
     case desiredManagedMachineLearningDiagnosticsConfig =
       "desiredManagedMachineLearningDiagnosticsConfig"
     case desiredNodeCreationConfig = "desiredNodeCreationConfig"
+    case desiredEmulatedVersion = "desiredEmulatedVersion"
   }
 
   public init(from decoder: Decoder) throws {
@@ -638,6 +646,8 @@ public struct ClusterUpdate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       PrivilegedAdmissionConfig.self, forKey: .desiredPrivilegedAdmissionConfig)
     self.desiredControlPlaneEgress = try container.decodeIfPresent(
       ControlPlaneEgress.self, forKey: .desiredControlPlaneEgress)
+    self.desiredRollbackSafeUpgrade = try container.decodeIfPresent(
+      RollbackSafeUpgrade.self, forKey: .desiredRollbackSafeUpgrade)
     self.desiredManagedOpentelemetryConfig = try container.decodeIfPresent(
       ManagedOpenTelemetryConfig.self, forKey: .desiredManagedOpentelemetryConfig)
     self.desiredAutopilotClusterPolicyConfig = try container.decodeIfPresent(
@@ -647,6 +657,8 @@ public struct ClusterUpdate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       forKey: .desiredManagedMachineLearningDiagnosticsConfig)
     self.desiredNodeCreationConfig = try container.decodeIfPresent(
       NodeCreationConfig.self, forKey: .desiredNodeCreationConfig)
+    self.desiredEmulatedVersion = try container.decodeIfPresent(
+      Swift.String.self, forKey: .desiredEmulatedVersion)
   }
 
   public func encode(to encoder: Encoder) throws {
@@ -755,6 +767,7 @@ public struct ClusterUpdate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     try container.encode(
       self.desiredPrivilegedAdmissionConfig, forKey: .desiredPrivilegedAdmissionConfig)
     try container.encode(self.desiredControlPlaneEgress, forKey: .desiredControlPlaneEgress)
+    try container.encode(self.desiredRollbackSafeUpgrade, forKey: .desiredRollbackSafeUpgrade)
     try container.encode(
       self.desiredManagedOpentelemetryConfig, forKey: .desiredManagedOpentelemetryConfig)
     try container.encode(
@@ -763,6 +776,7 @@ public struct ClusterUpdate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       self.desiredManagedMachineLearningDiagnosticsConfig,
       forKey: .desiredManagedMachineLearningDiagnosticsConfig)
     try container.encode(self.desiredNodeCreationConfig, forKey: .desiredNodeCreationConfig)
+    try container.encode(self.desiredEmulatedVersion, forKey: .desiredEmulatedVersion)
   }
 
   public static var _anyTypeUrl: Swift.String {

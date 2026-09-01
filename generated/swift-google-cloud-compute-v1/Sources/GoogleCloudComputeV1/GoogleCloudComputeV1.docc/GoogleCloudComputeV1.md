@@ -5,7 +5,7 @@ Creates and runs virtual machines on Google Cloud Platform.
 
 ## Overview
 
-This client library was generated from the "20260729" revision of the API.
+This client library was generated from the "20260821" revision of the API.
 
 Most applications use the `*Client` types in this library. A default initialized
 client will let you interact with the API. The methods in the client type

@@ -29,6 +29,14 @@
     /// may match multiple InterconnectLocations.
     public var city: Swift.String? = nil
 
+    /// Output only. The maximum unmetered bandwidth for dynamic paths allowable per
+    /// WireGroup for this metro.
+    public var maxDynamicPathBandwidthGbps: Swift.Int64? = nil
+
+    /// Output only. The maximum unmetered bandwidth for fixed paths allowable per WireGroup
+    /// for this metro.
+    public var maxFixedPathBandwidthGbps: Swift.Int64? = nil
+
     /// Initialize a new instance of `InterconnectLocationCrossSiteInterconnectInfo`.
     public init() {}
 

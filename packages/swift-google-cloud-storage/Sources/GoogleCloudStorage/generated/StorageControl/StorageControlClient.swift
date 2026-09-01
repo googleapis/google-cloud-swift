@@ -575,6 +575,13 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
     try await self.control.updateRapidCache(request: request, options: options)
   }
 
+  /// Disables a Rapid Cache instance.
+  public func disableRapidCache(
+    request: DisableRapidCacheRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    try await self.control.disableRapidCache(request: request, options: options)
+  }
+
   /// Gets a Rapid Cache instance.
   public func getRapidCache(
     request: GetRapidCacheRequest, options: GoogleCloudGax.RequestOptions

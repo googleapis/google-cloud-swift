@@ -79,6 +79,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     case surrogateType = "surrogateType"
     case storedType = "storedType"
     case metadataKeyValueExpression = "metadataKeyValueExpression"
+    case fileLabelInfoType = "fileLabelInfoType"
     case detectionRules = "detectionRules"
     case exclusionType = "exclusionType"
     case sensitivityScore = "sensitivityScore"
@@ -126,6 +127,11 @@ public struct CustomInfoType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     {
       try typeCheckAndSet(.metadataKeyValueExpression(metadataKeyValueExpression))
     }
+    if let fileLabelInfoType = try container.decodeIfPresent(
+      CustomInfoType.FileLabelInfoType?.self, forKey: .fileLabelInfoType)
+    {
+      try typeCheckAndSet(.fileLabelInfoType(fileLabelInfoType))
+    }
     self.type = type
   }
 
@@ -149,6 +155,8 @@ public struct CustomInfoType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         try container.encode(value, forKey: .storedType)
       case .metadataKeyValueExpression(let value):
         try container.encode(value, forKey: .metadataKeyValueExpression)
+      case .fileLabelInfoType(let value):
+        try container.encode(value, forKey: .fileLabelInfoType)
       }
     }
   }
@@ -172,9 +180,9 @@ public struct CustomInfoType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Dictionary words containing a large number of characters that are not
   /// letters or digits may result in unexpected findings because such characters
   /// are treated as whitespace. The
-  /// [limits](https://cloud.google.com/sensitive-data-protection/limits) page
-  /// contains details about the size limits of dictionaries. For dictionaries
-  /// that do not fit within these constraints, consider using
+  /// [limits](https://docs.cloud.google.com/sensitive-data-protection/limits)
+  /// page contains details about the size limits of dictionaries. For
+  /// dictionaries that do not fit within these constraints, consider using
   /// `LargeCustomDictionaryConfig` in the `StoredInfoType` API.
   public struct Dictionary: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -340,7 +348,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   /// Message for detecting output from deidentification transformations
   /// such as
-  /// [`CryptoReplaceFfxFpeConfig`](https://cloud.google.com/sensitive-data-protection/docs/reference/rest/v2/organizations.deidentifyTemplates#cryptoreplaceffxfpeconfig).
+  /// [`CryptoReplaceFfxFpeConfig`](https://docs.cloud.google.com/sensitive-data-protection/docs/reference/rest/v2/organizations.deidentifyTemplates#cryptoreplaceffxfpeconfig).
   /// These types of transformations are
   /// those that perform pseudonymization, thereby producing a "surrogate" as
   /// output. This should be used in conjunction with a field on the
@@ -406,6 +414,206 @@ public struct CustomInfoType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.MetadataKeyValueExpression"
+    }
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
+    }
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
+    }
+  }
+
+  /// Configuration for a custom infoType that detects file labels.
+  public struct FileLabelInfoType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
+    Sendable
+  {
+    /// The type of file label to detect.
+    public var type: OneOf_Type? = nil
+
+    /// Initialize a new instance of `FileLabelInfoType`.
+    public init() {}
+
+    /// Use `config` to return a new instance of this object, with some fields updated.
+    ///
+    /// Commonly used to initialize the value, for example:
+    ///
+    /// ```
+    /// let value = FileLabelInfoType().with { $0.sensitivityLabel = ... }
+    /// ```
+    public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+      var copy = self
+      try config(&copy)
+      return copy
+    }
+
+    private enum CodingKeys: Swift.String, CodingKey {
+      case sensitivityLabel = "sensitivityLabel"
+      case googleDriveLabel = "googleDriveLabel"
+    }
+
+    public init(from decoder: Decoder) throws {
+      let container = try decoder.container(keyedBy: CodingKeys.self)
+
+      var type: OneOf_Type? = nil
+      let typeCheckAndSet = {
+        if type != nil {
+          throw DecodingError.dataCorrupted(
+            DecodingError.Context(
+              codingPath: decoder.codingPath,
+              debugDescription: "Multiple values set for oneof 'type'"))
+        }
+        type = $0
+      }
+      if let sensitivityLabel = try container.decodeIfPresent(
+        CustomInfoType.FileLabelInfoType.SensitivityLabel?.self, forKey: .sensitivityLabel)
+      {
+        try typeCheckAndSet(.sensitivityLabel(sensitivityLabel))
+      }
+      if let googleDriveLabel = try container.decodeIfPresent(
+        CustomInfoType.FileLabelInfoType.GoogleDriveLabel?.self, forKey: .googleDriveLabel)
+      {
+        try typeCheckAndSet(.googleDriveLabel(googleDriveLabel))
+      }
+      self.type = type
+    }
+
+    public func encode(to encoder: Encoder) throws {
+      var container = encoder.container(keyedBy: CodingKeys.self)
+
+      if let choice = self.type {
+        switch choice {
+        case .sensitivityLabel(let value):
+          try container.encode(value, forKey: .sensitivityLabel)
+        case .googleDriveLabel(let value):
+          try container.encode(value, forKey: .googleDriveLabel)
+        }
+      }
+    }
+
+    /// Sensitivity labels published by Microsoft.
+    public struct SensitivityLabel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
+      Sendable
+    {
+      /// The GUID of the sensitivity label.
+      public var guid: Swift.String = Swift.String()
+
+      /// Initialize a new instance of `SensitivityLabel`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = SensitivityLabel().with { $0.guid = ... }
+      /// ```
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      public static var _anyTypeUrl: Swift.String {
+        return
+          "type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.FileLabelInfoType.SensitivityLabel"
+      }
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
+      }
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
+      }
+    }
+
+    /// Google Drive labels published by Google.
+    public struct GoogleDriveLabel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
+      Sendable
+    {
+      /// The [label
+      /// ID](https://developers.google.com/workspace/drive/labels/guides/overview)
+      /// of the Google Drive label.
+      public var labelId: Swift.String = Swift.String()
+
+      /// The field values of the Google Drive label to match.
+      public var labelFieldsToMatch:
+        [CustomInfoType.FileLabelInfoType.GoogleDriveLabel.LabelField] = []
+
+      /// Initialize a new instance of `GoogleDriveLabel`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = GoogleDriveLabel().with { $0.labelId = ... }
+      /// ```
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      /// The field values of the Google Drive label to match.
+      public struct LabelField: Codable, Equatable, GoogleCloudWKT._AnyPackable,
+        Sendable
+      {
+        /// The identifier of the Label Field.
+        public var id: Swift.String = Swift.String()
+
+        /// The value of the Label Field to match.
+        public var value: Swift.String = Swift.String()
+
+        /// Initialize a new instance of `LabelField`.
+        public init() {}
+
+        /// Use `config` to return a new instance of this object, with some fields updated.
+        ///
+        /// Commonly used to initialize the value, for example:
+        ///
+        /// ```
+        /// let value = LabelField().with { $0.id = ... }
+        /// ```
+        public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+          var copy = self
+          try config(&copy)
+          return copy
+        }
+
+        public static var _anyTypeUrl: Swift.String {
+          return
+            "type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.FileLabelInfoType.GoogleDriveLabel.LabelField"
+        }
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
+        }
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
+        }
+      }
+
+      public static var _anyTypeUrl: Swift.String {
+        return
+          "type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.FileLabelInfoType.GoogleDriveLabel"
+      }
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
+      }
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
+      }
+    }
+
+    /// The type of file label to detect.
+    public enum OneOf_Type: Codable, Equatable, Sendable {
+      /// Sensitivity labels published by Microsoft.
+      indirect case sensitivityLabel(CustomInfoType.FileLabelInfoType.SensitivityLabel?)
+      /// Google Drive labels published by Google.
+      indirect case googleDriveLabel(CustomInfoType.FileLabelInfoType.GoogleDriveLabel?)
+    }
+
+    public static var _anyTypeUrl: Swift.String {
+      return "type.googleapis.com/google.privacy.dlp.v2.CustomInfoType.FileLabelInfoType"
     }
     public init(fromAny any: GoogleCloudWKT.`Any`) throws {
       self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
@@ -486,7 +694,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// if you want to modify the likelihood of an entire column of findngs,
       /// set this to 1. For more information, see
       /// [Hotword example: Set the match likelihood of a table column]
-      /// (https://cloud.google.com/sensitive-data-protection/docs/creating-custom-infotypes-likelihood#match-column-values).
+      /// (https://docs.cloud.google.com/sensitive-data-protection/docs/creating-custom-infotypes-likelihood#match-column-values).
       public var windowBefore: Swift.Int32 = Swift.Int32()
 
       /// Number of characters after the finding to consider.
@@ -634,7 +842,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       /// For tabular data, if you want to modify the likelihood of an entire
       /// column of findngs, see
       /// [Hotword example: Set the match likelihood of a table column]
-      /// (https://cloud.google.com/sensitive-data-protection/docs/creating-custom-infotypes-likelihood#match-column-values).
+      /// (https://docs.cloud.google.com/sensitive-data-protection/docs/creating-custom-infotypes-likelihood#match-column-values).
       public var proximity: CustomInfoType.DetectionRule.Proximity? = nil
 
       /// Likelihood adjustment to apply to all matching findings.
@@ -796,6 +1004,8 @@ public struct CustomInfoType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     indirect case storedType(StoredType?)
     /// Key-value pair to detect in the metadata.
     indirect case metadataKeyValueExpression(CustomInfoType.MetadataKeyValueExpression?)
+    /// File label to detect.
+    indirect case fileLabelInfoType(CustomInfoType.FileLabelInfoType?)
   }
 
   public static var _anyTypeUrl: Swift.String {

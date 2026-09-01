@@ -239,5 +239,25 @@ extension Clients {
     func updateConnection(
       request: UpdateConnectionRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.Connection
+
+    func createContentPolicy(
+      request: CreateContentPolicyRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudDLPV2.ContentPolicy
+
+    func updateContentPolicy(
+      request: UpdateContentPolicyRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudDLPV2.ContentPolicy
+
+    func getContentPolicy(
+      request: GetContentPolicyRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudDLPV2.ContentPolicy
+
+    func listContentPolicies(
+      request: ListContentPoliciesRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudDLPV2.ListContentPoliciesResponse
+
+    func deleteContentPolicy(
+      request: DeleteContentPolicyRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws
   }
 }

@@ -1534,6 +1534,64 @@ public nonisolated struct Google_Storage_Control_V2_UpdateRapidCacheMetadata: Se
   fileprivate var _cacheType: String? = nil
 }
 
+/// Message returned in the metadata field of the Operation resource for
+/// DeleteRapidCache operation.
+public nonisolated struct Google_Storage_Control_V2_DisableRapidCacheMetadata: Sendable {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Generic metadata for the long running operation.
+  public var commonMetadata: Google_Storage_Control_V2_CommonLongRunningOperationMetadata {
+    get {_commonMetadata ?? Google_Storage_Control_V2_CommonLongRunningOperationMetadata()}
+    set {_commonMetadata = newValue}
+  }
+  /// Returns true if `commonMetadata` has been explicitly set.
+  public var hasCommonMetadata: Bool {self._commonMetadata != nil}
+  /// Clears the value of `commonMetadata`. Subsequent reads from it will return its default value.
+  public mutating func clearCommonMetadata() {self._commonMetadata = nil}
+
+  /// Rapid Cache ID.
+  public var rapidCacheID: String {
+    get {_rapidCacheID ?? String()}
+    set {_rapidCacheID = newValue}
+  }
+  /// Returns true if `rapidCacheID` has been explicitly set.
+  public var hasRapidCacheID: Bool {self._rapidCacheID != nil}
+  /// Clears the value of `rapidCacheID`. Subsequent reads from it will return its default value.
+  public mutating func clearRapidCacheID() {self._rapidCacheID = nil}
+
+  /// The zone in which the cache instance is running. For example,
+  /// us-central1-a.
+  public var zone: String {
+    get {_zone ?? String()}
+    set {_zone = newValue}
+  }
+  /// Returns true if `zone` has been explicitly set.
+  public var hasZone: Bool {self._zone != nil}
+  /// Clears the value of `zone`. Subsequent reads from it will return its default value.
+  public mutating func clearZone() {self._zone = nil}
+
+  /// Optional. The type of cache. Either rapid cache or rapid cache ultra.
+  public var cacheType: String {
+    get {_cacheType ?? String()}
+    set {_cacheType = newValue}
+  }
+  /// Returns true if `cacheType` has been explicitly set.
+  public var hasCacheType: Bool {self._cacheType != nil}
+  /// Clears the value of `cacheType`. Subsequent reads from it will return its default value.
+  public mutating func clearCacheType() {self._cacheType = nil}
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _commonMetadata: Google_Storage_Control_V2_CommonLongRunningOperationMetadata? = nil
+  fileprivate var _rapidCacheID: String? = nil
+  fileprivate var _zone: String? = nil
+  fileprivate var _cacheType: String? = nil
+}
+
 /// An Anywhere Cache Instance.
 public nonisolated struct Google_Storage_Control_V2_AnywhereCache: Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -1978,6 +2036,26 @@ public nonisolated struct Google_Storage_Control_V2_UpdateRapidCacheRequest: Sen
 
   fileprivate var _rapidCache: Google_Storage_Control_V2_RapidCache? = nil
   fileprivate var _updateMask: SwiftProtobuf.Google_Protobuf_FieldMask? = nil
+}
+
+/// Request message for DisableRapidCache.
+public nonisolated struct Google_Storage_Control_V2_DisableRapidCacheRequest: Sendable {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  /// Required. The name field in the request should be:
+  /// `projects/{project}/buckets/{bucket}/rapidCaches/{rapid_cache}`
+  public var name: String = String()
+
+  /// Optional. A unique identifier for this request. UUID is the recommended
+  /// format, but other formats are still accepted. This request is only
+  /// idempotent if a `request_id` is provided.
+  public var requestID: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
 }
 
 /// Request message for GetRapidCache.
@@ -5149,6 +5227,55 @@ nonisolated extension Google_Storage_Control_V2_UpdateRapidCacheMetadata: SwiftP
   }
 }
 
+nonisolated extension Google_Storage_Control_V2_DisableRapidCacheMetadata: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".DisableRapidCacheMetadata"
+  public static let _protobuf_nameMap = SwiftProtobuf._NameMap(bytecode: "\0\u{3}common_metadata\0\u{3}rapid_cache_id\0\u{1}zone\0\u{3}cache_type\0")
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularMessageField(value: &self._commonMetadata) }()
+      case 2: try { try decoder.decodeSingularStringField(value: &self._rapidCacheID) }()
+      case 3: try { try decoder.decodeSingularStringField(value: &self._zone) }()
+      case 4: try { try decoder.decodeSingularStringField(value: &self._cacheType) }()
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    // The use of inline closures is to circumvent an issue where the compiler
+    // allocates stack space for every if/case branch local when no optimizations
+    // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+    // https://github.com/apple/swift-protobuf/issues/1182
+    try { if let v = self._commonMetadata {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+    } }()
+    try { if let v = self._rapidCacheID {
+      try visitor.visitSingularStringField(value: v, fieldNumber: 2)
+    } }()
+    try { if let v = self._zone {
+      try visitor.visitSingularStringField(value: v, fieldNumber: 3)
+    } }()
+    try { if let v = self._cacheType {
+      try visitor.visitSingularStringField(value: v, fieldNumber: 4)
+    } }()
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Google_Storage_Control_V2_DisableRapidCacheMetadata, rhs: Google_Storage_Control_V2_DisableRapidCacheMetadata) -> Bool {
+    if lhs._commonMetadata != rhs._commonMetadata {return false}
+    if lhs._rapidCacheID != rhs._rapidCacheID {return false}
+    if lhs._zone != rhs._zone {return false}
+    if lhs._cacheType != rhs._cacheType {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
 nonisolated extension Google_Storage_Control_V2_AnywhereCache: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".AnywhereCache"
   public static let _protobuf_nameMap = SwiftProtobuf._NameMap(bytecode: "\0\u{1}name\0\u{2}\u{2}ttl\0\u{2}\u{2}state\0\u{3}create_time\0\u{3}update_time\0\u{3}pending_update\0\u{3}admission_policy\0\u{1}zone\0\u{3}ingest_on_write\0")
@@ -5687,6 +5814,41 @@ nonisolated extension Google_Storage_Control_V2_UpdateRapidCacheRequest: SwiftPr
   public static func ==(lhs: Google_Storage_Control_V2_UpdateRapidCacheRequest, rhs: Google_Storage_Control_V2_UpdateRapidCacheRequest) -> Bool {
     if lhs._rapidCache != rhs._rapidCache {return false}
     if lhs._updateMask != rhs._updateMask {return false}
+    if lhs.requestID != rhs.requestID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+nonisolated extension Google_Storage_Control_V2_DisableRapidCacheRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".DisableRapidCacheRequest"
+  public static let _protobuf_nameMap = SwiftProtobuf._NameMap(bytecode: "\0\u{1}name\0\u{3}request_id\0")
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularStringField(value: &self.name) }()
+      case 2: try { try decoder.decodeSingularStringField(value: &self.requestID) }()
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.name.isEmpty {
+      try visitor.visitSingularStringField(value: self.name, fieldNumber: 1)
+    }
+    if !self.requestID.isEmpty {
+      try visitor.visitSingularStringField(value: self.requestID, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Google_Storage_Control_V2_DisableRapidCacheRequest, rhs: Google_Storage_Control_V2_DisableRapidCacheRequest) -> Bool {
+    if lhs.name != rhs.name {return false}
     if lhs.requestID != rhs.requestID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true

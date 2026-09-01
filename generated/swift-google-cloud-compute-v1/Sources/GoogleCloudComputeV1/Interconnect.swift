@@ -218,6 +218,9 @@
     /// Output only. [Output Only] Server-defined URL for the resource.
     public var selfLink: Swift.String? = nil
 
+    /// Output only. Server-defined URL for this resource with the resource id.
+    public var selfLinkWithId: Swift.String? = nil
+
     /// Output only. [Output Only] The current state of Interconnect functionality, which can
     /// take one of the following values:
     ///
@@ -289,6 +292,7 @@
       case requestedLinkCount = "requestedLinkCount"
       case satisfiesPzs = "satisfiesPzs"
       case selfLink = "selfLink"
+      case selfLinkWithId = "selfLinkWithId"
       case state = "state"
       case subzone = "subzone"
       case wireGroups = "wireGroups"
@@ -355,6 +359,8 @@
         Swift.Int32.self, forKey: .requestedLinkCount)
       self.satisfiesPzs = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs)
       self.selfLink = try container.decodeIfPresent(Swift.String.self, forKey: .selfLink)
+      self.selfLinkWithId = try container.decodeIfPresent(
+        Swift.String.self, forKey: .selfLinkWithId)
       self.state = try container.decodeIfPresent(Interconnect.State.self, forKey: .state)
       self.subzone = try container.decodeIfPresent(Interconnect.Subzone.self, forKey: .subzone)
       self.wireGroups = try container.decode([Swift.String].self, forKey: .wireGroups)
@@ -400,6 +406,7 @@
       try container.encode(self.requestedLinkCount, forKey: .requestedLinkCount)
       try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
       try container.encode(self.selfLink, forKey: .selfLink)
+      try container.encode(self.selfLinkWithId, forKey: .selfLinkWithId)
       try container.encode(self.state, forKey: .state)
       try container.encode(self.subzone, forKey: .subzone)
       try container.encode(self.wireGroups, forKey: .wireGroups)

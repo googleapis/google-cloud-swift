@@ -838,6 +838,15 @@
     public enum ResolveSubnetMask: Codable, Equatable, Sendable {
       /// All ranges assigned to the VM NIC will respond to ARP.
       case arpAllRanges
+      /// VMs will receive an ARP response from a VM instance owning the target IP
+      /// address within the subnetwork's primary CIDR range, if such a VM instance
+      /// exists and is running.
+      case arpBroadcastPrimaryRange
+      /// Combines ARP_BROADCAST_PRIMARY_RANGE with MAC learning. Enables cache
+      /// mapping between IP addresses and custom MAC addresses of instances and
+      /// use of it to set the correct destination MAC address. If this option is
+      /// chosen, the subnetwork must have /24 or a smaller CIDR range.
+      case arpBroadcastPrimaryRangeWithLearning
       /// Only the primary range of the VM NIC will respond to ARP.
       case arpPrimaryRange
       /// Encodes an unknown integer value.
@@ -863,7 +872,9 @@
       public var intValue: Int? {
         switch self {
         case .arpAllRanges: return 0
-        case .arpPrimaryRange: return 1
+        case .arpBroadcastPrimaryRange: return 1
+        case .arpBroadcastPrimaryRangeWithLearning: return 2
+        case .arpPrimaryRange: return 3
         case .unknownIntValue(let v): return v
         case .unknownStringValue: return nil
         }
@@ -875,6 +886,9 @@
       public var stringValue: Swift.String? {
         switch self {
         case .arpAllRanges: return "ARP_ALL_RANGES"
+        case .arpBroadcastPrimaryRange: return "ARP_BROADCAST_PRIMARY_RANGE"
+        case .arpBroadcastPrimaryRangeWithLearning:
+          return "ARP_BROADCAST_PRIMARY_RANGE_WITH_LEARNING"
         case .arpPrimaryRange: return "ARP_PRIMARY_RANGE"
         case .unknownIntValue: return nil
         case .unknownStringValue(let v): return v
@@ -887,6 +901,9 @@
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ARP_ALL_RANGES": self = .arpAllRanges
+        case "ARP_BROADCAST_PRIMARY_RANGE": self = .arpBroadcastPrimaryRange
+        case "ARP_BROADCAST_PRIMARY_RANGE_WITH_LEARNING":
+          self = .arpBroadcastPrimaryRangeWithLearning
         case "ARP_PRIMARY_RANGE": self = .arpPrimaryRange
         default: self = .unknownStringValue(stringValue)
         }
@@ -898,7 +915,9 @@
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .arpAllRanges
-        case 1: self = .arpPrimaryRange
+        case 1: self = .arpBroadcastPrimaryRange
+        case 2: self = .arpBroadcastPrimaryRangeWithLearning
+        case 3: self = .arpPrimaryRange
         default: self = .unknownIntValue(intValue)
         }
       }
@@ -925,7 +944,9 @@
         var container = encoder.singleValueContainer()
         switch self {
         case .arpAllRanges: return try container.encode(0)
-        case .arpPrimaryRange: return try container.encode(1)
+        case .arpBroadcastPrimaryRange: return try container.encode(1)
+        case .arpBroadcastPrimaryRangeWithLearning: return try container.encode(2)
+        case .arpPrimaryRange: return try container.encode(3)
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

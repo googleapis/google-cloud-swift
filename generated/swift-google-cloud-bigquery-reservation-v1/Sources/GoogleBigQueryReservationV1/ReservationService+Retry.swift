@@ -477,5 +477,20 @@ extension Clients {
           return try await self.inner.listReservationGroups(request: r, options: o)
         })
     }
+
+    public func updateReservationGroup(
+      request: UpdateReservationGroupRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleBigQueryReservationV1.ReservationGroup {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: UpdateReservationGroupRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> GoogleBigQueryReservationV1.ReservationGroup
+          in
+          return try await self.inner.updateReservationGroup(request: r, options: o)
+        })
+    }
   }
 }

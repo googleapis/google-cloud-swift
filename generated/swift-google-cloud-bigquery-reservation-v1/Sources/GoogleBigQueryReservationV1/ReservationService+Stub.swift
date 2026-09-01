@@ -136,5 +136,9 @@ extension Clients {
     func listReservationGroups(
       request: ListReservationGroupsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleBigQueryReservationV1.ListReservationGroupsResponse
+
+    func updateReservationGroup(
+      request: UpdateReservationGroupRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleBigQueryReservationV1.ReservationGroup
   }
 }

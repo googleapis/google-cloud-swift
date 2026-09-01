@@ -66,6 +66,57 @@
       }
     }
 
+    /// Synthetic request message for the [getHealth()][google.cloud.compute.v1.reservationSlots.getHealth] method.
+    ///
+    /// [google.cloud.compute.v1.reservationSlots.getHealth]: <doc:ReservationSlotsClient/getHealth(request:options:)>
+    public struct GetHealthRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
+      Sendable
+    {
+      /// The name of the parent reservation, parent block and parent sub-block. In
+      /// the format of
+      /// reservations/{reservation_name}/reservationBlocks/{reservation_block_name}/reservationSubBlocks/{reservation_sub_block_name}
+      public var parentName: Swift.String = Swift.String()
+
+      /// Project ID for this request.
+      public var project: Swift.String = Swift.String()
+
+      /// An optional request ID to identify requests.
+      public var requestId: Swift.String? = nil
+
+      /// The name of the reservation slot.
+      /// Name should conform to RFC1035 or be a resource ID.
+      public var reservationSlot: Swift.String = Swift.String()
+
+      /// Name of the zone for this request. Zone name should conform to RFC1035.
+      public var zone: Swift.String = Swift.String()
+
+      /// Initialize a new instance of `GetHealthRequest`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = GetHealthRequest().with { $0.parentName = ... }
+      /// ```
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      public static var _anyTypeUrl: Swift.String {
+        return "type.googleapis.com/google.cloud.compute.v1.reservationSlots.getHealthRequest"
+      }
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
+      }
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
+      }
+    }
+
     /// Synthetic request message for the [getVersion()][google.cloud.compute.v1.reservationSlots.getVersion] method.
     ///
     /// [google.cloud.compute.v1.reservationSlots.getVersion]: <doc:ReservationSlotsClient/getVersion(request:options:)>

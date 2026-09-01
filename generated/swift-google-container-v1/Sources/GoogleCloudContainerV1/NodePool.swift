@@ -90,7 +90,7 @@ public struct NodePool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// simultaneously on a node in the node pool.
   public var maxPodsConstraint: MaxPodsConstraint? = nil
 
-  /// Which conditions caused the current node pool state.
+  /// Output only. Which conditions caused the current node pool state.
   public var conditions: [StatusCondition] = []
 
   /// Output only. The pod CIDR block size per node in this node pool.
@@ -106,9 +106,9 @@ public struct NodePool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// pool update.
   public var updateInfo: NodePool.UpdateInfo? = nil
 
-  /// This checksum is computed by the server based on the value of node pool
-  /// fields, and may be sent on update requests to ensure the client has an
-  /// up-to-date value before proceeding.
+  /// Output only. This checksum is computed by the server based on the value of
+  /// node pool fields, and may be sent on update requests to ensure the client
+  /// has an up-to-date value before proceeding.
   public var etag: Swift.String = Swift.String()
 
   /// Specifies the configuration of queued provisioning.
@@ -122,6 +122,9 @@ public struct NodePool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   /// Optional. Specifies the maintenance policy for the node pool.
   public var maintenancePolicy: NodePool.NodePoolMaintenancePolicy? = nil
+
+  /// Output only. Contains expiry information about the kubelet certificate.
+  public var kubeletCertInfo: NodePool.KubeletCertInfo? = nil
 
   /// Initialize a new instance of `NodePool`.
   public init() {}
@@ -746,6 +749,43 @@ public struct NodePool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.NodePool.NodePoolMaintenancePolicy"
+    }
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
+    }
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
+    }
+  }
+
+  /// Contains expiry information about the kubelet certificate.
+  public struct KubeletCertInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
+    Sendable
+  {
+    /// Output only.
+    public var tpmBootstrapCertExpireTime: GoogleCloudWKT.Timestamp? = nil
+
+    /// Output only.
+    public var nonTpmBootstrapCertExpireTime: GoogleCloudWKT.Timestamp? = nil
+
+    /// Initialize a new instance of `KubeletCertInfo`.
+    public init() {}
+
+    /// Use `config` to return a new instance of this object, with some fields updated.
+    ///
+    /// Commonly used to initialize the value, for example:
+    ///
+    /// ```
+    /// let value = KubeletCertInfo().with { $0.tpmBootstrapCertExpireTime = ... }
+    /// ```
+    public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+      var copy = self
+      try config(&copy)
+      return copy
+    }
+
+    public static var _anyTypeUrl: Swift.String {
+      return "type.googleapis.com/google.container.v1.NodePool.KubeletCertInfo"
     }
     public init(fromAny any: GoogleCloudWKT.`Any`) throws {
       self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)

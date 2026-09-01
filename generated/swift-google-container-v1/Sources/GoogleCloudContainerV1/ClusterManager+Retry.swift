@@ -584,5 +584,20 @@ extension Clients {
           return try await self.inner.fetchNodePoolUpgradeInfo(request: r, options: o)
         })
     }
+
+    public func completeControlPlaneUpgrade(
+      request: CompleteControlPlaneUpgradeRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudContainerV1.Operation {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: CompleteControlPlaneUpgradeRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> GoogleCloudContainerV1.Operation
+          in
+          return try await self.inner.completeControlPlaneUpgrade(request: r, options: o)
+        })
+    }
   }
 }

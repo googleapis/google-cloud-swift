@@ -155,6 +155,13 @@
       /// See https://docs.parallel.ai/search/search-quickstart for more details.
       public var apiKey: Swift.String = Swift.String()
 
+      /// Optional. Instructs Vertex Grounding to use Parallel's Zero Data
+      /// Retention Marketplace product. If this value is "false" or omitted, the
+      /// Parallel Web Search for Grounding standard subscription will be used. If
+      /// this value is "true", the Parallel Web Search for Grounding - ZDR
+      /// subscription will be used.
+      public var enableZeroDataRetention: Swift.Bool = Swift.Bool()
+
       /// Optional. Custom configs for ParallelAiSearch.
       /// This field can be used to pass any parameter from the Parallel.ai
       /// Search API.

@@ -64,6 +64,21 @@
           })
       }
 
+      public func getHealth(
+        request: ReservationSlotsClient.GetHealthRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleCloudComputeV1.Operation {
+        try await self._intercept(
+          request: request,
+          options: options,
+          idempotent: false,
+          action: {
+            (r: ReservationSlotsClient.GetHealthRequest, o: GoogleCloudGax.RequestOptions)
+              async throws -> GoogleCloudComputeV1.Operation
+            in
+            return try await self.inner.getHealth(request: r, options: o)
+          })
+      }
+
       public func getVersion(
         request: ReservationSlotsClient.GetVersionRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

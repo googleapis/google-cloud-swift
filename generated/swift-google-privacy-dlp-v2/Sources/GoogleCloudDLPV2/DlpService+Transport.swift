@@ -1216,5 +1216,110 @@ extension Clients {
         GoogleCloudDLPV2.Connection.self, timeout: options.attemptTimeout
       ).get()
     }
+
+    public func createContentPolicy(
+      request: CreateContentPolicyRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudDLPV2.ContentPolicy {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
+          throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
+        }
+        return "/v2/\(pathVariable0)/contentPolicies"
+      }()
+      let query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      var req = try await self.inner.newRequest(path: path, query: query)
+      req.setMethod(.POST)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
+      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      return try await req.rpc(
+        GoogleCloudDLPV2.ContentPolicy.self, timeout: options.attemptTimeout
+      ).get()
+    }
+
+    public func updateContentPolicy(
+      request: UpdateContentPolicyRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudDLPV2.ContentPolicy {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
+          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
+        }
+        return "/v2/\(pathVariable0)"
+      }()
+      let query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      var req = try await self.inner.newRequest(path: path, query: query)
+      req.setMethod(.PATCH)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
+      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      return try await req.rpc(
+        GoogleCloudDLPV2.ContentPolicy.self, timeout: options.attemptTimeout
+      ).get()
+    }
+
+    public func getContentPolicy(
+      request: GetContentPolicyRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudDLPV2.ContentPolicy {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
+          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
+        }
+        return "/v2/\(pathVariable0)"
+      }()
+      let query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      var req = try await self.inner.newRequest(path: path, query: query)
+      req.setMethod(.GET)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
+      return try await req.rpc(
+        GoogleCloudDLPV2.ContentPolicy.self, timeout: options.attemptTimeout
+      ).get()
+    }
+
+    public func listContentPolicies(
+      request: ListContentPoliciesRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudDLPV2.ListContentPoliciesResponse {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.parent as Swift.String?, !pathVariable0.isEmpty else {
+          throw GoogleCloudGax.RequestError.binding("'request.parent' is not set or is empty")
+        }
+        return "/v2/\(pathVariable0)/contentPolicies"
+      }()
+      var query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      let encoder = GoogleCloudGax._QueryParameterEncoder()
+      query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
+      query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
+      var req = try await self.inner.newRequest(path: path, query: query)
+      req.setMethod(.GET)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
+      return try await req.rpc(
+        GoogleCloudDLPV2.ListContentPoliciesResponse.self, timeout: options.attemptTimeout
+      ).get()
+    }
+
+    public func deleteContentPolicy(
+      request: DeleteContentPolicyRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
+          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
+        }
+        return "/v2/\(pathVariable0)"
+      }()
+      let query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      var req = try await self.inner.newRequest(path: path, query: query)
+      req.setMethod(.DELETE)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
+      _ = try await req.rpc(
+        GoogleCloudWKT.Empty.self, timeout: options.attemptTimeout
+      ).get()
+    }
   }
 }

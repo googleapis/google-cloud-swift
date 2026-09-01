@@ -648,6 +648,15 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
     }
     return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
   }
+
+  /// Updates an existing reservation group resource.
+  ///
+  /// @Snippet(path: "ReservationService_UpdateReservationGroup")
+  public func updateReservationGroup(
+    request: UpdateReservationGroupRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleBigQueryReservationV1.ReservationGroup {
+    try await self.inner.updateReservationGroup(request: request, options: options)
+  }
 }
 
 extension Clients {
@@ -944,6 +953,16 @@ extension Clients {
       parent: Swift.String,
     ) throws -> any AsyncSequence<ReservationGroup, Swift.Error>
 
+    /// See `ReservationServiceClient.updateReservationGroup`.
+    func updateReservationGroup(request: UpdateReservationGroupRequest) async throws
+      -> GoogleBigQueryReservationV1.ReservationGroup
+
+    /// See `ReservationServiceClient.updateReservationGroup`.
+    func updateReservationGroup(
+      reservationGroup: ReservationGroup?,
+      updateMask: GoogleCloudWKT.FieldMask?,
+    ) async throws -> GoogleBigQueryReservationV1.ReservationGroup
+
     /// See `ReservationServiceClient.createReservation`.
     func createReservation(
       request: CreateReservationRequest, options: GoogleCloudGax.RequestOptions
@@ -1120,6 +1139,11 @@ extension Clients {
     func listReservationGroups(
       byItem: ListReservationGroupsRequest, options: GoogleCloudGax.RequestOptions
     ) throws -> any AsyncSequence<ReservationGroup, Swift.Error>
+
+    /// See `ReservationServiceClient.updateReservationGroup`.
+    func updateReservationGroup(
+      request: UpdateReservationGroupRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleBigQueryReservationV1.ReservationGroup
   }
 }
 
@@ -1824,5 +1848,28 @@ extension Clients.ReservationServiceProtocol {
       $0.parent = parent
     }
     return try self.listReservationGroups(byItem: request)
+  }
+
+  public func updateReservationGroup(request: UpdateReservationGroupRequest) async throws
+    -> GoogleBigQueryReservationV1.ReservationGroup
+  {
+    try await self.updateReservationGroup(request: request, options: .init())
+  }
+
+  public func updateReservationGroup(
+    request: UpdateReservationGroupRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleBigQueryReservationV1.ReservationGroup {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func updateReservationGroup(
+    reservationGroup: ReservationGroup?,
+    updateMask: GoogleCloudWKT.FieldMask?,
+  ) async throws -> GoogleBigQueryReservationV1.ReservationGroup {
+    let request = UpdateReservationGroupRequest().with {
+      $0.reservationGroup = reservationGroup
+      $0.updateMask = updateMask
+    }
+    return try await self.updateReservationGroup(request: request)
   }
 }

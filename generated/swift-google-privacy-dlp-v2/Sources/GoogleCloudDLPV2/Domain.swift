@@ -161,11 +161,11 @@ public struct Domain: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// A table appears to contain text embeddings.
     case textEmbedding
     /// The [Cloud SQL Vertex
-    /// AI](https://cloud.google.com/sql/docs/postgres/integrate-cloud-sql-with-vertex-ai)
+    /// AI](https://docs.cloud.google.com/sql/docs/postgres/integrate-cloud-sql-with-vertex-ai)
     /// plugin is installed on the database.
     case vertexPlugin
     /// Support for [Cloud SQL vector
-    /// embeddings](https://cloud.google.com/sql/docs/mysql/enable-vector-search)
+    /// embeddings](https://docs.cloud.google.com/sql/docs/mysql/enable-vector-search)
     /// is enabled on the database.
     case vectorPlugin
     /// Source code is present.

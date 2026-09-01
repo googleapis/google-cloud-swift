@@ -23,7 +23,7 @@ import Foundation
 ///
 /// The generated data profiles are retained according to the
 /// [data retention policy]
-/// (https://cloud.google.com/sensitive-data-protection/docs/data-profiles#retention).
+/// (https://docs.cloud.google.com/sensitive-data-protection/docs/data-profiles#retention).
 public struct DataProfileJobConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
@@ -53,7 +53,7 @@ public struct DataProfileJobConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// scanned.
   ///
   /// For more information, see
-  /// https://cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
   public var inspectTemplates: [Swift.String] = []
 
   /// Actions to execute at the completion of the job.

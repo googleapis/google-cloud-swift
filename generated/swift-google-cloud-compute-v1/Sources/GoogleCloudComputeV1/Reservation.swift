@@ -173,6 +173,8 @@
     ///
     /// [google.cloud.compute.v1.Reservation.confidentialComputeType]: <doc:Reservation/ConfidentialComputeType>
     public enum ConfidentialComputeType: Codable, Equatable, Sendable {
+      /// Bare Metal Secure AI.
+      case bmsai
       /// Intel Trust Domain Extensions.
       case tdx
       case unspecified
@@ -190,7 +192,7 @@
       case unknownStringValue(String)
 
       public init() {
-        self = .tdx
+        self = .bmsai
       }
 
       /// Returns the integer value associated with the enumeration.
@@ -198,8 +200,9 @@
       /// If the enumeration was initialized with an unknown string value, this returns `nil`.
       public var intValue: Int? {
         switch self {
-        case .tdx: return 0
-        case .unspecified: return 1
+        case .bmsai: return 0
+        case .tdx: return 1
+        case .unspecified: return 2
         case .unknownIntValue(let v): return v
         case .unknownStringValue: return nil
         }
@@ -210,6 +213,7 @@
       /// If the enumeration was initialized with an unknown integer value, this returns `nil`.
       public var stringValue: Swift.String? {
         switch self {
+        case .bmsai: return "CONFIDENTIAL_COMPUTE_TYPE_BMSAI"
         case .tdx: return "CONFIDENTIAL_COMPUTE_TYPE_TDX"
         case .unspecified: return "CONFIDENTIAL_COMPUTE_TYPE_UNSPECIFIED"
         case .unknownIntValue: return nil
@@ -222,6 +226,7 @@
       /// If the value is unknown, this initializes to [`unknownStringValue`](doc:ConfidentialComputeType/unknownStringValue(_:)).
       public init(stringValue: Swift.String) {
         switch stringValue {
+        case "CONFIDENTIAL_COMPUTE_TYPE_BMSAI": self = .bmsai
         case "CONFIDENTIAL_COMPUTE_TYPE_TDX": self = .tdx
         case "CONFIDENTIAL_COMPUTE_TYPE_UNSPECIFIED": self = .unspecified
         default: self = .unknownStringValue(stringValue)
@@ -233,8 +238,9 @@
       /// If the value is unknown, this initializes to [`unknownIntValue`](doc:ConfidentialComputeType/unknownIntValue(_:)).
       public init(intValue: Int) {
         switch intValue {
-        case 0: self = .tdx
-        case 1: self = .unspecified
+        case 0: self = .bmsai
+        case 1: self = .tdx
+        case 2: self = .unspecified
         default: self = .unknownIntValue(intValue)
         }
       }
@@ -260,8 +266,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .tdx: return try container.encode(0)
-        case .unspecified: return try container.encode(1)
+        case .bmsai: return try container.encode(0)
+        case .tdx: return try container.encode(1)
+        case .unspecified: return try container.encode(2)
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

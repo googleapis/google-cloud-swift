@@ -38,10 +38,10 @@ public struct Preview: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Output only. Current state of the preview.
   public var state: Preview.State = Preview.State()
 
-  /// Optional. Optional deployment reference. If specified, the preview will be
-  /// performed using the provided deployment's current state and use any
-  /// relevant fields from the deployment unless explicitly specified in the
-  /// preview create request.
+  /// Optional. Deployment reference. If specified, the preview will be performed
+  /// using the provided deployment's current state and use any relevant fields
+  /// from the deployment unless explicitly specified in the preview create
+  /// request.
   public var deployment: Swift.String = Swift.String()
 
   /// Optional. Current mode of preview.
@@ -52,7 +52,7 @@ public struct Preview: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Format: `projects/{projectID}/serviceAccounts/{serviceAccount}`
   public var serviceAccount: Swift.String = Swift.String()
 
-  /// Optional. User-defined location of Cloud Build logs, artifacts, and
+  /// User-defined location of Cloud Build logs, artifacts, and
   /// in Google Cloud Storage.
   /// Format: `gs://{bucket}/{folder}`
   /// A default bucket will be bootstrapped if the field is not set or empty
@@ -64,12 +64,12 @@ public struct Preview: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// defined, that artifact bucket is used.
   public var artifactsGcsBucket: Swift.String? = nil
 
-  /// Optional. The user-specified Worker Pool resource in which the Cloud Build
-  /// job will execute. Format
-  /// projects/{project}/locations/{location}/workerPools/{workerPoolId} If this
-  /// field is unspecified, the default Cloud Build worker pool will be used. If
-  /// omitted and deployment resource ref provided has worker_pool defined, that
-  /// worker pool is used.
+  /// The user-specified Worker Pool resource in which the Cloud Build job will
+  /// execute.
+  /// Format projects/{project}/locations/{location}/workerPools/{workerPoolId}
+  /// If this field is unspecified, the default Cloud Build worker pool will be
+  /// used. If omitted and deployment resource ref provided has worker_pool
+  /// defined, that worker pool is used.
   public var workerPool: Swift.String? = nil
 
   /// Output only. Code describing any errors that may have occurred.
@@ -100,7 +100,7 @@ public struct Preview: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// It is in the format of "Major.Minor.Patch", for example, "1.3.10".
   public var tfVersion: Swift.String = Swift.String()
 
-  /// Optional. The user-specified Terraform version constraint.
+  /// The user-specified Terraform version constraint.
   /// Example: "=1.3.10".
   public var tfVersionConstraint: Swift.String? = nil
 

@@ -58,6 +58,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// kernel.shmmni
   /// kernel.shmmax
   /// kernel.shmall
+  /// kernel.core_pattern
   /// kernel.perf_event_paranoid
   /// kernel.sched_rt_runtime_us
   /// kernel.softlockup_panic
@@ -126,6 +127,12 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   /// Optional. The accurate time configuration for the node pool.
   public var accurateTimeConfig: LinuxNodeConfig.AccurateTimeConfig? = nil
+
+  /// Optional. Contains VFIO-related configurations for this node.
+  public var nodeVfioConfig: LinuxNodeConfig.NodeVfioConfig? = nil
+
+  /// Optional. Controls the configuration for the disk IO scheduler.
+  public var diskIoScheduler: DiskIoScheduler? = nil
 
   /// Initialize a new instance of `LinuxNodeConfig`.
   public init() {}
@@ -823,6 +830,49 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
     public static var _anyTypeUrl: Swift.String {
       return "type.googleapis.com/google.container.v1.LinuxNodeConfig.AccurateTimeConfig"
+    }
+    public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+      self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
+    }
+    public func _pack() throws -> GoogleCloudWKT.Struct {
+      return try GoogleCloudWKT._slowAnySerialize(message: self)
+    }
+  }
+
+  /// Configuration settings for VFIO (Virtual Function I/O) on a node.
+  /// VFIO allows safe, unprivileged, userspace drivers to access I/O devices.
+  public struct NodeVfioConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
+    Sendable
+  {
+    /// Optional. Specifies the maximum number of DMA entries (pages) that can be
+    /// mapped by the VFIO IOMMU type 1 driver for a container. This limit
+    /// affects the total amount of host memory that can be pinned for direct
+    /// device access, which is often critical for high-performance devices like
+    /// TPUs and GPUs. This setting corresponds to the kernel parameter at:
+    /// `/sys/module/vfio_iommu_type1/parameters/dma_entry_limit`.
+    /// The default value in the kernel is `65535`. Higher values may be
+    /// needed for workloads mapping large memory regions.
+    /// Supported values are integers between `65535` and `4194304`.
+    public var dmaEntryLimit: Swift.Int32? = nil
+
+    /// Initialize a new instance of `NodeVfioConfig`.
+    public init() {}
+
+    /// Use `config` to return a new instance of this object, with some fields updated.
+    ///
+    /// Commonly used to initialize the value, for example:
+    ///
+    /// ```
+    /// let value = NodeVfioConfig().with { $0.dmaEntryLimit = ... }
+    /// ```
+    public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+      var copy = self
+      try config(&copy)
+      return copy
+    }
+
+    public static var _anyTypeUrl: Swift.String {
+      return "type.googleapis.com/google.container.v1.LinuxNodeConfig.NodeVfioConfig"
     }
     public init(fromAny any: GoogleCloudWKT.`Any`) throws {
       self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)

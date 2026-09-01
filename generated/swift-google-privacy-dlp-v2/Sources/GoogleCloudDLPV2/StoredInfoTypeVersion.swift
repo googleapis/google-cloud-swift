@@ -25,18 +25,18 @@ public struct StoredInfoTypeVersion: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// StoredInfoType configuration.
   public var config: StoredInfoTypeConfig? = nil
 
-  /// Create timestamp of the version. Read-only, determined by the system
-  /// when the version is created.
+  /// Output only. Create timestamp of the version. Read-only, determined by the
+  /// system when the version is created.
   public var createTime: GoogleCloudWKT.Timestamp? = nil
 
-  /// Stored info type version state. Read-only, updated by the system
-  /// during dictionary creation.
+  /// Output only. Stored info type version state. Read-only, updated by the
+  /// system during dictionary creation.
   public var state: StoredInfoTypeState = StoredInfoTypeState()
 
-  /// Errors that occurred when creating this storedInfoType version, or
-  /// anomalies detected in the storedInfoType data that render it unusable. Only
-  /// the five most recent errors will be displayed, with the most recent error
-  /// appearing first.
+  /// Output only. Errors that occurred when creating this storedInfoType
+  /// version, or anomalies detected in the storedInfoType data that render it
+  /// unusable. Only the five most recent errors will be displayed, with the most
+  /// recent error appearing first.
   ///
   /// For example, some of the data for stored custom dictionaries is put in
   /// the user's Cloud Storage bucket, and if this data is modified or
@@ -48,7 +48,7 @@ public struct StoredInfoTypeVersion: Codable, Equatable, GoogleCloudWKT._AnyPack
   /// not the source of the error.
   public var errors: [Error] = []
 
-  /// Statistics about this storedInfoType version.
+  /// Output only. Statistics about this storedInfoType version.
   public var stats: StoredInfoTypeStats? = nil
 
   /// Initialize a new instance of `StoredInfoTypeVersion`.

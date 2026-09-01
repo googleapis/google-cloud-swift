@@ -19,7 +19,7 @@ import Foundation
 
 /// Configuration for stored infoTypes. All fields and subfield are provided
 /// by the user. For more information, see
-/// https://cloud.google.com/sensitive-data-protection/docs/creating-custom-infotypes.
+/// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-custom-infotypes.
 public struct StoredInfoTypeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {

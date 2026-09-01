@@ -17,7 +17,8 @@
 import Foundation
 @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
-/// Bounding box encompassing detected text within an image.
+/// Bounding box encompassing detected text within an image. Coordinates are in
+/// pixels and strictly within the image or frame bounds.
 public struct BoundingBox: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {

@@ -134,7 +134,7 @@ public struct StorageConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// `TIMESTAMP`, and `DATETIME`.
     ///
     /// If your BigQuery table is [partitioned at ingestion
-    /// time](https://cloud.google.com/bigquery/docs/partitioned-tables#ingestion_time),
+    /// time](https://docs.cloud.google.com/bigquery/docs/partitioned-tables#ingestion_time),
     /// you can use any of the following pseudo-columns as your timestamp field.
     /// When used with Cloud DLP, these pseudo-column names are case sensitive.
     ///
@@ -151,7 +151,7 @@ public struct StorageConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     ///
     /// See the
     /// [known
-    /// issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#bq-timespan)
+    /// issue](https://docs.cloud.google.com/sensitive-data-protection/docs/known-issues#bq-timespan)
     /// related to this operation.
     public var timestampField: FieldId? = nil
 
@@ -169,7 +169,7 @@ public struct StorageConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// timestamp will result in skipped rows.
     ///
     /// See the [known
-    /// issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#recently-streamed-data)
+    /// issue](https://docs.cloud.google.com/sensitive-data-protection/docs/known-issues#recently-streamed-data)
     /// related to this operation.
     public var enableAutoPopulationOfTimespanConfig: Swift.Bool = Swift.Bool()
 

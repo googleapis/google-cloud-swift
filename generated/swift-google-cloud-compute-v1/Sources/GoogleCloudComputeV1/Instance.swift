@@ -144,6 +144,7 @@
     ///
     ///
     /// For example: zones/us-central1-f/machineTypes/custom-4-5120
+    ///
     /// For a full list of restrictions, read theSpecifications
     /// for custom machine types.
     public var machineType: Swift.String? = nil

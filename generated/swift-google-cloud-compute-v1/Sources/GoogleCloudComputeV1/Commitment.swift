@@ -550,6 +550,12 @@
       case memoryOptimizedX496016T
       /// CUD bucket for C4N (dual Diorite) machines.
       case networkOptimizedC4N
+      /// CUD bucket for NETWORK_OPTIMIZED_U4C machines.
+      case networkOptimizedU4C
+      /// CUD bucket for NETWORK_OPTIMIZED_U4P machines.
+      case networkOptimizedU4P
+      /// CUD bucket for NETWORK_OPTIMIZED_U4S machines.
+      case networkOptimizedU4S
       case storageOptimizedZ3
       /// Note for internal users: When adding a new enum Type for v1, make sure
       /// to also add it in the comment for the `optional Type type` definition.
@@ -616,8 +622,11 @@
         case .memoryOptimizedX496012T: return 36
         case .memoryOptimizedX496016T: return 37
         case .networkOptimizedC4N: return 38
-        case .storageOptimizedZ3: return 39
-        case .unspecified: return 40
+        case .networkOptimizedU4C: return 39
+        case .networkOptimizedU4P: return 40
+        case .networkOptimizedU4S: return 41
+        case .storageOptimizedZ3: return 42
+        case .unspecified: return 43
         case .unknownIntValue(let v): return v
         case .unknownStringValue: return nil
         }
@@ -667,6 +676,9 @@
         case .memoryOptimizedX496012T: return "MEMORY_OPTIMIZED_X4_960_12T"
         case .memoryOptimizedX496016T: return "MEMORY_OPTIMIZED_X4_960_16T"
         case .networkOptimizedC4N: return "NETWORK_OPTIMIZED_C4N"
+        case .networkOptimizedU4C: return "NETWORK_OPTIMIZED_U4C"
+        case .networkOptimizedU4P: return "NETWORK_OPTIMIZED_U4P"
+        case .networkOptimizedU4S: return "NETWORK_OPTIMIZED_U4S"
         case .storageOptimizedZ3: return "STORAGE_OPTIMIZED_Z3"
         case .unspecified: return "TYPE_UNSPECIFIED"
         case .unknownIntValue: return nil
@@ -718,6 +730,9 @@
         case "MEMORY_OPTIMIZED_X4_960_12T": self = .memoryOptimizedX496012T
         case "MEMORY_OPTIMIZED_X4_960_16T": self = .memoryOptimizedX496016T
         case "NETWORK_OPTIMIZED_C4N": self = .networkOptimizedC4N
+        case "NETWORK_OPTIMIZED_U4C": self = .networkOptimizedU4C
+        case "NETWORK_OPTIMIZED_U4P": self = .networkOptimizedU4P
+        case "NETWORK_OPTIMIZED_U4S": self = .networkOptimizedU4S
         case "STORAGE_OPTIMIZED_Z3": self = .storageOptimizedZ3
         case "TYPE_UNSPECIFIED": self = .unspecified
         default: self = .unknownStringValue(stringValue)
@@ -768,8 +783,11 @@
         case 36: self = .memoryOptimizedX496012T
         case 37: self = .memoryOptimizedX496016T
         case 38: self = .networkOptimizedC4N
-        case 39: self = .storageOptimizedZ3
-        case 40: self = .unspecified
+        case 39: self = .networkOptimizedU4C
+        case 40: self = .networkOptimizedU4P
+        case 41: self = .networkOptimizedU4S
+        case 42: self = .storageOptimizedZ3
+        case 43: self = .unspecified
         default: self = .unknownIntValue(intValue)
         }
       }
@@ -834,8 +852,11 @@
         case .memoryOptimizedX496012T: return try container.encode(36)
         case .memoryOptimizedX496016T: return try container.encode(37)
         case .networkOptimizedC4N: return try container.encode(38)
-        case .storageOptimizedZ3: return try container.encode(39)
-        case .unspecified: return try container.encode(40)
+        case .networkOptimizedU4C: return try container.encode(39)
+        case .networkOptimizedU4P: return try container.encode(40)
+        case .networkOptimizedU4S: return try container.encode(41)
+        case .storageOptimizedZ3: return try container.encode(42)
+        case .unspecified: return try container.encode(43)
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

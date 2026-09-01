@@ -21,6 +21,9 @@ import Foundation
 public struct MigrationTaskResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
+  /// The map of task output types to the task outputs, e.g. "LINEAGE".
+  public var taskOutputs: [Swift.String: TaskOutput] = [:]
+
   /// Details specific to the task type.
   public var details: OneOf_Details? = nil
 
@@ -42,10 +45,12 @@ public struct MigrationTaskResult: Codable, Equatable, GoogleCloudWKT._AnyPackab
 
   private enum CodingKeys: Swift.String, CodingKey {
     case translationTaskResult = "translationTaskResult"
+    case taskOutputs = "taskOutputs"
   }
 
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
+    self.taskOutputs = try container.decode([Swift.String: TaskOutput].self, forKey: .taskOutputs)
 
     var details: OneOf_Details? = nil
     let detailsCheckAndSet = {
@@ -67,6 +72,7 @@ public struct MigrationTaskResult: Codable, Equatable, GoogleCloudWKT._AnyPackab
 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(self.taskOutputs, forKey: .taskOutputs)
 
     if let choice = self.details {
       switch choice {

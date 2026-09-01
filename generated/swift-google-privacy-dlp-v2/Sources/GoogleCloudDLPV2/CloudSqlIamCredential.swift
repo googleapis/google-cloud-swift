@@ -19,8 +19,8 @@ import Foundation
 
 /// Use IAM authentication to connect. This requires the Cloud SQL IAM feature
 /// to be enabled on the instance, which is not the default for Cloud SQL.
-/// See https://cloud.google.com/sql/docs/postgres/authentication and
-/// https://cloud.google.com/sql/docs/mysql/authentication.
+/// See https://docs.cloud.google.com/sql/docs/postgres/authentication and
+/// https://docs.cloud.google.com/sql/docs/mysql/authentication.
 public struct CloudSqlIamCredential: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {

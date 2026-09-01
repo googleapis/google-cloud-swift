@@ -42,6 +42,10 @@ public struct NodePoolUpgradeInfo: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// The node pool's current minor version's end of extended support timestamp.
   public var endOfExtendedSupportTimestamp: Swift.String? = nil
 
+  /// Output only. Upgrade info for the node pool specific to the usage of custom
+  /// images.
+  public var customImageInfo: CustomImageInfo? = nil
+
   /// Initialize a new instance of `NodePoolUpgradeInfo`.
   public init() {}
 

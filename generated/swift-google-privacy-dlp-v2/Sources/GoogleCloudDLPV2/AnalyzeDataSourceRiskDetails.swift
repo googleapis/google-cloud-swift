@@ -847,17 +847,17 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleCloudWKT._
 
   /// Values associated with this metric.
   public enum OneOf_Result: Codable, Equatable, Sendable {
-    /// Numerical stats result
+    /// Output only. Numerical stats result
     indirect case numericalStatsResult(AnalyzeDataSourceRiskDetails.NumericalStatsResult?)
-    /// Categorical stats result
+    /// Output only. Categorical stats result
     indirect case categoricalStatsResult(AnalyzeDataSourceRiskDetails.CategoricalStatsResult?)
-    /// K-anonymity result
+    /// Output only. K-anonymity result
     indirect case kAnonymityResult(AnalyzeDataSourceRiskDetails.KAnonymityResult?)
-    /// L-divesity result
+    /// Output only. L-divesity result
     indirect case lDiversityResult(AnalyzeDataSourceRiskDetails.LDiversityResult?)
-    /// K-map result
+    /// Output only. K-map result
     indirect case kMapEstimationResult(AnalyzeDataSourceRiskDetails.KMapEstimationResult?)
-    /// Delta-presence result
+    /// Output only. Delta-presence result
     indirect case deltaPresenceEstimationResult(
       AnalyzeDataSourceRiskDetails.DeltaPresenceEstimationResult?)
   }

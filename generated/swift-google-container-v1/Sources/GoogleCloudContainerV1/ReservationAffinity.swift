@@ -62,6 +62,9 @@ public struct ReservationAffinity: Codable, Equatable, GoogleCloudWKT._AnyPackab
     /// Must consume from a specific reservation. Must specify key value fields
     /// for specifying the reservations.
     case specificReservation
+    /// Consume any reservation available. If no reservation is available, fail
+    /// the node creation.
+    case anyReservationThenFail
     /// Encodes an unknown integer value.
     ///
     /// The most common cause for an unknown values is for the service to send
@@ -88,6 +91,7 @@ public struct ReservationAffinity: Codable, Equatable, GoogleCloudWKT._AnyPackab
       case .noReservation: return 1
       case .anyReservation: return 2
       case .specificReservation: return 3
+      case .anyReservationThenFail: return 4
       case .unknownIntValue(let v): return v
       case .unknownStringValue: return nil
       }
@@ -102,6 +106,7 @@ public struct ReservationAffinity: Codable, Equatable, GoogleCloudWKT._AnyPackab
       case .noReservation: return "NO_RESERVATION"
       case .anyReservation: return "ANY_RESERVATION"
       case .specificReservation: return "SPECIFIC_RESERVATION"
+      case .anyReservationThenFail: return "ANY_RESERVATION_THEN_FAIL"
       case .unknownIntValue: return nil
       case .unknownStringValue(let v): return v
       }
@@ -116,6 +121,7 @@ public struct ReservationAffinity: Codable, Equatable, GoogleCloudWKT._AnyPackab
       case "NO_RESERVATION": self = .noReservation
       case "ANY_RESERVATION": self = .anyReservation
       case "SPECIFIC_RESERVATION": self = .specificReservation
+      case "ANY_RESERVATION_THEN_FAIL": self = .anyReservationThenFail
       default: self = .unknownStringValue(stringValue)
       }
     }
@@ -129,6 +135,7 @@ public struct ReservationAffinity: Codable, Equatable, GoogleCloudWKT._AnyPackab
       case 1: self = .noReservation
       case 2: self = .anyReservation
       case 3: self = .specificReservation
+      case 4: self = .anyReservationThenFail
       default: self = .unknownIntValue(intValue)
       }
     }
@@ -158,6 +165,7 @@ public struct ReservationAffinity: Codable, Equatable, GoogleCloudWKT._AnyPackab
       case .noReservation: return try container.encode(1)
       case .anyReservation: return try container.encode(2)
       case .specificReservation: return try container.encode(3)
+      case .anyReservationThenFail: return try container.encode(4)
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

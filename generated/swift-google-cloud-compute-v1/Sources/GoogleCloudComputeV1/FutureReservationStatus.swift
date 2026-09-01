@@ -29,6 +29,9 @@
     /// start_time.
     public var autoCreatedReservations: [Swift.String] = []
 
+    /// Output only. Exapool provisioned capacities for each SKU type.
+    public var exapoolProvisionedCapacityGb: StoragePoolExapoolProvisionedCapacityGb? = nil
+
     /// Output only. [Output Only] Represents the existing matching usage for the future
     /// reservation.
     public var existingMatchingUsageInfo: FutureReservationStatusExistingMatchingUsageInfo? = nil
@@ -56,6 +59,10 @@
     public var procurementStatus: FutureReservationStatus.ProcurementStatus? = nil
 
     public var specificSkuProperties: FutureReservationStatusSpecificSKUProperties? = nil
+
+    /// Output only. Storage pool provisioned capacities for each SKU type.
+    public var storagePoolProvisionedCapacity: FutureReservationStoragePoolProvisionedCapacity? =
+      nil
 
     /// Initialize a new instance of `FutureReservationStatus`.
     public init() {}

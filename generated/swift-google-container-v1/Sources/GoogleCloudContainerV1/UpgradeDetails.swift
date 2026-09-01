@@ -40,6 +40,12 @@ public struct UpgradeDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The start type of the upgrade.
   public var startType: UpgradeDetails.StartType = UpgradeDetails.StartType()
 
+  /// Output only. The emulated version before the upgrade.
+  public var initialEmulatedVersion: Swift.String = Swift.String()
+
+  /// Output only. The emulated version after the upgrade.
+  public var targetEmulatedVersion: Swift.String = Swift.String()
+
   /// Initialize a new instance of `UpgradeDetails`.
   public init() {}
 

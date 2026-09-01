@@ -411,6 +411,16 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   ) async throws -> GoogleCloudContainerV1.NodePoolUpgradeInfo {
     try await self.inner.fetchNodePoolUpgradeInfo(request: request, options: options)
   }
+
+  /// CompleteControlPlaneUpgrade completes the rollback-safe upgrade by
+  /// performing the step two upgrade for a specific cluster.
+  ///
+  /// @Snippet(path: "ClusterManager_CompleteControlPlaneUpgrade")
+  public func completeControlPlaneUpgrade(
+    request: CompleteControlPlaneUpgradeRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleCloudContainerV1.Operation {
+    try await self.inner.completeControlPlaneUpgrade(request: request, options: options)
+  }
 }
 
 extension Clients {
@@ -883,6 +893,10 @@ extension Clients {
       name: Swift.String,
     ) async throws -> GoogleCloudContainerV1.NodePoolUpgradeInfo
 
+    /// See `ClusterManagerClient.completeControlPlaneUpgrade`.
+    func completeControlPlaneUpgrade(request: CompleteControlPlaneUpgradeRequest) async throws
+      -> GoogleCloudContainerV1.Operation
+
     /// See `ClusterManagerClient.listClusters`.
     func listClusters(
       request: ListClustersRequest, options: GoogleCloudGax.RequestOptions
@@ -1068,6 +1082,11 @@ extension Clients {
     func fetchNodePoolUpgradeInfo(
       request: FetchNodePoolUpgradeInfoRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.NodePoolUpgradeInfo
+
+    /// See `ClusterManagerClient.completeControlPlaneUpgrade`.
+    func completeControlPlaneUpgrade(
+      request: CompleteControlPlaneUpgradeRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudContainerV1.Operation
   }
 }
 
@@ -2101,5 +2120,17 @@ extension Clients.ClusterManagerProtocol {
       $0.name = name
     }
     return try await self.fetchNodePoolUpgradeInfo(request: request)
+  }
+
+  public func completeControlPlaneUpgrade(request: CompleteControlPlaneUpgradeRequest) async throws
+    -> GoogleCloudContainerV1.Operation
+  {
+    try await self.completeControlPlaneUpgrade(request: request, options: .init())
+  }
+
+  public func completeControlPlaneUpgrade(
+    request: CompleteControlPlaneUpgradeRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleCloudContainerV1.Operation {
+    throw GoogleCloudGax.RequestError.unimplemented
   }
 }

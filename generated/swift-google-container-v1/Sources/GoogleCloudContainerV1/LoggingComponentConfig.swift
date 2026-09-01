@@ -60,6 +60,8 @@ public struct LoggingComponentConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     case kcpConnection
     /// horizontal pod autoscaler decision logs
     case kcpHpa
+    /// vertical pod autoscaler decision logs
+    case kcpVpa
     /// Encodes an unknown integer value.
     ///
     /// The most common cause for an unknown values is for the service to send
@@ -91,6 +93,7 @@ public struct LoggingComponentConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       case .kcpSshd: return 7
       case .kcpConnection: return 8
       case .kcpHpa: return 9
+      case .kcpVpa: return 10
       case .unknownIntValue(let v): return v
       case .unknownStringValue: return nil
       }
@@ -110,6 +113,7 @@ public struct LoggingComponentConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       case .kcpSshd: return "KCP_SSHD"
       case .kcpConnection: return "KCP_CONNECTION"
       case .kcpHpa: return "KCP_HPA"
+      case .kcpVpa: return "KCP_VPA"
       case .unknownIntValue: return nil
       case .unknownStringValue(let v): return v
       }
@@ -129,6 +133,7 @@ public struct LoggingComponentConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       case "KCP_SSHD": self = .kcpSshd
       case "KCP_CONNECTION": self = .kcpConnection
       case "KCP_HPA": self = .kcpHpa
+      case "KCP_VPA": self = .kcpVpa
       default: self = .unknownStringValue(stringValue)
       }
     }
@@ -147,6 +152,7 @@ public struct LoggingComponentConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       case 7: self = .kcpSshd
       case 8: self = .kcpConnection
       case 9: self = .kcpHpa
+      case 10: self = .kcpVpa
       default: self = .unknownIntValue(intValue)
       }
     }
@@ -181,6 +187,7 @@ public struct LoggingComponentConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       case .kcpSshd: return try container.encode(7)
       case .kcpConnection: return try container.encode(8)
       case .kcpHpa: return try container.encode(9)
+      case .kcpVpa: return try container.encode(10)
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

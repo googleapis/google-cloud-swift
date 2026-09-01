@@ -53,6 +53,9 @@
     /// Optional. Information about the user initiating the query.
     public var userMetadata: AssistUserMetadata? = nil
 
+    /// Optional. Specification of agents that are used to serve the request.
+    public var agentsSpec: StreamAssistRequest.AgentsSpec? = nil
+
     /// Optional. Specification of tools that are used to serve the request.
     public var toolsSpec: StreamAssistRequest.ToolsSpec? = nil
 
@@ -73,6 +76,79 @@
       var copy = self
       try config(&copy)
       return copy
+    }
+
+    /// Specification of agents that are used to serve the request.
+    public struct AgentsSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
+      Sendable
+    {
+      /// Optional. Specification of agents that are used to serve the request.
+      public var agentSpecs: [StreamAssistRequest.AgentsSpec.AgentSpec] = []
+
+      /// Initialize a new instance of `AgentsSpec`.
+      public init() {}
+
+      /// Use `config` to return a new instance of this object, with some fields updated.
+      ///
+      /// Commonly used to initialize the value, for example:
+      ///
+      /// ```
+      /// let value = AgentsSpec().with { $0.agentSpecs = ... }
+      /// ```
+      public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+        var copy = self
+        try config(&copy)
+        return copy
+      }
+
+      /// Specification of an agent.
+      public struct AgentSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
+        Sendable
+      {
+        /// Required. ID to identify the agent resource serving the request.
+        ///
+        /// This field must conform to
+        /// [RFC-1034](https://tools.ietf.org/html/rfc1034)
+        /// with a length limit of 63 characters.
+        public var agentId: Swift.String = Swift.String()
+
+        /// Initialize a new instance of `AgentSpec`.
+        public init() {}
+
+        /// Use `config` to return a new instance of this object, with some fields updated.
+        ///
+        /// Commonly used to initialize the value, for example:
+        ///
+        /// ```
+        /// let value = AgentSpec().with { $0.agentId = ... }
+        /// ```
+        public func with(_ config: (inout Self) throws -> Swift.Void) rethrows -> Self {
+          var copy = self
+          try config(&copy)
+          return copy
+        }
+
+        public static var _anyTypeUrl: Swift.String {
+          return
+            "type.googleapis.com/google.cloud.discoveryengine.v1.StreamAssistRequest.AgentsSpec.AgentSpec"
+        }
+        public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+          self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
+        }
+        public func _pack() throws -> GoogleCloudWKT.Struct {
+          return try GoogleCloudWKT._slowAnySerialize(message: self)
+        }
+      }
+
+      public static var _anyTypeUrl: Swift.String {
+        return "type.googleapis.com/google.cloud.discoveryengine.v1.StreamAssistRequest.AgentsSpec"
+      }
+      public init(fromAny any: GoogleCloudWKT.`Any`) throws {
+        self = try GoogleCloudWKT._slowAnyDeserialize(Self.self, from: any)
+      }
+      public func _pack() throws -> GoogleCloudWKT.Struct {
+        return try GoogleCloudWKT._slowAnySerialize(message: self)
+      }
     }
 
     /// Specification of tools that are used to serve the request.

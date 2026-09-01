@@ -112,7 +112,7 @@ public struct ContentItem: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// String data to inspect or redact.
     case value(Swift.String)
     /// Structured content for inspection. See
-    /// https://cloud.google.com/sensitive-data-protection/docs/inspecting-text#inspecting_a_table
+    /// https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-text#inspecting_a_table
     /// to learn more.
     indirect case table(Table?)
     /// Content data to inspect or redact. Replaces `type` and `data`.

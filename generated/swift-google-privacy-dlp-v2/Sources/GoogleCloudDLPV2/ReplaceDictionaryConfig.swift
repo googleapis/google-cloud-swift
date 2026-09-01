@@ -79,8 +79,8 @@ public struct ReplaceDictionaryConfig: Codable, Equatable, GoogleCloudWKT._AnyPa
   /// Type of dictionary.
   public enum OneOf_Type: Codable, Equatable, Sendable {
     /// A list of words to select from for random replacement. The
-    /// [limits](https://cloud.google.com/sensitive-data-protection/limits) page
-    /// contains details about the size limits of dictionaries.
+    /// [limits](https://docs.cloud.google.com/sensitive-data-protection/limits)
+    /// page contains details about the size limits of dictionaries.
     indirect case wordList(CustomInfoType.Dictionary.WordList?)
   }
 

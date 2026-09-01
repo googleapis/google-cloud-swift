@@ -19,7 +19,7 @@ import Foundation
 
 /// Target used to match against for discovery of resources from other clouds.
 /// An [AWS connector in Security Command Center
-/// (Enterprise](https://cloud.google.com/security-command-center/docs/connect-scc-to-aws)
+/// (Enterprise](https://docs.cloud.google.com/security-command-center/docs/connect-scc-to-aws)
 /// is required to use this feature.
 public struct OtherCloudDiscoveryTarget: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable

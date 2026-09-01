@@ -131,9 +131,9 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWKT._AnyPackable
     ///   generated and the dataset and table are created, the discovery scan
     ///   configuration will be updated with the dataset and table names.
     /// * See [Analyze data profiles stored in
-    /// BigQuery](https://cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles).
+    /// BigQuery](https://docs.cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles).
     /// * See [Sample queries for your BigQuery
-    /// table](https://cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#sample_sql_queries).
+    /// table](https://docs.cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#sample_sql_queries).
     /// *  Data is inserted using [streaming
     ///    insert](https://cloud.google.com/blog/products/bigquery/life-of-a-bigquery-streaming-insert)
     ///    and so data may be in the buffer for a period of time after the
@@ -144,7 +144,7 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWKT._AnyPackable
     ///    notification.
     ///  * The best practice is to use the same table for an entire organization
     ///    so that you can take advantage of the [provided Data Studio
-    ///    reports](https://cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#use_a_premade_report).
+    ///    reports](https://docs.cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#use_a_premade_report).
     ///    If you use VPC Service Controls to define security perimeters, then
     ///    you must use a separate table for each boundary.
     public var profileTable: BigQueryTable? = nil
@@ -416,7 +416,8 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWKT._AnyPackable
 
   /// Create Dataplex Universal Catalog aspects for profiled resources with the
   /// aspect type Sensitive Data Protection Profile. To learn more about aspects,
-  /// see https://cloud.google.com/sensitive-data-protection/docs/add-aspects.
+  /// see
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/add-aspects.
   public struct PublishToDataplexCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
@@ -456,10 +457,10 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWKT._AnyPackable
   }
 
   /// If set, attaches the [tags]
-  /// (https://cloud.google.com/resource-manager/docs/tags/tags-overview)
+  /// (https://docs.cloud.google.com/resource-manager/docs/tags/tags-overview)
   /// provided to profiled resources. Tags support [access
-  /// control](https://cloud.google.com/iam/docs/tags-access-control). You can
-  /// conditionally grant or deny access to a resource based on whether the
+  /// control](https://docs.cloud.google.com/iam/docs/tags-access-control). You
+  /// can conditionally grant or deny access to a resource based on whether the
   /// resource has a specific tag.
   public struct TagResources: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -477,11 +478,11 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWKT._AnyPackable
 
     /// Whether applying a tag to a resource should lower the risk of the profile
     /// for that resource. For example, in conjunction with an [IAM deny
-    /// policy](https://cloud.google.com/iam/docs/deny-overview), you can deny
-    /// all principals a permission if a tag value is present, mitigating the
-    /// risk of the resource. This also lowers the data risk of resources at the
-    /// lower levels of the resource hierarchy. For example, reducing the data
-    /// risk of a table data profile also reduces the data risk of the
+    /// policy](https://docs.cloud.google.com/iam/docs/deny-overview), you can
+    /// deny all principals a permission if a tag value is present, mitigating
+    /// the risk of the resource. This also lowers the data risk of resources at
+    /// the lower levels of the resource hierarchy. For example, reducing the
+    /// data risk of a table data profile also reduces the data risk of the
     /// constituent column data profiles.
     public var lowerDataRiskToLow: Swift.Bool = Swift.Bool()
 
@@ -807,7 +808,7 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWKT._AnyPackable
     /// Publishes generated data profiles to Google Security Operations.
     /// For more information, see [Use Sensitive Data Protection data in
     /// context-aware
-    /// analytics](https://cloud.google.com/chronicle/docs/detection/usecase-dlp-high-risk-user-download).
+    /// analytics](https://docs.cloud.google.com/chronicle/docs/detection/usecase-dlp-high-risk-user-download).
     indirect case publishToChronicle(DataProfileAction.PublishToChronicle?)
     /// Publishes findings to Security Command Center for each data profile.
     indirect case publishToScc(DataProfileAction.PublishToSecurityCommandCenter?)

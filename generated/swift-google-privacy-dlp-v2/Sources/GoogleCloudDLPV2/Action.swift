@@ -18,7 +18,8 @@ import Foundation
 @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
 /// A task to execute on the completion of a job.
-/// See https://cloud.google.com/sensitive-data-protection/docs/concepts-actions
+/// See
+/// https://docs.cloud.google.com/sensitive-data-protection/docs/concepts-actions
 /// to learn more.
 public struct Action: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
@@ -171,7 +172,7 @@ public struct Action: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Publish a message into a given Pub/Sub topic when DlpJob has completed. The
   /// message contains a single field, `DlpJobName`, which is equal to the
   /// finished job's
-  /// [`DlpJob.name`](https://cloud.google.com/sensitive-data-protection/docs/reference/rest/v2/projects.dlpJobs#DlpJob).
+  /// [`DlpJob.name`](https://docs.cloud.google.com/sensitive-data-protection/docs/reference/rest/v2/projects.dlpJobs#DlpJob).
   /// Compatible with: Inspect, Risk
   public struct PublishToPubSub: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
@@ -300,7 +301,7 @@ public struct Action: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// Publish findings of a DlpJob to Dataplex Universal Catalog as a
   /// `sensitive-data-protection-job-result` aspect. For more information,
   /// see [Send inspection results to Dataplex Universal Catalog as
-  /// aspects](https://cloud.google.com/sensitive-data-protection/docs/add-aspects-inspection-job).
+  /// aspects](https://docs.cloud.google.com/sensitive-data-protection/docs/add-aspects-inspection-job).
   ///
   /// Aspects are stored in Dataplex Universal Catalog storage and are
   /// governed by service-specific policies for Dataplex Universal Catalog. For
@@ -520,7 +521,7 @@ public struct Action: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   /// Sends an email when the job completes. The email goes to IAM project owners
   /// and technical [Essential
-  /// Contacts](https://cloud.google.com/resource-manager/docs/managing-notification-contacts).
+  /// Contacts](https://docs.cloud.google.com/resource-manager/docs/managing-notification-contacts).
   public struct JobNotificationEmails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     Sendable
   {
@@ -604,7 +605,7 @@ public struct Action: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     indirect case deidentify(Action.Deidentify?)
     /// Sends an email when the job completes. The email goes to IAM project
     /// owners and technical [Essential
-    /// Contacts](https://cloud.google.com/resource-manager/docs/managing-notification-contacts).
+    /// Contacts](https://docs.cloud.google.com/resource-manager/docs/managing-notification-contacts).
     indirect case jobNotificationEmails(Action.JobNotificationEmails?)
     /// Enable Stackdriver metric dlp.googleapis.com/finding_count.
     indirect case publishToStackdriver(Action.PublishToStackdriver?)

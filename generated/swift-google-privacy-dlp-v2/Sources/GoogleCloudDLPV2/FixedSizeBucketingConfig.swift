@@ -33,8 +33,8 @@ import Foundation
 /// be transformed to match the type of the bound before comparing.
 ///
 /// See
-/// https://cloud.google.com/sensitive-data-protection/docs/concepts-bucketing to
-/// learn more.
+/// https://docs.cloud.google.com/sensitive-data-protection/docs/concepts-bucketing
+/// to learn more.
 public struct FixedSizeBucketingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {

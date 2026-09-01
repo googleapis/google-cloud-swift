@@ -22,7 +22,7 @@ import Foundation
 public struct StoredInfoType: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
-  /// Resource name.
+  /// Output only. Resource name.
   public var name: Swift.String = Swift.String()
 
   /// Current version of the stored info type.

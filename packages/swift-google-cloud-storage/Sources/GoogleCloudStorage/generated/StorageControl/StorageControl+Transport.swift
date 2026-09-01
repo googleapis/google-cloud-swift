@@ -632,6 +632,35 @@ extension Clients {
       return try GoogleLongRunning.Operation(proto: protoResponse)
     }
 
+    public func disableRapidCache(
+      request: DisableRapidCacheRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      let routingParams = GoogleCloudGaxGRPC._RoutingMatcher.format([
+        (
+          "bucket",
+          GoogleCloudGaxGRPC._RoutingMatcher.value(
+            request.name,
+            prefix: [],
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/buckets/"), .singleWildcard,
+            ],
+            suffix: [.trailingMultiWildcard]
+          )
+        )
+      ])
+
+      let protoRequest = try request.toProto()
+      let protoResponse: StorageControlProtos.Google_Longrunning_Operation = try await self.inner
+        .execute(
+          path: "/google.storage.control.v2.StorageControl/DisableRapidCache",
+          request: protoRequest,
+          options: options,
+          clientHeader: Clients.clientHeader,
+          routingParams: routingParams
+        )
+      return try GoogleLongRunning.Operation(proto: protoResponse)
+    }
+
     public func getRapidCache(
       request: GetRapidCacheRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> RapidCache {

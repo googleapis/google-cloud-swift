@@ -27,8 +27,8 @@ import Foundation
 /// will first attempt converting the type of the data to be transformed to match
 /// the type of the bound before comparing.
 /// See
-/// https://cloud.google.com/sensitive-data-protection/docs/concepts-bucketing to
-/// learn more.
+/// https://docs.cloud.google.com/sensitive-data-protection/docs/concepts-bucketing
+/// to learn more.
 public struct BucketingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {

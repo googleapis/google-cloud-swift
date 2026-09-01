@@ -35,6 +35,9 @@ public struct DeploymentOperationMetadata: Codable, Equatable, GoogleCloudWKT._A
   /// `gs://{bucket}/{object}` format.
   public var logs: Swift.String = Swift.String()
 
+  /// Output only. Indicating if early apply results are available.
+  public var applyResultsAvailable: Swift.Bool = Swift.Bool()
+
   /// Initialize a new instance of `DeploymentOperationMetadata`.
   public init() {}
 

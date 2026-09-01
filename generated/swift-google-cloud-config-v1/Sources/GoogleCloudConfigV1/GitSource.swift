@@ -21,15 +21,15 @@ import Foundation
 public struct GitSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
-  /// Optional. Repository URL.
+  /// Repository URL.
   /// Example: 'https://github.com/kubernetes/examples.git'
   public var repo: Swift.String? = nil
 
-  /// Optional. Subdirectory inside the repository.
+  /// Subdirectory inside the repository.
   /// Example: 'staging/my-package'
   public var directory: Swift.String? = nil
 
-  /// Optional. Git reference (e.g. branch or tag).
+  /// Git reference (e.g. branch or tag).
   public var ref: Swift.String? = nil
 
   /// Initialize a new instance of `GitSource`.

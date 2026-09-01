@@ -51,6 +51,56 @@
       try await self.inner.`get`(request: request, options: options)
     }
 
+    /// Get health info on a reservation slot.
+    ///
+    /// @Snippet(path: "reservationSlots_getHealth")
+    public func getHealth(
+      request: ReservationSlotsClient.GetHealthRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      try await self.inner.getHealth(request: request, options: options)
+    }
+
+    /// Get health info on a reservation slot.
+    ///
+    /// @Snippet(path: "reservationSlots_getHealth")
+    public func getHealth(
+      withPolling: ReservationSlotsClient.GetHealthRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> any GoogleCloudGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+      let extractStatus = {
+        (op: GoogleCloudComputeV1.Operation) throws
+          -> GoogleCloudGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
+        guard op._done() else {
+          return .init(done: false, result: nil)
+        }
+
+        do {
+          try op._detectErrors()
+        } catch let e as GoogleCloudGax.RequestError {
+          return .init(done: true, result: .failure(e))
+        }
+        return .init(done: true, result: .success(op))
+      }
+      let rawOp = try await self.getHealth(request: withPolling, options: options)
+      let initialState = try extractStatus(rawOp)
+      let poll = {
+        () async throws
+          -> GoogleCloudGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
+        let op = try await self.getOperation(
+          request: .init().with {
+            $0.operation = rawOp._name()
+            $0.project = withPolling.project
+            $0.zone = withPolling.zone
+          }, options: options)
+        return try extractStatus(op)
+      }
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: initialState,
+        polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+        backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+        poll: poll
+      )
+    }
+
     /// Allows customers to get SBOM versions of a reservation slot.
     ///
     /// @Snippet(path: "reservationSlots_getVersion")
@@ -204,6 +254,10 @@
         reservationSlot: Swift.String,
       ) async throws -> GoogleCloudComputeV1.ReservationSlotsGetResponse
 
+      /// See `ReservationSlotsClient.getHealth`.
+      func getHealth(request: ReservationSlotsClient.GetHealthRequest) async throws
+        -> GoogleCloudComputeV1.Operation
+
       /// See `ReservationSlotsClient.getVersion`.
       func getVersion(request: ReservationSlotsClient.GetVersionRequest) async throws
         -> GoogleCloudComputeV1.Operation
@@ -232,6 +286,11 @@
       func `get`(
         request: ReservationSlotsClient.GetRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ReservationSlotsGetResponse
+
+      /// See `ReservationSlotsClient.getHealth`.
+      func getHealth(
+        request: ReservationSlotsClient.GetHealthRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ReservationSlotsClient.getVersion`.
       func getVersion(
@@ -282,6 +341,51 @@
         $0.reservationSlot = reservationSlot
       }
       return try await self.`get`(request: request)
+    }
+
+    public func getHealth(request: ReservationSlotsClient.GetHealthRequest) async throws
+      -> GoogleCloudComputeV1.Operation
+    {
+      try await self.getHealth(request: request, options: .init())
+    }
+
+    public func getHealth(
+      request: ReservationSlotsClient.GetHealthRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleCloudGax.RequestError.unimplemented
+    }
+
+    public func getHealth(
+      withPolling: ReservationSlotsClient.GetHealthRequest
+    ) async throws -> any GoogleCloudGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+      try await self.getHealth(withPolling: withPolling, options: .init())
+    }
+
+    public func getHealth(
+      withPolling: ReservationSlotsClient.GetHealthRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> any GoogleCloudGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+      let poll = {
+        () async throws
+          -> GoogleCloudGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
+        throw GoogleCloudGax.RequestError.unimplemented
+      }
+      return GoogleCloudGax._PollableOperationImpl(
+        initialState: .init(done: false, result: nil), poll: poll)
+    }
+
+    public func getHealth(
+      project: Swift.String,
+      zone: Swift.String,
+      parentName: Swift.String,
+      reservationSlot: Swift.String,
+    ) async throws -> any GoogleCloudGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+      let request = ReservationSlotsClient.GetHealthRequest().with {
+        $0.project = project
+        $0.zone = zone
+        $0.parentName = parentName
+        $0.reservationSlot = reservationSlot
+      }
+      return try await self.getHealth(withPolling: request)
     }
 
     public func getVersion(request: ReservationSlotsClient.GetVersionRequest) async throws

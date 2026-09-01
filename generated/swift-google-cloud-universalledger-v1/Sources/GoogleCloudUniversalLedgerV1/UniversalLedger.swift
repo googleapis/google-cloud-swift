@@ -127,6 +127,21 @@ public final class UniversalLedgerClient: Clients.UniversalLedgerProtocol, Senda
   ) async throws -> GoogleCloudUniversalLedgerV1.QueryAccountResponse {
     try await self.inner.queryAccount(request: request, options: options)
   }
+
+  /// Queries the network for information stored on the ledger,
+  /// such as accounts and transactions.
+  ///
+  /// Access to certain sensitive fields, such as account balances, may be
+  /// restricted based on the identity of the sender derived from the signature
+  /// in the request. If the sender lacks permission, sensitive fields will be
+  /// redacted from the response and reported in the `redacted_fields` field.
+  ///
+  /// @Snippet(path: "UniversalLedger_QueryData")
+  public func queryData(
+    request: QueryDataRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleCloudUniversalLedgerV1.QueryDataResponse {
+    try await self.inner.queryData(request: request, options: options)
+  }
 }
 
 extension Clients {
@@ -199,6 +214,16 @@ extension Clients {
       accountId: Swift.String,
     ) async throws -> GoogleCloudUniversalLedgerV1.QueryAccountResponse
 
+    /// See `UniversalLedgerClient.queryData`.
+    func queryData(request: QueryDataRequest) async throws
+      -> GoogleCloudUniversalLedgerV1.QueryDataResponse
+
+    /// See `UniversalLedgerClient.queryData`.
+    func queryData(
+      endpoint: Swift.String,
+      serializedSignedQueryRequest: Foundation.Data,
+    ) async throws -> GoogleCloudUniversalLedgerV1.QueryDataResponse
+
     /// See `UniversalLedgerClient.submitTransaction`.
     func submitTransaction(
       request: SubmitTransactionRequest, options: GoogleCloudGax.RequestOptions
@@ -233,6 +258,11 @@ extension Clients {
     func queryAccount(
       request: QueryAccountRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudUniversalLedgerV1.QueryAccountResponse
+
+    /// See `UniversalLedgerClient.queryData`.
+    func queryData(
+      request: QueryDataRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudUniversalLedgerV1.QueryDataResponse
   }
 }
 
@@ -386,5 +416,28 @@ extension Clients.UniversalLedgerProtocol {
       $0.accountId = accountId
     }
     return try await self.queryAccount(request: request)
+  }
+
+  public func queryData(request: QueryDataRequest) async throws
+    -> GoogleCloudUniversalLedgerV1.QueryDataResponse
+  {
+    try await self.queryData(request: request, options: .init())
+  }
+
+  public func queryData(
+    request: QueryDataRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleCloudUniversalLedgerV1.QueryDataResponse {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func queryData(
+    endpoint: Swift.String,
+    serializedSignedQueryRequest: Foundation.Data,
+  ) async throws -> GoogleCloudUniversalLedgerV1.QueryDataResponse {
+    let request = QueryDataRequest().with {
+      $0.endpoint = endpoint
+      $0.serializedSignedQueryRequest = serializedSignedQueryRequest
+    }
+    return try await self.queryData(request: request)
   }
 }

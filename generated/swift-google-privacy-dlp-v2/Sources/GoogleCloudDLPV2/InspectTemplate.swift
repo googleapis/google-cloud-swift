@@ -20,8 +20,8 @@ import Foundation
 /// The inspectTemplate contains a configuration (set of types of sensitive data
 /// to be detected) to be used anywhere you otherwise would normally specify
 /// InspectConfig. See
-/// https://cloud.google.com/sensitive-data-protection/docs/concepts-templates to
-/// learn more.
+/// https://docs.cloud.google.com/sensitive-data-protection/docs/concepts-templates
+/// to learn more.
 public struct InspectTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
@@ -46,6 +46,12 @@ public struct InspectTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   /// The core content of the template. Configuration of the scanning process.
   public var inspectConfig: InspectConfig? = nil
+
+  /// Optional. Enables the use of [limited-availability built-in
+  /// infoTypes](https://docs.cloud.google.com/sensitive-data-protection/docs/infotypes-reference#limited-availability-infotypes)
+  /// in inspect_config. These infoTypes are supported only in specific regions
+  /// and can cause scanning errors if used elsewhere.
+  public var allowLimitedAvailabilityInfoTypes: Swift.Bool = Swift.Bool()
 
   /// Initialize a new instance of `InspectTemplate`.
   public init() {}

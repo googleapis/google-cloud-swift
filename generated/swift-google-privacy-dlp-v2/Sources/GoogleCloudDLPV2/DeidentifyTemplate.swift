@@ -19,8 +19,8 @@ import Foundation
 
 /// DeidentifyTemplates contains instructions on how to de-identify content.
 /// See
-/// https://cloud.google.com/sensitive-data-protection/docs/concepts-templates to
-/// learn more.
+/// https://docs.cloud.google.com/sensitive-data-protection/docs/concepts-templates
+/// to learn more.
 public struct DeidentifyTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {

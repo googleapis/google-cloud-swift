@@ -25,6 +25,10 @@
         request: ReservationSlotsClient.GetRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ReservationSlotsGetResponse
 
+      func getHealth(
+        request: ReservationSlotsClient.GetHealthRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleCloudComputeV1.Operation
+
       func getVersion(
         request: ReservationSlotsClient.GetVersionRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation

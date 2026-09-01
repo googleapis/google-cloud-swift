@@ -144,6 +144,10 @@
     public enum NetworkEndpointType: Codable, Equatable, Sendable {
       /// The network endpoint is represented by an IP address.
       case gceVmIp
+      /// The network endpoint for targeting a specific network interface of a
+      /// VM instance in configurations with multiple network interfaces on the
+      /// same network.
+      case gceVmIpDedicatedBackend
       /// The network endpoint is represented by IP address and port pair.
       case gceVmIpPort
       /// The network endpoint is represented by an IP, Port and Client Destination
@@ -186,13 +190,14 @@
       public var intValue: Int? {
         switch self {
         case .gceVmIp: return 0
-        case .gceVmIpPort: return 1
-        case .gceVmIpPortmap: return 2
-        case .internetFqdnPort: return 3
-        case .internetIpPort: return 4
-        case .nonGcpPrivateIpPort: return 5
-        case .privateServiceConnect: return 6
-        case .serverless: return 7
+        case .gceVmIpDedicatedBackend: return 1
+        case .gceVmIpPort: return 2
+        case .gceVmIpPortmap: return 3
+        case .internetFqdnPort: return 4
+        case .internetIpPort: return 5
+        case .nonGcpPrivateIpPort: return 6
+        case .privateServiceConnect: return 7
+        case .serverless: return 8
         case .unknownIntValue(let v): return v
         case .unknownStringValue: return nil
         }
@@ -204,6 +209,7 @@
       public var stringValue: Swift.String? {
         switch self {
         case .gceVmIp: return "GCE_VM_IP"
+        case .gceVmIpDedicatedBackend: return "GCE_VM_IP_DEDICATED_BACKEND"
         case .gceVmIpPort: return "GCE_VM_IP_PORT"
         case .gceVmIpPortmap: return "GCE_VM_IP_PORTMAP"
         case .internetFqdnPort: return "INTERNET_FQDN_PORT"
@@ -222,6 +228,7 @@
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "GCE_VM_IP": self = .gceVmIp
+        case "GCE_VM_IP_DEDICATED_BACKEND": self = .gceVmIpDedicatedBackend
         case "GCE_VM_IP_PORT": self = .gceVmIpPort
         case "GCE_VM_IP_PORTMAP": self = .gceVmIpPortmap
         case "INTERNET_FQDN_PORT": self = .internetFqdnPort
@@ -239,13 +246,14 @@
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .gceVmIp
-        case 1: self = .gceVmIpPort
-        case 2: self = .gceVmIpPortmap
-        case 3: self = .internetFqdnPort
-        case 4: self = .internetIpPort
-        case 5: self = .nonGcpPrivateIpPort
-        case 6: self = .privateServiceConnect
-        case 7: self = .serverless
+        case 1: self = .gceVmIpDedicatedBackend
+        case 2: self = .gceVmIpPort
+        case 3: self = .gceVmIpPortmap
+        case 4: self = .internetFqdnPort
+        case 5: self = .internetIpPort
+        case 6: self = .nonGcpPrivateIpPort
+        case 7: self = .privateServiceConnect
+        case 8: self = .serverless
         default: self = .unknownIntValue(intValue)
         }
       }
@@ -272,13 +280,14 @@
         var container = encoder.singleValueContainer()
         switch self {
         case .gceVmIp: return try container.encode(0)
-        case .gceVmIpPort: return try container.encode(1)
-        case .gceVmIpPortmap: return try container.encode(2)
-        case .internetFqdnPort: return try container.encode(3)
-        case .internetIpPort: return try container.encode(4)
-        case .nonGcpPrivateIpPort: return try container.encode(5)
-        case .privateServiceConnect: return try container.encode(6)
-        case .serverless: return try container.encode(7)
+        case .gceVmIpDedicatedBackend: return try container.encode(1)
+        case .gceVmIpPort: return try container.encode(2)
+        case .gceVmIpPortmap: return try container.encode(3)
+        case .internetFqdnPort: return try container.encode(4)
+        case .internetIpPort: return try container.encode(5)
+        case .nonGcpPrivateIpPort: return try container.encode(6)
+        case .privateServiceConnect: return try container.encode(7)
+        case .serverless: return try container.encode(8)
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -28,7 +28,7 @@ public struct TransactionCertificate: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// executed in.
   public var roundId: Swift.Int64 = Swift.Int64()
 
-  /// Output only. The effects of the transaction in the world state.
+  /// Output only. The effects from the transaction execution.
   public var transactionEffects: TransactionEffects? = nil
 
   /// Output only. Events produced by the transaction.

@@ -23,12 +23,12 @@ import Foundation
 ///
 /// The generated data profiles are retained according to the
 /// [data retention policy]
-/// (https://cloud.google.com/sensitive-data-protection/docs/data-profiles#retention).
+/// (https://docs.cloud.google.com/sensitive-data-protection/docs/data-profiles#retention).
 public struct DiscoveryConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
-  /// Unique resource name for the DiscoveryConfig, assigned by the service when
-  /// the DiscoveryConfig is created, for example
+  /// Output only. Unique resource name for the DiscoveryConfig, assigned by the
+  /// service when the DiscoveryConfig is created, for example
   /// `projects/dlp-test-project/locations/global/discoveryConfigs/53234423`.
   public var name: Swift.String = Swift.String()
 
@@ -56,7 +56,7 @@ public struct DiscoveryConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// scanned.
   ///
   /// For more information, see
-  /// https://cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
   public var inspectTemplates: [Swift.String] = []
 
   /// Actions to execute at the completion of scanning.

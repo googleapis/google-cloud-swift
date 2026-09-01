@@ -90,6 +90,12 @@ public struct BDRBackupRestoreJobLog: Codable, Equatable, GoogleCloudWKT._AnyPac
   /// Restore resource location.
   public var restoreResourceLocation: Swift.String? = nil
 
+  /// Recovery point time.
+  public var recoveryPointTime: GoogleCloudWKT.Timestamp? = nil
+
+  /// Canonical Data Source Name
+  public var dataSourceName: Swift.String = Swift.String()
+
   /// Initialize a new instance of `BDRBackupRestoreJobLog`.
   public init() {}
 

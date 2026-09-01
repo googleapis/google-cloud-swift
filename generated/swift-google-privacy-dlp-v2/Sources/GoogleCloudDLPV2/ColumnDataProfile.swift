@@ -44,7 +44,7 @@ public struct ColumnDataProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable
   public var datasetProjectId: Swift.String = Swift.String()
 
   /// If supported, the location where the dataset's data is stored.
-  /// See https://cloud.google.com/bigquery/docs/locations for supported
+  /// See https://docs.cloud.google.com/bigquery/docs/locations for supported
   /// BigQuery locations.
   public var datasetLocation: Swift.String = Swift.String()
 

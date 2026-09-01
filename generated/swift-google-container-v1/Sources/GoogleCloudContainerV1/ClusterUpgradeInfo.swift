@@ -42,6 +42,9 @@ public struct ClusterUpgradeInfo: Codable, Equatable, GoogleCloudWKT._AnyPackabl
   /// The cluster's current minor version's end of extended support timestamp.
   public var endOfExtendedSupportTimestamp: Swift.String? = nil
 
+  /// Output only. The cluster's rollback-safe upgrade status.
+  public var rollbackSafeUpgradeStatus: RollbackSafeUpgradeStatus? = nil
+
   /// Initialize a new instance of `ClusterUpgradeInfo`.
   public init() {}
 

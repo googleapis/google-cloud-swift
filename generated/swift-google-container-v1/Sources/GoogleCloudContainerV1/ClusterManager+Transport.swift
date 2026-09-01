@@ -817,5 +817,26 @@ extension Clients {
         GoogleCloudContainerV1.NodePoolUpgradeInfo.self, timeout: options.attemptTimeout
       ).get()
     }
+
+    public func completeControlPlaneUpgrade(
+      request: CompleteControlPlaneUpgradeRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudContainerV1.Operation {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
+          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
+        }
+        return "/v1/\(pathVariable0):completeControlPlaneUpgrade"
+      }()
+      let query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      var req = try await self.inner.newRequest(path: path, query: query)
+      req.setMethod(.POST)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
+      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      return try await req.rpc(
+        GoogleCloudContainerV1.Operation.self, timeout: options.attemptTimeout
+      ).get()
+    }
   }
 }

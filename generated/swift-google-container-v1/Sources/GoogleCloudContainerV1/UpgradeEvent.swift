@@ -37,6 +37,12 @@ public struct UpgradeEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// The target version for the upgrade.
   public var targetVersion: Swift.String = Swift.String()
 
+  /// Output only. The current emulated version before the upgrade.
+  public var currentEmulatedVersion: Swift.String = Swift.String()
+
+  /// Output only. The target emulated version for the upgrade.
+  public var targetEmulatedVersion: Swift.String = Swift.String()
+
   /// Optional relative path to the resource. For example in node pool upgrades,
   /// the relative path of the node pool.
   public var resource: Swift.String = Swift.String()

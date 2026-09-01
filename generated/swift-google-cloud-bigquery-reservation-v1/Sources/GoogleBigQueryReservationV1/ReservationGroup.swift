@@ -28,6 +28,21 @@ public struct ReservationGroup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// dash. Its maximum length is 64 characters.
   public var name: Swift.String = Swift.String()
 
+  /// Optional. The parent reservation group of the reservation group.
+  /// Format: `projects/*/locations/*/reservationGroups/team1-prod` for non-root
+  /// reservation groups, or `projects/*/locations/*` for root reservation
+  /// groups.
+  public var parentGroup: Swift.String = Swift.String()
+
+  /// Output only. Creation time of the reservation group.
+  public var creationTime: GoogleCloudWKT.Timestamp? = nil
+
+  /// Output only. Last update time of the reservation group via a user
+  /// operation. This timestamp is updated only when an update operation
+  /// explicitly targets this reservation group directly. It is not updated when
+  /// parent or child groups are created, updated, or deleted.
+  public var updateTime: GoogleCloudWKT.Timestamp? = nil
+
   /// Initialize a new instance of `ReservationGroup`.
   public init() {}
 

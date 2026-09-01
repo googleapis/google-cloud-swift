@@ -145,5 +145,20 @@ extension Clients {
           return try await self.inner.queryAccount(request: r, options: o)
         })
     }
+
+    public func queryData(
+      request: QueryDataRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudUniversalLedgerV1.QueryDataResponse {
+      try await self._intercept(
+        request: request,
+        options: options,
+        name: "queryData",
+        action: {
+          (r: QueryDataRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> GoogleCloudUniversalLedgerV1.QueryDataResponse
+          in
+          return try await self.inner.queryData(request: r, options: o)
+        })
+    }
   }
 }

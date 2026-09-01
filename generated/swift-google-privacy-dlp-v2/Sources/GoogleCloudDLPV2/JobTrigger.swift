@@ -19,13 +19,13 @@ import Foundation
 
 /// Contains a configuration to make API calls on a repeating basis.
 /// See
-/// https://cloud.google.com/sensitive-data-protection/docs/concepts-job-triggers
+/// https://docs.cloud.google.com/sensitive-data-protection/docs/concepts-job-triggers
 /// to learn more.
 public struct JobTrigger: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
-  /// Unique resource name for the triggeredJob, assigned by the service when the
-  /// triggeredJob is created, for example
+  /// Output only. Unique resource name for the triggeredJob, assigned by the
+  /// service when the triggeredJob is created, for example
   /// `projects/dlp-test-project/jobTriggers/53234423`.
   public var name: Swift.String = Swift.String()
 

@@ -44,7 +44,7 @@ public struct BigQueryOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// TimespanConfig.
   ///
   /// Caution: A [known
-  /// issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#bq-sampling)
+  /// issue](https://docs.cloud.google.com/sensitive-data-protection/docs/known-issues#bq-sampling)
   /// is causing the `rowsLimitPercent` field to behave unexpectedly. We
   /// recommend using `rowsLimit` instead.
   public var rowsLimitPercent: Swift.Int32 = Swift.Int32()

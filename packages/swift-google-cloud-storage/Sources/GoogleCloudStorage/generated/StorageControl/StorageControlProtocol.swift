@@ -435,6 +435,11 @@ public protocol StorageControlProtocol {
     request: UpdateRapidCacheRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation
 
+  /// Disables a Rapid Cache instance.
+  func disableRapidCache(
+    request: DisableRapidCacheRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation
+
   /// Gets a Rapid Cache instance.
   func getRapidCache(
     request: GetRapidCacheRequest, options: GoogleCloudGax.RequestOptions

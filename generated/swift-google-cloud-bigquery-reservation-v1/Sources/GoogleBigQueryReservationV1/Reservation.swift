@@ -183,6 +183,13 @@ public struct Reservation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// This feature is not yet generally available.
   public var schedulingPolicy: SchedulingPolicy? = nil
 
+  /// Output only. The reservation group path of the reservation from root to
+  /// leaf. The order of elements matters: the first element is the top level
+  /// group and the last element is the direct parent reservation group. For
+  /// example, if a reservation is under group-1 -> group-2 -> group-3, then the
+  /// reservation group path is ["group-1", "group-2", "group-3"].
+  public var reservationGroupPath: [Swift.String] = []
+
   /// Initialize a new instance of `Reservation`.
   public init() {}
 

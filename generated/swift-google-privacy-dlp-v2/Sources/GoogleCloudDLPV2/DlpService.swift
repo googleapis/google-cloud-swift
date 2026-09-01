@@ -25,7 +25,7 @@ import GoogleCloudGax
 /// inspection, classification, and de-identification platform that works
 /// on text, images, and Google Cloud storage repositories.
 /// To learn more about concepts and find how-to guides see
-/// https://cloud.google.com/sensitive-data-protection/docs/.
+/// https://docs.cloud.google.com/sensitive-data-protection/docs/.
 ///
 /// @Snippet(path: "DlpServiceQuickstart")
 public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
@@ -49,9 +49,9 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// be all types, but may change over time as detectors are updated.
   ///
   /// For how to guides, see
-  /// https://cloud.google.com/sensitive-data-protection/docs/inspecting-images
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-images
   /// and
-  /// https://cloud.google.com/sensitive-data-protection/docs/inspecting-text,
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-text,
   ///
   /// @Snippet(path: "DlpService_InspectContent")
   public func inspectContent(
@@ -63,7 +63,7 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// Redacts potentially sensitive info from an image.
   /// This method has limits on input size, processing time, and output size.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/redacting-sensitive-data-images
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/redacting-sensitive-data-images
   /// to learn more.
   ///
   /// When no InfoTypes or CustomInfoTypes are specified in this request, the
@@ -83,7 +83,7 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// De-identifies potentially sensitive info from a ContentItem.
   /// This method has limits on input size and output size.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/deidentify-sensitive-data
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/deidentify-sensitive-data
   /// to learn more.
   ///
   /// When no InfoTypes or CustomInfoTypes are specified in this request, the
@@ -99,7 +99,7 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
 
   /// Re-identifies content that has been de-identified.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/pseudonymization#re-identification_in_free_text_code_example
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/pseudonymization#re-identification_in_free_text_code_example
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_ReidentifyContent")
@@ -111,7 +111,7 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
 
   /// Returns a list of the sensitive information types that the DLP API
   /// supports. See
-  /// https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/infotypes-reference
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_ListInfoTypes")
@@ -124,7 +124,7 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// Creates an InspectTemplate for reusing frequently used configuration
   /// for inspecting content, images, and storage.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/creating-templates
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_CreateInspectTemplate")
@@ -136,7 +136,7 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
 
   /// Updates the InspectTemplate.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/creating-templates
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_UpdateInspectTemplate")
@@ -148,7 +148,7 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
 
   /// Gets an InspectTemplate.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/creating-templates
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_GetInspectTemplate")
@@ -160,7 +160,7 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
 
   /// Lists InspectTemplates.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/creating-templates
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_ListInspectTemplates")
@@ -172,7 +172,7 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
 
   /// Lists InspectTemplates.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/creating-templates
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_ListInspectTemplates")
@@ -190,7 +190,7 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
 
   /// Deletes an InspectTemplate.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/creating-templates
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_DeleteInspectTemplate")
@@ -203,7 +203,7 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// Creates a DeidentifyTemplate for reusing frequently used configuration
   /// for de-identifying content, images, and storage.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_CreateDeidentifyTemplate")
@@ -215,7 +215,7 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
 
   /// Updates the DeidentifyTemplate.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_UpdateDeidentifyTemplate")
@@ -227,7 +227,7 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
 
   /// Gets a DeidentifyTemplate.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_GetDeidentifyTemplate")
@@ -239,7 +239,7 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
 
   /// Lists DeidentifyTemplates.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_ListDeidentifyTemplates")
@@ -251,7 +251,7 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
 
   /// Lists DeidentifyTemplates.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_ListDeidentifyTemplates")
@@ -269,7 +269,7 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
 
   /// Deletes a DeidentifyTemplate.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_DeleteDeidentifyTemplate")
@@ -282,7 +282,7 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// Creates a job trigger to run DLP actions such as scanning storage for
   /// sensitive information on a set schedule.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_CreateJobTrigger")
@@ -294,7 +294,7 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
 
   /// Updates a job trigger.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_UpdateJobTrigger")
@@ -317,7 +317,7 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
 
   /// Gets a job trigger.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_GetJobTrigger")
@@ -329,7 +329,7 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
 
   /// Lists job triggers.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_ListJobTriggers")
@@ -341,7 +341,7 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
 
   /// Lists job triggers.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_ListJobTriggers")
@@ -359,7 +359,7 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
 
   /// Deletes a job trigger.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_DeleteJobTrigger")
@@ -441,9 +441,9 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
 
   /// Creates a new job to inspect storage or calculate risk metrics.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage
   /// and
-  /// https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
   /// to learn more.
   ///
   /// When no InfoTypes or CustomInfoTypes are specified in inspect jobs, the
@@ -459,9 +459,9 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
 
   /// Lists DlpJobs that match the specified filter in the request.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage
   /// and
-  /// https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_ListDlpJobs")
@@ -473,9 +473,9 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
 
   /// Lists DlpJobs that match the specified filter in the request.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage
   /// and
-  /// https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_ListDlpJobs")
@@ -492,9 +492,9 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
 
   /// Gets the latest state of a long-running DlpJob.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage
   /// and
-  /// https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_GetDlpJob")
@@ -508,9 +508,9 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// no longer interested in the DlpJob result. The job will be canceled if
   /// possible.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage
   /// and
-  /// https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_DeleteDlpJob")
@@ -524,9 +524,9 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// makes a best effort to cancel the DlpJob, but success is not
   /// guaranteed.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage
   /// and
-  /// https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_CancelDlpJob")
@@ -538,7 +538,7 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
 
   /// Creates a pre-built stored infoType to be used for inspection.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_CreateStoredInfoType")
@@ -551,7 +551,7 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// Updates the stored infoType by creating a new version. The existing version
   /// will continue to be used until the new version is ready.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_UpdateStoredInfoType")
@@ -563,7 +563,7 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
 
   /// Gets a stored infoType.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_GetStoredInfoType")
@@ -575,7 +575,7 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
 
   /// Lists stored infoTypes.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_ListStoredInfoTypes")
@@ -587,7 +587,7 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
 
   /// Lists stored infoTypes.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_ListStoredInfoTypes")
@@ -605,7 +605,7 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
 
   /// Deletes a stored infoType.
   /// See
-  /// https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_DeleteStoredInfoType")
@@ -872,6 +872,66 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
     request: UpdateConnectionRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.Connection {
     try await self.inner.updateConnection(request: request, options: options)
+  }
+
+  /// Create a ContentPolicy.
+  ///
+  /// @Snippet(path: "DlpService_CreateContentPolicy")
+  public func createContentPolicy(
+    request: CreateContentPolicyRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleCloudDLPV2.ContentPolicy {
+    try await self.inner.createContentPolicy(request: request, options: options)
+  }
+
+  /// Update a ContentPolicy.
+  ///
+  /// @Snippet(path: "DlpService_UpdateContentPolicy")
+  public func updateContentPolicy(
+    request: UpdateContentPolicyRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleCloudDLPV2.ContentPolicy {
+    try await self.inner.updateContentPolicy(request: request, options: options)
+  }
+
+  /// Get a ContentPolicy.
+  ///
+  /// @Snippet(path: "DlpService_GetContentPolicy")
+  public func getContentPolicy(
+    request: GetContentPolicyRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleCloudDLPV2.ContentPolicy {
+    try await self.inner.getContentPolicy(request: request, options: options)
+  }
+
+  /// Lists ContentPolicies in a parent.
+  ///
+  /// @Snippet(path: "DlpService_ListContentPolicies")
+  public func listContentPolicies(
+    request: ListContentPoliciesRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleCloudDLPV2.ListContentPoliciesResponse {
+    try await self.inner.listContentPolicies(request: request, options: options)
+  }
+
+  /// Lists ContentPolicies in a parent.
+  ///
+  /// @Snippet(path: "DlpService_ListContentPolicies")
+  public func listContentPolicies(
+    byItem: ListContentPoliciesRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<ContentPolicy, Swift.Error> {
+    let listRpc = {
+      (token: Swift.String) async throws -> GoogleCloudDLPV2.ListContentPoliciesResponse in
+      var request = byItem
+      request.pageToken = token
+      return try await self.listContentPolicies(request: request, options: options)
+    }
+    return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
+  }
+
+  /// Delete a ContentPolicy.
+  ///
+  /// @Snippet(path: "DlpService_DeleteContentPolicy")
+  public func deleteContentPolicy(
+    request: DeleteContentPolicyRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws {
+    try await self.inner.deleteContentPolicy(request: request, options: options)
   }
 }
 
@@ -1410,6 +1470,58 @@ extension Clients {
       name: Swift.String,
     ) async throws -> GoogleCloudDLPV2.Connection
 
+    /// See `DlpServiceClient.createContentPolicy`.
+    func createContentPolicy(request: CreateContentPolicyRequest) async throws
+      -> GoogleCloudDLPV2.ContentPolicy
+
+    /// See `DlpServiceClient.createContentPolicy`.
+    func createContentPolicy(
+      parent: Swift.String,
+      contentPolicy: ContentPolicy?,
+    ) async throws -> GoogleCloudDLPV2.ContentPolicy
+
+    /// See `DlpServiceClient.updateContentPolicy`.
+    func updateContentPolicy(request: UpdateContentPolicyRequest) async throws
+      -> GoogleCloudDLPV2.ContentPolicy
+
+    /// See `DlpServiceClient.updateContentPolicy`.
+    func updateContentPolicy(
+      name: Swift.String,
+      contentPolicy: ContentPolicy?,
+      updateMask: GoogleCloudWKT.FieldMask?,
+    ) async throws -> GoogleCloudDLPV2.ContentPolicy
+
+    /// See `DlpServiceClient.getContentPolicy`.
+    func getContentPolicy(request: GetContentPolicyRequest) async throws
+      -> GoogleCloudDLPV2.ContentPolicy
+
+    /// See `DlpServiceClient.getContentPolicy`.
+    func getContentPolicy(
+      name: Swift.String,
+    ) async throws -> GoogleCloudDLPV2.ContentPolicy
+
+    /// See `DlpServiceClient.listContentPolicies`.
+    func listContentPolicies(request: ListContentPoliciesRequest) async throws
+      -> GoogleCloudDLPV2.ListContentPoliciesResponse
+
+    /// See `DlpServiceClient.listContentPolicies`.
+    func listContentPolicies(
+      byItem: ListContentPoliciesRequest
+    ) throws -> any AsyncSequence<ContentPolicy, Swift.Error>
+
+    /// See `DlpServiceClient.listContentPolicies`.
+    func listContentPolicies(
+      parent: Swift.String,
+    ) throws -> any AsyncSequence<ContentPolicy, Swift.Error>
+
+    /// See `DlpServiceClient.deleteContentPolicy`.
+    func deleteContentPolicy(request: DeleteContentPolicyRequest) async throws
+
+    /// See `DlpServiceClient.deleteContentPolicy`.
+    func deleteContentPolicy(
+      name: Swift.String,
+    ) async throws
+
     /// See `DlpServiceClient.inspectContent`.
     func inspectContent(
       request: InspectContentRequest, options: GoogleCloudGax.RequestOptions
@@ -1744,6 +1856,36 @@ extension Clients {
     func updateConnection(
       request: UpdateConnectionRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudDLPV2.Connection
+
+    /// See `DlpServiceClient.createContentPolicy`.
+    func createContentPolicy(
+      request: CreateContentPolicyRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudDLPV2.ContentPolicy
+
+    /// See `DlpServiceClient.updateContentPolicy`.
+    func updateContentPolicy(
+      request: UpdateContentPolicyRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudDLPV2.ContentPolicy
+
+    /// See `DlpServiceClient.getContentPolicy`.
+    func getContentPolicy(
+      request: GetContentPolicyRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudDLPV2.ContentPolicy
+
+    /// See `DlpServiceClient.listContentPolicies`.
+    func listContentPolicies(
+      request: ListContentPoliciesRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudDLPV2.ListContentPoliciesResponse
+
+    /// See `DlpServiceClient.listContentPolicies`.
+    func listContentPolicies(
+      byItem: ListContentPoliciesRequest, options: GoogleCloudGax.RequestOptions
+    ) throws -> any AsyncSequence<ContentPolicy, Swift.Error>
+
+    /// See `DlpServiceClient.deleteContentPolicy`.
+    func deleteContentPolicy(
+      request: DeleteContentPolicyRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws
   }
 }
 
@@ -3049,5 +3191,130 @@ extension Clients.DlpServiceProtocol {
       $0.name = name
     }
     return try await self.updateConnection(request: request)
+  }
+
+  public func createContentPolicy(request: CreateContentPolicyRequest) async throws
+    -> GoogleCloudDLPV2.ContentPolicy
+  {
+    try await self.createContentPolicy(request: request, options: .init())
+  }
+
+  public func createContentPolicy(
+    request: CreateContentPolicyRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleCloudDLPV2.ContentPolicy {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func createContentPolicy(
+    parent: Swift.String,
+    contentPolicy: ContentPolicy?,
+  ) async throws -> GoogleCloudDLPV2.ContentPolicy {
+    let request = CreateContentPolicyRequest().with {
+      $0.parent = parent
+      $0.contentPolicy = contentPolicy
+    }
+    return try await self.createContentPolicy(request: request)
+  }
+
+  public func updateContentPolicy(request: UpdateContentPolicyRequest) async throws
+    -> GoogleCloudDLPV2.ContentPolicy
+  {
+    try await self.updateContentPolicy(request: request, options: .init())
+  }
+
+  public func updateContentPolicy(
+    request: UpdateContentPolicyRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleCloudDLPV2.ContentPolicy {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func updateContentPolicy(
+    name: Swift.String,
+    contentPolicy: ContentPolicy?,
+    updateMask: GoogleCloudWKT.FieldMask?,
+  ) async throws -> GoogleCloudDLPV2.ContentPolicy {
+    let request = UpdateContentPolicyRequest().with {
+      $0.name = name
+      $0.contentPolicy = contentPolicy
+      $0.updateMask = updateMask
+    }
+    return try await self.updateContentPolicy(request: request)
+  }
+
+  public func getContentPolicy(request: GetContentPolicyRequest) async throws
+    -> GoogleCloudDLPV2.ContentPolicy
+  {
+    try await self.getContentPolicy(request: request, options: .init())
+  }
+
+  public func getContentPolicy(
+    request: GetContentPolicyRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleCloudDLPV2.ContentPolicy {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func getContentPolicy(
+    name: Swift.String,
+  ) async throws -> GoogleCloudDLPV2.ContentPolicy {
+    let request = GetContentPolicyRequest().with {
+      $0.name = name
+    }
+    return try await self.getContentPolicy(request: request)
+  }
+
+  public func listContentPolicies(request: ListContentPoliciesRequest) async throws
+    -> GoogleCloudDLPV2.ListContentPoliciesResponse
+  {
+    try await self.listContentPolicies(request: request, options: .init())
+  }
+
+  public func listContentPolicies(
+    request: ListContentPoliciesRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleCloudDLPV2.ListContentPoliciesResponse {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func listContentPolicies(
+    byItem: ListContentPoliciesRequest
+  ) throws -> any AsyncSequence<ContentPolicy, Swift.Error> {
+    try self.listContentPolicies(byItem: byItem, options: .init())
+  }
+
+  public func listContentPolicies(
+    byItem: ListContentPoliciesRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<ContentPolicy, Swift.Error> {
+    let listRpc = {
+      (token: Swift.String) async throws -> GoogleCloudDLPV2.ListContentPoliciesResponse in
+      throw GoogleCloudGax.RequestError.unimplemented
+    }
+    return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
+  }
+
+  public func listContentPolicies(
+    parent: Swift.String,
+  ) throws -> any AsyncSequence<ContentPolicy, Swift.Error> {
+    let request = ListContentPoliciesRequest().with {
+      $0.parent = parent
+    }
+    return try self.listContentPolicies(byItem: request)
+  }
+
+  public func deleteContentPolicy(request: DeleteContentPolicyRequest) async throws {
+    try await self.deleteContentPolicy(request: request, options: .init())
+  }
+
+  public func deleteContentPolicy(
+    request: DeleteContentPolicyRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func deleteContentPolicy(
+    name: Swift.String,
+  ) async throws {
+    let request = DeleteContentPolicyRequest().with {
+      $0.name = name
+    }
+    try await self.deleteContentPolicy(request: request)
   }
 }

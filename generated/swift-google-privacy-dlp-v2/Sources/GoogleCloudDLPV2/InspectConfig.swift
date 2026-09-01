@@ -25,7 +25,7 @@ public struct InspectConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 {
   /// Restricts what info_types to look for. The values must correspond to
   /// InfoType values returned by ListInfoTypes or listed at
-  /// https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference.
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/infotypes-reference.
   ///
   /// When no InfoTypes or CustomInfoTypes are specified in a request, the
   /// system may automatically choose a default list of detectors to run, which
@@ -42,7 +42,7 @@ public struct InspectConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// In general, the highest likelihood setting yields the fewest findings in
   /// results and the lowest chance of a false positive. For more information,
   /// see [Match
-  /// likelihood](https://cloud.google.com/sensitive-data-protection/docs/likelihood).
+  /// likelihood](https://docs.cloud.google.com/sensitive-data-protection/docs/likelihood).
   public var minLikelihood: Likelihood = Likelihood()
 
   /// Minimum likelihood per infotype. For each infotype, a user can specify a
@@ -84,7 +84,7 @@ public struct InspectConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   public var excludeInfoTypes: Swift.Bool = Swift.Bool()
 
   /// CustomInfoTypes provided by the user. See
-  /// https://cloud.google.com/sensitive-data-protection/docs/creating-custom-infotypes
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-custom-infotypes
   /// to learn more.
   public var customInfoTypes: [CustomInfoType] = []
 

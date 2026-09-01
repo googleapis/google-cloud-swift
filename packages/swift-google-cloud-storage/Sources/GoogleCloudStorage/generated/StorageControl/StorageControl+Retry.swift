@@ -359,6 +359,21 @@ extension Clients {
         })
     }
 
+    public func disableRapidCache(
+      request: DisableRapidCacheRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: DisableRapidCacheRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> GoogleLongRunning.Operation
+          in
+          return try await self.inner.disableRapidCache(request: r, options: o)
+        })
+    }
+
     public func getRapidCache(
       request: GetRapidCacheRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> RapidCache {

@@ -21,35 +21,35 @@ import Foundation
 public struct DlpJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
-  /// The server-assigned name.
+  /// Output only. The server-assigned name.
   public var name: Swift.String = Swift.String()
 
   /// The type of job.
   public var type: DlpJobType = DlpJobType()
 
-  /// State of a job.
+  /// Output only. State of a job.
   public var state: DlpJob.JobState = DlpJob.JobState()
 
-  /// Time when the job was created.
+  /// Output only. Time when the job was created.
   public var createTime: GoogleCloudWKT.Timestamp? = nil
 
-  /// Time when the job started.
+  /// Output only. Time when the job started.
   public var startTime: GoogleCloudWKT.Timestamp? = nil
 
-  /// Time when the job finished.
+  /// Output only. Time when the job finished.
   public var endTime: GoogleCloudWKT.Timestamp? = nil
 
-  /// Time when the job was last modified by the system.
+  /// Output only. Time when the job was last modified by the system.
   public var lastModified: GoogleCloudWKT.Timestamp? = nil
 
-  /// If created by a job trigger, the resource name of the trigger that
-  /// instantiated the job.
+  /// Output only. If created by a job trigger, the resource name of the trigger
+  /// that instantiated the job.
   public var jobTriggerName: Swift.String = Swift.String()
 
-  /// A stream of errors encountered running the job.
+  /// Output only. A stream of errors encountered running the job.
   public var errors: [Error] = []
 
-  /// Events that should occur after the job has completed.
+  /// Output only. Events that should occur after the job has completed.
   public var actionDetails: [ActionDetails] = []
 
   /// Job details.

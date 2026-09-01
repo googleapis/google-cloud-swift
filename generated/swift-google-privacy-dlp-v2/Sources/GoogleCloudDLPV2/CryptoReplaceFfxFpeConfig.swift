@@ -25,8 +25,8 @@ import Foundation
 /// will be replaced with the same surrogate. Identifiers must be at least two
 /// characters long. In the case that the identifier is the empty string, it will
 /// be skipped. See
-/// https://cloud.google.com/sensitive-data-protection/docs/pseudonymization to
-/// learn more.
+/// https://docs.cloud.google.com/sensitive-data-protection/docs/pseudonymization
+/// to learn more.
 ///
 /// Note: We recommend using  CryptoDeterministicConfig for all use cases which
 /// do not require preserving the input alphabet space and size, plus warrant
@@ -71,7 +71,7 @@ public struct CryptoReplaceFfxFpeConfig: Codable, Equatable, GoogleCloudWKT._Any
   ///
   /// This annotation identifies the surrogate when inspecting content using the
   /// custom infoType
-  /// [`SurrogateType`](https://cloud.google.com/sensitive-data-protection/docs/reference/rest/v2/InspectConfig#surrogatetype).
+  /// [`SurrogateType`](https://docs.cloud.google.com/sensitive-data-protection/docs/reference/rest/v2/InspectConfig#surrogatetype).
   /// This facilitates reversal of the surrogate when it occurs in free text.
   ///
   /// In order for inspection to work properly, the name of this infoType must

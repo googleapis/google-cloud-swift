@@ -31,7 +31,7 @@ public struct CloudStorageOptions: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// This field can't be set if de-identification is requested. For certain file
   /// types, setting this field has no effect. For more information, see [Limits
   /// on bytes scanned per
-  /// file](https://cloud.google.com/sensitive-data-protection/docs/supported-file-types#max-byte-size-per-file).
+  /// file](https://docs.cloud.google.com/sensitive-data-protection/docs/supported-file-types#max-byte-size-per-file).
   public var bytesLimitPerFile: Swift.Int64 = Swift.Int64()
 
   /// Max percentage of bytes to scan from a file. The rest are omitted. The
@@ -41,7 +41,7 @@ public struct CloudStorageOptions: Codable, Equatable, GoogleCloudWKT._AnyPackab
   /// This field can't be set if de-identification is requested. For certain file
   /// types, setting this field has no effect. For more information, see [Limits
   /// on bytes scanned per
-  /// file](https://cloud.google.com/sensitive-data-protection/docs/supported-file-types#max-byte-size-per-file).
+  /// file](https://docs.cloud.google.com/sensitive-data-protection/docs/supported-file-types#max-byte-size-per-file).
   public var bytesLimitPerFilePercent: Swift.Int32 = Swift.Int32()
 
   /// List of file type groups to include in the scan.

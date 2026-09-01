@@ -107,6 +107,10 @@ extension Clients {
       request: UpdateRapidCacheRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
+    func disableRapidCache(
+      request: DisableRapidCacheRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleLongRunning.Operation
+
     func getRapidCache(
       request: GetRapidCacheRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> RapidCache

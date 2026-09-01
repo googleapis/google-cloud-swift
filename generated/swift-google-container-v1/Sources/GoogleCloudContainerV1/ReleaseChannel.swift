@@ -47,7 +47,9 @@ public struct ReleaseChannel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
 
   /// Possible values for 'channel'.
   public enum Channel: Codable, Equatable, Sendable {
-    /// No channel specified.
+    /// Deprecated: No channel specified. it will be removed in the future, use
+    /// RAPID, REGULAR, STABLE or EXTENDED instead.
+    @available(*, deprecated)
     case unspecified
     /// RAPID channel is offered on an early access basis for customers who want
     /// to test new releases.

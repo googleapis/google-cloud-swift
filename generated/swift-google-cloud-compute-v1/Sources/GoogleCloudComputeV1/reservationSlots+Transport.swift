@@ -66,6 +66,41 @@
         ).get()
       }
 
+      public func getHealth(
+        request: ReservationSlotsClient.GetHealthRequest, options: GoogleCloudGax.RequestOptions
+      ) async throws -> GoogleCloudComputeV1.Operation {
+        let path = try { () throws -> Swift.String in
+          guard let pathVariable0 = request.project as Swift.String?, !pathVariable0.isEmpty else {
+            throw GoogleCloudGax.RequestError.binding("'request.project' is not set or is empty")
+          }
+          guard let pathVariable1 = request.zone as Swift.String?, !pathVariable1.isEmpty else {
+            throw GoogleCloudGax.RequestError.binding("'request.zone' is not set or is empty")
+          }
+          guard let pathVariable2 = request.parentName as Swift.String?, !pathVariable2.isEmpty
+          else {
+            throw GoogleCloudGax.RequestError.binding("'request.parentName' is not set or is empty")
+          }
+          guard let pathVariable3 = request.reservationSlot as Swift.String?, !pathVariable3.isEmpty
+          else {
+            throw GoogleCloudGax.RequestError.binding(
+              "'request.reservationSlot' is not set or is empty")
+          }
+          return
+            "/compute/v1/projects/\(pathVariable0)/zones/\(pathVariable1)/\(pathVariable2)/reservationSlots/\(pathVariable3)/getHealth"
+        }()
+        var query = [
+          URLQueryItem(name: "$alt", value: "json")
+        ]
+        let encoder = GoogleCloudGax._QueryParameterEncoder()
+        query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
+        var req = try await self.inner.newRequest(path: path, query: query)
+        req.setMethod(.POST)
+        req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
+        return try await req.rpc(
+          GoogleCloudComputeV1.Operation.self, timeout: options.attemptTimeout
+        ).get()
+      }
+
       public func getVersion(
         request: ReservationSlotsClient.GetVersionRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

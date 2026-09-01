@@ -17,14 +17,17 @@
 import Foundation
 @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
-/// Effects of the execution of a transaction in the world state.
+/// Effects of the execution of a transaction.
 public struct TransactionEffects: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// Output only. The resulting status of the transaction execution.
   public var status: TransactionStatus? = nil
 
-  /// Output only. The effects of the transaction in the world state.
+  /// Output only. Deprecated: Query the network state instead to determine any
+  /// changes to the world state. The effects of the transaction in the world
+  /// state.
+  @available(*, deprecated)
   public var effects: [TransactionEffect] = []
 
   /// Initialize a new instance of `TransactionEffects`.

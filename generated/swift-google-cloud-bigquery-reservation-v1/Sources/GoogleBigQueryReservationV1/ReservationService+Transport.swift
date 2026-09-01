@@ -700,5 +700,32 @@ extension Clients {
         timeout: options.attemptTimeout
       ).get()
     }
+
+    public func updateReservationGroup(
+      request: UpdateReservationGroupRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleBigQueryReservationV1.ReservationGroup {
+      let path = try { () throws -> Swift.String in
+        guard let pathVariable0 = request.reservationGroup.map({ $0.name }), !pathVariable0.isEmpty
+        else {
+          throw GoogleCloudGax.RequestError.binding(
+            "'request.reservation_group.name' is not set or is empty")
+        }
+        return "/v1/\(pathVariable0)"
+      }()
+      var query = [
+        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+      ]
+      let encoder = GoogleCloudGax._QueryParameterEncoder()
+      query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
+      var req = try await self.inner.newRequest(path: path, query: query)
+      req.setMethod(.PATCH)
+      req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
+      if let body = request.reservationGroup {
+        req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
+      }
+      return try await req.rpc(
+        GoogleBigQueryReservationV1.ReservationGroup.self, timeout: options.attemptTimeout
+      ).get()
+    }
   }
 }

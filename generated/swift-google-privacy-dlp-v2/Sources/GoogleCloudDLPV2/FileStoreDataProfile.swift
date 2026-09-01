@@ -40,7 +40,7 @@ public struct FileStoreDataProfile: Codable, Equatable, GoogleCloudWKT._AnyPacka
   /// The location of the file store.
   ///
   /// * Cloud Storage:
-  /// https://cloud.google.com/storage/docs/locations#available-locations
+  /// https://docs.cloud.google.com/storage/docs/locations#available-locations
   /// * Amazon S3:
   /// https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints
   public var fileStoreLocation: Swift.String = Swift.String()

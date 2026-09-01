@@ -56,10 +56,10 @@ public struct Assignment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   public var schedulingPolicy: SchedulingPolicy? = nil
 
   /// Optional. Represents the principal for this assignment. If not empty, jobs
-  /// run by this principal will utilize the associated reservation. Otherwise,
-  /// jobs will fall back to using the reservation assigned to the project,
-  /// folder, or organization (in that order). If no reservation is assigned at
-  /// any of these levels, on-demand capacity will be used.
+  /// run by this principal utilize the associated reservation. Otherwise, jobs
+  /// fall back to using the reservation assigned to the project, folder,
+  /// or organization, in that order. If no reservation is assigned at any of
+  /// these levels, on-demand capacity is used.
   ///
   /// The supported formats are:
   ///
@@ -69,7 +69,7 @@ public struct Assignment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// * `principal://iam.googleapis.com/projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/POOL_ID/subject/SUBJECT_ID`
   ///   for workload identity pool identities.
   /// * The special value `unknown_or_deleted_user` represents principals which
-  ///   cannot be read from the user info service, for example deleted users.
+  ///   cannot be read from the user info service, for example, deleted users.
   public var principal: Swift.String = Swift.String()
 
   /// Optional. Specifies the priority precedence for this assignment. Used to
@@ -173,6 +173,10 @@ public struct Assignment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     /// take priority over a default BACKGROUND reservation assignment (if it
     /// exists).
     case backgroundSearchIndexRefresh
+    /// Automated materialized view refresh jobs will use the reservation.
+    /// Reservations with this job type will take priority over a default QUERY
+    /// reservation assignment (if it exists).
+    case automaticMaterializedViewRefresh
     /// Encodes an unknown integer value.
     ///
     /// The most common cause for an unknown values is for the service to send
@@ -204,6 +208,7 @@ public struct Assignment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .backgroundChangeDataCapture: return 7
       case .backgroundColumnMetadataIndex: return 8
       case .backgroundSearchIndexRefresh: return 9
+      case .automaticMaterializedViewRefresh: return 10
       case .unknownIntValue(let v): return v
       case .unknownStringValue: return nil
       }
@@ -223,6 +228,7 @@ public struct Assignment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .backgroundChangeDataCapture: return "BACKGROUND_CHANGE_DATA_CAPTURE"
       case .backgroundColumnMetadataIndex: return "BACKGROUND_COLUMN_METADATA_INDEX"
       case .backgroundSearchIndexRefresh: return "BACKGROUND_SEARCH_INDEX_REFRESH"
+      case .automaticMaterializedViewRefresh: return "AUTOMATIC_MATERIALIZED_VIEW_REFRESH"
       case .unknownIntValue: return nil
       case .unknownStringValue(let v): return v
       }
@@ -242,6 +248,7 @@ public struct Assignment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case "BACKGROUND_CHANGE_DATA_CAPTURE": self = .backgroundChangeDataCapture
       case "BACKGROUND_COLUMN_METADATA_INDEX": self = .backgroundColumnMetadataIndex
       case "BACKGROUND_SEARCH_INDEX_REFRESH": self = .backgroundSearchIndexRefresh
+      case "AUTOMATIC_MATERIALIZED_VIEW_REFRESH": self = .automaticMaterializedViewRefresh
       default: self = .unknownStringValue(stringValue)
       }
     }
@@ -260,6 +267,7 @@ public struct Assignment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case 7: self = .backgroundChangeDataCapture
       case 8: self = .backgroundColumnMetadataIndex
       case 9: self = .backgroundSearchIndexRefresh
+      case 10: self = .automaticMaterializedViewRefresh
       default: self = .unknownIntValue(intValue)
       }
     }
@@ -294,6 +302,7 @@ public struct Assignment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       case .backgroundChangeDataCapture: return try container.encode(7)
       case .backgroundColumnMetadataIndex: return try container.encode(8)
       case .backgroundSearchIndexRefresh: return try container.encode(9)
+      case .automaticMaterializedViewRefresh: return try container.encode(10)
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -93,6 +93,7 @@
     /// [google.cloud.compute.v1.SecurityPolicyRuleRateLimitOptionsEnforceOnKeyConfig.enforceOnKeyType]: <doc:SecurityPolicyRuleRateLimitOptionsEnforceOnKeyConfig/EnforceOnKeyType>
     public enum EnforceOnKeyType: Codable, Equatable, Sendable {
       case all
+      case asn
       case httpCookie
       case httpHeader
       case httpPath
@@ -126,16 +127,17 @@
       public var intValue: Int? {
         switch self {
         case .all: return 0
-        case .httpCookie: return 1
-        case .httpHeader: return 2
-        case .httpPath: return 3
-        case .ip: return 4
-        case .regionCode: return 5
-        case .sni: return 6
-        case .tlsJa3Fingerprint: return 7
-        case .tlsJa4Fingerprint: return 8
-        case .userIp: return 9
-        case .xffIp: return 10
+        case .asn: return 1
+        case .httpCookie: return 2
+        case .httpHeader: return 3
+        case .httpPath: return 4
+        case .ip: return 5
+        case .regionCode: return 6
+        case .sni: return 7
+        case .tlsJa3Fingerprint: return 8
+        case .tlsJa4Fingerprint: return 9
+        case .userIp: return 10
+        case .xffIp: return 11
         case .unknownIntValue(let v): return v
         case .unknownStringValue: return nil
         }
@@ -147,6 +149,7 @@
       public var stringValue: Swift.String? {
         switch self {
         case .all: return "ALL"
+        case .asn: return "ASN"
         case .httpCookie: return "HTTP_COOKIE"
         case .httpHeader: return "HTTP_HEADER"
         case .httpPath: return "HTTP_PATH"
@@ -168,6 +171,7 @@
       public init(stringValue: Swift.String) {
         switch stringValue {
         case "ALL": self = .all
+        case "ASN": self = .asn
         case "HTTP_COOKIE": self = .httpCookie
         case "HTTP_HEADER": self = .httpHeader
         case "HTTP_PATH": self = .httpPath
@@ -188,16 +192,17 @@
       public init(intValue: Int) {
         switch intValue {
         case 0: self = .all
-        case 1: self = .httpCookie
-        case 2: self = .httpHeader
-        case 3: self = .httpPath
-        case 4: self = .ip
-        case 5: self = .regionCode
-        case 6: self = .sni
-        case 7: self = .tlsJa3Fingerprint
-        case 8: self = .tlsJa4Fingerprint
-        case 9: self = .userIp
-        case 10: self = .xffIp
+        case 1: self = .asn
+        case 2: self = .httpCookie
+        case 3: self = .httpHeader
+        case 4: self = .httpPath
+        case 5: self = .ip
+        case 6: self = .regionCode
+        case 7: self = .sni
+        case 8: self = .tlsJa3Fingerprint
+        case 9: self = .tlsJa4Fingerprint
+        case 10: self = .userIp
+        case 11: self = .xffIp
         default: self = .unknownIntValue(intValue)
         }
       }
@@ -224,16 +229,17 @@
         var container = encoder.singleValueContainer()
         switch self {
         case .all: return try container.encode(0)
-        case .httpCookie: return try container.encode(1)
-        case .httpHeader: return try container.encode(2)
-        case .httpPath: return try container.encode(3)
-        case .ip: return try container.encode(4)
-        case .regionCode: return try container.encode(5)
-        case .sni: return try container.encode(6)
-        case .tlsJa3Fingerprint: return try container.encode(7)
-        case .tlsJa4Fingerprint: return try container.encode(8)
-        case .userIp: return try container.encode(9)
-        case .xffIp: return try container.encode(10)
+        case .asn: return try container.encode(1)
+        case .httpCookie: return try container.encode(2)
+        case .httpHeader: return try container.encode(3)
+        case .httpPath: return try container.encode(4)
+        case .ip: return try container.encode(5)
+        case .regionCode: return try container.encode(6)
+        case .sni: return try container.encode(7)
+        case .tlsJa3Fingerprint: return try container.encode(8)
+        case .tlsJa4Fingerprint: return try container.encode(9)
+        case .userIp: return try container.encode(10)
+        case .xffIp: return try container.encode(11)
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

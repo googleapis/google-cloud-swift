@@ -36,6 +36,10 @@
     /// example `n2-standard-4` and not URLs or partial URLs.
     public var machineTypes: [Swift.String] = []
 
+    /// Name of the minimum CPU platform to be used by this instance selection.
+    /// e.g. 'Intel Ice Lake'.
+    public var minCpuPlatform: Swift.String? = nil
+
     /// Rank when prioritizing the shape flexibilities.
     /// The instance selections with rank are considered
     /// first, in the ascending order of the rank.

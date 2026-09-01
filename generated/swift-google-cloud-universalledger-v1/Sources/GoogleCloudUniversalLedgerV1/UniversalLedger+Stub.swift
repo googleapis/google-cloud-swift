@@ -43,5 +43,9 @@ extension Clients {
     func queryAccount(
       request: QueryAccountRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudUniversalLedgerV1.QueryAccountResponse
+
+    func queryData(
+      request: QueryDataRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudUniversalLedgerV1.QueryDataResponse
   }
 }

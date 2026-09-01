@@ -38,6 +38,7 @@
     ///    - IDPF
     ///    - SNP_SVSM_CAPABLE
     ///    - CCA_CAPABLE
+    ///    - SUSPEND_SAFE_FPR
     ///
     ///
     /// For more information, see
@@ -76,6 +77,9 @@
       case sevLiveMigratableV2
       case sevSnpCapable
       case snpSvsmCapable
+      /// Indicates the guest OS is safe for free page reporting (FPR) during
+      /// suspend.
+      case suspendSafeFpr
       case tdxCapable
       case uefiCompatible
       case virtioScsiMultiqueue
@@ -114,10 +118,11 @@
         case .sevLiveMigratableV2: return 9
         case .sevSnpCapable: return 10
         case .snpSvsmCapable: return 11
-        case .tdxCapable: return 12
-        case .uefiCompatible: return 13
-        case .virtioScsiMultiqueue: return 14
-        case .windows: return 15
+        case .suspendSafeFpr: return 12
+        case .tdxCapable: return 13
+        case .uefiCompatible: return 14
+        case .virtioScsiMultiqueue: return 15
+        case .windows: return 16
         case .unknownIntValue(let v): return v
         case .unknownStringValue: return nil
         }
@@ -140,6 +145,7 @@
         case .sevLiveMigratableV2: return "SEV_LIVE_MIGRATABLE_V2"
         case .sevSnpCapable: return "SEV_SNP_CAPABLE"
         case .snpSvsmCapable: return "SNP_SVSM_CAPABLE"
+        case .suspendSafeFpr: return "SUSPEND_SAFE_FPR"
         case .tdxCapable: return "TDX_CAPABLE"
         case .uefiCompatible: return "UEFI_COMPATIBLE"
         case .virtioScsiMultiqueue: return "VIRTIO_SCSI_MULTIQUEUE"
@@ -166,6 +172,7 @@
         case "SEV_LIVE_MIGRATABLE_V2": self = .sevLiveMigratableV2
         case "SEV_SNP_CAPABLE": self = .sevSnpCapable
         case "SNP_SVSM_CAPABLE": self = .snpSvsmCapable
+        case "SUSPEND_SAFE_FPR": self = .suspendSafeFpr
         case "TDX_CAPABLE": self = .tdxCapable
         case "UEFI_COMPATIBLE": self = .uefiCompatible
         case "VIRTIO_SCSI_MULTIQUEUE": self = .virtioScsiMultiqueue
@@ -191,10 +198,11 @@
         case 9: self = .sevLiveMigratableV2
         case 10: self = .sevSnpCapable
         case 11: self = .snpSvsmCapable
-        case 12: self = .tdxCapable
-        case 13: self = .uefiCompatible
-        case 14: self = .virtioScsiMultiqueue
-        case 15: self = .windows
+        case 12: self = .suspendSafeFpr
+        case 13: self = .tdxCapable
+        case 14: self = .uefiCompatible
+        case 15: self = .virtioScsiMultiqueue
+        case 16: self = .windows
         default: self = .unknownIntValue(intValue)
         }
       }
@@ -232,10 +240,11 @@
         case .sevLiveMigratableV2: return try container.encode(9)
         case .sevSnpCapable: return try container.encode(10)
         case .snpSvsmCapable: return try container.encode(11)
-        case .tdxCapable: return try container.encode(12)
-        case .uefiCompatible: return try container.encode(13)
-        case .virtioScsiMultiqueue: return try container.encode(14)
-        case .windows: return try container.encode(15)
+        case .suspendSafeFpr: return try container.encode(12)
+        case .tdxCapable: return try container.encode(13)
+        case .uefiCompatible: return try container.encode(14)
+        case .virtioScsiMultiqueue: return try container.encode(15)
+        case .windows: return try container.encode(16)
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -24,6 +24,9 @@ public struct ContentMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   /// User provided key-value pairs of content metadata.
   public var properties: [KeyValueMetadataProperty] = []
 
+  /// Optional. The file labels associated with the content.
+  public var fileLabels: [FileLabel] = []
+
   /// Initialize a new instance of `ContentMetadata`.
   public init() {}
 

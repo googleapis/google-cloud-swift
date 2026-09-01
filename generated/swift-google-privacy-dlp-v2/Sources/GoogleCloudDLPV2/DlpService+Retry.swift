@@ -852,5 +852,78 @@ extension Clients {
           return try await self.inner.updateConnection(request: r, options: o)
         })
     }
+
+    public func createContentPolicy(
+      request: CreateContentPolicyRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudDLPV2.ContentPolicy {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: CreateContentPolicyRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> GoogleCloudDLPV2.ContentPolicy
+          in
+          return try await self.inner.createContentPolicy(request: r, options: o)
+        })
+    }
+
+    public func updateContentPolicy(
+      request: UpdateContentPolicyRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudDLPV2.ContentPolicy {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: UpdateContentPolicyRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> GoogleCloudDLPV2.ContentPolicy
+          in
+          return try await self.inner.updateContentPolicy(request: r, options: o)
+        })
+    }
+
+    public func getContentPolicy(
+      request: GetContentPolicyRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudDLPV2.ContentPolicy {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: GetContentPolicyRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> GoogleCloudDLPV2.ContentPolicy
+          in
+          return try await self.inner.getContentPolicy(request: r, options: o)
+        })
+    }
+
+    public func listContentPolicies(
+      request: ListContentPoliciesRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws -> GoogleCloudDLPV2.ListContentPoliciesResponse {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: true,
+        action: {
+          (r: ListContentPoliciesRequest, o: GoogleCloudGax.RequestOptions) async throws
+            -> GoogleCloudDLPV2.ListContentPoliciesResponse
+          in
+          return try await self.inner.listContentPolicies(request: r, options: o)
+        })
+    }
+
+    public func deleteContentPolicy(
+      request: DeleteContentPolicyRequest, options: GoogleCloudGax.RequestOptions
+    ) async throws {
+      try await self._intercept(
+        request: request,
+        options: options,
+        idempotent: false,
+        action: {
+          (r: DeleteContentPolicyRequest, o: GoogleCloudGax.RequestOptions) async throws -> Void in
+          return try await self.inner.deleteContentPolicy(request: r, options: o)
+        })
+    }
   }
 }
