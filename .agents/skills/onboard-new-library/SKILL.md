@@ -2,14 +2,14 @@
 name: onboard-new-library
 description: >-
   Use this skill to onboard a new Google Cloud library or service to the Swift SDK,
-  verify required development environment tools, generate code using librarian,
-  validate generated packages, and create a draft pull request that automatically
-  fixes referenced GitHub issues upon merge.
+  verify required development environment tools, check if target protos exist in the current locked source SHA,
+  generate code using librarian, validate generated packages, and create a draft pull request
+  that automatically fixes referenced GitHub issues upon merge.
 ---
 
 # Onboard New Library
 
-This skill guides the agent through the complete end-to-end process of onboarding a new Google Cloud client library in `google-cloud-swift`. It covers environment verification, code generation via `librarian`, troubleshooting common generation issues, package validation, and opening a draft pull request via the GitHub CLI.
+This skill guides the agent through the complete end-to-end process of onboarding a new Google Cloud client library in `google-cloud-swift`. It covers environment verification, checking for source availability, code generation via `librarian`, troubleshooting common generation issues, package validation, and opening a draft pull request via the GitHub CLI.
 
 --------------------------------------------------------------------------------
 
@@ -100,7 +100,16 @@ Follow the procedures outlined in [Generated Code Maintenance](../../../doc/cont
    V=$(go run github.com/googleapis/librarian/cmd/librarian@latest config get version)
    ```
 
-2. **Add the Library to [`librarian.yaml`](../../../librarian.yaml)**:
+2. **Check If Source SHA Update is Needed**:
+   Onboarding requests are frequently for newly released APIs or protos that do not yet exist in the `sources.googleapis` (or `sources.discovery`) commit SHA currently locked in [`librarian.yaml`](../../../librarian.yaml).
+
+   - If the target proto or discovery spec does not exist in the currently locked revision (or if `librarian add` / `librarian generate` fails because the proto files are not found):
+     - **DO NOT** update the source SHA inside the feature branch (source SHA updates regenerate all libraries and belong in a separate repository-wide `chore` PR).
+     - **Abort the onboarding workflow**.
+     - **Notify the user** that the target proto is missing from the locked source revision in `librarian.yaml`.
+     - **Switch to the [Update Code Generation Sources Skill](../update-code-generation-sources/SKILL.md)** to update generation sources first in a dedicated branch/PR before proceeding with onboarding.
+
+3. **Add the Library to [`librarian.yaml`](../../../librarian.yaml)**:
    ```bash
    go run github.com/googleapis/librarian/cmd/librarian@${V} add <proto-path>
    ```
@@ -109,7 +118,7 @@ Follow the procedures outlined in [Generated Code Maintenance](../../../doc/cont
    go run github.com/googleapis/librarian/cmd/librarian@${V} add google/cloud/ftp/v1
    ```
 
-3. **Generate the Library Code**:
+4. **Generate the Library Code**:
    ```bash
    go run github.com/googleapis/librarian/cmd/librarian@${V} generate <library-name>
    ```
@@ -154,6 +163,16 @@ If `librarian generate` fails, consult [Librarian Playbook](../../../doc/contrib
              api_package: <protobuf.package.name>
      ```
    - Run `go run github.com/googleapis/librarian/cmd/librarian@${V} tidy` and re-run the `generate` command.
+
+3. **Proto or Service Not Found in Source**:
+   - *Symptom*:
+     `librarian add` or `librarian generate` cannot locate the proto path or reports that the API does not exist.
+   - *Context*: The proto specification is new and only exists in more recent commits of `googleapis` (or `discovery`) than the one currently pinned in [`librarian.yaml`](../../../librarian.yaml).
+   - *Resolution*:
+     1. Abort the onboarding feature branch.
+     2. Notify the user that the proto is missing from the locked source revision in `librarian.yaml`.
+     3. Use the [Update Code Generation Sources Skill](../update-code-generation-sources/SKILL.md) to update the source SHA and regenerate all libraries in a dedicated `chore` branch/PR.
+     4. Once merged, return to the onboarding workflow on the updated `main` branch.
 
 ### Step 5: Validate the Generated Code
 
