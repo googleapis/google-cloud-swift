@@ -24,10 +24,10 @@ public func createBucketDualRegion(
       request: .init().with {
         $0.parent = "projects/_"
         $0.bucketId = bucketId
-        $0.bucket = .init().with {
-          $0.project = "projects/\(projectId)"
-          $0.customPlacementConfig = .init().with {
-            $0.dataLocations = ["US-EAST4", "US-CENTRAL1"]
+        $0.bucket = .init().with { bucket in
+          bucket.project = "projects/\(projectId)"
+          bucket.customPlacementConfig = .init().with { placementConfig in
+            placementConfig.dataLocations = ["US-EAST4", "US-CENTRAL1"]
           }
         }
       }, options: .init())

@@ -24,10 +24,10 @@ public func createBucketWithObjectRetention(
       request: .init().with {
         $0.parent = "projects/_"
         $0.bucketId = bucketId
-        $0.bucket = .init().with {
-          $0.project = "projects/\(projectId)"
-          $0.objectRetention = .init().with {
-            $0.enabled = true
+        $0.bucket = .init().with { bucket in
+          bucket.project = "projects/\(projectId)"
+          bucket.objectRetention = .init().with { or in
+            or.enabled = true
           }
         }
       }, options: .init())

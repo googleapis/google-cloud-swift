@@ -24,8 +24,8 @@ public func createBucket(
       request: .init().with {
         $0.parent = "projects/_"
         $0.bucketId = bucketId
-        $0.bucket = .init().with {
-          $0.project = "projects/\(projectId)"
+        $0.bucket = .init().with { bucket in
+          bucket.project = "projects/\(projectId)"
         }
       }, options: .init())
   print("successfully created bucket \(bucket)")

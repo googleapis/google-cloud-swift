@@ -24,14 +24,14 @@ public func createBucketHierarchicalNamespace(
       request: .init().with {
         $0.parent = "projects/_"
         $0.bucketId = bucketId
-        $0.bucket = .init().with {
-          $0.project = "projects/\(projectId)"
-          $0.hierarchicalNamespace = .init().with {
-            $0.enabled = true
+        $0.bucket = .init().with { bucket in
+          bucket.project = "projects/\(projectId)"
+          bucket.hierarchicalNamespace = .init().with { hns in
+            hns.enabled = true
           }
-          $0.iamConfig = .init().with {
-            $0.uniformBucketLevelAccess = .init().with {
-              $0.enabled = true
+          bucket.iamConfig = .init().with { iamc in
+            iamc.uniformBucketLevelAccess = .init().with { ubla in
+              ubla.enabled = true
             }
           }
         }

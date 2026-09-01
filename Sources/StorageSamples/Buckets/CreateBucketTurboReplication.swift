@@ -24,10 +24,10 @@ public func createBucketTurboReplication(
       request: .init().with {
         $0.parent = "projects/_"
         $0.bucketId = bucketId
-        $0.bucket = .init().with {
-          $0.project = "projects/\(projectId)"
-          $0.location = "NAM4"
-          $0.rpo = "ASYNC_TURBO"
+        $0.bucket = .init().with { bucket in
+          bucket.project = "projects/\(projectId)"
+          bucket.location = "NAM4"
+          bucket.rpo = "ASYNC_TURBO"
         }
       }, options: .init())
   print("successfully created bucket \(bucket)")

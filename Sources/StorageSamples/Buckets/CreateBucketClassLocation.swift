@@ -24,10 +24,10 @@ public func createBucketClassLocation(
       request: .init().with {
         $0.parent = "projects/_"
         $0.bucketId = bucketId
-        $0.bucket = .init().with {
-          $0.project = "projects/\(projectId)"
-          $0.storageClass = "NEARLINE"
-          $0.location = "US-CENTRAL1"
+        $0.bucket = .init().with { bucket in
+          bucket.project = "projects/\(projectId)"
+          bucket.storageClass = "NEARLINE"
+          bucket.location = "US-CENTRAL1"
         }
       }, options: .init())
   print("successfully created bucket \(bucket)")

@@ -26,11 +26,11 @@ public func createBucketWithEncryptionEnforcement(
       request: .init().with {
         $0.parent = "projects/_"
         $0.bucketId = bucketId
-        $0.bucket = .init().with {
-          $0.project = "projects/\(projectId)"
-          $0.encryption = .init().with {
-            $0.googleManagedEncryptionEnforcementConfig = .init().with {
-              $0.restrictionMode = "FullyRestricted"
+        $0.bucket = .init().with { bucket in
+          bucket.project = "projects/\(projectId)"
+          bucket.encryption = .init().with { e in
+            e.googleManagedEncryptionEnforcementConfig = .init().with { ec in
+              ec.restrictionMode = "FullyRestricted"
             }
           }
         }
