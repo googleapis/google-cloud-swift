@@ -19,23 +19,13 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
-echo "--- SWIFT VERSION ---"
-swift --version
-echo "--- Initial disk space"
-df -h
-echo
-echo
+source "$(SCRIPT_DIR)/fetch.sh"
+source "$(SCRIPT_DIR)/build-flags.sh"
 
 errors=0
 count=0
 
-flags=(
-    -Xswiftc -warnings-as-errors
-    -Xswiftc -Wwarning
-    -Xswiftc DeprecatedDeclaration
-    --scratch-path "/workspace/.build-cache"
-    --build-path   "/workspace/.build"
-)
+flags=("${build_flags[@]}")
 # By default, build all the packages. We search for `Package.swift` files
 mapfile -t packages < <(find . \( -name Sources -o -name .build -o -name .build-cache \) -prune -o -type f -name Package.swift -exec dirname {} \; | sort -u)
 # On PRs, detect any new libraries and compile their documentation. Without this

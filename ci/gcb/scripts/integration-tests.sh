@@ -16,17 +16,10 @@
 
 set -euo pipefail
 
-echo "--- SWIFT VERSION ---"
-swift --version
-echo "--- VERSIONS ---"
+source "$(SCRIPT_DIR)/fetch.sh"
+source "$(SCRIPT_DIR)/build-flags.sh"
 
-flags=(
-    -Xswiftc -warnings-as-errors
-    -Xswiftc -Wwarning
-    -Xswiftc DeprecatedDeclaration
-    --scratch-path "/workspace/.build-cache"
-    --build-path   "/workspace/.build"
-)
+flags=("${build_flags[@]}")
 if [[ -z "${PROJECT_ID:-}" ]]; then
     echo "✗ missing PROJECT_ID environment variable"
     exit 1
