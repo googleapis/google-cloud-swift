@@ -561,7 +561,7 @@ import NIOHTTP1
     let client = try _HTTPClient(mock, endpoint: "http://localhost:8080")
     var request = try await client.newRequest(uri: "http://localhost:8080/upload")
     request.setMethod(.POST)
-    request.setBody(stream: stream, ofContentType: "application/octet-stream", length: .known(13))
+    request.setBody(stream: stream, ofContentType: "application/octet-stream", length: 13)
 
     let response = try await request.execute()
     #expect(response.status == .ok)
@@ -594,7 +594,7 @@ import NIOHTTP1
     let client = try _HTTPClient(mock, endpoint: "http://localhost:8080")
     var request = try await client.newRequest(uri: "http://localhost:8080/upload")
     request.setMethod(.PUT)
-    request.setBody(stream: stream, length: .known(12))
+    request.setBody(stream: stream)
 
     let response = try await request.execute()
     #expect(response.status == .ok)

@@ -92,33 +92,41 @@ enum _RequestBody: Sendable, Equatable {
 
   public mutating func setBody<S: AsyncSequence & Sendable>(
     stream: S,
-    length: AsyncHTTPClient.HTTPClientRequest.Body.Length = .unknown
+    length: Int64? = nil
   ) where S.Element == NIOCore.ByteBuffer {
-    self.body = .stream(.stream(stream, length: length))
+    let bodyLength: AsyncHTTPClient.HTTPClientRequest.Body.Length =
+      length.map { .known($0) } ?? .unknown
+    self.body = .stream(.stream(stream, length: bodyLength))
   }
 
   public mutating func setBody<S: AsyncSequence & Sendable>(
     stream: S,
     ofContentType: String,
-    length: AsyncHTTPClient.HTTPClientRequest.Body.Length = .unknown
+    length: Int64? = nil
   ) where S.Element == NIOCore.ByteBuffer {
-    self.body = .stream(.stream(stream, length: length))
+    let bodyLength: AsyncHTTPClient.HTTPClientRequest.Body.Length =
+      length.map { .known($0) } ?? .unknown
+    self.body = .stream(.stream(stream, length: bodyLength))
     self.headers.replaceOrAdd(name: "Content-Type", value: ofContentType)
   }
 
   public mutating func setBody<S: AsyncSequence & Sendable>(
     stream: S,
-    length: AsyncHTTPClient.HTTPClientRequest.Body.Length = .unknown
+    length: Int64? = nil
   ) where S.Element == Data {
-    self.body = .stream(.stream(stream.map { NIOCore.ByteBuffer(data: $0) }, length: length))
+    let bodyLength: AsyncHTTPClient.HTTPClientRequest.Body.Length =
+      length.map { .known($0) } ?? .unknown
+    self.body = .stream(.stream(stream.map { NIOCore.ByteBuffer(data: $0) }, length: bodyLength))
   }
 
   public mutating func setBody<S: AsyncSequence & Sendable>(
     stream: S,
     ofContentType: String,
-    length: AsyncHTTPClient.HTTPClientRequest.Body.Length = .unknown
+    length: Int64? = nil
   ) where S.Element == Data {
-    self.body = .stream(.stream(stream.map { NIOCore.ByteBuffer(data: $0) }, length: length))
+    let bodyLength: AsyncHTTPClient.HTTPClientRequest.Body.Length =
+      length.map { .known($0) } ?? .unknown
+    self.body = .stream(.stream(stream.map { NIOCore.ByteBuffer(data: $0) }, length: bodyLength))
     self.headers.replaceOrAdd(name: "Content-Type", value: ofContentType)
   }
 
