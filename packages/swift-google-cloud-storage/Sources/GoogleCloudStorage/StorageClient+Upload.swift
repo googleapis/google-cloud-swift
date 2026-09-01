@@ -844,9 +844,7 @@ extension StorageClient {
       let end = offset + Int64(data.count) - 1
       request.setHeader(name: "Content-Range", value: "bytes \(offset)-\(end)/\(totalStr)")
     }
-    var buffer = ByteBufferAllocator().buffer(capacity: data.count)
-    _ = data.withUnsafeBytes { buffer.writeBytes($0) }
-    request.setBody(buffer: buffer)
+    request.setBody(buffer: data.byteBuffer)
     return request
   }
 
