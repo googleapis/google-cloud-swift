@@ -56,8 +56,9 @@ public func runFolderSamples(
   try await getFolder(client: client, bucketId: id)
   print("running listFolders() sample")
   try await listFolders(client: client, bucketId: id)
-  print("running renameFolder() sample")
-  try await renameFolder(client: client, bucketId: id)
+  // TODO(https://github.com/googleapis/google-cloud-swift/issues/594) - enable
+  // print("running renameFolder() sample")
+  // try await renameFolder(client: client, bucketId: id)
   print("running deleteFolder() sample")
   try await deleteFolder(client: client, bucketId: id)
 }
