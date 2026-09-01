@@ -51,7 +51,6 @@ let package = Package(
     .package(path: "./packages/swift-google-gax"),
     .package(path: "./packages/swift-google-wkt"),
     .package(path: "./packages/swift-google-cloud-storage"),
-    .package(path: "./packages/test-helpers"),
     .package(path: "./guide"),
     .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
     .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.5.0"),
@@ -88,7 +87,7 @@ let package = Package(
       dependencies: [
         .product(name: "GoogleCloudComputeV1", package: "swift-google-cloud-compute-v1"),
         .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
-        .product(name: "GoogleCloudTestHelpers", package: "test-helpers"),
+        "GoogleCloudTestHelpers",
       ],
       exclude: ["README.md"],
     ),
@@ -103,7 +102,7 @@ let package = Package(
         .product(name: "GoogleCloudGax", package: "swift-google-gax"),
         .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
         .product(name: "GoogleCloudStorage", package: "swift-google-cloud-storage"),
-        .product(name: "GoogleCloudTestHelpers", package: "test-helpers"),
+        "GoogleCloudTestHelpers",
         .product(name: "InMemoryLogging", package: "swift-log"),
       ],
       exclude: ["README.md"],
@@ -132,7 +131,7 @@ let package = Package(
           name: "GoogleCloudSecretManagerV1", package: "swift-google-cloud-secretmanager-v1"),
         .product(name: "GoogleCloudGax", package: "swift-google-gax"),
         .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
-        .product(name: "GoogleCloudTestHelpers", package: "test-helpers"),
+        "GoogleCloudTestHelpers",
       ],
       path: "Tests/Endurance",
       exclude: ["README.md", "endurance-test.service"]
@@ -148,6 +147,13 @@ let package = Package(
       ],
       path: "Tests/StorageW1R3",
       exclude: ["README.md"]
+    ),
+    .target(
+      name: "GoogleCloudTestHelpers",
+      dependencies: [
+        .product(name: "GoogleCloudGax", package: "swift-google-gax"),
+        .product(name: "InMemoryLogging", package: "swift-log"),
+      ],
     ),
     .target(
       name: "StorageSamples",
