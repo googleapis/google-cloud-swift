@@ -20,7 +20,9 @@ public func downloadFile(
   client: StorageClient, bucketId: String, objectName: String, filePath: String
 ) async throws {
   let reader = client.readObject(from: "projects/_/buckets/\(bucketId)", object: objectName)
-  FileManager.default.createFile(atPath: filePath, contents: nil)
+  if !FileManager.default.createFile(atPath: filePath, contents: nil) {
+    throw POSIXError(.EEXIST)
+  }
   let fileHandle = try FileHandle(forWritingTo: URL(fileURLWithPath: filePath))
   defer {
     try? fileHandle.close()
