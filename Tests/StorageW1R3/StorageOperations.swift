@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import Foundation
+import NIOCore
 import GoogleCloudAuth
 import GoogleCloudGax
 import GoogleCloudStorage
@@ -24,7 +25,7 @@ enum StorageOperations {
     controlClient: StorageControlClient,
     bucketName: String,
     objectName: String,
-    data: Data,
+    buffer: NIOCore.ByteBuffer,
     isResumable: Bool
   ) async throws -> GoogleCloudStorage.Object {
     let options = UploadOptions().with {
@@ -34,14 +35,15 @@ enum StorageOperations {
       // If resumable, chunk size is set to 32MiB; if simple, threshold handles it
       if isResumable {
         $0.chunkSize = 32 * 1024 * 1024
-        $0.resumableUploadThreshold = data.count
+        $0.resumableUploadThreshold = buffer.readableBytes
       } else {
-        $0.resumableUploadThreshold = data.count + 256 * 1024
+        $0.resumableUploadThreshold = buffer.readableBytes + 256 * 1024
       }
     }
 
     do {
-      return try await client.upload(data, to: bucketName, as: objectName, options: options)
+      return try await client.upload(
+        BytesSource(buffer: .init(buffer)), to: bucketName, as: objectName, options: options)
     } catch {
       // If precondition failed (412), check if object already exists
       if let reqError = error as? RequestError,

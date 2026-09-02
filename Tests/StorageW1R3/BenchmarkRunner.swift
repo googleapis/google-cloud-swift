@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import Foundation
+import NIOCore
 import GoogleCloudAuth
 import GoogleCloudGax
 import GoogleCloudStorage
@@ -22,7 +23,7 @@ extension StorageW1R3 {
   func runWorker(
     taskIndex: Int,
     counters: BenchmarkCounters,
-    buffer: Data
+    buffer: NIOCore.ByteBuffer
   ) async {
     let clock = ContinuousClock()
     // Apply rampup delay
@@ -61,7 +62,7 @@ extension StorageW1R3 {
       let size = pickObjectSize()
       let objectName = Self.randomObjectName()
       let isResumable = Bool.random()
-      let uploadSlice = size > 0 ? buffer.prefix(size) : Data()
+      let uploadSlice = buffer.getSlice(at: 0, length: size) ?? buffer.slice()
       let iterationId = IterationId(
         task: taskIndex, taskStartInstant: taskStartInstant, iteration: iteration)
 
@@ -73,7 +74,7 @@ extension StorageW1R3 {
           controlClient: controlClient,
           bucketName: bucketName,
           objectName: objectName,
-          data: uploadSlice,
+          buffer: uploadSlice,
           isResumable: isResumable)
       else {
         continue
@@ -127,7 +128,7 @@ extension StorageW1R3 {
     controlClient: StorageControlClient,
     bucketName: String,
     objectName: String,
-    data: Data,
+    buffer: NIOCore.ByteBuffer,
     isResumable: Bool
   ) async -> GoogleCloudStorage.Object? {
     let uploadOp: Operation = isResumable ? .resumable : .singleShot
@@ -135,7 +136,7 @@ extension StorageW1R3 {
     let uploadBuilder = SampleBuilder(
       iterationId: iterationId,
       op: uploadOp,
-      targetSize: data.count,
+      targetSize: buffer.readableBytes,
       object: objectName
     )
     do {
@@ -144,7 +145,7 @@ extension StorageW1R3 {
         controlClient: controlClient,
         bucketName: bucketName,
         objectName: objectName,
-        data: data,
+        buffer: buffer,
         isResumable: isResumable
       )
       let sample = uploadBuilder.success()
@@ -242,9 +243,10 @@ extension StorageW1R3 {
     print(sample.toRow())
   }
 
-  func generateRandomBuffer() -> Data {
+  func generateRandomBuffer() -> NIOCore.ByteBuffer {
     let size = self.maxObjectSize
-    guard size > 0 else { return Data() }
+    var buffer = ByteBufferAllocator().buffer(capacity: size)
+    guard size > 0 else { return buffer }
     // There is a lot going on here. Sometimes the benchmark is used with really large buffers,
     // 256MiB and 2GiB are not uncommon. To efficiently initialized the buffer with random data
     // we create an array of the desired size.
@@ -263,7 +265,8 @@ extension StorageW1R3 {
       }
       initializedCount = size
     }
-    return Data(bytes)
+    buffer.writeBytes(bytes)
+    return buffer
   }
 
   private static func randomObjectName() -> String {
