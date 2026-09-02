@@ -19,50 +19,59 @@ if [[ -z "${REPO_ROOT:-}" ]]; then
 fi
 
 _EDITED_PACKAGES=()
+_REMOVED_DISABLE_RESOLUTION=()
 
 edit_package_dependencies() {
     local dir="$1"
     _EDITED_PACKAGES+=("${dir}")
-    local edited=false
-    if [[ "${dir}" != "packages/swift-google-auth" && "${dir}" != "${REPO_ROOT}/packages/swift-google-auth" ]] && grep -q "swift-google-auth" "${dir}/Package.swift"; then
+    if [[ "${dir}" != "." && "${dir}" != "packages/swift-google-auth" && "${dir}" != "${REPO_ROOT}/packages/swift-google-auth" ]]; then
         swift package --package-path "${dir}" edit --path "${REPO_ROOT}/packages/swift-google-auth" swift-google-auth >/dev/null 2>&1 || true
-        edited=true
     fi
-    if [[ "${dir}" != "packages/swift-google-wkt" && "${dir}" != "${REPO_ROOT}/packages/swift-google-wkt" ]] && grep -q "swift-google-wkt" "${dir}/Package.swift"; then
+    if [[ "${dir}" != "." && "${dir}" != "packages/swift-google-wkt" && "${dir}" != "${REPO_ROOT}/packages/swift-google-wkt" ]]; then
         swift package --package-path "${dir}" edit --path "${REPO_ROOT}/packages/swift-google-wkt" swift-google-wkt >/dev/null 2>&1 || true
-        edited=true
     fi
-    # SwiftPM's --disable-automatic-resolution flag fails when a package dependency is in edit mode.
-    # Temporarily remove --disable-automatic-resolution from flags if present.
-    if [[ "${edited}" == true && -n "${flags+x}" ]]; then
+    # SwiftPM's --disable-automatic-resolution flag is only valid for the root package
+    # where Package.resolved is tracked in git. Subpackages do not track Package.resolved
+    # and fail when automatic resolution is disabled.
+    if [[ "${dir}" != "." && -n "${flags+x}" ]]; then
         local filtered_flags=()
+        local had_flag=false
         for f in "${flags[@]}"; do
-            [[ "${f}" != "--disable-automatic-resolution" ]] && filtered_flags+=("${f}")
+            if [[ "${f}" == "--disable-automatic-resolution" ]]; then
+                had_flag=true
+            else
+                filtered_flags+=("${f}")
+            fi
         done
-        flags=("${filtered_flags[@]}")
+        if [[ "${had_flag}" == true ]]; then
+            _REMOVED_DISABLE_RESOLUTION+=("${dir}")
+            flags=("${filtered_flags[@]}")
+        fi
     fi
 }
 
 restore_package_dependencies() {
     local dir="$1"
-    local edited=false
-    if [[ "${dir}" != "packages/swift-google-auth" && "${dir}" != "${REPO_ROOT}/packages/swift-google-auth" ]] && grep -q "swift-google-auth" "${dir}/Package.swift"; then
+    if [[ "${dir}" != "." && "${dir}" != "packages/swift-google-auth" && "${dir}" != "${REPO_ROOT}/packages/swift-google-auth" ]]; then
         swift package --package-path "${dir}" unedit --force swift-google-auth >/dev/null 2>&1 || true
-        edited=true
     fi
-    if [[ "${dir}" != "packages/swift-google-wkt" && "${dir}" != "${REPO_ROOT}/packages/swift-google-wkt" ]] && grep -q "swift-google-wkt" "${dir}/Package.swift"; then
+    if [[ "${dir}" != "." && "${dir}" != "packages/swift-google-wkt" && "${dir}" != "${REPO_ROOT}/packages/swift-google-wkt" ]]; then
         swift package --package-path "${dir}" unedit --force swift-google-wkt >/dev/null 2>&1 || true
-        edited=true
     fi
-    if [[ "${edited}" == true && -n "${flags+x}" ]]; then
-        local has_flag=false
-        for f in "${flags[@]}"; do
-            [[ "${f}" == "--disable-automatic-resolution" ]] && has_flag=true
+    if [[ -n "${flags+x}" ]]; then
+        for p in "${_REMOVED_DISABLE_RESOLUTION[@]}"; do
+            if [[ "${p}" == "${dir}" ]]; then
+                flags+=("--disable-automatic-resolution")
+                break
+            fi
         done
-        if [[ "${has_flag}" == false ]]; then
-            flags+=("--disable-automatic-resolution")
-        fi
     fi
+    local new_removed=()
+    for p in "${_REMOVED_DISABLE_RESOLUTION[@]}"; do
+        [[ "${p}" != "${dir}" ]] && new_removed+=("${p}")
+    done
+    _REMOVED_DISABLE_RESOLUTION=("${new_removed[@]}")
+
     local new_list=()
     for p in "${_EDITED_PACKAGES[@]}"; do
         [[ "${p}" != "${dir}" ]] && new_list+=("${p}")
