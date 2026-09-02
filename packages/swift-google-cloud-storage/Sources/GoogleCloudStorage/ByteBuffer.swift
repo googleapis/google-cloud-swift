@@ -130,11 +130,13 @@ extension ByteBuffer {
     withUnsafeBytes { Array($0) }
   }
 
-  /// Returns a sub-buffer within the specified byte range.
+  /// Returns a zero-copy sub-buffer within the specified byte range.
   public func subdata(in range: Range<Int>) -> ByteBuffer {
     switch storage {
     case .data(let data):
-      return ByteBuffer(data.subdata(in: range))
+      let start = data.startIndex.advanced(by: range.lowerBound)
+      let end = data.startIndex.advanced(by: range.upperBound)
+      return ByteBuffer(data[start..<end])
     case .byteBuffer(let nioBuffer):
       var copy = nioBuffer
       copy.moveReaderIndex(to: nioBuffer.readerIndex + range.lowerBound)

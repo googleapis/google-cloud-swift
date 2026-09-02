@@ -34,20 +34,7 @@ public struct BytesSource: SeekableUploadSource {
   public mutating func read(maxBytes: Int) async throws -> ByteBuffer? {
     guard maxBytes > 0, offset < buffer.count else { return nil }
     let end = min(offset + Int64(maxBytes), Int64(buffer.count))
-    let countToRead = Int(end - offset)
-    let chunk: ByteBuffer
-    switch buffer.storage {
-    case .data(let data):
-      chunk = ByteBuffer(data.subdata(in: Int(offset)..<Int(end)))
-    case .byteBuffer(let nioBuffer):
-      var slice = nioBuffer
-      slice.moveReaderIndex(to: nioBuffer.readerIndex + Int(offset))
-      if let subSlice = slice.readSlice(length: countToRead) {
-        chunk = ByteBuffer(subSlice)
-      } else {
-        chunk = ByteBuffer()
-      }
-    }
+    let chunk = buffer.subdata(in: Int(offset)..<Int(end))
     offset = end
     return chunk
   }
