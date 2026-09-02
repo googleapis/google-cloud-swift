@@ -19,8 +19,8 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
-source "$(SCRIPT_DIR)/fetch.sh"
-source "$(SCRIPT_DIR)/build-flags.sh"
+source "${SCRIPT_DIR}/fetch.sh"
+source "${SCRIPT_DIR}/build-flags.sh"
 
 errors=0
 count=0

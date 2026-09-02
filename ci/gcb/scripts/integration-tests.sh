@@ -16,8 +16,8 @@
 
 set -euo pipefail
 
-source "$(SCRIPT_DIR)/fetch.sh"
-source "$(SCRIPT_DIR)/build-flags.sh"
+source "${SCRIPT_DIR}/fetch.sh"
+source "${SCRIPT_DIR}/build-flags.sh"
 
 flags=("${build_flags[@]}")
 if [[ -z "${PROJECT_ID:-}" ]]; then
