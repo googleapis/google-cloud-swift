@@ -23,7 +23,9 @@ extension StorageW1R3 {
   func runWorker(
     taskIndex: Int,
     counters: BenchmarkCounters,
-    buffer: NIOCore.ByteBuffer
+    buffer: NIOCore.ByteBuffer,
+    storageClient: StorageClient,
+    controlClient: StorageControlClient,
   ) async {
     let clock = ContinuousClock()
     // Apply rampup delay
@@ -31,19 +33,9 @@ extension StorageW1R3 {
       let delay = rampupPeriod * Double(taskIndex)
       try? await Task.sleep(for: delay)
     }
-
-    let credentials: Credentials
-    let storageClient: StorageClient
-    let controlClient: StorageControlClient
-    do {
-      credentials = try Credentials()
-      storageClient = try StorageClient(
-        StorageClientOptions().with { $0.client = .init().with { $0.credentials = credentials } })
-      controlClient = try StorageControlClient(
-        ClientOptions().with { $0.credentials = credentials })
-    } catch {
-      logToStderr("Failed to initialize Storage clients for task \(taskIndex): \(error)")
-      return
+    await counters.taskStarted()
+    defer {
+      Task { await counters.taskFinished() }
     }
 
     let taskStartInstant = clock.now
@@ -272,5 +264,23 @@ extension StorageW1R3 {
   private static func randomObjectName() -> String {
     let charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
     return String((0..<32).map { _ in charset.randomElement()! })
+  }
+
+  func makeClients(_ credentials: Credentials) throws -> [StorageClient] {
+    var clients: [StorageClient] = []
+    for _ in 0..<self.clientCount {
+      clients.append(try StorageClient(.init().with {
+        $0.client = .init().with { $0.credentials = credentials }
+      }))
+    }
+    return clients
+  }
+
+  func makeControlClients(_ credentials: Credentials) throws -> [StorageControlClient] {
+    var clients: [StorageControlClient] = []
+    for _ in 0..<self.controlClientCount {
+      clients.append(try StorageControlClient(.init().with { $0.credentials = credentials }))
+    }
+    return clients
   }
 }

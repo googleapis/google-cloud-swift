@@ -14,6 +14,8 @@
 
 import ArgumentParser
 import Foundation
+import GoogleCloudAuth
+import GoogleCloudStorage
 
 @main
 struct StorageW1R3: AsyncParsableCommand, Sendable {
@@ -56,6 +58,11 @@ struct StorageW1R3: AsyncParsableCommand, Sendable {
     let randomBuffer = self.generateRandomBuffer()
     logToStderr("Random payload buffer ready.")
 
+    let credentials = try Credentials()
+    let storageClients = try self.makeClients(credentials)
+    let controlClients = try self.makeControlClients(credentials)
+    logToStderr("Clients initialzed ready.")
+
     // Print CSV header to stdout.
     print(Sample.header)
 
@@ -78,7 +85,9 @@ struct StorageW1R3: AsyncParsableCommand, Sendable {
           await self.runWorker(
             taskIndex: taskIndex,
             counters: counters,
-            buffer: randomBuffer
+            buffer: randomBuffer,
+            storageClient: storageClients[taskIndex % storageClients.count],
+            controlClient: controlClients[taskIndex % controlClients.count],
           )
         }
       }
@@ -158,6 +167,18 @@ struct StorageW1R3: AsyncParsableCommand, Sendable {
   )
   var skipOkSamples: Bool = false
 
+  @Option(
+    name: .customLong("client-count"),
+    help: "Number of storage clients."
+  )
+  var clientCount: Int = 1
+
+  @Option(
+    name: .customLong("control-client-count"),
+    help: "Number of storage control clients."
+  )
+  var controlClientCount: Int = 1
+
   func validate() throws {
     guard minObjectSize <= maxObjectSize else {
       throw ValidationError(
@@ -175,6 +196,12 @@ struct StorageW1R3: AsyncParsableCommand, Sendable {
     }
     guard readCount >= 0 else {
       throw ValidationError("read-count must be non-negative")
+    }
+    guard clientCount >= 1 else {
+      throw ValidationError("client-count must be at least 1")
+    }
+    guard controlClientCount >= 1 else {
+      throw ValidationError("control-client-count must be at least 1")
     }
   }
 }

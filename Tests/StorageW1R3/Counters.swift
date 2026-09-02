@@ -28,6 +28,7 @@ public actor BenchmarkCounters {
   public private(set) var deleteError: UInt64 = 0
   public private(set) var readError: UInt64 = 0
   public private(set) var writeError: UInt64 = 0
+  public private(set) var activeTasks: UInt64 = 0
 
   public init() {}
 
@@ -59,6 +60,14 @@ public actor BenchmarkCounters {
     writeError &+= 1
   }
 
+  public func taskStarted() {
+    activeTasks &+= 1
+  }
+
+  public func taskFinished() {
+    activeTasks &-= 1
+  }
+
   public func snapshot() -> [(key: String, value: UInt64)] {
     [
       ("DELETE_COUNT", deleteCount),
@@ -68,6 +77,7 @@ public actor BenchmarkCounters {
       ("SAMPLE_COUNT", sampleCount),
       ("WRITE_COUNT", writeCount),
       ("WRITE_ERROR", writeError),
+      ("TASK_COUNT", activeTasks),
     ]
   }
 
