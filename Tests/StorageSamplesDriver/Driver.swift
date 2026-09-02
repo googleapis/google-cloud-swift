@@ -75,5 +75,6 @@ import Testing
 
   static func enabled() -> Bool {
     ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"] != nil
+      && ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_ENABLE_FLAKES"] == "true"
   }
 }
