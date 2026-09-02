@@ -118,9 +118,17 @@ private func worker(
   while true {
     let now = ContinuousClock.now
     if now >= lastAddVersion + addVersionPeriod {
-      version = try await updateSecret(client: client, secret: secret)
-      lastAddVersion = ContinuousClock.now
-      updateCount += 1
+      do {
+        version = try await updateSecret(client: client, secret: secret)
+        lastAddVersion = ContinuousClock.now
+        updateCount += 1
+      } catch {
+        errorCount += 1
+        if errorCount > tooManyErrors && successCount == 0 {
+          throw error
+        }
+        reportError(error, task: "task[\(taskId)]")
+      }
     }
 
     if now >= lastReport + reportPeriod {
@@ -162,6 +170,7 @@ private func worker(
       if errorCount > tooManyErrors && successCount == 0 {
         throw error
       }
+      reportError(error, task: "task[\(taskId)]")
     }
 
     if ContinuousClock.now < nextTargetTime {
@@ -181,17 +190,20 @@ private func updateSecret(
     if version.state == .destroyed {
       continue
     }
-    _ = try await client.destroySecretVersion(request: .init().with { $0.name = version.name })
+    _ = try await client.destroySecretVersion(
+      request: .init().with { $0.name = version.name },
+      options: .init().with { $0.idempotency = true })
   }
 
   let version = try await client.addSecretVersion(
     request: .init().with {
       $0.parent = secret
-      $0.payload = SecretPayload().with {
-        $0.data = payloadData
-        $0.dataCrc32C = payloadCrc32c
+      $0.payload = SecretPayload().with { payload in
+        payload.data = payloadData
+        payload.dataCrc32C = payloadCrc32c
       }
-    })
+    },
+    options: .init().with { $0.idempotency = true })
   return version
 }
 
