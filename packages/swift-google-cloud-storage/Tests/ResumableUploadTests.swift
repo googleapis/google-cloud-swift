@@ -33,7 +33,7 @@ import Testing
     registry: MockRegistry,
     clientRetryPolicy: (any RetryPolicy)? = nil,
     uploadResumePolicy: (any ResumePolicy<UploadDetails>)? = nil,
-    uploadThreshold: Int? = nil
+    uploadThreshold: UInt64? = nil
   ) throws -> StorageClient {
     let options = StorageClientOptions().with {
       $0.client = .init().with {
@@ -761,7 +761,7 @@ import Testing
     let objectName = "dynamic-computation-known"
     let chunkSize = 4 * 1024 * 1024
     let totalChunks = 3
-    let totalSize = Int64(chunkSize * totalChunks)  // 12MB
+    let totalSize = UInt64(chunkSize * totalChunks)  // 12MB
 
     let source = DynamicComputationSource(
       chunkSize: chunkSize, totalChunks: totalChunks, totalSize: totalSize)
@@ -787,7 +787,7 @@ import Testing
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
-    #expect(object.size == totalSize)
+    #expect(object.size == Int64(totalSize))
   }
 
   /// Tests resumable upload of dynamically computed data where total size is unknown (`nil`).
@@ -852,12 +852,12 @@ import Testing
     let objectName = "dynamic-computation-seekable-resumed"
     let chunkSize = 4 * 1024 * 1024
     let totalChunks = 3
-    let totalSize = Int64(chunkSize * totalChunks)  // 12MB
+    let totalSize = UInt64(chunkSize * totalChunks)  // 12MB
 
     let source = SeekableComputationSource(chunkSize: chunkSize, totalChunks: totalChunks)
 
     let queryUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=dynamic-seek-resume-id")
-    let resumeOffset: Int64 = Int64(chunkSize)  // 4MB already received
+    let resumeOffset: UInt64 = UInt64(chunkSize)  // 4MB already received
 
     registry.register(
       response: .success(
@@ -876,7 +876,7 @@ import Testing
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
-    #expect(object.size == totalSize)
+    #expect(object.size == Int64(totalSize))
   }
 
   // --- Source Type 4: Data Received Asynchronously from External Source (e.g. Download) ---
@@ -925,7 +925,7 @@ import Testing
     let objectName = "async-download-stream-known"
     let chunk1 = Data(repeating: 0x33, count: 5 * 1024 * 1024)
     let chunk2 = Data(repeating: 0x44, count: 5 * 1024 * 1024)
-    let totalSize = Int64(chunk1.count + chunk2.count)  // 10MiB
+    let totalSize = UInt64(chunk1.count + chunk2.count)  // 10MiB
 
     let asyncStream = makeAsyncStream(chunks: [chunk1, chunk2])
     let source = StreamSource(sequence: asyncStream, totalSize: totalSize)
@@ -952,7 +952,7 @@ import Testing
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
-    #expect(object.size == totalSize)
+    #expect(object.size == Int64(totalSize))
   }
 
   /// Tests resumable upload of an empty asynchronous stream (0 bytes).
@@ -2234,10 +2234,10 @@ import Testing
 private struct DynamicComputationSource: UploadSource {
   let chunkSize: Int
   let totalChunks: Int
-  let totalSize: Int64?
+  let totalSize: UInt64?
   private var currentChunk: Int = 0
 
-  init(chunkSize: Int, totalChunks: Int, totalSize: Int64?) {
+  init(chunkSize: Int, totalChunks: Int, totalSize: UInt64?) {
     self.chunkSize = chunkSize
     self.totalChunks = totalChunks
     self.totalSize = totalSize
@@ -2256,27 +2256,27 @@ private struct DynamicComputationSource: UploadSource {
 private struct SeekableComputationSource: SeekableUploadSource {
   let chunkSize: Int
   let totalChunks: Int
-  let totalSize: Int64?
-  private var currentOffset: Int64 = 0
+  let totalSize: UInt64?
+  private var currentOffset: UInt64 = 0
 
   init(chunkSize: Int, totalChunks: Int) {
     self.chunkSize = chunkSize
     self.totalChunks = totalChunks
-    self.totalSize = Int64(chunkSize * totalChunks)
+    self.totalSize = UInt64(chunkSize * totalChunks)
   }
 
   mutating func read(maxBytes: Int) async throws -> ByteBuffer? {
     guard let totalSize = totalSize, currentOffset < totalSize else { return nil }
-    let bytesToRead = min(Int64(maxBytes), totalSize - currentOffset)
+    let bytesToRead = min(UInt64(maxBytes), totalSize - currentOffset)
     guard bytesToRead > 0 else { return nil }
-    let chunkIndex = Int(currentOffset / Int64(chunkSize))
+    let chunkIndex = Int(currentOffset / UInt64(chunkSize))
     let byteVal = UInt8((chunkIndex + 1) % 256)
     currentOffset += bytesToRead
     return ByteBuffer(Data(repeating: byteVal, count: Int(bytesToRead)))
   }
 
-  mutating func seek(to offset: Int64) async throws {
-    guard offset >= 0, let total = totalSize, offset <= total else {
+  mutating func seek(to offset: UInt64) async throws {
+    guard let total = totalSize, offset <= total else {
       throw UploadError.localSourceTooSmall(localSize: totalSize ?? 0, gcsOffset: offset)
     }
     self.currentOffset = offset

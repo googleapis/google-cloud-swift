@@ -20,7 +20,7 @@ public struct UploadDetails: Sendable, Equatable {
   public var bytesUploaded: UInt64
 
   /// The total size of the object to upload in bytes, if known.
-  public var totalBytes: Int64?
+  public var totalBytes: UInt64?
 
   /// Creates a new `UploadDetails` instance.
   ///
@@ -29,7 +29,7 @@ public struct UploadDetails: Sendable, Equatable {
   ///   - totalBytes: Total object size in bytes if known. Defaults to `nil`.
   public init(
     bytesUploaded: UInt64 = 0,
-    totalBytes: Int64? = nil
+    totalBytes: UInt64? = nil
   ) {
     self.bytesUploaded = bytesUploaded
     self.totalBytes = totalBytes

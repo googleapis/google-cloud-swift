@@ -30,7 +30,7 @@ struct MultipartUploadStream: AsyncSequence, Sendable {
   let boundary: String
   let metadataJson: Data
   let contentType: String
-  let totalSize: Int64
+  let totalSize: UInt64
   let chunkSize: Int
 
   init(
@@ -38,7 +38,7 @@ struct MultipartUploadStream: AsyncSequence, Sendable {
     boundary: String,
     metadataJson: Data,
     contentType: String,
-    totalSize: Int64,
+    totalSize: UInt64,
     chunkSize: Int = 64 * 1024
   ) {
     self.source = source
@@ -50,13 +50,13 @@ struct MultipartUploadStream: AsyncSequence, Sendable {
   }
 
   /// Computes the exact Content-Length for the multipart request body.
-  var bodyLength: Int64 {
+  var bodyLength: UInt64 {
     let preambleLen =
       "--\(boundary)\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n".utf8.count
       + metadataJson.count
       + "\r\n--\(boundary)\r\nContent-Type: \(contentType)\r\n\r\n".utf8.count
     let epilogueLen = "\r\n--\(boundary)--\r\n".utf8.count
-    return Int64(preambleLen) + totalSize + Int64(epilogueLen)
+    return UInt64(preambleLen) + totalSize + UInt64(epilogueLen)
   }
 
   /// Prepares an upload source for a simple multipart upload by calculating or extracting the `x-goog-hash` header.
@@ -69,7 +69,7 @@ struct MultipartUploadStream: AsyncSequence, Sendable {
     boundary: String,
     metadataJson: Data,
     contentType: String,
-    totalSize: Int64,
+    totalSize: UInt64,
     options: ChecksumOptions,
     chunkSize: Int = 64 * 1024
   ) async throws -> PreparedMultipartUpload {
@@ -130,16 +130,16 @@ struct MultipartUploadStream: AsyncSequence, Sendable {
     private let boundary: String
     private let metadataJson: Data
     private let contentType: String
-    private let totalSize: Int64
+    private let totalSize: UInt64
     private let chunkSize: Int
-    private var bytesYielded: Int64 = 0
+    private var bytesYielded: UInt64 = 0
 
     init(
       source: any UploadSource,
       boundary: String,
       metadataJson: Data,
       contentType: String,
-      totalSize: Int64,
+      totalSize: UInt64,
       chunkSize: Int
     ) {
       self.source = source
@@ -167,7 +167,7 @@ struct MultipartUploadStream: AsyncSequence, Sendable {
         let chunk: ByteBuffer?
         chunk = try await source.read(maxBytes: chunkSize)
         if let chunk = chunk, !chunk.isEmpty {
-          bytesYielded += Int64(chunk.count)
+          bytesYielded += UInt64(chunk.count)
           return chunk.byteBuffer
         }
         if bytesYielded < totalSize {

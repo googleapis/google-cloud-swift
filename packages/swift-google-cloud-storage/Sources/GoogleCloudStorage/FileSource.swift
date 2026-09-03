@@ -17,12 +17,12 @@ import Foundation
 /// An upload source that reads from a local file.
 public struct FileSource: SeekableUploadSource {
   public let fileURL: URL
-  private var offset: Int64 = 0
+  private var offset: UInt64 = 0
 
-  public var totalSize: Int64? {
+  public var totalSize: UInt64? {
     do {
       let values = try fileURL.resourceValues(forKeys: [.fileSizeKey])
-      return values.fileSize.map { Int64($0) }
+      return values.fileSize.flatMap { $0 >= 0 ? UInt64($0) : nil }
     } catch {
       return nil
     }
@@ -37,18 +37,15 @@ public struct FileSource: SeekableUploadSource {
     defer {
       try? handle.close()
     }
-    try handle.seek(toOffset: UInt64(offset))
+    try handle.seek(toOffset: offset)
     guard let data = try handle.read(upToCount: maxBytes), !data.isEmpty else {
       return nil
     }
-    offset += Int64(data.count)
+    offset += UInt64(data.count)
     return ByteBuffer(data)
   }
 
-  public mutating func seek(to offset: Int64) async throws {
-    guard offset >= 0 else {
-      throw UploadError.internalError("Invalid seek offset: \(offset)")
-    }
+  public mutating func seek(to offset: UInt64) async throws {
     if let size = totalSize, offset > size {
       throw UploadError.localSourceTooSmall(localSize: size, gcsOffset: offset)
     }

@@ -30,7 +30,7 @@ import Testing
       boundary: boundary,
       metadataJson: metadataJson,
       contentType: "text/plain",
-      totalSize: Int64(payload.count),
+      totalSize: UInt64(payload.count),
       chunkSize: 4
     )
 
@@ -45,7 +45,7 @@ import Testing
     let expectedEpilogue = "\r\n--TestBoundary123--\r\n"
     let expectedFullString = expectedPreamble + "Hello, World!" + expectedEpilogue
 
-    #expect(collected.readableBytes == stream.bodyLength)
+    #expect(UInt64(collected.readableBytes) == stream.bodyLength)
     #expect(collected.readableBytes == expectedFullString.utf8.count)
 
     let actualString = collected.withUnsafeReadableBytes { String(decoding: $0, as: UTF8.self) }
@@ -64,7 +64,7 @@ import Testing
       boundary: boundary,
       metadataJson: metadataJson,
       contentType: "application/octet-stream",
-      totalSize: Int64(payload.count),
+      totalSize: UInt64(payload.count),
       options: .default,
       chunkSize: 4
     )
@@ -79,7 +79,7 @@ import Testing
       var copy = chunk
       collected.writeBuffer(&copy)
     }
-    #expect(collected.readableBytes == stream.bodyLength)
+    #expect(UInt64(collected.readableBytes) == stream.bodyLength)
   }
 
   /// Tests MultipartUploadStream.prepare with a non-seekable UploadSource and automatic checksums.
@@ -91,14 +91,14 @@ import Testing
       continuation.yield(payload)
       continuation.finish()
     }
-    let source = StreamSource(sequence: asyncStream, totalSize: Int64(payload.count))
+    let source = StreamSource(sequence: asyncStream, totalSize: UInt64(payload.count))
 
     let prepared = try await MultipartUploadStream.prepare(
       source: source,
       boundary: boundary,
       metadataJson: metadataJson,
       contentType: "text/plain",
-      totalSize: Int64(payload.count),
+      totalSize: UInt64(payload.count),
       options: .default,
       chunkSize: 8
     )
@@ -113,7 +113,7 @@ import Testing
       var copy = chunk
       collected.writeBuffer(&copy)
     }
-    #expect(collected.readableBytes == stream.bodyLength)
+    #expect(UInt64(collected.readableBytes) == stream.bodyLength)
   }
 
   /// Tests MultipartUploadStream.prepare when checksum calculation is disabled.
@@ -128,7 +128,7 @@ import Testing
       boundary: boundary,
       metadataJson: metadataJson,
       contentType: "text/plain",
-      totalSize: Int64(payload.count),
+      totalSize: UInt64(payload.count),
       options: .none,
       chunkSize: 4
     )
@@ -142,7 +142,7 @@ import Testing
       var copy = chunk
       collected.writeBuffer(&copy)
     }
-    #expect(collected.readableBytes == stream.bodyLength)
+    #expect(UInt64(collected.readableBytes) == stream.bodyLength)
   }
 
   /// Tests that MultipartUploadStream throws when the source returns fewer bytes than totalSize.

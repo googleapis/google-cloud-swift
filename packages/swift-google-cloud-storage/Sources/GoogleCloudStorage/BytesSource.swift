@@ -18,10 +18,10 @@ import NIOCore
 /// An upload source that wraps in-memory bytes or buffers.
 public struct BytesSource: SeekableUploadSource {
   public let buffer: ByteBuffer
-  public var totalSize: Int64? {
-    return Int64(buffer.count)
+  public var totalSize: UInt64? {
+    return UInt64(buffer.count)
   }
-  private var offset: Int64 = 0
+  private var offset: UInt64 = 0
 
   public init(buffer: ByteBuffer) {
     self.buffer = buffer
@@ -32,18 +32,15 @@ public struct BytesSource: SeekableUploadSource {
   }
 
   public mutating func read(maxBytes: Int) async throws -> ByteBuffer? {
-    guard maxBytes > 0, offset < buffer.count else { return nil }
-    let end = min(offset + Int64(maxBytes), Int64(buffer.count))
+    guard maxBytes > 0, offset < UInt64(buffer.count) else { return nil }
+    let end = min(offset + UInt64(maxBytes), UInt64(buffer.count))
     let chunk = buffer.subdata(in: Int(offset)..<Int(end))
     offset = end
     return chunk
   }
 
-  public mutating func seek(to offset: Int64) async throws {
-    guard offset >= 0 else {
-      throw UploadError.internalError("Invalid seek offset: \(offset)")
-    }
-    let size = Int64(buffer.count)
+  public mutating func seek(to offset: UInt64) async throws {
+    let size = UInt64(buffer.count)
     guard offset <= size else {
       throw UploadError.localSourceTooSmall(localSize: size, gcsOffset: offset)
     }

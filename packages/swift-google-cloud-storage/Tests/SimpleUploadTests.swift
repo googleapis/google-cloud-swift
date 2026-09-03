@@ -33,7 +33,7 @@ import Testing
     registry: MockRegistry,
     retryPolicy: (any RetryPolicy)? = nil,
     uploadResumePolicy: (any ResumePolicy<UploadDetails>)? = nil,
-    uploadThreshold: Int? = nil
+    uploadThreshold: UInt64? = nil
   ) throws -> StorageClient {
     let options = StorageClientOptions().with {
       $0.client = .init().with {

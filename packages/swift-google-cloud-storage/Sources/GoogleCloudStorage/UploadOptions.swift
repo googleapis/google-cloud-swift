@@ -476,7 +476,7 @@ public struct UploadOptions: Sendable {
   public static let defaultChunkSize: Int = 8 * 1024 * 1024
 
   /// The default threshold in bytes (8 MB) between simple and resumable uploads.
-  public static let defaultResumableUploadThreshold: Int = 8 * 1024 * 1024
+  public static let defaultResumableUploadThreshold: UInt64 = 8 * 1024 * 1024
 
   /// The chunk size in bytes for resumable uploads. Defaults to `defaultChunkSize` (8 MB).
   public var chunkSize: Int = defaultChunkSize
@@ -487,7 +487,7 @@ public struct UploadOptions: Sendable {
   /// uploads greater than or equal to this threshold (or of unknown size) use resumable upload.
   /// When `nil`, the upload operation falls back to `StorageClientOptions.upload.resumableUploadThreshold`
   /// or the default threshold (`defaultResumableUploadThreshold`, 8 MB).
-  public var resumableUploadThreshold: Int?
+  public var resumableUploadThreshold: UInt64?
 
   /// Preconditions (e.g. `ifGenerationMatch`) for the upload operation.
   public var preconditions: StoragePreconditions?

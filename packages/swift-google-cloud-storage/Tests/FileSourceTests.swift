@@ -35,16 +35,6 @@ import Testing
     let chunk = try await source.read(maxBytes: 100)
     #expect(chunk?.count == 50)
 
-    // Seek to negative offset
-    let negativeErr = await expectError(UploadError.self) {
-      try await source.seek(to: -5)
-    }
-    if case .internalError(let message) = negativeErr {
-      #expect(message == "Invalid seek offset: -5")
-    } else {
-      Issue.record("Expected .internalError, got \(String(describing: negativeErr))")
-    }
-
     // Seek past end of file
     let pastEndErr = await expectError(UploadError.self) {
       try await source.seek(to: 200)

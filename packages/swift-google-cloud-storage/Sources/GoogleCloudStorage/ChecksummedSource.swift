@@ -27,8 +27,8 @@ struct ChecksummedSource<S: UploadSource> {
   private var nextChunk: ByteBuffer? = nil
   private var isInitialized = false
   private var isFinished = false
-  private var bytesHashed: Int64 = 0
-  private var nextChunkOffset: Int64 = 0
+  private var bytesHashed: UInt64 = 0
+  private var nextChunkOffset: UInt64 = 0
 
   init(source: S, options: ChecksumOptions) {
     self.source = source
@@ -49,17 +49,17 @@ struct ChecksummedSource<S: UploadSource> {
     self.calculators = self.options.makeUploadCalculators()
   }
 
-  mutating func seedCRC32C(seed: UInt32, bytesHashed: Int64) {
+  mutating func seedCRC32C(seed: UInt32, bytesHashed: UInt64) {
     if let idx = calculators.firstIndex(where: { $0 is CRC32CCalculator }) {
       calculators[idx] = CRC32CCalculator(seed: seed)
       self.bytesHashed = bytesHashed
     }
   }
 
-  private mutating func updateChecksums(data: ByteBuffer, startOffset: Int64) {
+  private mutating func updateChecksums(data: ByteBuffer, startOffset: UInt64) {
     guard !calculators.isEmpty else { return }
 
-    let endOffset = startOffset + Int64(data.count)
+    let endOffset = startOffset + UInt64(data.count)
     guard endOffset > bytesHashed else { return }
 
     let unhashedData: ByteBuffer
@@ -88,7 +88,7 @@ struct ChecksummedSource<S: UploadSource> {
     }
 
     let currentChunkOffset = nextChunkOffset
-    nextChunkOffset += Int64(currentChunk.count)
+    nextChunkOffset += UInt64(currentChunk.count)
 
     nextChunk = try await source.read(maxBytes: maxBytes)
     let isLast = nextChunk == nil || nextChunk!.isEmpty
@@ -112,7 +112,7 @@ struct ChecksummedSource<S: UploadSource> {
 }
 
 extension ChecksummedSource where S: SeekableUploadSource {
-  mutating func seek(to offset: Int64) async throws {
+  mutating func seek(to offset: UInt64) async throws {
     nextChunk = nil
     isInitialized = false
     isFinished = false
@@ -127,15 +127,15 @@ extension ChecksummedSource where S: SeekableUploadSource {
     try await source.seek(to: bytesHashed)
     var currentSeekOffset = bytesHashed
     var bytesRemaining = offset - bytesHashed
-    let bufferSize = 8 * 1024 * 1024
+    let bufferSize: UInt64 = 8 * 1024 * 1024
     while bytesRemaining > 0 {
-      let toRead = Int(min(bytesRemaining, Int64(bufferSize)))
+      let toRead = Int(min(bytesRemaining, bufferSize))
       guard let chunk = try await source.read(maxBytes: toRead), !chunk.isEmpty else {
         throw UploadError.localSourceTooSmall(localSize: currentSeekOffset, gcsOffset: offset)
       }
       updateChecksums(data: chunk, startOffset: currentSeekOffset)
-      currentSeekOffset += Int64(chunk.count)
-      bytesRemaining -= Int64(chunk.count)
+      currentSeekOffset += UInt64(chunk.count)
+      bytesRemaining -= UInt64(chunk.count)
     }
   }
 }

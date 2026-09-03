@@ -22,12 +22,12 @@ public protocol UploadSource: Sendable {
   mutating func read(maxBytes: Int) async throws -> ByteBuffer?
 
   /// The total size of the source, if known.
-  var totalSize: Int64? { get }
+  var totalSize: UInt64? { get }
 }
 
 /// Represents an upload source that supports seeking (rewinding/skipping).
 /// Conformance to this protocol enables persistent resumption.
 public protocol SeekableUploadSource: UploadSource {
   /// Seeks to a specific byte offset.
-  mutating func seek(to offset: Int64) async throws
+  mutating func seek(to offset: UInt64) async throws
 }

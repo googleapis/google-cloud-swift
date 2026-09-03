@@ -18,7 +18,7 @@ import Foundation
 public enum UploadError: Error, Sendable {
   /// The local source is smaller than the offset reported by GCS.
   /// Indicates the source was modified or truncated.
-  case localSourceTooSmall(localSize: Int64, gcsOffset: Int64)
+  case localSourceTooSmall(localSize: UInt64, gcsOffset: UInt64)
 
   /// The resumable session has expired (usually after 7 days) or was not found.
   case sessionExpired(uploadId: String, underlyingError: Error?)

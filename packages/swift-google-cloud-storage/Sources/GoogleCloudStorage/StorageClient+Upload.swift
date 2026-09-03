@@ -55,9 +55,9 @@ extension StorageClient {
       resumePolicy: effectiveResumePolicy,
       backoffPolicy: effectiveBackoffPolicy
     )
-    let effectiveThreshold = Int64(
+    let effectiveThreshold =
       options.resumableUploadThreshold ?? self.options.upload.resumableUploadThreshold
-        ?? UploadOptions.defaultResumableUploadThreshold)
+      ?? UploadOptions.defaultResumableUploadThreshold
     let httpClient = self.inner
 
     var source = source
@@ -118,9 +118,9 @@ extension StorageClient {
       resumePolicy: effectiveResumePolicy,
       backoffPolicy: effectiveBackoffPolicy
     )
-    let effectiveThreshold = Int64(
+    let effectiveThreshold =
       options.resumableUploadThreshold ?? self.options.upload.resumableUploadThreshold
-        ?? UploadOptions.defaultResumableUploadThreshold)
+      ?? UploadOptions.defaultResumableUploadThreshold
     let httpClient = self.inner
 
     var source = source
@@ -161,12 +161,9 @@ extension StorageClient {
     objectName: String,
     metadata: UploadMetadata?,
     options: UploadOptions,
-    totalSize: Int64,
+    totalSize: UInt64,
     resumeLoop: _ResumeLoop<UploadDetails>
   ) async throws -> Object {
-    if totalSize < 0 {
-      throw UploadError.internalError("Invalid source total size: \(totalSize)")
-    }
     var queryItems = [URLQueryItem(name: "uploadType", value: "multipart")]
     queryItems.append(URLQueryItem(name: "name", value: objectName))
 
@@ -212,7 +209,7 @@ extension StorageClient {
       request.applyCustomerSuppliedEncryptionHeaders(options.customerEncryptionKey)
       request.setHeader(name: "Content-Type", value: "multipart/related; boundary=\(boundary)")
 
-      request.setBody(stream: stream, length: stream.bodyLength)
+      request.setBody(stream: stream, length: Int64(stream.bodyLength))
 
       let response: _HTTPClientResponse
       do {
@@ -290,7 +287,7 @@ extension StorageClient {
       return (.done(object), nil)
     } else if statusCode == 308 {
       let queryStatus = try parseResumableUploadQueryStatus(from: queryResponse.headers)
-      return (.inprogress(UInt64(queryStatus.nextOffset)), queryStatus.crc32cSeed)
+      return (.inprogress(queryStatus.nextOffset), queryStatus.crc32cSeed)
     } else if queryResponse.isError() {
       throw await queryResponse.decodeError()
     } else {
@@ -307,12 +304,12 @@ extension StorageClient {
     uploadId: String,
     committedBytes: UInt64,
     chunkSize: Int,
-    totalSize: Int64?,
+    totalSize: UInt64?,
     options: UploadOptions
   ) async throws -> (status: ResumableUploadStatus, crc32cSeed: UInt32?) {
     let chunkInfo = try await checksummedSource.readChunk(maxBytes: chunkSize)
     let chunk: ByteBuffer
-    let effectiveTotalSize: Int64?
+    let effectiveTotalSize: UInt64?
     let checksum: String?
 
     if let chunkInfo = chunkInfo, !chunkInfo.data.isEmpty {
@@ -320,10 +317,10 @@ extension StorageClient {
       let isLast = chunkInfo.isLast
       checksum = isLast ? chunkInfo.checksum : nil
       effectiveTotalSize =
-        (isLast && totalSize == nil) ? (Int64(committedBytes) + Int64(chunk.count)) : totalSize
+        (isLast && totalSize == nil) ? (committedBytes + UInt64(chunk.count)) : totalSize
     } else {
       chunk = ByteBuffer()
-      effectiveTotalSize = totalSize ?? Int64(committedBytes)
+      effectiveTotalSize = totalSize ?? committedBytes
       checksum = checksummedSource.finalizeChecksum()
     }
 
@@ -331,7 +328,7 @@ extension StorageClient {
       httpClient: httpClient,
       uploadId: uploadId,
       data: chunk,
-      offset: Int64(committedBytes),
+      offset: committedBytes,
       totalSize: effectiveTotalSize,
       options: options,
       checksum: checksum
@@ -352,17 +349,17 @@ extension StorageClient {
       let object = try await handleObjectResponse(response: uploadResponse)
       return (.done(object), nil)
     } else if statusCode == 308 {
-      let nextOffset: Int64
+      let nextOffset: UInt64
       if let rangeHeader = uploadResponse.headers.first(name: "Range") {
-        nextOffset = Int64(try HttpRange.parseNextRangeStart(rangeHeader))
+        nextOffset = try HttpRange.parseNextRangeStart(rangeHeader)
       } else {
-        nextOffset = Int64(committedBytes) + Int64(chunk.count)
+        nextOffset = committedBytes + UInt64(chunk.count)
       }
       var crc32cSeed: UInt32? = nil
       if let runningHashHeader = uploadResponse.headers.first(name: "x-goog-running-hash") {
         crc32cSeed = parseCRC32CFromRunningHash(runningHashHeader)
       }
-      return (.inprogress(UInt64(nextOffset)), crc32cSeed)
+      return (.inprogress(nextOffset), crc32cSeed)
     } else if uploadResponse.isError() {
       throw await uploadResponse.decodeError()
     } else {
@@ -383,7 +380,7 @@ extension StorageClient {
     uploadId: String?,
     initialStatus: ResumableUploadStatus,
     chunkSize: Int,
-    totalSize: Int64?,
+    totalSize: UInt64?,
     options: UploadOptions,
     resumeLoop: _ResumeLoop<UploadDetails>
   ) async throws -> Object {
@@ -450,9 +447,9 @@ extension StorageClient {
       case .done(let object):
         return object
       case .inprogress(let committedBytes):
-        if let total = totalSize, Int64(committedBytes) > total {
+        if let total = totalSize, committedBytes > total {
           throw UploadError.localSourceTooSmall(
-            localSize: total, gcsOffset: Int64(committedBytes))
+            localSize: total, gcsOffset: committedBytes)
         }
         if committedBytes > 0 && options.checksums.md5 == .auto {
           options.checksums.md5 = nil
@@ -513,7 +510,7 @@ extension StorageClient {
     initialStatus: ResumableUploadStatus,
     initialCrc32cSeed: UInt32? = nil,
     chunkSize: Int,
-    totalSize: Int64?,
+    totalSize: UInt64?,
     options: UploadOptions,
     resumeLoop: _ResumeLoop<UploadDetails>
   ) async throws -> Object {
@@ -583,9 +580,9 @@ extension StorageClient {
       case .done(let object):
         return object
       case .inprogress(let committedBytes):
-        if let total = totalSize, Int64(committedBytes) > total {
+        if let total = totalSize, committedBytes > total {
           throw UploadError.localSourceTooSmall(
-            localSize: total, gcsOffset: Int64(committedBytes))
+            localSize: total, gcsOffset: committedBytes)
         }
         if committedBytes > 0 && options.checksums.md5 == .auto {
           options.checksums.md5 = nil
@@ -594,17 +591,17 @@ extension StorageClient {
         if checksummedSource == nil {
           var cs = ChecksummedSource(source: source, options: options.checksums)
           if let seed = crc32cSeed {
-            cs.seedCRC32C(seed: seed, bytesHashed: Int64(committedBytes))
+            cs.seedCRC32C(seed: seed, bytesHashed: committedBytes)
           }
           if committedBytes > 0 {
-            try await cs.seek(to: Int64(committedBytes))
+            try await cs.seek(to: committedBytes)
           }
           checksummedSource = cs
         } else {
           if let seed = crc32cSeed {
-            checksummedSource!.seedCRC32C(seed: seed, bytesHashed: Int64(committedBytes))
+            checksummedSource!.seedCRC32C(seed: seed, bytesHashed: committedBytes)
           }
-          try await checksummedSource!.seek(to: Int64(committedBytes))
+          try await checksummedSource!.seek(to: committedBytes)
         }
 
         uploadStatus = .unknown
@@ -714,7 +711,7 @@ extension StorageClient {
 
 /// Status returned by GCS when querying an in-progress resumable upload.
 struct ResumableUploadQueryStatus: Sendable {
-  let nextOffset: Int64
+  let nextOffset: UInt64
   let crc32cSeed: UInt32?
 }
 
@@ -774,8 +771,8 @@ extension StorageClient {
     httpClient: GoogleCloudGax._HTTPClient,
     uploadId: String,
     data: ByteBuffer,
-    offset: Int64,
-    totalSize: Int64?,
+    offset: UInt64,
+    totalSize: UInt64?,
     options: UploadOptions,
     checksum: String? = nil
   ) async throws -> GoogleCloudGax._HTTPClientRequest {
@@ -793,7 +790,7 @@ extension StorageClient {
     if data.isEmpty {
       request.setHeader(name: "Content-Range", value: "bytes */\(totalStr)")
     } else {
-      let end = offset + Int64(data.count) - 1
+      let end = offset + UInt64(data.count) - 1
       request.setHeader(name: "Content-Range", value: "bytes \(offset)-\(end)/\(totalStr)")
     }
     request.setBody(buffer: data.byteBuffer)
@@ -803,9 +800,9 @@ extension StorageClient {
   internal static func parseResumableUploadQueryStatus(from headers: NIOHTTP1.HTTPHeaders) throws
     -> ResumableUploadQueryStatus
   {
-    var nextOffset: Int64 = 0
+    var nextOffset: UInt64 = 0
     if let rangeHeader = headers.first(name: "Range") {
-      nextOffset = Int64(try HttpRange.parseNextRangeStart(rangeHeader))
+      nextOffset = try HttpRange.parseNextRangeStart(rangeHeader)
     }
 
     var crc32cSeed: UInt32? = nil

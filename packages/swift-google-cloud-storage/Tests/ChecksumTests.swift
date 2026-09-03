@@ -218,7 +218,7 @@ import Testing
       let data: Data
       private var readCompleted = false
       init(data: Data) { self.data = data }
-      var totalSize: Int64? { Int64(data.count) }
+      var totalSize: UInt64? { UInt64(data.count) }
       mutating func read(maxBytes: Int) async throws -> ByteBuffer? {
         if readCompleted { return nil }
         readCompleted = true

@@ -765,10 +765,10 @@ struct StorageClientRangedDownloadIntegrationTests {
 private struct IntegrationDynamicSource: UploadSource {
   let chunkSize: Int
   let totalChunks: Int
-  let totalSize: Int64?
+  let totalSize: UInt64?
   private var currentChunk: Int = 0
 
-  init(chunkSize: Int, totalChunks: Int, totalSize: Int64? = nil) {
+  init(chunkSize: Int, totalChunks: Int, totalSize: UInt64? = nil) {
     self.chunkSize = chunkSize
     self.totalChunks = totalChunks
     self.totalSize = totalSize
