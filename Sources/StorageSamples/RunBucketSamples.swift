@@ -71,6 +71,32 @@ public func runBucketSamples(
   print("running createBucketWithObjectRetention() sample")
   try await createBucketWithObjectRetention(
     client: client, projectId: projectId, bucketId: objectRetentionId)
+
+  let ublaBucketId = randomBucketId()
+  bucketNames.append("projects/_/buckets/\(ublaBucketId)")
+  print("creating bucket without uniform bucket-level access")
+  let _ = try await client.createBucket(
+    request: .init().with {
+      $0.parent = "projects/_"
+      $0.bucketId = ublaBucketId
+      $0.bucket = .init().with {
+        $0.project = "projects/\(projectId)"
+        $0.iamConfig = .init().with {
+          $0.uniformBucketLevelAccess = .init().with {
+            $0.enabled = false
+          }
+        }
+      }
+    },
+    options: .init()
+  )
+
+  print("running enableUniformBucketLevelAccess() sample")
+  try await enableUniformBucketLevelAccess(client: client, bucketId: ublaBucketId)
+  print("running getUniformBucketLevelAccess() sample")
+  try await getUniformBucketLevelAccess(client: client, bucketId: ublaBucketId)
+  print("running disableUniformBucketLevelAccess() sample")
+  try await disableUniformBucketLevelAccess(client: client, bucketId: ublaBucketId)
 }
 
 /// Generates a random bucket ID.
