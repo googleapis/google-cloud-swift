@@ -14,7 +14,6 @@
 
 import Foundation
 import NIOCore
-import NIOPosix
 
 private final class FileHandleBox: @unchecked Sendable {
   let fileHandle: NIOFileHandle
