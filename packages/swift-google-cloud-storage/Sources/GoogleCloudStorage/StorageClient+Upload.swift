@@ -63,7 +63,9 @@ extension StorageClient {
     var source = source
 
     // Determine if simple or resumable
-    if let totalSize = source.totalSize, totalSize < effectiveThreshold {
+    if let totalSize = source.totalSize, effectiveThreshold > 0,
+      totalSize < UInt64(effectiveThreshold)
+    {
       return try await Self.performSimpleUpload(
         httpClient: httpClient,
         source: &source,
@@ -126,7 +128,9 @@ extension StorageClient {
     var source = source
 
     // Determine if simple or resumable
-    if let totalSize = source.totalSize, totalSize < effectiveThreshold {
+    if let totalSize = source.totalSize, effectiveThreshold > 0,
+      totalSize < UInt64(effectiveThreshold)
+    {
       return try await Self.performSimpleUpload(
         httpClient: httpClient,
         source: &source,
