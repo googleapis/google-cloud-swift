@@ -15,6 +15,7 @@
 import Foundation
 import GRPCCore
 import GRPCNIOTransportHTTP2Posix
+import GRPCProtobuf
 import GoogleCloudAuth
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 import SwiftProtobuf

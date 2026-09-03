@@ -1,5 +1,5 @@
 {
-  "originHash" : "1147b2b3976dff654ad87c8b5408fce9941013539421572a5c03d884c1373777",
+  "originHash" : "1d6ca280f44a47e184d320c55ed904431bbfa92869fc385acbf785130cb983fc",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -26,6 +26,15 @@
       "state" : {
         "revision" : "eaad084d6c26ff1f2e96f9c2ab76ef84d7165ab6",
         "version" : "2.9.2"
+      }
+    },
+    {
+      "identity" : "grpc-swift-protobuf",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/grpc/grpc-swift-protobuf.git",
+      "state" : {
+        "revision" : "176c5a434fd76f6f479848d1a8f7d44967534168",
+        "version" : "2.4.1"
       }
     },
     {
