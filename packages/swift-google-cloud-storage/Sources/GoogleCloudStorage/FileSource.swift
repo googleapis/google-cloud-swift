@@ -14,95 +14,36 @@
 
 import Foundation
 import NIOCore
-
-#if canImport(Darwin)
-  import Darwin
-#elseif canImport(Glibc)
-  import Glibc
-#elseif canImport(Musl)
-  import Musl
-#endif
+import NIOPosix
 
 private final class FileHandleBox: @unchecked Sendable {
-  let fd: CInt
+  let fileHandle: NIOFileHandle
 
-  init(fd: CInt) {
-    self.fd = fd
+  init(fileHandle: NIOFileHandle) {
+    self.fileHandle = fileHandle
   }
 
   deinit {
-    #if canImport(Darwin)
-      _ = Darwin.close(fd)
-    #elseif canImport(Glibc)
-      _ = Glibc.close(fd)
-    #elseif canImport(Musl)
-      _ = Musl.close(fd)
-    #else
-      _ = close(fd)
-    #endif
+    try? fileHandle.close()
   }
 
   static func open(fileURL: URL) throws -> FileHandleBox {
-    let fd = try fileURL.withUnsafeFileSystemRepresentation { cPath in
-      guard let cPath = cPath else {
-        throw UploadError.internalError("Unable to resolve file path for URL: \(fileURL)")
-      }
-      #if canImport(Darwin)
-        let fd = Darwin.open(cPath, O_RDONLY)
-      #elseif canImport(Glibc)
-        let fd = Glibc.open(cPath, O_RDONLY | O_CLOEXEC)
-      #elseif canImport(Musl)
-        let fd = Musl.open(cPath, O_RDONLY | O_CLOEXEC)
-      #else
-        let fd = open(cPath, O_RDONLY)
-      #endif
-      guard fd >= 0 else {
-        let code = errno
-        if code == ENOENT {
-          throw CocoaError(.fileNoSuchFile)
-        } else if code == EACCES {
-          throw CocoaError(.fileReadNoPermission)
-        } else {
-          throw POSIXError(POSIXErrorCode(rawValue: code) ?? .EIO)
-        }
-      }
-      return fd
-    }
-    return FileHandleBox(fd: fd)
+    let handle = try NIOFileHandle(_deprecatedPath: fileURL.path)
+    return FileHandleBox(fileHandle: handle)
   }
 
-  var totalSize: UInt64? {
-    var st = stat()
-    #if canImport(Darwin)
-      guard Darwin.fstat(fd, &st) == 0 else { return nil }
-    #elseif canImport(Glibc)
-      guard Glibc.fstat(fd, &st) == 0 else { return nil }
-    #elseif canImport(Musl)
-      guard Musl.fstat(fd, &st) == 0 else { return nil }
-    #else
-      guard fstat(fd, &st) == 0 else { return nil }
-    #endif
-    return st.st_size >= 0 ? UInt64(st.st_size) : nil
-  }
-
-  func pread(into base: UnsafeMutableRawPointer, maxBytes: Int, offset: UInt64) throws -> Int {
+  func readBytes(into base: UnsafeMutableRawPointer, maxBytes: Int, offset: UInt64) throws -> Int {
     guard let off = off_t(exactly: offset) else {
       throw UploadError.internalError("Offset exceeds maximum file offset: \(offset)")
     }
-    #if canImport(Darwin)
-      let n = Darwin.pread(fd, base, maxBytes, off)
-    #elseif canImport(Glibc)
-      let n = Glibc.pread(fd, base, maxBytes, off)
-    #elseif canImport(Musl)
-      let n = Musl.pread(fd, base, maxBytes, off)
-    #else
+    return try fileHandle.withUnsafeFileDescriptor { fd in
       let n = pread(fd, base, maxBytes, off)
-    #endif
-    guard n >= 0 else {
-      let code = errno
-      throw POSIXError(POSIXErrorCode(rawValue: code) ?? .EIO)
+      guard n >= 0 else {
+        let code = errno
+        throw POSIXError(POSIXErrorCode(rawValue: code) ?? .EIO)
+      }
+      return n
     }
-    return n
   }
 }
 
@@ -113,9 +54,6 @@ public struct FileSource: SeekableUploadSource {
   private var handleBox: FileHandleBox?
 
   public var totalSize: UInt64? {
-    if let size = handleBox?.totalSize {
-      return size
-    }
     do {
       let values = try fileURL.resourceValues(forKeys: [.fileSizeKey])
       return values.fileSize.flatMap { $0 >= 0 ? UInt64($0) : nil }
@@ -149,7 +87,7 @@ public struct FileSource: SeekableUploadSource {
     let bytesRead = try nioBuffer.writeWithUnsafeMutableBytes(minimumWritableBytes: maxBytes) {
       ptr in
       guard let base = ptr.baseAddress else { return 0 }
-      return try box.pread(into: base, maxBytes: maxBytes, offset: currentOffset)
+      return try box.readBytes(into: base, maxBytes: maxBytes, offset: currentOffset)
     }
 
     guard bytesRead > 0 else {
