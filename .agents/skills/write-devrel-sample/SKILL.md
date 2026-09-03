@@ -26,7 +26,7 @@ If this directory does not exist, stop and ask your human for help.
 
 ## Identify the sample package
 
-Next identify the name of the target for the examples.  Look at the top-level
+Next identify the name of the target for the examples. Look at the top-level
 `Package.swift` file. By convention this is the same name as the directory
 containing the samples.
 
@@ -158,6 +158,48 @@ If it does fail, you can remove the `fatalError` and move on.
 
 Next, edit the interior of the sample to fit the given DevRel snippet region.
 This is where it is useful to remember what other languages did.
+
+### Use named parameters in nested `.with` closures
+
+When constructing or modifying requests and proto models using
+`.with { ... }`, the outermost closure may use anonymous `$0`, but **nested**
+`.with` closures must use explicit named parameter contexts (e.g.,
+`{ options in ... }`, `{ bucket in ... }`, `{ iamConfig in ... }`).
+
+Nesting multiple `$0` closures shadows the outer scope and impairs readability.
+
+```swift
+// AVOID: nested closures reusing anonymous $0
+request: .init().with {
+  $0.resource = "projects/_/buckets/\(bucketId)"
+  $0.options = .init().with {
+    $0.requestedPolicyVersion = 3
+  }
+}
+
+// PREFER: named parameter for inner closures
+request: .init().with {
+  $0.resource = "projects/_/buckets/\(bucketId)"
+  $0.options = .init().with { options in
+    options.requestedPolicyVersion = 3
+  }
+}
+```
+
+For multi-level nesting (such as in `CreateBucketClassLocation.swift` or
+`CreateBucketWithEncryptionEnforcement.swift`), chain named contexts
+descriptively at each level:
+
+```swift
+$0.bucket = .init().with { bucket in
+  bucket.project = "projects/\(projectId)"
+  bucket.iamConfig = .init().with { iamConfig in
+    iamConfig.uniformBucketLevelAccess = .init().with { ubla in
+      ubla.enabled = true
+    }
+  }
+}
+```
 
 When you are done, test the code:
 
