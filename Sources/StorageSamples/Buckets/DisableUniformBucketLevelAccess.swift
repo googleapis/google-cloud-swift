@@ -26,10 +26,10 @@ public func disableUniformBucketLevelAccess(
   )
   let _ = try await client.updateBucket(
     request: .init().with {
-      $0.bucket = bucket.with {
-        $0.iamConfig = .init().with {
-          $0.uniformBucketLevelAccess = .init().with {
-            $0.enabled = false
+      $0.bucket = bucket.with { bucket in
+        bucket.iamConfig = .init().with { iamConfig in
+          iamConfig.uniformBucketLevelAccess = .init().with { ubla in
+            ubla.enabled = false
           }
         }
       }

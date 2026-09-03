@@ -79,11 +79,11 @@ public func runBucketSamples(
     request: .init().with {
       $0.parent = "projects/_"
       $0.bucketId = ublaBucketId
-      $0.bucket = .init().with {
-        $0.project = "projects/\(projectId)"
-        $0.iamConfig = .init().with {
-          $0.uniformBucketLevelAccess = .init().with {
-            $0.enabled = false
+      $0.bucket = .init().with { bucket in
+        bucket.project = "projects/\(projectId)"
+        bucket.iamConfig = .init().with { iamConfig in
+          iamConfig.uniformBucketLevelAccess = .init().with { ubla in
+            ubla.enabled = false
           }
         }
       }
