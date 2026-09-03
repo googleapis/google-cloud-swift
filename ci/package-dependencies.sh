@@ -23,17 +23,28 @@ _REMOVED_DISABLE_RESOLUTION=()
 
 edit_package_dependencies() {
     local dir="$1"
+    local clean_dir="${dir#./}"
+    [[ -z "${clean_dir}" ]] && clean_dir="."
     _EDITED_PACKAGES+=("${dir}")
-    if [[ "${dir}" != "." && "${dir}" != "packages/swift-google-auth" && "${dir}" != "${REPO_ROOT}/packages/swift-google-auth" ]]; then
-        swift package --package-path "${dir}" edit --path "${REPO_ROOT}/packages/swift-google-auth" swift-google-auth >/dev/null 2>&1 || true
+    local scratch_args=()
+    if [[ -n "${flags+x}" ]]; then
+        for ((i=0; i<${#flags[@]}; i++)); do
+            if [[ "${flags[i]}" == "--scratch-path" && $((i+1)) -lt ${#flags[@]} ]]; then
+                scratch_args=("--scratch-path" "${flags[i+1]}")
+                break
+            fi
+        done
     fi
-    if [[ "${dir}" != "." && "${dir}" != "packages/swift-google-wkt" && "${dir}" != "${REPO_ROOT}/packages/swift-google-wkt" ]]; then
-        swift package --package-path "${dir}" edit --path "${REPO_ROOT}/packages/swift-google-wkt" swift-google-wkt >/dev/null 2>&1 || true
+    if [[ "${clean_dir}" != "." && "${clean_dir}" != "packages/swift-google-auth" && "${clean_dir}" != "${REPO_ROOT}/packages/swift-google-auth" ]]; then
+        swift package "${scratch_args[@]}" --package-path "${dir}" edit --path "${REPO_ROOT}/packages/swift-google-auth" swift-google-auth >/dev/null 2>&1 || true
+    fi
+    if [[ "${clean_dir}" != "." && "${clean_dir}" != "packages/swift-google-wkt" && "${clean_dir}" != "${REPO_ROOT}/packages/swift-google-wkt" ]]; then
+        swift package "${scratch_args[@]}" --package-path "${dir}" edit --path "${REPO_ROOT}/packages/swift-google-wkt" swift-google-wkt >/dev/null 2>&1 || true
     fi
     # SwiftPM's --disable-automatic-resolution flag is only valid for the root package
     # where Package.resolved is tracked in git. Subpackages do not track Package.resolved
     # and fail when automatic resolution is disabled.
-    if [[ "${dir}" != "." && -n "${flags+x}" ]]; then
+    if [[ "${clean_dir}" != "." && -n "${flags+x}" ]]; then
         local filtered_flags=()
         local had_flag=false
         for f in "${flags[@]}"; do
@@ -52,11 +63,22 @@ edit_package_dependencies() {
 
 restore_package_dependencies() {
     local dir="$1"
-    if [[ "${dir}" != "." && "${dir}" != "packages/swift-google-auth" && "${dir}" != "${REPO_ROOT}/packages/swift-google-auth" ]]; then
-        swift package --package-path "${dir}" unedit --force swift-google-auth >/dev/null 2>&1 || true
+    local clean_dir="${dir#./}"
+    [[ -z "${clean_dir}" ]] && clean_dir="."
+    local scratch_args=()
+    if [[ -n "${flags+x}" ]]; then
+        for ((i=0; i<${#flags[@]}; i++)); do
+            if [[ "${flags[i]}" == "--scratch-path" && $((i+1)) -lt ${#flags[@]} ]]; then
+                scratch_args=("--scratch-path" "${flags[i+1]}")
+                break
+            fi
+        done
     fi
-    if [[ "${dir}" != "." && "${dir}" != "packages/swift-google-wkt" && "${dir}" != "${REPO_ROOT}/packages/swift-google-wkt" ]]; then
-        swift package --package-path "${dir}" unedit --force swift-google-wkt >/dev/null 2>&1 || true
+    if [[ "${clean_dir}" != "." && "${clean_dir}" != "packages/swift-google-auth" && "${clean_dir}" != "${REPO_ROOT}/packages/swift-google-auth" ]]; then
+        swift package "${scratch_args[@]}" --package-path "${dir}" unedit --force swift-google-auth >/dev/null 2>&1 || true
+    fi
+    if [[ "${clean_dir}" != "." && "${clean_dir}" != "packages/swift-google-wkt" && "${clean_dir}" != "${REPO_ROOT}/packages/swift-google-wkt" ]]; then
+        swift package "${scratch_args[@]}" --package-path "${dir}" unedit --force swift-google-wkt >/dev/null 2>&1 || true
     fi
     if [[ -n "${flags+x}" ]]; then
         for p in "${_REMOVED_DISABLE_RESOLUTION[@]}"; do
