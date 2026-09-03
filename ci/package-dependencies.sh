@@ -15,7 +15,7 @@
 # limitations under the License.
 
 if [[ -z "${REPO_ROOT:-}" ]]; then
-    REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || (cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd))"
+    REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 fi
 
 _EDITED_PACKAGES=()

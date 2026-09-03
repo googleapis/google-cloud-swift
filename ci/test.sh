@@ -35,8 +35,8 @@ flags=(
     -Xswiftc -warnings-as-errors
     -Xswiftc -Wwarning
     -Xswiftc DeprecatedDeclaration
-    --scratch-path "$(git rev-parse --show-toplevel)/.build-cache"
-    --build-path "$(git rev-parse --show-toplevel)/.build"
+    --scratch-path "${REPO_ROOT}/.build-cache"
+    --build-path "${REPO_ROOT}/.build"
     # Use the versions from `Package.resolved`.
     --disable-automatic-resolution
 )
