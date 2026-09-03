@@ -32,18 +32,24 @@ private final class FileHandleBox: @unchecked Sendable {
     return FileHandleBox(fileHandle: handle)
   }
 
-  func readBytes(into base: UnsafeMutableRawPointer, maxBytes: Int, offset: UInt64) throws -> Int {
+  func read(maxBytes: Int, offset: UInt64) throws -> NIOCore.ByteBuffer? {
     guard let off = off_t(exactly: offset) else {
       throw UploadError.internalError("Offset exceeds maximum file offset: \(offset)")
     }
-    return try fileHandle.withUnsafeFileDescriptor { fd in
-      let n = pread(fd, base, maxBytes, off)
-      guard n >= 0 else {
-        let code = errno
-        throw POSIXError(POSIXErrorCode(rawValue: code) ?? .EIO)
+    var buffer = ByteBufferAllocator().buffer(capacity: maxBytes)
+    let bytesRead = try buffer.writeWithUnsafeMutableBytes(minimumWritableBytes: maxBytes) { ptr in
+      guard let base = ptr.baseAddress else { return 0 }
+      return try fileHandle.withUnsafeFileDescriptor { fd in
+        let n = pread(fd, base, maxBytes, off)
+        guard n >= 0 else {
+          let code = errno
+          throw POSIXError(POSIXErrorCode(rawValue: code) ?? .EIO)
+        }
+        return n
       }
-      return n
     }
+    guard bytesRead > 0 else { return nil }
+    return buffer
   }
 }
 
@@ -82,20 +88,12 @@ public struct FileSource: SeekableUploadSource {
       box = newBox
     }
 
-    var nioBuffer = ByteBufferAllocator().buffer(capacity: maxBytes)
-    let currentOffset = offset
-    let bytesRead = try nioBuffer.writeWithUnsafeMutableBytes(minimumWritableBytes: maxBytes) {
-      ptr in
-      guard let base = ptr.baseAddress else { return 0 }
-      return try box.readBytes(into: base, maxBytes: maxBytes, offset: currentOffset)
-    }
-
-    guard bytesRead > 0 else {
+    guard let nioBuffer = try box.read(maxBytes: maxBytes, offset: offset) else {
       handleBox = nil
       return nil
     }
 
-    offset += UInt64(bytesRead)
+    offset += UInt64(nioBuffer.readableBytes)
     return ByteBuffer(nioBuffer)
   }
 
