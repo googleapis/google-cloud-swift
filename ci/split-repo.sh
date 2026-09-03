@@ -22,8 +22,12 @@
 
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+    REPO_ROOT="$(git rev-parse --show-toplevel)"
+else
+    SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+fi
 
 # Default root files to preserve on every commit in the split repository
 DEFAULT_ROOT_FILES=("LICENSE" "CODE_OF_CONDUCT.md" "CONTRIBUTING.md")
