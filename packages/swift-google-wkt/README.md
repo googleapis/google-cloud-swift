@@ -108,8 +108,9 @@ custom decoding logic or parsing Google Cloud REST responses directly, always us
 
 ## Requirements
 
-- Swift 6.2 or later
-- macOS 15.0+ or Linux
+For the minimum supported Swift version and platform requirements, see the
+[Requirements](https://github.com/googleapis/google-cloud-swift#minimum-supported-swift-version)
+section in the `google-cloud-swift` repository.
 
 ## Installation
 
@@ -253,7 +254,11 @@ let backToProto: Google_Protobuf_Timestamp = try wktTimestamp.toProto()
 ## Contributing
 
 Contributions to this library are always welcome and highly encouraged.
-See [CONTRIBUTING.md](CONTRIBUTING.md) for details on getting started.
+
+All development, issues, and pull requests are managed in the
+[google-cloud-swift](https://github.com/googleapis/google-cloud-swift) monorepo.
+See [CONTRIBUTING.md](https://github.com/googleapis/google-cloud-swift/blob/main/CONTRIBUTING.md)
+for details on getting started.
 
 ## License
 
