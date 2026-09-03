@@ -14,41 +14,42 @@
 
 import Foundation
 import NIOCore
+import _NIOFileSystem
 
 private final class FileHandleBox: @unchecked Sendable {
-  let fileHandle: NIOFileHandle
+  let handle: ReadFileHandle
 
-  init(fileHandle: NIOFileHandle) {
-    self.fileHandle = fileHandle
+  init(handle: ReadFileHandle) {
+    self.handle = handle
   }
 
   deinit {
-    try? fileHandle.close()
+    if let descriptor = try? handle.detachUnsafeFileDescriptor() {
+      try? descriptor.close()
+    }
   }
 
-  static func open(fileURL: URL) throws -> FileHandleBox {
-    let handle = try NIOFileHandle(_deprecatedPath: fileURL.path)
-    return FileHandleBox(fileHandle: handle)
+  static func open(fileURL: URL) async throws -> FileHandleBox {
+    let handle = try await FileSystem.shared.openFile(
+      forReadingAt: FilePath(fileURL.path)
+    )
+    return FileHandleBox(handle: handle)
   }
 
-  func read(maxBytes: Int, offset: UInt64) throws -> NIOCore.ByteBuffer? {
-    guard let off = off_t(exactly: offset) else {
+  func read(maxBytes: Int, offset: UInt64) async throws -> NIOCore.ByteBuffer? {
+    guard let off = Int64(exactly: offset) else {
       throw UploadError.internalError("Offset exceeds maximum file offset: \(offset)")
     }
-    var buffer = ByteBufferAllocator().buffer(capacity: maxBytes)
-    let bytesRead = try buffer.writeWithUnsafeMutableBytes(minimumWritableBytes: maxBytes) { ptr in
-      guard let base = ptr.baseAddress else { return 0 }
-      return try fileHandle.withUnsafeFileDescriptor { fd in
-        let n = pread(fd, base, maxBytes, off)
-        guard n >= 0 else {
-          let code = errno
-          throw POSIXError(POSIXErrorCode(rawValue: code) ?? .EIO)
-        }
-        return n
-      }
-    }
-    guard bytesRead > 0 else { return nil }
+    let buffer = try await handle.readChunk(
+      fromAbsoluteOffset: off,
+      length: .bytes(Int64(maxBytes))
+    )
+    guard buffer.readableBytes > 0 else { return nil }
     return buffer
+  }
+
+  func close() async throws {
+    try await handle.close()
   }
 }
 
@@ -74,7 +75,10 @@ public struct FileSource: SeekableUploadSource {
   public mutating func read(maxBytes: Int) async throws -> ByteBuffer? {
     guard maxBytes > 0 else { return nil }
     if let size = totalSize, offset >= size {
-      handleBox = nil
+      if let box = handleBox {
+        try? await box.close()
+        handleBox = nil
+      }
       return nil
     }
 
@@ -82,12 +86,13 @@ public struct FileSource: SeekableUploadSource {
     if let existing = handleBox {
       box = existing
     } else {
-      let newBox = try FileHandleBox.open(fileURL: fileURL)
+      let newBox = try await FileHandleBox.open(fileURL: fileURL)
       self.handleBox = newBox
       box = newBox
     }
 
-    guard let nioBuffer = try box.read(maxBytes: maxBytes, offset: offset) else {
+    guard let nioBuffer = try await box.read(maxBytes: maxBytes, offset: offset) else {
+      try? await box.close()
       handleBox = nil
       return nil
     }
