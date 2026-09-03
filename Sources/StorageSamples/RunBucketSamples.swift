@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import Foundation
 import GoogleCloudStorage
 
 /// The maximum length for a bucket ID.
@@ -24,7 +25,8 @@ fileprivate let prefix = "swift-sdk-testing-"
 fileprivate let lowerCaseAlphanumeric = "abcdefghijklmnopqrstuvwxyz0123456789"
 
 public func runBucketSamples(
-  client: StorageControlClient, projectId: String, bucketNames: inout [String]
+  client: StorageControlClient, projectId: String, serviceAccount: String,
+  bucketNames: inout [String]
 ) async throws {
   let id = randomBucketId()
   let name = "projects/_/buckets/\(id)"
@@ -97,6 +99,46 @@ public func runBucketSamples(
   try await getUniformBucketLevelAccess(client: client, bucketId: ublaBucketId)
   print("running disableUniformBucketLevelAccess() sample")
   try await disableUniformBucketLevelAccess(client: client, bucketId: ublaBucketId)
+
+  let iamBucketId = randomBucketId()
+  bucketNames.append("projects/_/buckets/\(iamBucketId)")
+  print("creating bucket with uniform bucket-level access for IAM samples")
+  let _ = try await client.createBucket(
+    request: .init().with {
+      $0.parent = "projects/_"
+      $0.bucketId = iamBucketId
+      $0.bucket = .init().with { bucket in
+        bucket.project = "projects/\(projectId)"
+        bucket.iamConfig = .init().with { iamConfig in
+          iamConfig.uniformBucketLevelAccess = .init().with { ubla in
+            ubla.enabled = true
+          }
+        }
+      }
+    },
+    options: .init()
+  )
+
+  print("running addBucketIamMember() sample")
+  try await addBucketIamMember(
+    client: client, bucketId: iamBucketId, role: "roles/storage.objectViewer",
+    member: "serviceAccount:\(serviceAccount)")
+  print("running removeBucketIamMember() sample")
+  try await removeBucketIamMember(
+    client: client, bucketId: iamBucketId, role: "roles/storage.objectViewer",
+    member: "serviceAccount:\(serviceAccount)")
+  // Skip by default: internal Google policies prevent granting public access to buckets in test projects.
+  if ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_ENABLE_PUBLIC_IAM"] == "true" {
+    print("running setBucketPublicIam() sample")
+    try await setBucketPublicIam(client: client, bucketId: iamBucketId)
+  }
+  print("running addBucketConditionalIamBinding() sample")
+  try await addBucketConditionalIamBinding(
+    client: client, bucketId: iamBucketId, serviceAccount: serviceAccount)
+  print("running removeBucketConditionalIamBinding() sample")
+  try await removeBucketConditionalIamBinding(client: client, bucketId: iamBucketId)
+  print("running viewBucketIamMembers() sample")
+  try await viewBucketIamMembers(client: client, bucketId: iamBucketId)
 }
 
 /// Generates a random bucket ID.

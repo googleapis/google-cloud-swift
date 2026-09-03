@@ -21,11 +21,15 @@ import Testing
 @Suite struct StorageSamplesDriver {
   @Test(.enabled(if: Self.enabled())) func runBucketSamples() async throws {
     let projectId = ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"]!
+    let serviceAccount =
+      ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_SERVICE_ACCOUNT"]
+      ?? "swift-sdk-test@\(projectId).iam.gserviceaccount.com"
     let client = try Self.makeClient()
     var bucketNames: [String] = []
     do {
       try await StorageSamples.runBucketSamples(
-        client: client, projectId: projectId, bucketNames: &bucketNames)
+        client: client, projectId: projectId, serviceAccount: serviceAccount,
+        bucketNames: &bucketNames)
       try await StorageSamples.runFolderSamples(
         client: client, projectId: projectId, bucketNames: &bucketNames)
       await StorageSamples.cleanupTestBuckets(client: client, bucketNames: bucketNames)

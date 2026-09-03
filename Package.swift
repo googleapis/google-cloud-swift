@@ -162,6 +162,8 @@ let package = Package(
         .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
         .product(name: "GoogleCloudGax", package: "swift-google-gax"),
         .product(name: "Logging", package: "swift-log"),
+        .product(name: "GoogleIAMV1", package: "swift-google-iam-v1"),
+        .product(name: "GoogleType", package: "swift-google-type"),
       ],
     ),
     .testTarget(
@@ -213,6 +215,7 @@ func generatedPackagesStatic() -> [Generated] {
   return [
     .init(name: "swift-google-cloud-location", module: "GoogleCloudLocation"),
     .init(name: "swift-google-iam-v1", module: "GoogleIAMV1"),
+    .init(name: "swift-google-type", module: "GoogleType"),
     .init(name: "swift-google-cloud-secretmanager-v1", module: "GoogleCloudSecretManagerV1"),
     .init(name: "swift-google-cloud-security-publicca-v1", module: "GoogleCloudSecurityPublicCAV1"),
     .init(name: "swift-google-cloud-workflows-v1", module: "GoogleCloudWorkflowsV1"),
