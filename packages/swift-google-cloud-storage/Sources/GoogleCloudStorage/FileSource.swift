@@ -14,6 +14,7 @@
 
 import Foundation
 import NIOCore
+// We expect the API is stable, see https://github.com/apple/swift-nio/issues/3052 for details
 import _NIOFileSystem
 
 private final class FileHandleBox: @unchecked Sendable {
