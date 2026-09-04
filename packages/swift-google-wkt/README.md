@@ -15,15 +15,6 @@ the Protocol Buffers specifications. This package bridges that gap by providing
 strongly-typed, high-precision representations that strictly follow Google Cloud
 API conventions and ProtoJSON mapping rules.
 
-## Libraries & Products
-
-This package provides two products:
-
-- **`GoogleCloudWKT`**: Foundational types (`Timestamp`, `Duration`, `FieldMask`,
-  `Any`, dynamic JSON values, primitive wrappers) with ProtoJSON Codable support.
-- **`GoogleCloudWKTConvert`**: Interoperability extensions for converting between
-  `GoogleCloudWKT` types and Apple's `SwiftProtobuf` types.
-
 ## Key Types
 
 - **`Timestamp`**: UTC point in time with nanosecond resolution covering years
@@ -64,12 +55,6 @@ Then add `GoogleCloudWKT` to your target's dependencies:
 
 ```bash
 swift package add-target-dependency GoogleCloudWKT <target-name> --package swift-google-wkt
-```
-
-If converting to or from `SwiftProtobuf`, also add `GoogleCloudWKTConvert`:
-
-```bash
-swift package add-target-dependency GoogleCloudWKTConvert <target-name> --package swift-google-wkt
 ```
 
 ## Usage
@@ -123,27 +108,6 @@ let mask = FieldMask(paths: ["display_name", "billing_account.id"])
 // Encodes in ProtoJSON as comma-separated camelCase: "displayName,billingAccountId"
 let data = try JSONEncoder().encode(mask)
 let decoded = try JSONDecoder().decode(FieldMask.self, from: data)
-```
-
-### Converting to/from SwiftProtobuf
-
-When interoperating between `GoogleCloudWKT` and `SwiftProtobuf`, import
-`GoogleCloudWKTConvert`:
-
-```swift
-import GoogleCloudWKT
-import GoogleCloudWKTConvert
-import SwiftProtobuf
-
-// Convert SwiftProtobuf to GoogleCloudWKT
-var proto = Google_Protobuf_Timestamp()
-proto.seconds = 1_700_000_000
-proto.nanos = 0
-
-let wktTimestamp = try Timestamp(proto: proto)
-
-// Convert back to SwiftProtobuf
-let backToProto: Google_Protobuf_Timestamp = try wktTimestamp.toProto()
 ```
 
 ## See Also
