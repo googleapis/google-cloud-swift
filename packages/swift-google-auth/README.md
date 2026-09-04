@@ -40,23 +40,16 @@ section in the `google-cloud-swift` repository.
 
 ## Installation
 
-Add `swift-google-auth` to your `Package.swift` dependencies:
+Add `swift-google-auth` as a package dependency:
 
-```swift
-dependencies: [
-    .package(url: "https://github.com/googleapis/swift-google-auth.git", from: "0.1.0"),
-]
+```bash
+swift package add-dependency https://github.com/googleapis/swift-google-auth.git --from 0.1.0
 ```
 
-Then add `GoogleCloudAuth` to your target dependencies:
+Then add `GoogleCloudAuth` to your target's dependencies:
 
-```swift
-.target(
-    name: "MyTarget",
-    dependencies: [
-        .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
-    ]
-)
+```bash
+swift package add-target-dependency GoogleCloudAuth <target-name> --package swift-google-auth
 ```
 
 ## Usage
