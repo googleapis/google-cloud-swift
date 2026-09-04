@@ -269,9 +269,11 @@ extension StorageW1R3 {
   func makeClients(_ credentials: Credentials) throws -> [StorageClient] {
     var clients: [StorageClient] = []
     for _ in 0..<self.clientCount {
-      clients.append(try StorageClient(.init().with {
-        $0.client = .init().with { $0.credentials = credentials }
-      }))
+      clients.append(
+        try StorageClient(
+          .init().with {
+            $0.client = .init().with { clientOptions in clientOptions.credentials = credentials }
+          }))
     }
     return clients
   }
