@@ -103,6 +103,13 @@ public func runBucketSamples(
   print("running addBucketOwner() sample")
   try await addBucketOwner(
     client: client, bucketId: ublaBucketId, userEmail: serviceAccount)
+  print("running printBucketAcl() sample")
+  try await printBucketAcl(client: client, bucketId: ublaBucketId)
+  print("running printBucketAclForUser() sample")
+  try await printBucketAclForUser(
+    client: client, bucketId: ublaBucketId, userEmail: serviceAccount)
+  try await printBucketAclForUser(
+    client: client, bucketId: ublaBucketId, userEmail: "test-user-not-found@example.com")
   print("running removeBucketOwner() sample")
   try await removeBucketOwner(
     client: client, bucketId: ublaBucketId, userEmail: serviceAccount)
