@@ -47,8 +47,7 @@ can be used with many IDEs.
 swift build
 ```
 
-> [!NOTE] If you encounter an error like `fatal: cannot use bare repository
-'...' (safe.bareRepository is 'explicit')` when SwiftPM tries to fetch or
+> [!NOTE] If you encounter an error like `fatal: cannot use bare repository '...' (safe.bareRepository is 'explicit')` when SwiftPM tries to fetch or
 > update dependencies, you may need to update your global git configuration:
 >
 > ```bash
@@ -107,6 +106,55 @@ You can customize these aliases even further. Consider
   - You may need to suppress some warnings too, with
     `-Xswiftc -Wwarning -Xswiftc DeprecatedDeclaration`
 - Add `--quiet` to `stest` to reduce the noise and only see test failures
+
+## Testing with local dependencies (`swift package edit`)
+
+Packages in this repository declare dependencies on `swift-google-auth` and
+`swift-google-wkt` via their published remote GitHub repository URLs (e.g.,
+`https://github.com/googleapis/swift-google-auth`).
+
+When developing locally and modifying code in `packages/swift-google-auth` or
+`packages/swift-google-wkt`, testing a dependent package (such as
+`packages/swift-google-gax`, `packages/swift-google-cloud-storage`, or any
+generated client library) will **not** automatically pick up your local changes.
+By default, SwiftPM resolves and builds against the remote git checkouts.
+
+To test your local changes in dependent packages, put the dependency into
+editable mode pointing to your local working directory:
+
+```bash
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+swift package --package-path packages/swift-google-gax edit \
+  --path "${REPO_ROOT}/packages/swift-google-auth" swift-google-auth
+```
+
+If you are using `--scratch-path` (such as via the `sbuild` / `stest` aliases),
+pass the matching `--scratch-path` to the edit command:
+
+```bash
+swift package --scratch-path "${REPO_ROOT}/.build-cache" \
+  --package-path packages/swift-google-gax edit \
+  --path "${REPO_ROOT}/packages/swift-google-auth" swift-google-auth
+```
+
+Once you have finished testing, restore the dependency back to the remote version:
+
+```bash
+swift package --package-path packages/swift-google-gax unedit --force swift-google-auth
+```
+
+or with `--scratch-path` if used:
+
+```bash
+swift package --scratch-path "${REPO_ROOT}/.build-cache" \
+  --package-path packages/swift-google-gax unedit --force swift-google-auth
+```
+
+> [!TIP]
+> The `./ci/test.sh` script automatically puts dependencies into edit mode for
+> all packages in the repository and restores them upon exit (even if tests fail).
+> You can use `./ci/test.sh` to run full validation across all packages without
+> manually editing and restoring each package.
 
 ## Exhaustive builds and tests
 
@@ -346,7 +394,6 @@ swiftly link
 ```
 
 [enable the secret manager api]: https://cloud.google.com/secret-manager/docs/configuring-secret-manager
-[getting-started-rust]: https://www.rust-lang.org/learn/get-started
 [getting-started-swift]: https://www.swift.org/install/
 [golang-install]: https://go.dev/doc/install
 [google cloud cli]: https://cloud.google.com/cli

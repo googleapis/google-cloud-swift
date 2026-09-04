@@ -13,7 +13,20 @@ This document outlines critical rules, coding standards, and workflow practices 
   - Do not elevate visibility of types, functions, or properties (such as using `package`, `public`, or `@_spi`) solely to facilitate unit testing.
   - Keep internal implementation details `internal` (default access) and use `@testable import <Target>` in test files.
 
-## Dependencies and Rust Core
+## Dependencies and Local Development
+
+- **Remote vs. Local Dependencies**: Packages in this repository declare dependencies on `swift-google-auth` and `swift-google-wkt` using their published remote GitHub URLs (`https://github.com/googleapis/...`).
+- **Testing Local Modifications (`swift package edit`)**: When making changes to `packages/swift-google-auth` or `packages/swift-google-wkt`, dependent packages (`packages/swift-google-gax`, `packages/swift-google-cloud-storage`, `generated/*`, etc.) build against the remote git checkouts by default. To test dependent packages against your local changes, put the dependencies in editable mode:
+  ```bash
+  REPO_ROOT="$(git rev-parse --show-toplevel)"
+  swift package --package-path packages/${package} edit --path "${REPO_ROOT}/packages/${dependency}" ${dependency}
+  ```
+  If `--scratch-path` is used, pass the matching `--scratch-path` to the edit command.
+- **Restoring Dependencies (`swift package unedit`)**: Always restore dependencies back to remote git URLs after testing:
+  ```bash
+  swift package --package-path packages/${package} unedit --force ${dependency}
+  ```
+- **Automated Validation**: Running `./ci/test.sh` automatically overrides dependencies with local working directories for all packages in the repository and restores them on exit via `ci/package-dependencies.sh`.
 
 ## Code Generation (`generated/`)
 
@@ -32,6 +45,7 @@ This document outlines critical rules, coding standards, and workflow practices 
   ```bash
   swift test -Xswiftc -warnings-as-errors --package-path packages/${package_name}
   ```
+  If testing changes to `swift-google-auth` or `swift-google-wkt`, remember to put the dependency into edit mode first (see above) or run `ci/test.sh`.
 - **Global Validation**: To perform full validation on all packages (formatting, linting, test coverage), examine the workflow scripts in the `ci/` directory:
   ```bash
   ./ci/lint.sh pr

@@ -62,6 +62,8 @@ change for review you need to create a pull request. Typically you start by:
    # make your changes
    git push
    ```
+1. Run local validation (`ci/lint.sh` and `ci/test.sh`) to verify formatting and
+   test packages with local dependencies (see [Set Up Development Environment][setup-env]).
 1. And then submit a [pull-request][about-pull-requests] to merge your branch
    into `googleapis/google-cloud-swift`.
 1. Your reviewers may ask questions, suggest improvements or alternatives. You
@@ -178,5 +180,6 @@ contributor, or of a tool like dependabot. To do so, follow the
 [fork-link]: https://guides.github.com/activities/forking/
 [mastering-issues]: https://guides.github.com/features/issues/
 [repo-link]: https://github.com/googleapis/google-cloud-swift.git
+[setup-env]: howto-guide-set-up-development-environment.md
 [syncing-a-fork]: https://help.github.com/articles/syncing-a-fork/
 [workflow-link]: https://guides.github.com/introduction/flow/
