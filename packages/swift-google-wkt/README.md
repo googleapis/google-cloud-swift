@@ -4,8 +4,9 @@ Idiomatic Swift implementations of Protocol Buffers Well-Known Types.
 
 ## Overview
 
-`GoogleCloudWKT` provides Swift implementations of Protocol Buffers
-Well-Known Types ([WKT](https://protobuf.dev/reference/protobuf/google.protobuf/))
+`GoogleCloudWKT` provides Swift implementations of Well-Known Types (WKT) for
+[Protocol Buffers](https://protobuf.dev/reference/protobuf/google.protobuf/)
+and [Discovery](https://docs.cloud.google.com/docs/discovery/type-format)
 used across Google Cloud APIs.
 
 While standard Swift and Foundation libraries offer types like `Date` and
