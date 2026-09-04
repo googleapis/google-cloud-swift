@@ -100,6 +100,19 @@ public func runBucketSamples(
   print("running disableUniformBucketLevelAccess() sample")
   try await disableUniformBucketLevelAccess(client: client, bucketId: ublaBucketId)
 
+  print("running addBucketOwner() sample")
+  try await addBucketOwner(
+    client: client, bucketId: ublaBucketId, userEmail: serviceAccount)
+  print("running removeBucketOwner() sample")
+  try await removeBucketOwner(
+    client: client, bucketId: ublaBucketId, userEmail: serviceAccount)
+  print("running addBucketDefaultOwner() sample")
+  try await addBucketDefaultOwner(
+    client: client, bucketId: ublaBucketId, userEmail: serviceAccount)
+  print("running removeBucketDefaultOwner() sample")
+  try await removeBucketDefaultOwner(
+    client: client, bucketId: ublaBucketId, userEmail: serviceAccount)
+
   let iamBucketId = randomBucketId()
   bucketNames.append("projects/_/buckets/\(iamBucketId)")
   print("creating bucket with uniform bucket-level access for IAM samples")
