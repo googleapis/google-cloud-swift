@@ -173,6 +173,15 @@
       }
     },
     {
+      "identity" : "swift-google-rpc",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/googleapis/swift-google-rpc",
+      "state" : {
+        "revision" : "b3a2eda26b23b2538cd7046bf11b30721e1a27e3",
+        "version" : "0.1.0-preview"
+      }
+    },
+    {
       "identity" : "swift-google-wkt",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-wkt",

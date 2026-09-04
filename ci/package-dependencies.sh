@@ -40,6 +40,9 @@ edit_package_dependencies() {
     if [[ "${clean_dir}" != "." && "${clean_dir}" != "packages/swift-google-wkt" && "${clean_dir}" != "${REPO_ROOT}/packages/swift-google-wkt" ]]; then
         swift package "${scratch_args[@]}" --package-path "${dir}" edit --path "${REPO_ROOT}/packages/swift-google-wkt" swift-google-wkt >/dev/null 2>&1 || true
     fi
+    if [[ "${clean_dir}" != "." && "${clean_dir}" != "generated/swift-google-rpc" && "${clean_dir}" != "${REPO_ROOT}/generated/swift-google-rpc" ]]; then
+        swift package "${scratch_args[@]}" --package-path "${dir}" edit --path "${REPO_ROOT}/generated/swift-google-rpc" swift-google-rpc >/dev/null 2>&1 || true
+    fi
     # SwiftPM's --disable-automatic-resolution flag is only valid for the root package
     # where Package.resolved is tracked in git. Subpackages do not track Package.resolved
     # and fail when automatic resolution is disabled.
@@ -78,6 +81,9 @@ restore_package_dependencies() {
     fi
     if [[ "${clean_dir}" != "." && "${clean_dir}" != "packages/swift-google-wkt" && "${clean_dir}" != "${REPO_ROOT}/packages/swift-google-wkt" ]]; then
         swift package "${scratch_args[@]}" --package-path "${dir}" unedit --force swift-google-wkt >/dev/null 2>&1 || true
+    fi
+    if [[ "${clean_dir}" != "." && "${clean_dir}" != "generated/swift-google-rpc" && "${clean_dir}" != "${REPO_ROOT}/generated/swift-google-rpc" ]]; then
+        swift package "${scratch_args[@]}" --package-path "${dir}" unedit --force swift-google-rpc >/dev/null 2>&1 || true
     fi
     if [[ -n "${flags+x}" ]]; then
         for p in "${_REMOVED_DISABLE_RESOLUTION[@]}"; do

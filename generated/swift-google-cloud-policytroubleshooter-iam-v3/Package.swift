@@ -31,7 +31,7 @@ let package = Package(
     .package(url: "https://github.com/googleapis/swift-google-wkt", from: "0.1.0-preview"),
     .package(path: "../../generated/swift-google-iam-v1"),
     .package(path: "../../generated/swift-google-iam-v2"),
-    .package(path: "../../generated/swift-google-rpc"),
+    .package(url: "https://github.com/googleapis/swift-google-rpc", from: "0.1.0-preview"),
     .package(path: "../../generated/swift-google-type"),
     .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
   ],

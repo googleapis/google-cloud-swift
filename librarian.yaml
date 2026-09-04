@@ -145,7 +145,8 @@ default:
         path: generated/swift-google-longrunning
         api_package: google.longrunning
       - name: GoogleRpc
-        path: generated/swift-google-rpc
+        url: https://github.com/googleapis/swift-google-rpc
+        version: 0.1.0-preview
         api_package: google.rpc
       - name: GoogleRpcContext
         path: generated/swift-google-rpc-context
