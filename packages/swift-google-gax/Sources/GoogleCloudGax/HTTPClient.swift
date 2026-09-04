@@ -107,4 +107,8 @@ import struct Logging.Logger
     }
     return try await newRequest(urlComponents: components)
   }
+
+  public func shutdown() async throws {
+    try await self.inner.shutdown()
+  }
 }

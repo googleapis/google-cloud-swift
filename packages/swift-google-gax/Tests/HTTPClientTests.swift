@@ -608,6 +608,16 @@ import NIOHTTP1
     #expect(response.status == .ok)
   }
 
+  @Test func shutdownIsIdempotent() async throws {
+    let endpoint = "http://localhost:1234"
+    let credentials = try Credentials(configuration: .anonymous)
+    let options = ClientOptions().with { $0.credentials = credentials }
+    let client = try _HTTPClient(from: options, withDefaultEndpoint: endpoint)
+    try await client.shutdown()
+    // Second shutdown must be a safe idempotent no-op
+    try await client.shutdown()
+  }
+
   /// A test response type.
   struct ResponseType: Codable, Equatable, Sendable {
     public let name: String
