@@ -61,7 +61,7 @@ struct StorageW1R3: AsyncParsableCommand, Sendable {
     let credentials = try Credentials()
     let storageClients = try self.makeClients(credentials)
     let controlClients = try self.makeControlClients(credentials)
-    logToStderr("Clients initialzed ready.")
+    logToStderr("Clients initialized ready.")
 
     // Print CSV header to stdout.
     print(Sample.header)
