@@ -61,26 +61,22 @@ section in the `google-cloud-swift` repository.
 
 ## Installation
 
-Add `swift-google-gax` to your `Package.swift` dependencies:
+Add `swift-google-gax` as a package dependency:
 
-```swift
-dependencies: [
-    .package(url: "https://github.com/googleapis/swift-google-gax.git", from: "0.1.0"),
-]
+```bash
+swift package add-dependency https://github.com/googleapis/swift-google-gax.git --from 0.1.0
 ```
 
-Then add `GoogleCloudGax` (and optionally `GoogleCloudGaxGRPC`) to your target
-dependencies:
+Then add `GoogleCloudGax` to your target's dependencies:
 
-```swift
-.target(
-    name: "MyTarget",
-    dependencies: [
-        .product(name: "GoogleCloudGax", package: "swift-google-gax"),
-        // For services using gRPC transport:
-        // .product(name: "GoogleCloudGaxGRPC", package: "swift-google-gax"),
-    ]
-)
+```bash
+swift package add-target-dependency GoogleCloudGax <target-name> --package swift-google-gax
+```
+
+If your service uses the gRPC transport, also add `GoogleCloudGaxGRPC`:
+
+```bash
+swift package add-target-dependency GoogleCloudGaxGRPC <target-name> --package swift-google-gax
 ```
 
 ## Usage
