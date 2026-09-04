@@ -24,6 +24,12 @@ fileprivate let bucketIdLength = 63
 fileprivate let prefix = "swift-sdk-testing-"
 fileprivate let lowerCaseAlphanumeric = "abcdefghijklmnopqrstuvwxyz0123456789"
 
+/// Cloud Storage rate limits bucket metadata updates to approximately 1 update per second per bucket.
+/// Pacing consecutive update operations on the same bucket avoids `resourceExhausted` rate limit errors.
+fileprivate func paceBucketUpdates() async throws {
+  try await Task.sleep(nanoseconds: 1_200_000_000)
+}
+
 public func runBucketSamples(
   client: StorageControlClient, projectId: String, serviceAccount: String,
   bucketNames: inout [String]
@@ -44,11 +50,23 @@ public func runBucketSamples(
   print("running createBucketClassLocation() sample")
   try await createBucketClassLocation(
     client: client, projectId: projectId, bucketId: classLocationId)
+  print("running getBucketClassAndLocation() sample")
+  try await getBucketClassAndLocation(client: client, bucketId: classLocationId)
+  print("running getBucketMetadata() sample")
+  try await getBucketMetadata(client: client, bucketId: classLocationId)
 
   let dualRegionId = randomBucketId()
   bucketNames.append("projects/_/buckets/\(dualRegionId)")
   print("running createBucketDualRegion() sample")
   try await createBucketDualRegion(client: client, projectId: projectId, bucketId: dualRegionId)
+  print("running getRpo() sample")
+  try await getRpo(client: client, bucketId: dualRegionId)
+  print("running setRpoDefault() sample")
+  try await setRpoDefault(client: client, bucketId: dualRegionId)
+  // Pause to respect Cloud Storage rate limits (roughly 1 update per second per bucket).
+  try await paceBucketUpdates()
+  print("running setRpoAsyncTurbo() sample")
+  try await setRpoAsyncTurbo(client: client, bucketId: dualRegionId)
 
   let turboReplicationId = randomBucketId()
   bucketNames.append("projects/_/buckets/\(turboReplicationId)")
@@ -67,12 +85,183 @@ public func runBucketSamples(
   print("running createBucketWithEncryptionEnforcement() sample")
   try await createBucketWithEncryptionEnforcement(
     client: client, projectId: projectId, bucketId: encryptionEnforcementId)
+  print("running setBucketEncryptionEnforcement() sample")
+  try await setBucketEncryptionEnforcement(
+    client: client, bucketId: encryptionEnforcementId)
 
   let objectRetentionId = randomBucketId()
   bucketNames.append("projects/_/buckets/\(objectRetentionId)")
   print("running createBucketWithObjectRetention() sample")
   try await createBucketWithObjectRetention(
     client: client, projectId: projectId, bucketId: objectRetentionId)
+
+  let labelBucketId = randomBucketId()
+  bucketNames.append("projects/_/buckets/\(labelBucketId)")
+  print("creating bucket for label samples")
+  let _ = try await client.createBucket(
+    request: .init().with {
+      $0.parent = "projects/_"
+      $0.bucketId = labelBucketId
+      $0.bucket = .init().with { bucket in
+        bucket.project = "projects/\(projectId)"
+      }
+    },
+    options: .init()
+  )
+  print("running changeDefaultStorageClass() sample")
+  try await changeDefaultStorageClass(
+    client: client, bucketId: labelBucketId, storageClass: "NEARLINE")
+  // Pause to respect Cloud Storage rate limits (roughly 1 update per second per bucket).
+  try await paceBucketUpdates()
+  print("running addBucketLabel() sample")
+  try await addBucketLabel(
+    client: client, bucketId: labelBucketId, labelKey: "test-label", labelValue: "test-value")
+  print("running getBucketLabels() sample")
+  try await getBucketLabels(client: client, bucketId: labelBucketId)
+  // Pause to respect Cloud Storage rate limits (roughly 1 update per second per bucket).
+  try await paceBucketUpdates()
+  print("running removeBucketLabel() sample")
+  try await removeBucketLabel(
+    client: client, bucketId: labelBucketId, labelKey: "test-label")
+
+  let holdPapBucketId = randomBucketId()
+  bucketNames.append("projects/_/buckets/\(holdPapBucketId)")
+  print("creating bucket for hold and pap samples")
+  let _ = try await client.createBucket(
+    request: .init().with {
+      $0.parent = "projects/_"
+      $0.bucketId = holdPapBucketId
+      $0.bucket = .init().with { bucket in
+        bucket.project = "projects/\(projectId)"
+      }
+    },
+    options: .init()
+  )
+  print("running getDefaultEventBasedHold() sample")
+  try await getDefaultEventBasedHold(client: client, bucketId: holdPapBucketId)
+  print("running enableDefaultEventBasedHold() sample")
+  try await enableDefaultEventBasedHold(client: client, bucketId: holdPapBucketId)
+  // Pause to respect Cloud Storage rate limits (roughly 1 update per second per bucket).
+  try await paceBucketUpdates()
+  print("running disableDefaultEventBasedHold() sample")
+  try await disableDefaultEventBasedHold(client: client, bucketId: holdPapBucketId)
+  // Pause to respect Cloud Storage rate limits (roughly 1 update per second per bucket).
+  try await paceBucketUpdates()
+  print("running setPublicAccessPreventionUnspecified() sample")
+  try await setPublicAccessPreventionUnspecified(client: client, bucketId: holdPapBucketId)
+  // Pause to respect Cloud Storage rate limits (roughly 1 update per second per bucket).
+  try await paceBucketUpdates()
+  print("running setPublicAccessPreventionInherited() sample")
+  try await setPublicAccessPreventionInherited(client: client, bucketId: holdPapBucketId)
+  print("running getPublicAccessPrevention() sample")
+  try await getPublicAccessPrevention(client: client, bucketId: holdPapBucketId)
+  // Pause to respect Cloud Storage rate limits (roughly 1 update per second per bucket).
+  try await paceBucketUpdates()
+  print("running setPublicAccessPreventionEnforced() sample")
+  try await setPublicAccessPreventionEnforced(client: client, bucketId: holdPapBucketId)
+
+  let lifecycleBucketId = randomBucketId()
+  bucketNames.append("projects/_/buckets/\(lifecycleBucketId)")
+  print("creating bucket for versioning and lifecycle samples")
+  let _ = try await client.createBucket(
+    request: .init().with {
+      $0.parent = "projects/_"
+      $0.bucketId = lifecycleBucketId
+      $0.bucket = .init().with { bucket in
+        bucket.project = "projects/\(projectId)"
+      }
+    },
+    options: .init()
+  )
+  print("running viewVersioningStatus() sample")
+  try await viewVersioningStatus(client: client, bucketId: lifecycleBucketId)
+  print("running enableVersioning() sample")
+  try await enableVersioning(client: client, bucketId: lifecycleBucketId)
+  // Pause to respect Cloud Storage rate limits (roughly 1 update per second per bucket).
+  try await paceBucketUpdates()
+  print("running disableVersioning() sample")
+  try await disableVersioning(client: client, bucketId: lifecycleBucketId)
+  print("running viewLifecycleManagementConfiguration() sample")
+  try await viewLifecycleManagementConfiguration(client: client, bucketId: lifecycleBucketId)
+  // Pause to respect Cloud Storage rate limits (roughly 1 update per second per bucket).
+  try await paceBucketUpdates()
+  print("running enableBucketLifecycleManagement() sample")
+  try await enableBucketLifecycleManagement(client: client, bucketId: lifecycleBucketId)
+  // Pause to respect Cloud Storage rate limits (roughly 1 update per second per bucket).
+  try await paceBucketUpdates()
+  print("running addLifecycleRule() sample")
+  try await addLifecycleRule(client: client, bucketId: lifecycleBucketId)
+  // Pause to respect Cloud Storage rate limits (roughly 1 update per second per bucket).
+  try await paceBucketUpdates()
+  print("running disableBucketLifecycleManagement() sample")
+  try await disableBucketLifecycleManagement(client: client, bucketId: lifecycleBucketId)
+
+  let websiteCorsBucketId = randomBucketId()
+  bucketNames.append("projects/_/buckets/\(websiteCorsBucketId)")
+  print("creating bucket for website and cors samples")
+  let _ = try await client.createBucket(
+    request: .init().with {
+      $0.parent = "projects/_"
+      $0.bucketId = websiteCorsBucketId
+      $0.bucket = .init().with { bucket in
+        bucket.project = "projects/\(projectId)"
+      }
+    },
+    options: .init()
+  )
+  print("running printBucketWebsiteConfiguration() sample")
+  try await printBucketWebsiteConfiguration(client: client, bucketId: websiteCorsBucketId)
+  print("running defineBucketWebsiteConfiguration() sample")
+  try await defineBucketWebsiteConfiguration(
+    client: client, bucketId: websiteCorsBucketId, mainPageSuffix: "index.html",
+    notFoundPage: "404.html")
+  // Pause to respect Cloud Storage rate limits (roughly 1 update per second per bucket).
+  try await paceBucketUpdates()
+  print("running corsConfiguration() sample")
+  try await corsConfiguration(
+    client: client, bucketId: websiteCorsBucketId, maxAgeSeconds: 3600,
+    method: ["GET", "HEAD"], origin: ["http://example.com"],
+    responseHeader: ["Content-Type"])
+  // Pause to respect Cloud Storage rate limits (roughly 1 update per second per bucket).
+  try await paceBucketUpdates()
+  print("running removeCorsConfiguration() sample")
+  try await removeCorsConfiguration(client: client, bucketId: websiteCorsBucketId)
+  print("running getRetentionPolicy() sample")
+  try await getRetentionPolicy(client: client, bucketId: websiteCorsBucketId)
+  // Pause to respect Cloud Storage rate limits (roughly 1 update per second per bucket).
+  try await paceBucketUpdates()
+  print("running removeRetentionPolicy() sample")
+  try await removeRetentionPolicy(client: client, bucketId: websiteCorsBucketId)
+
+  let autoclassBucketId = randomBucketId()
+  bucketNames.append("projects/_/buckets/\(autoclassBucketId)")
+  print("creating bucket for autoclass and requester pays samples")
+  let _ = try await client.createBucket(
+    request: .init().with {
+      $0.parent = "projects/_"
+      $0.bucketId = autoclassBucketId
+      $0.bucket = .init().with { bucket in
+        bucket.project = "projects/\(projectId)"
+      }
+    },
+    options: .init()
+  )
+  print("running setAutoclass() sample")
+  try await setAutoclass(client: client, bucketId: autoclassBucketId)
+  print("running getAutoclass() sample")
+  try await getAutoclass(client: client, bucketId: autoclassBucketId)
+  // Pause to respect Cloud Storage rate limits (roughly 1 update per second per bucket).
+  try await paceBucketUpdates()
+  print("running enableRequesterPays() sample")
+  try await enableRequesterPays(client: client, bucketId: autoclassBucketId)
+  print("running getRequesterPaysStatus() sample")
+  try await getRequesterPaysStatus(client: client, bucketId: autoclassBucketId)
+  // Pause to respect Cloud Storage rate limits (roughly 1 update per second per bucket).
+  try await paceBucketUpdates()
+  print("running disableRequesterPays() sample")
+  try await disableRequesterPays(client: client, bucketId: autoclassBucketId)
+  print("running getRequesterPaysStatus() sample")
+  try await getRequesterPaysStatus(client: client, bucketId: autoclassBucketId)
 
   let ublaBucketId = randomBucketId()
   bucketNames.append("projects/_/buckets/\(ublaBucketId)")
