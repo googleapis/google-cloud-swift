@@ -109,7 +109,7 @@ public final class _GRPCClient: Sendable {
       metadata.addString(value, forKey: key)
     }
 
-    metadata.addString(clientHeader, forKey: _HeaderNames.apiClient)
+    metadata.addString(clientHeader, forKey: GoogleCloudGax._HeaderNames.apiClient)
     if !routingParams.isEmpty {
       metadata.addString(
         routingParams.joined(separator: "&"),
@@ -131,15 +131,37 @@ public final class _GRPCClient: Sendable {
     )
 
     let clientRequest = ClientRequest(message: request, metadata: metadata)
-    return try await self.client.unary(
-      request: clientRequest,
-      descriptor: descriptor,
-      serializer: ProtobufSerializer<Req>(),
-      deserializer: ProtobufDeserializer<Resp>(),
-      options: callOptions,
-      onResponse: { response in
-        try response.message
+    do {
+      return try await self.client.unary(
+        request: clientRequest,
+        descriptor: descriptor,
+        serializer: ProtobufSerializer<Req>(),
+        deserializer: ProtobufDeserializer<Resp>(),
+        options: callOptions,
+        onResponse: Self.handleResponse
+      )
+    } catch let error as RequestError {
+      throw error
+    } catch let error as RPCError {
+      throw error.toRequestError()
+    } catch {
+      throw RequestError.io(error)
+    }
+  }
+
+  private static func handleResponse<Resp>(
+    _ response: ClientResponse<Resp>
+  ) throws -> Resp {
+    switch response.accepted {
+    case .failure(let rpcError):
+      throw rpcError.toRequestError()
+    case .success(let contents):
+      switch contents.message {
+      case .failure(let rpcError):
+        throw rpcError.toRequestError()
+      case .success(let message):
+        return message
       }
-    )
+    }
   }
 }
