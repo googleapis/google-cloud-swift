@@ -1,5 +1,5 @@
 {
-  "originHash" : "1d6ca280f44a47e184d320c55ed904431bbfa92869fc385acbf785130cb983fc",
+  "originHash" : "b19cdbc43dfb3a2803f2764543a0323e797605a3de80c4237d001557621df808",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -173,11 +173,29 @@
       }
     },
     {
+      "identity" : "swift-google-gax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/googleapis/swift-google-gax",
+      "state" : {
+        "revision" : "ee592dea2019dd79d571b3383b0719e22f14bc10",
+        "version" : "0.0.0-preview"
+      }
+    },
+    {
       "identity" : "swift-google-rpc",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-rpc",
       "state" : {
         "revision" : "b3a2eda26b23b2538cd7046bf11b30721e1a27e3",
+        "version" : "0.1.0-preview"
+      }
+    },
+    {
+      "identity" : "swift-google-type",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/googleapis/swift-google-type",
+      "state" : {
+        "revision" : "b7f9b4b5c86d588e6d23cc1de1247e44daaeda5a",
         "version" : "0.1.0-preview"
       }
     },

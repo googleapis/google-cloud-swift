@@ -15,13 +15,13 @@ This document outlines critical rules, coding standards, and workflow practices 
 
 ## Dependencies and Local Development
 
-- **Remote vs. Local Dependencies**: Packages in this repository declare dependencies on `swift-google-auth`, `swift-google-wkt`, and `swift-google-rpc` using their published remote GitHub URLs (`https://github.com/googleapis/...`).
-- **Testing Local Modifications (`swift package edit`)**: When making changes to `packages/swift-google-auth`, `packages/swift-google-wkt`, or `generated/swift-google-rpc`, dependent packages (`packages/swift-google-gax`, `packages/swift-google-cloud-storage`, `generated/*`, etc.) build against the remote git checkouts by default. To test dependent packages against your local changes, put the dependencies in editable mode:
+- **Remote vs. Local Dependencies**: Packages in this repository declare dependencies on published remote GitHub URLs (`https://github.com/googleapis/...`): `swift-google-auth`, `swift-google-gax`, `swift-google-wkt`, `swift-google-api`, `swift-google-cloud-common`, `swift-google-rpc`, `swift-google-rpc-context`, and `swift-google-type`.
+- **Testing Local Modifications (`swift package edit`)**: When making changes to `packages/*` or `generated/*`, dependent packages build against the remote git checkouts by default. To test dependent packages against your local changes, put the dependencies in editable mode:
   ```bash
   REPO_ROOT="$(git rev-parse --show-toplevel)"
   swift package --package-path packages/${package} edit --path "${REPO_ROOT}/packages/${dependency}" ${dependency}
-  # For generated/swift-google-rpc:
-  # swift package --package-path packages/${package} edit --path "${REPO_ROOT}/generated/swift-google-rpc" swift-google-rpc
+  # For generated packages (e.g. swift-google-rpc, swift-google-type):
+  # swift package --package-path packages/${package} edit --path "${REPO_ROOT}/generated/${dependency}" ${dependency}
   ```
   If `--scratch-path` is used, pass the matching `--scratch-path` to the edit command.
 - **Restoring Dependencies (`swift package unedit`)**: Always restore dependencies back to remote git URLs after testing:

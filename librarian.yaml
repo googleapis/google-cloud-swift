@@ -48,7 +48,8 @@ default:
   swift:
     dependencies:
       - name: GoogleApi
-        path: generated/swift-google-api
+        url: https://github.com/googleapis/swift-google-api
+        version: 0.1.0-preview
         api_package: google.api
       - name: GoogleAppsScriptType
         path: generated/swift-google-apps-script-type
@@ -76,7 +77,8 @@ default:
         version: 0.0.0-preview
         required_by_services: true
       - name: GoogleCloudCommon
-        path: generated/swift-google-cloud-common
+        url: https://github.com/googleapis/swift-google-cloud-common
+        version: 0.0.0-preview
         api_package: google.cloud.common
       - name: GoogleCloudDatastreamV1
         path: generated/swift-google-cloud-datastream-v1
@@ -94,7 +96,8 @@ default:
         path: generated/swift-google-cloud-gkehub-rbacrolebindingactuation-v1
         api_package: google.cloud.gkehub.rbacrolebindingactuation.v1
       - name: GoogleCloudGax
-        path: packages/swift-google-gax
+        url: https://github.com/googleapis/swift-google-gax
+        version: 0.0.0-preview
         required_by_services: true
         spi: GoogleCloudInternal
       - name: GoogleCloudKMSV1
@@ -149,10 +152,12 @@ default:
         version: 0.1.0-preview
         api_package: google.rpc
       - name: GoogleRpcContext
-        path: generated/swift-google-rpc-context
+        url: https://github.com/googleapis/swift-google-rpc-context
+        version: 0.0.0-preview
         api_package: google.rpc.context
       - name: GoogleType
-        path: generated/swift-google-type
+        url: https://github.com/googleapis/swift-google-type
+        version: 0.1.0-preview
         api_package: google.type
       - name: Logging
         url: https://github.com/apple/swift-log

@@ -24,9 +24,9 @@ let package = Package(
     .library(name: "GoogleCloudLoggingV2", targets: ["GoogleCloudLoggingV2"])
   ],
   dependencies: [
-    .package(path: "../../generated/swift-google-api"),
+    .package(url: "https://github.com/googleapis/swift-google-api", from: "0.1.0-preview"),
     .package(url: "https://github.com/googleapis/swift-google-auth", from: "0.0.0-preview"),
-    .package(path: "../../packages/swift-google-gax"),
+    .package(url: "https://github.com/googleapis/swift-google-gax", from: "0.0.0-preview"),
     .package(path: "../../generated/swift-google-logging-type"),
     .package(url: "https://github.com/googleapis/swift-google-wkt", from: "0.1.0-preview"),
     .package(path: "../../generated/swift-google-longrunning"),

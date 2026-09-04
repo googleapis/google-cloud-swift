@@ -27,7 +27,7 @@ let package = Package(
   ],
   dependencies: [
     .package(url: "https://github.com/googleapis/swift-google-auth", from: "0.0.0-preview"),
-    .package(path: "../../packages/swift-google-gax"),
+    .package(url: "https://github.com/googleapis/swift-google-gax", from: "0.0.0-preview"),
     .package(url: "https://github.com/googleapis/swift-google-wkt", from: "0.1.0-preview"),
     .package(path: "../../generated/swift-google-longrunning"),
     .package(url: "https://github.com/googleapis/swift-google-rpc", from: "0.1.0-preview"),

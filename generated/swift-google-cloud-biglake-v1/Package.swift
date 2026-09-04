@@ -24,9 +24,9 @@ let package = Package(
     .library(name: "GoogleCloudBiglakeV1", targets: ["GoogleCloudBiglakeV1"])
   ],
   dependencies: [
-    .package(path: "../../generated/swift-google-api"),
+    .package(url: "https://github.com/googleapis/swift-google-api", from: "0.1.0-preview"),
     .package(url: "https://github.com/googleapis/swift-google-auth", from: "0.0.0-preview"),
-    .package(path: "../../packages/swift-google-gax"),
+    .package(url: "https://github.com/googleapis/swift-google-gax", from: "0.0.0-preview"),
     .package(url: "https://github.com/googleapis/swift-google-wkt", from: "0.1.0-preview"),
     .package(url: "https://github.com/googleapis/swift-google-rpc", from: "0.1.0-preview"),
     .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),

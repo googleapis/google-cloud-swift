@@ -20,6 +20,17 @@ REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 _EDITED_PACKAGES=()
 _REMOVED_DISABLE_RESOLUTION=()
 
+_LOCAL_DEPENDENCIES=(
+    "packages/swift-google-auth:swift-google-auth"
+    "packages/swift-google-gax:swift-google-gax"
+    "packages/swift-google-wkt:swift-google-wkt"
+    "generated/swift-google-api:swift-google-api"
+    "generated/swift-google-cloud-common:swift-google-cloud-common"
+    "generated/swift-google-rpc:swift-google-rpc"
+    "generated/swift-google-rpc-context:swift-google-rpc-context"
+    "generated/swift-google-type:swift-google-type"
+)
+
 edit_package_dependencies() {
     local dir="$1"
     local clean_dir="${dir#./}"
@@ -34,15 +45,13 @@ edit_package_dependencies() {
             fi
         done
     fi
-    if [[ "${clean_dir}" != "." && "${clean_dir}" != "packages/swift-google-auth" && "${clean_dir}" != "${REPO_ROOT}/packages/swift-google-auth" ]]; then
-        swift package "${scratch_args[@]}" --package-path "${dir}" edit --path "${REPO_ROOT}/packages/swift-google-auth" swift-google-auth >/dev/null 2>&1 || true
-    fi
-    if [[ "${clean_dir}" != "." && "${clean_dir}" != "packages/swift-google-wkt" && "${clean_dir}" != "${REPO_ROOT}/packages/swift-google-wkt" ]]; then
-        swift package "${scratch_args[@]}" --package-path "${dir}" edit --path "${REPO_ROOT}/packages/swift-google-wkt" swift-google-wkt >/dev/null 2>&1 || true
-    fi
-    if [[ "${clean_dir}" != "." && "${clean_dir}" != "generated/swift-google-rpc" && "${clean_dir}" != "${REPO_ROOT}/generated/swift-google-rpc" ]]; then
-        swift package "${scratch_args[@]}" --package-path "${dir}" edit --path "${REPO_ROOT}/generated/swift-google-rpc" swift-google-rpc >/dev/null 2>&1 || true
-    fi
+    for item in "${_LOCAL_DEPENDENCIES[@]}"; do
+        local dep_rel="${item%%:*}"
+        local dep_name="${item##*:}"
+        if [[ "${clean_dir}" != "." && "${clean_dir}" != "${dep_rel}" && "${clean_dir}" != "${REPO_ROOT}/${dep_rel}" ]]; then
+            swift package "${scratch_args[@]}" --package-path "${dir}" edit --path "${REPO_ROOT}/${dep_rel}" "${dep_name}" >/dev/null 2>&1 || true
+        fi
+    done
     # SwiftPM's --disable-automatic-resolution flag is only valid for the root package
     # where Package.resolved is tracked in git. Subpackages do not track Package.resolved
     # and fail when automatic resolution is disabled.
@@ -76,15 +85,13 @@ restore_package_dependencies() {
             fi
         done
     fi
-    if [[ "${clean_dir}" != "." && "${clean_dir}" != "packages/swift-google-auth" && "${clean_dir}" != "${REPO_ROOT}/packages/swift-google-auth" ]]; then
-        swift package "${scratch_args[@]}" --package-path "${dir}" unedit --force swift-google-auth >/dev/null 2>&1 || true
-    fi
-    if [[ "${clean_dir}" != "." && "${clean_dir}" != "packages/swift-google-wkt" && "${clean_dir}" != "${REPO_ROOT}/packages/swift-google-wkt" ]]; then
-        swift package "${scratch_args[@]}" --package-path "${dir}" unedit --force swift-google-wkt >/dev/null 2>&1 || true
-    fi
-    if [[ "${clean_dir}" != "." && "${clean_dir}" != "generated/swift-google-rpc" && "${clean_dir}" != "${REPO_ROOT}/generated/swift-google-rpc" ]]; then
-        swift package "${scratch_args[@]}" --package-path "${dir}" unedit --force swift-google-rpc >/dev/null 2>&1 || true
-    fi
+    for item in "${_LOCAL_DEPENDENCIES[@]}"; do
+        local dep_rel="${item%%:*}"
+        local dep_name="${item##*:}"
+        if [[ "${clean_dir}" != "." && "${clean_dir}" != "${dep_rel}" && "${clean_dir}" != "${REPO_ROOT}/${dep_rel}" ]]; then
+            swift package "${scratch_args[@]}" --package-path "${dir}" unedit --force "${dep_name}" >/dev/null 2>&1 || true
+        fi
+    done
     if [[ -n "${flags+x}" ]]; then
         for p in "${_REMOVED_DISABLE_RESOLUTION[@]}"; do
             if [[ "${p}" == "${dir}" ]]; then

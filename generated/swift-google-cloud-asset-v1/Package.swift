@@ -25,7 +25,7 @@ let package = Package(
   ],
   dependencies: [
     .package(url: "https://github.com/googleapis/swift-google-auth", from: "0.0.0-preview"),
-    .package(path: "../../packages/swift-google-gax"),
+    .package(url: "https://github.com/googleapis/swift-google-gax", from: "0.0.0-preview"),
     .package(path: "../../generated/swift-google-cloud-osconfig-v1"),
     .package(path: "../../generated/swift-google-cloud-orgpolicy-v1"),
     .package(url: "https://github.com/googleapis/swift-google-wkt", from: "0.1.0-preview"),
@@ -33,7 +33,7 @@ let package = Package(
     .package(path: "../../generated/swift-google-identity-accesscontextmanager-v1"),
     .package(path: "../../generated/swift-google-longrunning"),
     .package(url: "https://github.com/googleapis/swift-google-rpc", from: "0.1.0-preview"),
-    .package(path: "../../generated/swift-google-type"),
+    .package(url: "https://github.com/googleapis/swift-google-type", from: "0.1.0-preview"),
     .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
   ],
   targets: [
