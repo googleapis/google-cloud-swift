@@ -54,26 +54,22 @@ section in the `google-cloud-swift` repository.
 
 ## Installation
 
-Add `swift-google-wkt` to your `Package.swift` dependencies:
+Add `swift-google-wkt` as a package dependency:
 
-```swift
-dependencies: [
-    .package(url: "https://github.com/googleapis/swift-google-wkt.git", from: "0.1.0"),
-]
+```bash
+swift package add-dependency https://github.com/googleapis/swift-google-wkt.git --from 0.1.0
 ```
 
-Then add `GoogleCloudWKT` (and optionally `GoogleCloudWKTConvert`) to your target
-dependencies:
+Then add `GoogleCloudWKT` to your target's dependencies:
 
-```swift
-.target(
-    name: "MyTarget",
-    dependencies: [
-        .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
-        // If converting to/from SwiftProtobuf:
-        // .product(name: "GoogleCloudWKTConvert", package: "swift-google-wkt"),
-    ]
-)
+```bash
+swift package add-target-dependency GoogleCloudWKT <target-name> --package swift-google-wkt
+```
+
+If converting to or from `SwiftProtobuf`, also add `GoogleCloudWKTConvert`:
+
+```bash
+swift package add-target-dependency GoogleCloudWKTConvert <target-name> --package swift-google-wkt
 ```
 
 ## Usage
