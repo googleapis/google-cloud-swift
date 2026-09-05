@@ -44,13 +44,16 @@ import Testing
 
   @Test(.enabled(if: Self.enabled())) func runObjectSamples() async throws {
     let projectId = ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"]!
+    let serviceAccount =
+      ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_SERVICE_ACCOUNT"]
+      ?? "swift-sdk-test@\(projectId).iam.gserviceaccount.com"
     let controlClient = try Self.makeClient()
     let dataClient = try Self.makeDataClient()
     var bucketNames: [String] = []
     do {
       try await StorageSamples.runObjectSamples(
         controlClient: controlClient, dataClient: dataClient, projectId: projectId,
-        bucketNames: &bucketNames)
+        serviceAccount: serviceAccount, bucketNames: &bucketNames)
       await StorageSamples.cleanupTestBuckets(client: controlClient, bucketNames: bucketNames)
     } catch {
       await StorageSamples.cleanupTestBuckets(client: controlClient, bucketNames: bucketNames)

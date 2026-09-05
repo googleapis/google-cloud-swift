@@ -163,6 +163,7 @@ let package = Package(
         .product(name: "GoogleCloudStorage", package: "swift-google-cloud-storage"),
         .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
         .product(name: "GoogleCloudGax", package: "swift-google-gax"),
+        .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
         .product(name: "Logging", package: "swift-log"),
         .product(name: "GoogleIAMV1", package: "swift-google-iam-v1"),
         .product(name: "GoogleType", package: "swift-google-type"),
