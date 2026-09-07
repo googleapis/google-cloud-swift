@@ -13,6 +13,9 @@
 // limitations under the License.
 
 import Foundation
+import GoogleCloudGax
+
+let testVersion = "0.2.0"
 
 struct StructuredLog: Codable, Sendable {
   let severity: String
@@ -20,22 +23,53 @@ struct StructuredLog: Codable, Sendable {
   let message: String
 }
 
+private let logEncoder: JSONEncoder = {
+  let encoder = JSONEncoder()
+  encoder.outputFormatting = [.sortedKeys]
+  return encoder
+}()
+
+func reportRetryError(
+  _ error: any Error,
+  method: String,
+  state: RetryState,
+  task: String = "worker"
+) {
+  let elapsed = ContinuousClock.now - state.start
+  let log = StructuredLog(
+    severity: "error",
+    labels: [
+      "application": "endurance-test",
+      "idempotent": "\(state.idempotent)",
+      "elapsed": "\(elapsed)",
+      "attemptCount": "\(state.attemptCount)",
+      "method": method,
+      "task": task,
+      "version": testVersion,
+    ],
+    message: "\(error)"
+  )
+  if let data = try? logEncoder.encode(log),
+    let jsonString = String(data: data, encoding: .utf8)
+  {
+    FileHandle.standardError.write(Data((jsonString + "\n").utf8))
+  }
+}
+
 func reportError(_ error: any Error, task: String) {
   let log = StructuredLog(
     severity: "error",
     labels: [
       "application": "endurance-test",
-      "version": "0.1.0",
       "task": task,
+      "version": testVersion,
     ],
     message: "\(error)"
   )
-  if let data = try? JSONEncoder().encode(log),
+  if let data = try? logEncoder.encode(log),
     let jsonString = String(data: data, encoding: .utf8)
   {
     FileHandle.standardError.write(Data((jsonString + "\n").utf8))
-  } else {
-    FileHandle.standardError.write(Data("{\"severity\":\"error\",\"message\":\"\(error)\"}\n".utf8))
   }
 }
 
@@ -44,16 +78,14 @@ func reportInfo(_ message: String, task: String) {
     severity: "info",
     labels: [
       "application": "endurance-test",
-      "version": "0.1.0",
       "task": task,
+      "version": testVersion,
     ],
     message: message
   )
-  if let data = try? JSONEncoder().encode(log),
+  if let data = try? logEncoder.encode(log),
     let jsonString = String(data: data, encoding: .utf8)
   {
     FileHandle.standardOutput.write(Data((jsonString + "\n").utf8))
-  } else {
-    print("{\"severity\":\"info\",\"message\":\"\(message)\"}")
   }
 }

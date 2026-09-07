@@ -132,6 +132,7 @@ let package = Package(
     .executableTarget(
       name: "Endurance",
       dependencies: [
+        .product(name: "ArgumentParser", package: "swift-argument-parser"),
         .product(
           name: "GoogleCloudSecretManagerV1", package: "swift-google-cloud-secretmanager-v1"),
         .product(name: "GoogleCloudGax", package: "swift-google-gax"),

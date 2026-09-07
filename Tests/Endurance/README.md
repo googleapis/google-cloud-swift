@@ -93,16 +93,15 @@ sudo cp .build/release/Endurance /usr/local/bin/endurance-test
 Create the systemd user service unit:
 
 ```shell
-mkdir -p ~/.config/systemd/user
-sudo sed "s/@PROJECT@/$PROJECT_ID/" Tests/Endurance/endurance-test.service >/etc/systemd/system/swift-endurance.service
+sed "s/@PROJECT@/$PROJECT_ID/" Tests/Endurance/endurance-test.service | sudo tee /etc/systemd/system/swift-endurance.service
 ```
 
 Start the program as a background service:
 
 ```shell
 sudo systemctl daemon-reload
-sudo systemctl enable --now endurance-test.service
-sudo systemctl status endurance-test.service
+sudo systemctl enable --now swift-endurance.service
+sudo systemctl status swift-endurance.service
 ```
 
 The benchmark is tuned to use all the API quota in a single project. If you run
