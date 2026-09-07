@@ -54,6 +54,11 @@ public func runObjectSamples(
   _ = try await dataClient.upload(sampleData, to: id, as: "object-to-update")
   _ = try await dataClient.upload(sampleData, to: id, as: "update-storage-class")
   _ = try await dataClient.upload(sampleData, to: id, as: "object-with-contexts")
+  _ = try await dataClient.upload(sampleData, to: id, as: "compose-source-object-1")
+  _ = try await dataClient.upload(sampleData, to: id, as: "compose-source-object-2")
+  _ = try await dataClient.upload(sampleData, to: id, as: "object-to-copy")
+  let archivedCopy = try await dataClient.upload(
+    sampleData, to: id, as: "object-generation-to-copy")
 
   let tempFilePath = FileManager.default.temporaryDirectory.appendingPathComponent(
     "downloaded-file-\(UUID().uuidString).txt"
@@ -107,6 +112,15 @@ public func runObjectSamples(
   try await setObjectContexts(client: controlClient, bucketId: id)
   print("running getObjectContexts() sample")
   try await getObjectContexts(client: controlClient, bucketId: id)
+
+  print("running composeFile() sample")
+  try await composeFile(client: controlClient, bucketId: id)
+  print("running copyFile() sample")
+  try await copyFile(client: controlClient, sourceBucketId: id, destBucketId: id)
+  print("running copyFileArchivedGeneration() sample")
+  try await copyFileArchivedGeneration(
+    client: controlClient, sourceBucketId: id, destBucketId: id,
+    generation: archivedCopy.generation)
 
   // Create a separate bucket with ACLs enabled and object retention enabled for ACL and retention samples
   let retentionAclBucketId = randomBucketId()
