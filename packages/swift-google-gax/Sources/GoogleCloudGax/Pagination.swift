@@ -51,28 +51,18 @@ public final class PaginatedResponseSequence<Item, ResponseType: _PaginatedRespo
     }
 
     public func next() async throws -> Item? {
-      // 1. If we have cached items, serve them first.
-      if !buffer.isEmpty {
-        return buffer.removeFirst()
+      // Continue fetching pages until we have items to return or there are no more pages.
+      // According to AIP-158, intermediate pages may be empty while still returning a next page token.
+      while buffer.isEmpty && !hasReachedEnd {
+        let response = try await listRpc(nextToken)
+        buffer = response._getPaginatedItems()
+        nextToken = response._nextPageToken()
+        if nextToken.isEmpty {
+          hasReachedEnd = true
+        }
       }
 
-      // 2. Stop if we've previously determined there's no more data.
-      guard !hasReachedEnd else { return nil }
-
-      // 3. Fetch the next page using the page token from the previous response.
-      let response = try await listRpc(nextToken)
-      buffer = response._getPaginatedItems()
-
-      // 4. Update the token. If there is no next token, remember that we
-      // don't need to fetch any more pages.
-      nextToken = response._nextPageToken()
-      if nextToken.isEmpty {
-        hasReachedEnd = true
-      }
-
-      // 5. If the fetch returned nothing, we are done.
-      if buffer.isEmpty {
-        hasReachedEnd = true
+      guard !buffer.isEmpty else {
         return nil
       }
 
