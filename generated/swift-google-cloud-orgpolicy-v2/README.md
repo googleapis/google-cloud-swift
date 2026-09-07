@@ -4,3 +4,50 @@
 
 The Organization Policy API allows users to configure governance rules on
 their Google Cloud resources across the resource hierarchy.
+
+## Overview
+
+Most applications use the `*Client` types in this library. A default initialized
+client will let you interact with the API. The methods in the client type
+correspond to RPCs in the API. Many APIs have more than one client, exposing
+different aspects of the API, consult the reference documentation for details.
+
+- `OrgPolicyClient`
+
+## Requirements
+
+For the minimum supported Swift version and platform requirements, see the
+[Requirements](https://github.com/googleapis/google-cloud-swift#minimum-supported-swift-version)
+section in the `google-cloud-swift` repository.
+
+## Installation
+
+Add `swift-google-cloud-orgpolicy-v2` as a package dependency:
+
+```bash
+swift package add-dependency https://github.com/googleapis/swift-google-cloud-orgpolicy-v2.git --from 0.0.0-preview
+```
+
+Then add `GoogleCloudOrgPolicyV2` to your target's dependencies:
+
+```bash
+swift package add-target-dependency GoogleCloudOrgPolicyV2 <target-name> --package swift-google-cloud-orgpolicy-v2
+```
+
+## Troubleshooting
+
+For questions, bug reports, or feature requests, please open an issue in the
+[google-cloud-swift](https://github.com/googleapis/google-cloud-swift/issues) repository.
+
+## Contributing
+
+Contributions to this library are always welcome and highly encouraged.
+
+All development, issues, and pull requests are managed in the
+[google-cloud-swift](https://github.com/googleapis/google-cloud-swift) monorepo.
+See [CONTRIBUTING.md](https://github.com/googleapis/google-cloud-swift/blob/main/CONTRIBUTING.md)
+for details on getting started.
+
+## License
+
+Apache 2.0 - See [LICENSE](LICENSE) for more information.

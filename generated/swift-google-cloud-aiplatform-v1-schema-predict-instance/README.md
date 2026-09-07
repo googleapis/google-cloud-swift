@@ -4,3 +4,46 @@
 
 Train high-quality custom machine learning models with minimal machine
 learning expertise and effort.
+
+## Overview
+
+This is a type-only library. You will not find functions to make RPCs in this
+library. Its types are used in other libraries that access Google Cloud.
+
+## Requirements
+
+For the minimum supported Swift version and platform requirements, see the
+[Requirements](https://github.com/googleapis/google-cloud-swift#minimum-supported-swift-version)
+section in the `google-cloud-swift` repository.
+
+## Installation
+
+Add `swift-google-cloud-aiplatform-v1-schema-predict-instance` as a package dependency:
+
+```bash
+swift package add-dependency https://github.com/googleapis/swift-google-cloud-aiplatform-v1-schema-predict-instance.git --from 0.0.0-preview
+```
+
+Then add `GoogleCloudAIPlatformV1SchemaPredictInstance` to your target's dependencies:
+
+```bash
+swift package add-target-dependency GoogleCloudAIPlatformV1SchemaPredictInstance <target-name> --package swift-google-cloud-aiplatform-v1-schema-predict-instance
+```
+
+## Troubleshooting
+
+For questions, bug reports, or feature requests, please open an issue in the
+[google-cloud-swift](https://github.com/googleapis/google-cloud-swift/issues) repository.
+
+## Contributing
+
+Contributions to this library are always welcome and highly encouraged.
+
+All development, issues, and pull requests are managed in the
+[google-cloud-swift](https://github.com/googleapis/google-cloud-swift) monorepo.
+See [CONTRIBUTING.md](https://github.com/googleapis/google-cloud-swift/blob/main/CONTRIBUTING.md)
+for details on getting started.
+
+## License
+
+Apache 2.0 - See [LICENSE](LICENSE) for more information.

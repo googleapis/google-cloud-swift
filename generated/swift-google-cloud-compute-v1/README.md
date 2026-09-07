@@ -5,3 +5,176 @@
 Creates and runs virtual machines on Google Cloud Platform.
 
 This client library was generated from the "20260821" revision of the API.
+
+## Overview
+
+Most applications use the `*Client` types in this library. A default initialized
+client will let you interact with the API. The methods in the client type
+correspond to RPCs in the API. Many APIs have more than one client, exposing
+different aspects of the API, consult the reference documentation for details.
+
+- `AcceleratorTypesClient`: enabled by the `AcceleratorTypes` trait.
+- `AddressesClient`: enabled by the `Addresses` trait.
+- `AdviceClient`: enabled by the `Advice` trait.
+- `AutoscalersClient`: enabled by the `Autoscalers` trait.
+- `BackendBucketsClient`: enabled by the `BackendBuckets` trait.
+- `BackendServicesClient`: enabled by the `BackendServices` trait.
+- `CrossSiteNetworksClient`: enabled by the `CrossSiteNetworks` trait.
+- `DiskTypesClient`: enabled by the `DiskTypes` trait.
+- `DisksClient`: enabled by the `Disks` trait.
+- `ExternalVpnGatewaysClient`: enabled by the `ExternalVpnGateways` trait.
+- `FirewallPoliciesClient`: enabled by the `FirewallPolicies` trait.
+- `FirewallsClient`: enabled by the `Firewalls` trait.
+- `ForwardingRulesClient`: enabled by the `ForwardingRules` trait.
+- `FutureReservationsClient`: enabled by the `FutureReservations` trait.
+- `GlobalAddressesClient`: enabled by the `GlobalAddresses` trait.
+- `GlobalForwardingRulesClient`: enabled by the `GlobalForwardingRules` trait.
+- `GlobalNetworkEndpointGroupsClient`: enabled by the `GlobalNetworkEndpointGroups` trait.
+- `GlobalOperationsClient`: enabled by the `GlobalOperations` trait.
+- `GlobalOrganizationOperationsClient`: enabled by the `GlobalOrganizationOperations` trait.
+- `GlobalPublicDelegatedPrefixesClient`: enabled by the `GlobalPublicDelegatedPrefixes` trait.
+- `GlobalVmExtensionPoliciesClient`: enabled by the `GlobalVmExtensionPolicies` trait.
+- `HealthChecksClient`: enabled by the `HealthChecks` trait.
+- `HostsClient`: enabled by the `Hosts` trait.
+- `HttpHealthChecksClient`: enabled by the `HttpHealthChecks` trait.
+- `HttpsHealthChecksClient`: enabled by the `HttpsHealthChecks` trait.
+- `ImageFamilyViewsClient`: enabled by the `ImageFamilyViews` trait.
+- `ImagesClient`: enabled by the `Images` trait.
+- `InstanceGroupManagerResizeRequestsClient`: enabled by the `InstanceGroupManagerResizeRequests` trait.
+- `InstanceGroupManagersClient`: enabled by the `InstanceGroupManagers` trait.
+- `InstanceGroupsClient`: enabled by the `InstanceGroups` trait.
+- `InstanceSettingsClient`: enabled by the `InstanceSettings` trait.
+- `InstanceTemplatesClient`: enabled by the `InstanceTemplates` trait.
+- `InstancesClient`: enabled by the `Instances` trait.
+- `InstantSnapshotGroupsClient`: enabled by the `InstantSnapshotGroups` trait.
+- `InstantSnapshotsClient`: enabled by the `InstantSnapshots` trait.
+- `InterconnectAttachmentGroupsClient`: enabled by the `InterconnectAttachmentGroups` trait.
+- `InterconnectAttachmentsClient`: enabled by the `InterconnectAttachments` trait.
+- `InterconnectGroupsClient`: enabled by the `InterconnectGroups` trait.
+- `InterconnectLocationsClient`: enabled by the `InterconnectLocations` trait.
+- `InterconnectRemoteLocationsClient`: enabled by the `InterconnectRemoteLocations` trait.
+- `InterconnectsClient`: enabled by the `Interconnects` trait.
+- `LicenseCodesClient`: enabled by the `LicenseCodes` trait.
+- `LicensesClient`: enabled by the `Licenses` trait.
+- `MachineImagesClient`: enabled by the `MachineImages` trait.
+- `MachineTypesClient`: enabled by the `MachineTypes` trait.
+- `NetworkAttachmentsClient`: enabled by the `NetworkAttachments` trait.
+- `NetworkEdgeSecurityServicesClient`: enabled by the `NetworkEdgeSecurityServices` trait.
+- `NetworkEndpointGroupsClient`: enabled by the `NetworkEndpointGroups` trait.
+- `NetworkFirewallPoliciesClient`: enabled by the `NetworkFirewallPolicies` trait.
+- `NetworkProfilesClient`: enabled by the `NetworkProfiles` trait.
+- `NetworksClient`: enabled by the `Networks` trait.
+- `NodeGroupsClient`: enabled by the `NodeGroups` trait.
+- `NodeTemplatesClient`: enabled by the `NodeTemplates` trait.
+- `NodeTypesClient`: enabled by the `NodeTypes` trait.
+- `OrganizationSecurityPoliciesClient`: enabled by the `OrganizationSecurityPolicies` trait.
+- `PacketMirroringsClient`: enabled by the `PacketMirrorings` trait.
+- `PreviewFeaturesClient`: enabled by the `PreviewFeatures` trait.
+- `ProjectsClient`: enabled by the `Projects` trait.
+- `PublicAdvertisedPrefixesClient`: enabled by the `PublicAdvertisedPrefixes` trait.
+- `PublicDelegatedPrefixesClient`: enabled by the `PublicDelegatedPrefixes` trait.
+- `RegionAutoscalersClient`: enabled by the `RegionAutoscalers` trait.
+- `RegionBackendBucketsClient`: enabled by the `RegionBackendBuckets` trait.
+- `RegionBackendServicesClient`: enabled by the `RegionBackendServices` trait.
+- `RegionCommitmentsClient`: enabled by the `RegionCommitments` trait.
+- `RegionCompositeHealthChecksClient`: enabled by the `RegionCompositeHealthChecks` trait.
+- `RegionDiskTypesClient`: enabled by the `RegionDiskTypes` trait.
+- `RegionDisksClient`: enabled by the `RegionDisks` trait.
+- `RegionHealthAggregationPoliciesClient`: enabled by the `RegionHealthAggregationPolicies` trait.
+- `RegionHealthCheckServicesClient`: enabled by the `RegionHealthCheckServices` trait.
+- `RegionHealthChecksClient`: enabled by the `RegionHealthChecks` trait.
+- `RegionHealthSourcesClient`: enabled by the `RegionHealthSources` trait.
+- `RegionInstanceGroupManagerResizeRequestsClient`: enabled by the `RegionInstanceGroupManagerResizeRequests` trait.
+- `RegionInstanceGroupManagersClient`: enabled by the `RegionInstanceGroupManagers` trait.
+- `RegionInstanceGroupsClient`: enabled by the `RegionInstanceGroups` trait.
+- `RegionInstanceTemplatesClient`: enabled by the `RegionInstanceTemplates` trait.
+- `RegionInstancesClient`: enabled by the `RegionInstances` trait.
+- `RegionInstantSnapshotGroupsClient`: enabled by the `RegionInstantSnapshotGroups` trait.
+- `RegionInstantSnapshotsClient`: enabled by the `RegionInstantSnapshots` trait.
+- `RegionNetworkEndpointGroupsClient`: enabled by the `RegionNetworkEndpointGroups` trait.
+- `RegionNetworkFirewallPoliciesClient`: enabled by the `RegionNetworkFirewallPolicies` trait.
+- `RegionNotificationEndpointsClient`: enabled by the `RegionNotificationEndpoints` trait.
+- `RegionOperationsClient`: enabled by the `RegionOperations` trait.
+- `RegionSecurityPoliciesClient`: enabled by the `RegionSecurityPolicies` trait.
+- `RegionSnapshotSettingsClient`: enabled by the `RegionSnapshotSettings` trait.
+- `RegionSnapshotsClient`: enabled by the `RegionSnapshots` trait.
+- `RegionSslCertificatesClient`: enabled by the `RegionSslCertificates` trait.
+- `RegionSslPoliciesClient`: enabled by the `RegionSslPolicies` trait.
+- `RegionTargetHttpProxiesClient`: enabled by the `RegionTargetHttpProxies` trait.
+- `RegionTargetHttpsProxiesClient`: enabled by the `RegionTargetHttpsProxies` trait.
+- `RegionTargetTcpProxiesClient`: enabled by the `RegionTargetTcpProxies` trait.
+- `RegionUrlMapsClient`: enabled by the `RegionUrlMaps` trait.
+- `RegionZonesClient`: enabled by the `RegionZones` trait.
+- `RegionsClient`: enabled by the `Regions` trait.
+- `ReliabilityRisksClient`: enabled by the `ReliabilityRisks` trait.
+- `ReservationBlocksClient`: enabled by the `ReservationBlocks` trait.
+- `ReservationSlotsClient`: enabled by the `ReservationSlots` trait.
+- `ReservationSubBlocksClient`: enabled by the `ReservationSubBlocks` trait.
+- `ReservationsClient`: enabled by the `Reservations` trait.
+- `ResourcePoliciesClient`: enabled by the `ResourcePolicies` trait.
+- `RolloutPlansClient`: enabled by the `RolloutPlans` trait.
+- `RolloutsClient`: enabled by the `Rollouts` trait.
+- `RoutersClient`: enabled by the `Routers` trait.
+- `RoutesClient`: enabled by the `Routes` trait.
+- `SecurityPoliciesClient`: enabled by the `SecurityPolicies` trait.
+- `ServiceAttachmentsClient`: enabled by the `ServiceAttachments` trait.
+- `SnapshotSettingsClient`: enabled by the `SnapshotSettings` trait.
+- `SnapshotsClient`: enabled by the `Snapshots` trait.
+- `SslCertificatesClient`: enabled by the `SslCertificates` trait.
+- `SslPoliciesClient`: enabled by the `SslPolicies` trait.
+- `StoragePoolTypesClient`: enabled by the `StoragePoolTypes` trait.
+- `StoragePoolsClient`: enabled by the `StoragePools` trait.
+- `SubnetworksClient`: enabled by the `Subnetworks` trait.
+- `TargetGrpcProxiesClient`: enabled by the `TargetGrpcProxies` trait.
+- `TargetHttpProxiesClient`: enabled by the `TargetHttpProxies` trait.
+- `TargetHttpsProxiesClient`: enabled by the `TargetHttpsProxies` trait.
+- `TargetInstancesClient`: enabled by the `TargetInstances` trait.
+- `TargetPoolsClient`: enabled by the `TargetPools` trait.
+- `TargetSslProxiesClient`: enabled by the `TargetSslProxies` trait.
+- `TargetTcpProxiesClient`: enabled by the `TargetTcpProxies` trait.
+- `TargetVpnGatewaysClient`: enabled by the `TargetVpnGateways` trait.
+- `UrlMapsClient`: enabled by the `UrlMaps` trait.
+- `VpnGatewaysClient`: enabled by the `VpnGateways` trait.
+- `VpnTunnelsClient`: enabled by the `VpnTunnels` trait.
+- `WireGroupsClient`: enabled by the `WireGroups` trait.
+- `ZoneOperationsClient`: enabled by the `ZoneOperations` trait.
+- `ZoneVmExtensionPoliciesClient`: enabled by the `ZoneVmExtensionPolicies` trait.
+- `ZonesClient`: enabled by the `Zones` trait.
+
+## Requirements
+
+For the minimum supported Swift version and platform requirements, see the
+[Requirements](https://github.com/googleapis/google-cloud-swift#minimum-supported-swift-version)
+section in the `google-cloud-swift` repository.
+
+## Installation
+
+Add `swift-google-cloud-compute-v1` as a package dependency:
+
+```bash
+swift package add-dependency https://github.com/googleapis/swift-google-cloud-compute-v1.git --from 0.1.0-preview
+```
+
+Then add `GoogleCloudComputeV1` to your target's dependencies:
+
+```bash
+swift package add-target-dependency GoogleCloudComputeV1 <target-name> --package swift-google-cloud-compute-v1
+```
+
+## Troubleshooting
+
+For questions, bug reports, or feature requests, please open an issue in the
+[google-cloud-swift](https://github.com/googleapis/google-cloud-swift/issues) repository.
+
+## Contributing
+
+Contributions to this library are always welcome and highly encouraged.
+
+All development, issues, and pull requests are managed in the
+[google-cloud-swift](https://github.com/googleapis/google-cloud-swift) monorepo.
+See [CONTRIBUTING.md](https://github.com/googleapis/google-cloud-swift/blob/main/CONTRIBUTING.md)
+for details on getting started.
+
+## License
+
+Apache 2.0 - See [LICENSE](LICENSE) for more information.

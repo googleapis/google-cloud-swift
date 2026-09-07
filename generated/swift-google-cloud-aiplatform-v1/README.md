@@ -4,3 +4,83 @@
 
 Train high-quality custom machine learning models with minimal machine
 learning expertise and effort.
+
+## Overview
+
+Most applications use the `*Client` types in this library. A default initialized
+client will let you interact with the API. The methods in the client type
+correspond to RPCs in the API. Many APIs have more than one client, exposing
+different aspects of the API, consult the reference documentation for details.
+
+- `DataFoundryServiceClient`: enabled by the `DataFoundryService` trait.
+- `DatasetServiceClient`: enabled by the `DatasetService` trait.
+- `DeploymentResourcePoolServiceClient`: enabled by the `DeploymentResourcePoolService` trait.
+- `EndpointServiceClient`: enabled by the `EndpointService` trait.
+- `EvaluationServiceClient`: enabled by the `EvaluationService` trait.
+- `FeatureOnlineStoreAdminServiceClient`: enabled by the `FeatureOnlineStoreAdminService` trait.
+- `FeatureOnlineStoreServiceClient`: enabled by the `FeatureOnlineStoreService` trait.
+- `FeatureRegistryServiceClient`: enabled by the `FeatureRegistryService` trait.
+- `FeaturestoreOnlineServingServiceClient`: enabled by the `FeaturestoreOnlineServingService` trait.
+- `FeaturestoreServiceClient`: enabled by the `FeaturestoreService` trait.
+- `GenAiCacheServiceClient`: enabled by the `GenAiCacheService` trait.
+- `GenAiTuningServiceClient`: enabled by the `GenAiTuningService` trait.
+- `IndexEndpointServiceClient`: enabled by the `IndexEndpointService` trait.
+- `IndexServiceClient`: enabled by the `IndexService` trait.
+- `JobServiceClient`: enabled by the `JobService` trait.
+- `LlmUtilityServiceClient`: enabled by the `LlmUtilityService` trait.
+- `MatchServiceClient`: enabled by the `MatchService` trait.
+- `MetadataServiceClient`: enabled by the `MetadataService` trait.
+- `MigrationServiceClient`: enabled by the `MigrationService` trait.
+- `ModelGardenServiceClient`: enabled by the `ModelGardenService` trait.
+- `ModelServiceClient`: enabled by the `ModelService` trait.
+- `NotebookServiceClient`: enabled by the `NotebookService` trait.
+- `PersistentResourceServiceClient`: enabled by the `PersistentResourceService` trait.
+- `PipelineServiceClient`: enabled by the `PipelineService` trait.
+- `PredictionServiceClient`: enabled by the `PredictionService` trait.
+- `ReasoningEngineExecutionServiceClient`: enabled by the `ReasoningEngineExecutionService` trait.
+- `ReasoningEngineServiceClient`: enabled by the `ReasoningEngineService` trait.
+- `ScheduleServiceClient`: enabled by the `ScheduleService` trait.
+- `SessionServiceClient`: enabled by the `SessionService` trait.
+- `SpecialistPoolServiceClient`: enabled by the `SpecialistPoolService` trait.
+- `TensorboardServiceClient`: enabled by the `TensorboardService` trait.
+- `VertexRagDataServiceClient`: enabled by the `VertexRagDataService` trait.
+- `VertexRagServiceClient`: enabled by the `VertexRagService` trait.
+- `VizierServiceClient`: enabled by the `VizierService` trait.
+
+## Requirements
+
+For the minimum supported Swift version and platform requirements, see the
+[Requirements](https://github.com/googleapis/google-cloud-swift#minimum-supported-swift-version)
+section in the `google-cloud-swift` repository.
+
+## Installation
+
+Add `swift-google-cloud-aiplatform-v1` as a package dependency:
+
+```bash
+swift package add-dependency https://github.com/googleapis/swift-google-cloud-aiplatform-v1.git --from 0.1.0-preview
+```
+
+Then add `GoogleCloudAIPlatformV1` to your target's dependencies:
+
+```bash
+swift package add-target-dependency GoogleCloudAIPlatformV1 <target-name> --package swift-google-cloud-aiplatform-v1
+```
+
+## Troubleshooting
+
+For questions, bug reports, or feature requests, please open an issue in the
+[google-cloud-swift](https://github.com/googleapis/google-cloud-swift/issues) repository.
+
+## Contributing
+
+Contributions to this library are always welcome and highly encouraged.
+
+All development, issues, and pull requests are managed in the
+[google-cloud-swift](https://github.com/googleapis/google-cloud-swift) monorepo.
+See [CONTRIBUTING.md](https://github.com/googleapis/google-cloud-swift/blob/main/CONTRIBUTING.md)
+for details on getting started.
+
+## License
+
+Apache 2.0 - See [LICENSE](LICENSE) for more information.

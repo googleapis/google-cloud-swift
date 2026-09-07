@@ -4,3 +4,71 @@
 
 Builds conversational interfaces (for example, chatbots, and voice-powered
 apps and devices).
+
+## Overview
+
+Most applications use the `*Client` types in this library. A default initialized
+client will let you interact with the API. The methods in the client type
+correspond to RPCs in the API. Many APIs have more than one client, exposing
+different aspects of the API, consult the reference documentation for details.
+
+- `AgentsClient`: enabled by the `Agents` trait.
+- `AnswerRecordsClient`: enabled by the `AnswerRecords` trait.
+- `ContextsClient`: enabled by the `Contexts` trait.
+- `ConversationsClient`: enabled by the `Conversations` trait.
+- `ConversationDatasetsClient`: enabled by the `ConversationDatasets` trait.
+- `ConversationModelsClient`: enabled by the `ConversationModels` trait.
+- `ConversationProfilesClient`: enabled by the `ConversationProfiles` trait.
+- `DocumentsClient`: enabled by the `Documents` trait.
+- `EncryptionSpecServiceClient`: enabled by the `EncryptionSpecService` trait.
+- `EntityTypesClient`: enabled by the `EntityTypes` trait.
+- `EnvironmentsClient`: enabled by the `Environments` trait.
+- `FulfillmentsClient`: enabled by the `Fulfillments` trait.
+- `GeneratorsClient`: enabled by the `Generators` trait.
+- `GeneratorEvaluationsClient`: enabled by the `GeneratorEvaluations` trait.
+- `IntentsClient`: enabled by the `Intents` trait.
+- `KnowledgeBasesClient`: enabled by the `KnowledgeBases` trait.
+- `ParticipantsClient`: enabled by the `Participants` trait.
+- `SessionsClient`: enabled by the `Sessions` trait.
+- `SessionEntityTypesClient`: enabled by the `SessionEntityTypes` trait.
+- `SipTrunksClient`: enabled by the `SipTrunks` trait.
+- `ToolsClient`: enabled by the `Tools` trait.
+- `VersionsClient`: enabled by the `Versions` trait.
+
+## Requirements
+
+For the minimum supported Swift version and platform requirements, see the
+[Requirements](https://github.com/googleapis/google-cloud-swift#minimum-supported-swift-version)
+section in the `google-cloud-swift` repository.
+
+## Installation
+
+Add `swift-google-cloud-dialogflow-v2` as a package dependency:
+
+```bash
+swift package add-dependency https://github.com/googleapis/swift-google-cloud-dialogflow-v2.git --from 0.1.0-preview
+```
+
+Then add `GoogleCloudDialogflowV2` to your target's dependencies:
+
+```bash
+swift package add-target-dependency GoogleCloudDialogflowV2 <target-name> --package swift-google-cloud-dialogflow-v2
+```
+
+## Troubleshooting
+
+For questions, bug reports, or feature requests, please open an issue in the
+[google-cloud-swift](https://github.com/googleapis/google-cloud-swift/issues) repository.
+
+## Contributing
+
+Contributions to this library are always welcome and highly encouraged.
+
+All development, issues, and pull requests are managed in the
+[google-cloud-swift](https://github.com/googleapis/google-cloud-swift) monorepo.
+See [CONTRIBUTING.md](https://github.com/googleapis/google-cloud-swift/blob/main/CONTRIBUTING.md)
+for details on getting started.
+
+## License
+
+Apache 2.0 - See [LICENSE](LICENSE) for more information.
