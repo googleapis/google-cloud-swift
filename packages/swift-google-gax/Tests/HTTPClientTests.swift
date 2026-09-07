@@ -43,6 +43,18 @@ import NIOHTTP1
       request.components.url?.absoluteString == "http://localhost:1234/\(wantPath)?$alt=json")
   }
 
+  @Test func emptyQuery() async throws {
+    let endpoint = "http://localhost:1234"
+    let credentials = try Credentials(configuration: .anonymous)
+    let options = ClientOptions().with { $0.credentials = credentials }
+    let client = try _HTTPClient(from: options, withDefaultEndpoint: endpoint)
+    let request = try await client.newRequest(path: "/path", query: [])
+    #expect(request.components.url?.absoluteString == "http://localhost:1234/path")
+
+    let percentEncodedRequest = try await client.newRequest(percentEncodedPath: "/path", query: [])
+    #expect(percentEncodedRequest.components.url?.absoluteString == "http://localhost:1234/path")
+  }
+
   @Test(arguments: [
     // Pre-encoded characters like %2F, %20, %3F are preserved without re-encoding
     (
