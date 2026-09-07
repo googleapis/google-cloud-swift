@@ -115,4 +115,71 @@ import Testing
     }
     #expect(array.isEmpty)
   }
+
+  @Test func emptyIntermediatePage() async throws {
+    let service = PaginatedService(
+      mockResponses: [
+        ListItemsResponse(items: [Item(name: "item1"), Item(name: "item2")], nextPageToken: "abc"),
+        ListItemsResponse(items: [], nextPageToken: "def"),
+        ListItemsResponse(items: [Item(name: "item3"), Item(name: "item4")], nextPageToken: ""),
+      ])
+    var array: [Item] = []
+    for try await item in service.listItems(
+      byItem: .init()
+    ) {
+      array.append(item)
+    }
+    #expect(
+      array == [
+        Item(name: "item1"), Item(name: "item2"), Item(name: "item3"), Item(name: "item4"),
+      ])
+  }
+
+  @Test func emptyInitialPage() async throws {
+    let service = PaginatedService(
+      mockResponses: [
+        ListItemsResponse(items: [], nextPageToken: "abc"),
+        ListItemsResponse(items: [Item(name: "item1"), Item(name: "item2")], nextPageToken: ""),
+      ])
+    var array: [Item] = []
+    for try await item in service.listItems(
+      byItem: .init()
+    ) {
+      array.append(item)
+    }
+    #expect(array == [Item(name: "item1"), Item(name: "item2")])
+  }
+
+  @Test func multipleConsecutiveEmptyPages() async throws {
+    let service = PaginatedService(
+      mockResponses: [
+        ListItemsResponse(items: [Item(name: "item1")], nextPageToken: "p1"),
+        ListItemsResponse(items: [], nextPageToken: "p2"),
+        ListItemsResponse(items: [], nextPageToken: "p3"),
+        ListItemsResponse(items: [Item(name: "item2")], nextPageToken: ""),
+      ])
+    var array: [Item] = []
+    for try await item in service.listItems(
+      byItem: .init()
+    ) {
+      array.append(item)
+    }
+    #expect(array == [Item(name: "item1"), Item(name: "item2")])
+  }
+
+  @Test func emptyPagesEndingInEmptyPage() async throws {
+    let service = PaginatedService(
+      mockResponses: [
+        ListItemsResponse(items: [], nextPageToken: "p1"),
+        ListItemsResponse(items: [], nextPageToken: "p2"),
+        ListItemsResponse(items: [], nextPageToken: ""),
+      ])
+    var array: [Item] = []
+    for try await item in service.listItems(
+      byItem: .init()
+    ) {
+      array.append(item)
+    }
+    #expect(array.isEmpty)
+  }
 }

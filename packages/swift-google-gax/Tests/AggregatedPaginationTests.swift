@@ -107,6 +107,27 @@ import GoogleCloudGax
       ])
   }
 
+  @Test func emptyIntermediatePageAggregatedList() async throws {
+    let service = Service([
+      Response(
+        items: [
+          "group1": Item(name: "item1")
+        ], nextPageToken: "p1"),
+      Response(
+        items: [:], nextPageToken: "p2"),
+      Response(
+        items: [
+          "group2": Item(name: "item2")
+        ], nextPageToken: nil),
+    ])
+    let got = try await aggregateAll(service)
+    #expect(
+      got == [
+        "group1": Item(name: "item1"),
+        "group2": Item(name: "item2"),
+      ])
+  }
+
   func aggregateAll(_ service: Service) async throws -> [String: Item] {
     var result: [String: Item] = [:]
     for try await (group, item) in service.aggregatedListItems(
