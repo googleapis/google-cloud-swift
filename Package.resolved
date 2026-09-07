@@ -1,5 +1,5 @@
 {
-  "originHash" : "b19cdbc43dfb3a2803f2764543a0323e797605a3de80c4237d001557621df808",
+  "originHash" : "8727ea49cf139bb16e15316f22ec5f91be56623b0948e2385cc27e0fa9bebde3",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -179,6 +179,24 @@
       "state" : {
         "revision" : "ee592dea2019dd79d571b3383b0719e22f14bc10",
         "version" : "0.0.0-preview"
+      }
+    },
+    {
+      "identity" : "swift-google-iam-v1",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/googleapis/swift-google-iam-v1",
+      "state" : {
+        "revision" : "7e03299c4d77428674cf4ddec2ed50a2fed440d5",
+        "version" : "0.1.0-preview"
+      }
+    },
+    {
+      "identity" : "swift-google-longrunning",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/googleapis/swift-google-longrunning",
+      "state" : {
+        "revision" : "d1c65496431b2cfa2a03f29c77f8019351a79a4c",
+        "version" : "0.1.0-preview"
       }
     },
     {

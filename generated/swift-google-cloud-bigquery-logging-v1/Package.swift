@@ -25,7 +25,7 @@ let package = Package(
   ],
   dependencies: [
     .package(url: "https://github.com/googleapis/swift-google-wkt", from: "0.1.0-preview"),
-    .package(path: "../../generated/swift-google-iam-v1"),
+    .package(url: "https://github.com/googleapis/swift-google-iam-v1", from: "0.1.0-preview"),
     .package(url: "https://github.com/googleapis/swift-google-rpc", from: "0.1.0-preview"),
   ],
   targets: [

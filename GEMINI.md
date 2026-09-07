@@ -15,7 +15,7 @@ This document outlines critical rules, coding standards, and workflow practices 
 
 ## Dependencies and Local Development
 
-- **Remote vs. Local Dependencies**: Packages in this repository declare dependencies on published remote GitHub URLs (`https://github.com/googleapis/...`): `swift-google-auth`, `swift-google-gax`, `swift-google-wkt`, `swift-google-api`, `swift-google-cloud-common`, `swift-google-rpc`, `swift-google-rpc-context`, and `swift-google-type`.
+- **Remote vs. Local Dependencies**: Packages in this repository declare dependencies on published remote GitHub URLs (`https://github.com/googleapis/...`): `swift-google-auth`, `swift-google-gax`, `swift-google-wkt`, `swift-google-api`, `swift-google-cloud-common`, `swift-google-iam-v1`, `swift-google-longrunning`, `swift-google-rpc`, `swift-google-rpc-context`, and `swift-google-type`.
 - **Testing Local Modifications (`swift package edit`)**: When making changes to `packages/*` or `generated/*`, dependent packages build against the remote git checkouts by default. To test dependent packages against your local changes, put the dependencies in editable mode:
   ```bash
   REPO_ROOT="$(git rev-parse --show-toplevel)"

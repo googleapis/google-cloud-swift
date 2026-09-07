@@ -133,7 +133,8 @@ default:
         path: generated/swift-grafeas-v1
         api_package: grafeas.v1
       - name: GoogleIAMV1
-        path: generated/swift-google-iam-v1
+        url: https://github.com/googleapis/swift-google-iam-v1
+        version: 0.1.0-preview
         api_package: google.iam.v1
       - name: GoogleIAMV2
         path: generated/swift-google-iam-v2
@@ -145,7 +146,8 @@ default:
         path: generated/swift-google-identity-accesscontextmanager-v1
         api_package: google.identity.accesscontextmanager.v1
       - name: GoogleLongRunning
-        path: generated/swift-google-longrunning
+        url: https://github.com/googleapis/swift-google-longrunning
+        version: 0.1.0-preview
         api_package: google.longrunning
       - name: GoogleRpc
         url: https://github.com/googleapis/swift-google-rpc

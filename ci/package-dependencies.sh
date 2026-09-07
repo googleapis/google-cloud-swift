@@ -26,6 +26,8 @@ _LOCAL_DEPENDENCIES=(
     "packages/swift-google-wkt:swift-google-wkt"
     "generated/swift-google-api:swift-google-api"
     "generated/swift-google-cloud-common:swift-google-cloud-common"
+    "generated/swift-google-iam-v1:swift-google-iam-v1"
+    "generated/swift-google-longrunning:swift-google-longrunning"
     "generated/swift-google-rpc:swift-google-rpc"
     "generated/swift-google-rpc-context:swift-google-rpc-context"
     "generated/swift-google-type:swift-google-type"
