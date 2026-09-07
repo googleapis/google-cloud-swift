@@ -67,7 +67,9 @@ import struct Logging.Logger
   public func newRequest(path: String, query: [URLQueryItem]) async throws -> _HTTPClientRequest {
     var components = self.baseURL
     components.path = path
-    components.queryItems = query
+    if !query.isEmpty {
+      components.queryItems = query
+    }
     var request = _HTTPClientRequest(self.inner, url: components)
     let headers = try await self.credentials.headers()
     for (key, value) in headers {
