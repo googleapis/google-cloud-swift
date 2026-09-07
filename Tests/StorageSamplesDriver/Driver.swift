@@ -24,12 +24,16 @@ import Testing
     let serviceAccount =
       ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_SERVICE_ACCOUNT"]
       ?? "swift-sdk-test@\(projectId).iam.gserviceaccount.com"
+    let kmsRing =
+      ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_STORAGE_KMS_KEY_RING"]
+      ?? ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_STORAGE_KMS_RING"]
+      ?? "us-central1"
     let client = try Self.makeClient()
     var bucketNames: [String] = []
     do {
       try await StorageSamples.runBucketSamples(
         client: client, projectId: projectId, serviceAccount: serviceAccount,
-        bucketNames: &bucketNames)
+        kmsRing: kmsRing, bucketNames: &bucketNames)
       try await StorageSamples.runFolderSamples(
         client: client, projectId: projectId, bucketNames: &bucketNames)
       await StorageSamples.cleanupTestBuckets(client: client, bucketNames: bucketNames)
@@ -47,13 +51,17 @@ import Testing
     let serviceAccount =
       ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_SERVICE_ACCOUNT"]
       ?? "swift-sdk-test@\(projectId).iam.gserviceaccount.com"
+    let kmsRing =
+      ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_STORAGE_KMS_KEY_RING"]
+      ?? ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_STORAGE_KMS_RING"]
+      ?? "us-central1"
     let controlClient = try Self.makeClient()
     let dataClient = try Self.makeDataClient()
     var bucketNames: [String] = []
     do {
       try await StorageSamples.runObjectSamples(
         controlClient: controlClient, dataClient: dataClient, projectId: projectId,
-        serviceAccount: serviceAccount, bucketNames: &bucketNames)
+        serviceAccount: serviceAccount, kmsRing: kmsRing, bucketNames: &bucketNames)
       await StorageSamples.cleanupTestBuckets(client: controlClient, bucketNames: bucketNames)
     } catch {
       await StorageSamples.cleanupTestBuckets(client: controlClient, bucketNames: bucketNames)

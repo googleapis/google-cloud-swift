@@ -260,11 +260,13 @@ P_ID="$(gcloud config get project)"
 env GOOGLE_CLOUD_PROJECT=${P_ID} \
   GOOGLE_CLOUD_SWIFT_TEST_BUCKET="${P_ID}-bucket" \
   GOOGLE_CLOUD_SWIFT_TEST_SERVICE_ACCOUNT=swift-sdk-test@${P_ID}.iam.gserviceaccount.com \
+  GOOGLE_CLOUD_SWIFT_TEST_STORAGE_KMS_KEY_RING=us-central1 \
   swift test
 
 env GOOGLE_CLOUD_PROJECT=${P_ID} \
   GOOGLE_CLOUD_SWIFT_TEST_BUCKET="${P_ID}-bucket" \
   GOOGLE_CLOUD_SWIFT_TEST_SERVICE_ACCOUNT=swift-sdk-test@${P_ID}.iam.gserviceaccount.com \
+  GOOGLE_CLOUD_SWIFT_TEST_STORAGE_KMS_KEY_RING=us-central1 \
   swift test --package-path packages/swift-google-cloud-storage
 ```
 

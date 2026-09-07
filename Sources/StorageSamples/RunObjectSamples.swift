@@ -23,7 +23,7 @@ fileprivate func paceObjectUpdates() async throws {
 
 public func runObjectSamples(
   controlClient: StorageControlClient, dataClient: StorageClient, projectId: String,
-  serviceAccount: String, bucketNames: inout [String]
+  serviceAccount: String, kmsRing: String? = nil, bucketNames: inout [String]
 ) async throws {
   let id = randomBucketId()
   let name = "projects/_/buckets/\(id)"
@@ -85,6 +85,8 @@ public func runObjectSamples(
   try await setMetadata(client: controlClient, bucketId: id)
   print("running getMetadata() sample")
   try await getMetadata(client: controlClient, bucketId: id)
+  print("running getObjectKmsKey() sample")
+  try await getObjectKmsKey(client: controlClient, bucketId: id)
 
   print("running printFileAcl() sample")
   try await printFileAcl(client: controlClient, bucketId: id)
@@ -121,6 +123,55 @@ public func runObjectSamples(
   try await copyFileArchivedGeneration(
     client: controlClient, sourceBucketId: id, destBucketId: id,
     generation: archivedCopy.generation)
+
+  if let kmsRing = kmsRing {
+    let kmsBucketId = randomBucketId()
+    let kmsBucketName = "projects/_/buckets/\(kmsBucketId)"
+    bucketNames.append(kmsBucketName)
+    print("creating bucket for KMS object tests")
+    let _ = try await controlClient.createBucket(
+      request: .init().with {
+        $0.parent = "projects/_"
+        $0.bucketId = kmsBucketId
+        $0.bucket = .init().with { bucket in
+          bucket.project = "projects/\(projectId)"
+          bucket.location = "US-CENTRAL1"
+        }
+      },
+      options: .init()
+    )
+    let kmsKey =
+      "projects/\(projectId)/locations/us-central1/keyRings/\(kmsRing)/cryptoKeys/storage-examples"
+
+    let kmsUploadFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+      "upload-file-\(UUID().uuidString).txt"
+    )
+    try sampleData.write(to: kmsUploadFile)
+    defer {
+      try? FileManager.default.removeItem(at: kmsUploadFile)
+    }
+
+    print("running uploadWithKmsKey() sample")
+    try await uploadWithKmsKey(
+      client: dataClient, bucketId: kmsBucketId, filePath: kmsUploadFile.path, kmsKey: kmsKey)
+
+    let csekKey = try CustomerEncryptionKeyOptions(key: Data(repeating: 0x42, count: 32))
+    let csekObjectName = "csek-file.txt"
+    _ = try await dataClient.upload(
+      sampleData,
+      to: kmsBucketId,
+      as: csekObjectName,
+      options: UploadOptions().with {
+        $0.customerEncryptionKey = csekKey
+      }
+    )
+
+    print("running objectCsekToCmek() sample")
+    try await objectCsekToCmek(
+      client: controlClient, bucketId: kmsBucketId, objectName: csekObjectName,
+      csekKey: csekKey, kmsKey: kmsKey
+    )
+  }
 
   // Create a separate bucket with ACLs enabled and object retention enabled for ACL and retention samples
   let retentionAclBucketId = randomBucketId()

@@ -32,7 +32,7 @@ fileprivate func paceBucketUpdates() async throws {
 
 public func runBucketSamples(
   client: StorageControlClient, projectId: String, serviceAccount: String,
-  bucketNames: inout [String]
+  kmsRing: String? = nil, bucketNames: inout [String]
 ) async throws {
   let id = randomBucketId()
   let name = "projects/_/buckets/\(id)"
@@ -348,6 +348,32 @@ public func runBucketSamples(
   try await removeBucketConditionalIamBinding(client: client, bucketId: iamBucketId)
   print("running viewBucketIamMembers() sample")
   try await viewBucketIamMembers(client: client, bucketId: iamBucketId)
+
+  if let kmsRing = kmsRing {
+    let kmsBucketId = randomBucketId()
+    bucketNames.append("projects/_/buckets/\(kmsBucketId)")
+    print("creating bucket for KMS tests")
+    let _ = try await client.createBucket(
+      request: .init().with {
+        $0.parent = "projects/_"
+        $0.bucketId = kmsBucketId
+        $0.bucket = .init().with { bucket in
+          bucket.project = "projects/\(projectId)"
+          bucket.location = "US-CENTRAL1"
+        }
+      },
+      options: .init()
+    )
+    let kmsKey =
+      "projects/\(projectId)/locations/us-central1/keyRings/\(kmsRing)/cryptoKeys/storage-examples"
+    print("running setBucketDefaultKmsKey() sample")
+    try await setBucketDefaultKmsKey(client: client, bucketId: kmsBucketId, kmsKey: kmsKey)
+    print("running getBucketDefaultKmsKey() sample")
+    try await getBucketDefaultKmsKey(client: client, bucketId: kmsBucketId)
+    print("running deleteBucketDefaultKmsKey() sample")
+    try await paceBucketUpdates()
+    try await deleteBucketDefaultKmsKey(client: client, bucketId: kmsBucketId)
+  }
 }
 
 /// Generates a random bucket ID.
