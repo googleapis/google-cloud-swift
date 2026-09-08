@@ -31,8 +31,9 @@ clean_targets=(
     GoogleCloudWKT
     GoogleCloudAuth
     GoogleCloudGax
-    GoogleCloudSecretManagerV1
     GoogleCloudStorage
+    GoogleCloudSecretManagerV1
+    GoogleCloudWorkflowsV1
 )
 echo "--- Building ${#clean_targets[@]} targets with warnings as errors"
 for target in "${clean_targets[@]}"; do
@@ -45,32 +46,36 @@ for target in "${clean_targets[@]}"; do
         echo; echo "✗ ${target} failed to build"
         cat "${target}.docs.log"
         errors=$((errors + 1))
-        continue
     fi
 done
 
-targets=()
-# On post-merge builds build all the things.
-if [[ "${GCB_TRIGGER_NAME:-}" == gcb-pm-* ]]; then
-    export GOOGLE_CLOUD_SWIFT_FULL_BUILD=true
-    mapfile -t generated < <(sed -n 's/^  name: "\([^"]*\)",/\1/p' generated/*/Package.swift)
-    targets+=("${generated[@]}")
-fi
+done() {
+}
 
-if [[ ${#targets[@]} -gt 0 ]]; then
-    echo; echo; echo "--- Building ${#targets[@]} targets"
+# TODO(#....) - restore building of all subpackages
+targets=(
+    GoogleCloudSecretManagerV1
+    GoogleCloudComputeV1
+    GoogleType
+    GoogleCloudWorkflowsV1
+    GoogleIAMV1
+    GoogleCloudLocation
+    GoogleCloudSecurityPublicCAV1
+)
+
+echo; echo; echo "--- Building ${#targets[@]} targets"
+args=()
+for target in "${targets[@]}"; do
     count=$((count + 1))
-    args=()
-    for target in "${targets[@]}"; do
-        args+=(--target "${target}")
-    done
-    if swift package generate-documentation --enable-experimental-combined-documentation "${args[@]}"; then
-        echo "✓ combined documentation built successfully"
+    args+=(--target "${target}")
+    if swift package generate-documentation --target "${target}" >"${target}.docs.log" >; then
+        echo "✓ ${target} documentation built successfully"
     else
-        echo; echo "✗ combined documentation failed to build"
+        echo; echo "✗ ${target} documentation failed to build"
+        cat "${target}.docs.log"
         errors=$((errors + 1))
     fi
-fi
+done
 
 echo; echo; echo "${count} local targets(s) built, ${errors} failure(s)."
 echo "--- Remaining disk space"
