@@ -72,4 +72,24 @@ import Testing
       _ = try StorageControlClient(options)
     }
   }
+
+  @Test func defaultInitializationUsesStorageBaseRetryPolicy() throws {
+    let credentials = try Credentials(configuration: .anonymous)
+    let options = ClientOptions().with {
+      $0.credentials = credentials
+    }
+    #expect(options.retryPolicy == nil)
+    _ = try StorageControlClient(options)
+  }
+
+  @Test func initializationPreservesExplicitRetryPolicy() throws {
+    let credentials = try Credentials(configuration: .anonymous)
+    let explicitPolicy = NeverRetry()
+    let options = ClientOptions().with {
+      $0.credentials = credentials
+      $0.retryPolicy = explicitPolicy
+    }
+    #expect(options.retryPolicy != nil)
+    _ = try StorageControlClient(options)
+  }
 }
