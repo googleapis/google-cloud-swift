@@ -41,6 +41,14 @@ import Testing
     #expect(loop.retryPolicy is NeverRetry)
   }
 
+  @Test func retryPolicyDefaultFallbackWhenNil() {
+    let defaultOptions = ClientOptions()
+    let requestOptions = RequestOptions()
+    let loop = _RetryLoop(options: requestOptions, withDefault: defaultOptions, idempotent: true)
+    #expect(
+      loop.retryPolicy is LimitedAttemptCount<LimitedElapsedTime<BaseRetryPolicy>>)
+  }
+
   @Test func backoffPolicyFromDefault() {
     let defaultOptions = ClientOptions().with { $0.backoffPolicy = LinearBackoffPolicy() }
     let requestOptions = RequestOptions()

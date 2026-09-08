@@ -31,5 +31,6 @@ import GoogleCloudGax
     let got = ClientOptions()
     #expect(got.endpoint == nil)
     #expect(got.credentials == nil)
+    #expect(got.retryPolicy == nil)
   }
 }

@@ -46,7 +46,7 @@ import Foundation
   /// The generated retry stub uses this initializer. It creates the retry loop based on the
   /// request and client options.
   public init(options: RequestOptions, withDefault: ClientOptions, idempotent: Bool) {
-    self.retryPolicy = options.retryPolicy ?? withDefault.retryPolicy
+    self.retryPolicy = options.retryPolicy ?? withDefault.retryPolicy ?? defaultRetryPolicy()
     self.backoffPolicy = options.backoffPolicy ?? withDefault.backoffPolicy
     self.retryThrottler = options.retryThrottler ?? withDefault.retryThrottler
     self.idempotent = options.idempotency ?? idempotent

@@ -78,7 +78,7 @@ public struct ClientOptions: Sendable {
   ///
   /// By default the clients use ``BaseRetryPolicy`` with a limit of 60 seconds or 10 attempts.
   /// Whichever limit is reached first stops the retry loop.
-  public var retryPolicy: any RetryPolicy = defaultRetryPolicy()
+  public var retryPolicy: (any RetryPolicy)? = nil
 
   /// Configures the client's backoff policy.
   ///
