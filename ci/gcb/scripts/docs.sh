@@ -64,7 +64,7 @@ echo; echo; echo "--- Building ${#targets[@]} targets"
 args=()
 for target in "${targets[@]}"; do
     count=$((count + 1))
-    if swift package generate-documentation --target "${target}" >"${target}.docs.log" >; then
+    if swift package generate-documentation --target "${target}" >"${target}.docs.log"; then
         echo "✓ ${target} documentation built successfully"
     else
         echo; echo "✗ ${target} documentation failed to build"
