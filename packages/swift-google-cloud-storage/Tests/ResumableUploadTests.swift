@@ -165,7 +165,7 @@ import Testing
     }
   }
 
-  /// Tests handling of HTTP error responses (e.g. HTTP 500) during chunk upload in a resumable session.
+  /// Tests handling of HTTP error responses (e.g. HTTP 400) during chunk upload in a resumable session.
   @Test func resumableUploadHTTPError() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
@@ -175,7 +175,7 @@ import Testing
 
     let startUrl = registry.url(
       "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
-    let chunkUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=test-id")
+    let chunkUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=test-http-error")
 
     registry.register(
       response: .success(
@@ -184,7 +184,7 @@ import Testing
       for: startUrl)
     registry.register(
       response: .success(
-        statusCode: 500, data: Data("Internal Server Error".utf8),
+        statusCode: 400, data: Data("Bad Request".utf8),
         headers: nil),
       for: chunkUrl)
 
@@ -194,7 +194,7 @@ import Testing
       try await client.upload(source, to: bucket, as: objectName)
     }
     if case .http(let details) = error {
-      #expect(details.http_status_code == 500)
+      #expect(details.http_status_code == 400)
     } else {
       Issue.record("Expected .http RequestError, got \(String(describing: error))")
     }

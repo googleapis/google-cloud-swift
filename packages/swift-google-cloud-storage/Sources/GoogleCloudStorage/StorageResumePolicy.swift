@@ -19,8 +19,8 @@ import GoogleRpc
 /// Evaluates whether an error is considered resumable in Google Cloud Storage.
 ///
 /// In Google Cloud Storage, resumable data transfers (uploads and downloads) can be resumed
-/// on I/O errors, transient HTTP status codes (408, 429, 502, 503, 504), and transient
-/// gRPC/service status codes (`unavailable`, `resourceExhausted`, `deadlineExceeded`).
+/// on I/O errors, transient HTTP status codes (408, 429, and 5xx), and transient
+/// gRPC/service status codes (`unavailable`, `resourceExhausted`, `deadlineExceeded`, `internal`).
 ///
 /// This policy can be composed with decorators such as ``StopOnConsecutiveErrors`` or
 /// ``LimitedTotalResumes``:
@@ -43,10 +43,11 @@ public struct StorageResumePolicy<Details: Sendable>: ResumePolicy, Sendable, Eq
       return true
     case .http(let details):
       let code = details.http_status_code
-      return code == 408 || code == 429 || code == 502 || code == 503 || code == 504
+      return code == 408 || code == 429 || (500...599).contains(code)
     case .service(let details):
       let code = details.code
       return code == .unavailable || code == .resourceExhausted || code == .deadlineExceeded
+        || code == .`internal`
     case .binding, .exhausted, .unimplemented, .malformedResponse:
       return false
     @unknown default:

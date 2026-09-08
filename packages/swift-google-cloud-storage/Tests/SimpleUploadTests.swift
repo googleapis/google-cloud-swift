@@ -122,7 +122,7 @@ import Testing
     }
   }
 
-  /// Tests handling of HTTP error responses (e.g., HTTP 500) during a simple upload.
+  /// Tests handling of HTTP error responses (e.g., HTTP 400) during a simple upload.
   @Test func simpleUploadHTTPError() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
@@ -135,7 +135,7 @@ import Testing
 
     registry.register(
       response: .success(
-        statusCode: 500, data: Data("Internal Server Error".utf8),
+        statusCode: 400, data: Data("Bad Request".utf8),
         headers: nil),
       for: simpleUploadUrl)
 
@@ -145,7 +145,7 @@ import Testing
       try await client.upload(source, to: bucket, as: objectName)
     }
     if case .http(let details) = error {
-      #expect(details.http_status_code == 500)
+      #expect(details.http_status_code == 400)
     } else {
       Issue.record("Expected .http RequestError, got \(String(describing: error))")
     }

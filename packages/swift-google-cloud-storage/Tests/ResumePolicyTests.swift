@@ -16,6 +16,7 @@ import Foundation
 import GoogleCloudAuth
 @_spi(GoogleCloudInternal) import GoogleCloudGax
 @_spi(GoogleCloudInternal) @testable import GoogleCloudStorage
+import GoogleRpc
 import Testing
 
 @Suite struct ResumePolicyTests {
@@ -110,6 +111,7 @@ import Testing
     // Recoverable HTTP status codes
     let err408 = RequestError.http(HTTPDetails(http_status_code: 408, headers: [:]))
     let err429 = RequestError.http(HTTPDetails(http_status_code: 429, headers: [:]))
+    let err500 = RequestError.http(HTTPDetails(http_status_code: 500, headers: [:]))
     let err502 = RequestError.http(HTTPDetails(http_status_code: 502, headers: [:]))
     let err503 = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
     let err504 = RequestError.http(HTTPDetails(http_status_code: 504, headers: [:]))
@@ -117,10 +119,26 @@ import Testing
 
     #expect(isResume(policy.onError(state: state, error: err408)))
     #expect(isResume(policy.onError(state: state, error: err429)))
+    #expect(isResume(policy.onError(state: state, error: err500)))
     #expect(isResume(policy.onError(state: state, error: err502)))
     #expect(isResume(policy.onError(state: state, error: err503)))
     #expect(isResume(policy.onError(state: state, error: err504)))
     #expect(isResume(policy.onError(state: state, error: errIO)))
+
+    // Recoverable gRPC status codes
+    let rpcUnavailable = RequestError.service(
+      ServiceError(code: Code.unavailable, message: "unavailable"))
+    let rpcResourceExhausted = RequestError.service(
+      ServiceError(code: Code.resourceExhausted, message: "quota exceeded"))
+    let rpcDeadlineExceeded = RequestError.service(
+      ServiceError(code: Code.deadlineExceeded, message: "deadline exceeded"))
+    let rpcInternal = RequestError.service(
+      ServiceError(code: Code.`internal`, message: "internal error"))
+
+    #expect(isResume(policy.onError(state: state, error: rpcUnavailable)))
+    #expect(isResume(policy.onError(state: state, error: rpcResourceExhausted)))
+    #expect(isResume(policy.onError(state: state, error: rpcDeadlineExceeded)))
+    #expect(isResume(policy.onError(state: state, error: rpcInternal)))
 
     // Permanent HTTP status codes
     let err400 = RequestError.http(HTTPDetails(http_status_code: 400, headers: [:]))
@@ -128,14 +146,23 @@ import Testing
     let err403 = RequestError.http(HTTPDetails(http_status_code: 403, headers: [:]))
     let err404 = RequestError.http(HTTPDetails(http_status_code: 404, headers: [:]))
     let err412 = RequestError.http(HTTPDetails(http_status_code: 412, headers: [:]))
-    let err500 = RequestError.http(HTTPDetails(http_status_code: 500, headers: [:]))
 
     #expect(isPermanent(policy.onError(state: state, error: err400)))
     #expect(isPermanent(policy.onError(state: state, error: err401)))
     #expect(isPermanent(policy.onError(state: state, error: err403)))
     #expect(isPermanent(policy.onError(state: state, error: err404)))
     #expect(isPermanent(policy.onError(state: state, error: err412)))
-    #expect(isPermanent(policy.onError(state: state, error: err500)))
+
+    // Permanent gRPC status codes
+    let rpcPermissionDenied = RequestError.service(
+      ServiceError(code: Code.permissionDenied, message: "permission denied"))
+    let rpcNotFound = RequestError.service(ServiceError(code: Code.notFound, message: "not found"))
+    let rpcInvalidArgument = RequestError.service(
+      ServiceError(code: Code.invalidArgument, message: "invalid argument"))
+
+    #expect(isPermanent(policy.onError(state: state, error: rpcPermissionDenied)))
+    #expect(isPermanent(policy.onError(state: state, error: rpcNotFound)))
+    #expect(isPermanent(policy.onError(state: state, error: rpcInvalidArgument)))
   }
 
   @Test func storageResumePolicyConsecutiveErrors() {
