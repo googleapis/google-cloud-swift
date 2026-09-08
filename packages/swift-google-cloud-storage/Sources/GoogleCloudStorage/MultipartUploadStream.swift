@@ -26,7 +26,7 @@ struct PreparedMultipartUpload: Sendable {
 struct MultipartUploadStream: AsyncSequence, Sendable {
   typealias Element = NIOCore.ByteBuffer
 
-  let source: any UploadSource
+  var source: any UploadSource
   let boundary: String
   let metadataJson: Data
   let contentType: String
@@ -47,6 +47,14 @@ struct MultipartUploadStream: AsyncSequence, Sendable {
     self.contentType = contentType
     self.totalSize = totalSize
     self.chunkSize = chunkSize
+  }
+
+  /// Rewinds the underlying source to offset 0 if it is seekable.
+  mutating func rewind() async throws {
+    if var seekable = source as? (any SeekableUploadSource) {
+      try await seekable.seek(to: 0)
+      source = seekable
+    }
   }
 
   /// Computes the exact Content-Length for the multipart request body.
@@ -78,27 +86,27 @@ struct MultipartUploadStream: AsyncSequence, Sendable {
 
     // Only inspect/read the source if automatic checksum computation is needed.
     let autoCalculators = calculators.filter { !($0 is ProvidedChecksumCalculator) }
-    if !autoCalculators.isEmpty {
-      if var seekable = source as? (any SeekableUploadSource) {
+    if var seekable = source as? (any SeekableUploadSource) {
+      if !autoCalculators.isEmpty {
         while let chunk = try await seekable.read(maxBytes: chunkSize) {
           for i in calculators.indices {
             calculators[i].update(chunk)
           }
         }
-        try await seekable.seek(to: 0)
-        preparedSource = seekable
-      } else {
-        var nonSeekable = source
-        var buffer = NIOCore.ByteBuffer()
-        while let chunk = try await nonSeekable.read(maxBytes: chunkSize) {
-          for i in calculators.indices {
-            calculators[i].update(chunk)
-          }
-          var nio = chunk.byteBuffer
-          buffer.writeBuffer(&nio)
-        }
-        preparedSource = BytesSource(buffer: ByteBuffer(buffer))
       }
+      try await seekable.seek(to: 0)
+      preparedSource = seekable
+    } else if !autoCalculators.isEmpty {
+      var nonSeekable = source
+      var buffer = NIOCore.ByteBuffer()
+      while let chunk = try await nonSeekable.read(maxBytes: chunkSize) {
+        for i in calculators.indices {
+          calculators[i].update(chunk)
+        }
+        var nio = chunk.byteBuffer
+        buffer.writeBuffer(&nio)
+      }
+      preparedSource = BytesSource(buffer: ByteBuffer(buffer))
     }
 
     let checksum =

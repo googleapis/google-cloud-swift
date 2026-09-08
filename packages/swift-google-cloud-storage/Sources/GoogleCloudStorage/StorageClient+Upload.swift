@@ -194,15 +194,13 @@ extension StorageClient {
         totalSize: totalSize,
         options: options.checksums
       )
-    let stream = prepared.stream
+    var stream = prepared.stream
     let checksum = prepared.checksum
 
     let resumeState = ResumeState(
       details: UploadDetails(bytesUploaded: 0, totalBytes: totalSize))
     return try await resumeLoop.run(state: resumeState) { _ in
-      if var seekable = stream.source as? (any SeekableUploadSource) {
-        try await seekable.seek(to: 0)
-      }
+      try await stream.rewind()
 
       var request = try await httpClient.newRequest(
         path: "/upload/storage/v1/b/\(bucketId)/o", query: queryItems)

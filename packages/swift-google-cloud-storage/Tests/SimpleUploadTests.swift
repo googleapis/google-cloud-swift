@@ -284,6 +284,123 @@ import Testing
 
     let requests = registry.recordedRequests()
     #expect(requests.count == 2)
+    #expect(requests[0].body != nil)
+    #expect(requests[1].body != nil)
+    #expect(requests[0].body == requests[1].body)
+  }
+
+  /// Tests that a 503 failure during simple upload with FileSource retries and succeeds, verifying stream rewinding/fresh iterator.
+  @Test func simpleUploadFileSourceTransientFailureRetriesAndSucceeds() async throws {
+    let tempDirectory = FileManager.default.temporaryDirectory
+    let fileURL = tempDirectory.appendingPathComponent("test_\(UUID().uuidString).txt")
+    let data = Data(repeating: 0x42, count: 1024)
+    try data.write(to: fileURL)
+    defer { try? FileManager.default.removeItem(at: fileURL) }
+
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-file-retry"
+    let source = FileSource(fileURL: fileURL)
+
+    let simpleUploadUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=multipart&name=\(objectName)")
+
+    // 1. First attempt fails with 503 Service Unavailable
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Service Unavailable".utf8),
+        headers: nil),
+      for: simpleUploadUrl)
+
+    // 2. Retry attempt succeeds with 200 OK
+    registry.register(
+      response: .success(
+        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: data.count),
+        headers: nil),
+      for: simpleUploadUrl)
+
+    let client = try makeClient(
+      registry: registry,
+      retryPolicy: BaseRetryPolicy().withAttemptLimit(3)
+    )
+    let object = try await client.upload(source, to: bucket, as: objectName)
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
+    #expect(object.size == Int64(data.count))
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 2)
+    #expect(requests[0].body != nil)
+    #expect(requests[1].body != nil)
+    #expect(requests[0].body == requests[1].body)
+  }
+
+  /// Tests that a 503 failure during simple upload with a class-based reference-type SeekableUploadSource retries and succeeds.
+  @Test func simpleUploadClassSourceTransientFailureRetriesAndSucceeds() async throws {
+    final class MockClassSeekableSource: SeekableUploadSource, @unchecked Sendable {
+      let data: Data
+      private var offset: Int = 0
+
+      init(data: Data) {
+        self.data = data
+      }
+
+      var totalSize: UInt64? {
+        UInt64(data.count)
+      }
+
+      func read(maxBytes: Int) async throws -> GoogleCloudStorage.ByteBuffer? {
+        guard offset < data.count else { return nil }
+        let end = min(offset + maxBytes, data.count)
+        let chunk = data.subdata(in: offset..<end)
+        offset = end
+        return GoogleCloudStorage.ByteBuffer(chunk)
+      }
+
+      func seek(to offset: UInt64) async throws {
+        self.offset = Int(offset)
+      }
+    }
+
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-class-retry"
+    let data = Data(repeating: 0x42, count: 1024)
+    let source = MockClassSeekableSource(data: data)
+
+    let simpleUploadUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=multipart&name=\(objectName)")
+
+    // 1. First attempt fails with 503 Service Unavailable
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Service Unavailable".utf8),
+        headers: nil),
+      for: simpleUploadUrl)
+
+    // 2. Retry attempt succeeds with 200 OK
+    registry.register(
+      response: .success(
+        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: data.count),
+        headers: nil),
+      for: simpleUploadUrl)
+
+    let client = try makeClient(
+      registry: registry,
+      retryPolicy: BaseRetryPolicy().withAttemptLimit(3)
+    )
+    let object = try await client.upload(source, to: bucket, as: objectName)
+
+    #expect(object.name == objectName)
+    #expect(object.bucket == "projects/_/buckets/\(bucket)")
+    #expect(object.size == Int64(data.count))
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 2)
+    #expect(requests[0].body != nil)
+    #expect(requests[1].body != nil)
+    #expect(requests[0].body == requests[1].body)
   }
 
   /// Tests that a 503 error with NeverResume policy throws immediately without retrying.

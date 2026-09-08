@@ -170,4 +170,118 @@ import Testing
       Issue.record("Expected .internalError, got \(String(describing: error))")
     }
   }
+
+  /// Tests that MultipartUploadStream can be iterated multiple times when using struct-based sources because the stored source is not mutated by iteration.
+  @Test func multipartUploadStreamCanBeIteratedMultipleTimes() async throws {
+    let boundary = "TestBoundaryMultiIter"
+    let metadataJson = Data("{\"name\":\"test.txt\"}".utf8)
+    let payload = Data("Testing multiple iterations".utf8)
+    let source = BytesSource(data: payload)
+
+    let stream = MultipartUploadStream(
+      source: source,
+      boundary: boundary,
+      metadataJson: metadataJson,
+      contentType: "text/plain",
+      totalSize: UInt64(payload.count),
+      chunkSize: 4
+    )
+
+    var firstPass = NIOCore.ByteBuffer()
+    for try await chunk in stream {
+      var copy = chunk
+      firstPass.writeBuffer(&copy)
+    }
+
+    var secondPass = NIOCore.ByteBuffer()
+    for try await chunk in stream {
+      var copy = chunk
+      secondPass.writeBuffer(&copy)
+    }
+
+    #expect(firstPass.readableBytes == secondPass.readableBytes)
+    #expect(firstPass == secondPass)
+  }
+
+  /// Tests that casting stream.source to an existential copy does not mutate stream.source when source is a value type.
+  @Test func existentialCastMutationDoesNotMutateStreamSource() async throws {
+    let payload = Data([1, 2, 3, 4, 5, 6, 7, 8])
+    let source = BytesSource(data: payload)
+    let stream = MultipartUploadStream(
+      source: source,
+      boundary: "Boundary123",
+      metadataJson: Data("{}".utf8),
+      contentType: "application/octet-stream",
+      totalSize: UInt64(payload.count),
+      chunkSize: 4
+    )
+
+    // Attempting to mutate stream.source via existential cast (as in performSimpleUpload):
+    if var seekable = stream.source as? (any SeekableUploadSource) {
+      // Read chunks from the local copy
+      let chunk = try await seekable.read(maxBytes: 4)
+      #expect(chunk != nil)
+      // Seek the local copy
+      try await seekable.seek(to: 0)
+    }
+
+    // A fresh iterator from stream.source still starts from offset 0, untouched by mutations to `seekable`
+    var collected = NIOCore.ByteBuffer()
+    for try await chunk in stream {
+      var copy = chunk
+      collected.writeBuffer(&copy)
+    }
+    #expect(UInt64(collected.readableBytes) == stream.bodyLength)
+  }
+
+  /// Tests that MultipartUploadStream.prepare rewinds a seekable source back to offset 0 even if it had been partially read.
+  @Test func multipartUploadStreamPrepareRewindsPartiallyReadSource() async throws {
+    let payload = Data([1, 2, 3, 4, 5, 6, 7, 8])
+    var source = BytesSource(data: payload)
+    // Read 4 bytes beforehand
+    _ = try await source.read(maxBytes: 4)
+
+    let prepared = try await MultipartUploadStream.prepare(
+      source: source,
+      boundary: "BoundaryRewind",
+      metadataJson: Data("{}".utf8),
+      contentType: "application/octet-stream",
+      totalSize: UInt64(payload.count),
+      options: .none,
+      chunkSize: 4
+    )
+
+    var collected = NIOCore.ByteBuffer()
+    for try await chunk in prepared.stream {
+      var copy = chunk
+      collected.writeBuffer(&copy)
+    }
+    #expect(UInt64(collected.readableBytes) == prepared.stream.bodyLength)
+  }
+
+  /// Tests that MultipartUploadStream.rewind rewinds a seekable source back to offset 0.
+  @Test func multipartUploadStreamRewindRewindsSource() async throws {
+    let payload = Data([1, 2, 3, 4, 5, 6, 7, 8])
+    var source = BytesSource(data: payload)
+    // Read 4 bytes beforehand
+    _ = try await source.read(maxBytes: 4)
+
+    var stream = MultipartUploadStream(
+      source: source,
+      boundary: "BoundaryRewind",
+      metadataJson: Data("{}".utf8),
+      contentType: "application/octet-stream",
+      totalSize: UInt64(payload.count),
+      chunkSize: 4
+    )
+
+    try await stream.rewind()
+
+    var collected = NIOCore.ByteBuffer()
+    for try await chunk in stream {
+      var copy = chunk
+      collected.writeBuffer(&copy)
+    }
+    #expect(UInt64(collected.readableBytes) == stream.bodyLength)
+  }
 }
