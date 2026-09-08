@@ -60,6 +60,19 @@ public func runObjectSamples(
   let archivedCopy = try await dataClient.upload(
     sampleData, to: id, as: "object-generation-to-copy")
 
+  let uploadFilePath = FileManager.default.temporaryDirectory.appendingPathComponent(
+    "upload-file-\(UUID().uuidString).txt"
+  )
+  try sampleData.write(to: uploadFilePath)
+  defer {
+    try? FileManager.default.removeItem(at: uploadFilePath)
+  }
+
+  print("running uploadFile() sample")
+  try await uploadFile(
+    client: dataClient, bucketId: id, objectName: "uploaded-file.txt", filePath: uploadFilePath.path
+  )
+
   let tempFilePath = FileManager.default.temporaryDirectory.appendingPathComponent(
     "downloaded-file-\(UUID().uuidString).txt"
   ).path
@@ -71,9 +84,20 @@ public func runObjectSamples(
   try await streamFileDownload(client: dataClient, bucketId: id)
   print("running fileUploadFromMemory() sample")
   try await fileUploadFromMemory(client: dataClient, bucketId: id)
+  print("running streamFileUpload() sample")
+  try await streamFileUpload(client: dataClient, bucketId: id)
   print("running downloadFile() sample")
   try await downloadFile(
     client: dataClient, bucketId: id, objectName: "uploaded-file.txt", filePath: tempFilePath)
+  print("running downloadByteRange() sample")
+  try await downloadByteRange(
+    client: dataClient, bucketId: id, objectName: "object-to-download.txt", start: 4, end: 10)
+  print("running downloadFileIntoMemory() sample")
+  try await downloadFileIntoMemory(client: dataClient, bucketId: id)
+  print("running downloadPublicFile() sample")
+  let publicBucket = "gcp-public-data-arco-era5"
+  let publicObject = "ar/1959-2022-1h-240x121_equiangular_with_poles_conservative.zarr/.zattrs"
+  try await downloadPublicFile(bucketId: publicBucket, objectName: publicObject)
   print("running listFiles() sample")
   try await listFiles(client: controlClient, bucketId: id)
   print("running listFilesWithPrefix() sample")
