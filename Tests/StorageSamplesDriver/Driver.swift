@@ -46,6 +46,23 @@ import Testing
     }
   }
 
+  @Test(.enabled(if: Self.enabled())) func runControlSamples() async throws {
+    let projectId = ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"]!
+    let zone =
+      ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_ZONE"]
+      ?? "us-central1-f"
+    let client = try Self.makeClient()
+    var bucketNames: [String] = []
+    do {
+      try await StorageSamples.runControlSamples(
+        client: client, projectId: projectId, zone: zone, bucketNames: &bucketNames)
+      await StorageSamples.cleanupTestBuckets(client: client, bucketNames: bucketNames)
+    } catch {
+      await StorageSamples.cleanupTestBuckets(client: client, bucketNames: bucketNames)
+      throw error
+    }
+  }
+
   @Test(.enabled(if: Self.enabled())) func runObjectSamples() async throws {
     let projectId = ProcessInfo.processInfo.environment["GOOGLE_CLOUD_PROJECT"]!
     let serviceAccount =
