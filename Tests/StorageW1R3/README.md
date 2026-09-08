@@ -58,7 +58,7 @@ Then upload the results of the experiment:
 ```shell
 bq load --source_format CSV --skip_leading_rows 1 \
     ${GOOGLE_CLOUD_PROJECT}:w1r3.swift001 bm-${TS}.txt \
-    Task:int64,Iteration:int64,IterationStart:int64,Operation,Size:int64,TransferSize:int64,ElapsedMicroseconds:int64,Object,Result,Details
+    Task:int64,Iteration:int64,IterationStart:int64,Operation,Size:int64,TransferSize:int64,ElapsedMicroseconds:int64,Object,Crc32cEnabled:bool,Result,Details
 ```
 
 [compute-optimized]: https://cloud.google.com/compute/docs/compute-optimized-machines

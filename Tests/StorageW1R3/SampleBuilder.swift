@@ -24,12 +24,14 @@ public struct SampleBuilder: Sendable {
   public let op: Operation
   public let targetSize: Int
   public let object: String
+  public let crc32cEnabled: Bool
 
   public init(
     iterationId: IterationId,
     op: Operation,
     targetSize: Int,
-    object: String
+    object: String,
+    crc32cEnabled: Bool
   ) {
     self.task = iterationId.task
     self.clock = ContinuousClock()
@@ -43,6 +45,7 @@ public struct SampleBuilder: Sendable {
     self.op = op
     self.targetSize = targetSize
     self.object = object
+    self.crc32cEnabled = crc32cEnabled
   }
 
   private var elapsedMicroseconds: Int64 {
@@ -61,6 +64,7 @@ public struct SampleBuilder: Sendable {
       transferSize: transferSize ?? targetSize,
       elapsedMicros: elapsedMicroseconds,
       object: object,
+      crc32cEnabled: crc32cEnabled,
       result: .ok,
       details: ""
     )
@@ -76,6 +80,7 @@ public struct SampleBuilder: Sendable {
       transferSize: 0,
       elapsedMicros: elapsedMicroseconds,
       object: object,
+      crc32cEnabled: crc32cEnabled,
       result: .err,
       details: details.replacingOccurrences(of: ",", with: ";")
     )
@@ -91,6 +96,7 @@ public struct SampleBuilder: Sendable {
       transferSize: transferSize,
       elapsedMicros: elapsedMicroseconds,
       object: object,
+      crc32cEnabled: crc32cEnabled,
       result: .int,
       details: details.replacingOccurrences(of: ",", with: ";")
     )

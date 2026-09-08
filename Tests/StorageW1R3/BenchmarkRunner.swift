@@ -54,6 +54,7 @@ extension StorageW1R3 {
       let size = pickObjectSize()
       let objectName = Self.randomObjectName()
       let isResumable = Bool.random()
+      let uploadCrc32c = self.pickCrc32c()
       let uploadSlice = buffer.getSlice(at: 0, length: size) ?? buffer.slice()
       let iterationId = IterationId(
         task: taskIndex, taskStartInstant: taskStartInstant, iteration: iteration)
@@ -67,19 +68,22 @@ extension StorageW1R3 {
           bucketName: bucketName,
           objectName: objectName,
           buffer: uploadSlice,
-          isResumable: isResumable)
+          isResumable: isResumable,
+          crc32cEnabled: uploadCrc32c)
       else {
         continue
       }
 
       for readIndex in 0..<readCount {
+        let downloadCrc32c = self.pickCrc32c()
         await self.sampleDownload(
           iterationId: iterationId,
           counters: counters,
           readIndex: readIndex,
           client: storageClient,
           object: uploadedObject,
-          size: size)
+          size: size,
+          crc32cEnabled: downloadCrc32c)
       }
 
       if self.noDelete {
@@ -121,7 +125,8 @@ extension StorageW1R3 {
     bucketName: String,
     objectName: String,
     buffer: NIOCore.ByteBuffer,
-    isResumable: Bool
+    isResumable: Bool,
+    crc32cEnabled: Bool
   ) async -> GoogleCloudStorage.Object? {
     let uploadOp: Operation = isResumable ? .resumable : .singleShot
 
@@ -129,7 +134,8 @@ extension StorageW1R3 {
       iterationId: iterationId,
       op: uploadOp,
       targetSize: buffer.readableBytes,
-      object: objectName
+      object: objectName,
+      crc32cEnabled: crc32cEnabled
     )
     do {
       let object = try await StorageOperations.upload(
@@ -138,7 +144,8 @@ extension StorageW1R3 {
         bucketName: bucketName,
         objectName: objectName,
         buffer: buffer,
-        isResumable: isResumable
+        isResumable: isResumable,
+        crc32cEnabled: crc32cEnabled
       )
       let sample = uploadBuilder.success()
       self.emitSample(sample)
@@ -163,16 +170,19 @@ extension StorageW1R3 {
     client: StorageClient,
     object: GoogleCloudStorage.Object,
     size: Int,
+    crc32cEnabled: Bool
   ) async {
     let readOp = Operation.read(readIndex)
     let readBuilder = SampleBuilder(
       iterationId: iterationId,
       op: readOp,
       targetSize: size,
-      object: object.name
+      object: object.name,
+      crc32cEnabled: crc32cEnabled
     )
 
-    let (transferSize, readError) = await StorageOperations.download(client: client, object: object)
+    let (transferSize, readError) = await StorageOperations.download(
+      client: client, object: object, crc32cEnabled: crc32cEnabled)
 
     if let error = readError {
       let details = await counters.errorDetails(error: error)
@@ -208,6 +218,7 @@ extension StorageW1R3 {
       op: .delete,
       targetSize: batch.count,
       object: batch[0].name,
+      crc32cEnabled: false
     )
 
     do {

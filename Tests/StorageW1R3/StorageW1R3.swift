@@ -179,6 +179,23 @@ struct StorageW1R3: AsyncParsableCommand, Sendable {
   )
   var controlClientCount: Int = 1
 
+  @Option(
+    name: [.customLong("crc32c"), .customLong("crc32c-mode")],
+    help: "CRC32C checksum mode: always (default), random, or never."
+  )
+  var crc32c: Crc32cOption = .always
+
+  func pickCrc32c() -> Bool {
+    switch self.crc32c {
+    case .always:
+      return true
+    case .never:
+      return false
+    case .random:
+      return Bool.random()
+    }
+  }
+
   func validate() throws {
     guard minObjectSize <= maxObjectSize else {
       throw ValidationError(
@@ -202,6 +219,25 @@ struct StorageW1R3: AsyncParsableCommand, Sendable {
     }
     guard controlClientCount >= 1 else {
       throw ValidationError("control-client-count must be at least 1")
+    }
+  }
+}
+
+enum Crc32cOption: String, ExpressibleByArgument, CaseIterable, Sendable {
+  case always
+  case random
+  case never
+
+  init?(argument: String) {
+    switch argument.lowercased() {
+    case "always", "enabled", "true":
+      self = .always
+    case "random":
+      self = .random
+    case "never", "disabled", "false":
+      self = .never
+    default:
+      return nil
     }
   }
 }

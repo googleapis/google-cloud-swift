@@ -26,12 +26,14 @@ enum StorageOperations {
     bucketName: String,
     objectName: String,
     buffer: NIOCore.ByteBuffer,
-    isResumable: Bool
+    isResumable: Bool,
+    crc32cEnabled: Bool
   ) async throws -> GoogleCloudStorage.Object {
     let options = UploadOptions().with {
       $0.preconditions = StoragePreconditions().with {
         $0.ifGenerationMatch = 0
       }
+      $0.checksums = crc32cEnabled ? .default : .none
       // If resumable, chunk size is set to 32MiB; if simple, threshold handles it
       if isResumable {
         $0.chunkSize = 32 * 1024 * 1024
@@ -64,11 +66,11 @@ enum StorageOperations {
 
   /// Downloads (reads) an object from Cloud Storage, returning total bytes transferred.
   static func download(
-    client: StorageClient, object: GoogleCloudStorage.Object
+    client: StorageClient, object: GoogleCloudStorage.Object, crc32cEnabled: Bool
   ) async -> (transferSize: Int, error: (any Error)?) {
-    var options = ReadObjectOptions()
-    if object.generation > 0 {
-      options.generation = UInt64(object.generation)
+    let options = ReadObjectOptions().with {
+      $0.generation = if object.generation > 0 { UInt64(object.generation) } else { nil }
+      $0.checksums = crc32cEnabled ? .default : .none
     }
 
     let readTask = client.readObject(from: object.bucket, object: object.name, options: options)

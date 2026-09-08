@@ -17,7 +17,7 @@ import Foundation
 /// A recorded measurement sample representing the result and timing of a single operation.
 public struct Sample: Sendable {
   public static let header =
-    "Task,Iteration,IterationStart,Operation,Size,TransferSize,ElapsedMicroseconds,Object,Result,Details"
+    "Task,Iteration,IterationStart,Operation,Size,TransferSize,ElapsedMicroseconds,Object,Crc32cEnabled,Result,Details"
 
   public let task: Int
   public let iteration: Int
@@ -27,10 +27,11 @@ public struct Sample: Sendable {
   public let transferSize: Int
   public let elapsedMicros: Int64
   public let object: String
+  public let crc32cEnabled: Bool
   public let result: ExperimentResult
   public let details: String
 
   public func toRow() -> String {
-    "\(task),\(iteration),\(iterationStartMicros),\(operation.name),\(size),\(transferSize),\(elapsedMicros),\(object),\(result.name),\(details)"
+    "\(task),\(iteration),\(iterationStartMicros),\(operation.name),\(size),\(transferSize),\(elapsedMicros),\(object),\(crc32cEnabled),\(result.name),\(details)"
   }
 }
