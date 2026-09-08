@@ -124,6 +124,67 @@ public func runObjectSamples(
     client: controlClient, sourceBucketId: id, destBucketId: id,
     generation: archivedCopy.generation)
 
+  print("running generateEncryptionKey() sample")
+  let encryptionKey = try generateEncryptionKey()
+
+  let csekUploadFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+    "csek-upload-\(UUID().uuidString).txt"
+  )
+  try sampleData.write(to: csekUploadFile)
+  defer {
+    try? FileManager.default.removeItem(at: csekUploadFile)
+  }
+
+  let csekObjectName = "encrypted-file.txt"
+  print("running uploadEncryptedFile() sample")
+  try await uploadEncryptedFile(
+    client: dataClient,
+    bucketId: id,
+    objectName: csekObjectName,
+    filePath: csekUploadFile.path,
+    encryptionKey: encryptionKey
+  )
+
+  let csekDownloadFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+    "csek-download-\(UUID().uuidString).txt"
+  )
+  defer {
+    try? FileManager.default.removeItem(at: csekDownloadFile)
+  }
+
+  print("running downloadEncryptedFile() sample")
+  try await downloadEncryptedFile(
+    client: dataClient,
+    bucketId: id,
+    objectName: csekObjectName,
+    filePath: csekDownloadFile.path,
+    encryptionKey: encryptionKey
+  )
+
+  let newEncryptionKey = try generateEncryptionKey()
+  print("running rotateEncryptionKey() sample")
+  try await rotateEncryptionKey(
+    client: controlClient,
+    bucketId: id,
+    objectName: csekObjectName,
+    oldKey: encryptionKey,
+    newKey: newEncryptionKey
+  )
+
+  let csekRotatedDownloadFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+    "csek-rotated-download-\(UUID().uuidString).txt"
+  )
+  defer {
+    try? FileManager.default.removeItem(at: csekRotatedDownloadFile)
+  }
+  try await downloadEncryptedFile(
+    client: dataClient,
+    bucketId: id,
+    objectName: csekObjectName,
+    filePath: csekRotatedDownloadFile.path,
+    encryptionKey: newEncryptionKey
+  )
+
   if let kmsRing = kmsRing {
     let kmsBucketId = randomBucketId()
     let kmsBucketName = "projects/_/buckets/\(kmsBucketId)"
@@ -155,7 +216,7 @@ public func runObjectSamples(
     try await uploadWithKmsKey(
       client: dataClient, bucketId: kmsBucketId, filePath: kmsUploadFile.path, kmsKey: kmsKey)
 
-    let csekKey = try CustomerEncryptionKeyOptions(key: Data(repeating: 0x42, count: 32))
+    let csekKey = try generateEncryptionKey()
     let csekObjectName = "csek-file.txt"
     _ = try await dataClient.upload(
       sampleData,
