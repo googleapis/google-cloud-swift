@@ -142,7 +142,34 @@ import Testing
       calculateResumeRange(originalRange: .suffix(50), bytesReceived: 50, totalSize: 200) == nil)
     #expect(
       calculateResumeRange(originalRange: .suffix(50), bytesReceived: 10, totalSize: nil)
-        == .fromOffset(10))
+        == .suffix(40))
+  }
+
+  @Test func suffixResumeRangeWithUnknownTotalSize() {
+    // Issue #728: When totalSize is unknown (nil) and bytesReceived == 0,
+    // resuming a suffix range should re-request the original suffix (.suffix(50)),
+    // NOT the entire object from byte 0 (.fromOffset(0)).
+    #expect(
+      calculateResumeRange(originalRange: .suffix(50), bytesReceived: 0, totalSize: nil)
+        == .suffix(50))
+
+    // When totalSize is 0 (empty object), all 0 bytes have been received, so it should return nil.
+    #expect(
+      calculateResumeRange(originalRange: .suffix(50), bytesReceived: 0, totalSize: 0)
+        == nil)
+
+    // When all requested bytes have been received, resuming should return nil,
+    // NOT request from offset 50 to EOF (.fromOffset(50)).
+    #expect(
+      calculateResumeRange(originalRange: .suffix(50), bytesReceived: 50, totalSize: nil)
+        == nil)
+
+    // When partial bytes (10 of 50) have been received and totalSize is unknown,
+    // resuming must not request from byte 10 to EOF (.fromOffset(10)).
+    // It should request the remaining suffix (.suffix(40)).
+    #expect(
+      calculateResumeRange(originalRange: .suffix(50), bytesReceived: 10, totalSize: nil)
+        == .suffix(40))
   }
 
   @Test func downloadErrorEquality() {
