@@ -28,8 +28,8 @@ extension ContinueOnIO: PollingErrorPolicy where P: PollingErrorPolicy & Sendabl
 extension PollingErrorPolicy {
   /// Decorate a ``PollingErrorPolicy`` to continue on I/O errors.
   ///
-  /// This policy decorates an inner policy and retries any errors that are I/O errors
-  /// **if** the request is idempotent.
+  /// This policy decorates an inner policy. It continues polling if the polling request failed with
+  /// an I/O error, otherwise it delegates to the inner policy.
   ///
   /// For other errors it returns the same value as the inner policy.
   public func continueOnIoErrors() -> ContinueOnIO<Self> {

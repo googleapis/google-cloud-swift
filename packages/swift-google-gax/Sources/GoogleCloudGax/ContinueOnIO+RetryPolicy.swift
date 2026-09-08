@@ -32,8 +32,8 @@ extension ContinueOnIO: RetryPolicy where P: RetryPolicy & Sendable {
 extension RetryPolicy {
   /// Decorate a `RetryPolicy` to continue on I/O errors.
   ///
-  /// This policy decorates an inner policy and retries any errors that are I/O errors
-  /// **if** the request is idempotent.
+  /// This policy decorates an inner policy and retries any errors that are I/O errors. Typically
+  /// this decorator is combined with ``StrictIdempotency`` to only retry idempotent requests.
   ///
   /// For other errors it returns the same value as the inner policy.
   public func retryOnIO() -> ContinueOnIO<Self> {
