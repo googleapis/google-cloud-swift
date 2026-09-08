@@ -49,10 +49,7 @@ for target in "${clean_targets[@]}"; do
     fi
 done
 
-done() {
-}
-
-# TODO(#....) - restore building of all subpackages
+# TODO(#https://github.com/googleapis/google-cloud-swift/issues/744) - restore building of all subpackages
 targets=(
     GoogleCloudSecretManagerV1
     GoogleCloudComputeV1
@@ -67,7 +64,6 @@ echo; echo; echo "--- Building ${#targets[@]} targets"
 args=()
 for target in "${targets[@]}"; do
     count=$((count + 1))
-    args+=(--target "${target}")
     if swift package generate-documentation --target "${target}" >"${target}.docs.log" >; then
         echo "✓ ${target} documentation built successfully"
     else
