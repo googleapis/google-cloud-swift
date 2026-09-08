@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 language: swift
-version: v0.40.1-0.20260907183906-99a427e969ff
+version: v0.41.1-0.20260908165511-5dfd57156174
 repo: googleapis/google-cloud-swift
 sources:
   conformance:
@@ -49,7 +49,6 @@ default:
     dependencies:
       - name: GoogleApi
         url: https://github.com/googleapis/swift-google-api
-        version: 0.1.0-preview
         api_package: google.api
       - name: GoogleAppsScriptType
         path: generated/swift-google-apps-script-type
@@ -74,11 +73,9 @@ default:
         api_package: google.apps.script.type.slides
       - name: GoogleCloudAuth
         url: https://github.com/googleapis/swift-google-auth
-        version: 0.0.0-preview
         required_by_services: true
       - name: GoogleCloudCommon
         url: https://github.com/googleapis/swift-google-cloud-common
-        version: 0.0.0-preview
         api_package: google.cloud.common
       - name: GoogleCloudDatastreamV1
         path: generated/swift-google-cloud-datastream-v1
@@ -97,7 +94,6 @@ default:
         api_package: google.cloud.gkehub.rbacrolebindingactuation.v1
       - name: GoogleCloudGax
         url: https://github.com/googleapis/swift-google-gax
-        version: 0.0.0-preview
         required_by_services: true
         spi: GoogleCloudInternal
       - name: GoogleCloudKMSV1
@@ -126,7 +122,6 @@ default:
         api_package: google.cloud.recommender.v1
       - name: GoogleCloudWKT
         url: https://github.com/googleapis/swift-google-wkt
-        version: 0.1.0-preview
         api_package: google.protobuf
         spi: GoogleCloudInternal
       - name: GoogleGrafeasV1
@@ -134,7 +129,6 @@ default:
         api_package: grafeas.v1
       - name: GoogleIAMV1
         url: https://github.com/googleapis/swift-google-iam-v1
-        version: 0.1.0-preview
         api_package: google.iam.v1
       - name: GoogleIAMV2
         path: generated/swift-google-iam-v2
@@ -147,19 +141,15 @@ default:
         api_package: google.identity.accesscontextmanager.v1
       - name: GoogleLongRunning
         url: https://github.com/googleapis/swift-google-longrunning
-        version: 0.1.0-preview
         api_package: google.longrunning
       - name: GoogleRpc
         url: https://github.com/googleapis/swift-google-rpc
-        version: 0.1.0-preview
         api_package: google.rpc
       - name: GoogleRpcContext
         url: https://github.com/googleapis/swift-google-rpc-context
-        version: 0.0.0-preview
         api_package: google.rpc.context
       - name: GoogleType
         url: https://github.com/googleapis/swift-google-type
-        version: 0.1.0-preview
         api_package: google.type
       - name: Logging
         url: https://github.com/apple/swift-log
