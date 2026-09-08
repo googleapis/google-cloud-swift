@@ -277,9 +277,11 @@ package func calculateResumeRange(
     guard newStart <= range.upperBound else { return nil }
     return .bounded(newStart...range.upperBound)
   case .suffix(let count):
-    guard let totalSize = totalSize, totalSize > 0 else {
-      return .fromOffset(bytesReceived)
+    guard count > bytesReceived else { return nil }
+    guard let totalSize = totalSize else {
+      return .suffix(count - bytesReceived)
     }
+    guard totalSize > 0 else { return nil }
     let startOffset = totalSize > count ? (totalSize - count) : 0
     let newStart = startOffset + bytesReceived
     guard newStart < totalSize else { return nil }
