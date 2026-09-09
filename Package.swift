@@ -52,7 +52,8 @@ let package = Package(
     .package(url: "https://github.com/googleapis/swift-google-wkt", from: "0.1.0-preview"),
     .package(url: "https://github.com/googleapis/swift-google-type", from: "0.1.0-preview"),
     .package(url: "https://github.com/googleapis/swift-google-iam-v1", from: "0.1.0-preview"),
-    .package(url: "https://github.com/googleapis/swift-google-cloud-location", from: "0.1.0-preview"),
+    .package(
+      url: "https://github.com/googleapis/swift-google-cloud-location", from: "0.1.0-preview"),
     .package(path: "./packages/swift-google-cloud-storage"),
     .package(path: "./guide"),
     .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
