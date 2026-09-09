@@ -233,6 +233,29 @@ public func runBucketSamples(
   print("running removeRetentionPolicy() sample")
   try await removeRetentionPolicy(client: client, bucketId: websiteCorsBucketId)
 
+  let retentionBucketId = randomBucketId()
+  bucketNames.append("projects/_/buckets/\(retentionBucketId)")
+  print("creating bucket for retention policy samples")
+  let _ = try await client.createBucket(
+    request: .init().with {
+      $0.parent = "projects/_"
+      $0.bucketId = retentionBucketId
+      $0.bucket = .init().with { bucket in
+        bucket.project = "projects/\(projectId)"
+      }
+    },
+    options: .init()
+  )
+  print("running setRetentionPolicy() sample")
+  try await setRetentionPolicy(
+    client: client, bucketId: retentionBucketId, retentionPeriod: 60)
+  print("running getRetentionPolicy() sample")
+  try await getRetentionPolicy(client: client, bucketId: retentionBucketId)
+  // Pause to respect Cloud Storage rate limits (roughly 1 update per second per bucket).
+  try await paceBucketUpdates()
+  print("running lockRetentionPolicy() sample")
+  try await lockRetentionPolicy(client: client, bucketId: retentionBucketId)
+
   let autoclassBucketId = randomBucketId()
   bucketNames.append("projects/_/buckets/\(autoclassBucketId)")
   print("creating bucket for autoclass and requester pays samples")
