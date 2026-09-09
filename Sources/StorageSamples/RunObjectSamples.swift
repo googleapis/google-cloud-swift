@@ -58,6 +58,7 @@ public func runObjectSamples(
   _ = try await dataClient.upload(sampleData, to: id, as: "compose-source-object-2")
   _ = try await dataClient.upload(sampleData, to: id, as: "object-to-copy")
   _ = try await dataClient.upload(sampleData, to: id, as: "hello-world.txt")
+  _ = try await dataClient.upload(sampleData, to: id, as: "object-to-move")
   let archivedCopy = try await dataClient.upload(
     sampleData, to: id, as: "object-generation-to-copy")
   let archivedDelete = try await dataClient.upload(
@@ -157,6 +158,8 @@ public func runObjectSamples(
   try await copyFileArchivedGeneration(
     client: controlClient, sourceBucketId: id, destBucketId: id,
     generation: archivedCopy.generation)
+  print("running moveFile() sample")
+  try await moveFile(client: controlClient, sourceBucketId: id, destBucketId: id)
 
   print("running setClientEndpoint() sample")
   try await setClientEndpoint(bucketId: id)
