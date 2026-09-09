@@ -138,6 +138,8 @@ public func runObjectSamples(
   try await setObjectContexts(client: controlClient, bucketId: id)
   print("running getObjectContexts() sample")
   try await getObjectContexts(client: controlClient, bucketId: id)
+  print("running listObjectContexts() sample")
+  try await listObjectContexts(client: controlClient, bucketId: id)
 
   print("running composeFile() sample")
   try await composeFile(client: controlClient, bucketId: id)
