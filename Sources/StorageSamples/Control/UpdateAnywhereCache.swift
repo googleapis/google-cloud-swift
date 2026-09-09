@@ -27,16 +27,14 @@ public func updateAnywhereCache(
         cache.admissionPolicy = "admit-on-second-miss"
       }
       $0.updateMask = .init(paths: ["admission_policy"])
-    },
-    options: .init()
+    }
   )
   while !operation.done {
     try await Task.sleep(for: .seconds(1))
     operation = try await client.getOperation(
       request: .init().with {
         $0.name = operation.name
-      },
-      options: .init()
+      }
     )
   }
   print("Updated anywhere cache: \(operation)")

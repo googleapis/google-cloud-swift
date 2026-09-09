@@ -30,7 +30,7 @@ public func createBucketWithObjectRetention(
             or.enabled = true
           }
         }
-      }, options: .init())
+      })
   print("successfully created bucket \(bucket)")
 }
 // [END storage_create_bucket_with_object_retention]

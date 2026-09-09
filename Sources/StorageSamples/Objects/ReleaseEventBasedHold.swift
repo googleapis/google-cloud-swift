@@ -23,8 +23,7 @@ public func releaseEventBasedHold(
     request: .init().with {
       $0.bucket = "projects/_/buckets/\(bucketId)"
       $0.object = objectName
-    },
-    options: .init()
+    }
   )
 
   let updated = try await client.updateObject(
@@ -34,8 +33,7 @@ public func releaseEventBasedHold(
       }
       $0.ifMetagenerationMatch = object.metageneration
       $0.updateMask = .init(paths: ["event_based_hold"])
-    },
-    options: .init()
+    }
   )
   print(
     "successfully released event_based hold on object \(objectName) in bucket \(bucketId): \(updated)"

@@ -24,8 +24,7 @@ public func createFolder(
       $0.parent = "projects/_/buckets/\(bucketId)"
       $0.folderId = folderId
       $0.folder = .init()
-    },
-    options: .init()
+    }
   )
   print("folder successfully created \(folder)")
 }

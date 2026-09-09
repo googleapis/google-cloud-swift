@@ -21,8 +21,7 @@ public func quickstartSample(
   let layout = try await client.getStorageLayout(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)/storageLayout"
-    },
-    options: .init()
+    }
   )
   print("successfully retrieved storage layout: \(layout)")
 }

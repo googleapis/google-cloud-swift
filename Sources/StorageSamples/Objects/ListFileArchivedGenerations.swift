@@ -22,8 +22,7 @@ public func listFileArchivedGenerations(
     byItem: .init().with {
       $0.parent = "projects/_/buckets/\(bucketId)"
       $0.versions = true
-    },
-    options: .init()
+    }
   )
   print("listing objects in bucket \(bucketId)")
   for try await object in objects {

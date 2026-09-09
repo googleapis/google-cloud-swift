@@ -48,8 +48,7 @@ public func rotateEncryptionKey(
         if !token.isEmpty {
           $0.rewriteToken = token
         }
-      },
-      options: .init()
+      }
     )
     token = response.rewriteToken
   } while !response.done

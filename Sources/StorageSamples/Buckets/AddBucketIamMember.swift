@@ -25,8 +25,7 @@ public func addBucketIamMember(
       $0.options = .init().with { options in
         options.requestedPolicyVersion = 3
       }
-    },
-    options: .init()
+    }
   )
   let binding = GoogleIAMV1.Binding().with {
     $0.role = role
@@ -37,8 +36,7 @@ public func addBucketIamMember(
     request: .init().with {
       $0.resource = "projects/_/buckets/\(bucketId)"
       $0.policy = policy
-    },
-    options: .init()
+    }
   )
   print("Added \(member) with role \(role) to \(bucketId): \(updated)")
 }

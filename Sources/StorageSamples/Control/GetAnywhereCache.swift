@@ -21,8 +21,7 @@ public func getAnywhereCache(
   let cache = try await client.getAnywhereCache(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)/anywhereCaches/\(cacheId)"
-    },
-    options: .init()
+    }
   )
   print("Got anywhere cache: \(cache)")
 }

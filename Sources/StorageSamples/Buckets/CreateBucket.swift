@@ -27,7 +27,7 @@ public func createBucket(
         $0.bucket = .init().with { bucket in
           bucket.project = "projects/\(projectId)"
         }
-      }, options: .init())
+      })
   print("successfully created bucket \(bucket)")
 }
 // [END storage_create_bucket]

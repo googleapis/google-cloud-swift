@@ -35,7 +35,7 @@ public func createBucketHierarchicalNamespace(
             }
           }
         }
-      }, options: .init())
+      })
   print("successfully created bucket \(bucket)")
 }
 // [END storage_create_bucket_hierarchical_namespace]

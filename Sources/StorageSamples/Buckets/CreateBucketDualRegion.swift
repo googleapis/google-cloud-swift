@@ -30,7 +30,7 @@ public func createBucketDualRegion(
             placementConfig.dataLocations = ["US-EAST4", "US-CENTRAL1"]
           }
         }
-      }, options: .init())
+      })
   print("successfully created bucket \(bucket)")
 }
 // [END storage_create_bucket_dual_region]

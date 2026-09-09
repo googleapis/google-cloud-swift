@@ -29,8 +29,7 @@ public func addBucketConditionalIamBinding(
       $0.options = .init().with { options in
         options.requestedPolicyVersion = 3
       }
-    },
-    options: .init()
+    }
   )
   let condition = GoogleType.Expr().with {
     $0.expression = "resource.name.startsWith(\"projects/_/buckets/\(bucketId)/objects/prefix-a-\")"
@@ -48,8 +47,7 @@ public func addBucketConditionalIamBinding(
     request: .init().with {
       $0.resource = "projects/_/buckets/\(bucketId)"
       $0.policy = policy
-    },
-    options: .init()
+    }
   )
   print("Added conditional IAM binding to bucket \(bucketId): \(updated)")
 }

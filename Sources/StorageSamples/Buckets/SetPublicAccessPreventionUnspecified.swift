@@ -21,8 +21,7 @@ public func setPublicAccessPreventionUnspecified(
   let bucket = try await client.getBucket(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)"
-    },
-    options: .init()
+    }
   )
   let _ = try await client.updateBucket(
     request: .init().with {
@@ -33,8 +32,7 @@ public func setPublicAccessPreventionUnspecified(
       }
       $0.ifMetagenerationMatch = bucket.metageneration
       $0.updateMask = .init(paths: ["iam_config.public_access_prevention"])
-    },
-    options: .init()
+    }
   )
   print("Public access prevention is unspecified for bucket \(bucketId)")
 }

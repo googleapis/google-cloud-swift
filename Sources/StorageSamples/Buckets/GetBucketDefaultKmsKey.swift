@@ -21,8 +21,7 @@ public func getBucketDefaultKmsKey(
   let bucket = try await client.getBucket(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)"
-    },
-    options: .init()
+    }
   )
   print(
     "Encryption config for bucket \(bucketId): \(String(describing: bucket.encryption))"

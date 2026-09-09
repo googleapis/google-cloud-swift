@@ -22,8 +22,7 @@ public func printBucketAclForUser(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)"
       $0.readMask = .init(paths: ["acl"])
-    },
-    options: .init()
+    }
   )
   let entity = userEmail.hasPrefix("user-") ? userEmail : "user-\(userEmail)"
   if let entry = bucket.acl.first(where: { $0.entity == entity || $0.email == userEmail }) {

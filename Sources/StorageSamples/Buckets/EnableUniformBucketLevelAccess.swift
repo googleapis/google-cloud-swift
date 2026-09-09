@@ -21,8 +21,7 @@ public func enableUniformBucketLevelAccess(
   let bucket = try await client.getBucket(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)"
-    },
-    options: .init()
+    }
   )
   let _ = try await client.updateBucket(
     request: .init().with {
@@ -35,8 +34,7 @@ public func enableUniformBucketLevelAccess(
       }
       $0.ifMetagenerationMatch = bucket.metageneration
       $0.updateMask = .init(paths: ["iam_config.uniform_bucket_level_access"])
-    },
-    options: .init()
+    }
   )
   print("Uniform bucket-level access was enabled for \(bucketId)")
 }

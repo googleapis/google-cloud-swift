@@ -22,8 +22,7 @@ public func printBucketAcl(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)"
       $0.readMask = .init(paths: ["acl"])
-    },
-    options: .init()
+    }
   )
 
   for acl in bucket.acl {

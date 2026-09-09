@@ -21,8 +21,7 @@ public func resumeAnywhereCache(
   let cache = try await client.resumeAnywhereCache(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)/anywhereCaches/\(cacheId)"
-    },
-    options: .init()
+    }
   )
   print("Resumed anywhere cache: \(cache)")
 }

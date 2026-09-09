@@ -23,8 +23,7 @@ public func getObjectContexts(
     request: .init().with {
       $0.bucket = "projects/_/buckets/\(bucketId)"
       $0.object = objectName
-    },
-    options: .init()
+    }
   )
   print(
     "The contexts field for object \(objectName) in bucket \(bucketId) is: \(String(describing: object.contexts))"

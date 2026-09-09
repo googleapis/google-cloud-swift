@@ -110,8 +110,7 @@ public func runBucketSamples(
       $0.bucket = .init().with { bucket in
         bucket.project = "projects/\(projectId)"
       }
-    },
-    options: .init()
+    }
   )
   print("running changeDefaultStorageClass() sample")
   try await changeDefaultStorageClass(
@@ -139,8 +138,7 @@ public func runBucketSamples(
       $0.bucket = .init().with { bucket in
         bucket.project = "projects/\(projectId)"
       }
-    },
-    options: .init()
+    }
   )
   print("running getDefaultEventBasedHold() sample")
   try await getDefaultEventBasedHold(client: client, bucketId: holdPapBucketId)
@@ -175,8 +173,7 @@ public func runBucketSamples(
       $0.bucket = .init().with { bucket in
         bucket.project = "projects/\(projectId)"
       }
-    },
-    options: .init()
+    }
   )
   print("running viewVersioningStatus() sample")
   try await viewVersioningStatus(client: client, bucketId: lifecycleBucketId)
@@ -211,8 +208,7 @@ public func runBucketSamples(
       $0.bucket = .init().with { bucket in
         bucket.project = "projects/\(projectId)"
       }
-    },
-    options: .init()
+    }
   )
   print("running printBucketWebsiteConfiguration() sample")
   try await printBucketWebsiteConfiguration(client: client, bucketId: websiteCorsBucketId)
@@ -248,8 +244,7 @@ public func runBucketSamples(
       $0.bucket = .init().with { bucket in
         bucket.project = "projects/\(projectId)"
       }
-    },
-    options: .init()
+    }
   )
   print("running setRetentionPolicy() sample")
   try await setRetentionPolicy(
@@ -271,8 +266,7 @@ public func runBucketSamples(
       $0.bucket = .init().with { bucket in
         bucket.project = "projects/\(projectId)"
       }
-    },
-    options: .init()
+    }
   )
   print("running setAutoclass() sample")
   try await setAutoclass(client: client, bucketId: autoclassBucketId)
@@ -306,8 +300,7 @@ public func runBucketSamples(
           }
         }
       }
-    },
-    options: .init()
+    }
   )
 
   print("running enableUniformBucketLevelAccess() sample")
@@ -352,8 +345,7 @@ public func runBucketSamples(
           }
         }
       }
-    },
-    options: .init()
+    }
   )
 
   print("running addBucketIamMember() sample")
@@ -389,8 +381,7 @@ public func runBucketSamples(
           bucket.project = "projects/\(projectId)"
           bucket.location = "US-CENTRAL1"
         }
-      },
-      options: .init()
+      }
     )
     let kmsKey =
       "projects/\(projectId)/locations/us-central1/keyRings/\(kmsRing)/cryptoKeys/storage-examples"

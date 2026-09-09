@@ -21,8 +21,7 @@ public func listAnywhereCaches(
   let caches = try client.listAnywhereCaches(
     byItem: .init().with {
       $0.parent = "projects/_/buckets/\(bucketId)"
-    },
-    options: .init()
+    }
   )
   for try await cache in caches {
     print("Found cache: \(cache)")

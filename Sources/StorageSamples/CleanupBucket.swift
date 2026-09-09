@@ -27,7 +27,7 @@ public func cleanupStaleTestBuckets(client: StorageControlClient, projectId: Str
   do {
     let deadline = Int(Date().timeIntervalSince1970) - maxStaleness
     let buckets = try client.listBuckets(
-      byItem: .init().with { $0.parent = "projects/\(projectId)" }, options: .init())
+      byItem: .init().with { $0.parent = "projects/\(projectId)" })
     for try await b in buckets {
       guard let v = b.labels[integrationTestMark], v == "true" else {
         continue
@@ -124,14 +124,14 @@ func sweepTestBuckets(client: StorageControlClient, bucketNames: [String]) async
       let bucket: Bucket
       do {
         bucket = try await client.getBucket(
-          request: .init().with { $0.name = name }, options: .init())
+          request: .init().with { $0.name = name })
       } catch {
         print("ERROR getting bucket properties for \(name): \(error)")
         continue
       }
 
       let objects = try client.listObjects(
-        byItem: .init().with { $0.parent = bucket.name }, options: .init())
+        byItem: .init().with { $0.parent = bucket.name })
       for try await o in objects {
         try await client.deleteObject(
           request: .init().with {
@@ -142,7 +142,7 @@ func sweepTestBuckets(client: StorageControlClient, bucketNames: [String]) async
       }
 
       let caches = try client.listAnywhereCaches(
-        byItem: .init().with { $0.parent = bucket.name }, options: .init())
+        byItem: .init().with { $0.parent = bucket.name })
       for try await c in caches {
         let _ = try await client.disableAnywhereCache(
           request: .init().with { $0.name = c.name },
@@ -155,7 +155,7 @@ func sweepTestBuckets(client: StorageControlClient, bucketNames: [String]) async
       }
 
       let folders = try client.listManagedFolders(
-        byItem: .init().with { $0.parent = bucket.name }, options: .init())
+        byItem: .init().with { $0.parent = bucket.name })
       for try await f in folders {
         try await client.deleteFolder(
           request: .init().with { $0.name = f.name },

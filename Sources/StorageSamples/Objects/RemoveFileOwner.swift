@@ -24,8 +24,7 @@ public func removeFileOwner(
       $0.bucket = "projects/_/buckets/\(bucketId)"
       $0.object = objectName
       $0.readMask = .init(paths: ["*"])
-    },
-    options: .init()
+    }
   )
 
   let want = "user-\(user)"
@@ -43,8 +42,7 @@ public func removeFileOwner(
       }
       $0.ifMetagenerationMatch = object.metageneration
       $0.updateMask = .init(paths: ["acl"])
-    },
-    options: .init()
+    }
   )
   print("successfully updated object \(objectName) in bucket \(bucketId): \(updated)")
 }

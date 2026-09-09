@@ -21,8 +21,7 @@ public func removeCorsConfiguration(
   let bucket = try await client.getBucket(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)"
-    },
-    options: .init()
+    }
   )
   let _ = try await client.updateBucket(
     request: .init().with {
@@ -31,8 +30,7 @@ public func removeCorsConfiguration(
       }
       $0.ifMetagenerationMatch = bucket.metageneration
       $0.updateMask = .init(paths: ["cors"])
-    },
-    options: .init()
+    }
   )
   print("Successfully removed CORS configuration for bucket \(bucketId)")
 }

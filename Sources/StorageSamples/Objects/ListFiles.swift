@@ -19,8 +19,7 @@ public func listFiles(
   client: StorageControlClient, bucketId: String
 ) async throws {
   let objects = try client.listObjects(
-    byItem: .init().with { $0.parent = "projects/_/buckets/\(bucketId)" },
-    options: .init()
+    byItem: .init().with { $0.parent = "projects/_/buckets/\(bucketId)" }
   )
   print("listing objects in bucket \(bucketId)")
   for try await object in objects {

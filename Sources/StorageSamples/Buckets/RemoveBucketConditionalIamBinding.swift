@@ -28,8 +28,7 @@ public func removeBucketConditionalIamBinding(
       $0.options = .init().with { options in
         options.requestedPolicyVersion = 3
       }
-    },
-    options: .init()
+    }
   )
   policy.version = 3
   policy.bindings.removeAll(where: {
@@ -39,8 +38,7 @@ public func removeBucketConditionalIamBinding(
     request: .init().with {
       $0.resource = "projects/_/buckets/\(bucketId)"
       $0.policy = policy
-    },
-    options: .init()
+    }
   )
   print("Removed conditional IAM binding from bucket \(bucketId): \(updated)")
 }

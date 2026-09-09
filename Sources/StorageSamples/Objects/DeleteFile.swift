@@ -23,8 +23,7 @@ public func deleteFile(
     request: .init().with {
       $0.bucket = "projects/_/buckets/\(bucketId)"
       $0.object = objectName
-    },
-    options: .init()
+    }
   )
   print("successfully deleted object \(objectName) in bucket \(bucketId)")
 }

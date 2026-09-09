@@ -34,7 +34,7 @@ public func createBucketWithEncryptionEnforcement(
             }
           }
         }
-      }, options: .init())
+      })
   print("successfully created bucket \(bucket)")
 }
 // [END storage_create_bucket_with_encryption_enforcement]

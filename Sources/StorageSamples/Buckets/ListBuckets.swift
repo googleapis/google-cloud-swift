@@ -21,7 +21,7 @@ public func listBuckets(
   let buckets = try client.listBuckets(
     byItem: .init().with {
       $0.parent = "projects/\(projectId)"
-    }, options: .init())
+    })
   for try await bucket in buckets {
     print(bucket.name)
   }

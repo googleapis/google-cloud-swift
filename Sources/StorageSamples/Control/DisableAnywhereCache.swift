@@ -21,8 +21,7 @@ public func disableAnywhereCache(
   let cache = try await client.disableAnywhereCache(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)/anywhereCaches/\(cacheId)"
-    },
-    options: .init()
+    }
   )
   print("Disabled anywhere cache: \(cache)")
 }

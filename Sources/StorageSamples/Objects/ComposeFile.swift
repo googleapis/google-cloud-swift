@@ -38,8 +38,7 @@ public func composeFile(
       ]
       // Consider setting generation to make request idempotent
       // Consider setting deleteSourceObjects to automatically delete the source objects
-    },
-    options: .init()
+    }
   )
   print("successfully composed \(composeSource1) and \(composeSource2) into object \(object)")
 }

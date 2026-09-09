@@ -23,8 +23,7 @@ func setBucketPublicIam(
   var policy = try await client.getIamPolicy(
     request: .init().with {
       $0.resource = "projects/_/buckets/\(bucketId)"
-    },
-    options: .init()
+    }
   )
 
   policy.bindings.append(
@@ -38,8 +37,7 @@ func setBucketPublicIam(
     request: .init().with {
       $0.resource = "projects/_/buckets/\(bucketId)"
       $0.policy = policy
-    },
-    options: .init()
+    }
   )
 
   print("Successfully set public IAM policy for bucket \(bucketId)")

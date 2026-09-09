@@ -37,8 +37,7 @@ public func runControlSamples(
           }
         }
       }
-    },
-    options: .init()
+    }
   )
 
   print("running quickstartSample() sample")

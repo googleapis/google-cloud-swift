@@ -29,7 +29,7 @@ public func createBucketClassLocation(
           bucket.storageClass = "NEARLINE"
           bucket.location = "US-CENTRAL1"
         }
-      }, options: .init())
+      })
   print("successfully created bucket \(bucket)")
 }
 // [END storage_create_bucket_class_location]

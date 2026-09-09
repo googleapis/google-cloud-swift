@@ -21,7 +21,6 @@ public func deleteBucket(
   try await client
     .deleteBucket(
       request: .init().with { $0.name = "projects/_/buckets/\(bucketId)" },
-      options: .init(),
     )
   print("successfully deleted bucket \(bucketId)")
 }

@@ -21,8 +21,7 @@ public func addBucketLabel(
   let bucket = try await client.getBucket(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)"
-    },
-    options: .init()
+    }
   )
   let _ = try await client.updateBucket(
     request: .init().with {
@@ -31,8 +30,7 @@ public func addBucketLabel(
       }
       $0.ifMetagenerationMatch = bucket.metageneration
       $0.updateMask = .init(paths: ["labels"])
-    },
-    options: .init()
+    }
   )
   print("Successfully added label \(labelKey)=\(labelValue) to bucket \(bucketId)")
 }

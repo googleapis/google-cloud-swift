@@ -22,8 +22,7 @@ public func setRetentionPolicy(
   let bucket = try await client.getBucket(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)"
-    },
-    options: .init()
+    }
   )
   let retentionDuration = try Duration(seconds: retentionPeriod, nanos: 0)
   let updated = try await client.updateBucket(
@@ -35,8 +34,7 @@ public func setRetentionPolicy(
       }
       $0.ifMetagenerationMatch = bucket.metageneration
       $0.updateMask = .init(paths: ["retention_policy"])
-    },
-    options: .init()
+    }
   )
   print(
     "Retention policy for bucket \(bucketId) set to: \(String(describing: updated.retentionPolicy))"

@@ -22,8 +22,7 @@ public func getFolder(
   let folder = try await client.getFolder(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)/folders/\(folderId)"
-    },
-    options: .init()
+    }
   )
   print("folder metadata successfully retrieved \(folder)")
 }

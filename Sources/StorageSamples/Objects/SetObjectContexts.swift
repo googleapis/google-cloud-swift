@@ -23,8 +23,7 @@ public func setObjectContexts(
     request: .init().with {
       $0.bucket = "projects/_/buckets/\(bucketId)"
       $0.object = objectName
-    },
-    options: .init()
+    }
   )
 
   var custom = object.contexts?.custom ?? [:]
@@ -41,8 +40,7 @@ public func setObjectContexts(
       }
       $0.ifMetagenerationMatch = object.metageneration
       $0.updateMask = .init(paths: ["contexts.custom.example"])
-    },
-    options: .init()
+    }
   )
   print(
     "successfully set contexts for object \(objectName) in bucket \(bucketId): \(String(describing: updated.contexts))"

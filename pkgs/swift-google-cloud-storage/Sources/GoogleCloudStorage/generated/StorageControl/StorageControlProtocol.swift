@@ -48,9 +48,48 @@ public protocol StorageControlProtocol {
   /// **IAM Permissions**:
   ///
   /// Requires `storage.buckets.delete` IAM permission on the bucket.
+  func deleteBucket(request: DeleteBucketRequest) async throws
+
+  /// Permanently deletes an empty bucket.
+  /// The request fails if there are any live or
+  /// noncurrent objects in the bucket, but the request succeeds if the
+  /// bucket only contains soft-deleted objects or incomplete uploads, such
+  /// as ongoing XML API multipart uploads. Does not permanently delete
+  /// soft-deleted objects.
+  ///
+  /// When this API is used to delete a bucket containing an object that has a
+  /// soft delete policy
+  /// enabled, the object becomes soft deleted, and the
+  /// `softDeleteTime` and `hardDeleteTime` properties are set on the
+  /// object.
+  ///
+  /// Objects and multipart uploads that were in the bucket at the time of
+  /// deletion are also retained for the specified retention duration. When
+  /// a soft-deleted bucket reaches the end of its retention duration, it
+  /// is permanently deleted. The `hardDeleteTime` of the bucket always
+  /// equals
+  /// or exceeds the expiration time of the last soft-deleted object in the
+  /// bucket.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// Requires `storage.buckets.delete` IAM permission on the bucket.
   func deleteBucket(
     request: DeleteBucketRequest, options: GoogleCloudGax.RequestOptions
   ) async throws
+
+  /// Returns metadata for the specified bucket.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// Requires `storage.buckets.get`
+  /// IAM permission on
+  /// the bucket. Additionally, to return specific bucket metadata, the
+  /// authenticated user must have the following permissions:
+  ///
+  /// - To return the IAM policies: `storage.buckets.getIamPolicy`
+  /// - To return the bucket IP filtering rules: `storage.buckets.getIpFilter`
+  func getBucket(request: GetBucketRequest) async throws -> Bucket
 
   /// Returns metadata for the specified bucket.
   ///
@@ -78,9 +117,35 @@ public protocol StorageControlProtocol {
   /// - To enable object retention using the `enableObjectRetention` query
   /// parameter: `storage.buckets.enableObjectRetention`
   /// - To set the bucket IP filtering rules: `storage.buckets.setIpFilter`
+  func createBucket(request: CreateBucketRequest) async throws -> Bucket
+
+  /// Creates a new bucket.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// Requires `storage.buckets.create` IAM permission on the bucket.
+  /// Additionally, to enable specific bucket features, the authenticated user
+  /// must have the following permissions:
+  ///
+  /// - To enable object retention using the `enableObjectRetention` query
+  /// parameter: `storage.buckets.enableObjectRetention`
+  /// - To set the bucket IP filtering rules: `storage.buckets.setIpFilter`
   func createBucket(
     request: CreateBucketRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> Bucket
+
+  /// Retrieves a list of buckets for a given project, ordered
+  /// lexicographically by name.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// Requires `storage.buckets.list` IAM permission on the bucket.
+  /// Additionally, to enable specific bucket features, the authenticated
+  /// user must have the following permissions:
+  ///
+  /// - To list the IAM policies: `storage.buckets.getIamPolicy`
+  /// - To list the bucket IP filtering rules: `storage.buckets.getIpFilter`
+  func listBuckets(request: ListBucketsRequest) async throws -> ListBucketsResponse
 
   /// Retrieves a list of buckets for a given project, ordered
   /// lexicographically by name.
@@ -109,8 +174,44 @@ public protocol StorageControlProtocol {
   /// - To list the IAM policies: `storage.buckets.getIamPolicy`
   /// - To list the bucket IP filtering rules: `storage.buckets.getIpFilter`
   func listBuckets(
+    byItem: ListBucketsRequest
+  ) throws -> any AsyncSequence<Bucket, Swift.Error>
+
+  /// Retrieves a list of buckets for a given project, ordered
+  /// lexicographically by name.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// Requires `storage.buckets.list` IAM permission on the bucket.
+  /// Additionally, to enable specific bucket features, the authenticated
+  /// user must have the following permissions:
+  ///
+  /// - To list the IAM policies: `storage.buckets.getIamPolicy`
+  /// - To list the bucket IP filtering rules: `storage.buckets.getIpFilter`
+  func listBuckets(
     byItem: ListBucketsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Bucket, Swift.Error>
+
+  /// Permanently locks the retention
+  /// policy that is
+  /// currently applied to the specified bucket.
+  ///
+  /// Caution: Locking a bucket is an
+  /// irreversible action. Once you lock a bucket:
+  ///
+  /// - You cannot remove the retention policy from the bucket.
+  /// - You cannot decrease the retention period for the policy.
+  ///
+  /// Once locked, you must delete the entire bucket in order to remove the
+  /// bucket's retention policy. However, before you can delete the bucket, you
+  /// must delete all the objects in the bucket, which is only
+  /// possible if all the objects have reached the retention period set by the
+  /// retention policy.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// Requires `storage.buckets.update` IAM permission on the bucket.
+  func lockBucketRetentionPolicy(request: LockBucketRetentionPolicyRequest) async throws -> Bucket
 
   /// Permanently locks the retention
   /// policy that is
@@ -148,6 +249,21 @@ public protocol StorageControlProtocol {
   /// - To set bucket IP filtering rules: `storage.buckets.setIpFilter`
   /// - To update public access prevention policies or access control lists
   /// (ACLs): `storage.buckets.setIamPolicy`
+  func updateBucket(request: UpdateBucketRequest) async throws -> Bucket
+
+  /// Updates a bucket. Changes to the bucket are readable immediately after
+  /// writing, but configuration changes might take time to propagate. This
+  /// method supports `patch` semantics.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// Requires `storage.buckets.update` IAM permission on the bucket.
+  /// Additionally, to enable specific bucket features, the authenticated user
+  /// must have the following permissions:
+  ///
+  /// - To set bucket IP filtering rules: `storage.buckets.setIpFilter`
+  /// - To update public access prevention policies or access control lists
+  /// (ACLs): `storage.buckets.setIamPolicy`
   func updateBucket(
     request: UpdateBucketRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> Bucket
@@ -163,9 +279,44 @@ public protocol StorageControlProtocol {
   /// the `storage.objects.delete` permission. If the request body includes
   /// the retention property, the authenticated user must also have the
   /// `storage.objects.setRetention` IAM permission.
+  func composeObject(request: ComposeObjectRequest) async throws -> Object
+
+  /// Concatenates a list of existing objects into a new object in the same
+  /// bucket. The existing source objects are unaffected by this operation.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// Requires the `storage.objects.create` and `storage.objects.get` IAM
+  /// permissions to use this method. If the new composite object
+  /// overwrites an existing object, the authenticated user must also have
+  /// the `storage.objects.delete` permission. If the request body includes
+  /// the retention property, the authenticated user must also have the
+  /// `storage.objects.setRetention` IAM permission.
   func composeObject(
     request: ComposeObjectRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> Object
+
+  /// Deletes an object and its metadata. Deletions are permanent if versioning
+  /// is not enabled for the bucket, or if the generation parameter is used, or
+  /// if soft delete is not
+  /// enabled for the bucket.
+  /// When this API is used to delete an object from a bucket that has soft
+  /// delete policy enabled, the object becomes soft deleted, and the
+  /// `softDeleteTime` and `hardDeleteTime` properties are set on the object.
+  /// This API cannot be used to permanently delete soft-deleted objects.
+  /// Soft-deleted objects are permanently deleted according to their
+  /// `hardDeleteTime`.
+  ///
+  /// You can use the [`RestoreObject`][google.storage.v2.Storage.RestoreObject]
+  /// API to restore soft-deleted objects until the soft delete retention period
+  /// has passed.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// Requires `storage.objects.delete` IAM permission on the bucket.
+  ///
+  /// [google.storage.v2.Storage.RestoreObject]: <doc:StorageControlClient/restoreObject(request:options:)>
+  func deleteObject(request: DeleteObjectRequest) async throws
 
   /// Deletes an object and its metadata. Deletions are permanent if versioning
   /// is not enabled for the bucket, or if the generation parameter is used, or
@@ -228,9 +379,57 @@ public protocol StorageControlProtocol {
   ///   - `storage.objects.setIamPolicy` (only required if `copySourceAcl` is
   ///   `true` and the relevant
   ///     bucket has uniform bucket-level access disabled)
+  func restoreObject(request: RestoreObjectRequest) async throws -> Object
+
+  /// Restores a
+  /// soft-deleted object.
+  /// When a soft-deleted object is restored, a new copy of that object is
+  /// created in the same bucket and inherits the same metadata as the
+  /// soft-deleted object. The inherited metadata is the metadata that existed
+  /// when the original object became soft deleted, with the following
+  /// exceptions:
+  ///
+  ///   - The `createTime` of the new object is set to the time at which the
+  ///   soft-deleted object was restored.
+  ///   - The `softDeleteTime` and `hardDeleteTime` values are cleared.
+  ///   - A new generation is assigned and the metageneration is reset to 1.
+  ///   - If the soft-deleted object was in a bucket that had Autoclass enabled,
+  ///   the new object is
+  ///     restored to Standard storage.
+  ///   - The restored object inherits the bucket's default object ACL, unless
+  ///   `copySourceAcl` is `true`.
+  ///
+  /// If a live object using the same name already exists in the bucket and
+  /// becomes overwritten, the live object becomes a noncurrent object if Object
+  /// Versioning is enabled on the bucket. If Object Versioning is not enabled,
+  /// the live object becomes soft deleted.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// Requires the following IAM permissions to use this method:
+  ///
+  ///   - `storage.objects.restore`
+  ///   - `storage.objects.create`
+  ///   - `storage.objects.delete` (only required if overwriting an existing
+  ///   object)
+  ///   - `storage.objects.getIamPolicy` (only required if `projection` is `full`
+  ///   and the relevant bucket
+  ///     has uniform bucket-level access disabled)
+  ///   - `storage.objects.setIamPolicy` (only required if `copySourceAcl` is
+  ///   `true` and the relevant
+  ///     bucket has uniform bucket-level access disabled)
   func restoreObject(
     request: RestoreObjectRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> Object
+
+  /// Retrieves object metadata.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// Requires `storage.objects.get` IAM permission on the bucket.
+  /// To return object ACLs, the authenticated user must also have
+  /// the `storage.objects.getIamPolicy` permission.
+  func getObject(request: GetObjectRequest) async throws -> Object
 
   /// Retrieves object metadata.
   ///
@@ -249,9 +448,27 @@ public protocol StorageControlProtocol {
   /// **IAM Permissions**:
   ///
   /// Requires `storage.objects.update` IAM permission on the bucket.
+  func updateObject(request: UpdateObjectRequest) async throws -> Object
+
+  /// Updates an object's metadata.
+  /// Equivalent to JSON API's `storage.objects.patch` method.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// Requires `storage.objects.update` IAM permission on the bucket.
   func updateObject(
     request: UpdateObjectRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> Object
+
+  /// Retrieves a list of objects matching the criteria.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// The authenticated user requires `storage.objects.list`
+  /// IAM permission to use this method. To return object ACLs, the
+  /// authenticated user must also
+  /// have the `storage.objects.getIamPolicy` permission.
+  func listObjects(request: ListObjectsRequest) async throws -> ListObjectsResponse
 
   /// Retrieves a list of objects matching the criteria.
   ///
@@ -274,8 +491,24 @@ public protocol StorageControlProtocol {
   /// authenticated user must also
   /// have the `storage.objects.getIamPolicy` permission.
   func listObjects(
+    byItem: ListObjectsRequest
+  ) throws -> any AsyncSequence<Object, Swift.Error>
+
+  /// Retrieves a list of objects matching the criteria.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// The authenticated user requires `storage.objects.list`
+  /// IAM permission to use this method. To return object ACLs, the
+  /// authenticated user must also
+  /// have the `storage.objects.getIamPolicy` permission.
+  func listObjects(
     byItem: ListObjectsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<Object, Swift.Error>
+
+  /// Rewrites a source object to a destination object. Optionally overrides
+  /// metadata.
+  func rewriteObject(request: RewriteObjectRequest) async throws -> RewriteResponse
 
   /// Rewrites a source object to a destination object. Optionally overrides
   /// metadata.
@@ -297,9 +530,29 @@ public protocol StorageControlProtocol {
   ///   - `storage.objects.create`
   ///   - `storage.objects.delete` (only required if overwriting an existing
   ///   object)
+  func moveObject(request: MoveObjectRequest) async throws -> Object
+
+  /// Moves the source object to the destination object in the same bucket.
+  /// This operation moves a source object to a destination object in the
+  /// same bucket by renaming the object. The move itself is an atomic
+  /// transaction, ensuring all steps either complete successfully or no
+  /// changes are made.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// Requires the following IAM permissions to use this method:
+  ///
+  ///   - `storage.objects.move`
+  ///   - `storage.objects.create`
+  ///   - `storage.objects.delete` (only required if overwriting an existing
+  ///   object)
   func moveObject(
     request: MoveObjectRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> Object
+
+  /// Creates a new folder. This operation is only applicable to a hierarchical
+  /// namespace enabled bucket.
+  func createFolder(request: CreateFolderRequest) async throws -> Folder
 
   /// Creates a new folder. This operation is only applicable to a hierarchical
   /// namespace enabled bucket.
@@ -309,9 +562,17 @@ public protocol StorageControlProtocol {
 
   /// Permanently deletes an empty folder. This operation is only applicable to a
   /// hierarchical namespace enabled bucket.
+  func deleteFolder(request: DeleteFolderRequest) async throws
+
+  /// Permanently deletes an empty folder. This operation is only applicable to a
+  /// hierarchical namespace enabled bucket.
   func deleteFolder(
     request: DeleteFolderRequest, options: GoogleCloudGax.RequestOptions
   ) async throws
+
+  /// Returns metadata for the specified folder. This operation is only
+  /// applicable to a hierarchical namespace enabled bucket.
+  func getFolder(request: GetFolderRequest) async throws -> Folder
 
   /// Returns metadata for the specified folder. This operation is only
   /// applicable to a hierarchical namespace enabled bucket.
@@ -321,9 +582,19 @@ public protocol StorageControlProtocol {
 
   /// Retrieves a list of folders. This operation is only applicable to a
   /// hierarchical namespace enabled bucket.
+  func listFolders(request: ListFoldersRequest) async throws -> ListFoldersResponse
+
+  /// Retrieves a list of folders. This operation is only applicable to a
+  /// hierarchical namespace enabled bucket.
   func listFolders(
     request: ListFoldersRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> ListFoldersResponse
+
+  /// Retrieves a list of folders. This operation is only applicable to a
+  /// hierarchical namespace enabled bucket.
+  func listFolders(
+    byItem: ListFoldersRequest
+  ) throws -> any AsyncSequence<Folder, Swift.Error>
 
   /// Retrieves a list of folders. This operation is only applicable to a
   /// hierarchical namespace enabled bucket.
@@ -335,9 +606,20 @@ public protocol StorageControlProtocol {
   /// applicable to a hierarchical namespace enabled bucket. During a rename, the
   /// source and destination folders are locked until the long running operation
   /// completes.
+  func renameFolder(request: RenameFolderRequest) async throws -> GoogleLongRunning.Operation
+
+  /// Renames a source folder to a destination folder. This operation is only
+  /// applicable to a hierarchical namespace enabled bucket. During a rename, the
+  /// source and destination folders are locked until the long running operation
+  /// completes.
   func renameFolder(
     request: RenameFolderRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation
+
+  /// Deletes a folder recursively. This operation is only applicable to a
+  /// hierarchical namespace enabled bucket.
+  func deleteFolderRecursive(request: DeleteFolderRecursiveRequest) async throws
+    -> GoogleLongRunning.Operation
 
   /// Deletes a folder recursively. This operation is only applicable to a
   /// hierarchical namespace enabled bucket.
@@ -346,9 +628,15 @@ public protocol StorageControlProtocol {
   ) async throws -> GoogleLongRunning.Operation
 
   /// Returns the storage layout configuration for a given bucket.
+  func getStorageLayout(request: GetStorageLayoutRequest) async throws -> StorageLayout
+
+  /// Returns the storage layout configuration for a given bucket.
   func getStorageLayout(
     request: GetStorageLayoutRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> StorageLayout
+
+  /// Creates a new managed folder.
+  func createManagedFolder(request: CreateManagedFolderRequest) async throws -> ManagedFolder
 
   /// Creates a new managed folder.
   func createManagedFolder(
@@ -356,14 +644,24 @@ public protocol StorageControlProtocol {
   ) async throws -> ManagedFolder
 
   /// Permanently deletes an empty managed folder.
+  func deleteManagedFolder(request: DeleteManagedFolderRequest) async throws
+
+  /// Permanently deletes an empty managed folder.
   func deleteManagedFolder(
     request: DeleteManagedFolderRequest, options: GoogleCloudGax.RequestOptions
   ) async throws
 
   /// Returns metadata for the specified managed folder.
+  func getManagedFolder(request: GetManagedFolderRequest) async throws -> ManagedFolder
+
+  /// Returns metadata for the specified managed folder.
   func getManagedFolder(
     request: GetManagedFolderRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> ManagedFolder
+
+  /// Retrieves a list of managed folders for a given bucket.
+  func listManagedFolders(request: ListManagedFoldersRequest) async throws
+    -> ListManagedFoldersResponse
 
   /// Retrieves a list of managed folders for a given bucket.
   func listManagedFolders(
@@ -372,8 +670,17 @@ public protocol StorageControlProtocol {
 
   /// Retrieves a list of managed folders for a given bucket.
   func listManagedFolders(
+    byItem: ListManagedFoldersRequest
+  ) throws -> any AsyncSequence<ManagedFolder, Swift.Error>
+
+  /// Retrieves a list of managed folders for a given bucket.
+  func listManagedFolders(
     byItem: ListManagedFoldersRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<ManagedFolder, Swift.Error>
+
+  /// Updates a managed folder. Currently, this RPC only supports updating the
+  /// `rapid_cache_config` field.
+  func updateManagedFolder(request: UpdateManagedFolderRequest) async throws -> ManagedFolder
 
   /// Updates a managed folder. Currently, this RPC only supports updating the
   /// `rapid_cache_config` field.
@@ -382,9 +689,18 @@ public protocol StorageControlProtocol {
   ) async throws -> ManagedFolder
 
   /// Creates an Anywhere Cache instance.
+  func createAnywhereCache(request: CreateAnywhereCacheRequest) async throws
+    -> GoogleLongRunning.Operation
+
+  /// Creates an Anywhere Cache instance.
   func createAnywhereCache(
     request: CreateAnywhereCacheRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation
+
+  /// Updates an Anywhere Cache instance. Mutable fields include `ttl` and
+  /// `admission_policy`.
+  func updateAnywhereCache(request: UpdateAnywhereCacheRequest) async throws
+    -> GoogleLongRunning.Operation
 
   /// Updates an Anywhere Cache instance. Mutable fields include `ttl` and
   /// `admission_policy`.
@@ -396,9 +712,18 @@ public protocol StorageControlProtocol {
   /// disablement could be revoked by calling ResumeAnywhereCache. The cache
   /// instance will be deleted automatically if it remains in the disabled state
   /// for at least one hour.
+  func disableAnywhereCache(request: DisableAnywhereCacheRequest) async throws -> AnywhereCache
+
+  /// Disables an Anywhere Cache instance. A disabled instance is read-only. The
+  /// disablement could be revoked by calling ResumeAnywhereCache. The cache
+  /// instance will be deleted automatically if it remains in the disabled state
+  /// for at least one hour.
   func disableAnywhereCache(
     request: DisableAnywhereCacheRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> AnywhereCache
+
+  /// Pauses an Anywhere Cache instance.
+  func pauseAnywhereCache(request: PauseAnywhereCacheRequest) async throws -> AnywhereCache
 
   /// Pauses an Anywhere Cache instance.
   func pauseAnywhereCache(
@@ -406,14 +731,24 @@ public protocol StorageControlProtocol {
   ) async throws -> AnywhereCache
 
   /// Resumes a disabled or paused Anywhere Cache instance.
+  func resumeAnywhereCache(request: ResumeAnywhereCacheRequest) async throws -> AnywhereCache
+
+  /// Resumes a disabled or paused Anywhere Cache instance.
   func resumeAnywhereCache(
     request: ResumeAnywhereCacheRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> AnywhereCache
 
   /// Gets an Anywhere Cache instance.
+  func getAnywhereCache(request: GetAnywhereCacheRequest) async throws -> AnywhereCache
+
+  /// Gets an Anywhere Cache instance.
   func getAnywhereCache(
     request: GetAnywhereCacheRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> AnywhereCache
+
+  /// Lists Anywhere Cache instances for a given bucket.
+  func listAnywhereCaches(request: ListAnywhereCachesRequest) async throws
+    -> ListAnywhereCachesResponse
 
   /// Lists Anywhere Cache instances for a given bucket.
   func listAnywhereCaches(
@@ -422,8 +757,17 @@ public protocol StorageControlProtocol {
 
   /// Lists Anywhere Cache instances for a given bucket.
   func listAnywhereCaches(
+    byItem: ListAnywhereCachesRequest
+  ) throws -> any AsyncSequence<AnywhereCache, Swift.Error>
+
+  /// Lists Anywhere Cache instances for a given bucket.
+  func listAnywhereCaches(
     byItem: ListAnywhereCachesRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<AnywhereCache, Swift.Error>
+
+  /// Creates a Rapid Cache instance.
+  func createRapidCache(request: CreateRapidCacheRequest) async throws
+    -> GoogleLongRunning.Operation
 
   /// Creates a Rapid Cache instance.
   func createRapidCache(
@@ -431,9 +775,17 @@ public protocol StorageControlProtocol {
   ) async throws -> GoogleLongRunning.Operation
 
   /// Updates a Rapid Cache instance.
+  func updateRapidCache(request: UpdateRapidCacheRequest) async throws
+    -> GoogleLongRunning.Operation
+
+  /// Updates a Rapid Cache instance.
   func updateRapidCache(
     request: UpdateRapidCacheRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation
+
+  /// Disables a Rapid Cache instance.
+  func disableRapidCache(request: DisableRapidCacheRequest) async throws
+    -> GoogleLongRunning.Operation
 
   /// Disables a Rapid Cache instance.
   func disableRapidCache(
@@ -441,9 +793,15 @@ public protocol StorageControlProtocol {
   ) async throws -> GoogleLongRunning.Operation
 
   /// Gets a Rapid Cache instance.
+  func getRapidCache(request: GetRapidCacheRequest) async throws -> RapidCache
+
+  /// Gets a Rapid Cache instance.
   func getRapidCache(
     request: GetRapidCacheRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> RapidCache
+
+  /// Lists Rapid Cache instances for a given bucket.
+  func listRapidCaches(request: ListRapidCachesRequest) async throws -> ListRapidCachesResponse
 
   /// Lists Rapid Cache instances for a given bucket.
   func listRapidCaches(
@@ -452,8 +810,17 @@ public protocol StorageControlProtocol {
 
   /// Lists Rapid Cache instances for a given bucket.
   func listRapidCaches(
+    byItem: ListRapidCachesRequest
+  ) throws -> any AsyncSequence<RapidCache, Swift.Error>
+
+  /// Lists Rapid Cache instances for a given bucket.
+  func listRapidCaches(
     byItem: ListRapidCachesRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<RapidCache, Swift.Error>
+
+  /// Returns the Project scoped singleton IntelligenceConfig resource.
+  func getProjectIntelligenceConfig(request: GetProjectIntelligenceConfigRequest) async throws
+    -> IntelligenceConfig
 
   /// Returns the Project scoped singleton IntelligenceConfig resource.
   func getProjectIntelligenceConfig(
@@ -461,9 +828,17 @@ public protocol StorageControlProtocol {
   ) async throws -> IntelligenceConfig
 
   /// Updates the Project scoped singleton IntelligenceConfig resource.
+  func updateProjectIntelligenceConfig(request: UpdateProjectIntelligenceConfigRequest) async throws
+    -> IntelligenceConfig
+
+  /// Updates the Project scoped singleton IntelligenceConfig resource.
   func updateProjectIntelligenceConfig(
     request: UpdateProjectIntelligenceConfigRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> IntelligenceConfig
+
+  /// Returns the Folder scoped singleton IntelligenceConfig resource.
+  func getFolderIntelligenceConfig(request: GetFolderIntelligenceConfigRequest) async throws
+    -> IntelligenceConfig
 
   /// Returns the Folder scoped singleton IntelligenceConfig resource.
   func getFolderIntelligenceConfig(
@@ -471,14 +846,26 @@ public protocol StorageControlProtocol {
   ) async throws -> IntelligenceConfig
 
   /// Updates the Folder scoped singleton IntelligenceConfig resource.
+  func updateFolderIntelligenceConfig(request: UpdateFolderIntelligenceConfigRequest) async throws
+    -> IntelligenceConfig
+
+  /// Updates the Folder scoped singleton IntelligenceConfig resource.
   func updateFolderIntelligenceConfig(
     request: UpdateFolderIntelligenceConfigRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> IntelligenceConfig
 
   /// Returns the Organization scoped singleton IntelligenceConfig resource.
+  func getOrganizationIntelligenceConfig(request: GetOrganizationIntelligenceConfigRequest)
+    async throws -> IntelligenceConfig
+
+  /// Returns the Organization scoped singleton IntelligenceConfig resource.
   func getOrganizationIntelligenceConfig(
     request: GetOrganizationIntelligenceConfigRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> IntelligenceConfig
+
+  /// Updates the Organization scoped singleton IntelligenceConfig resource.
+  func updateOrganizationIntelligenceConfig(request: UpdateOrganizationIntelligenceConfigRequest)
+    async throws -> IntelligenceConfig
 
   /// Updates the Organization scoped singleton IntelligenceConfig resource.
   func updateOrganizationIntelligenceConfig(
@@ -490,9 +877,23 @@ public protocol StorageControlProtocol {
   /// `projects/_/buckets/{bucket}` for a bucket, or
   /// `projects/_/buckets/{bucket}/managedFolders/{managedFolder}`
   /// for a managed folder.
+  func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
+
+  /// Gets the IAM policy for a specified bucket.
+  /// The `resource` field in the request should be
+  /// `projects/_/buckets/{bucket}` for a bucket, or
+  /// `projects/_/buckets/{bucket}/managedFolders/{managedFolder}`
+  /// for a managed folder.
   func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy
+
+  /// Updates an IAM policy for the specified bucket.
+  /// The `resource` field in the request should be
+  /// `projects/_/buckets/{bucket}` for a bucket, or
+  /// `projects/_/buckets/{bucket}/managedFolders/{managedFolder}`
+  /// for a managed folder.
+  func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws -> GoogleIAMV1.Policy
 
   /// Updates an IAM policy for the specified bucket.
   /// The `resource` field in the request should be
@@ -510,14 +911,32 @@ public protocol StorageControlProtocol {
   /// `projects/_/buckets/{bucket}/objects/{object}` for an object, or
   /// `projects/_/buckets/{bucket}/managedFolders/{managedFolder}`
   /// for a managed folder.
+  func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
+    -> GoogleIAMV1.TestIamPermissionsResponse
+
+  /// Tests a set of permissions on the given bucket, object, or managed folder
+  /// to see which, if any, are held by the caller.
+  /// The `resource` field in the request should be
+  /// `projects/_/buckets/{bucket}` for a bucket,
+  /// `projects/_/buckets/{bucket}/objects/{object}` for an object, or
+  /// `projects/_/buckets/{bucket}/managedFolders/{managedFolder}`
+  /// for a managed folder.
   func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse
 
   /// Gets the `IntelligenceFinding` for a project.
+  func getIntelligenceFinding(request: GetIntelligenceFindingRequest) async throws
+    -> IntelligenceFinding
+
+  /// Gets the `IntelligenceFinding` for a project.
   func getIntelligenceFinding(
     request: GetIntelligenceFindingRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> IntelligenceFinding
+
+  /// Lists the `IntelligenceFinding` resources for the specified the project.
+  func listIntelligenceFindings(request: ListIntelligenceFindingsRequest) async throws
+    -> ListIntelligenceFindingsResponse
 
   /// Lists the `IntelligenceFinding` resources for the specified the project.
   func listIntelligenceFindings(
@@ -526,8 +945,18 @@ public protocol StorageControlProtocol {
 
   /// Lists the `IntelligenceFinding` resources for the specified the project.
   func listIntelligenceFindings(
+    byItem: ListIntelligenceFindingsRequest
+  ) throws -> any AsyncSequence<IntelligenceFinding, Swift.Error>
+
+  /// Lists the `IntelligenceFinding` resources for the specified the project.
+  func listIntelligenceFindings(
     byItem: ListIntelligenceFindingsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<IntelligenceFinding, Swift.Error>
+
+  /// Summarizes the intelligence findings for the specified scope (organization,
+  /// folder or project).
+  func summarizeIntelligenceFindings(request: SummarizeIntelligenceFindingsRequest) async throws
+    -> SummarizeIntelligenceFindingsResponse
 
   /// Summarizes the intelligence findings for the specified scope (organization,
   /// folder or project).
@@ -538,13 +967,27 @@ public protocol StorageControlProtocol {
   /// Summarizes the intelligence findings for the specified scope (organization,
   /// folder or project).
   func summarizeIntelligenceFindings(
+    byItem: SummarizeIntelligenceFindingsRequest
+  ) throws -> any AsyncSequence<FindingSummary, Swift.Error>
+
+  /// Summarizes the intelligence findings for the specified scope (organization,
+  /// folder or project).
+  func summarizeIntelligenceFindings(
     byItem: SummarizeIntelligenceFindingsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<FindingSummary, Swift.Error>
+
+  /// Gets the `IntelligenceFindingRevision` resource.
+  func getIntelligenceFindingRevision(request: GetIntelligenceFindingRevisionRequest) async throws
+    -> IntelligenceFindingRevision
 
   /// Gets the `IntelligenceFindingRevision` resource.
   func getIntelligenceFindingRevision(
     request: GetIntelligenceFindingRevisionRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> IntelligenceFindingRevision
+
+  /// Lists all the revisions of an `IntelligenceFinding` resource.
+  func listIntelligenceFindingRevisions(request: ListIntelligenceFindingRevisionsRequest)
+    async throws -> ListIntelligenceFindingRevisionsResponse
 
   /// Lists all the revisions of an `IntelligenceFinding` resource.
   func listIntelligenceFindingRevisions(
@@ -553,8 +996,27 @@ public protocol StorageControlProtocol {
 
   /// Lists all the revisions of an `IntelligenceFinding` resource.
   func listIntelligenceFindingRevisions(
+    byItem: ListIntelligenceFindingRevisionsRequest
+  ) throws -> any AsyncSequence<IntelligenceFindingRevision, Swift.Error>
+
+  /// Lists all the revisions of an `IntelligenceFinding` resource.
+  func listIntelligenceFindingRevisions(
     byItem: ListIntelligenceFindingRevisionsRequest, options: GoogleCloudGax.RequestOptions
   ) throws -> any AsyncSequence<IntelligenceFindingRevision, Swift.Error>
+
+  /// Retrieves the full content of an object context, including its key, value,
+  /// and any associated extended data for a given context key.
+  ///
+  /// Object contexts can optionally contain extended data. If an object context
+  /// contains extended data, the metadata payload structure will contain only
+  /// its type URL. To retrieve the full extended data, call this method.
+  ///
+  /// Returns the complete representation of the context as an
+  /// [`ObjectFullContext`][google.storage.control.v2.ObjectFullContext].
+  ///
+  /// [google.storage.control.v2.ObjectFullContext]: <doc:ObjectFullContext>
+  func viewObjectFullContext(request: ViewObjectFullContextRequest) async throws
+    -> ObjectFullContext
 
   /// Retrieves the full content of an object context, including its key, value,
   /// and any associated extended data for a given context key.
@@ -574,7 +1036,749 @@ public protocol StorageControlProtocol {
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
+
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   func getOperation(
     request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation
+}
+
+extension StorageControlProtocol {
+  public func deleteBucket(request: DeleteBucketRequest) async throws {
+    try await self.deleteBucket(request: request, options: .init())
+  }
+
+  public func deleteBucket(
+    request: DeleteBucketRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func getBucket(request: GetBucketRequest) async throws -> Bucket {
+    try await self.getBucket(request: request, options: .init())
+  }
+
+  public func getBucket(
+    request: GetBucketRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> Bucket {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func createBucket(request: CreateBucketRequest) async throws -> Bucket {
+    try await self.createBucket(request: request, options: .init())
+  }
+
+  public func createBucket(
+    request: CreateBucketRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> Bucket {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func listBuckets(request: ListBucketsRequest) async throws -> ListBucketsResponse {
+    try await self.listBuckets(request: request, options: .init())
+  }
+
+  public func listBuckets(
+    request: ListBucketsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> ListBucketsResponse {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func listBuckets(
+    byItem: ListBucketsRequest
+  ) throws -> any AsyncSequence<Bucket, Swift.Error> {
+    try self.listBuckets(byItem: byItem, options: .init())
+  }
+
+  public func listBuckets(
+    byItem: ListBucketsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<Bucket, Swift.Error> {
+    let listRpc = { (token: Swift.String) async throws -> ListBucketsResponse in
+      throw GoogleCloudGax.RequestError.unimplemented
+    }
+    return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
+  }
+
+  public func lockBucketRetentionPolicy(request: LockBucketRetentionPolicyRequest) async throws
+    -> Bucket
+  {
+    try await self.lockBucketRetentionPolicy(request: request, options: .init())
+  }
+
+  public func lockBucketRetentionPolicy(
+    request: LockBucketRetentionPolicyRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> Bucket {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func updateBucket(request: UpdateBucketRequest) async throws -> Bucket {
+    try await self.updateBucket(request: request, options: .init())
+  }
+
+  public func updateBucket(
+    request: UpdateBucketRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> Bucket {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func composeObject(request: ComposeObjectRequest) async throws -> Object {
+    try await self.composeObject(request: request, options: .init())
+  }
+
+  public func composeObject(
+    request: ComposeObjectRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> Object {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func deleteObject(request: DeleteObjectRequest) async throws {
+    try await self.deleteObject(request: request, options: .init())
+  }
+
+  public func deleteObject(
+    request: DeleteObjectRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func restoreObject(request: RestoreObjectRequest) async throws -> Object {
+    try await self.restoreObject(request: request, options: .init())
+  }
+
+  public func restoreObject(
+    request: RestoreObjectRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> Object {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func getObject(request: GetObjectRequest) async throws -> Object {
+    try await self.getObject(request: request, options: .init())
+  }
+
+  public func getObject(
+    request: GetObjectRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> Object {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func updateObject(request: UpdateObjectRequest) async throws -> Object {
+    try await self.updateObject(request: request, options: .init())
+  }
+
+  public func updateObject(
+    request: UpdateObjectRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> Object {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func listObjects(request: ListObjectsRequest) async throws -> ListObjectsResponse {
+    try await self.listObjects(request: request, options: .init())
+  }
+
+  public func listObjects(
+    request: ListObjectsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> ListObjectsResponse {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func listObjects(
+    byItem: ListObjectsRequest
+  ) throws -> any AsyncSequence<Object, Swift.Error> {
+    try self.listObjects(byItem: byItem, options: .init())
+  }
+
+  public func listObjects(
+    byItem: ListObjectsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<Object, Swift.Error> {
+    let listRpc = { (token: Swift.String) async throws -> ListObjectsResponse in
+      throw GoogleCloudGax.RequestError.unimplemented
+    }
+    return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
+  }
+
+  public func rewriteObject(request: RewriteObjectRequest) async throws -> RewriteResponse {
+    try await self.rewriteObject(request: request, options: .init())
+  }
+
+  public func rewriteObject(
+    request: RewriteObjectRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> RewriteResponse {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func moveObject(request: MoveObjectRequest) async throws -> Object {
+    try await self.moveObject(request: request, options: .init())
+  }
+
+  public func moveObject(
+    request: MoveObjectRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> Object {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func createFolder(request: CreateFolderRequest) async throws -> Folder {
+    try await self.createFolder(request: request, options: .init())
+  }
+
+  public func createFolder(
+    request: CreateFolderRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> Folder {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func deleteFolder(request: DeleteFolderRequest) async throws {
+    try await self.deleteFolder(request: request, options: .init())
+  }
+
+  public func deleteFolder(
+    request: DeleteFolderRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func getFolder(request: GetFolderRequest) async throws -> Folder {
+    try await self.getFolder(request: request, options: .init())
+  }
+
+  public func getFolder(
+    request: GetFolderRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> Folder {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func listFolders(request: ListFoldersRequest) async throws -> ListFoldersResponse {
+    try await self.listFolders(request: request, options: .init())
+  }
+
+  public func listFolders(
+    request: ListFoldersRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> ListFoldersResponse {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func listFolders(
+    byItem: ListFoldersRequest
+  ) throws -> any AsyncSequence<Folder, Swift.Error> {
+    try self.listFolders(byItem: byItem, options: .init())
+  }
+
+  public func listFolders(
+    byItem: ListFoldersRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<Folder, Swift.Error> {
+    let listRpc = { (token: Swift.String) async throws -> ListFoldersResponse in
+      throw GoogleCloudGax.RequestError.unimplemented
+    }
+    return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
+  }
+
+  public func renameFolder(request: RenameFolderRequest) async throws -> GoogleLongRunning.Operation
+  {
+    try await self.renameFolder(request: request, options: .init())
+  }
+
+  public func renameFolder(
+    request: RenameFolderRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func deleteFolderRecursive(request: DeleteFolderRecursiveRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.deleteFolderRecursive(request: request, options: .init())
+  }
+
+  public func deleteFolderRecursive(
+    request: DeleteFolderRecursiveRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func getStorageLayout(request: GetStorageLayoutRequest) async throws -> StorageLayout {
+    try await self.getStorageLayout(request: request, options: .init())
+  }
+
+  public func getStorageLayout(
+    request: GetStorageLayoutRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> StorageLayout {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func createManagedFolder(request: CreateManagedFolderRequest) async throws -> ManagedFolder
+  {
+    try await self.createManagedFolder(request: request, options: .init())
+  }
+
+  public func createManagedFolder(
+    request: CreateManagedFolderRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> ManagedFolder {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func deleteManagedFolder(request: DeleteManagedFolderRequest) async throws {
+    try await self.deleteManagedFolder(request: request, options: .init())
+  }
+
+  public func deleteManagedFolder(
+    request: DeleteManagedFolderRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func getManagedFolder(request: GetManagedFolderRequest) async throws -> ManagedFolder {
+    try await self.getManagedFolder(request: request, options: .init())
+  }
+
+  public func getManagedFolder(
+    request: GetManagedFolderRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> ManagedFolder {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func listManagedFolders(request: ListManagedFoldersRequest) async throws
+    -> ListManagedFoldersResponse
+  {
+    try await self.listManagedFolders(request: request, options: .init())
+  }
+
+  public func listManagedFolders(
+    request: ListManagedFoldersRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> ListManagedFoldersResponse {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func listManagedFolders(
+    byItem: ListManagedFoldersRequest
+  ) throws -> any AsyncSequence<ManagedFolder, Swift.Error> {
+    try self.listManagedFolders(byItem: byItem, options: .init())
+  }
+
+  public func listManagedFolders(
+    byItem: ListManagedFoldersRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<ManagedFolder, Swift.Error> {
+    let listRpc = { (token: Swift.String) async throws -> ListManagedFoldersResponse in
+      throw GoogleCloudGax.RequestError.unimplemented
+    }
+    return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
+  }
+
+  public func updateManagedFolder(request: UpdateManagedFolderRequest) async throws -> ManagedFolder
+  {
+    try await self.updateManagedFolder(request: request, options: .init())
+  }
+
+  public func updateManagedFolder(
+    request: UpdateManagedFolderRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> ManagedFolder {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func createAnywhereCache(request: CreateAnywhereCacheRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.createAnywhereCache(request: request, options: .init())
+  }
+
+  public func createAnywhereCache(
+    request: CreateAnywhereCacheRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func updateAnywhereCache(request: UpdateAnywhereCacheRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.updateAnywhereCache(request: request, options: .init())
+  }
+
+  public func updateAnywhereCache(
+    request: UpdateAnywhereCacheRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func disableAnywhereCache(request: DisableAnywhereCacheRequest) async throws
+    -> AnywhereCache
+  {
+    try await self.disableAnywhereCache(request: request, options: .init())
+  }
+
+  public func disableAnywhereCache(
+    request: DisableAnywhereCacheRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> AnywhereCache {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func pauseAnywhereCache(request: PauseAnywhereCacheRequest) async throws -> AnywhereCache {
+    try await self.pauseAnywhereCache(request: request, options: .init())
+  }
+
+  public func pauseAnywhereCache(
+    request: PauseAnywhereCacheRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> AnywhereCache {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func resumeAnywhereCache(request: ResumeAnywhereCacheRequest) async throws -> AnywhereCache
+  {
+    try await self.resumeAnywhereCache(request: request, options: .init())
+  }
+
+  public func resumeAnywhereCache(
+    request: ResumeAnywhereCacheRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> AnywhereCache {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func getAnywhereCache(request: GetAnywhereCacheRequest) async throws -> AnywhereCache {
+    try await self.getAnywhereCache(request: request, options: .init())
+  }
+
+  public func getAnywhereCache(
+    request: GetAnywhereCacheRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> AnywhereCache {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func listAnywhereCaches(request: ListAnywhereCachesRequest) async throws
+    -> ListAnywhereCachesResponse
+  {
+    try await self.listAnywhereCaches(request: request, options: .init())
+  }
+
+  public func listAnywhereCaches(
+    request: ListAnywhereCachesRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> ListAnywhereCachesResponse {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func listAnywhereCaches(
+    byItem: ListAnywhereCachesRequest
+  ) throws -> any AsyncSequence<AnywhereCache, Swift.Error> {
+    try self.listAnywhereCaches(byItem: byItem, options: .init())
+  }
+
+  public func listAnywhereCaches(
+    byItem: ListAnywhereCachesRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<AnywhereCache, Swift.Error> {
+    let listRpc = { (token: Swift.String) async throws -> ListAnywhereCachesResponse in
+      throw GoogleCloudGax.RequestError.unimplemented
+    }
+    return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
+  }
+
+  public func createRapidCache(request: CreateRapidCacheRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.createRapidCache(request: request, options: .init())
+  }
+
+  public func createRapidCache(
+    request: CreateRapidCacheRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func updateRapidCache(request: UpdateRapidCacheRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.updateRapidCache(request: request, options: .init())
+  }
+
+  public func updateRapidCache(
+    request: UpdateRapidCacheRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func disableRapidCache(request: DisableRapidCacheRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.disableRapidCache(request: request, options: .init())
+  }
+
+  public func disableRapidCache(
+    request: DisableRapidCacheRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func getRapidCache(request: GetRapidCacheRequest) async throws -> RapidCache {
+    try await self.getRapidCache(request: request, options: .init())
+  }
+
+  public func getRapidCache(
+    request: GetRapidCacheRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> RapidCache {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func listRapidCaches(request: ListRapidCachesRequest) async throws
+    -> ListRapidCachesResponse
+  {
+    try await self.listRapidCaches(request: request, options: .init())
+  }
+
+  public func listRapidCaches(
+    request: ListRapidCachesRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> ListRapidCachesResponse {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func listRapidCaches(
+    byItem: ListRapidCachesRequest
+  ) throws -> any AsyncSequence<RapidCache, Swift.Error> {
+    try self.listRapidCaches(byItem: byItem, options: .init())
+  }
+
+  public func listRapidCaches(
+    byItem: ListRapidCachesRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<RapidCache, Swift.Error> {
+    let listRpc = { (token: Swift.String) async throws -> ListRapidCachesResponse in
+      throw GoogleCloudGax.RequestError.unimplemented
+    }
+    return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
+  }
+
+  public func getProjectIntelligenceConfig(request: GetProjectIntelligenceConfigRequest)
+    async throws -> IntelligenceConfig
+  {
+    try await self.getProjectIntelligenceConfig(request: request, options: .init())
+  }
+
+  public func getProjectIntelligenceConfig(
+    request: GetProjectIntelligenceConfigRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> IntelligenceConfig {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func updateProjectIntelligenceConfig(request: UpdateProjectIntelligenceConfigRequest)
+    async throws -> IntelligenceConfig
+  {
+    try await self.updateProjectIntelligenceConfig(request: request, options: .init())
+  }
+
+  public func updateProjectIntelligenceConfig(
+    request: UpdateProjectIntelligenceConfigRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> IntelligenceConfig {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func getFolderIntelligenceConfig(request: GetFolderIntelligenceConfigRequest) async throws
+    -> IntelligenceConfig
+  {
+    try await self.getFolderIntelligenceConfig(request: request, options: .init())
+  }
+
+  public func getFolderIntelligenceConfig(
+    request: GetFolderIntelligenceConfigRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> IntelligenceConfig {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func updateFolderIntelligenceConfig(request: UpdateFolderIntelligenceConfigRequest)
+    async throws -> IntelligenceConfig
+  {
+    try await self.updateFolderIntelligenceConfig(request: request, options: .init())
+  }
+
+  public func updateFolderIntelligenceConfig(
+    request: UpdateFolderIntelligenceConfigRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> IntelligenceConfig {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func getOrganizationIntelligenceConfig(request: GetOrganizationIntelligenceConfigRequest)
+    async throws -> IntelligenceConfig
+  {
+    try await self.getOrganizationIntelligenceConfig(request: request, options: .init())
+  }
+
+  public func getOrganizationIntelligenceConfig(
+    request: GetOrganizationIntelligenceConfigRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> IntelligenceConfig {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func updateOrganizationIntelligenceConfig(
+    request: UpdateOrganizationIntelligenceConfigRequest
+  ) async throws -> IntelligenceConfig {
+    try await self.updateOrganizationIntelligenceConfig(request: request, options: .init())
+  }
+
+  public func updateOrganizationIntelligenceConfig(
+    request: UpdateOrganizationIntelligenceConfigRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> IntelligenceConfig {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
+    -> GoogleIAMV1.Policy
+  {
+    try await self.getIamPolicy(request: request, options: .init())
+  }
+
+  public func getIamPolicy(
+    request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleIAMV1.Policy {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
+    -> GoogleIAMV1.Policy
+  {
+    try await self.setIamPolicy(request: request, options: .init())
+  }
+
+  public func setIamPolicy(
+    request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleIAMV1.Policy {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
+    -> GoogleIAMV1.TestIamPermissionsResponse
+  {
+    try await self.testIamPermissions(request: request, options: .init())
+  }
+
+  public func testIamPermissions(
+    request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func getIntelligenceFinding(request: GetIntelligenceFindingRequest) async throws
+    -> IntelligenceFinding
+  {
+    try await self.getIntelligenceFinding(request: request, options: .init())
+  }
+
+  public func getIntelligenceFinding(
+    request: GetIntelligenceFindingRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> IntelligenceFinding {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func listIntelligenceFindings(request: ListIntelligenceFindingsRequest) async throws
+    -> ListIntelligenceFindingsResponse
+  {
+    try await self.listIntelligenceFindings(request: request, options: .init())
+  }
+
+  public func listIntelligenceFindings(
+    request: ListIntelligenceFindingsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> ListIntelligenceFindingsResponse {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func listIntelligenceFindings(
+    byItem: ListIntelligenceFindingsRequest
+  ) throws -> any AsyncSequence<IntelligenceFinding, Swift.Error> {
+    try self.listIntelligenceFindings(byItem: byItem, options: .init())
+  }
+
+  public func listIntelligenceFindings(
+    byItem: ListIntelligenceFindingsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<IntelligenceFinding, Swift.Error> {
+    let listRpc = { (token: Swift.String) async throws -> ListIntelligenceFindingsResponse in
+      throw GoogleCloudGax.RequestError.unimplemented
+    }
+    return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
+  }
+
+  public func summarizeIntelligenceFindings(request: SummarizeIntelligenceFindingsRequest)
+    async throws -> SummarizeIntelligenceFindingsResponse
+  {
+    try await self.summarizeIntelligenceFindings(request: request, options: .init())
+  }
+
+  public func summarizeIntelligenceFindings(
+    request: SummarizeIntelligenceFindingsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> SummarizeIntelligenceFindingsResponse {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func summarizeIntelligenceFindings(
+    byItem: SummarizeIntelligenceFindingsRequest
+  ) throws -> any AsyncSequence<FindingSummary, Swift.Error> {
+    try self.summarizeIntelligenceFindings(byItem: byItem, options: .init())
+  }
+
+  public func summarizeIntelligenceFindings(
+    byItem: SummarizeIntelligenceFindingsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<FindingSummary, Swift.Error> {
+    let listRpc = { (token: Swift.String) async throws -> SummarizeIntelligenceFindingsResponse in
+      throw GoogleCloudGax.RequestError.unimplemented
+    }
+    return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
+  }
+
+  public func getIntelligenceFindingRevision(request: GetIntelligenceFindingRevisionRequest)
+    async throws -> IntelligenceFindingRevision
+  {
+    try await self.getIntelligenceFindingRevision(request: request, options: .init())
+  }
+
+  public func getIntelligenceFindingRevision(
+    request: GetIntelligenceFindingRevisionRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> IntelligenceFindingRevision {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func listIntelligenceFindingRevisions(request: ListIntelligenceFindingRevisionsRequest)
+    async throws -> ListIntelligenceFindingRevisionsResponse
+  {
+    try await self.listIntelligenceFindingRevisions(request: request, options: .init())
+  }
+
+  public func listIntelligenceFindingRevisions(
+    request: ListIntelligenceFindingRevisionsRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> ListIntelligenceFindingRevisionsResponse {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func listIntelligenceFindingRevisions(
+    byItem: ListIntelligenceFindingRevisionsRequest
+  ) throws -> any AsyncSequence<IntelligenceFindingRevision, Swift.Error> {
+    try self.listIntelligenceFindingRevisions(byItem: byItem, options: .init())
+  }
+
+  public func listIntelligenceFindingRevisions(
+    byItem: ListIntelligenceFindingRevisionsRequest, options: GoogleCloudGax.RequestOptions
+  ) throws -> any AsyncSequence<IntelligenceFindingRevision, Swift.Error> {
+    let listRpc = {
+      (token: Swift.String) async throws -> ListIntelligenceFindingRevisionsResponse in
+      throw GoogleCloudGax.RequestError.unimplemented
+    }
+    return GoogleCloudGax.PaginatedResponseSequence(listRpc: listRpc)
+  }
+
+  public func viewObjectFullContext(request: ViewObjectFullContextRequest) async throws
+    -> ObjectFullContext
+  {
+    try await self.viewObjectFullContext(request: request, options: .init())
+  }
+
+  public func viewObjectFullContext(
+    request: ViewObjectFullContextRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> ObjectFullContext {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
+
+  public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
+    -> GoogleLongRunning.Operation
+  {
+    try await self.getOperation(request: request, options: .init())
+  }
+
+  public func getOperation(
+    request: GoogleLongRunning.GetOperationRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> GoogleLongRunning.Operation {
+    throw GoogleCloudGax.RequestError.unimplemented
+  }
 }

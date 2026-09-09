@@ -29,7 +29,7 @@ public func createBucketTurboReplication(
           bucket.location = "NAM4"
           bucket.rpo = "ASYNC_TURBO"
         }
-      }, options: .init())
+      })
   print("successfully created bucket \(bucket)")
 }
 // [END storage_create_bucket_turbo_replication]

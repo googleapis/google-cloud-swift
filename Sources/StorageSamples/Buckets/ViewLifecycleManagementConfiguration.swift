@@ -21,8 +21,7 @@ public func viewLifecycleManagementConfiguration(
   let bucket = try await client.getBucket(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)"
-    },
-    options: .init()
+    }
   )
   print("Lifecycle rules for bucket \(bucketId): \(String(describing: bucket.lifecycle))")
 }

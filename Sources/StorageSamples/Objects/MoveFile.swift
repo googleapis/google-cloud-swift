@@ -33,8 +33,7 @@ public func moveFile(
         if !token.isEmpty {
           $0.rewriteToken = token
         }
-      },
-      options: .init()
+      }
     )
     token = response.rewriteToken
   } while !response.done
@@ -43,8 +42,7 @@ public func moveFile(
     request: .init().with {
       $0.bucket = "projects/_/buckets/\(sourceBucketId)"
       $0.object = sourceName
-    },
-    options: .init()
+    }
   )
 
   print(

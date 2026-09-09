@@ -36,8 +36,7 @@ public func runObjectSamples(
       $0.bucket = .init().with {
         $0.project = "projects/\(projectId)"
       }
-    },
-    options: .init()
+    }
   )
 
   let sampleText = "how vexingly quick daft zebras jump\n"
@@ -240,8 +239,7 @@ public func runObjectSamples(
           bucket.project = "projects/\(projectId)"
           bucket.location = "US-CENTRAL1"
         }
-      },
-      options: .init()
+      }
     )
     let kmsKey =
       "projects/\(projectId)/locations/us-central1/keyRings/\(kmsRing)/cryptoKeys/storage-examples"
@@ -297,8 +295,7 @@ public func runObjectSamples(
           objRetention.enabled = true
         }
       }
-    },
-    options: .init()
+    }
   )
 
   _ = try await dataClient.upload(

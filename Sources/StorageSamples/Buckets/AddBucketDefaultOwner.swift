@@ -21,8 +21,7 @@ public func addBucketDefaultOwner(
   let bucket = try await client.getBucket(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)"
-    },
-    options: .init()
+    }
   )
   var defaultObjectAcl = bucket.defaultObjectAcl
   let entity = "user-\(userEmail)"
@@ -43,8 +42,7 @@ public func addBucketDefaultOwner(
       }
       $0.ifMetagenerationMatch = bucket.metageneration
       $0.updateMask = .init(paths: ["default_object_acl"])
-    },
-    options: .init()
+    }
   )
   print("Added \(userEmail) as a default owner on \(bucketId): \(updated)")
 }

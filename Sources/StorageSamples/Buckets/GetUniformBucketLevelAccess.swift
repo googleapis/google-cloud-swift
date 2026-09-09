@@ -21,8 +21,7 @@ public func getUniformBucketLevelAccess(
   let bucket = try await client.getBucket(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)"
-    },
-    options: .init()
+    }
   )
   if let ubla = bucket.iamConfig?.uniformBucketLevelAccess, ubla.enabled {
     print("Uniform bucket-level access is enabled for \(bucketId)")

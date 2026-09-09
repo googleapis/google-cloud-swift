@@ -21,8 +21,7 @@ public func deleteBucketDefaultKmsKey(
   let bucket = try await client.getBucket(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)"
-    },
-    options: .init()
+    }
   )
   let updated = try await client.updateBucket(
     request: .init().with {
@@ -31,8 +30,7 @@ public func deleteBucketDefaultKmsKey(
       }
       $0.ifMetagenerationMatch = bucket.metageneration
       $0.updateMask = .init(paths: ["encryption.default_kms_key"])
-    },
-    options: .init()
+    }
   )
   print(
     "successfully deleted default kms key for bucket \(bucketId): \(String(describing: updated.encryption))"

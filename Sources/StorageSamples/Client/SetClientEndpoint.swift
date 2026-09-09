@@ -40,8 +40,7 @@ public func setClientEndpoint(bucketId: String) async throws {
   let bucket = try await control.getBucket(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)"
-    },
-    options: .init()
+    }
   )
   print("Bucket \(bucketId) metadata is \(bucket)")
 }

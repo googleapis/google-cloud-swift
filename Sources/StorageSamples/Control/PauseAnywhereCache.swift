@@ -21,8 +21,7 @@ public func pauseAnywhereCache(
   let cache = try await client.pauseAnywhereCache(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)/anywhereCaches/\(cacheId)"
-    },
-    options: .init()
+    }
   )
   print("Paused anywhere cache: \(cache)")
 }

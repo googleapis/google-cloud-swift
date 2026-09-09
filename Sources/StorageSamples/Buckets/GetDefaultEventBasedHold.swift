@@ -21,8 +21,7 @@ public func getDefaultEventBasedHold(
   let bucket = try await client.getBucket(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)"
-    },
-    options: .init()
+    }
   )
   let status = bucket.defaultEventBasedHold ? "enabled" : "disabled"
   print("The default event-based hold for bucket \"\(bucketId)\" is \(status).")

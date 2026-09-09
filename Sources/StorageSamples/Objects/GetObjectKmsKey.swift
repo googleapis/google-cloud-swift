@@ -23,8 +23,7 @@ public func getObjectKmsKey(
     request: .init().with {
       $0.bucket = "projects/_/buckets/\(bucketId)"
       $0.object = objectName
-    },
-    options: .init()
+    }
   )
   print(
     "Object \(objectName) in bucket \(bucketId) has KMS key: \(object.kmsKey)"

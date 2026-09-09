@@ -21,8 +21,7 @@ public func enableVersioning(
   let bucket = try await client.getBucket(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)"
-    },
-    options: .init()
+    }
   )
   let _ = try await client.updateBucket(
     request: .init().with {
@@ -33,8 +32,7 @@ public func enableVersioning(
       }
       $0.ifMetagenerationMatch = bucket.metageneration
       $0.updateMask = .init(paths: ["versioning"])
-    },
-    options: .init()
+    }
   )
   print("Versioning enabled for bucket \(bucketId)")
 }

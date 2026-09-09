@@ -21,8 +21,7 @@ public func enableDefaultEventBasedHold(
   let bucket = try await client.getBucket(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)"
-    },
-    options: .init()
+    }
   )
   let _ = try await client.updateBucket(
     request: .init().with {
@@ -31,8 +30,7 @@ public func enableDefaultEventBasedHold(
       }
       $0.ifMetagenerationMatch = bucket.metageneration
       $0.updateMask = .init(paths: ["default_event_based_hold"])
-    },
-    options: .init()
+    }
   )
   print("Default event-based hold was enabled for \(bucketId)")
 }

@@ -23,8 +23,7 @@ public func getMetadata(
     request: .init().with {
       $0.bucket = "projects/_/buckets/\(bucketId)"
       $0.object = objectName
-    },
-    options: .init()
+    }
   )
 
   let objectMetadata = object.metadata

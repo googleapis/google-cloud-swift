@@ -22,8 +22,7 @@ public func managedFolderGet(
   let folder = try await client.getManagedFolder(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)/managedFolders/\(managedFolderId)"
-    },
-    options: .init()
+    }
   )
   print("successfully retrieved managed folder metadata: \(folder)")
 }

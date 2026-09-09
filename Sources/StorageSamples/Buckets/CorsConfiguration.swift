@@ -22,8 +22,7 @@ public func corsConfiguration(
   let bucket = try await client.getBucket(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)"
-    },
-    options: .init()
+    }
   )
   let _ = try await client.updateBucket(
     request: .init().with {
@@ -39,8 +38,7 @@ public func corsConfiguration(
       }
       $0.ifMetagenerationMatch = bucket.metageneration
       $0.updateMask = .init(paths: ["cors"])
-    },
-    options: .init()
+    }
   )
   print("Set CORS configuration on bucket \(bucketId)")
 }

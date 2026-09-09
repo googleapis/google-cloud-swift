@@ -21,8 +21,7 @@ public func managedFolderList(
   let folders = try client.listManagedFolders(
     byItem: .init().with {
       $0.parent = "projects/_/buckets/\(bucketId)"
-    },
-    options: .init()
+    }
   )
   print("listing managed folders in bucket \(bucketId)")
   for try await folder in folders {

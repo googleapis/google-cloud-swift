@@ -21,8 +21,7 @@ public func getAutoclass(
   let bucket = try await client.getBucket(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)"
-    },
-    options: .init()
+    }
   )
   print("Autoclass for bucket \(bucketId): \(String(describing: bucket.autoclass))")
 }

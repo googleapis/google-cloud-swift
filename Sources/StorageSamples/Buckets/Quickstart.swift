@@ -29,7 +29,7 @@ public func quickstart(
           bucket.storageClass = "STANDARD"
           bucket.location = "US"
         }
-      }, options: .init())
+      })
   print("successfully created bucket \(bucket)")
 }
 // [END storage_quickstart]

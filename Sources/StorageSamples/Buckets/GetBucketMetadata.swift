@@ -21,8 +21,7 @@ public func getBucketMetadata(
   let bucket = try await client.getBucket(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)"
-    },
-    options: .init()
+    }
   )
   print("Bucket \(bucketId) metadata: \(bucket)")
 }

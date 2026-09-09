@@ -22,8 +22,7 @@ public func listObjectContexts(
     byItem: .init().with {
       $0.parent = "projects/_/buckets/\(bucketId)"
       $0.filter = "contexts.\"example\":*"
-    },
-    options: .init()
+    }
   )
   print("listing objects in bucket \(bucketId) with a context named `example`")
   for try await object in objects {

@@ -23,8 +23,7 @@ public func setTemporaryHold(
     request: .init().with {
       $0.bucket = "projects/_/buckets/\(bucketId)"
       $0.object = objectName
-    },
-    options: .init()
+    }
   )
 
   let updated = try await client.updateObject(
@@ -34,8 +33,7 @@ public func setTemporaryHold(
       }
       $0.ifMetagenerationMatch = object.metageneration
       $0.updateMask = .init(paths: ["temporary_hold"])
-    },
-    options: .init()
+    }
   )
   print(
     "successfully set temporary hold on object \(objectName) in bucket \(bucketId): \(updated)"

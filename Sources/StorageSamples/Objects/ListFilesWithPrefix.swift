@@ -23,8 +23,7 @@ public func listFilesWithPrefix(
     byItem: .init().with {
       $0.parent = "projects/_/buckets/\(bucketId)"
       $0.prefix = prefix
-    },
-    options: .init()
+    }
   )
   print("listing objects in bucket \(bucketId) with prefix \(prefix)")
   for try await object in objects {

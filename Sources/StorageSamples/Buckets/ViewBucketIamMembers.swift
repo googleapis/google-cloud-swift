@@ -25,8 +25,7 @@ public func viewBucketIamMembers(
       $0.options = .init().with { options in
         options.requestedPolicyVersion = 3
       }
-    },
-    options: .init()
+    }
   )
   for binding in policy.bindings {
     print("Role: \(binding.role), Members: \(binding.members)")

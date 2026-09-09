@@ -23,8 +23,7 @@ public func setMetadata(
     request: .init().with {
       $0.bucket = "projects/_/buckets/\(bucketId)"
       $0.object = objectName
-    },
-    options: .init()
+    }
   )
 
   var metadata = object.metadata
@@ -37,8 +36,7 @@ public func setMetadata(
       }
       $0.ifMetagenerationMatch = object.metageneration
       $0.updateMask = .init(paths: ["metadata"])
-    },
-    options: .init()
+    }
   )
   print("successfully updated object \(objectName) in bucket \(bucketId): \(updated)")
 }

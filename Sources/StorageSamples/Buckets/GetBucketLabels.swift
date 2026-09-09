@@ -21,8 +21,7 @@ public func getBucketLabels(
   let bucket = try await client.getBucket(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)"
-    },
-    options: .init()
+    }
   )
   print("Labels for bucket \(bucketId): \(bucket.labels)")
 }

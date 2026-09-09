@@ -22,8 +22,7 @@ public func managedFolderDelete(
   try await client.deleteManagedFolder(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)/managedFolders/\(managedFolderId)"
-    },
-    options: .init()
+    }
   )
   print("folder successfully deleted")
 }

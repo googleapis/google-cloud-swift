@@ -21,15 +21,13 @@ public func lockRetentionPolicy(
   let bucket = try await client.getBucket(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)"
-    },
-    options: .init()
+    }
   )
   let locked = try await client.lockBucketRetentionPolicy(
     request: .init().with {
       $0.bucket = bucket.name
       $0.ifMetagenerationMatch = bucket.metageneration
-    },
-    options: .init()
+    }
   )
   print(
     "Retention policy for bucket \(bucketId) locked: \(String(describing: locked.retentionPolicy))"

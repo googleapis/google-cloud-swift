@@ -21,8 +21,7 @@ public func getRetentionPolicy(
   let bucket = try await client.getBucket(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)"
-    },
-    options: .init()
+    }
   )
   print("Retention policy for bucket \(bucketId): \(String(describing: bucket.retentionPolicy))")
 }

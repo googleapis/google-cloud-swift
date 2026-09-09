@@ -26,16 +26,14 @@ public func createAnywhereCache(
         cache.zone = zone
         cache.name = "projects/_/buckets/\(bucketId)/anywhereCaches/\(zone)"
       }
-    },
-    options: .init()
+    }
   )
   while !operation.done {
     try await Task.sleep(for: .seconds(1))
     operation = try await client.getOperation(
       request: .init().with {
         $0.name = operation.name
-      },
-      options: .init()
+      }
     )
   }
   print("Created anywhere cache: \(operation)")

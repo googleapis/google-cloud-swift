@@ -25,16 +25,14 @@ public func renameFolder(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)/folders/\(folderId)"
       $0.destinationFolderId = destinationFolderId
-    },
-    options: .init()
+    }
   )
   while !operation.done {
     try await Task.sleep(for: .seconds(1))
     operation = try await client.getOperation(
       request: .init().with {
         $0.name = operation.name
-      },
-      options: .init()
+      }
     )
   }
   print("folder successfully renamed \(operation)")

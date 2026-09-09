@@ -36,8 +36,7 @@ public func runFolderSamples(
           }
         }
       }
-    },
-    options: .init()
+    }
   )
 
   // Seed a folder for deleteFolder to delete
@@ -46,8 +45,7 @@ public func runFolderSamples(
       $0.parent = name
       $0.folderId = "deleted-folder-id"
       $0.folder = .init()
-    },
-    options: .init()
+    }
   )
 
   print("running createFolder() sample")

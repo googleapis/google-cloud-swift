@@ -24,8 +24,7 @@ public func addFileOwner(
       $0.bucket = "projects/_/buckets/\(bucketId)"
       $0.object = objectName
       $0.readMask = .init(paths: ["*"])
-    },
-    options: .init()
+    }
   )
   let want = "user-\(user)"
   var acl = object.acl
@@ -46,8 +45,7 @@ public func addFileOwner(
       }
       $0.ifMetagenerationMatch = object.metageneration
       $0.updateMask = .init(paths: ["acl"])
-    },
-    options: .init()
+    }
   )
   print("successfully updated object \(objectName) in bucket \(bucketId): \(updated)")
 }

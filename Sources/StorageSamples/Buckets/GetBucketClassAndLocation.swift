@@ -21,8 +21,7 @@ public func getBucketClassAndLocation(
   let bucket = try await client.getBucket(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)"
-    },
-    options: .init()
+    }
   )
   print(
     "Bucket \(bucketId) has default storage class \(bucket.storageClass) and is located in \(bucket.location)"

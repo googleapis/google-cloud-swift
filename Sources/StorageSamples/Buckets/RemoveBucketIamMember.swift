@@ -25,8 +25,7 @@ public func removeBucketIamMember(
       $0.options = .init().with { options in
         options.requestedPolicyVersion = 3
       }
-    },
-    options: .init()
+    }
   )
   if let index = policy.bindings.firstIndex(where: { $0.role == role && $0.condition == nil }) {
     policy.bindings[index].members.removeAll(where: { $0 == member })
@@ -36,8 +35,7 @@ public func removeBucketIamMember(
     request: .init().with {
       $0.resource = "projects/_/buckets/\(bucketId)"
       $0.policy = policy
-    },
-    options: .init()
+    }
   )
   print("Removed \(member) with role \(role) from \(bucketId): \(updated)")
 }

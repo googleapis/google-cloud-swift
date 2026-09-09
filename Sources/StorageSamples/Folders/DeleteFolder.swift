@@ -22,8 +22,7 @@ public func deleteFolder(
   try await client.deleteFolder(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)/folders/\(folderId)"
-    },
-    options: .init()
+    }
   )
   print("folder successfully deleted")
 }

@@ -24,8 +24,7 @@ public func deleteFileArchivedGeneration(
       $0.bucket = "projects/_/buckets/\(bucketId)"
       $0.object = objectName
       $0.generation = generation
-    },
-    options: .init()
+    }
   )
   print("successfully deleted object \(objectName) in bucket \(bucketId)")
 }

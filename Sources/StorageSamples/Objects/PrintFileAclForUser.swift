@@ -24,8 +24,7 @@ public func printFileAclForUser(
       $0.bucket = "projects/_/buckets/\(bucketId)"
       $0.object = objectName
       $0.readMask = .init(paths: ["*"])
-    },
-    options: .init()
+    }
   )
 
   // For other scopes see: https://cloud.google.com/storage/docs/access-control/lists#scopes

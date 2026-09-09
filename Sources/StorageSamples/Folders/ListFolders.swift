@@ -21,8 +21,7 @@ public func listFolders(
   let folders = try client.listFolders(
     byItem: .init().with {
       $0.parent = "projects/_/buckets/\(bucketId)"
-    },
-    options: .init()
+    }
   )
   print("listing folders in bucket \(bucketId)")
   for try await folder in folders {

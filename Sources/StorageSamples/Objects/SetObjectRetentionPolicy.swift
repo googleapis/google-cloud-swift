@@ -25,8 +25,7 @@ public func setObjectRetentionPolicy(
     request: .init().with {
       $0.bucket = "projects/_/buckets/\(bucketId)"
       $0.object = objectName
-    },
-    options: .init()
+    }
   )
 
   let retainUntilTime = try GoogleCloudWKT.Timestamp(
@@ -45,8 +44,7 @@ public func setObjectRetentionPolicy(
       $0.overrideUnlockedRetention = true
       $0.ifMetagenerationMatch = object.metageneration
       $0.updateMask = .init(paths: ["retention"])
-    },
-    options: .init()
+    }
   )
   print("successfully set retention for object \(objectName) in bucket \(bucketId): \(updated)")
 }

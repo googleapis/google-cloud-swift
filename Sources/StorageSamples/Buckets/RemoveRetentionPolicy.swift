@@ -21,8 +21,7 @@ public func removeRetentionPolicy(
   let bucket = try await client.getBucket(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)"
-    },
-    options: .init()
+    }
   )
   let _ = try await client.updateBucket(
     request: .init().with {
@@ -31,8 +30,7 @@ public func removeRetentionPolicy(
       }
       $0.ifMetagenerationMatch = bucket.metageneration
       $0.updateMask = .init(paths: ["retention_policy"])
-    },
-    options: .init()
+    }
   )
   print("Retention policy for bucket \(bucketId) removed")
 }

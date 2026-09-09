@@ -21,8 +21,7 @@ public func setBucketEncryptionEnforcement(
   let bucket = try await client.getBucket(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)"
-    },
-    options: .init()
+    }
   )
   let updated = try await client.updateBucket(
     request: .init().with {
@@ -35,8 +34,7 @@ public func setBucketEncryptionEnforcement(
       }
       $0.ifMetagenerationMatch = bucket.metageneration
       $0.updateMask = .init(paths: ["encryption.google_managed_encryption_enforcement_config"])
-    },
-    options: .init()
+    }
   )
   print(
     "Updated encryption enforcement on bucket \(bucketId): \(String(describing: updated.encryption))"

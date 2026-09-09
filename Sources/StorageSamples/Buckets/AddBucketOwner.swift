@@ -21,8 +21,7 @@ public func addBucketOwner(
   let bucket = try await client.getBucket(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)"
-    },
-    options: .init()
+    }
   )
   var acl = bucket.acl
   let entity = "user-\(userEmail)"
@@ -43,8 +42,7 @@ public func addBucketOwner(
       }
       $0.ifMetagenerationMatch = bucket.metageneration
       $0.updateMask = .init(paths: ["acl"])
-    },
-    options: .init()
+    }
   )
   print("Added \(userEmail) as an owner on \(bucketId): \(updated)")
 }

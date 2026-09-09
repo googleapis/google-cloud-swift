@@ -21,8 +21,7 @@ public func viewVersioningStatus(
   let bucket = try await client.getBucket(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)"
-    },
-    options: .init()
+    }
   )
   print("Versioning for bucket \(bucketId): \(String(describing: bucket.versioning))")
 }

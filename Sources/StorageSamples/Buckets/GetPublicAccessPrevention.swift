@@ -21,8 +21,7 @@ public func getPublicAccessPrevention(
   let bucket = try await client.getBucket(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)"
-    },
-    options: .init()
+    }
   )
   print(
     "Public access prevention is \(bucket.iamConfig?.publicAccessPrevention ?? "unspecified") for bucket \(bucketId)"

@@ -24,8 +24,7 @@ public func managedFolderCreate(
       $0.parent = "projects/_/buckets/\(bucketId)"
       $0.managedFolderId = managedFolderId
       $0.managedFolder = .init()
-    },
-    options: .init()
+    }
   )
   print("folder successfully created \(folder)")
 }

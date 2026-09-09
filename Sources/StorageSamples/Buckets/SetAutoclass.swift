@@ -21,8 +21,7 @@ public func setAutoclass(
   let bucket = try await client.getBucket(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)"
-    },
-    options: .init()
+    }
   )
   let updated = try await client.updateBucket(
     request: .init().with {
@@ -33,8 +32,7 @@ public func setAutoclass(
       }
       $0.ifMetagenerationMatch = bucket.metageneration
       $0.updateMask = .init(paths: ["autoclass"])
-    },
-    options: .init()
+    }
   )
   print(
     "Successfully updated autoclass for bucket \(bucketId): \(String(describing: updated.autoclass))"
