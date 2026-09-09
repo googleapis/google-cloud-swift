@@ -93,7 +93,7 @@ restore_package_dependencies() {
         fi
     done
     if [[ "${clean_dir}" == "." || "${clean_dir}" == "${REPO_ROOT}" ]]; then
-        git -C "${REPO_ROOT}" checkout -- Package.resolved 2>/dev/null || true
+        git -C "${REPO_ROOT}" restore Package.resolved || true
     fi
     if [[ -n "${flags+x}" ]]; then
         for p in "${_REMOVED_DISABLE_RESOLUTION[@]}"; do
