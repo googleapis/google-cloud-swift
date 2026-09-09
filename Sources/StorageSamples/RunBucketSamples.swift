@@ -45,6 +45,11 @@ public func runBucketSamples(
   print("running deleteBucket() sample")
   try await deleteBucket(client: client, projectId: projectId, bucketId: id)
 
+  let quickstartId = randomBucketId()
+  bucketNames.append("projects/_/buckets/\(quickstartId)")
+  print("running quickstart() sample")
+  try await quickstart(client: client, projectId: projectId, bucketId: quickstartId)
+
   let classLocationId = randomBucketId()
   bucketNames.append("projects/_/buckets/\(classLocationId)")
   print("running createBucketClassLocation() sample")
