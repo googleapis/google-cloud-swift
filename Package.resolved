@@ -1,5 +1,5 @@
 {
-  "originHash" : "8727ea49cf139bb16e15316f22ec5f91be56623b0948e2385cc27e0fa9bebde3",
+  "originHash" : "70b80e986d6d353fd31db86e4e290b15ada6a794d58bf76a57f62881c66625f4",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -170,6 +170,15 @@
       "state" : {
         "revision" : "2b34a4234e34b9512085ba39e58a4e4c501670af",
         "version" : "0.0.0-preview"
+      }
+    },
+    {
+      "identity" : "swift-google-cloud-location",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/googleapis/swift-google-cloud-location",
+      "state" : {
+        "revision" : "5a0e6481c0a13234bf29206f738092fddade2694",
+        "version" : "0.1.0-preview"
       }
     },
     {

@@ -25,9 +25,15 @@ let package = Package(
   ],
   dependencies: [
     .package(url: "https://github.com/googleapis/swift-google-auth", from: "0.0.0-preview"),
-    .package(path: "../../generated/swift-google-cloud-gkehub-configmanagement-v1"),
-    .package(path: "../../generated/swift-google-cloud-gkehub-multiclusteringress-v1"),
-    .package(path: "../../generated/swift-google-cloud-gkehub-rbacrolebindingactuation-v1"),
+    .package(
+      url: "https://github.com/googleapis/swift-google-cloud-gkehub-configmanagement-v1",
+      from: "0.1.0-preview"),
+    .package(
+      url: "https://github.com/googleapis/swift-google-cloud-gkehub-multiclusteringress-v1",
+      from: "0.1.0-preview"),
+    .package(
+      url: "https://github.com/googleapis/swift-google-cloud-gkehub-rbacrolebindingactuation-v1",
+      from: "0.1.0-preview"),
     .package(url: "https://github.com/googleapis/swift-google-gax", from: "0.0.0-preview"),
     .package(url: "https://github.com/googleapis/swift-google-wkt", from: "0.1.0-preview"),
     .package(url: "https://github.com/googleapis/swift-google-longrunning", from: "0.1.0-preview"),

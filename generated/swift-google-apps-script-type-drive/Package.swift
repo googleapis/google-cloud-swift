@@ -24,7 +24,8 @@ let package = Package(
     .library(name: "GoogleAppsScriptTypeDrive", targets: ["GoogleAppsScriptTypeDrive"])
   ],
   dependencies: [
-    .package(path: "../../generated/swift-google-apps-script-type"),
+    .package(
+      url: "https://github.com/googleapis/swift-google-apps-script-type", from: "0.0.0-preview"),
     .package(url: "https://github.com/googleapis/swift-google-wkt", from: "0.1.0-preview"),
   ],
   targets: [

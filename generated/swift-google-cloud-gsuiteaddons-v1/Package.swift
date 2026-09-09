@@ -24,7 +24,8 @@ let package = Package(
     .library(name: "GoogleCloudGSuiteAddOnsV1", targets: ["GoogleCloudGSuiteAddOnsV1"])
   ],
   dependencies: [
-    .package(path: "../../generated/swift-google-apps-script-type"),
+    .package(
+      url: "https://github.com/googleapis/swift-google-apps-script-type", from: "0.0.0-preview"),
     .package(path: "../../generated/swift-google-apps-script-type-calendar"),
     .package(path: "../../generated/swift-google-apps-script-type-docs"),
     .package(path: "../../generated/swift-google-apps-script-type-drive"),

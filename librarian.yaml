@@ -51,7 +51,7 @@ default:
         url: https://github.com/googleapis/swift-google-api
         api_package: google.api
       - name: GoogleAppsScriptType
-        path: generated/swift-google-apps-script-type
+        url: https://github.com/googleapis/swift-google-apps-script-type
         api_package: google.apps.script.type
       - name: GoogleAppsScriptTypeCalendar
         path: generated/swift-google-apps-script-type-calendar
@@ -84,13 +84,13 @@ default:
         path: generated/swift-google-cloud-documentai-v1
         api_package: google.cloud.documentai.v1
       - name: GoogleCloudGKEHubConfigManagementV1
-        path: generated/swift-google-cloud-gkehub-configmanagement-v1
+        url: https://github.com/googleapis/swift-google-cloud-gkehub-configmanagement-v1
         api_package: google.cloud.gkehub.configmanagement.v1
       - name: GoogleCloudGKEHubMultiClusterIngressV1
-        path: generated/swift-google-cloud-gkehub-multiclusteringress-v1
+        url: https://github.com/googleapis/swift-google-cloud-gkehub-multiclusteringress-v1
         api_package: google.cloud.gkehub.multiclusteringress.v1
       - name: GoogleCloudGKEHubRBACRoleBindingActuationV1
-        path: generated/swift-google-cloud-gkehub-rbacrolebindingactuation-v1
+        url: https://github.com/googleapis/swift-google-cloud-gkehub-rbacrolebindingactuation-v1
         api_package: google.cloud.gkehub.rbacrolebindingactuation.v1
       - name: GoogleCloudGax
         url: https://github.com/googleapis/swift-google-gax
@@ -100,22 +100,22 @@ default:
         path: generated/swift-google-cloud-kms-v1
         api_package: google.cloud.kms.v1
       - name: GoogleCloudLocation
-        path: generated/swift-google-cloud-location
+        url: https://github.com/googleapis/swift-google-cloud-location
         api_package: google.cloud.location
       - name: GoogleCloudLoggingType
-        path: generated/swift-google-logging-type
+        url: https://github.com/googleapis/swift-google-logging-type
         api_package: google.logging.type
       - name: GoogleCloudOSConfigV1
         path: generated/swift-google-cloud-osconfig-v1
         api_package: google.cloud.osconfig.v1
       - name: GoogleCloudOSLoginCommon
-        path: generated/swift-google-cloud-oslogin-common
+        url: https://github.com/googleapis/swift-google-cloud-oslogin-common
         api_package: google.cloud.oslogin.common
       - name: GoogleCloudOrgPolicyV1
-        path: generated/swift-google-cloud-orgpolicy-v1
+        url: https://github.com/googleapis/swift-google-cloud-orgpolicy-v1
         api_package: google.cloud.orgpolicy.v1
       - name: GoogleCloudOrgPolicyV2
-        path: generated/swift-google-cloud-orgpolicy-v2
+        url: https://github.com/googleapis/swift-google-cloud-orgpolicy-v2
         api_package: google.cloud.orgpolicy.v2
       - name: GoogleCloudRecommenderV1
         path: generated/swift-google-cloud-recommender-v1
@@ -134,7 +134,7 @@ default:
         path: generated/swift-google-iam-v2
         api_package: google.iam.v2
       - name: GoogleIdentityAccessContextManagerType
-        path: generated/swift-google-identity-accesscontextmanager-type
+        url: https://github.com/googleapis/swift-google-identity-accesscontextmanager-type
         api_package: google.identity.accesscontextmanager.type
       - name: GoogleIdentityAccessContextManagerV1
         path: generated/swift-google-identity-accesscontextmanager-v1

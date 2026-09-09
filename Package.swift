@@ -52,6 +52,7 @@ let package = Package(
     .package(url: "https://github.com/googleapis/swift-google-wkt", from: "0.1.0-preview"),
     .package(url: "https://github.com/googleapis/swift-google-type", from: "0.1.0-preview"),
     .package(url: "https://github.com/googleapis/swift-google-iam-v1", from: "0.1.0-preview"),
+    .package(url: "https://github.com/googleapis/swift-google-cloud-location", from: "0.1.0-preview"),
     .package(path: "./packages/swift-google-cloud-storage"),
     .package(path: "./guide"),
     .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
@@ -218,7 +219,6 @@ func selectGeneratedPackages() -> [Generated] {
 /// for each test.
 func generatedPackagesStatic() -> [Generated] {
   return [
-    .init(name: "swift-google-cloud-location", module: "GoogleCloudLocation"),
     .init(name: "swift-google-cloud-secretmanager-v1", module: "GoogleCloudSecretManagerV1"),
     .init(name: "swift-google-cloud-security-publicca-v1", module: "GoogleCloudSecurityPublicCAV1"),
     .init(name: "swift-google-cloud-workflows-v1", module: "GoogleCloudWorkflowsV1"),

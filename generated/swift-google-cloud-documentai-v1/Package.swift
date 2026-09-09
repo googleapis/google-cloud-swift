@@ -27,7 +27,8 @@ let package = Package(
     .package(url: "https://github.com/googleapis/swift-google-api", from: "0.1.0-preview"),
     .package(url: "https://github.com/googleapis/swift-google-auth", from: "0.0.0-preview"),
     .package(url: "https://github.com/googleapis/swift-google-gax", from: "0.0.0-preview"),
-    .package(path: "../../generated/swift-google-cloud-location"),
+    .package(
+      url: "https://github.com/googleapis/swift-google-cloud-location", from: "0.1.0-preview"),
     .package(url: "https://github.com/googleapis/swift-google-wkt", from: "0.1.0-preview"),
     .package(url: "https://github.com/googleapis/swift-google-longrunning", from: "0.1.0-preview"),
     .package(url: "https://github.com/googleapis/swift-google-rpc", from: "0.1.0-preview"),
