@@ -59,6 +59,8 @@ public func runObjectSamples(
   _ = try await dataClient.upload(sampleData, to: id, as: "object-to-copy")
   let archivedCopy = try await dataClient.upload(
     sampleData, to: id, as: "object-generation-to-copy")
+  let archivedDelete = try await dataClient.upload(
+    sampleData, to: id, as: "object-generation-to-delete")
 
   let uploadFilePath = FileManager.default.temporaryDirectory.appendingPathComponent(
     "upload-file-\(UUID().uuidString).txt"
@@ -102,8 +104,13 @@ public func runObjectSamples(
   try await listFiles(client: controlClient, bucketId: id)
   print("running listFilesWithPrefix() sample")
   try await listFilesWithPrefix(client: controlClient, bucketId: id)
+  print("running listFileArchivedGenerations() sample")
+  try await listFileArchivedGenerations(client: controlClient, bucketId: id)
   print("running deleteFile() sample")
   try await deleteFile(client: controlClient, bucketId: id)
+  print("running deleteFileArchivedGeneration() sample")
+  try await deleteFileArchivedGeneration(
+    client: controlClient, bucketId: id, generation: archivedDelete.generation)
 
   print("running setMetadata() sample")
   try await setMetadata(client: controlClient, bucketId: id)
