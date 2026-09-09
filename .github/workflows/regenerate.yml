@@ -40,18 +40,17 @@ jobs:
           # downloading two copies of librarian.
           version=$(sed -n 's/^version: *//p' librarian.yaml)
           # Make multiple download attempts to avoid download-induced flakes.
+          echo "==== Install librarian ${version} ===="
           go install github.com/googleapis/librarian/cmd/librarian@${version} ||
             (sleep 5 && go install github.com/googleapis/librarian/cmd/librarian@${version}) ||
             (sleep 10 && go install github.com/googleapis/librarian/cmd/librarian@${version})
           # Make multiple attempts as installing the tools may require downloads.
+          echo "==== Install tools using librarian ${version} ===="
           go run github.com/googleapis/librarian/cmd/librarian@${version} -v install ||
             (sleep 5 && go run github.com/googleapis/librarian/cmd/librarian@${version} -v install) ||
             (sleep 10 && go run github.com/googleapis/librarian/cmd/librarian@${version} -v install)
-          # Now get the version and regenerate the code.
-          V=$(go run github.com/googleapis/librarian/cmd/librarian@latest config get version)
-          go run github.com/googleapis/librarian/cmd/librarian@${V} version || \
-          go run github.com/googleapis/librarian/cmd/librarian@${V} version || \
-          go run github.com/googleapis/librarian/cmd/librarian@${V} version
-          go run github.com/googleapis/librarian/cmd/librarian@${V} generate --all
+          # Regenerate the code.
+          echo "==== Regenerate all the code using librarian ${version} ===="
+          go run github.com/googleapis/librarian/cmd/librarian@${version} generate --all
       - name: Detect drift
         run: git diff --exit-code
