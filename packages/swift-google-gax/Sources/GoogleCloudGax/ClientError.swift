@@ -25,4 +25,5 @@ public enum ClientError: Error {
   ///
   /// Review the configuration for your client.
   case invalidEndpoint(String)
+  case extra
 }
