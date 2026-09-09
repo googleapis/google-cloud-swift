@@ -52,7 +52,7 @@ import Testing
       "Missing authorization header in \(headers)"
     )
     #expect(
-      headers.contains { $0.0 == "X-Goog-User-Project" && $0.1 == "my-quota-project" },
+      headers.contains { $0.0 == "x-goog-user-project" && $0.1 == "my-quota-project" },
       "Missing quota project ID header in \(headers)"
     )
   }

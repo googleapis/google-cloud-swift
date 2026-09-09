@@ -182,7 +182,7 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
     let token = try await cache.token()
     var headers: AuthHeaders = [("Authorization", "\(token.tokenType) \(token.accessToken)")]
     if let project = workforcePoolUserProject {
-      headers.append(("X-Goog-User-Project", project))
+      headers.append(("x-goog-user-project", project))
     }
     return headers
   }

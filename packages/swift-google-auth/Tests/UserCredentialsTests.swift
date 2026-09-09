@@ -529,4 +529,89 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
       headers.contains { $0.0 == "Authorization" && $0.1 == "Bearer recovered-timeout-token" })
     #expect(attempts.getCount() == 2)
   }
+
+  @Test func headersIncludesQuotaProjectFromUserAccountData() async throws {
+    let responsePayload = Oauth2RefreshResponse(
+      accessToken: "mock-token",
+      expiresIn: 3600,
+      tokenType: "Bearer"
+    )
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    let encodedData = try encoder.encode(responsePayload)
+
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: encodedData))
+        )
+      }
+    ])
+
+    let data = UserAccountData(
+      type: "authorized_user",
+      clientId: "test-client-id",
+      clientSecret: "test-client-secret",
+      refreshToken: "test-refresh-token",
+      quotaProjectId: "user-json-quota-proj"
+    )
+
+    let source = try UserCredentials(
+      user: data,
+      httpClient: AuthHTTPClient(mock: mock),
+      retryConfiguration: .defaultConfiguration,
+      clock: TestClock()
+    )
+
+    let headers = try await source.headers()
+    #expect(
+      headers.contains { $0.0 == "x-goog-user-project" && $0.1 == "user-json-quota-proj" })
+  }
+
+  @Test func headersQuotaProjectParameterOverridesUserAccountData() async throws {
+    let responsePayload = Oauth2RefreshResponse(
+      accessToken: "mock-token",
+      expiresIn: 3600,
+      tokenType: "Bearer"
+    )
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    let encodedData = try encoder.encode(responsePayload)
+
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: encodedData))
+        )
+      }
+    ])
+
+    let data = UserAccountData(
+      type: "authorized_user",
+      clientId: "test-client-id",
+      clientSecret: "test-client-secret",
+      refreshToken: "test-refresh-token",
+      quotaProjectId: "user-json-quota-proj"
+    )
+
+    let source = try UserCredentials(
+      user: data,
+      quotaProjectID: "override-quota-proj",
+      httpClient: AuthHTTPClient(mock: mock),
+      retryConfiguration: .defaultConfiguration,
+      clock: TestClock()
+    )
+
+    let headers = try await source.headers()
+    #expect(
+      headers.contains { $0.0 == "x-goog-user-project" && $0.1 == "override-quota-proj" })
+    #expect(
+      !headers.contains { $0.0 == "x-goog-user-project" && $0.1 == "user-json-quota-proj" })
+  }
 }

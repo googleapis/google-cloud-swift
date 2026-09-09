@@ -56,7 +56,7 @@ struct MDSCredentials: CredentialsProvider, Sendable {
     let token = try await self.cache.token()
     var headers = [("Authorization", "Bearer \(token.accessToken)")]
     if let quota = self.provider.quotaProjectID {
-      headers.append(("X-Goog-User-Project", quota))
+      headers.append(("x-goog-user-project", quota))
     }
     return headers
   }

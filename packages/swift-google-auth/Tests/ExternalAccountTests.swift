@@ -257,7 +257,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       headers.contains {
         $0.0 == "Authorization" && $0.1 == "Bearer ya29.fake-sts-access-token"
       })
-    #expect(headers.contains { $0.0 == "X-Goog-User-Project" && $0.1 == "quota-project" })
+    #expect(headers.contains { $0.0 == "x-goog-user-project" && $0.1 == "quota-project" })
   }
 
   @Test("Programmatic credentials retry correctly on transient errors")

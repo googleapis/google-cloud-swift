@@ -46,6 +46,7 @@ typealias UserCredentials = UserCredentialsGeneric<ContinuousClock>
 struct UserCredentialsGeneric<C: Clock>: CredentialsProvider, Sendable
 where C.Instant.Duration == Duration {
   private let cache: TokenCache<C>
+  private let quotaProjectID: String?
   private let universeDomain: String?
 
   /// Dependency injection for tests
@@ -62,6 +63,7 @@ where C.Instant.Duration == Duration {
       throw CredentialsError.notSupported(
         "User accounts are not supported in custom universes: \(universeDomain)")
     }
+    self.quotaProjectID = quotaProjectID ?? user.quotaProjectId
     self.universeDomain = universeDomain
 
     // Resolve Token URI
@@ -92,7 +94,11 @@ where C.Instant.Duration == Duration {
 
   func headers() async throws -> AuthHeaders {
     let token = try await cache.token()
-    return [("Authorization", "\(token.tokenType) \(token.accessToken)")]
+    var headers: AuthHeaders = [("Authorization", "\(token.tokenType) \(token.accessToken)")]
+    if let quotaProjectID = quotaProjectID {
+      headers.append(("x-goog-user-project", quotaProjectID))
+    }
+    return headers
   }
 
   func universeDomain() async -> String? {
