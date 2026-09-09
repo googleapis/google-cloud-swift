@@ -112,6 +112,7 @@ extension StorageClient {
     {
       metadata.updated = parseHTTPDate(dateStr)
     }
+
     return metadata
   }
 
@@ -123,7 +124,6 @@ extension StorageClient {
       let trimmed = part.trimmingCharacters(in: .whitespaces)
       if trimmed.hasPrefix("crc32c=") {
         crc32c = String(trimmed.dropFirst("crc32c=".count))
-        throw ClientError.extra
       } else if trimmed.hasPrefix("md5=") {
         md5 = String(trimmed.dropFirst("md5=".count))
       }
