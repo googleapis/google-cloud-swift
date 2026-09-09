@@ -294,6 +294,13 @@ public func runObjectSamples(
   try await removeFileOwner(
     client: controlClient, bucketId: retentionAclBucketId, user: serviceAccount)
 
+  // Skip by default: internal Google policies prevent granting public access to objects in test projects.
+  if ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_TEST_ENABLE_PUBLIC_IAM"] == "true" {
+    print("running makePublic() sample")
+    try await paceObjectUpdates()
+    try await makePublic(client: controlClient, bucketId: retentionAclBucketId)
+  }
+
   print("running setObjectRetentionPolicy() sample")
   try await paceObjectUpdates()
   try await setObjectRetentionPolicy(
