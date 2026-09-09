@@ -164,6 +164,15 @@
       }
     },
     {
+      "identity" : "swift-google-api",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/googleapis/swift-google-api",
+      "state" : {
+        "revision" : "fd01e5b09f4adb9818b493aa10e52d90fc8ec34d",
+        "version" : "0.1.0-preview"
+      }
+    },
+    {
       "identity" : "swift-google-auth",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-auth",

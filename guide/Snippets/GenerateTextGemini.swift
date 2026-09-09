@@ -1,0 +1,62 @@
+// snippet.hide
+// Copyright 2026 Google LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// snippet.show
+// snippet.imports
+import Foundation
+import GoogleCloudAIPlatformV1
+// snippet.end
+
+// snippet.function [START swift_text_prompt]
+func sample(projectId: String) async throws {
+  // snippet.end [END swift_text_prompt]
+  // snippet.client [START swift_text_prompt_client]
+  let client = try PredictionServiceClient()
+  // snippet.end [END swift_text_prompt_client]
+
+  // snippet.model [START swift_text_prompt_model]
+  let model = "projects/\(projectId)/locations/global/publishers/google/models/gemini-3.8-flash"
+  // snippet.end [END swift_text_prompt_model]
+
+  // snippet.request [START swift_text_prompt_request]
+  let request = GenerateContentRequest().with {
+    $0.model = model
+    $0.contents = [
+      Content().with { content in
+        content.role = "user"
+        content.parts = [
+          Part().with { part in
+            part.data = .text(
+              "What's a good name for a flower shop that specializes in selling bouquets of dried flowers?"
+            )
+          }
+        ]
+      }
+    ]
+  }
+  let response = try await client.generateContent(request: request)
+  // snippet.end [END swift_text_prompt_request]
+  // snippet.response [START swift_text_prompt_response]
+  print("RESPONSE = \(response)")
+  // snippet.end [END swift_text_prompt_response]
+}
+
+// snippet.hide
+@main struct SnippetRunner {
+  static func main() async throws {
+    let projectId = CommandLine.arguments.dropFirst().first ?? "[placeholder]"
+    try await sample(projectId: projectId)
+  }
+}

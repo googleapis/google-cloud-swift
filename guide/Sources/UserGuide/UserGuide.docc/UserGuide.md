@@ -26,3 +26,4 @@ best-practices to retry transient RPC errors.
 - <doc:override-credentials>
 - <doc:long-running-operations>
 - <doc:pagination>
+- <doc:generate-text-using-the-vertex-ai-gemini-api>
