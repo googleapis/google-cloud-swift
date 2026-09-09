@@ -41,9 +41,11 @@ public final class _GRPCClient: Sendable {
   let client: GRPCClient<HTTP2ClientTransport.Posix>
   let connectionTask: Task<Void, any Error>
   let credentials: GoogleCloudAuth.Credentials
+  let quotaProject: String?
 
   public init(from options: ClientOptions, withDefaultEndpoint defaultEndpoint: String) throws {
     self.credentials = try options.credentials ?? GoogleCloudAuth.Credentials()
+    self.quotaProject = options.quotaProject
 
     let rawEndpoint = options.endpoint ?? defaultEndpoint
     let endpointWithScheme = rawEndpoint.contains("://") ? rawEndpoint : "https://\(rawEndpoint)"
@@ -103,10 +105,17 @@ public final class _GRPCClient: Sendable {
       callOptions.timeout = attemptTimeout
     }
 
+    let effectiveQuotaProject = options.quotaProject ?? self.quotaProject
     var metadata = Metadata()
     let authHeaders = try await self.credentials.headers()
     for (key, value) in authHeaders {
+      if effectiveQuotaProject != nil && key.lowercased() == _HeaderNames.userProject {
+        continue
+      }
       metadata.addString(value, forKey: key)
+    }
+    if let effectiveQuotaProject {
+      metadata.addString(effectiveQuotaProject, forKey: _HeaderNames.userProject)
     }
 
     metadata.addString(clientHeader, forKey: GoogleCloudGax._HeaderNames.apiClient)

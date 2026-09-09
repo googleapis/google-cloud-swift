@@ -80,4 +80,10 @@ public struct RequestOptions: Sendable {
   ///
   /// Without an override, the request uses the polling backoff policy configured in the client.
   public var pollingBackoffPolicy: (any BackoffPolicy)? = nil
+
+  /// Overrides the quota project for this request.
+  ///
+  /// When set, the `x-goog-user-project` header is sent with this value, overriding any client-level
+  /// or credential-level quota project.
+  public var quotaProject: String? = nil
 }

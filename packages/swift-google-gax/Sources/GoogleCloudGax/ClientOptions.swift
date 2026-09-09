@@ -58,6 +58,12 @@ public struct ClientOptions: Sendable {
   /// [Application Default Credentials]: https://docs.cloud.google.com/docs/authentication/client-libraries
   public var credentials: Credentials? = nil
 
+  /// Overrides the quota project for all requests sent by the client.
+  ///
+  /// When set, the `x-goog-user-project` header is sent with this value on every request,
+  /// overriding any credential-level quota project unless overridden by ``RequestOptions/quotaProject``.
+  public var quotaProject: String? = nil
+
   /// Enables logging and sets the logger.
   ///
   /// When logging is enabled, the client will log the full contents of each request, response, and

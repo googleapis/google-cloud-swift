@@ -620,6 +620,43 @@ import NIOHTTP1
     #expect(response.status == .ok)
   }
 
+  @Test func quotaProjectPrecedence() async throws {
+    let credentials = MockCredentials([
+      { [("Authorization", "Bearer token"), ("x-goog-user-project", "cred-project")] },
+      { [("Authorization", "Bearer token"), ("x-goog-user-project", "cred-project")] },
+      { [("Authorization", "Bearer token"), ("x-goog-user-project", "cred-project")] },
+    ])
+
+    let mock = MockHTTPClient { (request, _) in
+      HTTPClientResponse(
+        version: .http1_1,
+        status: .ok,
+        body: .bytes(.init(string: "{}"))
+      )
+    }
+
+    // 1. Credentials quota project used when neither client nor request options set quotaProject
+    let clientDefault = try _HTTPClient(
+      mock, endpoint: "http://localhost:8080", credentials: credentials)
+    let req1 = try await clientDefault.newRequest(path: "/test", query: [])
+    #expect(req1.headers[_HeaderNames.userProject] == ["cred-project"])
+
+    // 2. ClientOptions.quotaProject overrides credential header without duplication
+    let clientWithQuota = try _HTTPClient(
+      mock,
+      endpoint: "http://localhost:8080",
+      credentials: credentials,
+      quotaProject: "client-project"
+    )
+    let req2 = try await clientWithQuota.newRequest(path: "/test", query: [])
+    #expect(req2.headers[_HeaderNames.userProject] == ["client-project"])
+
+    // 3. RequestOptions.quotaProject overrides both ClientOptions.quotaProject and credential header
+    let reqOptions = RequestOptions().with { $0.quotaProject = "request-project" }
+    let req3 = try await clientWithQuota.newRequest(path: "/test", query: [], options: reqOptions)
+    #expect(req3.headers[_HeaderNames.userProject] == ["request-project"])
+  }
+
   /// A test response type.
   struct ResponseType: Codable, Equatable, Sendable {
     public let name: String

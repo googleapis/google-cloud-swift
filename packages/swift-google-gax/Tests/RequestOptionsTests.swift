@@ -22,12 +22,17 @@ import GoogleCloudGax
 
 @Suite struct RequestOptionsTests {
   @Test func then() {
-    let got = RequestOptions().with { $0.attemptTimeout = .seconds(3) }
+    let got = RequestOptions().with {
+      $0.attemptTimeout = .seconds(3)
+      $0.quotaProject = "my-quota-project"
+    }
     #expect(got.attemptTimeout == .seconds(3))
+    #expect(got.quotaProject == "my-quota-project")
   }
 
   @Test func defaults() {
     let got = RequestOptions()
     #expect(got.attemptTimeout == nil)
+    #expect(got.quotaProject == nil)
   }
 }

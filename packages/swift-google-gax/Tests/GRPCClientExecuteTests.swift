@@ -279,4 +279,87 @@ import Testing
       Issue.record("Expected RequestError, got \(error)")
     }
   }
+
+  @Test func executeQuotaProjectPrecedence() async throws {
+    actor MetadataCollector {
+      var userProjects: [String] = []
+      func record(_ values: [String]) {
+        userProjects = values
+      }
+    }
+    let collector = MetadataCollector()
+
+    struct InspectingEchoService: RegistrableRPCService {
+      let collector: MetadataCollector
+      func registerMethods<Transport: ServerTransport>(with router: inout RPCRouter<Transport>) {
+        router.registerHandler(
+          forMethod: MethodDescriptor(
+            service: ServiceDescriptor(package: "test", service: "Echo"),
+            method: "Echo"
+          ),
+          deserializer: ProtobufDeserializer<Google_Protobuf_Empty>(),
+          serializer: ProtobufSerializer<Google_Protobuf_Empty>()
+        ) { request, _ in
+          let values = request.metadata[stringValues: _HeaderNames.userProject].map { String($0) }
+          await collector.record(values)
+          return StreamingServerResponse(metadata: [:]) { writer in
+            try await writer.write(Google_Protobuf_Empty())
+            return [:]
+          }
+        }
+      }
+    }
+
+    let server = GRPCServer(
+      transport: .http2NIOPosix(
+        address: .ipv4(host: "127.0.0.1", port: 0),
+        transportSecurity: .plaintext
+      ),
+      services: [InspectingEchoService(collector: collector)]
+    )
+
+    try await withThrowingDiscardingTaskGroup { group in
+      group.addTask {
+        try await server.serve()
+      }
+
+      let listeningAddress = try await server.listeningAddress?.ipv4
+      guard let port = listeningAddress?.port else {
+        Issue.record("Failed to get listening port")
+        server.beginGracefulShutdown()
+        return
+      }
+
+      let endpoint = "http://127.0.0.1:\(port)"
+      var clientOptions = ClientOptions()
+      clientOptions.endpoint = endpoint
+      clientOptions.credentials = try Credentials(configuration: .anonymous)
+      clientOptions.quotaProject = "client-quota-proj"
+
+      let client = try _GRPCClient(from: clientOptions, withDefaultEndpoint: endpoint)
+      defer {
+        client.close()
+        server.beginGracefulShutdown()
+      }
+
+      // 1. Uses ClientOptions.quotaProject when RequestOptions.quotaProject is nil
+      let _: Google_Protobuf_Empty = try await client.execute(
+        path: "/test.Echo/Echo",
+        request: Google_Protobuf_Empty(),
+        options: RequestOptions(),
+        clientHeader: ""
+      )
+      #expect(await collector.userProjects == ["client-quota-proj"])
+
+      // 2. RequestOptions.quotaProject overrides ClientOptions.quotaProject
+      let requestOptions = RequestOptions().with { $0.quotaProject = "request-quota-proj" }
+      let _: Google_Protobuf_Empty = try await client.execute(
+        path: "/test.Echo/Echo",
+        request: Google_Protobuf_Empty(),
+        options: requestOptions,
+        clientHeader: ""
+      )
+      #expect(await collector.userProjects == ["request-quota-proj"])
+    }
+  }
 }

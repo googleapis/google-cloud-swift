@@ -24,12 +24,14 @@ import struct Logging.Logger
   let baseURL: URLComponents
   let credentials: any _CredentialsProtocol
   let logger: Logger?
+  let quotaProject: String?
   let inner: any _HTTPClientProtocol
 
   // Creates a new client.
   public init(from: ClientOptions, withDefaultEndpoint: String) throws {
     self.credentials = try from.credentials ?? GoogleCloudAuth.Credentials()
     self.logger = from.logger
+    self.quotaProject = from.quotaProject
     let endpoint = from.endpoint ?? withDefaultEndpoint
     self.baseURL = try Self.validateEndpoint(endpoint)
     self.inner = HTTPClientHolder()
@@ -40,10 +42,12 @@ import struct Logging.Logger
     _ inner: any _HTTPClientProtocol, endpoint: String,
     credentials: (any _CredentialsProtocol)? = nil,
     logger: Logging.Logger? = nil,
+    quotaProject: String? = nil
   ) throws {
     self.baseURL = try Self.validateEndpoint(endpoint)
     self.credentials = try credentials ?? GoogleCloudAuth.Credentials(configuration: .anonymous)
     self.logger = logger
+    self.quotaProject = quotaProject
     self.inner = inner
   }
 
@@ -64,7 +68,11 @@ import struct Logging.Logger
     return parsed
   }
 
-  public func newRequest(path: String, query: [URLQueryItem]) async throws -> _HTTPClientRequest {
+  public func newRequest(
+    path: String,
+    query: [URLQueryItem],
+    options: RequestOptions = .init()
+  ) async throws -> _HTTPClientRequest {
     var components = self.baseURL
     components.path = path
     if !query.isEmpty {
@@ -75,10 +83,17 @@ import struct Logging.Logger
     for (key, value) in headers {
       request.addHeader(name: key, value: value)
     }
+    if let effectiveQuotaProject = options.quotaProject ?? self.quotaProject {
+      request.setHeader(name: _HeaderNames.userProject, value: effectiveQuotaProject)
+    }
     return request
   }
 
-  public func newRequest(percentEncodedPath: String, query: [URLQueryItem]) async throws
+  public func newRequest(
+    percentEncodedPath: String,
+    query: [URLQueryItem],
+    options: RequestOptions = .init()
+  ) async throws
     -> _HTTPClientRequest
   {
     var components = self.baseURL
@@ -91,22 +106,34 @@ import struct Logging.Logger
     for (key, value) in headers {
       request.addHeader(name: key, value: value)
     }
+    if let effectiveQuotaProject = options.quotaProject ?? self.quotaProject {
+      request.setHeader(name: _HeaderNames.userProject, value: effectiveQuotaProject)
+    }
     return request
   }
 
-  public func newRequest(urlComponents: URLComponents) async throws -> _HTTPClientRequest {
+  public func newRequest(
+    urlComponents: URLComponents,
+    options: RequestOptions = .init()
+  ) async throws -> _HTTPClientRequest {
     var request = _HTTPClientRequest(self.inner, url: urlComponents)
     let headers = try await self.credentials.headers()
     for (key, value) in headers {
       request.addHeader(name: key, value: value)
     }
+    if let effectiveQuotaProject = options.quotaProject ?? self.quotaProject {
+      request.setHeader(name: _HeaderNames.userProject, value: effectiveQuotaProject)
+    }
     return request
   }
 
-  public func newRequest(uri: String) async throws -> _HTTPClientRequest {
+  public func newRequest(
+    uri: String,
+    options: RequestOptions = .init()
+  ) async throws -> _HTTPClientRequest {
     guard let components = URLComponents(string: uri) else {
       throw RequestError.binding("bad URL for uri=\(uri)")
     }
-    return try await newRequest(urlComponents: components)
+    return try await newRequest(urlComponents: components, options: options)
   }
 }
