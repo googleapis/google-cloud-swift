@@ -20,7 +20,6 @@ diff -u ci/gcb/scripts/{unit-tests,asan}.sh
 @@ -33,7 +33,6 @@
      -Xswiftc DeprecatedDeclaration
      --scratch-path "/workspace/.build-cache"
-     --build-path   "/workspace/.build"
 -    --sanitize=address
  )
  for dir in "${packages[@]}"; do

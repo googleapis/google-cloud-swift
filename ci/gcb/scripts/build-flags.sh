@@ -19,7 +19,6 @@ build_flags=(
     -Xswiftc -Wwarning
     -Xswiftc DeprecatedDeclaration
     --scratch-path "/workspace/.build-cache"
-    --build-path   "/workspace/.build"
     # Use the versions from `Package.resolved`.
     --disable-automatic-resolution
 )

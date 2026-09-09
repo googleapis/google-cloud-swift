@@ -50,14 +50,12 @@ edit_package_dependencies() {
     for item in "${_LOCAL_DEPENDENCIES[@]}"; do
         local dep_rel="${item%%:*}"
         local dep_name="${item##*:}"
-        if [[ "${clean_dir}" != "." && "${clean_dir}" != "${dep_rel}" && "${clean_dir}" != "${REPO_ROOT}/${dep_rel}" ]]; then
+        if [[ "${clean_dir}" != "${dep_rel}" && "${clean_dir}" != "${REPO_ROOT}/${dep_rel}" ]]; then
             swift package "${scratch_args[@]}" --package-path "${dir}" edit --path "${REPO_ROOT}/${dep_rel}" "${dep_name}" >/dev/null 2>&1 || true
         fi
     done
-    # SwiftPM's --disable-automatic-resolution flag is only valid for the root package
-    # where Package.resolved is tracked in git. Subpackages do not track Package.resolved
-    # and fail when automatic resolution is disabled.
-    if [[ "${clean_dir}" != "." && -n "${flags+x}" ]]; then
+    # SwiftPM requires automatic resolution when dependencies are in editable mode.
+    if [[ -n "${flags+x}" ]]; then
         local filtered_flags=()
         local had_flag=false
         for f in "${flags[@]}"; do
@@ -90,10 +88,13 @@ restore_package_dependencies() {
     for item in "${_LOCAL_DEPENDENCIES[@]}"; do
         local dep_rel="${item%%:*}"
         local dep_name="${item##*:}"
-        if [[ "${clean_dir}" != "." && "${clean_dir}" != "${dep_rel}" && "${clean_dir}" != "${REPO_ROOT}/${dep_rel}" ]]; then
+        if [[ "${clean_dir}" != "${dep_rel}" && "${clean_dir}" != "${REPO_ROOT}/${dep_rel}" ]]; then
             swift package "${scratch_args[@]}" --package-path "${dir}" unedit --force "${dep_name}" >/dev/null 2>&1 || true
         fi
     done
+    if [[ "${clean_dir}" == "." || "${clean_dir}" == "${REPO_ROOT}" ]]; then
+        git -C "${REPO_ROOT}" checkout -- Package.resolved 2>/dev/null || true
+    fi
     if [[ -n "${flags+x}" ]]; then
         for p in "${_REMOVED_DISABLE_RESOLUTION[@]}"; do
             if [[ "${p}" == "${dir}" ]]; then

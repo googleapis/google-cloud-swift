@@ -36,7 +36,6 @@ flags=(
     -Xswiftc -Wwarning
     -Xswiftc DeprecatedDeclaration
     --scratch-path "${REPO_ROOT}/.build-cache"
-    --build-path "${REPO_ROOT}/.build"
     # Use the versions from `Package.resolved`.
     --disable-automatic-resolution
 )

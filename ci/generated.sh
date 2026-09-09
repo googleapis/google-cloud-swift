@@ -36,6 +36,7 @@ flags=(
     -Xswiftc -warnings-as-errors
     -Xswiftc -Wwarning
     -Xswiftc DeprecatedDeclaration
+    --scratch-path "${REPO_ROOT}/.build-cache"
 )
 source "${SCRIPT_DIR}/package-dependencies.sh"
 
