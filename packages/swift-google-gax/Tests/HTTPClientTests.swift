@@ -633,9 +633,9 @@ import NIOHTTP1
     requestQuota: String?,
     expected: String
   ) async throws {
-    let credentials = MockCredentials {
-      [("Authorization", "Bearer token"), ("x-goog-user-project", "cred-project")]
-    }
+    let credentials = MockCredentials([
+      { [("Authorization", "Bearer token"), ("x-goog-user-project", "cred-project")] }
+    ])
     let mock = MockHTTPClient { (_, _) in
       HTTPClientResponse(
         version: .http1_1,
