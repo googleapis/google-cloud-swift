@@ -280,7 +280,21 @@ import Testing
     }
   }
 
-  @Test func executeQuotaProjectPrecedence() async throws {
+  @Test(arguments: [
+    // Uses ClientOptions.quotaProject when RequestOptions.quotaProject is nil
+    (clientQuota: "client-quota-proj", requestQuota: nil as String?, expected: "client-quota-proj"),
+    // RequestOptions.quotaProject overrides ClientOptions.quotaProject
+    (
+      clientQuota: "client-quota-proj",
+      requestQuota: "request-quota-proj",
+      expected: "request-quota-proj"
+    ),
+  ])
+  func executeQuotaProjectPrecedence(
+    clientQuota: String?,
+    requestQuota: String?,
+    expected: String
+  ) async throws {
     actor MetadataCollector {
       var userProjects: [String] = []
       func record(_ values: [String]) {
@@ -334,7 +348,7 @@ import Testing
       var clientOptions = ClientOptions()
       clientOptions.endpoint = endpoint
       clientOptions.credentials = try Credentials(configuration: .anonymous)
-      clientOptions.quotaProject = "client-quota-proj"
+      clientOptions.quotaProject = clientQuota
 
       let client = try _GRPCClient(from: clientOptions, withDefaultEndpoint: endpoint)
       defer {
@@ -342,24 +356,14 @@ import Testing
         server.beginGracefulShutdown()
       }
 
-      // 1. Uses ClientOptions.quotaProject when RequestOptions.quotaProject is nil
-      let _: Google_Protobuf_Empty = try await client.execute(
-        path: "/test.Echo/Echo",
-        request: Google_Protobuf_Empty(),
-        options: RequestOptions(),
-        clientHeader: ""
-      )
-      #expect(await collector.userProjects == ["client-quota-proj"])
-
-      // 2. RequestOptions.quotaProject overrides ClientOptions.quotaProject
-      let requestOptions = RequestOptions().with { $0.quotaProject = "request-quota-proj" }
+      let requestOptions = RequestOptions().with { $0.quotaProject = requestQuota }
       let _: Google_Protobuf_Empty = try await client.execute(
         path: "/test.Echo/Echo",
         request: Google_Protobuf_Empty(),
         options: requestOptions,
         clientHeader: ""
       )
-      #expect(await collector.userProjects == ["request-quota-proj"])
+      #expect(await collector.userProjects == [expected])
     }
   }
 }
