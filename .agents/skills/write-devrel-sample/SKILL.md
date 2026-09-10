@@ -111,7 +111,7 @@ Examples:
 
 ### Look for Swift samples in the documentation.
 
-Look at examples in the documentation (i.e. in `packages/<service>/Snippets/...`) for any
+Look at examples in the documentation (i.e. in `generated/<service>/Snippets/...` or `pkgs/<service>/Snippets/...`) for any
 interfaces you will use in the sample. If we find examples in the documentation,
 the sample you write should resemble it.
 

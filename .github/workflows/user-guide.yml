@@ -46,9 +46,9 @@ jobs:
             [GoogleCloudSecretManagerV1]=google-cloud-secretmanager-v1
           )
           mkdir -p .render
-          swift package edit --path $PWD/packages/swift-google-wkt  swift-google-wkt
-          swift package edit --path $PWD/packages/swift-google-auth swift-google-auth
-          swift package edit --path $PWD/packages/swift-google-gax  swift-google-gax
+          swift package edit --path $PWD/pkgs/swift-google-wkt  swift-google-wkt
+          swift package edit --path $PWD/pkgs/swift-google-auth swift-google-auth
+          swift package edit --path $PWD/pkgs/swift-google-gax  swift-google-gax
           for target in "${!targets[@]}"; do
             dir="${target[${target}]}"
             swift package \

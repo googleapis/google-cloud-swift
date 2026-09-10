@@ -72,7 +72,7 @@ swift test
 ## Run the unit tests for a specific package
 
 ```bash
-swift test --quiet --package-path packages/swift-google-gax
+swift test --quiet --package-path pkgs/swift-google-gax
 ```
 
 ## Sharing a build cache
@@ -91,7 +91,7 @@ alias stest='swift test --scratch-path $(git rev-parse --show-toplevel)/.build-c
 Then use these aliases to speed up testing:
 
 ```bash
-stest --package-path packages/swift-google-wkt
+stest --package-path pkgs/swift-google-wkt
 ```
 
 or to verify the generated code compiles:
@@ -113,9 +113,9 @@ Packages in this repository declare dependencies on `swift-google-auth` and
 `swift-google-wkt` via their published remote GitHub repository URLs (e.g.,
 `https://github.com/googleapis/swift-google-auth`).
 
-When developing locally and modifying code in `packages/swift-google-auth` or
-`packages/swift-google-wkt`, testing a dependent package (such as
-`packages/swift-google-gax`, `packages/swift-google-cloud-storage`, or any
+When developing locally and modifying code in `pkgs/swift-google-auth` or
+`pkgs/swift-google-wkt`, testing a dependent package (such as
+`pkgs/swift-google-gax`, `pkgs/swift-google-cloud-storage`, or any
 generated client library) will **not** automatically pick up your local changes.
 By default, SwiftPM resolves and builds against the remote git checkouts.
 
@@ -124,8 +124,8 @@ editable mode pointing to your local working directory:
 
 ```bash
 REPO_ROOT="$(git rev-parse --show-toplevel)"
-swift package --package-path packages/swift-google-gax edit \
-  --path "${REPO_ROOT}/packages/swift-google-auth" swift-google-auth
+swift package --package-path pkgs/swift-google-gax edit \
+  --path "${REPO_ROOT}/pkgs/swift-google-auth" swift-google-auth
 ```
 
 If you are using `--scratch-path` (such as via the `sbuild` / `stest` aliases),
@@ -133,21 +133,21 @@ pass the matching `--scratch-path` to the edit command:
 
 ```bash
 swift package --scratch-path "${REPO_ROOT}/.build-cache" \
-  --package-path packages/swift-google-gax edit \
-  --path "${REPO_ROOT}/packages/swift-google-auth" swift-google-auth
+  --package-path pkgs/swift-google-gax edit \
+  --path "${REPO_ROOT}/pkgs/swift-google-auth" swift-google-auth
 ```
 
 Once you have finished testing, restore the dependency back to the remote version:
 
 ```bash
-swift package --package-path packages/swift-google-gax unedit --force swift-google-auth
+swift package --package-path pkgs/swift-google-gax unedit --force swift-google-auth
 ```
 
 or with `--scratch-path` if used:
 
 ```bash
 swift package --scratch-path "${REPO_ROOT}/.build-cache" \
-  --package-path packages/swift-google-gax unedit --force swift-google-auth
+  --package-path pkgs/swift-google-gax unedit --force swift-google-auth
 ```
 
 > [!TIP]
@@ -267,7 +267,7 @@ env GOOGLE_CLOUD_PROJECT=${P_ID} \
   GOOGLE_CLOUD_SWIFT_TEST_BUCKET="${P_ID}-bucket" \
   GOOGLE_CLOUD_SWIFT_TEST_SERVICE_ACCOUNT=swift-sdk-test@${P_ID}.iam.gserviceaccount.com \
   GOOGLE_CLOUD_SWIFT_TEST_STORAGE_KMS_KEY_RING=us-central1 \
-  swift test --package-path packages/swift-google-cloud-storage
+  swift test --package-path pkgs/swift-google-cloud-storage
 ```
 
 ## Preview Documentation

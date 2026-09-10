@@ -19,7 +19,7 @@ import PackageDescription
 
 // The package file for the `google-cloud-swift` monorepo.
 //
-// This file is only used for development, each package in the `generated/*` and `packages/*`
+// This file is only used for development, each package in the `generated/*` and `pkgs/*`
 // subdirectories will have its own repository, this file will play no role in them.
 //
 // The file uses a helper function to create the full list of packages. The function returns a
@@ -54,7 +54,7 @@ let package = Package(
     .package(url: "https://github.com/googleapis/swift-google-iam-v1", from: "0.1.0-preview"),
     .package(
       url: "https://github.com/googleapis/swift-google-cloud-location", from: "0.1.0-preview"),
-    .package(path: "./packages/swift-google-cloud-storage"),
+    .package(path: "./pkgs/swift-google-cloud-storage"),
     .package(path: "./guide"),
     .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
     .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.5.0"),

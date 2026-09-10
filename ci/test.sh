@@ -29,7 +29,7 @@ count=0
 # macOS ships with Bash 3.x, which does not support readfile. Use a plain
 # assignment as a workaround, and set IFS to avoid breaking on spaces.
 IFS=$'\n'
-packages=($(git ls-files -- 'Package.swift' 'packages/*Package.swift' 'guide/*Package.swift' | xargs -I{} dirname {} | sort))
+packages=($(git ls-files -- 'Package.swift' 'pkgs/*Package.swift' 'guide/*Package.swift' | xargs -I{} dirname {} | sort))
 unset IFS
 flags=(
     -Xswiftc -warnings-as-errors

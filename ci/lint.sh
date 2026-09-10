@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Runs swift-format lint for every local package found under `packages/`.
+# Runs swift-format lint for every local package found under `pkgs/`.
 # New local packages are picked up automatically — no changes to this script
 # are required when adding one.
 #
@@ -33,7 +33,7 @@ if [[ "$1" == "push" ]]; then
     subset=(".")
 else
     subset=(
-        "packages"
+        "pkgs"
         "guide"
         "generated/swift-google-cloud-secretmanager-v1"
         "generated/swift-google-cloud-workflows-v1"

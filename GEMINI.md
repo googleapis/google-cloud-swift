@@ -16,17 +16,17 @@ This document outlines critical rules, coding standards, and workflow practices 
 ## Dependencies and Local Development
 
 - **Remote vs. Local Dependencies**: Packages in this repository declare dependencies on published remote GitHub URLs (`https://github.com/googleapis/...`): `swift-google-auth`, `swift-google-gax`, `swift-google-wkt`, `swift-google-api`, `swift-google-apps-script-type`, `swift-google-apps-script-type-calendar`, `swift-google-apps-script-type-docs`, `swift-google-apps-script-type-drive`, `swift-google-apps-script-type-gmail`, `swift-google-apps-script-type-sheets`, `swift-google-apps-script-type-slides`, `swift-google-cloud-common`, `swift-google-cloud-gkehub-configmanagement-v1`, `swift-google-cloud-gkehub-multiclusteringress-v1`, `swift-google-cloud-gkehub-rbacrolebindingactuation-v1`, `swift-google-cloud-location`, `swift-google-cloud-orgpolicy-v1`, `swift-google-cloud-orgpolicy-v2`, `swift-google-cloud-oslogin-common`, `swift-google-iam-v1`, `swift-google-identity-accesscontextmanager-type`, `swift-google-logging-type`, `swift-google-longrunning`, `swift-google-rpc`, `swift-google-rpc-context`, and `swift-google-type`.
-- **Testing Local Modifications (`swift package edit`)**: When making changes to `packages/*` or `generated/*`, dependent packages build against the remote git checkouts by default. To test dependent packages against your local changes, put the dependencies in editable mode:
+- **Testing Local Modifications (`swift package edit`)**: When making changes to `pkgs/*` or `generated/*`, dependent packages build against the remote git checkouts by default. To test dependent packages against your local changes, put the dependencies in editable mode:
   ```bash
   REPO_ROOT="$(git rev-parse --show-toplevel)"
-  swift package --package-path packages/${package} edit --path "${REPO_ROOT}/packages/${dependency}" ${dependency}
+  swift package --package-path pkgs/${package} edit --path "${REPO_ROOT}/pkgs/${dependency}" ${dependency}
   # For generated packages (e.g. swift-google-rpc, swift-google-type):
-  # swift package --package-path packages/${package} edit --path "${REPO_ROOT}/generated/${dependency}" ${dependency}
+  # swift package --package-path pkgs/${package} edit --path "${REPO_ROOT}/generated/${dependency}" ${dependency}
   ```
   If `--scratch-path` is used, pass the matching `--scratch-path` to the edit command.
 - **Restoring Dependencies (`swift package unedit`)**: Always restore dependencies back to remote git URLs after testing:
   ```bash
-  swift package --package-path packages/${package} unedit --force ${dependency}
+  swift package --package-path pkgs/${package} unedit --force ${dependency}
   ```
 - **Automated Validation**: Running `./ci/test.sh` automatically overrides dependencies with local working directories for all packages in the repository and restores them on exit via `ci/package-dependencies.sh`.
 
@@ -45,7 +45,7 @@ This document outlines critical rules, coding standards, and workflow practices 
 - **Test Organization**: Group all the unit tests for a class or struct under a `@Suite struct` structure, named for the struct or class under test.
 - **Targeted Testing**: Prefer testing packages individually instead of the entire monorepo tree to save build time. Use CI compiler flags to catch warnings early:
   ```bash
-  swift test -Xswiftc -warnings-as-errors --package-path packages/${package_name}
+  swift test -Xswiftc -warnings-as-errors --package-path pkgs/${package_name}
   ```
   If testing changes to `swift-google-auth` or `swift-google-wkt`, remember to put the dependency into edit mode first (see above) or run `ci/test.sh`.
 - **Global Validation**: To perform full validation on all packages (formatting, linting, test coverage), examine the workflow scripts in the `ci/` directory:

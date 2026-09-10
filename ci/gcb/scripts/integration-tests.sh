@@ -46,7 +46,7 @@ else
 fi
 restore_package_dependencies .
 
-for dir in packages/*; do
+for dir in pkgs/*; do
     [[ -f "${dir}/Package.swift" ]] || continue
     [[ -d "${dir}/Tests" ]] || continue
     count=$((count + 1))

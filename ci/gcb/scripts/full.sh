@@ -35,7 +35,7 @@ if [[ "${GCB_TRIGGER_NAME:-}" != gcb-pm-* ]]; then
     echo "--- Building a subset because this is a PR"
     # Add some standard packages.
     packages=('.')
-    mapfile -t always < <(find packages -type f -name 'Package.swift' | xargs -I{} dirname {} | sort)
+    mapfile -t always < <(find pkgs -type f -name 'Package.swift' | xargs -I{} dirname {} | sort)
     packages+=("${always[@]}")
     if [[ -d .git ]]; then
         git fetch --unshallow

@@ -21,9 +21,9 @@ _EDITED_PACKAGES=()
 _REMOVED_DISABLE_RESOLUTION=()
 
 _LOCAL_DEPENDENCIES=(
-    "packages/swift-google-auth:swift-google-auth"
-    "packages/swift-google-gax:swift-google-gax"
-    "packages/swift-google-wkt:swift-google-wkt"
+    "pkgs/swift-google-auth:swift-google-auth"
+    "pkgs/swift-google-gax:swift-google-gax"
+    "pkgs/swift-google-wkt:swift-google-wkt"
     "generated/swift-google-api:swift-google-api"
     "generated/swift-google-apps-script-type:swift-google-apps-script-type"
     "generated/swift-google-apps-script-type-calendar:swift-google-apps-script-type-calendar"
