@@ -30,10 +30,106 @@ import Testing
       (#"{"repeated": [4.2]        }"#, T().with { $0.repeated = [4.2] }),
       (#"{"map":      {}           }"#, T()),
       (#"{"map":      {"a": 4.2 }  }"#, T().with { $0.map = ["a": 4.2] }),
+      (#"{"singular": "Infinity"   }"#, T().with { $0.singular = .infinity }),
+      (#"{"singular": "-Infinity"  }"#, T().with { $0.singular = -.infinity }),
+      (
+        #"{"repeated": ["Infinity", "-Infinity"]}"#,
+        T().with { $0.repeated = [.infinity, -.infinity] }
+      ),
+      (#"{"map":      {"a": "Infinity"} }"#, T().with { $0.map = ["a": .infinity] }),
+      (#"{"map":      {"a": "-Infinity"} }"#, T().with { $0.map = ["a": -.infinity] }),
     ])
   func deserialize(input: String, want: T) throws {
     let decoder = _ProtoJSONDecoder()
     let got = try decoder.decode(T.self, from: Data(input.utf8))
     #expect(got == want)
+  }
+
+  @Test(
+    "FloatValue fields deserialize NaN",
+    arguments: [
+      (
+        #"{"singular": "NaN"        }"#,
+        { @Sendable (got: T) -> Float32? in got.singular }
+      ),
+      (
+        #"{"repeated": ["NaN"]      }"#,
+        { @Sendable (got: T) -> Float32? in got.repeated.first }
+      ),
+      (
+        #"{"map":      {"a": "NaN"} }"#,
+        { @Sendable (got: T) -> Float32? in got.map["a"] }
+      ),
+    ]
+  ) func deserializeNaN(input: String, value: @Sendable (T) -> Float32?) throws {
+    let decoder = _ProtoJSONDecoder()
+    let got = try decoder.decode(T.self, from: Data(input.utf8))
+    #expect(value(got).map({ $0.isNaN }) ?? false, "got=\(got)")
+  }
+
+  @Test(
+    "FloatValue fields serialize",
+    arguments: [
+      (
+        #"{"map":{},"repeated":[]}"#,
+        T()
+      ),
+      (
+        #"{"map":{},"repeated":[],"singular":4.2}"#,
+        T().with { $0.singular = 4.2 }
+      ),
+      (
+        #"{"map":{},"repeated":[],"singular":"Infinity"}"#,
+        T().with { $0.singular = .infinity }
+      ),
+      (
+        #"{"map":{},"repeated":[],"singular":"-Infinity"}"#,
+        T().with { $0.singular = -.infinity }
+      ),
+      (
+        #"{"map":{},"repeated":[],"singular":"NaN"}"#,
+        T().with { $0.singular = .nan }
+      ),
+      (
+        #"{"map":{},"repeated":["Infinity","-Infinity"]}"#,
+        T().with { $0.repeated = [.infinity, -.infinity] }
+      ),
+      (
+        #"{"map":{},"repeated":["NaN"]}"#,
+        T().with { $0.repeated = [.nan] }
+      ),
+      (
+        #"{"map":{"a":"Infinity"},"repeated":[]}"#,
+        T().with { $0.map = ["a": .infinity] }
+      ),
+      (
+        #"{"map":{"a":"-Infinity"},"repeated":[]}"#,
+        T().with { $0.map = ["a": -.infinity] }
+      ),
+      (
+        #"{"map":{"a":"NaN"},"repeated":[]}"#,
+        T().with { $0.map = ["a": .nan] }
+      ),
+    ]
+  )
+  func serialize(want: String, input: T) throws {
+    let encoder = JSONEncoder()
+    encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
+    encoder.nonConformingFloatEncodingStrategy = .convertToString(
+      positiveInfinity: "Infinity", negativeInfinity: "-Infinity", nan: "NaN"
+    )
+    let data = try encoder.encode(input)
+    let got = String(data: data, encoding: .utf8)!
+    #expect(got == want)
+
+    let decoder = _ProtoJSONDecoder()
+    let roundtrip = try decoder.decode(T.self, from: data)
+    let isNaN =
+      (input.singular?.isNaN ?? false)
+      || input.repeated.contains(where: { $0.isNaN })
+      || input.map.values.contains(where: { $0.isNaN })
+    if !isNaN {
+      #expect(input == roundtrip)
+    }
   }
 }
