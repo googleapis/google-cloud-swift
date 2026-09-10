@@ -513,6 +513,12 @@ public struct UploadOptions: Sendable {
   /// Overrides the backoff policy for this upload.
   public var backoffPolicy: (any BackoffPolicy)? = nil
 
+  /// Overrides the quota project for this upload operation.
+  ///
+  /// When set, the `x-goog-user-project` header is sent with this value, overriding any client-level
+  /// or credential-level quota project.
+  public var quotaProject: String? = nil
+
   /// Legacy validation enum property for backward compatibility.
   public var validation: ChecksumValidation {
     get {

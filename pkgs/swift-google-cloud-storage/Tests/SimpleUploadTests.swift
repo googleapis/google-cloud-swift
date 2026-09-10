@@ -667,4 +667,63 @@ import Testing
     #expect(requests.count == 1)
     #expect(requests.first?.url?.absoluteString == simpleUploadUrl.absoluteString)
   }
+
+  @Test(arguments: [
+    // Uses client-level quota when upload and request quota are nil
+    (
+      clientQuota: "client-level-quota",
+      uploadQuota: nil as String?,
+      requestQuota: nil as String?,
+      expected: "client-level-quota"
+    ),
+    // Uses upload-default-quota when per-request quotaProject is nil
+    (
+      clientQuota: "client-level-quota",
+      uploadQuota: "upload-default-quota",
+      requestQuota: nil,
+      expected: "upload-default-quota"
+    ),
+    // Per-request quotaProject overrides upload-default-quota and client-level-quota
+    (
+      clientQuota: "client-level-quota",
+      uploadQuota: "upload-default-quota",
+      requestQuota: "request-level-quota",
+      expected: "request-level-quota"
+    ),
+  ])
+  func simpleUploadQuotaProjectPrecedence(
+    clientQuota: String?,
+    uploadQuota: String?,
+    requestQuota: String?,
+    expected: String
+  ) async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "quota-upload"
+    let data = Data("Quota Upload Content".utf8)
+    let source = BytesSource(data: data)
+
+    let simpleUploadUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=multipart&name=\(objectName)")
+
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: makeObjectJSON(name: objectName, bucket: bucket, size: data.count),
+        headers: nil),
+      for: simpleUploadUrl)
+
+    let clientOptions = StorageClientOptions().with {
+      $0.client.endpoint = registry.endpoint
+      $0.client.quotaProject = clientQuota
+      $0.upload.quotaProject = uploadQuota
+    }
+    let client = try StorageClient(clientOptions, mock: registry)
+
+    let reqOptions = UploadOptions().with { $0.quotaProject = requestQuota }
+    _ = try await client.upload(source, to: bucket, as: objectName, options: reqOptions)
+    #expect(
+      registry.lastRequest(for: simpleUploadUrl)?.value(forHTTPHeaderField: "x-goog-user-project")
+        == expected)
+  }
 }

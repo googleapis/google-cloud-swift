@@ -238,6 +238,12 @@ public struct ReadObjectOptions: Sendable {
   /// Overrides the backoff policy for this download.
   public var backoffPolicy: (any BackoffPolicy)? = nil
 
+  /// Overrides the quota project for this download operation.
+  ///
+  /// When set, the `x-goog-user-project` header is sent with this value, overriding any client-level
+  /// or credential-level quota project.
+  public var quotaProject: String? = nil
+
   /// Default configuration options.
   public static var `default`: ReadObjectOptions { ReadObjectOptions() }
 

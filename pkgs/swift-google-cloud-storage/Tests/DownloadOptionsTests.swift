@@ -183,4 +183,14 @@ import Testing
     #expect(err1 != err3)
     #expect(err4 == err5)
   }
+
+  @Test func readObjectOptionsQuotaProject() {
+    let defaults = ReadObjectOptions.default
+    #expect(defaults.quotaProject == nil)
+
+    let custom = ReadObjectOptions().with {
+      $0.quotaProject = "my-download-quota-project"
+    }
+    #expect(custom.quotaProject == "my-download-quota-project")
+  }
 }

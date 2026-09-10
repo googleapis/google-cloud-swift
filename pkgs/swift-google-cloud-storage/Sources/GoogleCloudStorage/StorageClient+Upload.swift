@@ -60,6 +60,9 @@ extension StorageClient {
       ?? UploadOptions.defaultResumableUploadThreshold
     let httpClient = self.inner
 
+    var effectiveOptions = options
+    effectiveOptions.quotaProject = options.quotaProject ?? self.options.upload.quotaProject
+
     var source = source
 
     // Determine if simple or resumable
@@ -71,8 +74,8 @@ extension StorageClient {
         source: &source,
         bucket: bucket,
         objectName: objectName,
-        metadata: options.metadata,
-        options: options,
+        metadata: effectiveOptions.metadata,
+        options: effectiveOptions,
         totalSize: totalSize,
         resumeLoop: resumeLoop
       )
@@ -82,12 +85,12 @@ extension StorageClient {
         source: &source,
         bucket: bucket,
         objectName: objectName,
-        metadata: options.metadata,
+        metadata: effectiveOptions.metadata,
         uploadId: nil,
         initialStatus: .inprogress(0),
-        chunkSize: options.chunkSize,
+        chunkSize: effectiveOptions.chunkSize,
         totalSize: source.totalSize,
-        options: options,
+        options: effectiveOptions,
         resumeLoop: resumeLoop
       )
     }
@@ -125,6 +128,9 @@ extension StorageClient {
       ?? UploadOptions.defaultResumableUploadThreshold
     let httpClient = self.inner
 
+    var effectiveOptions = options
+    effectiveOptions.quotaProject = options.quotaProject ?? self.options.upload.quotaProject
+
     var source = source
 
     // Determine if simple or resumable
@@ -136,8 +142,8 @@ extension StorageClient {
         source: &source,
         bucket: bucket,
         objectName: objectName,
-        metadata: options.metadata,
-        options: options,
+        metadata: effectiveOptions.metadata,
+        options: effectiveOptions,
         totalSize: totalSize,
         resumeLoop: resumeLoop
       )
@@ -147,12 +153,12 @@ extension StorageClient {
         source: &source,
         bucket: bucket,
         objectName: objectName,
-        metadata: options.metadata,
+        metadata: effectiveOptions.metadata,
         uploadId: nil,
         initialStatus: .inprogress(0),
-        chunkSize: options.chunkSize,
+        chunkSize: effectiveOptions.chunkSize,
         totalSize: source.totalSize,
-        options: options,
+        options: effectiveOptions,
         resumeLoop: resumeLoop
       )
     }
@@ -202,8 +208,9 @@ extension StorageClient {
     return try await resumeLoop.run(state: resumeState) { _ in
       try await stream.rewind()
 
+      let reqOptions = RequestOptions().with { $0.quotaProject = options.quotaProject }
       var request = try await httpClient.newRequest(
-        path: "/upload/storage/v1/b/\(bucketId)/o", query: queryItems)
+        path: "/upload/storage/v1/b/\(bucketId)/o", query: queryItems, options: reqOptions)
       request.setMethod(.POST)
       if let checksum = checksum {
         request.setHeader(name: "x-goog-hash", value: checksum)
@@ -675,6 +682,8 @@ extension StorageClient {
       backoffPolicy: effectiveBackoffPolicy
     )
     let httpClient = self.inner
+    var effectiveOptions = options
+    effectiveOptions.quotaProject = options.quotaProject ?? self.options.upload.quotaProject
     var source = source
     let totalSize = source.totalSize
 
@@ -686,9 +695,9 @@ extension StorageClient {
       metadata: nil,
       uploadId: uploadId,
       initialStatus: .unknown,
-      chunkSize: options.chunkSize,
+      chunkSize: effectiveOptions.chunkSize,
       totalSize: totalSize,
-      options: options,
+      options: effectiveOptions,
       resumeLoop: resumeLoop
     )
   }
@@ -748,8 +757,9 @@ extension StorageClient {
     }
 
     let bucketId = BucketName.extractBucketName(bucket)
+    let reqOptions = RequestOptions().with { $0.quotaProject = options.quotaProject }
     var request = try await httpClient.newRequest(
-      path: "/upload/storage/v1/b/\(bucketId)/o", query: queryItems)
+      path: "/upload/storage/v1/b/\(bucketId)/o", query: queryItems, options: reqOptions)
     request.setMethod(.POST)
     request.setHeader(name: "Content-Type", value: "application/json; charset=UTF-8")
 
@@ -767,7 +777,8 @@ extension StorageClient {
     uploadId: String,
     options: UploadOptions? = nil
   ) async throws -> GoogleCloudGax._HTTPClientRequest {
-    var request = try await httpClient.newRequest(uri: uploadId)
+    let reqOptions = RequestOptions().with { $0.quotaProject = options?.quotaProject }
+    var request = try await httpClient.newRequest(uri: uploadId, options: reqOptions)
     request.setMethod(.PUT)
     request.setHeader(name: "Content-Type", value: "application/octet-stream")
     request.setHeader(name: "Content-Range", value: "bytes */*")
@@ -787,7 +798,8 @@ extension StorageClient {
     options: UploadOptions,
     checksum: String? = nil
   ) async throws -> GoogleCloudGax._HTTPClientRequest {
-    var request = try await httpClient.newRequest(uri: uploadId)
+    let reqOptions = RequestOptions().with { $0.quotaProject = options.quotaProject }
+    var request = try await httpClient.newRequest(uri: uploadId, options: reqOptions)
     request.setMethod(.PUT)
     request.setHeader(name: "Content-Type", value: "application/octet-stream")
 

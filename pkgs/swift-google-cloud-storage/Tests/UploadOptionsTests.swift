@@ -33,6 +33,7 @@ import Testing
     #expect(options.predefinedAcl == nil)
     #expect(options.resumePolicy == nil)
     #expect(options.backoffPolicy == nil)
+    #expect(options.quotaProject == nil)
   }
 
   @Test func uploadOptionsWithBuilder() throws {
@@ -54,6 +55,7 @@ import Testing
       $0.metadata = metadata
       $0.predefinedAcl = .publicRead
       $0.resumePolicy = NeverResume<UploadDetails>()
+      $0.quotaProject = "upload-quota-project"
     }
 
     #expect(options.resumableUploadThreshold == 4 * 1024 * 1024)
@@ -65,5 +67,6 @@ import Testing
     #expect(options.metadata?.contentType == "application/json")
     #expect(options.predefinedAcl == .publicRead)
     #expect(options.resumePolicy != nil)
+    #expect(options.quotaProject == "upload-quota-project")
   }
 }

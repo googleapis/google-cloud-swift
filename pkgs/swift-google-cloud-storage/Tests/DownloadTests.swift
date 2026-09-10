@@ -1323,4 +1323,63 @@ import Testing
     let lastReq = registry.lastRequest(for: downloadUrl)
     #expect(lastReq != nil)
   }
+
+  @Test(arguments: [
+    // Uses client-level quota when download and request quota are nil
+    (
+      clientQuota: "client-level-quota",
+      downloadQuota: nil as String?,
+      requestQuota: nil as String?,
+      expected: "client-level-quota"
+    ),
+    // Uses download-default-quota when per-request quotaProject is nil
+    (
+      clientQuota: "client-level-quota",
+      downloadQuota: "download-default-quota",
+      requestQuota: nil,
+      expected: "download-default-quota"
+    ),
+    // Per-request quotaProject overrides download-default-quota and client-level-quota
+    (
+      clientQuota: "client-level-quota",
+      downloadQuota: "download-default-quota",
+      requestQuota: "request-level-quota",
+      expected: "request-level-quota"
+    ),
+  ])
+  func downloadObjectQuotaProjectPrecedence(
+    clientQuota: String?,
+    downloadQuota: String?,
+    requestQuota: String?,
+    expected: String
+  ) async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "quota.txt"
+    let payload = Data("Quota Content".utf8)
+    let downloadUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
+
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: payload,
+        headers: ["Content-Length": String(payload.count)]
+      ),
+      for: downloadUrl
+    )
+
+    let clientOptions = StorageClientOptions().with {
+      $0.client.endpoint = registry.endpoint
+      $0.client.quotaProject = clientQuota
+      $0.download.quotaProject = downloadQuota
+    }
+    let client = try StorageClient(clientOptions, mock: registry)
+
+    let reqOptions = ReadObjectOptions().with { $0.quotaProject = requestQuota }
+    let task = client.readObject(from: bucket, object: objectName, options: reqOptions)
+    for try await _ in task.body {}
+    #expect(
+      registry.lastRequest(for: downloadUrl)?.value(forHTTPHeaderField: "x-goog-user-project")
+        == expected)
+  }
 }

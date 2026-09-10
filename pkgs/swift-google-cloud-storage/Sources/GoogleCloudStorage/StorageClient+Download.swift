@@ -40,10 +40,13 @@ extension StorageClient {
       backoffPolicy: effectiveBackoffPolicy
     )
 
+    var effectiveOptions = options
+    effectiveOptions.quotaProject = options.quotaProject ?? self.options.download.quotaProject
+
     let coordinator = ReadObjectCoordinator(
       bucket: bucket,
       object: object,
-      options: options,
+      options: effectiveOptions,
       httpClient: inner,
       resumeLoop: resumeLoop
     )
@@ -172,8 +175,11 @@ extension GoogleCloudGax._HTTPClient {
     let bucketId = BucketName.extractBucketName(bucket)
     let encodedBucket =
       bucketId.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? bucketId
+    let reqOptions = RequestOptions().with { $0.quotaProject = options.quotaProject }
     var request = try await self.newRequest(
-      percentEncodedPath: "/storage/v1/b/\(encodedBucket)/o/\(encodedObject)", query: queryItems)
+      percentEncodedPath: "/storage/v1/b/\(encodedBucket)/o/\(encodedObject)",
+      query: queryItems,
+      options: reqOptions)
     request.setMethod(.GET)
 
     if let rangeHeader = options.range.headerValue {
