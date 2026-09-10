@@ -60,9 +60,18 @@ public final class _GRPCClient: Sendable {
     let transportSecurity: HTTP2ClientTransport.Posix.TransportSecurity =
       isSecure ? .tls : .plaintext
 
+    let authority = try _Host.authority(
+      endpoint: options.endpoint,
+      defaultEndpoint: defaultEndpoint,
+      universeDomain: options.universeDomain ?? _Host.defaultUniverseDomain
+    )
+
     let transport = try HTTP2ClientTransport.Posix(
       target: .dns(host: host, port: port),
-      transportSecurity: transportSecurity
+      transportSecurity: transportSecurity,
+      config: .defaults {
+        $0.http2.authority = authority
+      }
     )
 
     let client = GRPCClient(transport: transport)
