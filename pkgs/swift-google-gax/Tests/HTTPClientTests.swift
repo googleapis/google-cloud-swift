@@ -657,6 +657,88 @@ import NIOHTTP1
     #expect(request.headers[_HeaderNames.userProject] == [expected])
   }
 
+  @Test func hostHeaderDefaultEndpoint() async throws {
+    let mock = MockHTTPClient { (request, _) in
+      #expect(request.headers.first(name: "Host") == "secretmanager.googleapis.com")
+      return HTTPClientResponse(
+        version: .http1_1,
+        status: .ok,
+        body: .bytes(.init(string: "{}"))
+      )
+    }
+
+    let client = try _HTTPClient(
+      mock,
+      endpoint: "https://secretmanager.googleapis.com",
+      defaultEndpoint: "https://secretmanager.googleapis.com"
+    )
+    let request = try await client.newRequest(path: "/v1/projects/p/secrets", query: [])
+    let response = try await request.execute()
+    #expect(response.status == .ok)
+  }
+
+  @Test func hostHeaderPrivateEndpointOverride() async throws {
+    let mock = MockHTTPClient { (request, _) in
+      #expect(request.headers.first(name: "Host") == "secretmanager.googleapis.com")
+      #expect(request.url == "https://private.googleapis.com/v1/projects/p/secrets")
+      return HTTPClientResponse(
+        version: .http1_1,
+        status: .ok,
+        body: .bytes(.init(string: "{}"))
+      )
+    }
+    let client = try _HTTPClient(
+      mock,
+      endpoint: "https://private.googleapis.com",
+      defaultEndpoint: "https://secretmanager.googleapis.com"
+    )
+    let request = try await client.newRequest(path: "/v1/projects/p/secrets", query: [])
+    let response = try await request.execute()
+    #expect(response.status == .ok)
+  }
+
+  @Test func hostHeaderRegionalEndpointOverride() async throws {
+    let mock = MockHTTPClient { (request, _) in
+      #expect(request.headers.first(name: "Host") == "secretmanager.us-central1.rep.googleapis.com")
+      #expect(
+        request.url == "https://secretmanager.us-central1.rep.googleapis.com/v1/projects/p/secrets")
+      return HTTPClientResponse(
+        version: .http1_1,
+        status: .ok,
+        body: .bytes(.init(string: "{}"))
+      )
+    }
+    let client = try _HTTPClient(
+      mock,
+      endpoint: "https://secretmanager.us-central1.rep.googleapis.com",
+      defaultEndpoint: "https://secretmanager.googleapis.com"
+    )
+    let request = try await client.newRequest(path: "/v1/projects/p/secrets", query: [])
+    let response = try await request.execute()
+    #expect(response.status == .ok)
+  }
+
+  @Test func hostHeaderLocationalEndpointOverride() async throws {
+    let mock = MockHTTPClient { (request, _) in
+      #expect(request.headers.first(name: "Host") == "us-central1-secretmanager.googleapis.com")
+      #expect(
+        request.url == "https://us-central1-secretmanager.googleapis.com/v1/projects/p/secrets")
+      return HTTPClientResponse(
+        version: .http1_1,
+        status: .ok,
+        body: .bytes(.init(string: "{}"))
+      )
+    }
+    let client = try _HTTPClient(
+      mock,
+      endpoint: "https://us-central1-secretmanager.googleapis.com",
+      defaultEndpoint: "https://secretmanager.googleapis.com"
+    )
+    let request = try await client.newRequest(path: "/v1/projects/p/secrets", query: [])
+    let response = try await request.execute()
+    #expect(response.status == .ok)
+  }
+
   /// A test response type.
   struct ResponseType: Codable, Equatable, Sendable {
     public let name: String

@@ -56,6 +56,43 @@ import GoogleCloudGax
     let bareClient = try _GRPCClient(
       from: bareOptions, withDefaultEndpoint: "https://storage.googleapis.com")
     bareClient.close()
+
+    // VPC-SC private endpoint
+    let privateOptions = ClientOptions().with {
+      $0.credentials = credentials
+      $0.endpoint = "https://private.googleapis.com"
+    }
+    let privateClient = try _GRPCClient(
+      from: privateOptions, withDefaultEndpoint: "https://storage.googleapis.com")
+    privateClient.close()
+
+    // Regional endpoint
+    let regionalOptions = ClientOptions().with {
+      $0.credentials = credentials
+      $0.endpoint = "https://storage.us-central1.rep.googleapis.com"
+    }
+    let regionalClient = try _GRPCClient(
+      from: regionalOptions, withDefaultEndpoint: "https://storage.googleapis.com")
+    regionalClient.close()
+
+    // Locational endpoint
+    let locationalOptions = ClientOptions().with {
+      $0.credentials = credentials
+      $0.endpoint = "https://us-central1-storage.googleapis.com"
+    }
+    let locationalClient = try _GRPCClient(
+      from: locationalOptions, withDefaultEndpoint: "https://storage.googleapis.com")
+    locationalClient.close()
+
+    // Universe domain
+    let universeOptions = ClientOptions().with {
+      $0.credentials = credentials
+      $0.universeDomain = "my-universe.com"
+      $0.endpoint = "https://storage.my-universe.com"
+    }
+    let universeClient = try _GRPCClient(
+      from: universeOptions, withDefaultEndpoint: "https://storage.googleapis.com")
+    universeClient.close()
   }
 
   @Test(arguments: [

@@ -49,6 +49,11 @@ public struct ClientOptions: Sendable {
   /// and/or query parameters have no effect.
   public var endpoint: String? = nil
 
+  /// Overrides the default universe domain for the client.
+  ///
+  /// The default universe domain is `"googleapis.com"`.
+  public var universeDomain: String? = nil
+
   /// Overrides the default credentials for the client.
   ///
   /// `Credentials` defines how the client authenticates to Google Cloud APIs. Without an override, the client uses

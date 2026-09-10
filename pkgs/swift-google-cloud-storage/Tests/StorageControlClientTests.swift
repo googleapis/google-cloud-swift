@@ -56,6 +56,20 @@ import Testing
       $0.endpoint = "custom.endpoint.com:443"
     }
     let _ = try StorageControlClient(bareOptions)
+
+    // With universe domain
+    let universeOptions = ClientOptions().with {
+      $0.credentials = credentials
+      $0.universeDomain = "my-universe.com"
+    }
+    let _ = try StorageControlClient(universeOptions)
+
+    // With VPC-SC odd endpoint
+    let oddEndpointOptions = ClientOptions().with {
+      $0.credentials = credentials
+      $0.endpoint = "https://private.googleapis.com"
+    }
+    let _ = try StorageControlClient(oddEndpointOptions)
   }
 
   @Test(arguments: [

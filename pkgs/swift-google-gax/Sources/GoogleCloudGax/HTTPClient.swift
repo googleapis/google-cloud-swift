@@ -26,6 +26,7 @@ import struct Logging.Logger
   let logger: Logger?
   let quotaProject: String?
   let inner: any _HTTPClientProtocol
+  let hostHeader: String
 
   // Creates a new client.
   public init(from: ClientOptions, withDefaultEndpoint: String) throws {
@@ -34,6 +35,11 @@ import struct Logging.Logger
     self.quotaProject = from.quotaProject
     let endpoint = from.endpoint ?? withDefaultEndpoint
     self.baseURL = try Self.validateEndpoint(endpoint)
+    self.hostHeader = try _Host.header(
+      endpoint: from.endpoint,
+      defaultEndpoint: withDefaultEndpoint,
+      universeDomain: from.universeDomain ?? _Host.defaultUniverseDomain
+    )
     self.inner = HTTPClientHolder()
   }
 
@@ -42,13 +48,18 @@ import struct Logging.Logger
     _ inner: any _HTTPClientProtocol, endpoint: String,
     credentials: (any _CredentialsProtocol)? = nil,
     logger: Logging.Logger? = nil,
-    quotaProject: String? = nil
+    quotaProject: String? = nil,
+    defaultEndpoint: String? = nil
   ) throws {
     self.baseURL = try Self.validateEndpoint(endpoint)
     self.credentials = try credentials ?? GoogleCloudAuth.Credentials(configuration: .anonymous)
     self.logger = logger
     self.quotaProject = quotaProject
     self.inner = inner
+    self.hostHeader = try _Host.header(
+      endpoint: endpoint,
+      defaultEndpoint: defaultEndpoint ?? endpoint
+    )
   }
 
   @_spi(GoogleCloudInternal) public static func validateEndpoint(_ endpoint: String) throws
@@ -86,6 +97,7 @@ import struct Logging.Logger
     if let effectiveQuotaProject = options.quotaProject ?? self.quotaProject {
       request.setHeader(name: _HeaderNames.userProject, value: effectiveQuotaProject)
     }
+    request.setHeader(name: _HeaderNames.host, value: self.hostHeader)
     return request
   }
 
@@ -109,6 +121,7 @@ import struct Logging.Logger
     if let effectiveQuotaProject = options.quotaProject ?? self.quotaProject {
       request.setHeader(name: _HeaderNames.userProject, value: effectiveQuotaProject)
     }
+    request.setHeader(name: _HeaderNames.host, value: self.hostHeader)
     return request
   }
 
@@ -124,6 +137,7 @@ import struct Logging.Logger
     if let effectiveQuotaProject = options.quotaProject ?? self.quotaProject {
       request.setHeader(name: _HeaderNames.userProject, value: effectiveQuotaProject)
     }
+    request.setHeader(name: _HeaderNames.host, value: self.hostHeader)
     return request
   }
 
