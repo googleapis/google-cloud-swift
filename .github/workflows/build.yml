@@ -36,14 +36,28 @@ jobs:
           persist-credentials: false
       - name: Install Swift
         uses: ./.github/actions/install-swift
-      - name: Build Generated Code
+      - name: Build Core Libraries
         shell: bash
         run: |
-            set -e
-            swift package resolve --disable-sandbox || \
-              (sleep 5 ; swift package resolve --disable-sandbox) || \
-              (sleet 10 ; swift package resolve --disable-sandbox)
-            swift package edit --path pkgs/swift-google-wkt  swift-google-wkt
-            swift package edit --path pkgs/swift-google-auth swift-google-auth
-            swift package edit --path pkgs/swift-google-gax  swift-google-gax
-            swift test
+            set -euo pipefail
+            cache_flags=(--scratch-path "$PWD/.build-cache")
+            test_flags=(
+              "${cache_flags[@]}"
+              --parallel
+              -Xswiftc -warnings-as-errors
+            )
+            swift package "${cache_flags[@]}" resolve --disable-sandbox || \
+              (sleep 5 ; swift package "${cache_flags[@]}" resolve --disable-sandbox) || \
+              (sleet 10 ; swift package "${cache_flags[@]}" resolve --disable-sandbox)
+
+            # swift-google-wkt and -auth do not have local dependencies so no
+            # swift-package-edit needed.
+            echo ==== wkt ====
+            swift test "${flags[@]}" --package-path pkgs/swift-google-wkt
+            echo ==== auth ====
+            swift test "${flags[@]}" --package-path pkgs/swift-google-auth
+
+            echo ==== gax ====
+            swift package "${cache_flags[@]}" --package-path pkgs/swift-google-gax edit --path "$PWD/pkgs/swift-google-wkt" swift-google-wkt || true
+            swift package "${cache_flags[@]}" --package-path pkgs/swift-google-gax edit --path "$PWD/pkgs/swift-google-auth" swift-google-auth || true
+            swift test "${flags[@]}" --package-path pkgs/swift-google-gax
