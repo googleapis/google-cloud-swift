@@ -20,21 +20,13 @@ public func renameFolder(
 ) async throws {
   let folderId = "example-folder-id"
   let destinationFolderId = "renamed-folder-id"
-  // TODO(https://github.com/googleapis/google-cloud-swift/issues/588) - use the LRO helper
-  var operation = try await client.renameFolder(
-    request: .init().with {
+  let poller = try await client.renameFolder(
+    withPolling: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)/folders/\(folderId)"
       $0.destinationFolderId = destinationFolderId
     }
   )
-  while !operation.done {
-    try await Task.sleep(for: .seconds(1))
-    operation = try await client.getOperation(
-      request: .init().with {
-        $0.name = operation.name
-      }
-    )
-  }
-  print("folder successfully renamed \(operation)")
+  let folder = try await poller.wait()
+  print("folder successfully renamed \(folder)")
 }
 // [END storage_control_rename_folder]

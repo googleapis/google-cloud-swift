@@ -28,6 +28,8 @@ import GoogleRpc
 public final class StorageControlClient: StorageControlProtocol, Sendable {
   private let storage: any Clients.StorageStub
   private let control: any Clients.StorageControlStub
+  let pollingErrorPolicy: any GoogleCloudGax.PollingErrorPolicy
+  let pollingBackoffPolicy: any GoogleCloudGax.BackoffPolicy
 
   /// Creates a new `StorageControlClient` using the given client options.
   public init(_ options: GoogleCloudGax.ClientOptions = .init()) throws {
@@ -55,12 +57,20 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
 
     self.storage = storageStub
     self.control = controlStub
+    self.pollingErrorPolicy = options.pollingErrorPolicy
+    self.pollingBackoffPolicy = options.pollingBackoffPolicy
   }
 
   /// Creates a `StorageControlClient` with custom stubs (useful for testing and mocking).
-  init(storage: any Clients.StorageStub, control: any Clients.StorageControlStub) {
+  init(
+    storage: any Clients.StorageStub,
+    control: any Clients.StorageControlStub,
+    options: GoogleCloudGax.ClientOptions = .init()
+  ) {
     self.storage = storage
     self.control = control
+    self.pollingErrorPolicy = options.pollingErrorPolicy
+    self.pollingBackoffPolicy = options.pollingBackoffPolicy
   }
 
   /// Permanently deletes an empty bucket.
@@ -437,12 +447,64 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
     try await self.control.renameFolder(request: request, options: options)
   }
 
+  /// Renames a source folder to a destination folder. This operation is only
+  /// applicable to a hierarchical namespace enabled bucket. During a rename, the
+  /// source and destination folders are locked until the long running operation
+  /// completes.
+  public func renameFolder(
+    withPolling: RenameFolderRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> any GoogleCloudGax.PollableOperation<Folder> {
+    let extractStatus = {
+      (op: GoogleLongRunning.Operation) throws
+        -> GoogleCloudGax._PollableOperationImpl<Folder>.State in
+      return try op._extractStatus(Folder.self)
+    }
+    let rawOp = try await self.renameFolder(request: withPolling, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Folder>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+  }
+
   /// Deletes a folder recursively. This operation is only applicable to a
   /// hierarchical namespace enabled bucket.
   public func deleteFolderRecursive(
     request: DeleteFolderRecursiveRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
     try await self.control.deleteFolderRecursive(request: request, options: options)
+  }
+
+  /// Deletes a folder recursively. This operation is only applicable to a
+  /// hierarchical namespace enabled bucket.
+  public func deleteFolderRecursive(
+    withPolling: DeleteFolderRecursiveRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> any GoogleCloudGax.PollableOperation<Swift.Void> {
+    let extractStatus = {
+      (op: GoogleLongRunning.Operation) throws
+        -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+      return try op._extractStatusEmpty()
+    }
+    let rawOp = try await self.deleteFolderRecursive(request: withPolling, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<Swift.Void>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Returns the storage layout configuration for a given bucket.
@@ -507,12 +569,61 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
     try await self.control.createAnywhereCache(request: request, options: options)
   }
 
+  /// Creates an Anywhere Cache instance.
+  public func createAnywhereCache(
+    withPolling: CreateAnywhereCacheRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> any GoogleCloudGax.PollableOperation<AnywhereCache> {
+    let extractStatus = {
+      (op: GoogleLongRunning.Operation) throws
+        -> GoogleCloudGax._PollableOperationImpl<AnywhereCache>.State in
+      return try op._extractStatus(AnywhereCache.self)
+    }
+    let rawOp = try await self.createAnywhereCache(request: withPolling, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<AnywhereCache>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+  }
+
   /// Updates an Anywhere Cache instance. Mutable fields include `ttl` and
   /// `admission_policy`.
   public func updateAnywhereCache(
     request: UpdateAnywhereCacheRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
     try await self.control.updateAnywhereCache(request: request, options: options)
+  }
+
+  /// Updates an Anywhere Cache instance. Mutable fields include `ttl` and
+  /// `admission_policy`.
+  public func updateAnywhereCache(
+    withPolling: UpdateAnywhereCacheRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> any GoogleCloudGax.PollableOperation<AnywhereCache> {
+    let extractStatus = {
+      (op: GoogleLongRunning.Operation) throws
+        -> GoogleCloudGax._PollableOperationImpl<AnywhereCache>.State in
+      return try op._extractStatus(AnywhereCache.self)
+    }
+    let rawOp = try await self.updateAnywhereCache(request: withPolling, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<AnywhereCache>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Disables an Anywhere Cache instance. A disabled instance is read-only. The
@@ -572,6 +683,30 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
     try await self.control.createRapidCache(request: request, options: options)
   }
 
+  /// Creates a Rapid Cache instance.
+  public func createRapidCache(
+    withPolling: CreateRapidCacheRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> any GoogleCloudGax.PollableOperation<RapidCache> {
+    let extractStatus = {
+      (op: GoogleLongRunning.Operation) throws
+        -> GoogleCloudGax._PollableOperationImpl<RapidCache>.State in
+      return try op._extractStatus(RapidCache.self)
+    }
+    let rawOp = try await self.createRapidCache(request: withPolling, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<RapidCache>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+  }
+
   /// Updates a Rapid Cache instance.
   public func updateRapidCache(
     request: UpdateRapidCacheRequest, options: GoogleCloudGax.RequestOptions
@@ -579,11 +714,59 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
     try await self.control.updateRapidCache(request: request, options: options)
   }
 
+  /// Updates a Rapid Cache instance.
+  public func updateRapidCache(
+    withPolling: UpdateRapidCacheRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> any GoogleCloudGax.PollableOperation<RapidCache> {
+    let extractStatus = {
+      (op: GoogleLongRunning.Operation) throws
+        -> GoogleCloudGax._PollableOperationImpl<RapidCache>.State in
+      return try op._extractStatus(RapidCache.self)
+    }
+    let rawOp = try await self.updateRapidCache(request: withPolling, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<RapidCache>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
+  }
+
   /// Disables a Rapid Cache instance.
   public func disableRapidCache(
     request: DisableRapidCacheRequest, options: GoogleCloudGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
     try await self.control.disableRapidCache(request: request, options: options)
+  }
+
+  /// Disables a Rapid Cache instance.
+  public func disableRapidCache(
+    withPolling: DisableRapidCacheRequest, options: GoogleCloudGax.RequestOptions
+  ) async throws -> any GoogleCloudGax.PollableOperation<RapidCache> {
+    let extractStatus = {
+      (op: GoogleLongRunning.Operation) throws
+        -> GoogleCloudGax._PollableOperationImpl<RapidCache>.State in
+      return try op._extractStatus(RapidCache.self)
+    }
+    let rawOp = try await self.disableRapidCache(request: withPolling, options: options)
+    let initialState = try extractStatus(rawOp)
+    let poll = { () async throws -> GoogleCloudGax._PollableOperationImpl<RapidCache>.State in
+      let op = try await self.getOperation(
+        request: .init().with { $0.name = rawOp.name }, options: options)
+      return try extractStatus(op)
+    }
+    return GoogleCloudGax._PollableOperationImpl(
+      initialState: initialState,
+      polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
+      backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
+      poll: poll,
+    )
   }
 
   /// Gets a Rapid Cache instance.
