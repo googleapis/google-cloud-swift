@@ -39,22 +39,29 @@ import GoogleRpc
     let status: String?
     /// The error message, if any.
     let message: String
-    /// The sequence of error details, wrapped as anys. May be empty or omitted.
+    /// The sequence of error details, wrapped as anys.
+    ///
+    /// Always use `_ProtoJSONDecoder` as the ProtoJSON encoding  may omit this field when empty.
     let details: [GoogleCloudWKT.`Any`]
   }
 }
 
 @_spi(GoogleCloudInternal) extension ServiceError {
-  /// Create a a new `ServiceDetails`.
+  /// Create a new `ServiceError` from an `_ErrorWrapper`.
   public init(
     wrapper: _ErrorWrapper,
+    httpStatusCode: Int? = nil,
   ) {
+    let resolvedHttpStatus = wrapper.error.code != 0 ? Int(wrapper.error.code) : httpStatusCode
     if let s = wrapper.error.status {
       self.code = GoogleRpc.Code.init(stringValue: s)
+    } else if let status = resolvedHttpStatus {
+      self.code = GoogleRpc.Code(httpStatusCode: status)
     } else {
       self.code = .unknown
     }
     self.message = wrapper.error.message
     self.details = wrapper.error.details.map { StatusDetail(from: $0) }
+    self.httpStatusCode = resolvedHttpStatus
   }
 }

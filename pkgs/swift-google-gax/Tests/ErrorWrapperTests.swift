@@ -62,8 +62,50 @@ import GoogleRpc
     }
 
     let serviceError = ServiceError(wrapper: wrapper)
-    #expect(serviceError.code == .unknown)
+    #expect(serviceError.code == .internal)
+    #expect(serviceError.httpStatusCode == 500)
     #expect(serviceError.message == "internal error message")
+  }
+
+  @Test func httpStatusFallbackWithoutDetails() throws {
+    let cases: [(Int, GoogleRpc.Code)] = [
+      (400, .invalidArgument),
+      (401, .unauthenticated),
+      (403, .permissionDenied),
+      (404, .notFound),
+      (409, .alreadyExists),
+      (412, .failedPrecondition),
+      (429, .resourceExhausted),
+      (499, .cancelled),
+      (500, .internal),
+      (501, .unimplemented),
+      (503, .unavailable),
+      (504, .deadlineExceeded),
+      (418, .unknown),
+    ]
+
+    for (httpCode, expectedRpcCode) in cases {
+      let json = Data(
+        """
+        {
+          "error": {
+            "code": \(httpCode),
+            "message": "error message for \(httpCode)"
+          }
+        }
+        """.utf8)
+
+      guard let wrapper = _ErrorWrapper(data: json) else {
+        Issue.record("Failed to decode ErrorWrapper for httpCode \(httpCode)")
+        continue
+      }
+
+      let serviceError = ServiceError(wrapper: wrapper)
+      #expect(serviceError.code == expectedRpcCode)
+      #expect(serviceError.httpStatusCode == httpCode)
+      #expect(serviceError.message == "error message for \(httpCode)")
+      #expect(serviceError.details.isEmpty)
+    }
   }
 
   @Test func unknownStatus() throws {

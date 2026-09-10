@@ -77,7 +77,7 @@ import struct NIOCore.ByteBuffer
     let values = response.headers["Content-Type"]
     if values.contains(where: { $0.contains("application/json") }) {
       if let w = _ErrorWrapper(data: data) {
-        return .service(ServiceError(wrapper: w))
+        return .service(ServiceError(wrapper: w, httpStatusCode: Int(response.status.code)))
       }
     }
     let headers = Dictionary(
