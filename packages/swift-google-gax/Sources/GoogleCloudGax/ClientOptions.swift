@@ -60,8 +60,28 @@ public struct ClientOptions: Sendable {
 
   /// Overrides the quota project for all requests sent by the client.
   ///
+  /// By default, Google Cloud APIs attribute quota and billing usage to the project associated
+  /// with the credentials (for example, the project where a service account was created) or to
+  /// the project owning the accessed resource. Setting `quotaProject` instructs the service to
+  /// charge quota and billing to the specified project ID or project number instead.
+  ///
+  /// Common scenarios for setting a quota project include:
+  /// - Authenticating with user credentials (such as those created by
+  ///   `gcloud auth application-default login`), which are not inherently tied to a project.
+  /// - Accessing resources in another project (such as Cloud Storage Requester Pays buckets)
+  ///   where the caller's project must be billed for the request.
+  /// - Using a centralized service account across multiple projects where APIs and quotas are
+  ///   managed separately.
+  ///
+  /// The authenticated principal must have the `serviceusage.services.use` IAM permission
+  /// (granted by the [Service Usage Consumer] role, `roles/serviceusage.serviceUsageConsumer`) on
+  /// the specified project.
+  ///
   /// When set, the `x-goog-user-project` header is sent with this value on every request,
-  /// overriding any credential-level quota project unless overridden by ``RequestOptions/quotaProject``.
+  /// overriding any credential-level quota project unless overridden per request by
+  /// ``RequestOptions/quotaProject``.
+  ///
+  /// [Service Usage Consumer]: https://cloud.google.com/service-usage/docs/access-control
   public var quotaProject: String? = nil
 
   /// Enables logging and sets the logger.
