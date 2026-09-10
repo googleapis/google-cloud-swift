@@ -194,30 +194,42 @@ import Testing
     #expect(custom.quotaProject == "my-download-quota-project")
   }
 
-  @Test func readObjectOptionsWithDefaults() {
+  @Test(
+    arguments: [
+      (
+        options: ReadObjectOptions(),
+        expectedIsAlwaysResume: false,
+        expectedQuotaProject: "default-download-quota"
+      ),
+      (
+        options: ReadObjectOptions().with {
+          $0.resumePolicy = AlwaysResume<DownloadDetails>()
+          $0.quotaProject = "override-download-quota"
+        },
+        expectedIsAlwaysResume: true,
+        expectedQuotaProject: "override-download-quota"
+      ),
+    ]
+  )
+  func readObjectOptionsWithDefaults(
+    options: ReadObjectOptions,
+    expectedIsAlwaysResume: Bool,
+    expectedQuotaProject: String
+  ) {
     let defaults = ReadObjectOptions().with {
       $0.resumePolicy = NeverResume<DownloadDetails>()
       $0.backoffPolicy = ExponentialBackoff()
       $0.quotaProject = "default-download-quota"
     }
 
-    // 1. Falls back to defaults when per-request options are nil
-    let emptyOptions = ReadObjectOptions()
-    let resolvedFromEmpty = emptyOptions.withDefaults(defaults)
-    #expect(resolvedFromEmpty.resumePolicy is NeverResume<DownloadDetails>)
-    #expect(resolvedFromEmpty.backoffPolicy is ExponentialBackoff)
-    #expect(resolvedFromEmpty.quotaProject == "default-download-quota")
-    #expect(resolvedFromEmpty.requestOptions.quotaProject == "default-download-quota")
-
-    // 2. Per-request options take precedence over defaults
-    let overrideOptions = ReadObjectOptions().with {
-      $0.resumePolicy = AlwaysResume<DownloadDetails>()
-      $0.quotaProject = "override-download-quota"
+    let resolved = options.withDefaults(defaults)
+    if expectedIsAlwaysResume {
+      #expect(resolved.resumePolicy is AlwaysResume<DownloadDetails>)
+    } else {
+      #expect(resolved.resumePolicy is NeverResume<DownloadDetails>)
     }
-    let resolvedFromOverride = overrideOptions.withDefaults(defaults)
-    #expect(resolvedFromOverride.resumePolicy is AlwaysResume<DownloadDetails>)
-    #expect(resolvedFromOverride.backoffPolicy is ExponentialBackoff)
-    #expect(resolvedFromOverride.quotaProject == "override-download-quota")
-    #expect(resolvedFromOverride.requestOptions.quotaProject == "override-download-quota")
+    #expect(resolved.backoffPolicy is ExponentialBackoff)
+    #expect(resolved.quotaProject == expectedQuotaProject)
+    #expect(resolved.requestOptions.quotaProject == expectedQuotaProject)
   }
 }
