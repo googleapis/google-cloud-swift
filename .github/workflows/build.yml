@@ -43,7 +43,7 @@ jobs:
             swift package resolve --disable-sandbox || \
               (sleep 5 ; swift package resolve --disable-sandbox) || \
               (sleet 10 ; swift package resolve --disable-sandbox)
-            swift package edit --path packages/swift-google-wkt  swift-google-wkt
-            swift package edit --path packages/swift-google-auth swift-google-auth
-            swift package edit --path packages/swift-google-gax  swift-google-gax
+            swift package edit --path pkgs/swift-google-wkt  swift-google-wkt
+            swift package edit --path pkgs/swift-google-auth swift-google-auth
+            swift package edit --path pkgs/swift-google-gax  swift-google-gax
             swift test
