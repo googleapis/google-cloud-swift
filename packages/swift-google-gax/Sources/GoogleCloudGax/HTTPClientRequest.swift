@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import Foundation
+@_spi(GoogleCloudInternal) import class GoogleCloudWKT._ProtoJSONEncoder
 import struct AsyncHTTPClient.HTTPClientRequest
 import struct NIOCore.ByteBuffer
 import struct NIOHTTP1.HTTPHeaders
@@ -68,6 +69,15 @@ enum _RequestBody: Sendable {
   public mutating func setBody(data: Data, ofContentType: String) {
     self.body = .data(data)
     self.headers.replaceOrAdd(name: "Content-Type", value: ofContentType)
+  }
+
+  public mutating func setBody<T: Encodable>(
+    json: T,
+    ofContentType contentType: String = "application/json"
+  ) throws {
+    let encoder = _ProtoJSONEncoder()
+    let data = try encoder.encode(json)
+    self.setBody(data: data, ofContentType: contentType)
   }
 
   public mutating func setBody(buffer: NIOCore.ByteBuffer) {
