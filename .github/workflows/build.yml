@@ -1,0 +1,50 @@
+# Copyright 2026 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+name: Build
+permissions: read-all # zizmor: ignore[excessive-permissions]
+on:
+  push:
+    branches: [main, 'release-*']
+  pull_request:
+    branches: [main, 'release-*']
+  release:
+    types: [published]
+
+jobs:
+  build:
+    if: github.repository == 'googleapis/google-cloud-swift'
+    strategy:
+      matrix:
+        os: ['macos-26', 'ubuntu-24.04'] # , 'macos-26', 'windows-2025']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # ratchet:actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Install Swift
+        uses: ./.github/actions/install-swift
+      - name: Build Generated Code
+        shell: bash
+        run: |
+            set -e
+            swift package resolve --disable-sandbox || \
+              (sleep 5 ; swift package resolve --disable-sandbox) || \
+              (sleet 10 ; swift package resolve --disable-sandbox)
+            swift package edit --path packages/swift-google-wkt           swift-google-wkt
+            swift package edit --path packages/swift-google-auth          swift-google-auth
+            swift package edit --path packages/swift-google-gax           swift-google-gax
+            swift package edit --path packages/swift-google-cloud-storage swift-google-cloud-storage
+            swift test -Xswiftc DeprecatedDeclaration

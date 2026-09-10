@@ -17,6 +17,7 @@ runs:
   using: composite
   steps:
     - name: Install Swift Dependencies
+      if: runner.os == 'Linux'
       shell: bash
       run: |
         set -e
@@ -25,4 +26,4 @@ runs:
     - name: Set up Swift
       uses: swift-actions/setup-swift@7ca6abe6b3b0e8b5421b88be48feee39cbf52c6a # ratchet:swift-actions/setup-swift@v2.4
       with:
-        swift-version: "6.2"
+        swift-version: "6.3"
