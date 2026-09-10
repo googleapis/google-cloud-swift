@@ -39,7 +39,7 @@ jobs:
         run: |
           set -euo pipefail
           cache_flags=(--scratch-path "$PWD/.build-cache")
-          test_flags=(
+          flags=(
             "${cache_flags[@]}"
             --parallel
             -Xswiftc -warnings-as-errors
