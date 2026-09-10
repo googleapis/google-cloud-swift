@@ -70,7 +70,7 @@ extension Clients {
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.replay {
-        req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
+        try req.setBody(json: body)
       }
       return try await req.rpc(
         GoogleLongRunning.Operation.self, timeout: options.attemptTimeout

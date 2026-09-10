@@ -48,7 +48,7 @@ extension Clients {
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.budget {
-        req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
+        try req.setBody(json: body)
       }
       return try await req.rpc(
         GoogleCloudBillingBudgetsV1.Budget.self, timeout: options.attemptTimeout
@@ -73,7 +73,7 @@ extension Clients {
       req.setMethod(.PATCH)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.budget {
-        req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
+        try req.setBody(json: body)
       }
       return try await req.rpc(
         GoogleCloudBillingBudgetsV1.Budget.self, timeout: options.attemptTimeout

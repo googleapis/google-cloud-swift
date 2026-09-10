@@ -112,7 +112,7 @@ extension Clients {
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.icebergNamespace {
-        req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
+        try req.setBody(json: body)
       }
       return try await req.rpc(
         GoogleCloudBiglakeV1.IcebergNamespace.self, timeout: options.attemptTimeout
@@ -155,7 +155,7 @@ extension Clients {
       req.setMethod(.PATCH)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.icebergNamespaceUpdate {
-        req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
+        try req.setBody(json: body)
       }
       return try await req.rpc(
         GoogleCloudBiglakeV1.UpdateIcebergNamespaceResponse.self, timeout: options.attemptTimeout
@@ -201,7 +201,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleApi.HttpBody.self, timeout: options.attemptTimeout
       ).get()
@@ -289,7 +289,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleApi.HttpBody.self, timeout: options.attemptTimeout
       ).get()
@@ -310,7 +310,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleApi.HttpBody.self, timeout: options.attemptTimeout
       ).get()
@@ -331,7 +331,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       _ = try await req.rpc(
         GoogleCloudWKT.Empty.self, timeout: options.attemptTimeout
       ).get()
@@ -422,7 +422,7 @@ extension Clients {
       req.setMethod(.PATCH)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.icebergCatalog {
-        req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
+        try req.setBody(json: body)
       }
       return try await req.rpc(
         GoogleCloudBiglakeV1.IcebergCatalog.self, timeout: options.attemptTimeout
@@ -450,7 +450,7 @@ extension Clients {
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.icebergCatalog {
-        req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
+        try req.setBody(json: body)
       }
       return try await req.rpc(
         GoogleCloudBiglakeV1.IcebergCatalog.self, timeout: options.attemptTimeout
@@ -472,7 +472,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudBiglakeV1.FailoverIcebergCatalogResponse.self, timeout: options.attemptTimeout
       ).get()

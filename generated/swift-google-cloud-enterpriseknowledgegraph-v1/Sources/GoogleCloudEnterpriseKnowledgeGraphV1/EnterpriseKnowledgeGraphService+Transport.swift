@@ -48,7 +48,7 @@ extension Clients {
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.entityReconciliationJob {
-        req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
+        try req.setBody(json: body)
       }
       return try await req.rpc(
         GoogleCloudEnterpriseKnowledgeGraphV1.EntityReconciliationJob.self,
@@ -117,7 +117,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       _ = try await req.rpc(
         GoogleCloudWKT.Empty.self, timeout: options.attemptTimeout
       ).get()

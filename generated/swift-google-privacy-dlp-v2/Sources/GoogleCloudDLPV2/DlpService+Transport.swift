@@ -47,7 +47,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudDLPV2.InspectContentResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -68,7 +68,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudDLPV2.RedactImageResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -89,7 +89,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudDLPV2.DeidentifyContentResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -110,7 +110,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudDLPV2.ReidentifyContentResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -153,7 +153,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudDLPV2.InspectTemplate.self, timeout: options.attemptTimeout
       ).get()
@@ -174,7 +174,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.PATCH)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudDLPV2.InspectTemplate.self, timeout: options.attemptTimeout
       ).get()
@@ -260,7 +260,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudDLPV2.DeidentifyTemplate.self, timeout: options.attemptTimeout
       ).get()
@@ -281,7 +281,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.PATCH)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudDLPV2.DeidentifyTemplate.self, timeout: options.attemptTimeout
       ).get()
@@ -367,7 +367,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudDLPV2.JobTrigger.self, timeout: options.attemptTimeout
       ).get()
@@ -388,7 +388,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.PATCH)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudDLPV2.JobTrigger.self, timeout: options.attemptTimeout
       ).get()
@@ -409,7 +409,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudDLPV2.HybridInspectResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -497,7 +497,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudDLPV2.DlpJob.self, timeout: options.attemptTimeout
       ).get()
@@ -518,7 +518,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudDLPV2.DiscoveryConfig.self, timeout: options.attemptTimeout
       ).get()
@@ -539,7 +539,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.PATCH)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudDLPV2.DiscoveryConfig.self, timeout: options.attemptTimeout
       ).get()
@@ -624,7 +624,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudDLPV2.DlpJob.self, timeout: options.attemptTimeout
       ).get()
@@ -712,7 +712,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       _ = try await req.rpc(
         GoogleCloudWKT.Empty.self, timeout: options.attemptTimeout
       ).get()
@@ -733,7 +733,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudDLPV2.StoredInfoType.self, timeout: options.attemptTimeout
       ).get()
@@ -754,7 +754,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.PATCH)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudDLPV2.StoredInfoType.self, timeout: options.attemptTimeout
       ).get()
@@ -1060,7 +1060,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudDLPV2.HybridInspectResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -1081,7 +1081,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       _ = try await req.rpc(
         GoogleCloudWKT.Empty.self, timeout: options.attemptTimeout
       ).get()
@@ -1102,7 +1102,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudDLPV2.Connection.self, timeout: options.attemptTimeout
       ).get()
@@ -1211,7 +1211,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.PATCH)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudDLPV2.Connection.self, timeout: options.attemptTimeout
       ).get()
@@ -1232,7 +1232,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudDLPV2.ContentPolicy.self, timeout: options.attemptTimeout
       ).get()
@@ -1253,7 +1253,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.PATCH)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudDLPV2.ContentPolicy.self, timeout: options.attemptTimeout
       ).get()

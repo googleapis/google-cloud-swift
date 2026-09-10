@@ -50,7 +50,7 @@
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+        try req.setBody(json: request)
         return try await req.rpc(
           GoogleCloudDialogflowCXV3.DetectIntentResponse.self, timeout: options.attemptTimeout
         ).get()
@@ -71,7 +71,7 @@
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+        try req.setBody(json: request)
         return try await req.rpc(
           GoogleCloudDialogflowCXV3.DetectIntentResponse.self, timeout: options.attemptTimeout
         ).get()
@@ -92,7 +92,7 @@
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+        try req.setBody(json: request)
         return try await req.rpc(
           GoogleCloudDialogflowCXV3.MatchIntentResponse.self, timeout: options.attemptTimeout
         ).get()
@@ -116,7 +116,7 @@
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+        try req.setBody(json: request)
         return try await req.rpc(
           GoogleCloudDialogflowCXV3.FulfillIntentResponse.self, timeout: options.attemptTimeout
         ).get()
@@ -137,7 +137,7 @@
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+        try req.setBody(json: request)
         return try await req.rpc(
           GoogleCloudDialogflowCXV3.AnswerFeedback.self, timeout: options.attemptTimeout
         ).get()

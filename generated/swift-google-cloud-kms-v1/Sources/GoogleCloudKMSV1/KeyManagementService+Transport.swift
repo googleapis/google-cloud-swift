@@ -305,7 +305,7 @@ extension Clients {
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.keyRing {
-        req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
+        try req.setBody(json: body)
       }
       return try await req.rpc(
         GoogleCloudKMSV1.KeyRing.self, timeout: options.attemptTimeout
@@ -336,7 +336,7 @@ extension Clients {
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.cryptoKey {
-        req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
+        try req.setBody(json: body)
       }
       return try await req.rpc(
         GoogleCloudKMSV1.CryptoKey.self, timeout: options.attemptTimeout
@@ -359,7 +359,7 @@ extension Clients {
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.cryptoKeyVersion {
-        req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
+        try req.setBody(json: body)
       }
       return try await req.rpc(
         GoogleCloudKMSV1.CryptoKeyVersion.self, timeout: options.attemptTimeout
@@ -421,7 +421,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudKMSV1.CryptoKeyVersion.self, timeout: options.attemptTimeout
       ).get()
@@ -443,7 +443,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudKMSV1.CryptoKeyVersion.self, timeout: options.attemptTimeout
       ).get()
@@ -491,7 +491,7 @@ extension Clients {
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.importJob {
-        req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
+        try req.setBody(json: body)
       }
       return try await req.rpc(
         GoogleCloudKMSV1.ImportJob.self, timeout: options.attemptTimeout
@@ -517,7 +517,7 @@ extension Clients {
       req.setMethod(.PATCH)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.cryptoKey {
-        req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
+        try req.setBody(json: body)
       }
       return try await req.rpc(
         GoogleCloudKMSV1.CryptoKey.self, timeout: options.attemptTimeout
@@ -544,7 +544,7 @@ extension Clients {
       req.setMethod(.PATCH)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.cryptoKeyVersion {
-        req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
+        try req.setBody(json: body)
       }
       return try await req.rpc(
         GoogleCloudKMSV1.CryptoKeyVersion.self, timeout: options.attemptTimeout
@@ -566,7 +566,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudKMSV1.CryptoKey.self, timeout: options.attemptTimeout
       ).get()
@@ -587,7 +587,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudKMSV1.CryptoKeyVersion.self, timeout: options.attemptTimeout
       ).get()
@@ -608,7 +608,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudKMSV1.CryptoKeyVersion.self, timeout: options.attemptTimeout
       ).get()
@@ -629,7 +629,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudKMSV1.EncryptResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -650,7 +650,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudKMSV1.DecryptResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -671,7 +671,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudKMSV1.RawEncryptResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -692,7 +692,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudKMSV1.RawDecryptResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -713,7 +713,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudKMSV1.AsymmetricSignResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -734,7 +734,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudKMSV1.AsymmetricDecryptResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -755,7 +755,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudKMSV1.MacSignResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -776,7 +776,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudKMSV1.MacVerifyResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -797,7 +797,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudKMSV1.DecapsulateResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -818,7 +818,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleCloudKMSV1.GenerateRandomBytesResponse.self, timeout: options.attemptTimeout
       ).get()
@@ -883,7 +883,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleIAMV1.Policy.self, timeout: options.attemptTimeout
       ).get()
@@ -926,7 +926,7 @@ extension Clients {
       var req = try await self.inner.newRequest(path: path, query: query)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+      try req.setBody(json: request)
       return try await req.rpc(
         GoogleIAMV1.TestIamPermissionsResponse.self, timeout: options.attemptTimeout
       ).get()

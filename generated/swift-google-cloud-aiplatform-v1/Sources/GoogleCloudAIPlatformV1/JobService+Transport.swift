@@ -53,7 +53,7 @@
         req.setMethod(.POST)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.customJob {
-          req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
+          try req.setBody(json: body)
         }
         return try await req.rpc(
           GoogleCloudAIPlatformV1.CustomJob.self, timeout: options.attemptTimeout
@@ -140,7 +140,7 @@
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+        try req.setBody(json: request)
         _ = try await req.rpc(
           GoogleCloudWKT.Empty.self, timeout: options.attemptTimeout
         ).get()
@@ -162,7 +162,7 @@
         req.setMethod(.POST)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.dataLabelingJob {
-          req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
+          try req.setBody(json: body)
         }
         return try await req.rpc(
           GoogleCloudAIPlatformV1.DataLabelingJob.self, timeout: options.attemptTimeout
@@ -250,7 +250,7 @@
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+        try req.setBody(json: request)
         _ = try await req.rpc(
           GoogleCloudWKT.Empty.self, timeout: options.attemptTimeout
         ).get()
@@ -272,7 +272,7 @@
         req.setMethod(.POST)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.hyperparameterTuningJob {
-          req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
+          try req.setBody(json: body)
         }
         return try await req.rpc(
           GoogleCloudAIPlatformV1.HyperparameterTuningJob.self, timeout: options.attemptTimeout
@@ -360,7 +360,7 @@
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+        try req.setBody(json: request)
         _ = try await req.rpc(
           GoogleCloudWKT.Empty.self, timeout: options.attemptTimeout
         ).get()
@@ -382,7 +382,7 @@
         req.setMethod(.POST)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.nasJob {
-          req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
+          try req.setBody(json: body)
         }
         return try await req.rpc(
           GoogleCloudAIPlatformV1.NasJob.self, timeout: options.attemptTimeout
@@ -469,7 +469,7 @@
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+        try req.setBody(json: request)
         _ = try await req.rpc(
           GoogleCloudWKT.Empty.self, timeout: options.attemptTimeout
         ).get()
@@ -534,7 +534,7 @@
         req.setMethod(.POST)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.batchPredictionJob {
-          req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
+          try req.setBody(json: body)
         }
         return try await req.rpc(
           GoogleCloudAIPlatformV1.BatchPredictionJob.self, timeout: options.attemptTimeout
@@ -622,7 +622,7 @@
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+        try req.setBody(json: request)
         _ = try await req.rpc(
           GoogleCloudWKT.Empty.self, timeout: options.attemptTimeout
         ).get()
@@ -644,7 +644,7 @@
         req.setMethod(.POST)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.modelDeploymentMonitoringJob {
-          req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
+          try req.setBody(json: body)
         }
         return try await req.rpc(
           GoogleCloudAIPlatformV1.ModelDeploymentMonitoringJob.self, timeout: options.attemptTimeout
@@ -672,7 +672,7 @@
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+        try req.setBody(json: request)
         return try await req.rpc(
           GoogleCloudAIPlatformV1.SearchModelDeploymentMonitoringStatsAnomaliesResponse.self,
           timeout: options.attemptTimeout
@@ -746,7 +746,7 @@
         req.setMethod(.PATCH)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.modelDeploymentMonitoringJob {
-          req.setBody(data: try JSONEncoder().encode(body), ofContentType: "application/json")
+          try req.setBody(json: body)
         }
         return try await req.rpc(
           GoogleLongRunning.Operation.self, timeout: options.attemptTimeout
@@ -788,7 +788,7 @@
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+        try req.setBody(json: request)
         _ = try await req.rpc(
           GoogleCloudWKT.Empty.self, timeout: options.attemptTimeout
         ).get()
@@ -809,7 +809,7 @@
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+        try req.setBody(json: request)
         _ = try await req.rpc(
           GoogleCloudWKT.Empty.self, timeout: options.attemptTimeout
         ).get()
@@ -874,7 +874,7 @@
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+        try req.setBody(json: request)
         return try await req.rpc(
           GoogleIAMV1.Policy.self, timeout: options.attemptTimeout
         ).get()

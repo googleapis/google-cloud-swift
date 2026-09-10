@@ -51,7 +51,7 @@
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+        try req.setBody(json: request)
         return try await req.rpc(
           GoogleCloudAIPlatformV1.CountTokensResponse.self, timeout: options.attemptTimeout
         ).get()
@@ -72,7 +72,7 @@
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+        try req.setBody(json: request)
         return try await req.rpc(
           GoogleCloudAIPlatformV1.ComputeTokensResponse.self, timeout: options.attemptTimeout
         ).get()
@@ -137,7 +137,7 @@
         var req = try await self.inner.newRequest(path: path, query: query)
         req.setMethod(.POST)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        req.setBody(data: try JSONEncoder().encode(request), ofContentType: "application/json")
+        try req.setBody(json: request)
         return try await req.rpc(
           GoogleIAMV1.Policy.self, timeout: options.attemptTimeout
         ).get()
