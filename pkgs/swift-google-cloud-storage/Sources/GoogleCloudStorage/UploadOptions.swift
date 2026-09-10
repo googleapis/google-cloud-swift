@@ -515,8 +515,28 @@ public struct UploadOptions: Sendable {
 
   /// Overrides the quota project for this upload operation.
   ///
-  /// When set, the `x-goog-user-project` header is sent with this value, overriding any client-level
-  /// or credential-level quota project.
+  /// By default, Google Cloud Storage attributes quota and billing usage to the project associated
+  /// with the credentials, the project configured on `StorageClientOptions.client.quotaProject`,
+  /// or the project owning the bucket. Setting `quotaProject` instructs the service to charge
+  /// quota and billing for this upload to the specified project ID or project number instead.
+  ///
+  /// This is commonly used when:
+  /// - Uploading to a [Requester Pays] bucket where the caller's project must be billed for the
+  ///   operation.
+  /// - Authenticating with user credentials (such as those created by
+  ///   `gcloud auth application-default login`), which are not inherently tied to a project.
+  /// - Multiplexing uploads across multiple consumer projects using a single `StorageClient`.
+  ///
+  /// The authenticated principal must have the `serviceusage.services.use` IAM permission
+  /// (granted by the [Service Usage Consumer] role, `roles/serviceusage.serviceUsageConsumer`) on
+  /// the specified project.
+  ///
+  /// When set, the `x-goog-user-project` header is sent with this value across all requests for
+  /// this upload (including resumable upload session initiation, chunk uploads, and status
+  /// queries), taking precedence over any client-level or credential-level quota project.
+  ///
+  /// [Requester Pays]: https://cloud.google.com/storage/docs/requester-pays
+  /// [Service Usage Consumer]: https://cloud.google.com/service-usage/docs/access-control
   public var quotaProject: String? = nil
 
   /// Legacy validation enum property for backward compatibility.
