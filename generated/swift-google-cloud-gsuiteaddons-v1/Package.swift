@@ -26,12 +26,24 @@ let package = Package(
   dependencies: [
     .package(
       url: "https://github.com/googleapis/swift-google-apps-script-type", from: "0.0.0-preview"),
-    .package(path: "../../generated/swift-google-apps-script-type-calendar"),
-    .package(path: "../../generated/swift-google-apps-script-type-docs"),
-    .package(path: "../../generated/swift-google-apps-script-type-drive"),
-    .package(path: "../../generated/swift-google-apps-script-type-gmail"),
-    .package(path: "../../generated/swift-google-apps-script-type-sheets"),
-    .package(path: "../../generated/swift-google-apps-script-type-slides"),
+    .package(
+      url: "https://github.com/googleapis/swift-google-apps-script-type-calendar",
+      from: "0.0.0-preview"),
+    .package(
+      url: "https://github.com/googleapis/swift-google-apps-script-type-docs", from: "0.0.0-preview"
+    ),
+    .package(
+      url: "https://github.com/googleapis/swift-google-apps-script-type-drive",
+      from: "0.0.0-preview"),
+    .package(
+      url: "https://github.com/googleapis/swift-google-apps-script-type-gmail",
+      from: "0.0.0-preview"),
+    .package(
+      url: "https://github.com/googleapis/swift-google-apps-script-type-sheets",
+      from: "0.0.0-preview"),
+    .package(
+      url: "https://github.com/googleapis/swift-google-apps-script-type-slides",
+      from: "0.0.0-preview"),
     .package(url: "https://github.com/googleapis/swift-google-auth", from: "0.0.0-preview"),
     .package(url: "https://github.com/googleapis/swift-google-gax", from: "0.0.0-preview"),
     .package(url: "https://github.com/googleapis/swift-google-wkt", from: "0.1.0-preview"),

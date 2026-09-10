@@ -54,22 +54,22 @@ default:
         url: https://github.com/googleapis/swift-google-apps-script-type
         api_package: google.apps.script.type
       - name: GoogleAppsScriptTypeCalendar
-        path: generated/swift-google-apps-script-type-calendar
+        url: https://github.com/googleapis/swift-google-apps-script-type-calendar
         api_package: google.apps.script.type.calendar
       - name: GoogleAppsScriptTypeDocs
-        path: generated/swift-google-apps-script-type-docs
+        url: https://github.com/googleapis/swift-google-apps-script-type-docs
         api_package: google.apps.script.type.docs
       - name: GoogleAppsScriptTypeDrive
-        path: generated/swift-google-apps-script-type-drive
+        url: https://github.com/googleapis/swift-google-apps-script-type-drive
         api_package: google.apps.script.type.drive
       - name: GoogleAppsScriptTypeGmail
-        path: generated/swift-google-apps-script-type-gmail
+        url: https://github.com/googleapis/swift-google-apps-script-type-gmail
         api_package: google.apps.script.type.gmail
       - name: GoogleAppsScriptTypeSheets
-        path: generated/swift-google-apps-script-type-sheets
+        url: https://github.com/googleapis/swift-google-apps-script-type-sheets
         api_package: google.apps.script.type.sheets
       - name: GoogleAppsScriptTypeSlides
-        path: generated/swift-google-apps-script-type-slides
+        url: https://github.com/googleapis/swift-google-apps-script-type-slides
         api_package: google.apps.script.type.slides
       - name: GoogleCloudAuth
         url: https://github.com/googleapis/swift-google-auth
