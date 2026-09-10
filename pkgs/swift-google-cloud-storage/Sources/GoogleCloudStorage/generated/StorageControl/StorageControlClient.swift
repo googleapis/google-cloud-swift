@@ -470,7 +470,7 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
-      poll: poll,
+      poll: poll
     )
   }
 
@@ -503,7 +503,7 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
-      poll: poll,
+      poll: poll
     )
   }
 
@@ -589,7 +589,7 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
-      poll: poll,
+      poll: poll
     )
   }
 
@@ -622,7 +622,7 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
-      poll: poll,
+      poll: poll
     )
   }
 
@@ -703,7 +703,7 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
-      poll: poll,
+      poll: poll
     )
   }
 
@@ -734,7 +734,7 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
-      poll: poll,
+      poll: poll
     )
   }
 
@@ -765,7 +765,7 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
-      poll: poll,
+      poll: poll
     )
   }
 
