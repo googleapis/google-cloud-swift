@@ -36,6 +36,9 @@ clean_targets=(
     GoogleCloudWorkflowsV1
 )
 echo "--- Building ${#clean_targets[@]} targets with warnings as errors"
+swift package edit --path "${REPO_ROOT}/packages/swift-google-wkt"  swift-google-wkt
+swift package edit --path "${REPO_ROOT}/packages/swift-google-auth" swift-google-auth
+swift package edit --path "${REPO_ROOT}/packages/swift-google-gax"  swift-google-gax
 for target in "${clean_targets[@]}"; do
     count=$((count + 1))
 
