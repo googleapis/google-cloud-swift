@@ -179,6 +179,73 @@ import NIOHTTP1
     #expect(data == .init("{}".utf8))
   }
 
+  @Test func postRequestBodyJSON() async throws {
+    struct TestPayload: Encodable {
+      var name: String
+      var floatVal: Float32
+      var doubleVal: Float64
+    }
+
+    let mock = MockHTTPClient { (request, timeout) in
+      #expect(timeout == .seconds(1))
+      #expect(request.method == .POST)
+      #expect(request.url == "http://localhost:8080/v1/projects/my-project/secrets?$alt=json")
+      #expect(request.headers["Content-Type"] == ["application/json"])
+
+      let body = try #require(request.body)
+      let collected = try await body.collect(upTo: 1024)
+      let bodyString = String(buffer: collected)
+      #expect(bodyString.contains(#""floatVal":"NaN""#))
+      #expect(bodyString.contains(#""doubleVal":"Infinity""#))
+      #expect(bodyString.contains(#""name":"test""#))
+
+      return HTTPClientResponse(
+        version: .http1_1,
+        status: .ok,
+        body: .bytes(.init(string: "{}"))
+      )
+    }
+
+    let endpoint = "http://localhost:8080"
+    let path = "/v1/projects/my-project/secrets"
+    let client = try _HTTPClient(mock, endpoint: endpoint)
+    var request = try await client.newRequest(
+      path: path,
+      query: [URLQueryItem(name: "$alt", value: "json")],
+    )
+    request.setMethod(.POST)
+    try request.setBody(
+      json: TestPayload(name: "test", floatVal: .nan, doubleVal: .infinity)
+    )
+    let response = try await request.execute(timeout: .seconds(1))
+    #expect(response.status == .ok)
+  }
+
+  @Test func postRequestBodyJSONCustomContentType() async throws {
+    struct TestPayload: Encodable {
+      var name: String
+    }
+
+    let mock = MockHTTPClient { (request, _) in
+      #expect(request.headers["Content-Type"] == ["application/merge-patch+json"])
+
+      return HTTPClientResponse(
+        version: .http1_1,
+        status: .ok,
+        body: .bytes(.init(string: "{}"))
+      )
+    }
+
+    let client = try _HTTPClient(mock, endpoint: "http://localhost:8080")
+    var request = try await client.newRequest(path: "/v1/test", query: [])
+    try request.setBody(
+      json: TestPayload(name: "patch"),
+      ofContentType: "application/merge-patch+json"
+    )
+    let response = try await request.execute(timeout: .seconds(1))
+    #expect(response.status == .ok)
+  }
+
   @Test func rpcNoTimeout() async throws {
     let mock = MockHTTPClient { (request, timeout) in
       #expect(timeout == _HTTPClientRequest.defaultTimeout)
