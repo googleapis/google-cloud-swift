@@ -573,6 +573,22 @@ public struct UploadOptions: Sendable {
   }
 }
 
+extension UploadOptions {
+  internal func withDefaults(_ defaults: Self) -> Self {
+    var copy = self
+    copy.resumableUploadThreshold =
+      self.resumableUploadThreshold ?? defaults.resumableUploadThreshold
+    copy.resumePolicy = self.resumePolicy ?? defaults.resumePolicy
+    copy.backoffPolicy = self.backoffPolicy ?? defaults.backoffPolicy
+    copy.quotaProject = self.quotaProject ?? defaults.quotaProject
+    return copy
+  }
+
+  internal var requestOptions: RequestOptions {
+    RequestOptions().with { $0.quotaProject = self.quotaProject }
+  }
+}
+
 /// Customer encryption metadata returned in object responses.
 extension CustomerEncryption {
   /// Base64-encoded string representation of `keySha256Bytes`.

@@ -277,6 +277,20 @@ public struct ReadObjectOptions: Sendable {
   }
 }
 
+extension ReadObjectOptions {
+  internal func withDefaults(_ defaults: Self) -> Self {
+    var copy = self
+    copy.resumePolicy = self.resumePolicy ?? defaults.resumePolicy
+    copy.backoffPolicy = self.backoffPolicy ?? defaults.backoffPolicy
+    copy.quotaProject = self.quotaProject ?? defaults.quotaProject
+    return copy
+  }
+
+  internal var requestOptions: RequestOptions {
+    RequestOptions().with { $0.quotaProject = self.quotaProject }
+  }
+}
+
 /// Calculates the remaining range to request when resuming an interrupted download.
 ///
 /// - Parameters:

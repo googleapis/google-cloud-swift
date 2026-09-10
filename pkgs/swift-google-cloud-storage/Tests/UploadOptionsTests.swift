@@ -69,4 +69,35 @@ import Testing
     #expect(options.resumePolicy != nil)
     #expect(options.quotaProject == "upload-quota-project")
   }
+
+  @Test func uploadOptionsWithDefaults() {
+    let defaults = UploadOptions().with {
+      $0.resumableUploadThreshold = 16 * 1024 * 1024
+      $0.resumePolicy = NeverResume<UploadDetails>()
+      $0.backoffPolicy = ExponentialBackoff()
+      $0.quotaProject = "default-upload-quota"
+    }
+
+    // 1. Falls back to defaults when per-request options are nil
+    let emptyOptions = UploadOptions()
+    let resolvedFromEmpty = emptyOptions.withDefaults(defaults)
+    #expect(resolvedFromEmpty.resumableUploadThreshold == 16 * 1024 * 1024)
+    #expect(resolvedFromEmpty.resumePolicy is NeverResume<UploadDetails>)
+    #expect(resolvedFromEmpty.backoffPolicy is ExponentialBackoff)
+    #expect(resolvedFromEmpty.quotaProject == "default-upload-quota")
+    #expect(resolvedFromEmpty.requestOptions.quotaProject == "default-upload-quota")
+
+    // 2. Per-request options take precedence over defaults
+    let overrideOptions = UploadOptions().with {
+      $0.resumableUploadThreshold = 32 * 1024 * 1024
+      $0.resumePolicy = AlwaysResume<UploadDetails>()
+      $0.quotaProject = "override-upload-quota"
+    }
+    let resolvedFromOverride = overrideOptions.withDefaults(defaults)
+    #expect(resolvedFromOverride.resumableUploadThreshold == 32 * 1024 * 1024)
+    #expect(resolvedFromOverride.resumePolicy is AlwaysResume<UploadDetails>)
+    #expect(resolvedFromOverride.backoffPolicy is ExponentialBackoff)
+    #expect(resolvedFromOverride.quotaProject == "override-upload-quota")
+    #expect(resolvedFromOverride.requestOptions.quotaProject == "override-upload-quota")
+  }
 }
