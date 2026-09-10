@@ -27,18 +27,21 @@ import Foundation
   let backoffPolicy: any BackoffPolicy
   let retryThrottler: any RetryThrottler
   let idempotent: Bool
+  let attemptTimeout: Duration?
 
   /// A simple constructor for tests.
   public init(
     retryPolicy: any RetryPolicy,
     backoffPolicy: any BackoffPolicy,
     retryThrottler: any RetryThrottler,
-    idempotent: Bool
+    idempotent: Bool,
+    attemptTimeout: Duration? = nil
   ) {
     self.retryPolicy = retryPolicy
     self.backoffPolicy = backoffPolicy
     self.retryThrottler = retryThrottler
     self.idempotent = idempotent
+    self.attemptTimeout = attemptTimeout
   }
 
   /// Initializes a retry loop for the retry stub.
@@ -50,6 +53,7 @@ import Foundation
     self.backoffPolicy = options.backoffPolicy ?? withDefault.backoffPolicy
     self.retryThrottler = options.retryThrottler ?? withDefault.retryThrottler
     self.idempotent = options.idempotency ?? idempotent
+    self.attemptTimeout = options.attemptTimeout
   }
 
   /// Runs the retry loop.
@@ -116,8 +120,13 @@ import Foundation
       attemptCount += 1
       state.attemptCount = attemptCount
 
+      let timeout = Self.effectiveTimeout(
+        attemptTimeout: attemptTimeout,
+        remainingTime: remainingTime
+      )
+
       do {
-        let response = try await inner(remainingTime)
+        let response = try await inner(timeout)
         retryThrottler.onSuccess()
         return response
       } catch {
@@ -136,6 +145,22 @@ import Foundation
           continue
         }
       }
+    }
+  }
+
+  static func effectiveTimeout(
+    attemptTimeout: Duration?,
+    remainingTime: Duration?
+  ) -> Duration? {
+    switch (attemptTimeout, remainingTime) {
+    case (.some(let attempt), .some(let remaining)):
+      min(attempt, remaining)
+    case (.some(let attempt), .none):
+      attempt
+    case (.none, .some(let remaining)):
+      remaining
+    case (.none, .none):
+      nil
     }
   }
 }

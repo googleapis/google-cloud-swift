@@ -91,6 +91,147 @@ import Testing
     #expect(loop.idempotent == want)
   }
 
+  @Test(arguments: [
+    (nil, nil, nil),
+    (Duration.seconds(4), nil, Duration.seconds(4)),
+    (nil, Duration.seconds(4), Duration.seconds(4)),
+    (Duration.seconds(2), Duration.seconds(4), Duration.seconds(2)),
+    (Duration.seconds(4), Duration.seconds(2), Duration.seconds(2)),
+    (Duration.seconds(2), Duration.seconds(2), Duration.seconds(2)),
+  ])
+  func effectiveTimeouts(
+    attempt: Duration?,
+    remaining: Duration?,
+    want: Duration?
+  ) {
+    let got = _RetryLoop.effectiveTimeout(attemptTimeout: attempt, remainingTime: remaining)
+    #expect(got == want)
+  }
+
+  @Test func attemptTimeoutFromRequest() {
+    let defaultOptions = ClientOptions()
+    let requestOptions = RequestOptions().with { $0.attemptTimeout = .seconds(5) }
+    let loop = _RetryLoop(options: requestOptions, withDefault: defaultOptions, idempotent: true)
+    #expect(loop.attemptTimeout == .seconds(5))
+  }
+
+  @Test func attemptTimeoutDefaultWhenNil() {
+    let defaultOptions = ClientOptions()
+    let requestOptions = RequestOptions()
+    let loop = _RetryLoop(options: requestOptions, withDefault: defaultOptions, idempotent: true)
+    #expect(loop.attemptTimeout == nil)
+  }
+
+  @Test func attemptTimeoutPassedToInner() async throws {
+    let loop = _RetryLoop(
+      retryPolicy: MockPolicy(
+        onError: { _, e in .retry(e) },
+        remainingTime: { _ in .seconds(60) }
+      ),
+      backoffPolicy: MockBackoff(),
+      retryThrottler: MockThrottler(),
+      idempotent: true,
+      attemptTimeout: .seconds(5)
+    )
+
+    var capturedTimeout: Duration?
+    let response = try await loop.run(
+      inner: { timeout in
+        capturedTimeout = timeout
+        return "success"
+      },
+      sleep: { _ in }
+    )
+
+    #expect(response == "success")
+    #expect(capturedTimeout == .seconds(5))
+  }
+
+  @Test func remainingTimeUsedWhenSmallerThanAttemptTimeout() async throws {
+    let loop = _RetryLoop(
+      retryPolicy: MockPolicy(
+        onError: { _, e in .retry(e) },
+        remainingTime: { _ in .seconds(2) }
+      ),
+      backoffPolicy: MockBackoff(),
+      retryThrottler: MockThrottler(),
+      idempotent: true,
+      attemptTimeout: .seconds(5)
+    )
+
+    var capturedTimeout: Duration?
+    let response = try await loop.run(
+      inner: { timeout in
+        capturedTimeout = timeout
+        return "success"
+      },
+      sleep: { _ in }
+    )
+
+    #expect(response == "success")
+    #expect(capturedTimeout == .seconds(2))
+  }
+
+  @Test func attemptTimeoutUsedWhenPolicyHasNoTimeLimit() async throws {
+    let loop = _RetryLoop(
+      retryPolicy: MockPolicy(
+        onError: { _, e in .retry(e) },
+        remainingTime: { _ in nil }
+      ),
+      backoffPolicy: MockBackoff(),
+      retryThrottler: MockThrottler(),
+      idempotent: true,
+      attemptTimeout: .seconds(5)
+    )
+
+    var capturedTimeout: Duration?
+    let response = try await loop.run(
+      inner: { timeout in
+        capturedTimeout = timeout
+        return "success"
+      },
+      sleep: { _ in }
+    )
+
+    #expect(response == "success")
+    #expect(capturedTimeout == .seconds(5))
+  }
+
+  @Test func timeoutDynamicallyAdjustsAcrossAttempts() async throws {
+    let transientError = transient()
+    let remainingTimeValues: [Duration?] = [.seconds(10), .seconds(3)]
+    let remainingTimeIndex = AtomicCounter()
+    var capturedTimeouts: [Duration?] = []
+
+    let loop = _RetryLoop(
+      retryPolicy: MockPolicy(
+        onError: { _, e in .retry(e) },
+        remainingTime: { _ in
+          let index = remainingTimeIndex.increment()
+          return index < remainingTimeValues.count ? remainingTimeValues[index] : nil
+        }
+      ),
+      backoffPolicy: MockBackoff(),
+      retryThrottler: MockThrottler(),
+      idempotent: true,
+      attemptTimeout: .seconds(5)
+    )
+
+    let response = try await loop.run(
+      inner: { timeout in
+        capturedTimeouts.append(timeout)
+        if capturedTimeouts.count == 1 {
+          throw transientError
+        }
+        return "success"
+      },
+      sleep: { _ in }
+    )
+
+    #expect(response == "success")
+    #expect(capturedTimeouts == [.seconds(5), .seconds(3)])
+  }
+
   @Test func immediateSuccess() async throws {
     let loop = _RetryLoop(
       retryPolicy: MockPolicy(onError: { _, e in .retry(e) }),
