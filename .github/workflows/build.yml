@@ -46,4 +46,4 @@ jobs:
             swift package edit --path packages/swift-google-wkt  swift-google-wkt
             swift package edit --path packages/swift-google-auth swift-google-auth
             swift package edit --path packages/swift-google-gax  swift-google-gax
-            swift test -Xswiftc DeprecatedDeclaration
+            swift test
