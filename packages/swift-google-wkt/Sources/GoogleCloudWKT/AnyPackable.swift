@@ -35,8 +35,7 @@ public func _slowAnyDeserialize<M: Decodable & _AnyPackable>(
   if M._anyTypeUrl != from._type {
     throw AnyError.mismatchedTypeUrl
   }
-  let encoder = JSONEncoder();
-  encoder.outputFormatting = [.withoutEscapingSlashes]
+  let encoder = _ProtoJSONEncoder()
   let data = try encoder.encode(from.fields)
   let decoder = _ProtoJSONDecoder()
   return try decoder.decode(M.self, from: data)
@@ -45,8 +44,7 @@ public func _slowAnyDeserialize<M: Decodable & _AnyPackable>(
 // Serializes a message of type `M` into an `Any`.
 @_spi(GoogleCloudInternal)
 public func _slowAnySerialize<M: Encodable>(message: M) throws -> Struct {
-  let encoder = JSONEncoder()
-  encoder.outputFormatting = [.withoutEscapingSlashes]
+  let encoder = _ProtoJSONEncoder()
   let data = try encoder.encode(message)
   let decoder = _ProtoJSONDecoder()
   return try decoder.decode(Struct.self, from: data)

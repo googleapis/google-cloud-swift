@@ -131,11 +131,8 @@ import Testing
     ]
   )
   func serialize(want: String, input: T) throws {
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
-    encoder.nonConformingFloatEncodingStrategy = .convertToString(
-      positiveInfinity: "Infinity", negativeInfinity: "-Infinity", nan: "NaN"
-    )
     let data = try encoder.encode(input)
     let got = String(data: data, encoding: .utf8)!
     #expect(got == want)
