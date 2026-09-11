@@ -75,7 +75,9 @@ edit_package_dependencies() {
         local dep_rel="${item%%:*}"
         local dep_name="${item##*:}"
         if [[ "${clean_dir}" != "${dep_rel}" && "${clean_dir}" != "${REPO_ROOT}/${dep_rel}" ]]; then
-            swift package "${scratch_args[@]}" --package-path "${dir}" edit --path "${REPO_ROOT}/${dep_rel}" "${dep_name}" >/dev/null 2>&1 || true
+            if grep -F -q "${dep_name}" "${dir}/Package.swift" 2>/dev/null; then
+                swift package "${scratch_args[@]}" --package-path "${dir}" edit --path "${REPO_ROOT}/${dep_rel}" "${dep_name}" >/dev/null 2>&1 || true
+            fi
         fi
     done
     # SwiftPM requires automatic resolution when dependencies are in editable mode.
@@ -113,7 +115,9 @@ restore_package_dependencies() {
         local dep_rel="${item%%:*}"
         local dep_name="${item##*:}"
         if [[ "${clean_dir}" != "${dep_rel}" && "${clean_dir}" != "${REPO_ROOT}/${dep_rel}" ]]; then
-            swift package "${scratch_args[@]}" --package-path "${dir}" unedit --force "${dep_name}" >/dev/null 2>&1 || true
+            if grep -F -q "${dep_name}" "${dir}/Package.swift" 2>/dev/null; then
+                swift package "${scratch_args[@]}" --package-path "${dir}" unedit --force "${dep_name}" >/dev/null 2>&1 || true
+            fi
         fi
     done
     if [[ "${clean_dir}" == "." || "${clean_dir}" == "${REPO_ROOT}" ]]; then
