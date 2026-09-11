@@ -272,8 +272,8 @@ public struct MessageWithComplexOneOf: Codable, Equatable, GoogleCloudWKT._AnyPa
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .black: return try container.encode(1)
+      case .unspecified: return try container.encode("TEST_ENUM_UNSPECIFIED")
+      case .black: return try container.encode("BLACK")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

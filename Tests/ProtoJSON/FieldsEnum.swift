@@ -51,13 +51,13 @@ import Testing
   @Test(
     "Enum fields serialize",
     arguments: [
-      (#"{"map":{},"optional":null,"repeated":[],"singular":0}"#, T()),
+      (#"{"map":{},"optional":null,"repeated":[],"singular":"TEST_ENUM_UNSPECIFIED"}"#, T()),
       (
-        #"{"map":{},"optional":null,"repeated":[],"singular":0}"#,
+        #"{"map":{},"optional":null,"repeated":[],"singular":"TEST_ENUM_UNSPECIFIED"}"#,
         T().with { $0.singular = .unspecified }
       ),
       (
-        #"{"map":{},"optional":null,"repeated":[],"singular":1}"#,
+        #"{"map":{},"optional":null,"repeated":[],"singular":"RED"}"#,
         T().with { $0.singular = .red }
       ),
       (
@@ -69,39 +69,39 @@ import Testing
         T().with { $0.singular = .unknownIntValue(42) }
       ),
       (
-        #"{"map":{},"optional":2,"repeated":[],"singular":0}"#,
+        #"{"map":{},"optional":"GREEN","repeated":[],"singular":"TEST_ENUM_UNSPECIFIED"}"#,
         T().with { $0.optional = .green }
       ),
       (
-        #"{"map":{},"optional":"CYAN","repeated":[],"singular":0}"#,
+        #"{"map":{},"optional":"CYAN","repeated":[],"singular":"TEST_ENUM_UNSPECIFIED"}"#,
         T().with { $0.optional = .unknownStringValue("CYAN") }
       ),
       (
-        #"{"map":{},"optional":42,"repeated":[],"singular":0}"#,
+        #"{"map":{},"optional":42,"repeated":[],"singular":"TEST_ENUM_UNSPECIFIED"}"#,
         T().with { $0.optional = .unknownIntValue(42) }
       ),
       (
-        #"{"map":{},"optional":null,"repeated":[1,3,3],"singular":0}"#,
+        #"{"map":{},"optional":null,"repeated":["RED","BLUE","BLUE"],"singular":"TEST_ENUM_UNSPECIFIED"}"#,
         T().with { $0.repeated = [.red, .blue, .blue] }
       ),
       (
-        #"{"map":{},"optional":null,"repeated":[42],"singular":0}"#,
+        #"{"map":{},"optional":null,"repeated":[42],"singular":"TEST_ENUM_UNSPECIFIED"}"#,
         T().with { $0.repeated = [.unknownIntValue(42)] }
       ),
       (
-        #"{"map":{},"optional":null,"repeated":["CYAN"],"singular":0}"#,
+        #"{"map":{},"optional":null,"repeated":["CYAN"],"singular":"TEST_ENUM_UNSPECIFIED"}"#,
         T().with { $0.repeated = [.unknownStringValue("CYAN")] }
       ),
       (
-        #"{"map":{"a":2},"optional":null,"repeated":[],"singular":0}"#,
+        #"{"map":{"a":"GREEN"},"optional":null,"repeated":[],"singular":"TEST_ENUM_UNSPECIFIED"}"#,
         T().with { $0.map = ["a": .green] }
       ),
       (
-        #"{"map":{"a":42},"optional":null,"repeated":[],"singular":0}"#,
+        #"{"map":{"a":42},"optional":null,"repeated":[],"singular":"TEST_ENUM_UNSPECIFIED"}"#,
         T().with { $0.map = ["a": .unknownIntValue(42)] }
       ),
       (
-        #"{"map":{"a":"MAGENTA"},"optional":null,"repeated":[],"singular":0}"#,
+        #"{"map":{"a":"MAGENTA"},"optional":null,"repeated":[],"singular":"TEST_ENUM_UNSPECIFIED"}"#,
         T().with { $0.map = ["a": .unknownStringValue("MAGENTA")] }
       ),
     ])

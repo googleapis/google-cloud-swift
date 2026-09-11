@@ -79,7 +79,7 @@ import Testing
       (#"{"doubleValue":2.5}"#, MessageWithComplexOneOf().with { $0.complex = .doubleValue(2.5) }),
       (#"{"int32":42}"#, MessageWithComplexOneOf().with { $0.complex = .int32(42) }),
       (#"{"int64":42}"#, MessageWithComplexOneOf().with { $0.complex = .int64(42) }),
-      (#"{"enum":1}"#, MessageWithComplexOneOf().with { $0.complex = .enum(.black) }),
+      (#"{"enum":"BLACK"}"#, MessageWithComplexOneOf().with { $0.complex = .enum(.black) }),
       (
         #"{"inner":{"strings":["a","b"]}}"#,
         MessageWithComplexOneOf().with {
