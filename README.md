@@ -25,10 +25,10 @@ major version (or minor version for packages still at `0.x`).
 
 We do not consider changes to `swift-tools-version` to be breaking changes.
 
-We do not consider changes to our dependencies, or the traits enabled in our
-dependencies, to be breaking changes. You should add any dependencies to your
-application directly, and enable any non-default traits of these dependencies
-explicitly.
+We do not consider changes to our dependencies, or the package traits enabled in
+our dependencies, to be breaking changes. You should add any dependencies to
+your application directly, and enable any non-default package traits of these
+dependencies explicitly.
 
 ### Public API and Stability
 
