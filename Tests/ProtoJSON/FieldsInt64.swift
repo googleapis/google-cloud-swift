@@ -41,6 +41,8 @@ import Testing
       (#"{"mapValue"   : {}                }"#, T()),
       (#"{"mapValue"   : {"a": 42}         }"#, T().with { $0.mapValue = ["a": 42] }),
       (#"{"mapValue"   : {"a": "42"}       }"#, T().with { $0.mapValue = ["a": 42] }),
+      (#"{"singular"   : "-9223372036854775808"}"#, T().with { $0.singular = Int64.min }),
+      (#"{"singular"   : "9223372036854775807" }"#, T().with { $0.singular = Int64.max }),
     ])
   func deserialize(input: String, want: T) throws {
     let decoder = _ProtoJSONDecoder()
@@ -51,20 +53,44 @@ import Testing
   @Test(
     arguments: [
       (
-        #"{"mapKey":{},"mapKeyValue":{},"mapValue":{},"option":null,"repeated":[],"singular":0}"#,
+        #"{"mapKey":{},"mapKeyValue":{},"mapValue":{},"option":null,"repeated":[],"singular":"0"}"#,
         T()
       ),
       (
-        #"{"mapKey":{"42":"a"},"mapKeyValue":{},"mapValue":{},"option":null,"repeated":[],"singular":0}"#,
+        #"{"mapKey":{"42":"a"},"mapKeyValue":{},"mapValue":{},"option":null,"repeated":[],"singular":"0"}"#,
         T().with { $0.mapKey = [42: "a"] }
       ),
       (
-        #"{"mapKey":{},"mapKeyValue":{"42":7},"mapValue":{},"option":null,"repeated":[],"singular":0}"#,
+        #"{"mapKey":{},"mapKeyValue":{"42":"7"},"mapValue":{},"option":null,"repeated":[],"singular":"0"}"#,
         T().with { $0.mapKeyValue = [42: 7] }
+      ),
+      (
+        #"{"mapKey":{},"mapKeyValue":{},"mapValue":{},"option":"42","repeated":[],"singular":"0"}"#,
+        T().with { $0.option = 42 }
+      ),
+      (
+        #"{"mapKey":{},"mapKeyValue":{},"mapValue":{},"option":null,"repeated":["4","2"],"singular":"0"}"#,
+        T().with { $0.repeated = [4, 2] }
+      ),
+      (
+        #"{"mapKey":{},"mapKeyValue":{},"mapValue":{"a":"42"},"option":null,"repeated":[],"singular":"0"}"#,
+        T().with { $0.mapValue = ["a": 42] }
+      ),
+      (
+        #"{"mapKey":{},"mapKeyValue":{},"mapValue":{},"option":null,"repeated":[],"singular":"42"}"#,
+        T().with { $0.singular = 42 }
+      ),
+      (
+        #"{"mapKey":{},"mapKeyValue":{},"mapValue":{},"option":null,"repeated":[],"singular":"-9223372036854775808"}"#,
+        T().with { $0.singular = Int64.min }
+      ),
+      (
+        #"{"mapKey":{},"mapKeyValue":{},"mapValue":{},"option":null,"repeated":[],"singular":"9223372036854775807"}"#,
+        T().with { $0.singular = Int64.max }
       ),
     ])
   func roundtrip(want: String, input: T) throws {
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
     let data = try encoder.encode(input)
     let got = String(data: data, encoding: .utf8)!

@@ -39,4 +39,50 @@ import Testing
     let got = try decoder.decode(T.self, from: Data(input.utf8))
     #expect(got == want)
   }
+
+  @Test(
+    "Struct fields serialize",
+    arguments: [
+      (#"{"map":{},"optional":null,"repeated":[],"singular":null}"#, T()),
+      (
+        #"{"map":{},"optional":null,"repeated":[],"singular":{}}"#,
+        T().with { $0.singular = [:] }
+      ),
+      (
+        #"{"map":{},"optional":null,"repeated":[],"singular":{"a":42}}"#,
+        T().with { $0.singular = ["a": .number(42)] }
+      ),
+      (
+        #"{"map":{},"optional":null,"repeated":[],"singular":{"a":"hello"}}"#,
+        T().with { $0.singular = ["a": .string("hello")] }
+      ),
+      (
+        #"{"map":{},"optional":{"a":42},"repeated":[],"singular":null}"#,
+        T().with { $0.optional = ["a": .number(42)] }
+      ),
+      (
+        #"{"map":{},"optional":null,"repeated":[{}],"singular":null}"#,
+        T().with { $0.repeated = [[:]] }
+      ),
+      (
+        #"{"map":{},"optional":null,"repeated":[{"a":42}],"singular":null}"#,
+        T().with { $0.repeated = [["a": .number(42)]] }
+      ),
+      (
+        #"{"map":{"a":{"b":42}},"optional":null,"repeated":[],"singular":null}"#,
+        T().with { $0.map = ["a": ["b": .number(42)]] }
+      ),
+    ]
+  )
+  func serialize(want: String, input: T) throws {
+    let encoder = _ProtoJSONEncoder()
+    encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
+    let data = try encoder.encode(input)
+    let got = String(data: data, encoding: .utf8)!
+    #expect(got == want)
+
+    let decoder = _ProtoJSONDecoder()
+    let roundtrip = try decoder.decode(T.self, from: data)
+    #expect(input == roundtrip)
+  }
 }

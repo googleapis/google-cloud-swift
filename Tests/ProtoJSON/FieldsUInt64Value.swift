@@ -20,7 +20,7 @@ import Testing
   typealias T = MessageWithUInt64Value
 
   @Test(
-    "UInt32Value fields deserialize",
+    "UInt64Value fields deserialize",
     arguments: [
       (#"{}"#, T()),
       (#"{"singular": null         }"#, T()),
@@ -30,10 +30,36 @@ import Testing
       (#"{"repeated": [42]         }"#, T().with { $0.repeated = [42] }),
       (#"{"map":      {}           }"#, T()),
       (#"{"map":      {"a": 42 }   }"#, T().with { $0.map = ["a": 42] }),
+      (#"{"singular": "18446744073709551615"}"#, T().with { $0.singular = UInt64.max }),
     ])
   func deserialize(input: String, want: T) throws {
     let decoder = _ProtoJSONDecoder()
     let got = try decoder.decode(T.self, from: Data(input.utf8))
     #expect(got == want)
+  }
+
+  @Test(
+    "UInt64Value fields serialize",
+    arguments: [
+      (#"{"map":{},"repeated":[]}"#, T()),
+      (#"{"map":{},"repeated":[],"singular":"42"}"#, T().with { $0.singular = 42 }),
+      (#"{"map":{},"repeated":["42"]}"#, T().with { $0.repeated = [42] }),
+      (#"{"map":{"a":"42"},"repeated":[]}"#, T().with { $0.map = ["a": 42] }),
+      (
+        #"{"map":{},"repeated":[],"singular":"18446744073709551615"}"#,
+        T().with { $0.singular = UInt64.max }
+      ),
+    ]
+  )
+  func serialize(want: String, input: T) throws {
+    let encoder = _ProtoJSONEncoder()
+    encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
+    let data = try encoder.encode(input)
+    let got = String(data: data, encoding: .utf8)!
+    #expect(got == want)
+
+    let decoder = _ProtoJSONDecoder()
+    let roundtrip = try decoder.decode(T.self, from: data)
+    #expect(input == roundtrip)
   }
 }

@@ -36,4 +36,26 @@ import Testing
     let got = try decoder.decode(T.self, from: Data(input.utf8))
     #expect(got == want)
   }
+
+  @Test(
+    "BoolValue fields serialize",
+    arguments: [
+      (#"{"map":{},"repeated":[]}"#, T()),
+      (#"{"map":{},"repeated":[],"singular":true}"#, T().with { $0.singular = true }),
+      (#"{"map":{},"repeated":[],"singular":false}"#, T().with { $0.singular = false }),
+      (#"{"map":{},"repeated":[true,false]}"#, T().with { $0.repeated = [true, false] }),
+      (#"{"map":{"a":false},"repeated":[]}"#, T().with { $0.map = ["a": false] }),
+    ]
+  )
+  func serialize(want: String, input: T) throws {
+    let encoder = _ProtoJSONEncoder()
+    encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
+    let data = try encoder.encode(input)
+    let got = String(data: data, encoding: .utf8)!
+    #expect(got == want)
+
+    let decoder = _ProtoJSONDecoder()
+    let roundtrip = try decoder.decode(T.self, from: data)
+    #expect(input == roundtrip)
+  }
 }

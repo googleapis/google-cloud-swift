@@ -35,4 +35,30 @@ import Testing
     let got = try decoder.decode(T.self, from: Data(input.utf8))
     #expect(got == want)
   }
+
+  @Test(
+    "NullValue fields serialize",
+    arguments: [
+      (#"{"map":{},"optional":null,"repeated":[],"singular":null}"#, T()),
+      (
+        #"{"map":{},"optional":null,"repeated":[null],"singular":null}"#,
+        T().with { $0.repeated = [NullValue()] }
+      ),
+      (
+        #"{"map":{"a":null},"optional":null,"repeated":[],"singular":null}"#,
+        T().with { $0.map = ["a": NullValue()] }
+      ),
+    ]
+  )
+  func serialize(want: String, input: T) throws {
+    let encoder = _ProtoJSONEncoder()
+    encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
+    let data = try encoder.encode(input)
+    let got = String(data: data, encoding: .utf8)!
+    #expect(got == want)
+
+    let decoder = _ProtoJSONDecoder()
+    let roundtrip = try decoder.decode(T.self, from: data)
+    #expect(input == roundtrip)
+  }
 }

@@ -133,7 +133,7 @@ import Testing
       ]
     }
 
-    let data = try JSONEncoder().encode(input)
+    let data = try _ProtoJSONEncoder().encode(input)
     let decoded = try _ProtoJSONDecoder().decode(MessageWithRecursion.self, from: data)
     #expect(decoded == input)
   }

@@ -17,18 +17,18 @@
 import Foundation
 @_spi(GoogleCloudInternal) import GoogleCloudWKT
 
-/// A test message for google.protobuf.Int64Value.
+/// A test message for google.protobuf.UInt64Value.
 public struct MessageWithUInt64Value: Codable, Equatable, GoogleCloudWKT._AnyPackable,
   Sendable
 {
   /// A singular field.
-  public var singular: GoogleCloudWKT.Int64Value? = nil
+  public var singular: GoogleCloudWKT.UInt64Value? = nil
 
   /// A repeated field.
-  public var repeated: [GoogleCloudWKT.Int64Value] = []
+  public var repeated: [GoogleCloudWKT.UInt64Value] = []
 
-  /// Test google.protobuf.Int64Value as values.
-  public var map: [Swift.String: GoogleCloudWKT.Int64Value] = [:]
+  /// Test google.protobuf.UInt64Value as values.
+  public var map: [Swift.String: GoogleCloudWKT.UInt64Value] = [:]
 
   /// Initialize a new instance of `MessageWithUInt64Value`.
   public init() {}

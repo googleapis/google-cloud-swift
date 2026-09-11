@@ -34,4 +34,34 @@ import Testing
     let got = try decoder.decode(T.self, from: Data(input.utf8))
     #expect(got == want)
   }
+
+  @Test(
+    "BytesValue fields serialize",
+    arguments: [
+      (#"{"map":{},"repeated":[]}"#, T()),
+      (
+        #"{"map":{},"repeated":[],"singular":"NDI="}"#,
+        T().with { $0.singular = Data("42".utf8) }
+      ),
+      (
+        #"{"map":{},"repeated":["NDI="]}"#,
+        T().with { $0.repeated = [Data("42".utf8)] }
+      ),
+      (
+        #"{"map":{"a":"NDI="},"repeated":[]}"#,
+        T().with { $0.map = ["a": Data("42".utf8)] }
+      ),
+    ]
+  )
+  func serialize(want: String, input: T) throws {
+    let encoder = _ProtoJSONEncoder()
+    encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
+    let data = try encoder.encode(input)
+    let got = String(data: data, encoding: .utf8)!
+    #expect(got == want)
+
+    let decoder = _ProtoJSONDecoder()
+    let roundtrip = try decoder.decode(T.self, from: data)
+    #expect(input == roundtrip)
+  }
 }

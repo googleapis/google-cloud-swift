@@ -106,7 +106,7 @@ import Testing
       ),
     ])
   func serialize(want: String, input: MessageWithEnum) throws {
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
     let data = try encoder.encode(input)
     let jsonString = String(data: data, encoding: .utf8)!

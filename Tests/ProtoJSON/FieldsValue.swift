@@ -45,4 +45,62 @@ import Testing
     let got = try decoder.decode(T.self, from: Data(input.utf8))
     #expect(got == want)
   }
+
+  @Test(
+    "Value fields serialize",
+    arguments: [
+      (#"{"map":{},"optional":null,"repeated":[],"singular":null}"#, T()),
+      (
+        #"{"map":{},"optional":null,"repeated":[],"singular":42}"#,
+        T().with { $0.singular = .number(42) }
+      ),
+      (
+        #"{"map":{},"optional":null,"repeated":[],"singular":"hello"}"#,
+        T().with { $0.singular = .string("hello") }
+      ),
+      (
+        #"{"map":{},"optional":null,"repeated":[],"singular":true}"#,
+        T().with { $0.singular = .bool(true) }
+      ),
+      (
+        #"{"map":{},"optional":null,"repeated":[],"singular":{}}"#,
+        T().with { $0.singular = .object([:]) }
+      ),
+      (
+        #"{"map":{},"optional":null,"repeated":[],"singular":[]}"#,
+        T().with { $0.singular = .array([]) }
+      ),
+      (
+        #"{"map":{},"optional":42,"repeated":[],"singular":null}"#,
+        T().with { $0.optional = .number(42) }
+      ),
+      (
+        #"{"map":{},"optional":null,"repeated":[null],"singular":null}"#,
+        T().with { $0.repeated = [.null(NullValue())] }
+      ),
+      (
+        #"{"map":{},"optional":null,"repeated":[42,"hello"],"singular":null}"#,
+        T().with { $0.repeated = [.number(42), .string("hello")] }
+      ),
+      (
+        #"{"map":{"a":42},"optional":null,"repeated":[],"singular":null}"#,
+        T().with { $0.map = ["a": .number(42)] }
+      ),
+      (
+        #"{"map":{"a":null},"optional":null,"repeated":[],"singular":null}"#,
+        T().with { $0.map = ["a": .null(NullValue())] }
+      ),
+    ]
+  )
+  func serialize(want: String, input: T) throws {
+    let encoder = _ProtoJSONEncoder()
+    encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
+    let data = try encoder.encode(input)
+    let got = String(data: data, encoding: .utf8)!
+    #expect(got == want)
+
+    let decoder = _ProtoJSONDecoder()
+    let roundtrip = try decoder.decode(T.self, from: data)
+    #expect(input == roundtrip)
+  }
 }

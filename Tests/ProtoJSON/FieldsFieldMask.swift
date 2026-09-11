@@ -49,4 +49,38 @@ import Testing
     let got = try decoder.decode(T.self, from: Data(input.utf8))
     #expect(got == want)
   }
+
+  @Test(
+    "FieldMask fields serialize",
+    arguments: [
+      (#"{"map":{},"optional":null,"repeated":[],"singular":null}"#, T()),
+      (
+        #"{"map":{},"optional":null,"repeated":[],"singular":"userDisplayName,photo"}"#,
+        T().with { $0.singular = mask(["user_display_name", "photo"]) }
+      ),
+      (
+        #"{"map":{},"optional":"userDisplayName,photo","repeated":[],"singular":null}"#,
+        T().with { $0.optional = mask(["user_display_name", "photo"]) }
+      ),
+      (
+        #"{"map":{},"optional":null,"repeated":["userDisplayName,photo"],"singular":null}"#,
+        T().with { $0.repeated = [mask(["user_display_name", "photo"])] }
+      ),
+      (
+        #"{"map":{"a":"userDisplayName,photo"},"optional":null,"repeated":[],"singular":null}"#,
+        T().with { $0.map = ["a": mask(["user_display_name", "photo"])] }
+      ),
+    ]
+  )
+  func serialize(want: String, input: T) throws {
+    let encoder = _ProtoJSONEncoder()
+    encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
+    let data = try encoder.encode(input)
+    let got = String(data: data, encoding: .utf8)!
+    #expect(got == want)
+
+    let decoder = _ProtoJSONDecoder()
+    let roundtrip = try decoder.decode(T.self, from: data)
+    #expect(input == roundtrip)
+  }
 }
