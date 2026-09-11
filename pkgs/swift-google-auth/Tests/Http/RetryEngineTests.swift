@@ -141,18 +141,18 @@ import struct AsyncHTTPClient.HTTPClientResponse
 
   @Test func retryObeysMaxDelayCap() async throws {
     let attempts = CallCounter()
+    let clock = TestClock()
     let config = RetryConfiguration(
       maxAttempts: 4,
-      initialDelay: .seconds(0.01),
+      initialDelay: .seconds(1),
       multiplier: 2.0,
-      maxDelay: .seconds(0.02)
+      maxDelay: .seconds(2)
     )
 
-    let startTime = Date()
-
-    await #expect(throws: URLError.self) {
+    let task = Task {
       try await RetryEngine.retry(
         configuration: config,
+        clock: clock,
         isRetryable: { _ in true }
       ) {
         attempts.increment()
@@ -160,12 +160,32 @@ import struct AsyncHTTPClient.HTTPClientResponse
       }
     }
 
-    let duration = Date().timeIntervalSince(startTime)
+    // 1st retry: delay is bounded by initialDelay (1s).
+    await clock.sleeperWaiting()
+    #expect(attempts.getCount() == 1)
+    let firstSleep = try #require(clock.nextSleepDuration)
+    #expect(firstSleep <= config.initialDelay)
+    clock.advance(by: firstSleep)
 
+    // 2nd retry: delay is bounded by min(initialDelay * multiplier, maxDelay) = 2s.
+    await clock.sleeperWaiting()
+    #expect(attempts.getCount() == 2)
+    let secondSleep = try #require(clock.nextSleepDuration)
+    #expect(secondSleep <= config.maxDelay)
+    clock.advance(by: secondSleep)
+
+    // 3rd retry: delay is capped at maxDelay = 2s.
+    await clock.sleeperWaiting()
+    #expect(attempts.getCount() == 3)
+    let thirdSleep = try #require(clock.nextSleepDuration)
+    #expect(thirdSleep <= config.maxDelay)
+    clock.advance(by: thirdSleep)
+
+    // 4th attempt fails and exhausts maxAttempts (4).
+    await #expect(throws: URLError.self) {
+      try await task.value
+    }
     #expect(attempts.getCount() == 4)
-    // Delays should be: ~0.01, ~0.02, ~0.02 (capped)
-    // With full jitter, total duration can be very short, so we only check upper bound.
-    #expect(duration <= 0.1)
   }
 
   @Test func retryCancelledDuringSleep() async throws {

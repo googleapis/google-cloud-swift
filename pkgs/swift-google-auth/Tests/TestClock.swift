@@ -170,6 +170,20 @@ final class TestClock: Clock, Sendable {
     state.withLock { $0.hasSleepers }
   }
 
+  /// The deadline of the earliest sleeping task, if any.
+  var nextDeadline: Instant? {
+    state.withLock { state in
+      state.sleepers.values.map(\.deadline).min()
+    }
+  }
+
+  /// The duration remaining from current simulated time until the earliest sleeper deadline, if any.
+  var nextSleepDuration: Duration? {
+    state.withLock { state in
+      state.sleepers.values.map(\.deadline).min().map { state.now.duration(to: $0) }
+    }
+  }
+
   /// The minimum resolution of the clock. Always returns .zero as it has infinite resolution.
   var minimumResolution: Duration { .zero }
 

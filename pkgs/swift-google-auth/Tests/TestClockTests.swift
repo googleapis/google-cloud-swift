@@ -85,4 +85,27 @@ private actor Counter {
       try await task.value
     }
   }
+
+  @Test func nextSleepDuration() async throws {
+    let clock = TestClock()
+    #expect(clock.nextDeadline == nil)
+    #expect(clock.nextSleepDuration == nil)
+
+    let task = Task {
+      try await clock.sleep(for: .seconds(5))
+    }
+
+    await clock.sleeperWaiting()
+    #expect(clock.nextDeadline == clock.now.advanced(by: .seconds(5)))
+    #expect(clock.nextSleepDuration == .seconds(5))
+
+    clock.advance(by: .seconds(2))
+    #expect(clock.nextSleepDuration == .seconds(3))
+
+    clock.advance(by: .seconds(3))
+    try await task.value
+
+    #expect(clock.nextDeadline == nil)
+    #expect(clock.nextSleepDuration == nil)
+  }
 }
