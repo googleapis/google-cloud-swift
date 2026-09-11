@@ -67,7 +67,7 @@ for dir in "${packages[@]}"; do
 
     # For local packages, we run swift-format directly on the Sources and Tests directories
     # to avoid the SPM plugin forcefully feeding the generated Rust bridge files.
-    if swift-format lint -r "${dir}/Sources" "${dir}/Tests"; then
+    if swift-format lint --strict -r "${dir}/Sources" "${dir}/Tests"; then
         echo "::notice:: ✓ ${dir} passed"
         echo "::endgroup::"
     else

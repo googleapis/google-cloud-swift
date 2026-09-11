@@ -32,7 +32,7 @@ final class StorageRetryErrors: RetryPolicy, Sendable {
   func isRetryable(_ error: RequestError) -> Bool {
     switch error {
     case .http(let details):
-      let code = details.http_status_code
+      let code = details.httpStatusCode
       return code == 408 || code == 429 || (500...599).contains(code)
     case .service(let details):
       let code = details.code

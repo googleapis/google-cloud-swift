@@ -232,7 +232,7 @@ final class MockRegistry: _HTTPClientProtocol, @unchecked Sendable {
     guard let mock = mockResponse else {
       throw GoogleCloudGax.RequestError.http(
         GoogleCloudGax.HTTPDetails(
-          http_status_code: 404,
+          httpStatusCode: 404,
           headers: [:],
           payload: Data("Mock not found for \(request.url)".utf8)
         )

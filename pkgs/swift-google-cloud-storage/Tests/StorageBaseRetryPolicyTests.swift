@@ -47,7 +47,7 @@ import Testing
     // Retryable HTTP codes: 408, 429, and 500...599
     let retryableCodes = [408, 429, 500, 502, 503, 504, 599]
     for code in retryableCodes {
-      let error = RequestError.http(HTTPDetails(http_status_code: code, headers: [:]))
+      let error = RequestError.http(HTTPDetails(httpStatusCode: code, headers: [:]))
       #expect(
         isRetry(policy.onError(state: state, error: error)), "Expected code \(code) to be retryable"
       )
@@ -56,7 +56,7 @@ import Testing
     // Non-retryable HTTP codes
     let nonRetryableCodes = [400, 401, 403, 404, 409, 412]
     for code in nonRetryableCodes {
-      let error = RequestError.http(HTTPDetails(http_status_code: code, headers: [:]))
+      let error = RequestError.http(HTTPDetails(httpStatusCode: code, headers: [:]))
       #expect(
         isPermanent(policy.onError(state: state, error: error)),
         "Expected code \(code) to be permanent")
@@ -108,11 +108,11 @@ import Testing
   @Test func storageBaseRetryPolicyIdempotency() {
     let policy = StorageBaseRetryPolicy()
 
-    let transientHttp = RequestError.http(HTTPDetails(http_status_code: 500, headers: [:]))
+    let transientHttp = RequestError.http(HTTPDetails(httpStatusCode: 500, headers: [:]))
     let transientRpc = RequestError.service(
       ServiceError(code: Code.`internal`, message: "internal error"))
     let ioError = RequestError.io(NSError(domain: "test", code: -1))
-    let permanentHttp = RequestError.http(HTTPDetails(http_status_code: 400, headers: [:]))
+    let permanentHttp = RequestError.http(HTTPDetails(httpStatusCode: 400, headers: [:]))
 
     // Idempotent: retries transient HTTP, transient RPC, and I/O
     #expect(isRetry(policy.onError(state: idempotentState(), error: transientHttp)))
@@ -138,13 +138,13 @@ import Testing
       ServiceError(code: Code.unavailable, message: "unavailable"))
     #expect(isRetry(policy.onError(state: state, error: unavailableError)))
 
-    let err503 = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
+    let err503 = RequestError.http(HTTPDetails(httpStatusCode: 503, headers: [:]))
     #expect(isRetry(policy.onError(state: state, error: err503)))
 
-    let err500 = RequestError.http(HTTPDetails(http_status_code: 500, headers: [:]))
+    let err500 = RequestError.http(HTTPDetails(httpStatusCode: 500, headers: [:]))
     #expect(isRetry(policy.onError(state: state, error: err500)))
 
-    let permanent = RequestError.http(HTTPDetails(http_status_code: 404, headers: [:]))
+    let permanent = RequestError.http(HTTPDetails(httpStatusCode: 404, headers: [:]))
     #expect(isPermanent(policy.onError(state: state, error: permanent)))
   }
 }

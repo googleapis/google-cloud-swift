@@ -104,7 +104,7 @@ import Testing
       try await client.upload(source, to: bucket, as: objectName, options: uploadOptions)
     }
     if case .http(let details) = error {
-      #expect(details.http_status_code == 400)
+      #expect(details.httpStatusCode == 400)
       #expect(String(data: details.payload, encoding: .utf8) == errorMessage)
     } else {
       Issue.record("Expected .http RequestError, got \(String(describing: error))")
@@ -149,7 +149,7 @@ import Testing
       try await client.upload(source, to: bucket, as: objectName, options: uploadOptions)
     }
     if case .http(let details) = error {
-      #expect(details.http_status_code == 400)
+      #expect(details.httpStatusCode == 400)
       #expect(String(data: details.payload, encoding: .utf8) == errorMessage)
     } else {
       Issue.record("Expected .http RequestError, got \(String(describing: error))")

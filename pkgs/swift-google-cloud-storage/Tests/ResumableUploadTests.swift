@@ -194,7 +194,7 @@ import Testing
       try await client.upload(source, to: bucket, as: objectName)
     }
     if case .http(let details) = error {
-      #expect(details.http_status_code == 400)
+      #expect(details.httpStatusCode == 400)
     } else {
       Issue.record("Expected .http RequestError, got \(String(describing: error))")
     }
@@ -438,7 +438,7 @@ import Testing
       try await client.resumeUpload(source, uploadId: queryUrl.absoluteString)
     }
     if case .http(let details) = error {
-      #expect(details.http_status_code == 404)
+      #expect(details.httpStatusCode == 404)
     } else {
       Issue.record("Expected .http RequestError, got \(String(describing: error))")
     }
@@ -495,7 +495,7 @@ import Testing
       try await client.resumeUpload(source, uploadId: queryUrl.absoluteString)
     }
     if case .http(let details) = error {
-      #expect(details.http_status_code == 499)
+      #expect(details.httpStatusCode == 499)
     } else {
       Issue.record("Expected .http RequestError, got \(String(describing: error))")
     }

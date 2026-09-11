@@ -29,7 +29,7 @@ import Testing
     let mock = MockResumePolicy<Void>(onError: { _, e in .resume(e) })
     let policy = mock.stopOnConsecutiveErrors(2)
     var state = ResumeState()
-    let error = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
+    let error = RequestError.http(HTTPDetails(httpStatusCode: 503, headers: [:]))
 
     // 0 errors -> resumes
     #expect(policy.onError(state: state, error: error) == .resume(error))
@@ -48,7 +48,7 @@ import Testing
   }
 
   @Test func innerPermanentPassesThrough() {
-    let permanentError = RequestError.http(HTTPDetails(http_status_code: 400, headers: [:]))
+    let permanentError = RequestError.http(HTTPDetails(httpStatusCode: 400, headers: [:]))
     let mock = MockResumePolicy<Void>(onError: { _, e in .permanent(e) })
     let policy = mock.stopOnConsecutiveErrors(5)
     let state = ResumeState()
@@ -57,7 +57,7 @@ import Testing
   }
 
   @Test func innerExhaustedPassesThrough() {
-    let exhaustedError = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
+    let exhaustedError = RequestError.http(HTTPDetails(httpStatusCode: 503, headers: [:]))
     let mock = MockResumePolicy<Void>(onError: { _, e in .exhausted(e) })
     let policy = mock.stopOnConsecutiveErrors(5)
     let state = ResumeState()

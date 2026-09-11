@@ -21,7 +21,7 @@ import Testing
   @Test func neverResume() {
     let policy = NeverResume<Void>()
     let state = ResumeState()
-    let transient503 = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
+    let transient503 = RequestError.http(HTTPDetails(httpStatusCode: 503, headers: [:]))
 
     #expect(policy.onError(state: state, error: transient503) == .permanent(transient503))
     #expect(policy.remainingTime(state: state) == nil)
@@ -30,7 +30,7 @@ import Testing
   @Test func staticFactory() {
     let policy: NeverResume<Void> = .never()
     let state = ResumeState()
-    let transient503 = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
+    let transient503 = RequestError.http(HTTPDetails(httpStatusCode: 503, headers: [:]))
     #expect(policy.onError(state: state, error: transient503) == .permanent(transient503))
   }
 }

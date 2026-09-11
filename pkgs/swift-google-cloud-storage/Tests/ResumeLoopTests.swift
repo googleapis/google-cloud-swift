@@ -30,7 +30,7 @@ private struct MockBackoff: BackoffPolicy {
   }
 
   private func transientError() -> RequestError {
-    RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
+    RequestError.http(HTTPDetails(httpStatusCode: 503, headers: [:]))
   }
 
   @Test func immediateSuccess() async throws {

@@ -18,7 +18,7 @@ import Testing
 
 @Suite struct StrictIdempotencyTest {
   private func transient() -> RequestError {
-    .http(HTTPDetails(http_status_code: 503, headers: [:], payload: Data()))
+    .http(HTTPDetails(httpStatusCode: 503, headers: [:], payload: Data()))
   }
 
   @Test func strictIdempotency() {

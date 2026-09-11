@@ -45,7 +45,7 @@ final public class Aip194: Sendable {
 extension RequestError {
   fileprivate var httpStatusCode: Int? {
     if case .http(let details) = self {
-      return details.http_status_code
+      return details.httpStatusCode
     }
     return nil
   }

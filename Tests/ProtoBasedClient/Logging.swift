@@ -25,7 +25,7 @@ public enum Logging {
   static public func run(_ logger: Logger) async throws {
     let projectId = try projectId()
     let handler = InMemoryLogHandler()
-    var clientLogger = Logger(label: "logging.test", factory: { (String) in handler })
+    var clientLogger = Logger(label: "logging.test", factory: { (_: String) in handler })
     clientLogger.logLevel = .debug
     let client = try SecretManagerServiceClient(
       ClientOptions().with { $0.logger = clientLogger })

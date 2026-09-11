@@ -557,7 +557,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
           if case .http(let details) = err {
             let message = String(data: details.payload, encoding: .utf8) ?? ""
             throw DownloadError.unexpectedServerResponse(
-              statusCode: details.http_status_code, message: message)
+              statusCode: details.httpStatusCode, message: message)
           } else if case .service(let details) = err {
             let statusCode = details.httpStatusCode ?? details.code.httpStatusCode
             throw DownloadError.unexpectedServerResponse(
@@ -699,7 +699,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
         if case .http(let details) = reqError {
           let message = String(data: details.payload, encoding: .utf8) ?? ""
           throw DownloadError.unexpectedServerResponse(
-            statusCode: details.http_status_code, message: message)
+            statusCode: details.httpStatusCode, message: message)
         } else if case .service(let details) = reqError {
           let statusCode = details.httpStatusCode ?? details.code.httpStatusCode
           throw DownloadError.unexpectedServerResponse(
@@ -756,7 +756,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
       if case .http(let details) = error {
         let message = String(data: details.payload, encoding: .utf8) ?? ""
         throw DownloadError.unexpectedServerResponse(
-          statusCode: details.http_status_code, message: message)
+          statusCode: details.httpStatusCode, message: message)
       } else if case .service(let details) = error {
         let statusCode = details.httpStatusCode ?? details.code.httpStatusCode
         throw DownloadError.unexpectedServerResponse(

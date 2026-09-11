@@ -104,7 +104,7 @@ public enum RequestError: Error {
 /// The details for ``RequestError/http(_:)``.
 public struct HTTPDetails: Sendable {
   /// The HTTP status code.
-  public let http_status_code: Int
+  public let httpStatusCode: Int
 
   /// The HTTP headers.
   public let headers: [String: String]
@@ -114,11 +114,11 @@ public struct HTTPDetails: Sendable {
 
   /// Create a a new `HTTPDetails`.
   public init(
-    http_status_code: Int,
+    httpStatusCode: Int,
     headers: [String: String],
     payload: Data = Data()
   ) {
-    self.http_status_code = http_status_code
+    self.httpStatusCode = httpStatusCode
     self.headers = headers
     self.payload = payload
   }

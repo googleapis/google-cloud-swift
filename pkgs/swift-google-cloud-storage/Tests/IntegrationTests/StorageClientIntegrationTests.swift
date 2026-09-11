@@ -269,7 +269,7 @@ struct StorageClientIntegrationTests {
       #expect(serviceError.message.contains("doesn't match"))
       print("GCS correctly rejected bad checksum: \(serviceError.message)")
     } catch RequestError.http(let details) {
-      #expect(details.http_status_code == 400)
+      #expect(details.httpStatusCode == 400)
       print(
         "GCS correctly rejected bad checksum: \(String(data: details.payload, encoding: .utf8) ?? "")"
       )

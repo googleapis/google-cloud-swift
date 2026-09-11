@@ -29,7 +29,7 @@ extension ResumeResult: Equatable {
   private static func isEquivalent(_ lhs: RequestError, _ rhs: RequestError) -> Bool {
     switch (lhs, rhs) {
     case (.http(let l), .http(let r)):
-      return l.http_status_code == r.http_status_code
+      return l.httpStatusCode == r.httpStatusCode
     case (.service(let l), .service(let r)):
       return l.code == r.code
     case (.io(let l), .io(let r)):

@@ -85,9 +85,9 @@ import Testing
   }
 
   func transient() -> RequestError {
-    RequestError.http(HTTPDetails(http_status_code: 429, headers: [:]))
+    RequestError.http(HTTPDetails(httpStatusCode: 429, headers: [:]))
   }
   func permanent() -> RequestError {
-    RequestError.http(HTTPDetails(http_status_code: 403, headers: [:]))
+    RequestError.http(HTTPDetails(httpStatusCode: 403, headers: [:]))
   }
 }

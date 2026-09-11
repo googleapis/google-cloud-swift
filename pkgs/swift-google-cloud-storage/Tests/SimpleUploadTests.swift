@@ -145,7 +145,7 @@ import Testing
       try await client.upload(source, to: bucket, as: objectName)
     }
     if case .http(let details) = error {
-      #expect(details.http_status_code == 400)
+      #expect(details.httpStatusCode == 400)
     } else {
       Issue.record("Expected .http RequestError, got \(String(describing: error))")
     }
@@ -420,7 +420,7 @@ import Testing
       try await client.upload(source, to: bucket, as: objectName)
     }
     if case .http(let details) = error {
-      #expect(details.http_status_code == 503)
+      #expect(details.httpStatusCode == 503)
     } else {
       Issue.record("Expected .http 503 RequestError, got \(String(describing: error))")
     }
@@ -563,7 +563,7 @@ import Testing
       try await client.upload(source, to: bucket, as: objectName, options: options)
     }
     if case .http(let details) = error {
-      #expect(details.http_status_code == 503)
+      #expect(details.httpStatusCode == 503)
     } else {
       Issue.record("Expected .http 503 RequestError, got \(String(describing: error))")
     }

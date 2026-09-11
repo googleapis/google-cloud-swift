@@ -20,6 +20,8 @@
   },
   "maximumBlankLines": 1,
   "rules": {
-    "NoEmptyLinesOpeningClosingBraces": true
+    "AlwaysUseLowerCamelCase": true,
+    "NoEmptyLinesOpeningClosingBraces": true,
+    "TypeNamesShouldBeCapitalized": true
   }
 }

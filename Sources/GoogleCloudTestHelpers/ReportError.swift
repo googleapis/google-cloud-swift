@@ -19,7 +19,7 @@ import Logging
 
 public func runLoggedTest(_ name: String, _ test: (Logger) async throws -> Void) async throws {
   let handler = InMemoryLogHandler()
-  let logger = Logger(label: "logging.test", factory: { (String) in handler })
+  let logger = Logger(label: "logging.test", factory: { (_: String) in handler })
   do {
     try await test(logger)
   } catch let e as GoogleCloudGax.RequestError {
