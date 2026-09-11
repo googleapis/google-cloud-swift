@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import Testing
 
 @Suite struct EmptyTests {
@@ -24,7 +24,7 @@ import Testing
   @Test("Empty JSON Encoding")
   func encodingJSON() throws {
     let wrapped = WrappedEmptyEncode(value: GoogleCloudWKT.Empty())
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     let data = try encoder.encode(wrapped)
     let jsonString = String(data: data, encoding: .utf8)
     #expect(jsonString == "{\"value\":{}}")
@@ -38,7 +38,7 @@ import Testing
   func decodingJSON() throws {
     let jsonString = "{\"value\":{}}"
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WrappedEmptyDecode.self, from: data)
     #expect(wrapped.value == Empty())
   }
@@ -48,7 +48,7 @@ import Testing
     let jsonString =
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.Empty","value":{}}}"#
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(AnyTests.WrappedAny.self, from: data)
     let any = wrapped.content
     #expect(any.typeUrl == "type.googleapis.com/google.protobuf.Empty")
@@ -62,7 +62,7 @@ import Testing
     let jsonString =
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.Empty"}}"#
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(AnyTests.WrappedAny.self, from: data)
     let any = wrapped.content
     #expect(any.typeUrl == "type.googleapis.com/google.protobuf.Empty")
@@ -75,7 +75,7 @@ import Testing
     let jsonString =
       #"{"content":{"@type":"bad","value":{}}}"#
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(AnyTests.WrappedAny.self, from: data)
     let any = wrapped.content
     let error = #expect(throws: AnyError.self) {
@@ -89,7 +89,7 @@ import Testing
     let input = Empty()
     let any = try `Any`(fromMessage: input)
     let wrapped = AnyTests.WrappedAny(content: any)
-    let encoder = JSONEncoder()
+    let encoder = _ProtoJSONEncoder()
     encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
     let data = try encoder.encode(wrapped)
     let got = String(data: data, encoding: .utf8)!
@@ -113,7 +113,7 @@ import Testing
     let jsonString =
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.Empty","value":{"unexpected":"data"}}}"#
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(AnyTests.WrappedAny.self, from: data)
     let any = wrapped.content
     let error = #expect(throws: AnyError.self) {
@@ -127,7 +127,7 @@ import Testing
     let jsonString =
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.Empty","value":"not-an-object"}}"#
     let data = Data(jsonString.utf8)
-    let decoder = JSONDecoder()
+    let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(AnyTests.WrappedAny.self, from: data)
     let any = wrapped.content
     let error = #expect(throws: AnyError.self) {
