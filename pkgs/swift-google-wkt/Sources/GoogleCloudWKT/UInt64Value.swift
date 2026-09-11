@@ -14,7 +14,7 @@
 
 /// Wrapper message for uint64.
 ///
-/// The JSON representation for UInt64Value is JSON number.
+/// The JSON representation for UInt64Value is decimal string.
 public typealias UInt64Value = Swift.UInt64
 
 extension Swift.UInt64: _AnyPackable {
@@ -29,13 +29,23 @@ extension Swift.UInt64: _AnyPackable {
     guard let v = any.fields[`Any`.valueField] else {
       throw AnyError.missingValueField
     }
-    guard case let .number(n) = v else {
+    switch v {
+    case .string(let s):
+      guard let n = UInt64(s) else {
+        throw AnyError.invalidValueField
+      }
+      self = n
+    case .number(let n):
+      guard let n = UInt64(exactly: n) else {
+        throw AnyError.invalidValueField
+      }
+      self = n
+    default:
       throw AnyError.invalidValueField
     }
-    self = UInt64(n)
   }
 
   public func _pack() throws -> Struct {
-    return [`Any`.valueField: Value(number: Double(self))]
+    return [`Any`.valueField: Value(string: String(self))]
   }
 }

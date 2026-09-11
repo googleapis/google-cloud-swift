@@ -14,7 +14,7 @@
 
 /// Wrapper message for int64.
 ///
-/// The JSON representation for Int64Value is JSON number.
+/// The JSON representation for Int64Value is decimal string.
 public typealias Int64Value = Swift.Int64
 
 extension Swift.Int64: _AnyPackable {
@@ -29,13 +29,23 @@ extension Swift.Int64: _AnyPackable {
     guard let v = any.fields[`Any`.valueField] else {
       throw AnyError.missingValueField
     }
-    guard case let .number(n) = v else {
+    switch v {
+    case .string(let s):
+      guard let n = Int64(s) else {
+        throw AnyError.invalidValueField
+      }
+      self = n
+    case .number(let n):
+      guard let n = Int64(exactly: n) else {
+        throw AnyError.invalidValueField
+      }
+      self = n
+    default:
       throw AnyError.invalidValueField
     }
-    self = Int64(n)
   }
 
   public func _pack() throws -> Struct {
-    return [`Any`.valueField: Value(number: Double(self))]
+    return [`Any`.valueField: Value(string: String(self))]
   }
 }

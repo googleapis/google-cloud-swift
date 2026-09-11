@@ -29,10 +29,20 @@ extension Swift.UInt32: _AnyPackable {
     guard let v = any.fields[`Any`.valueField] else {
       throw AnyError.missingValueField
     }
-    guard case let .number(n) = v else {
+    switch v {
+    case .number(let n):
+      guard let n = UInt32(exactly: n) else {
+        throw AnyError.invalidValueField
+      }
+      self = n
+    case .string(let s):
+      guard let n = UInt32(s) else {
+        throw AnyError.invalidValueField
+      }
+      self = n
+    default:
       throw AnyError.invalidValueField
     }
-    self = UInt32(n)
   }
 
   public func _pack() throws -> Struct {

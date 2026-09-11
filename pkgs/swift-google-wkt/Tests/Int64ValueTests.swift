@@ -73,8 +73,23 @@ import Testing
     let content: GoogleCloudWKT.`Any`
   }
 
-  @Test("Unpack Int64Value from Any")
-  func int64ValueAnyUnpack() throws {
+  @Test("Unpack Int64Value from Any with string")
+  func int64ValueAnyUnpackString() throws {
+    let jsonString =
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Int64Value","value":"123"}}"#
+    let data = Data(jsonString.utf8)
+    let decoder = JSONDecoder()
+    let wrapped = try decoder.decode(Int64ValueTests.WrappedAny.self, from: data)
+    let any = wrapped.content
+    #expect(any.typeUrl == "type.googleapis.com/google.protobuf.Int64Value")
+
+    let got = try Int64Value(fromAny: any)
+    let want = Int64(123)
+    #expect(got == want)
+  }
+
+  @Test("Unpack Int64Value from Any with number")
+  func int64ValueAnyUnpackNumber() throws {
     let jsonString =
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.Int64Value","value":123}}"#
     let data = Data(jsonString.utf8)
@@ -90,7 +105,7 @@ import Testing
 
   @Test func int64ValueAnyUnpackMismatchedUrl() throws {
     let jsonString =
-      #"{"content":{"@type":"bad","value":123}}"#
+      #"{"content":{"@type":"bad","value":"123"}}"#
     let data = Data(jsonString.utf8)
     let decoder = JSONDecoder()
     let wrapped = try decoder.decode(Int64ValueTests.WrappedAny.self, from: data)
@@ -110,7 +125,50 @@ import Testing
     let got = String(data: data, encoding: .utf8)!
 
     let want =
-      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Int64Value","value":123}}"#
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Int64Value","value":"123"}}"#
     #expect(got == want)
+  }
+
+  @Test(
+    "Pack and Unpack Int64Value boundaries in Any",
+    arguments: [
+      Int64.min,
+      Int64.max,
+      0,
+    ])
+  func int64ValueBoundaries(_ value: Int64) throws {
+    let any = try `Any`(fromMessage: value)
+    let wrapped = Int64ValueTests.WrappedAny(content: any)
+    let encoder = JSONEncoder()
+    encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
+    let data = try encoder.encode(wrapped)
+    let gotJson = String(data: data, encoding: .utf8)!
+    let wantJson =
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Int64Value","value":"\#(value)"}}"#
+    #expect(gotJson == wantJson)
+
+    let decoder = JSONDecoder()
+    let decodedWrapped = try decoder.decode(Int64ValueTests.WrappedAny.self, from: data)
+    let unpacked = try Int64(fromAny: decodedWrapped.content)
+    #expect(unpacked == value)
+  }
+
+  @Test(
+    "Unpack Int64Value invalid value field in Any",
+    arguments: [
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Int64Value","value":"not-a-number"}}"#,
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Int64Value","value":"9223372036854775808"}}"#,
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Int64Value","value":123.45}}"#,
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Int64Value","value":true}}"#,
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Int64Value","value":{}}}"#,
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Int64Value","value":[]}}"#,
+    ])
+  func int64ValueInvalidValue(_ json: String) throws {
+    let data = Data(json.utf8)
+    let decoder = JSONDecoder()
+    let wrapped = try decoder.decode(Int64ValueTests.WrappedAny.self, from: data)
+    #expect(throws: AnyError.invalidValueField) {
+      let _ = try Int64(fromAny: wrapped.content)
+    }
   }
 }

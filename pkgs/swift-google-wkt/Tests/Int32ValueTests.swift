@@ -73,10 +73,25 @@ import Testing
     let content: GoogleCloudWKT.`Any`
   }
 
-  @Test("Unpack Int32Value from Any")
-  func int32ValueAnyUnpack() throws {
+  @Test("Unpack Int32Value from Any with number")
+  func int32ValueAnyUnpackNumber() throws {
     let jsonString =
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.Int32Value","value":123}}"#
+    let data = Data(jsonString.utf8)
+    let decoder = JSONDecoder()
+    let wrapped = try decoder.decode(Int32ValueTests.WrappedAny.self, from: data)
+    let any = wrapped.content
+    #expect(any.typeUrl == "type.googleapis.com/google.protobuf.Int32Value")
+
+    let got = try Int32Value(fromAny: any)
+    let want = Int32(123)
+    #expect(got == want)
+  }
+
+  @Test("Unpack Int32Value from Any with string")
+  func int32ValueAnyUnpackString() throws {
+    let jsonString =
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Int32Value","value":"123"}}"#
     let data = Data(jsonString.utf8)
     let decoder = JSONDecoder()
     let wrapped = try decoder.decode(Int32ValueTests.WrappedAny.self, from: data)
@@ -112,5 +127,49 @@ import Testing
     let want =
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.Int32Value","value":123}}"#
     #expect(got == want)
+  }
+
+  @Test(
+    "Pack and Unpack Int32Value boundaries in Any",
+    arguments: [
+      Int32.min,
+      Int32.max,
+      0,
+    ])
+  func int32ValueBoundaries(_ value: Int32) throws {
+    let any = try `Any`(fromMessage: value)
+    let wrapped = Int32ValueTests.WrappedAny(content: any)
+    let encoder = JSONEncoder()
+    encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
+    let data = try encoder.encode(wrapped)
+    let gotJson = String(data: data, encoding: .utf8)!
+    let wantJson =
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Int32Value","value":\#(value)}}"#
+    #expect(gotJson == wantJson)
+
+    let decoder = JSONDecoder()
+    let decodedWrapped = try decoder.decode(Int32ValueTests.WrappedAny.self, from: data)
+    let unpacked = try Int32(fromAny: decodedWrapped.content)
+    #expect(unpacked == value)
+  }
+
+  @Test(
+    "Unpack Int32Value invalid value field in Any",
+    arguments: [
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Int32Value","value":"not-a-number"}}"#,
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Int32Value","value":"2147483648"}}"#,
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Int32Value","value":1e20}}"#,
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Int32Value","value":123.45}}"#,
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Int32Value","value":true}}"#,
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Int32Value","value":{}}}"#,
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Int32Value","value":[]}}"#,
+    ])
+  func int32ValueInvalidValue(_ json: String) throws {
+    let data = Data(json.utf8)
+    let decoder = JSONDecoder()
+    let wrapped = try decoder.decode(Int32ValueTests.WrappedAny.self, from: data)
+    #expect(throws: AnyError.invalidValueField) {
+      let _ = try Int32(fromAny: wrapped.content)
+    }
   }
 }
