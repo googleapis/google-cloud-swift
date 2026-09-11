@@ -292,18 +292,23 @@ background-refresh model**:
 -   **Refresh Logic**:
     -   If the token has an expiration and it is **more than 4 minutes** in the
         future, the background task sleeps until 4 minutes before expiration
-        (`expiry - 4 minutes`).
+        (`expiry - 4 minutes`), optionally randomized via full jitter across
+        `[expiry - 4 minutes, expiry - 10 seconds]` when jitter is enabled.
     -   If the token expires in **less than 4 minutes** but more than 10
-        seconds, it sleeps for 10 seconds and tries again. This handles Metadata
-        Server edge cases where short-lived tokens are repeatedly returned.
+        seconds, it sleeps for 10 seconds (with jitter when enabled) and tries again.
+        This handles Metadata Server edge cases where short-lived tokens are repeatedly returned.
     -   If a fetch fails with a **transient error**, it sleeps for 10 seconds
-        and retries.
+        (with jitter when enabled) and retries.
     -   If the error is **permanent**, the loop terminates to prevent endless
         useless polling.
--   **Thundering Herd Protection**: Callers calling `token()` return the cached
-    token if valid and not expired. If missing or expired, they await a shared
-    active refresh task, ensuring only one network request is executed even
-    under heavy concurrent load.
+-   **Thundering Herd Protection**:
+    -   **Intra-Process**: Callers calling `token()` return the cached token if
+        valid and not expired. If missing or expired, they await a shared active
+        refresh task, ensuring only one network request is executed even under heavy
+        concurrent load.
+    -   **Cross-Process / Node-Level (MDS)**: `MDSCredentials` enables token refresh
+        jitter by default on `TokenCache`, desynchronizing refresh requests across
+        multiple credentials and processes sharing the same VM metadata server.
 
 --------------------------------------------------------------------------------
 

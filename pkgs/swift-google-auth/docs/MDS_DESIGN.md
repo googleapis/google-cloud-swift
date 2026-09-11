@@ -159,6 +159,12 @@ package struct MDSAccessTokenProvider: TokenProvider, Sendable {
     offline permanently.
     -   **Mitigation**: The `TokenCache` background refresh loop gracefully
         terminates on non-transient errors.
+-   **Risk**: Thundering herd of refresh requests from multiple `Credential`
+    instances on the same VM whose cached MDS tokens expire simultaneously.
+    -   **Mitigation**: `MDSCredentials` configures `TokenCache` with jitter
+        by default, desynchronizing proactive token refreshes across the
+        `[T - normalRefreshSlack, T - shortRefreshSlack]` window and applying
+        jitter to short-slack and transient retry delays.
 
 # Corpus of information
 

@@ -31,7 +31,8 @@ struct MDSCredentials: CredentialsProvider, Sendable {
     retryConfiguration: RetryConfiguration? = nil,
     client: AuthHTTPClient = AuthHTTPClient(),
     fromADC: Bool = false,
-    environment: [String: String] = ProcessInfo.processInfo.environment
+    environment: [String: String] = ProcessInfo.processInfo.environment,
+    jitter: TokenCache<ContinuousClock>.JitterGenerator? = TokenCache<ContinuousClock>.defaultJitter
   ) {
     let provider = MDSAccessTokenProvider(
       endpoint: endpoint,
@@ -46,6 +47,7 @@ struct MDSCredentials: CredentialsProvider, Sendable {
 
     self.cache = TokenCache(
       provider: provider,
+      jitter: jitter,
       isRetryable: MDSAccessTokenProvider.isRetryable
     )
   }

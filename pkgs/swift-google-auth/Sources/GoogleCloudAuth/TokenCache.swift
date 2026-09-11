@@ -52,6 +52,8 @@ struct SystemTimeSource: TimeSource {
   var now: Date { Date() }
 }
 
+package let attosecondsPerSecond: Double = 1e18
+
 private let defaultNormalRefreshSlack: Duration = .seconds(240)
 private let defaultShortRefreshSlack: Duration = .seconds(10)
 
@@ -75,6 +77,23 @@ private let defaultShortRefreshSlack: Duration = .seconds(10)
 /// ### Memory Safety
 /// The background task captures `self` weakly. It only holds a strong reference during state evaluation and releases it before sleeping on the `Clock`. This guarantees `TokenCache` can `deinit` cleanly when out of scope, which automatically cancels the background task.
 actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
+  typealias JitterGenerator = @Sendable (ClosedRange<Duration>) -> Duration
+
+  static var defaultJitter: JitterGenerator {
+    return { range in
+      let lower = range.lowerBound
+      let upper = range.upperBound
+      guard upper > lower else { return lower }
+      let delta = upper - lower
+      let deltaSeconds =
+        Double(delta.components.seconds)
+        + Double(delta.components.attoseconds) / attosecondsPerSecond
+      guard deltaSeconds > 0 else { return lower }
+      let randomSeconds = Double.random(in: 0...deltaSeconds)
+      return min(max(lower + .seconds(randomSeconds), lower), upper)
+    }
+  }
+
   private let provider: any TokenProvider
   private var cachedToken: Token?
   private var activeRefreshTask: Task<Token, Error>?
@@ -83,6 +102,7 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
 
   private let normalRefreshSlack: Duration
   private let shortRefreshSlack: Duration
+  private let jitter: JitterGenerator?
   private let isRetryable: @Sendable (Error) -> Bool
   private var permanentError: Error?
 
@@ -99,6 +119,7 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
     timeSource: any TimeSource = SystemTimeSource(),
     normalRefreshSlack: Duration = defaultNormalRefreshSlack,
     shortRefreshSlack: Duration = defaultShortRefreshSlack,
+    jitter: JitterGenerator? = nil,
     isRetryable: @Sendable @escaping (Error) -> Bool = { _ in true }
   ) {
     self.provider = provider
@@ -106,6 +127,7 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
     self.timeSource = timeSource
     self.normalRefreshSlack = normalRefreshSlack
     self.shortRefreshSlack = shortRefreshSlack
+    self.jitter = jitter
     self.isRetryable = isRetryable
 
     let clock = self.clock
@@ -196,18 +218,49 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
     self.activeRefreshTask = nil
   }
 
+  private func refreshSleepDuration(for token: Token) -> Duration {
+    let timeUntilExpiry = token.expirationDate.timeIntervalSince(timeSource.now)
+    let duration = Duration.seconds(timeUntilExpiry)
+
+    if duration > self.normalRefreshSlack {
+      let minSleep = duration - self.normalRefreshSlack
+      let maxSleep = duration - self.shortRefreshSlack
+      if maxSleep > minSleep, let jitter = self.jitter {
+        return min(max(jitter(minSleep...maxSleep), minSleep), maxSleep)
+      }
+      return minSleep
+    }
+
+    if duration > self.shortRefreshSlack {
+      if let jitter = self.jitter {
+        let maxSleep = min(self.shortRefreshSlack, duration)
+        if maxSleep > .zero {
+          return min(max(jitter(.zero...maxSleep), .zero), maxSleep)
+        }
+      }
+      return self.shortRefreshSlack
+    }
+
+    if let jitter = self.jitter {
+      let maxSleep: Duration =
+        duration > .zero ? min(self.shortRefreshSlack, duration) : .seconds(1)
+      if maxSleep > .zero {
+        return min(max(jitter(.zero...maxSleep), .zero), maxSleep)
+      }
+    }
+    return .seconds(1)
+  }
+
   private func checkStateAndTriggerRefresh(timeSource: any TimeSource) async -> RefreshAction {
     if let _ = self.permanentError {
       return .terminate
     }
 
-    // If we already have a valid, non-stale token, sleep until it becomes stale
+    // If we already have a valid, non-stale token, sleep until scheduled refresh
     if let cached = self.cachedToken, !self.isStale(cached) {
-      let timeUntilStale =
-        cached.expirationDate.timeIntervalSince(timeSource.now)
-        - Double(self.normalRefreshSlack.components.seconds)
-      if timeUntilStale > 0 {
-        return .sleep(.seconds(timeUntilStale))
+      let sleepDuration = self.refreshSleepDuration(for: cached)
+      if sleepDuration > .zero {
+        return .sleep(sleepDuration)
       }
     }
 
@@ -217,16 +270,7 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
       let token = try await task.value
       self.updateCache(with: token)
 
-      let timeUntilExpiry = token.expirationDate.timeIntervalSince(timeSource.now)
-      let duration = Duration.seconds(timeUntilExpiry)
-
-      if duration > self.normalRefreshSlack {
-        return .sleep(duration - self.normalRefreshSlack)
-      } else if duration > self.shortRefreshSlack {
-        return .sleep(self.shortRefreshSlack)
-      } else {
-        return .sleep(.seconds(1))
-      }
+      return .sleep(self.refreshSleepDuration(for: token))
     } catch {
       if error is CancellationError {
         return .terminate
@@ -238,7 +282,12 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
         self.permanentError = error
         return .terminate
       }
-      // Handle transient errors by sleeping and retrying
+      // Handle transient errors by sleeping with jitter and retrying
+      if let jitter = self.jitter {
+        let sleepDuration = min(
+          max(jitter(.zero...self.shortRefreshSlack), .zero), self.shortRefreshSlack)
+        return .sleep(sleepDuration)
+      }
       return .sleep(self.shortRefreshSlack)
     }
   }
@@ -250,6 +299,7 @@ extension TokenCache where C == ContinuousClock {
     provider: any TokenProvider,
     normalRefreshSlack: Duration = defaultNormalRefreshSlack,
     shortRefreshSlack: Duration = defaultShortRefreshSlack,
+    jitter: JitterGenerator? = nil,
     isRetryable: @Sendable @escaping (Error) -> Bool = { _ in true }
   ) {
     self.init(
@@ -257,6 +307,7 @@ extension TokenCache where C == ContinuousClock {
       clock: ContinuousClock(),
       normalRefreshSlack: normalRefreshSlack,
       shortRefreshSlack: shortRefreshSlack,
+      jitter: jitter,
       isRetryable: isRetryable
     )
   }

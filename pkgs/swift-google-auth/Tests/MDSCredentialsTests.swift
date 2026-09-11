@@ -489,6 +489,78 @@ import Testing
     )
   }
 
+  @Test func mdsCredentialsCustomJitter() async throws {
+    struct MockResponse: Encodable {
+      let accessToken: String
+      let expiresIn: Int
+      let tokenType: String
+    }
+    let encodedData = try JSONEncoder().encode(
+      MockResponse(accessToken: "mock-token", expiresIn: 3600, tokenType: "Bearer"))
+
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        Self.checkRequest(request)
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: encodedData))
+        )
+      }
+    ])
+
+    let client = AuthHTTPClient(mock: mock)
+    let provider = MDSCredentials(
+      client: client,
+      environment: [:],
+      jitter: { range in
+        return range.lowerBound
+      }
+    )
+    let headers = try await provider.headers()
+
+    #expect(
+      headers.contains { $0.0 == "Authorization" && $0.1 == "Bearer mock-token" },
+      "Missing authorization header in \(headers)"
+    )
+  }
+
+  @Test func mdsCredentialsNilJitter() async throws {
+    struct MockResponse: Encodable {
+      let accessToken: String
+      let expiresIn: Int
+      let tokenType: String
+    }
+    let encodedData = try JSONEncoder().encode(
+      MockResponse(accessToken: "mock-token", expiresIn: 3600, tokenType: "Bearer"))
+
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) in
+        Self.checkRequest(request)
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: encodedData))
+        )
+      }
+    ])
+
+    let client = AuthHTTPClient(mock: mock)
+    let provider = MDSCredentials(
+      client: client,
+      environment: [:],
+      jitter: nil
+    )
+    let headers = try await provider.headers()
+
+    #expect(
+      headers.contains { $0.0 == "Authorization" && $0.1 == "Bearer mock-token" },
+      "Missing authorization header in \(headers)"
+    )
+  }
+
   static func checkRequest(
     _ request: HTTPClientRequest, sourceLocation: SourceLocation = #_sourceLocation
   ) {
