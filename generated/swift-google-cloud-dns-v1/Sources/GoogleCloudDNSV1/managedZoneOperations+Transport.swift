@@ -55,7 +55,7 @@ extension Clients {
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(
         contentsOf: try encoder.encode(request.clientOperationId, prefix: "clientOperationId"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -83,7 +83,7 @@ extension Clients {
       query.append(contentsOf: try encoder.encode(request.maxResults, prefix: "maxResults"))
       query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
       query.append(contentsOf: try encoder.encode(request.sortBy, prefix: "sortBy"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(

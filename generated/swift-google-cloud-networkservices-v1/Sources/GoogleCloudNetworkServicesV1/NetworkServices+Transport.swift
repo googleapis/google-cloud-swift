@@ -54,7 +54,7 @@ extension Clients {
       query.append(
         contentsOf: try encoder.encode(request.returnPartialSuccess, prefix: "returnPartialSuccess")
       )
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -75,7 +75,7 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -98,7 +98,7 @@ extension Clients {
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(
         contentsOf: try encoder.encode(request.endpointPolicyId, prefix: "endpointPolicyId"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.endpointPolicy {
@@ -125,7 +125,7 @@ extension Clients {
       ]
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.PATCH)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.endpointPolicy {
@@ -148,7 +148,7 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.DELETE)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -171,7 +171,7 @@ extension Clients {
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
       query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -192,7 +192,7 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -215,7 +215,7 @@ extension Clients {
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(
         contentsOf: try encoder.encode(request.wasmPluginVersionId, prefix: "wasmPluginVersionId"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.wasmPluginVersion {
@@ -238,7 +238,7 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.DELETE)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -261,7 +261,7 @@ extension Clients {
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
       query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -283,7 +283,7 @@ extension Clients {
       ]
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.view, prefix: "view"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -305,7 +305,7 @@ extension Clients {
       ]
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.wasmPluginId, prefix: "wasmPluginId"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.wasmPlugin {
@@ -331,7 +331,7 @@ extension Clients {
       ]
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.PATCH)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.wasmPlugin {
@@ -354,7 +354,7 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.DELETE)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -377,7 +377,7 @@ extension Clients {
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
       query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -397,7 +397,7 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -419,7 +419,7 @@ extension Clients {
       ]
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.gatewayId, prefix: "gatewayId"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.gateway {
@@ -444,7 +444,7 @@ extension Clients {
       ]
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.PATCH)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.gateway {
@@ -467,7 +467,7 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.DELETE)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -493,7 +493,7 @@ extension Clients {
       query.append(
         contentsOf: try encoder.encode(request.returnPartialSuccess, prefix: "returnPartialSuccess")
       )
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -513,7 +513,7 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -535,7 +535,7 @@ extension Clients {
       ]
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.grpcRouteId, prefix: "grpcRouteId"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.grpcRoute {
@@ -561,7 +561,7 @@ extension Clients {
       ]
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.PATCH)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.grpcRoute {
@@ -584,7 +584,7 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.DELETE)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -611,7 +611,7 @@ extension Clients {
         contentsOf: try encoder.encode(request.returnPartialSuccess, prefix: "returnPartialSuccess")
       )
       query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -631,7 +631,7 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -654,7 +654,7 @@ extension Clients {
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.httpRouteId, prefix: "httpRouteId"))
       query.append(contentsOf: try encoder.encode(request.requestId, prefix: "requestId"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.httpRoute {
@@ -680,7 +680,7 @@ extension Clients {
       ]
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.PATCH)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.httpRoute {
@@ -703,7 +703,7 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.DELETE)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -729,7 +729,7 @@ extension Clients {
       query.append(
         contentsOf: try encoder.encode(request.returnPartialSuccess, prefix: "returnPartialSuccess")
       )
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -749,7 +749,7 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -771,7 +771,7 @@ extension Clients {
       ]
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.tcpRouteId, prefix: "tcpRouteId"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.tcpRoute {
@@ -797,7 +797,7 @@ extension Clients {
       ]
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.PATCH)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.tcpRoute {
@@ -820,7 +820,7 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.DELETE)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -846,7 +846,7 @@ extension Clients {
       query.append(
         contentsOf: try encoder.encode(request.returnPartialSuccess, prefix: "returnPartialSuccess")
       )
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -866,7 +866,7 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -888,7 +888,7 @@ extension Clients {
       ]
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.tlsRouteId, prefix: "tlsRouteId"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.tlsRoute {
@@ -914,7 +914,7 @@ extension Clients {
       ]
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.PATCH)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.tlsRoute {
@@ -937,7 +937,7 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.DELETE)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -960,7 +960,7 @@ extension Clients {
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
       query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -981,7 +981,7 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -1004,7 +1004,7 @@ extension Clients {
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(
         contentsOf: try encoder.encode(request.serviceBindingId, prefix: "serviceBindingId"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.serviceBinding {
@@ -1031,7 +1031,7 @@ extension Clients {
       ]
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.PATCH)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.serviceBinding {
@@ -1054,7 +1054,7 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.DELETE)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -1080,7 +1080,7 @@ extension Clients {
       query.append(
         contentsOf: try encoder.encode(request.returnPartialSuccess, prefix: "returnPartialSuccess")
       )
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -1100,7 +1100,7 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -1122,7 +1122,7 @@ extension Clients {
       ]
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.meshId, prefix: "meshId"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.mesh {
@@ -1147,7 +1147,7 @@ extension Clients {
       ]
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.PATCH)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.mesh {
@@ -1170,7 +1170,7 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.DELETE)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -1193,7 +1193,7 @@ extension Clients {
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
       query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -1214,7 +1214,7 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -1237,7 +1237,7 @@ extension Clients {
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(
         contentsOf: try encoder.encode(request.serviceLbPolicyId, prefix: "serviceLbPolicyId"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.serviceLbPolicy {
@@ -1264,7 +1264,7 @@ extension Clients {
       ]
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.PATCH)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.serviceLbPolicy {
@@ -1287,7 +1287,7 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.DELETE)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -1307,7 +1307,7 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -1327,7 +1327,7 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -1350,7 +1350,7 @@ extension Clients {
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
       query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -1374,7 +1374,7 @@ extension Clients {
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
       query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -1401,7 +1401,7 @@ extension Clients {
       query.append(
         contentsOf: try encoder.encode(request.returnPartialSuccess, prefix: "returnPartialSuccess")
       )
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -1421,7 +1421,7 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -1443,7 +1443,7 @@ extension Clients {
       ]
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.agentGatewayId, prefix: "agentGatewayId"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.agentGateway {
@@ -1470,7 +1470,7 @@ extension Clients {
       ]
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.PATCH)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.agentGateway {
@@ -1495,7 +1495,7 @@ extension Clients {
       ]
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.etag, prefix: "etag"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.DELETE)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -1519,7 +1519,7 @@ extension Clients {
       query.append(contentsOf: try encoder.encode(request.filter, prefix: "filter"))
       query.append(contentsOf: try encoder.encode(request.pageSize, prefix: "pageSize"))
       query.append(contentsOf: try encoder.encode(request.pageToken, prefix: "pageToken"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -1539,7 +1539,7 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -1559,7 +1559,7 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request)
@@ -1582,7 +1582,7 @@ extension Clients {
       ]
       let encoder = GoogleCloudGax._QueryParameterEncoder()
       query.append(contentsOf: try encoder.encode(request.options, prefix: "options"))
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -1602,7 +1602,7 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request)
@@ -1630,7 +1630,7 @@ extension Clients {
       query.append(
         contentsOf: try encoder.encode(request.returnPartialSuccess, prefix: "returnPartialSuccess")
       )
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -1650,7 +1650,7 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.GET)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
@@ -1670,7 +1670,7 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.DELETE)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       _ = try await req.rpc(
@@ -1690,7 +1690,7 @@ extension Clients {
       let query = [
         URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
       ]
-      var req = try await self.inner.newRequest(path: path, query: query)
+      var req = try await self.inner.newRequest(path: path, query: query, options: options)
       req.setMethod(.POST)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request)

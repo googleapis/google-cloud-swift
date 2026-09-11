@@ -49,7 +49,7 @@
         let query = [
           URLQueryItem(name: "$alt", value: "json")
         ]
-        var req = try await self.inner.newRequest(path: path, query: query)
+        var req = try await self.inner.newRequest(path: path, query: query, options: options)
         req.setMethod(.POST)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.body {
