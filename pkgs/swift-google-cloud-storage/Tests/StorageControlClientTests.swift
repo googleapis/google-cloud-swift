@@ -25,7 +25,9 @@ import Testing
       $0.credentials = credentials
     }
     let client = try StorageControlClient(options)
-    #expect(client.pollingErrorPolicy is GoogleCloudGax.LimitedElapsedTime<GoogleCloudGax.BasePollingErrorPolicy>)
+    #expect(
+      client.pollingErrorPolicy
+        is GoogleCloudGax.LimitedElapsedTime<GoogleCloudGax.BasePollingErrorPolicy>)
     #expect(client.pollingBackoffPolicy is GoogleCloudGax.ExponentialBackoff)
   }
 
@@ -39,7 +41,9 @@ import Testing
       $0.pollingBackoffPolicy = customBackoffPolicy
     }
     let client = try StorageControlClient(options)
-    #expect(client.pollingErrorPolicy is GoogleCloudGax.LimitedElapsedTime<GoogleCloudGax.BasePollingErrorPolicy>)
+    #expect(
+      client.pollingErrorPolicy
+        is GoogleCloudGax.LimitedElapsedTime<GoogleCloudGax.BasePollingErrorPolicy>)
     #expect(client.pollingBackoffPolicy is GoogleCloudGax.ExponentialBackoff)
   }
 
