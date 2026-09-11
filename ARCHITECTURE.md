@@ -124,9 +124,9 @@ let secret = try await client.createSecret(
     request: CreateSecretRequest().with {
         $0.parent = "projects/my-project"
         $0.secretId = "database-password"
-        $0.secret = Secret().with {
-            $0.replication = Replication().with {
-                $0.automatic = Replication.Automatic()
+        $0.secret = Secret().with { secret in
+            secret.replication = Replication().with { replication in
+                replication.automatic = Replication.Automatic()
             }
         }
     },
