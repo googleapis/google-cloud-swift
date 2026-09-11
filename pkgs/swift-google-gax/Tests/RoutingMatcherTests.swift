@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import Foundation
+@_spi(GoogleCloudInternal) import GoogleCloudGax
 @_spi(GoogleCloudInternal) import GoogleCloudGaxGRPC
 import Testing
 
@@ -179,5 +180,11 @@ import Testing
       )
 
     #expect(extracted == "projects/p/buckets/b")
+  }
+
+  @Test func grpcTypealiasCompatibility() {
+    let segment: GoogleCloudGaxGRPC._RoutingSegment = .literal("test")
+    #expect(segment == GoogleCloudGax._RoutingSegment.literal("test"))
+    #expect(GoogleCloudGaxGRPC._RoutingMatcher.encode("foo/bar") == "foo%2Fbar")
   }
 }
