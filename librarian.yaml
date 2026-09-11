@@ -78,10 +78,10 @@ default:
         url: https://github.com/googleapis/swift-google-cloud-common
         api_package: google.cloud.common
       - name: GoogleCloudDatastreamV1
-        path: generated/swift-google-cloud-datastream-v1
+        url: https://github.com/googleapis/swift-google-cloud-datastream-v1
         api_package: google.cloud.datastream.v1
       - name: GoogleCloudDocumentAIV1
-        path: generated/swift-google-cloud-documentai-v1
+        url: https://github.com/googleapis/swift-google-cloud-documentai-v1
         api_package: google.cloud.documentai.v1
       - name: GoogleCloudGKEHubConfigManagementV1
         url: https://github.com/googleapis/swift-google-cloud-gkehub-configmanagement-v1
@@ -97,7 +97,7 @@ default:
         required_by_services: true
         spi: GoogleCloudInternal
       - name: GoogleCloudKMSV1
-        path: generated/swift-google-cloud-kms-v1
+        url: https://github.com/googleapis/swift-google-cloud-kms-v1
         api_package: google.cloud.kms.v1
       - name: GoogleCloudLocation
         url: https://github.com/googleapis/swift-google-cloud-location
@@ -106,7 +106,7 @@ default:
         url: https://github.com/googleapis/swift-google-logging-type
         api_package: google.logging.type
       - name: GoogleCloudOSConfigV1
-        path: generated/swift-google-cloud-osconfig-v1
+        url: https://github.com/googleapis/swift-google-cloud-osconfig-v1
         api_package: google.cloud.osconfig.v1
       - name: GoogleCloudOSLoginCommon
         url: https://github.com/googleapis/swift-google-cloud-oslogin-common
@@ -118,26 +118,26 @@ default:
         url: https://github.com/googleapis/swift-google-cloud-orgpolicy-v2
         api_package: google.cloud.orgpolicy.v2
       - name: GoogleCloudRecommenderV1
-        path: generated/swift-google-cloud-recommender-v1
+        url: https://github.com/googleapis/swift-google-cloud-recommender-v1
         api_package: google.cloud.recommender.v1
       - name: GoogleCloudWKT
         url: https://github.com/googleapis/swift-google-wkt
         api_package: google.protobuf
         spi: GoogleCloudInternal
       - name: GoogleGrafeasV1
-        path: generated/swift-grafeas-v1
+        url: https://github.com/googleapis/swift-grafeas-v1
         api_package: grafeas.v1
       - name: GoogleIAMV1
         url: https://github.com/googleapis/swift-google-iam-v1
         api_package: google.iam.v1
       - name: GoogleIAMV2
-        path: generated/swift-google-iam-v2
+        url: https://github.com/googleapis/swift-google-iam-v2
         api_package: google.iam.v2
       - name: GoogleIdentityAccessContextManagerType
         url: https://github.com/googleapis/swift-google-identity-accesscontextmanager-type
         api_package: google.identity.accesscontextmanager.type
       - name: GoogleIdentityAccessContextManagerV1
-        path: generated/swift-google-identity-accesscontextmanager-v1
+        url: https://github.com/googleapis/swift-google-identity-accesscontextmanager-v1
         api_package: google.identity.accesscontextmanager.v1
       - name: GoogleLongRunning
         url: https://github.com/googleapis/swift-google-longrunning

@@ -24,7 +24,8 @@ let package = Package(
     .library(name: "GoogleCloudRecommenderLoggingV1", targets: ["GoogleCloudRecommenderLoggingV1"])
   ],
   dependencies: [
-    .package(path: "../../generated/swift-google-cloud-recommender-v1"),
+    .package(
+      url: "https://github.com/googleapis/swift-google-cloud-recommender-v1", from: "0.0.0-preview"),
     .package(url: "https://github.com/googleapis/swift-google-wkt", from: "0.1.0-preview"),
   ],
   targets: [

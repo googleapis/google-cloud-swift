@@ -24,7 +24,8 @@ let package = Package(
     .library(name: "GoogleCloudDatastreamLoggingV1", targets: ["GoogleCloudDatastreamLoggingV1"])
   ],
   dependencies: [
-    .package(path: "../../generated/swift-google-cloud-datastream-v1"),
+    .package(
+      url: "https://github.com/googleapis/swift-google-cloud-datastream-v1", from: "0.0.0-preview"),
     .package(url: "https://github.com/googleapis/swift-google-wkt", from: "0.1.0-preview"),
   ],
   targets: [
