@@ -172,12 +172,12 @@ public struct Resource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .create: return try container.encode(1)
-      case .update: return try container.encode(2)
-      case .delete: return try container.encode(3)
-      case .recreate: return try container.encode(4)
-      case .unchanged: return try container.encode(5)
+      case .unspecified: return try container.encode("INTENT_UNSPECIFIED")
+      case .create: return try container.encode("CREATE")
+      case .update: return try container.encode("UPDATE")
+      case .delete: return try container.encode("DELETE")
+      case .recreate: return try container.encode("RECREATE")
+      case .unchanged: return try container.encode("UNCHANGED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -292,11 +292,11 @@ public struct Resource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .planned: return try container.encode(1)
-      case .inProgress: return try container.encode(2)
-      case .reconciled: return try container.encode(3)
-      case .failed: return try container.encode(4)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .planned: return try container.encode("PLANNED")
+      case .inProgress: return try container.encode("IN_PROGRESS")
+      case .reconciled: return try container.encode("RECONCILED")
+      case .failed: return try container.encode("FAILED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

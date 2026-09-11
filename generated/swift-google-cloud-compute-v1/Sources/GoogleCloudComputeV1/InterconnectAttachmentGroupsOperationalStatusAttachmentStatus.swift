@@ -151,9 +151,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .active: return try container.encode(0)
-        case .inactive: return try container.encode(1)
-        case .unspecified: return try container.encode(2)
+        case .active: return try container.encode("ACTIVE")
+        case .inactive: return try container.encode("INACTIVE")
+        case .unspecified: return try container.encode("UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -315,21 +315,23 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .attachmentStatusUnknown: return try container.encode(0)
-        case .connectionDisabled: return try container.encode(1)
-        case .connectionDown: return try container.encode(2)
-        case .connectionUp: return try container.encode(3)
-        case .defunct: return try container.encode(4)
-        case .ipsecConfigurationNeededStatus: return try container.encode(5)
-        case .ipsecReadyToResumeFlowStatus: return try container.encode(6)
-        case .ipv4DownIpv6Up: return try container.encode(7)
-        case .ipv4UpIpv6Down: return try container.encode(8)
-        case .partnerRequestReceived: return try container.encode(9)
-        case .pendingCustomer: return try container.encode(10)
-        case .pendingPartner: return try container.encode(11)
-        case .provisioned: return try container.encode(12)
-        case .routerConfigurationBroken: return try container.encode(13)
-        case .unprovisioned: return try container.encode(14)
+        case .attachmentStatusUnknown: return try container.encode("ATTACHMENT_STATUS_UNKNOWN")
+        case .connectionDisabled: return try container.encode("CONNECTION_DISABLED")
+        case .connectionDown: return try container.encode("CONNECTION_DOWN")
+        case .connectionUp: return try container.encode("CONNECTION_UP")
+        case .defunct: return try container.encode("DEFUNCT")
+        case .ipsecConfigurationNeededStatus:
+          return try container.encode("IPSEC_CONFIGURATION_NEEDED_STATUS")
+        case .ipsecReadyToResumeFlowStatus:
+          return try container.encode("IPSEC_READY_TO_RESUME_FLOW_STATUS")
+        case .ipv4DownIpv6Up: return try container.encode("IPV4_DOWN_IPV6_UP")
+        case .ipv4UpIpv6Down: return try container.encode("IPV4_UP_IPV6_DOWN")
+        case .partnerRequestReceived: return try container.encode("PARTNER_REQUEST_RECEIVED")
+        case .pendingCustomer: return try container.encode("PENDING_CUSTOMER")
+        case .pendingPartner: return try container.encode("PENDING_PARTNER")
+        case .provisioned: return try container.encode("PROVISIONED")
+        case .routerConfigurationBroken: return try container.encode("ROUTER_CONFIGURATION_BROKEN")
+        case .unprovisioned: return try container.encode("UNPROVISIONED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

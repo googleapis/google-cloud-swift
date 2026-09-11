@@ -184,12 +184,12 @@ public struct StateTimeline: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .adding: return try container.encode(1)
-        case .active: return try container.encode(2)
-        case .deleting: return try container.encode(3)
-        case .suspending: return try container.encode(4)
-        case .suspended: return try container.encode(5)
+        case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+        case .adding: return try container.encode("ADDING")
+        case .active: return try container.encode("ACTIVE")
+        case .deleting: return try container.encode("DELETING")
+        case .suspending: return try container.encode("SUSPENDING")
+        case .suspended: return try container.encode("SUSPENDED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -127,11 +127,11 @@
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .endOfUtterance: return try container.encode(1)
-      case .manualCall: return try container.encode(2)
-      case .customerMessage: return try container.encode(3)
-      case .agentMessage: return try container.encode(4)
+      case .unspecified: return try container.encode("TRIGGER_EVENT_UNSPECIFIED")
+      case .endOfUtterance: return try container.encode("END_OF_UTTERANCE")
+      case .manualCall: return try container.encode("MANUAL_CALL")
+      case .customerMessage: return try container.encode("CUSTOMER_MESSAGE")
+      case .agentMessage: return try container.encode("AGENT_MESSAGE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

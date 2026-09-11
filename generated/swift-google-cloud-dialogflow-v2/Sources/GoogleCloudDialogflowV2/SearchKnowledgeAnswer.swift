@@ -210,12 +210,12 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .faq: return try container.encode(1)
-        case .generative: return try container.encode(2)
-        case .intent: return try container.encode(3)
-        case .playbook: return try container.encode(4)
-        case .event: return try container.encode(5)
+        case .unspecified: return try container.encode("ANSWER_TYPE_UNSPECIFIED")
+        case .faq: return try container.encode("FAQ")
+        case .generative: return try container.encode("GENERATIVE")
+        case .intent: return try container.encode("INTENT")
+        case .playbook: return try container.encode("PLAYBOOK")
+        case .event: return try container.encode("EVENT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

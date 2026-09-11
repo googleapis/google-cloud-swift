@@ -146,8 +146,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .dense: return try container.encode(0)
-        case .unspecified: return try container.encode(1)
+        case .dense: return try container.encode("DENSE")
+        case .unspecified: return try container.encode("DEPLOYMENT_TYPE_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -149,15 +149,16 @@ public enum InboundServiceType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .inboundServiceUnspecified: return try container.encode(0)
-    case .inboundServiceMail: return try container.encode(1)
-    case .inboundServiceMailBounce: return try container.encode(2)
-    case .inboundServiceXmppError: return try container.encode(3)
-    case .inboundServiceXmppMessage: return try container.encode(4)
-    case .inboundServiceXmppSubscribe: return try container.encode(5)
-    case .inboundServiceXmppPresence: return try container.encode(6)
-    case .inboundServiceChannelPresence: return try container.encode(7)
-    case .inboundServiceWarmup: return try container.encode(9)
+    case .inboundServiceUnspecified: return try container.encode("INBOUND_SERVICE_UNSPECIFIED")
+    case .inboundServiceMail: return try container.encode("INBOUND_SERVICE_MAIL")
+    case .inboundServiceMailBounce: return try container.encode("INBOUND_SERVICE_MAIL_BOUNCE")
+    case .inboundServiceXmppError: return try container.encode("INBOUND_SERVICE_XMPP_ERROR")
+    case .inboundServiceXmppMessage: return try container.encode("INBOUND_SERVICE_XMPP_MESSAGE")
+    case .inboundServiceXmppSubscribe: return try container.encode("INBOUND_SERVICE_XMPP_SUBSCRIBE")
+    case .inboundServiceXmppPresence: return try container.encode("INBOUND_SERVICE_XMPP_PRESENCE")
+    case .inboundServiceChannelPresence:
+      return try container.encode("INBOUND_SERVICE_CHANNEL_PRESENCE")
+    case .inboundServiceWarmup: return try container.encode("INBOUND_SERVICE_WARMUP")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

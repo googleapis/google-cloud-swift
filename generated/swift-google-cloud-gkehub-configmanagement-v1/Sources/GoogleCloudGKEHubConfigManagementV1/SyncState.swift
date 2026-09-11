@@ -189,14 +189,14 @@ public struct SyncState: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .synced: return try container.encode(1)
-      case .pending: return try container.encode(2)
-      case .error: return try container.encode(3)
-      case .notConfigured: return try container.encode(4)
-      case .notInstalled: return try container.encode(5)
-      case .unauthorized: return try container.encode(6)
-      case .unreachable: return try container.encode(7)
+      case .unspecified: return try container.encode("SYNC_CODE_UNSPECIFIED")
+      case .synced: return try container.encode("SYNCED")
+      case .pending: return try container.encode("PENDING")
+      case .error: return try container.encode("ERROR")
+      case .notConfigured: return try container.encode("NOT_CONFIGURED")
+      case .notInstalled: return try container.encode("NOT_INSTALLED")
+      case .unauthorized: return try container.encode("UNAUTHORIZED")
+      case .unreachable: return try container.encode("UNREACHABLE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

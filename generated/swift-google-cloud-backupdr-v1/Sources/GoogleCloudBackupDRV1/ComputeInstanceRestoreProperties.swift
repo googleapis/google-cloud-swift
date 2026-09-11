@@ -341,10 +341,13 @@ public struct ComputeInstanceRestoreProperties: Codable, Equatable, GoogleCloudW
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .inheritFromSubnetwork: return try container.encode(1)
-      case .enableOutboundVmAccessToGoogle: return try container.encode(2)
-      case .enableBidirectionalAccessToGoogle: return try container.encode(3)
+      case .unspecified:
+        return try container.encode("INSTANCE_PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED")
+      case .inheritFromSubnetwork: return try container.encode("INHERIT_FROM_SUBNETWORK")
+      case .enableOutboundVmAccessToGoogle:
+        return try container.encode("ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE")
+      case .enableBidirectionalAccessToGoogle:
+        return try container.encode("ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -222,9 +222,9 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleCloudWKT._A
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .text: return try container.encode(1)
-          case .audio: return try container.encode(2)
+          case .unspecified: return try container.encode("SEMANTIC_SIMILARITY_CHANNEL_UNSPECIFIED")
+          case .text: return try container.encode("TEXT")
+          case .audio: return try container.encode("AUDIO")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -416,9 +416,9 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleCloudWKT._A
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .fail: return try container.encode(1)
-        case .allow: return try container.encode(2)
+        case .unspecified: return try container.encode("EXTRA_TOOL_CALL_BEHAVIOR_UNSPECIFIED")
+        case .fail: return try container.encode("FAIL")
+        case .allow: return try container.encode("ALLOW")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -535,9 +535,9 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleCloudWKT._A
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .disabled: return try container.encode(1)
-      case .enabled: return try container.encode(2)
+      case .unspecified: return try container.encode("HALLUCINATION_METRIC_BEHAVIOR_UNSPECIFIED")
+      case .disabled: return try container.encode("DISABLED")
+      case .enabled: return try container.encode("ENABLED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

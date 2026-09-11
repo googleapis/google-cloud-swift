@@ -456,8 +456,8 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .dockerHub: return try container.encode(1)
+        case .unspecified: return try container.encode("PUBLIC_REPOSITORY_UNSPECIFIED")
+        case .dockerHub: return try container.encode("DOCKER_HUB")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -679,8 +679,8 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .mavenCentral: return try container.encode(1)
+        case .unspecified: return try container.encode("PUBLIC_REPOSITORY_UNSPECIFIED")
+        case .mavenCentral: return try container.encode("MAVEN_CENTRAL")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -901,8 +901,8 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .npmjs: return try container.encode(1)
+        case .unspecified: return try container.encode("PUBLIC_REPOSITORY_UNSPECIFIED")
+        case .npmjs: return try container.encode("NPMJS")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1123,8 +1123,8 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .pypi: return try container.encode(1)
+        case .unspecified: return try container.encode("PUBLIC_REPOSITORY_UNSPECIFIED")
+        case .pypi: return try container.encode("PYPI")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1350,10 +1350,10 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .debian: return try container.encode(1)
-          case .ubuntu: return try container.encode(2)
-          case .debianSnapshot: return try container.encode(3)
+          case .unspecified: return try container.encode("REPOSITORY_BASE_UNSPECIFIED")
+          case .debian: return try container.encode("DEBIAN")
+          case .ubuntu: return try container.encode("UBUNTU")
+          case .debianSnapshot: return try container.encode("DEBIAN_SNAPSHOT")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -1645,13 +1645,13 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .centos: return try container.encode(1)
-          case .centosDebug: return try container.encode(2)
-          case .centosVault: return try container.encode(3)
-          case .centosStream: return try container.encode(4)
-          case .rocky: return try container.encode(5)
-          case .epel: return try container.encode(6)
+          case .unspecified: return try container.encode("REPOSITORY_BASE_UNSPECIFIED")
+          case .centos: return try container.encode("CENTOS")
+          case .centosDebug: return try container.encode("CENTOS_DEBUG")
+          case .centosVault: return try container.encode("CENTOS_VAULT")
+          case .centosStream: return try container.encode("CENTOS_STREAM")
+          case .rocky: return try container.encode("ROCKY")
+          case .epel: return try container.encode("EPEL")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }

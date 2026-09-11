@@ -108,8 +108,9 @@ public enum BigQueryTableModification: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .tableModificationUnspecified: return try container.encode(0)
-    case .tableModifiedTimestamp: return try container.encode(1)
+    case .tableModificationUnspecified:
+      return try container.encode("TABLE_MODIFICATION_UNSPECIFIED")
+    case .tableModifiedTimestamp: return try container.encode("TABLE_MODIFIED_TIMESTAMP")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

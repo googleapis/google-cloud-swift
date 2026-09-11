@@ -196,11 +196,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .connected: return try container.encode(1)
-        case .disconnected: return try container.encode(2)
-        case .authenticationFailed: return try container.encode(3)
-        case .keepalive: return try container.encode(4)
+        case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+        case .connected: return try container.encode("CONNECTED")
+        case .disconnected: return try container.encode("DISCONNECTED")
+        case .authenticationFailed: return try container.encode("AUTHENTICATION_FAILED")
+        case .keepalive: return try container.encode("KEEPALIVE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -339,15 +339,18 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .certificateValid: return try container.encode(1)
-        case .certificateInvalid: return try container.encode(2)
-        case .certificateExpired: return try container.encode(3)
-        case .certificateHostnameNotFound: return try container.encode(4)
-        case .certificateUnauthenticated: return try container.encode(5)
-        case .certificateTrustStoreNotFound: return try container.encode(6)
-        case .certificateHostnameInvalidFormat: return try container.encode(7)
-        case .certificateQuotaExceeded: return try container.encode(8)
+        case .unspecified: return try container.encode("CERTIFICATE_STATE_UNSPECIFIED")
+        case .certificateValid: return try container.encode("CERTIFICATE_VALID")
+        case .certificateInvalid: return try container.encode("CERTIFICATE_INVALID")
+        case .certificateExpired: return try container.encode("CERTIFICATE_EXPIRED")
+        case .certificateHostnameNotFound:
+          return try container.encode("CERTIFICATE_HOSTNAME_NOT_FOUND")
+        case .certificateUnauthenticated: return try container.encode("CERTIFICATE_UNAUTHENTICATED")
+        case .certificateTrustStoreNotFound:
+          return try container.encode("CERTIFICATE_TRUST_STORE_NOT_FOUND")
+        case .certificateHostnameInvalidFormat:
+          return try container.encode("CERTIFICATE_HOSTNAME_INVALID_FORMAT")
+        case .certificateQuotaExceeded: return try container.encode("CERTIFICATE_QUOTA_EXCEEDED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -164,9 +164,9 @@ public struct SslConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .`public`: return try container.encode(0)
-      case .`private`: return try container.encode(1)
-      case .insecure: return try container.encode(2)
+      case .`public`: return try container.encode("PUBLIC")
+      case .`private`: return try container.encode("PRIVATE")
+      case .insecure: return try container.encode("INSECURE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

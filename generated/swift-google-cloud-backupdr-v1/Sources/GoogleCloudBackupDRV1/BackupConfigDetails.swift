@@ -271,11 +271,13 @@ public struct BackupConfigDetails: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .cloudSqlInstanceBackupConfig: return try container.encode(1)
-      case .computeEngineResourcePolicy: return try container.encode(2)
-      case .backupdrBackupPlan: return try container.encode(3)
-      case .backupdrTemplate: return try container.encode(4)
+      case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .cloudSqlInstanceBackupConfig:
+        return try container.encode("CLOUD_SQL_INSTANCE_BACKUP_CONFIG")
+      case .computeEngineResourcePolicy:
+        return try container.encode("COMPUTE_ENGINE_RESOURCE_POLICY")
+      case .backupdrBackupPlan: return try container.encode("BACKUPDR_BACKUP_PLAN")
+      case .backupdrTemplate: return try container.encode("BACKUPDR_TEMPLATE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -388,10 +390,10 @@ public struct BackupConfigDetails: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .active: return try container.encode(1)
-      case .inactive: return try container.encode(2)
-      case .error: return try container.encode(3)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .active: return try container.encode("ACTIVE")
+      case .inactive: return try container.encode("INACTIVE")
+      case .error: return try container.encode("ERROR")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

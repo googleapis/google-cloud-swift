@@ -118,10 +118,12 @@ public enum ComputeMigrationTargetProduct: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .computeEngine: return try container.encode(1)
-    case .vmwareEngine: return try container.encode(2)
-    case .soleTenancy: return try container.encode(3)
+    case .unspecified: return try container.encode("COMPUTE_MIGRATION_TARGET_PRODUCT_UNSPECIFIED")
+    case .computeEngine:
+      return try container.encode("COMPUTE_MIGRATION_TARGET_PRODUCT_COMPUTE_ENGINE")
+    case .vmwareEngine:
+      return try container.encode("COMPUTE_MIGRATION_TARGET_PRODUCT_VMWARE_ENGINE")
+    case .soleTenancy: return try container.encode("COMPUTE_MIGRATION_TARGET_PRODUCT_SOLE_TENANCY")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

@@ -358,9 +358,9 @@ public struct ProcessorVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .versionedFoundation: return try container.encode(1)
-          case .fineTuned: return try container.encode(2)
+          case .unspecified: return try container.encode("CUSTOM_MODEL_TYPE_UNSPECIFIED")
+          case .versionedFoundation: return try container.encode("VERSIONED_FOUNDATION")
+          case .fineTuned: return try container.encode("FINE_TUNED")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -532,15 +532,15 @@ public struct ProcessorVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .deployed: return try container.encode(1)
-      case .deploying: return try container.encode(2)
-      case .undeployed: return try container.encode(3)
-      case .undeploying: return try container.encode(4)
-      case .creating: return try container.encode(5)
-      case .deleting: return try container.encode(6)
-      case .failed: return try container.encode(7)
-      case .importing: return try container.encode(8)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .deployed: return try container.encode("DEPLOYED")
+      case .deploying: return try container.encode("DEPLOYING")
+      case .undeployed: return try container.encode("UNDEPLOYED")
+      case .undeploying: return try container.encode("UNDEPLOYING")
+      case .creating: return try container.encode("CREATING")
+      case .deleting: return try container.encode("DELETING")
+      case .failed: return try container.encode("FAILED")
+      case .importing: return try container.encode("IMPORTING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -643,9 +643,9 @@ public struct ProcessorVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .generative: return try container.encode(1)
-      case .custom: return try container.encode(2)
+      case .unspecified: return try container.encode("MODEL_TYPE_UNSPECIFIED")
+      case .generative: return try container.encode("MODEL_TYPE_GENERATIVE")
+      case .custom: return try container.encode("MODEL_TYPE_CUSTOM")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

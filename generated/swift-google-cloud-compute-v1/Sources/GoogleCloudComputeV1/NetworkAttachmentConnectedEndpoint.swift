@@ -184,12 +184,12 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .accepted: return try container.encode(0)
-        case .closed: return try container.encode(1)
-        case .needsAttention: return try container.encode(2)
-        case .pending: return try container.encode(3)
-        case .rejected: return try container.encode(4)
-        case .unspecified: return try container.encode(5)
+        case .accepted: return try container.encode("ACCEPTED")
+        case .closed: return try container.encode("CLOSED")
+        case .needsAttention: return try container.encode("NEEDS_ATTENTION")
+        case .pending: return try container.encode("PENDING")
+        case .rejected: return try container.encode("REJECTED")
+        case .unspecified: return try container.encode("STATUS_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

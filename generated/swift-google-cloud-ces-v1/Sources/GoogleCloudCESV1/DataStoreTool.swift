@@ -637,9 +637,9 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .unspecified: return try container.encode(0)
-            case .numerical: return try container.encode(1)
-            case .freshness: return try container.encode(2)
+            case .unspecified: return try container.encode("ATTRIBUTE_TYPE_UNSPECIFIED")
+            case .numerical: return try container.encode("NUMERICAL")
+            case .freshness: return try container.encode("FRESHNESS")
             case .unknownIntValue(let v): return try container.encode(v)
             case .unknownStringValue(let v): return try container.encode(v)
             }
@@ -738,8 +738,8 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .unspecified: return try container.encode(0)
-            case .linear: return try container.encode(1)
+            case .unspecified: return try container.encode("INTERPOLATION_TYPE_UNSPECIFIED")
+            case .linear: return try container.encode("LINEAR")
             case .unknownIntValue(let v): return try container.encode(v)
             case .unknownStringValue(let v): return try container.encode(v)
             }
@@ -910,9 +910,9 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .text: return try container.encode(1)
-        case .audio: return try container.encode(2)
+        case .unspecified: return try container.encode("MODALITY_TYPE_UNSPECIFIED")
+        case .text: return try container.encode("TEXT")
+        case .audio: return try container.encode("AUDIO")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1030,9 +1030,9 @@ public struct DataStoreTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .alwaysInclude: return try container.encode(2)
-      case .neverInclude: return try container.encode(3)
+      case .unspecified: return try container.encode("FILTER_PARAMETER_BEHAVIOR_UNSPECIFIED")
+      case .alwaysInclude: return try container.encode("ALWAYS_INCLUDE")
+      case .neverInclude: return try container.encode("NEVER_INCLUDE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

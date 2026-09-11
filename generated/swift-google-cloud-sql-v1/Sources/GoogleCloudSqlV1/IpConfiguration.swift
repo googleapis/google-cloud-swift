@@ -246,10 +246,12 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .allowUnencryptedAndEncrypted: return try container.encode(1)
-        case .encryptedOnly: return try container.encode(2)
-        case .trustedClientCertificateRequired: return try container.encode(3)
+        case .unspecified: return try container.encode("SSL_MODE_UNSPECIFIED")
+        case .allowUnencryptedAndEncrypted:
+          return try container.encode("ALLOW_UNENCRYPTED_AND_ENCRYPTED")
+        case .encryptedOnly: return try container.encode("ENCRYPTED_ONLY")
+        case .trustedClientCertificateRequired:
+          return try container.encode("TRUSTED_CLIENT_CERTIFICATE_REQUIRED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -361,10 +363,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .googleManagedInternalCa: return try container.encode(1)
-        case .googleManagedCasCa: return try container.encode(2)
-        case .customerManagedCasCa: return try container.encode(3)
+        case .unspecified: return try container.encode("CA_MODE_UNSPECIFIED")
+        case .googleManagedInternalCa: return try container.encode("GOOGLE_MANAGED_INTERNAL_CA")
+        case .googleManagedCasCa: return try container.encode("GOOGLE_MANAGED_CAS_CA")
+        case .customerManagedCasCa: return try container.encode("CUSTOMER_MANAGED_CAS_CA")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -473,9 +475,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .noAutomaticRotation: return try container.encode(1)
-        case .automaticRotationDuringMaintenance: return try container.encode(2)
+        case .unspecified:
+          return try container.encode("SERVER_CERTIFICATE_ROTATION_MODE_UNSPECIFIED")
+        case .noAutomaticRotation: return try container.encode("NO_AUTOMATIC_ROTATION")
+        case .automaticRotationDuringMaintenance:
+          return try container.encode("AUTOMATIC_ROTATION_DURING_MAINTENANCE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

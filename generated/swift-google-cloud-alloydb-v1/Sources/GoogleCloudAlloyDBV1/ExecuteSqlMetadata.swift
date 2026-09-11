@@ -163,10 +163,10 @@ public struct ExecuteSqlMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .ok: return try container.encode(1)
-      case .partial: return try container.encode(2)
-      case .error: return try container.encode(3)
+      case .unspecified: return try container.encode("STATUS_UNSPECIFIED")
+      case .ok: return try container.encode("OK")
+      case .partial: return try container.encode("PARTIAL")
+      case .error: return try container.encode("ERROR")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

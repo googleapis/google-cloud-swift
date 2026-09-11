@@ -145,8 +145,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .autoConnect: return try container.encode(0)
-        case .provisionOnly: return try container.encode(1)
+        case .autoConnect: return try container.encode("AUTO_CONNECT")
+        case .provisionOnly: return try container.encode("PROVISION_ONLY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -251,9 +251,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .block: return try container.encode(0)
-        case .cluster: return try container.encode(1)
-        case .subblock: return try container.encode(2)
+        case .block: return try container.encode("BLOCK")
+        case .cluster: return try container.encode("CLUSTER")
+        case .subblock: return try container.encode("SUBBLOCK")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -353,8 +353,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .highAvailability: return try container.encode(0)
-        case .highThroughput: return try container.encode(1)
+        case .highAvailability: return try container.encode("HIGH_AVAILABILITY")
+        case .highThroughput: return try container.encode("HIGH_THROUGHPUT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

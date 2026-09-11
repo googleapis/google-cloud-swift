@@ -335,9 +335,9 @@ public struct Object: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .unlocked: return try container.encode(1)
-        case .locked: return try container.encode(2)
+        case .unspecified: return try container.encode("MODE_UNSPECIFIED")
+        case .unlocked: return try container.encode("UNLOCKED")
+        case .locked: return try container.encode("LOCKED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -113,10 +113,10 @@ public enum ToolTipTrigger: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .tooltipTriggerUnspecified: return try container.encode(0)
-    case .tooltipTriggerNone: return try container.encode(1)
-    case .tooltipTriggerItem: return try container.encode(2)
-    case .tooltipTriggerAxis: return try container.encode(3)
+    case .tooltipTriggerUnspecified: return try container.encode("TOOLTIP_TRIGGER_UNSPECIFIED")
+    case .tooltipTriggerNone: return try container.encode("TOOLTIP_TRIGGER_NONE")
+    case .tooltipTriggerItem: return try container.encode("TOOLTIP_TRIGGER_ITEM")
+    case .tooltipTriggerAxis: return try container.encode("TOOLTIP_TRIGGER_AXIS")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

@@ -204,9 +204,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .hybrid: return try container.encode(1)
-        case .mlOnly: return try container.encode(2)
+        case .unspecified: return try container.encode("MATCH_MODE_UNSPECIFIED")
+        case .hybrid: return try container.encode("MATCH_MODE_HYBRID")
+        case .mlOnly: return try container.encode("MATCH_MODE_ML_ONLY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -315,10 +315,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .v1: return try container.encode(1)
-        case .v2: return try container.encode(2)
-        case .v2Beta1: return try container.encode(3)
+        case .unspecified: return try container.encode("API_VERSION_UNSPECIFIED")
+        case .v1: return try container.encode("API_VERSION_V1")
+        case .v2: return try container.encode("API_VERSION_V2")
+        case .v2Beta1: return try container.encode("API_VERSION_V2_BETA_1")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -429,10 +429,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .standard: return try container.encode(1)
-        case .enterprise: return try container.encode(2)
-        case .enterprisePlus: return try container.encode(3)
+        case .unspecified: return try container.encode("TIER_UNSPECIFIED")
+        case .standard: return try container.encode("TIER_STANDARD")
+        case .enterprise: return try container.encode("TIER_ENTERPRISE")
+        case .enterprisePlus: return try container.encode("TIER_ENTERPRISE_PLUS")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

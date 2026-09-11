@@ -129,11 +129,12 @@
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .rawFeatureSkew: return try container.encode(1)
-      case .rawFeatureDrift: return try container.encode(2)
-      case .featureAttributionSkew: return try container.encode(3)
-      case .featureAttributionDrift: return try container.encode(4)
+      case .unspecified:
+        return try container.encode("MODEL_DEPLOYMENT_MONITORING_OBJECTIVE_TYPE_UNSPECIFIED")
+      case .rawFeatureSkew: return try container.encode("RAW_FEATURE_SKEW")
+      case .rawFeatureDrift: return try container.encode("RAW_FEATURE_DRIFT")
+      case .featureAttributionSkew: return try container.encode("FEATURE_ATTRIBUTION_SKEW")
+      case .featureAttributionDrift: return try container.encode("FEATURE_ATTRIBUTION_DRIFT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

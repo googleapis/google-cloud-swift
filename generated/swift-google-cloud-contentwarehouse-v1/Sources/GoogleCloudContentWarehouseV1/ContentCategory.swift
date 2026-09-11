@@ -119,10 +119,10 @@ public enum ContentCategory: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .image: return try container.encode(1)
-    case .audio: return try container.encode(2)
-    case .video: return try container.encode(3)
+    case .unspecified: return try container.encode("CONTENT_CATEGORY_UNSPECIFIED")
+    case .image: return try container.encode("CONTENT_CATEGORY_IMAGE")
+    case .audio: return try container.encode("CONTENT_CATEGORY_AUDIO")
+    case .video: return try container.encode("CONTENT_CATEGORY_VIDEO")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

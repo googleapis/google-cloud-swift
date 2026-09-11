@@ -115,9 +115,9 @@ public enum HtmlSanitization: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .disabled: return try container.encode(1)
-    case .simpleFormattingOnly: return try container.encode(2)
+    case .unspecified: return try container.encode("HTML_SANITIZATION_UNSPECIFIED")
+    case .disabled: return try container.encode("HTML_SANITIZATION_DISABLED")
+    case .simpleFormattingOnly: return try container.encode("SIMPLE_FORMATTING_ONLY")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

@@ -141,8 +141,8 @@ public struct ManagedZoneForwardingConfigNameServerTarget: Codable, Equatable, G
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .`default`: return try container.encode(0)
-      case .`private`: return try container.encode(1)
+      case .`default`: return try container.encode("default")
+      case .`private`: return try container.encode("private")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

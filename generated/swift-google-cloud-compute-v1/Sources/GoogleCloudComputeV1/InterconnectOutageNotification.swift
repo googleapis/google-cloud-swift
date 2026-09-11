@@ -203,10 +203,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .itOutage: return try container.encode(0)
-        case .itPartialOutage: return try container.encode(1)
-        case .outage: return try container.encode(2)
-        case .partialOutage: return try container.encode(3)
+        case .itOutage: return try container.encode("IT_OUTAGE")
+        case .itPartialOutage: return try container.encode("IT_PARTIAL_OUTAGE")
+        case .outage: return try container.encode("OUTAGE")
+        case .partialOutage: return try container.encode("PARTIAL_OUTAGE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -305,8 +305,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .google: return try container.encode(0)
-        case .nsrcGoogle: return try container.encode(1)
+        case .google: return try container.encode("GOOGLE")
+        case .nsrcGoogle: return try container.encode("NSRC_GOOGLE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -428,11 +428,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .active: return try container.encode(0)
-        case .cancelled: return try container.encode(1)
-        case .completed: return try container.encode(2)
-        case .nsActive: return try container.encode(3)
-        case .nsCanceled: return try container.encode(4)
+        case .active: return try container.encode("ACTIVE")
+        case .cancelled: return try container.encode("CANCELLED")
+        case .completed: return try container.encode("COMPLETED")
+        case .nsActive: return try container.encode("NS_ACTIVE")
+        case .nsCanceled: return try container.encode("NS_CANCELED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

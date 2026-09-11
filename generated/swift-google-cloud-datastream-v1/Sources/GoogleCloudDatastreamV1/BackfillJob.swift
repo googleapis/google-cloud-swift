@@ -181,14 +181,14 @@ public struct BackfillJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .notStarted: return try container.encode(1)
-      case .pending: return try container.encode(2)
-      case .active: return try container.encode(3)
-      case .stopped: return try container.encode(4)
-      case .failed: return try container.encode(5)
-      case .completed: return try container.encode(6)
-      case .unsupported: return try container.encode(7)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .notStarted: return try container.encode("NOT_STARTED")
+      case .pending: return try container.encode("PENDING")
+      case .active: return try container.encode("ACTIVE")
+      case .stopped: return try container.encode("STOPPED")
+      case .failed: return try container.encode("FAILED")
+      case .completed: return try container.encode("COMPLETED")
+      case .unsupported: return try container.encode("UNSUPPORTED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -292,9 +292,9 @@ public struct BackfillJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .automatic: return try container.encode(1)
-      case .manual: return try container.encode(2)
+      case .unspecified: return try container.encode("TRIGGER_UNSPECIFIED")
+      case .automatic: return try container.encode("AUTOMATIC")
+      case .manual: return try container.encode("MANUAL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

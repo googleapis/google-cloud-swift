@@ -463,10 +463,10 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .`none`: return try container.encode(1)
-          case .idToken: return try container.encode(2)
-          case .accessToken: return try container.encode(3)
+          case .unspecified: return try container.encode("SERVICE_AGENT_AUTH_UNSPECIFIED")
+          case .`none`: return try container.encode("NONE")
+          case .idToken: return try container.encode("ID_TOKEN")
+          case .accessToken: return try container.encode("ACCESS_TOKEN")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -569,9 +569,9 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .standard: return try container.encode(1)
-          case .flexible: return try container.encode(2)
+          case .unspecified: return try container.encode("WEBHOOK_TYPE_UNSPECIFIED")
+          case .standard: return try container.encode("STANDARD")
+          case .flexible: return try container.encode("FLEXIBLE")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -704,14 +704,14 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .post: return try container.encode(1)
-          case .`get`: return try container.encode(2)
-          case .head: return try container.encode(3)
-          case .put: return try container.encode(4)
-          case .delete: return try container.encode(5)
-          case .patch: return try container.encode(6)
-          case .options: return try container.encode(7)
+          case .unspecified: return try container.encode("HTTP_METHOD_UNSPECIFIED")
+          case .post: return try container.encode("POST")
+          case .`get`: return try container.encode("GET")
+          case .head: return try container.encode("HEAD")
+          case .put: return try container.encode("PUT")
+          case .delete: return try container.encode("DELETE")
+          case .patch: return try container.encode("PATCH")
+          case .options: return try container.encode("OPTIONS")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }

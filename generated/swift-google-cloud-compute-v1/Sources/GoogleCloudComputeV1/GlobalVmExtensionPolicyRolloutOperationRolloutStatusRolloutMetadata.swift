@@ -180,13 +180,13 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .cancelled: return try container.encode(0)
-        case .completed: return try container.encode(1)
-        case .failed: return try container.encode(2)
-        case .paused: return try container.encode(3)
-        case .processing: return try container.encode(4)
-        case .unknown: return try container.encode(5)
-        case .unspecified: return try container.encode(6)
+        case .cancelled: return try container.encode("STATE_CANCELLED")
+        case .completed: return try container.encode("STATE_COMPLETED")
+        case .failed: return try container.encode("STATE_FAILED")
+        case .paused: return try container.encode("STATE_PAUSED")
+        case .processing: return try container.encode("STATE_PROCESSING")
+        case .unknown: return try container.encode("STATE_UNKNOWN")
+        case .unspecified: return try container.encode("STATE_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -246,11 +246,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .africa: return try container.encode(0)
-        case .asiaPac: return try container.encode(1)
-        case .europe: return try container.encode(2)
-        case .northAmerica: return try container.encode(3)
-        case .southAmerica: return try container.encode(4)
+        case .africa: return try container.encode("AFRICA")
+        case .asiaPac: return try container.encode("ASIA_PAC")
+        case .europe: return try container.encode("EUROPE")
+        case .northAmerica: return try container.encode("NORTH_AMERICA")
+        case .southAmerica: return try container.encode("SOUTH_AMERICA")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -352,8 +352,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .supported: return try container.encode(0)
-        case .unsupported: return try container.encode(1)
+        case .supported: return try container.encode("LACP_SUPPORTED")
+        case .unsupported: return try container.encode("LACP_UNSUPPORTED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -454,8 +454,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .available: return try container.encode(0)
-        case .closed: return try container.encode(1)
+        case .available: return try container.encode("AVAILABLE")
+        case .closed: return try container.encode("CLOSED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

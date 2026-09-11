@@ -142,9 +142,9 @@ public struct LabelDescriptor: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .string: return try container.encode(0)
-      case .bool: return try container.encode(1)
-      case .int64: return try container.encode(2)
+      case .string: return try container.encode("STRING")
+      case .bool: return try container.encode("BOOL")
+      case .int64: return try container.encode("INT64")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

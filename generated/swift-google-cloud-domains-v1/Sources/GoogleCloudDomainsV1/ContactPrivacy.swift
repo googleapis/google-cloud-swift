@@ -132,10 +132,10 @@ public enum ContactPrivacy: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .publicContactData: return try container.encode(1)
-    case .privateContactData: return try container.encode(2)
-    case .redactedContactData: return try container.encode(3)
+    case .unspecified: return try container.encode("CONTACT_PRIVACY_UNSPECIFIED")
+    case .publicContactData: return try container.encode("PUBLIC_CONTACT_DATA")
+    case .privateContactData: return try container.encode("PRIVATE_CONTACT_DATA")
+    case .redactedContactData: return try container.encode("REDACTED_CONTACT_DATA")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

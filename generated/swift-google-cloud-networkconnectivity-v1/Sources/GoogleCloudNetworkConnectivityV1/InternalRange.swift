@@ -327,10 +327,10 @@ public struct InternalRange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .forVpc: return try container.encode(1)
-      case .externalToVpc: return try container.encode(2)
-      case .forMigration: return try container.encode(3)
+      case .unspecified: return try container.encode("USAGE_UNSPECIFIED")
+      case .forVpc: return try container.encode("FOR_VPC")
+      case .externalToVpc: return try container.encode("EXTERNAL_TO_VPC")
+      case .forMigration: return try container.encode("FOR_MIGRATION")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -454,10 +454,10 @@ public struct InternalRange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .forSelf: return try container.encode(1)
-      case .forPeer: return try container.encode(2)
-      case .notShared: return try container.encode(3)
+      case .unspecified: return try container.encode("PEERING_UNSPECIFIED")
+      case .forSelf: return try container.encode("FOR_SELF")
+      case .forPeer: return try container.encode("FOR_PEER")
+      case .notShared: return try container.encode("NOT_SHARED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -561,9 +561,9 @@ public struct InternalRange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .routeRange: return try container.encode(1)
-      case .existingSubnetRange: return try container.encode(2)
+      case .unspecified: return try container.encode("OVERLAP_UNSPECIFIED")
+      case .routeRange: return try container.encode("OVERLAP_ROUTE_RANGE")
+      case .existingSubnetRange: return try container.encode("OVERLAP_EXISTING_SUBNET_RANGE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -689,11 +689,11 @@ public struct InternalRange: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .random: return try container.encode(1)
-      case .firstAvailable: return try container.encode(2)
-      case .randomFirstNAvailable: return try container.encode(3)
-      case .firstSmallestFitting: return try container.encode(4)
+      case .unspecified: return try container.encode("ALLOCATION_STRATEGY_UNSPECIFIED")
+      case .random: return try container.encode("RANDOM")
+      case .firstAvailable: return try container.encode("FIRST_AVAILABLE")
+      case .randomFirstNAvailable: return try container.encode("RANDOM_FIRST_N_AVAILABLE")
+      case .firstSmallestFitting: return try container.encode("FIRST_SMALLEST_FITTING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

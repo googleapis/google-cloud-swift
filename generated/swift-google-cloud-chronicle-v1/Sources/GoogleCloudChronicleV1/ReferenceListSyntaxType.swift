@@ -118,10 +118,11 @@ public enum ReferenceListSyntaxType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .plainTextString: return try container.encode(1)
-    case .regex: return try container.encode(2)
-    case .cidr: return try container.encode(3)
+    case .unspecified: return try container.encode("REFERENCE_LIST_SYNTAX_TYPE_UNSPECIFIED")
+    case .plainTextString:
+      return try container.encode("REFERENCE_LIST_SYNTAX_TYPE_PLAIN_TEXT_STRING")
+    case .regex: return try container.encode("REFERENCE_LIST_SYNTAX_TYPE_REGEX")
+    case .cidr: return try container.encode("REFERENCE_LIST_SYNTAX_TYPE_CIDR")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

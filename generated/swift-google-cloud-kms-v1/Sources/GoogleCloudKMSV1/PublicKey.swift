@@ -274,11 +274,11 @@ public struct PublicKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .pem: return try container.encode(1)
-      case .der: return try container.encode(2)
-      case .nistPqc: return try container.encode(3)
-      case .xwingRawBytes: return try container.encode(4)
+      case .unspecified: return try container.encode("PUBLIC_KEY_FORMAT_UNSPECIFIED")
+      case .pem: return try container.encode("PEM")
+      case .der: return try container.encode("DER")
+      case .nistPqc: return try container.encode("NIST_PQC")
+      case .xwingRawBytes: return try container.encode("XWING_RAW_BYTES")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -157,9 +157,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .partial: return try container.encode(1)
-        case .`final`: return try container.encode(2)
+        case .unspecified: return try container.encode("AUTOMATED_AGENT_REPLY_TYPE_UNSPECIFIED")
+        case .partial: return try container.encode("PARTIAL")
+        case .`final`: return try container.encode("FINAL")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

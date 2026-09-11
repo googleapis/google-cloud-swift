@@ -134,8 +134,8 @@ public struct StoredProcedureConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .sqlProcedure: return try container.encode(1)
+      case .unspecified: return try container.encode("STORED_PROCEDURE_TYPE_UNSPECIFIED")
+      case .sqlProcedure: return try container.encode("SQL_PROCEDURE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -133,11 +133,12 @@ public enum MembershipMatchingState: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .membershipMatched: return try container.encode(1)
-    case .membershipNotMatched: return try container.encode(2)
-    case .membershipUnknownInfo: return try container.encode(3)
-    case .membershipUnknownUnsupported: return try container.encode(4)
+    case .unspecified: return try container.encode("MEMBERSHIP_MATCHING_STATE_UNSPECIFIED")
+    case .membershipMatched: return try container.encode("MEMBERSHIP_MATCHED")
+    case .membershipNotMatched: return try container.encode("MEMBERSHIP_NOT_MATCHED")
+    case .membershipUnknownInfo: return try container.encode("MEMBERSHIP_UNKNOWN_INFO")
+    case .membershipUnknownUnsupported:
+      return try container.encode("MEMBERSHIP_UNKNOWN_UNSUPPORTED")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

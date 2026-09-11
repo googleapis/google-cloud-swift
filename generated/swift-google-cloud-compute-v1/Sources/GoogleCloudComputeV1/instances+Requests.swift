@@ -3122,10 +3122,10 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .invalid: return try container.encode(0)
-          case .noEffect: return try container.encode(1)
-          case .refresh: return try container.encode(2)
-          case .restart: return try container.encode(3)
+          case .invalid: return try container.encode("INVALID")
+          case .noEffect: return try container.encode("NO_EFFECT")
+          case .refresh: return try container.encode("REFRESH")
+          case .restart: return try container.encode("RESTART")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -3235,10 +3235,10 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .invalid: return try container.encode(0)
-          case .noEffect: return try container.encode(1)
-          case .refresh: return try container.encode(2)
-          case .restart: return try container.encode(3)
+          case .invalid: return try container.encode("INVALID")
+          case .noEffect: return try container.encode("NO_EFFECT")
+          case .refresh: return try container.encode("REFRESH")
+          case .restart: return try container.encode("RESTART")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }

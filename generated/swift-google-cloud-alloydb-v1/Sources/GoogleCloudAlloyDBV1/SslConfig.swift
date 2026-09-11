@@ -165,12 +165,13 @@ public struct SslConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .allow: return try container.encode(1)
-      case .require: return try container.encode(2)
-      case .verifyCa: return try container.encode(3)
-      case .allowUnencryptedAndEncrypted: return try container.encode(4)
-      case .encryptedOnly: return try container.encode(5)
+      case .unspecified: return try container.encode("SSL_MODE_UNSPECIFIED")
+      case .allow: return try container.encode("SSL_MODE_ALLOW")
+      case .require: return try container.encode("SSL_MODE_REQUIRE")
+      case .verifyCa: return try container.encode("SSL_MODE_VERIFY_CA")
+      case .allowUnencryptedAndEncrypted:
+        return try container.encode("ALLOW_UNENCRYPTED_AND_ENCRYPTED")
+      case .encryptedOnly: return try container.encode("ENCRYPTED_ONLY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -268,8 +269,8 @@ public struct SslConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .managed: return try container.encode(1)
+      case .unspecified: return try container.encode("CA_SOURCE_UNSPECIFIED")
+      case .managed: return try container.encode("CA_SOURCE_MANAGED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -244,9 +244,9 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .importFeatureAnalysis: return try container.encode(1)
-          case .snapshotAnalysis: return try container.encode(2)
+          case .unspecified: return try container.encode("OBJECTIVE_UNSPECIFIED")
+          case .importFeatureAnalysis: return try container.encode("IMPORT_FEATURE_ANALYSIS")
+          case .snapshotAnalysis: return try container.encode("SNAPSHOT_ANALYSIS")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -409,17 +409,17 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .bool: return try container.encode(1)
-        case .boolArray: return try container.encode(2)
-        case .double: return try container.encode(3)
-        case .doubleArray: return try container.encode(4)
-        case .int64: return try container.encode(9)
-        case .int64Array: return try container.encode(10)
-        case .string: return try container.encode(11)
-        case .stringArray: return try container.encode(12)
-        case .bytes: return try container.encode(13)
-        case .`struct`: return try container.encode(14)
+        case .unspecified: return try container.encode("VALUE_TYPE_UNSPECIFIED")
+        case .bool: return try container.encode("BOOL")
+        case .boolArray: return try container.encode("BOOL_ARRAY")
+        case .double: return try container.encode("DOUBLE")
+        case .doubleArray: return try container.encode("DOUBLE_ARRAY")
+        case .int64: return try container.encode("INT64")
+        case .int64Array: return try container.encode("INT64_ARRAY")
+        case .string: return try container.encode("STRING")
+        case .stringArray: return try container.encode("STRING_ARRAY")
+        case .bytes: return try container.encode("BYTES")
+        case .`struct`: return try container.encode("STRUCT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

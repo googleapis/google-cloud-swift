@@ -383,14 +383,14 @@ public struct Deployment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .creating: return try container.encode(1)
-      case .active: return try container.encode(2)
-      case .updating: return try container.encode(3)
-      case .deleting: return try container.encode(4)
-      case .failed: return try container.encode(5)
-      case .suspended: return try container.encode(6)
-      case .deleted: return try container.encode(7)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .creating: return try container.encode("CREATING")
+      case .active: return try container.encode("ACTIVE")
+      case .updating: return try container.encode("UPDATING")
+      case .deleting: return try container.encode("DELETING")
+      case .failed: return try container.encode("FAILED")
+      case .suspended: return try container.encode("SUSPENDED")
+      case .deleted: return try container.encode("DELETED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -526,14 +526,16 @@ public struct Deployment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .revisionFailed: return try container.encode(1)
-      case .cloudBuildPermissionDenied: return try container.encode(3)
-      case .deleteBuildApiFailed: return try container.encode(5)
-      case .deleteBuildRunFailed: return try container.encode(6)
-      case .bucketCreationPermissionDenied: return try container.encode(7)
-      case .bucketCreationFailed: return try container.encode(8)
-      case .externalValueSourceImportFailed: return try container.encode(10)
+      case .unspecified: return try container.encode("ERROR_CODE_UNSPECIFIED")
+      case .revisionFailed: return try container.encode("REVISION_FAILED")
+      case .cloudBuildPermissionDenied: return try container.encode("CLOUD_BUILD_PERMISSION_DENIED")
+      case .deleteBuildApiFailed: return try container.encode("DELETE_BUILD_API_FAILED")
+      case .deleteBuildRunFailed: return try container.encode("DELETE_BUILD_RUN_FAILED")
+      case .bucketCreationPermissionDenied:
+        return try container.encode("BUCKET_CREATION_PERMISSION_DENIED")
+      case .bucketCreationFailed: return try container.encode("BUCKET_CREATION_FAILED")
+      case .externalValueSourceImportFailed:
+        return try container.encode("EXTERNAL_VALUE_SOURCE_IMPORT_FAILED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -660,13 +662,13 @@ public struct Deployment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .locked: return try container.encode(1)
-      case .unlocked: return try container.encode(2)
-      case .locking: return try container.encode(3)
-      case .unlocking: return try container.encode(4)
-      case .lockFailed: return try container.encode(5)
-      case .unlockFailed: return try container.encode(6)
+      case .unspecified: return try container.encode("LOCK_STATE_UNSPECIFIED")
+      case .locked: return try container.encode("LOCKED")
+      case .unlocked: return try container.encode("UNLOCKED")
+      case .locking: return try container.encode("LOCKING")
+      case .unlocking: return try container.encode("UNLOCKING")
+      case .lockFailed: return try container.encode("LOCK_FAILED")
+      case .unlockFailed: return try container.encode("UNLOCK_FAILED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

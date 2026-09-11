@@ -166,11 +166,11 @@ public struct RegisterParameters: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .available: return try container.encode(1)
-      case .unavailable: return try container.encode(2)
-      case .unsupported: return try container.encode(3)
-      case .unknown: return try container.encode(4)
+      case .unspecified: return try container.encode("AVAILABILITY_UNSPECIFIED")
+      case .available: return try container.encode("AVAILABLE")
+      case .unavailable: return try container.encode("UNAVAILABLE")
+      case .unsupported: return try container.encode("UNSUPPORTED")
+      case .unknown: return try container.encode("UNKNOWN")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

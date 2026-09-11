@@ -150,10 +150,10 @@ public struct AdvancedDatapathObservabilityConfig: Codable, Equatable, GoogleClo
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .disabled: return try container.encode(1)
-      case .internalVpcLb: return try container.encode(3)
-      case .externalLb: return try container.encode(4)
+      case .unspecified: return try container.encode("RELAY_MODE_UNSPECIFIED")
+      case .disabled: return try container.encode("DISABLED")
+      case .internalVpcLb: return try container.encode("INTERNAL_VPC_LB")
+      case .externalLb: return try container.encode("EXTERNAL_LB")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

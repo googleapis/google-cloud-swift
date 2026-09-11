@@ -180,12 +180,12 @@ public struct ParameterSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .string: return try container.encode(3)
-      case .boolean: return try container.encode(4)
-      case .stringlist: return try container.encode(5)
-      case .number: return try container.encode(6)
-      case .oneof: return try container.encode(7)
+      case .unspecified: return try container.encode("VALUE_TYPE_UNSPECIFIED")
+      case .string: return try container.encode("STRING")
+      case .boolean: return try container.encode("BOOLEAN")
+      case .stringlist: return try container.encode("STRINGLIST")
+      case .number: return try container.encode("NUMBER")
+      case .oneof: return try container.encode("ONEOF")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

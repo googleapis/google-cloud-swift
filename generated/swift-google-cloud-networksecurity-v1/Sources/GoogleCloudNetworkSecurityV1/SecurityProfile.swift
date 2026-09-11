@@ -261,11 +261,11 @@ public struct SecurityProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .threatPrevention: return try container.encode(1)
-      case .customMirroring: return try container.encode(2)
-      case .customIntercept: return try container.encode(3)
-      case .urlFiltering: return try container.encode(5)
+      case .unspecified: return try container.encode("PROFILE_TYPE_UNSPECIFIED")
+      case .threatPrevention: return try container.encode("THREAT_PREVENTION")
+      case .customMirroring: return try container.encode("CUSTOM_MIRRORING")
+      case .customIntercept: return try container.encode("CUSTOM_INTERCEPT")
+      case .urlFiltering: return try container.encode("URL_FILTERING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

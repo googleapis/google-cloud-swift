@@ -540,10 +540,10 @@ public struct DataScanEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .succeeded: return try container.encode(1)
-          case .failed: return try container.encode(2)
-          case .skipped: return try container.encode(3)
+          case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+          case .succeeded: return try container.encode("SUCCEEDED")
+          case .failed: return try container.encode("FAILED")
+          case .skipped: return try container.encode("SKIPPED")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -675,10 +675,10 @@ public struct DataScanEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .dataProfile: return try container.encode(1)
-      case .dataQuality: return try container.encode(2)
-      case .dataDiscovery: return try container.encode(4)
+      case .unspecified: return try container.encode("SCAN_TYPE_UNSPECIFIED")
+      case .dataProfile: return try container.encode("DATA_PROFILE")
+      case .dataQuality: return try container.encode("DATA_QUALITY")
+      case .dataDiscovery: return try container.encode("DATA_DISCOVERY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -799,12 +799,12 @@ public struct DataScanEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .started: return try container.encode(1)
-      case .succeeded: return try container.encode(2)
-      case .failed: return try container.encode(3)
-      case .cancelled: return try container.encode(4)
-      case .created: return try container.encode(5)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .started: return try container.encode("STARTED")
+      case .succeeded: return try container.encode("SUCCEEDED")
+      case .failed: return try container.encode("FAILED")
+      case .cancelled: return try container.encode("CANCELLED")
+      case .created: return try container.encode("CREATED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -913,10 +913,10 @@ public struct DataScanEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .onDemand: return try container.encode(1)
-      case .schedule: return try container.encode(2)
-      case .oneTime: return try container.encode(3)
+      case .unspecified: return try container.encode("TRIGGER_UNSPECIFIED")
+      case .onDemand: return try container.encode("ON_DEMAND")
+      case .schedule: return try container.encode("SCHEDULE")
+      case .oneTime: return try container.encode("ONE_TIME")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -1019,9 +1019,9 @@ public struct DataScanEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .full: return try container.encode(1)
-      case .incremental: return try container.encode(2)
+      case .unspecified: return try container.encode("SCOPE_UNSPECIFIED")
+      case .full: return try container.encode("FULL")
+      case .incremental: return try container.encode("INCREMENTAL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

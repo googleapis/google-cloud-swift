@@ -356,11 +356,11 @@ public struct Clip: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .pending: return try container.encode(1)
-      case .creating: return try container.encode(2)
-      case .succeeded: return try container.encode(3)
-      case .failed: return try container.encode(4)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .pending: return try container.encode("PENDING")
+      case .creating: return try container.encode("CREATING")
+      case .succeeded: return try container.encode("SUCCEEDED")
+      case .failed: return try container.encode("FAILED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -463,9 +463,9 @@ public struct Clip: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .manifest: return try container.encode(1)
-      case .mp4: return try container.encode(2)
+      case .unspecified: return try container.encode("OUTPUT_TYPE_UNSPECIFIED")
+      case .manifest: return try container.encode("MANIFEST")
+      case .mp4: return try container.encode("MP4")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

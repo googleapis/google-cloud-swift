@@ -209,10 +209,10 @@ public struct Schema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .avro: return try container.encode(1)
-      case .json: return try container.encode(2)
-      case .protobuf: return try container.encode(3)
+      case .unspecified: return try container.encode("SCHEMA_TYPE_UNSPECIFIED")
+      case .avro: return try container.encode("AVRO")
+      case .json: return try container.encode("JSON")
+      case .protobuf: return try container.encode("PROTOBUF")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

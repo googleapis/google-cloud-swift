@@ -125,11 +125,11 @@ public enum ChannelPartnerLinkState: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .invited: return try container.encode(1)
-    case .active: return try container.encode(2)
-    case .revoked: return try container.encode(3)
-    case .suspended: return try container.encode(4)
+    case .unspecified: return try container.encode("CHANNEL_PARTNER_LINK_STATE_UNSPECIFIED")
+    case .invited: return try container.encode("INVITED")
+    case .active: return try container.encode("ACTIVE")
+    case .revoked: return try container.encode("REVOKED")
+    case .suspended: return try container.encode("SUSPENDED")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

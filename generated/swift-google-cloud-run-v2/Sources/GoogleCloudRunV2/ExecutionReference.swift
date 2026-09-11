@@ -169,12 +169,12 @@ public struct ExecutionReference: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .executionSucceeded: return try container.encode(1)
-      case .executionFailed: return try container.encode(2)
-      case .executionRunning: return try container.encode(3)
-      case .executionPending: return try container.encode(4)
-      case .executionCancelled: return try container.encode(5)
+      case .unspecified: return try container.encode("COMPLETION_STATUS_UNSPECIFIED")
+      case .executionSucceeded: return try container.encode("EXECUTION_SUCCEEDED")
+      case .executionFailed: return try container.encode("EXECUTION_FAILED")
+      case .executionRunning: return try container.encode("EXECUTION_RUNNING")
+      case .executionPending: return try container.encode("EXECUTION_PENDING")
+      case .executionCancelled: return try container.encode("EXECUTION_CANCELLED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

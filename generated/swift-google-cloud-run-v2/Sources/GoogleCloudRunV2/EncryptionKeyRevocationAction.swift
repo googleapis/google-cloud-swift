@@ -112,9 +112,9 @@ public enum EncryptionKeyRevocationAction: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .preventNew: return try container.encode(1)
-    case .shutdown: return try container.encode(2)
+    case .unspecified: return try container.encode("ENCRYPTION_KEY_REVOCATION_ACTION_UNSPECIFIED")
+    case .preventNew: return try container.encode("PREVENT_NEW")
+    case .shutdown: return try container.encode("SHUTDOWN")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

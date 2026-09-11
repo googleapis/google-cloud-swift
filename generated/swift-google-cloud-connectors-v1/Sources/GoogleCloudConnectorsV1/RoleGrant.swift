@@ -189,11 +189,12 @@ public struct RoleGrant: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .gcpProject: return try container.encode(1)
-        case .gcpResource: return try container.encode(2)
-        case .gcpSecretmanagerSecret: return try container.encode(3)
-        case .gcpSecretmanagerSecretVersion: return try container.encode(4)
+        case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+        case .gcpProject: return try container.encode("GCP_PROJECT")
+        case .gcpResource: return try container.encode("GCP_RESOURCE")
+        case .gcpSecretmanagerSecret: return try container.encode("GCP_SECRETMANAGER_SECRET")
+        case .gcpSecretmanagerSecretVersion:
+          return try container.encode("GCP_SECRETMANAGER_SECRET_VERSION")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -303,8 +304,8 @@ public struct RoleGrant: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .connectorSa: return try container.encode(1)
+      case .unspecified: return try container.encode("PRINCIPAL_UNSPECIFIED")
+      case .connectorSa: return try container.encode("CONNECTOR_SA")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

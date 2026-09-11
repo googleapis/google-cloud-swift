@@ -244,10 +244,10 @@ public struct PullRequestComment: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .comment: return try container.encode(1)
-        case .changeRequested: return try container.encode(2)
-        case .approved: return try container.encode(3)
+        case .unspecified: return try container.encode("ACTION_TYPE_UNSPECIFIED")
+        case .comment: return try container.encode("COMMENT")
+        case .changeRequested: return try container.encode("CHANGE_REQUESTED")
+        case .approved: return try container.encode("APPROVED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

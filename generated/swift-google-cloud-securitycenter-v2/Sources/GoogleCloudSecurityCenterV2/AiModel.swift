@@ -166,11 +166,11 @@ public struct AiModel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .vertexAi: return try container.encode(1)
-      case .gke: return try container.encode(2)
-      case .gce: return try container.encode(3)
-      case .fineTunedModel: return try container.encode(4)
+      case .unspecified: return try container.encode("DEPLOYMENT_PLATFORM_UNSPECIFIED")
+      case .vertexAi: return try container.encode("VERTEX_AI")
+      case .gke: return try container.encode("GKE")
+      case .gce: return try container.encode("GCE")
+      case .fineTunedModel: return try container.encode("FINE_TUNED_MODEL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

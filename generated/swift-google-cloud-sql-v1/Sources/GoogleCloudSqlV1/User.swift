@@ -303,14 +303,15 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .builtIn: return try container.encode(0)
-        case .cloudIamUser: return try container.encode(1)
-        case .cloudIamServiceAccount: return try container.encode(2)
-        case .cloudIamGroup: return try container.encode(3)
-        case .cloudIamGroupUser: return try container.encode(4)
-        case .cloudIamGroupServiceAccount: return try container.encode(5)
-        case .cloudIamWorkforceIdentity: return try container.encode(6)
-        case .entraidUser: return try container.encode(7)
+        case .builtIn: return try container.encode("BUILT_IN")
+        case .cloudIamUser: return try container.encode("CLOUD_IAM_USER")
+        case .cloudIamServiceAccount: return try container.encode("CLOUD_IAM_SERVICE_ACCOUNT")
+        case .cloudIamGroup: return try container.encode("CLOUD_IAM_GROUP")
+        case .cloudIamGroupUser: return try container.encode("CLOUD_IAM_GROUP_USER")
+        case .cloudIamGroupServiceAccount:
+          return try container.encode("CLOUD_IAM_GROUP_SERVICE_ACCOUNT")
+        case .cloudIamWorkforceIdentity: return try container.encode("CLOUD_IAM_WORKFORCE_IDENTITY")
+        case .entraidUser: return try container.encode("ENTRAID_USER")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -419,10 +420,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .noModifyDualPassword: return try container.encode(1)
-        case .noDualPassword: return try container.encode(2)
-        case .dualPassword: return try container.encode(3)
+        case .unspecified: return try container.encode("DUAL_PASSWORD_TYPE_UNSPECIFIED")
+        case .noModifyDualPassword: return try container.encode("NO_MODIFY_DUAL_PASSWORD")
+        case .noDualPassword: return try container.encode("NO_DUAL_PASSWORD")
+        case .dualPassword: return try container.encode("DUAL_PASSWORD")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -530,9 +531,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .inactive: return try container.encode(1)
-        case .active: return try container.encode(2)
+        case .unspecified: return try container.encode("IAM_STATUS_UNSPECIFIED")
+        case .inactive: return try container.encode("INACTIVE")
+        case .active: return try container.encode("ACTIVE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

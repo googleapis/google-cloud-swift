@@ -170,14 +170,14 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .friday: return try container.encode(0)
-        case .invalid: return try container.encode(1)
-        case .monday: return try container.encode(2)
-        case .saturday: return try container.encode(3)
-        case .sunday: return try container.encode(4)
-        case .thursday: return try container.encode(5)
-        case .tuesday: return try container.encode(6)
-        case .wednesday: return try container.encode(7)
+        case .friday: return try container.encode("FRIDAY")
+        case .invalid: return try container.encode("INVALID")
+        case .monday: return try container.encode("MONDAY")
+        case .saturday: return try container.encode("SATURDAY")
+        case .sunday: return try container.encode("SUNDAY")
+        case .thursday: return try container.encode("THURSDAY")
+        case .tuesday: return try container.encode("TUESDAY")
+        case .wednesday: return try container.encode("WEDNESDAY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

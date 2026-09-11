@@ -190,8 +190,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .nvme: return try container.encode(0)
-        case .scsi: return try container.encode(1)
+        case .nvme: return try container.encode("NVME")
+        case .scsi: return try container.encode("SCSI")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -292,8 +292,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .readOnly: return try container.encode(0)
-        case .readWrite: return try container.encode(1)
+        case .readOnly: return try container.encode("READ_ONLY")
+        case .readWrite: return try container.encode("READ_WRITE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -390,8 +390,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .updating: return try container.encode(0)
-        case .upToDate: return try container.encode(1)
+        case .updating: return try container.encode("UPDATING")
+        case .upToDate: return try container.encode("UP_TO_DATE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -488,8 +488,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .persistent: return try container.encode(0)
-        case .scratch: return try container.encode(1)
+        case .persistent: return try container.encode("PERSISTENT")
+        case .scratch: return try container.encode("SCRATCH")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

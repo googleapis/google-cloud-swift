@@ -166,11 +166,11 @@ public struct OperationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .pending: return try container.encode(1)
-      case .running: return try container.encode(2)
-      case .succeeded: return try container.encode(3)
-      case .failed: return try container.encode(4)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .pending: return try container.encode("PENDING")
+      case .running: return try container.encode("RUNNING")
+      case .succeeded: return try container.encode("SUCCEEDED")
+      case .failed: return try container.encode("FAILED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -304,14 +304,14 @@ public struct OperationMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .create: return try container.encode(1)
-      case .delete: return try container.encode(2)
-      case .update: return try container.encode(3)
-      case .check: return try container.encode(4)
-      case .saveSnapshot: return try container.encode(5)
-      case .loadSnapshot: return try container.encode(6)
-      case .databaseFailover: return try container.encode(7)
+      case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .create: return try container.encode("CREATE")
+      case .delete: return try container.encode("DELETE")
+      case .update: return try container.encode("UPDATE")
+      case .check: return try container.encode("CHECK")
+      case .saveSnapshot: return try container.encode("SAVE_SNAPSHOT")
+      case .loadSnapshot: return try container.encode("LOAD_SNAPSHOT")
+      case .databaseFailover: return try container.encode("DATABASE_FAILOVER")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

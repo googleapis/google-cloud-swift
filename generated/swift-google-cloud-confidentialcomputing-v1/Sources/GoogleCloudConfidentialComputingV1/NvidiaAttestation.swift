@@ -396,9 +396,9 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .hopper: return try container.encode(8)
-      case .blackwell: return try container.encode(10)
+      case .unspecified: return try container.encode("GPU_ARCHITECTURE_TYPE_UNSPECIFIED")
+      case .hopper: return try container.encode("GPU_ARCHITECTURE_TYPE_HOPPER")
+      case .blackwell: return try container.encode("GPU_ARCHITECTURE_TYPE_BLACKWELL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

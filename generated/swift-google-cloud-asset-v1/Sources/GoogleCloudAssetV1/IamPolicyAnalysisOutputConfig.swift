@@ -280,8 +280,8 @@ public struct IamPolicyAnalysisOutputConfig: Codable, Equatable, GoogleCloudWKT.
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .requestTime: return try container.encode(1)
+        case .unspecified: return try container.encode("PARTITION_KEY_UNSPECIFIED")
+        case .requestTime: return try container.encode("REQUEST_TIME")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

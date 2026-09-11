@@ -114,9 +114,9 @@ public enum AccountStatus: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .active: return try container.encode(1)
-    case .inactive: return try container.encode(2)
+    case .unspecified: return try container.encode("ACCOUNT_STATUS_UNSPECIFIED")
+    case .active: return try container.encode("ACCOUNT_STATUS_ACTIVE")
+    case .inactive: return try container.encode("ACCOUNT_STATUS_INACTIVE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

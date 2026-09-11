@@ -168,9 +168,9 @@ public struct DiagnoseClusterRequest: Codable, Equatable, GoogleCloudWKT._AnyPac
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .googleCloudSupport: return try container.encode(1)
-      case .googleDataprocDiagnose: return try container.encode(2)
+      case .unspecified: return try container.encode("TARBALL_ACCESS_UNSPECIFIED")
+      case .googleCloudSupport: return try container.encode("GOOGLE_CLOUD_SUPPORT")
+      case .googleDataprocDiagnose: return try container.encode("GOOGLE_DATAPROC_DIAGNOSE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

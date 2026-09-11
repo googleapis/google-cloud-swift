@@ -145,10 +145,10 @@ public struct ConditionEvaluation: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .`true`: return try container.encode(1)
-      case .`false`: return try container.encode(2)
-      case .conditional: return try container.encode(3)
+      case .unspecified: return try container.encode("EVALUATION_VALUE_UNSPECIFIED")
+      case .`true`: return try container.encode("TRUE")
+      case .`false`: return try container.encode("FALSE")
+      case .conditional: return try container.encode("CONDITIONAL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -145,9 +145,9 @@ public struct CustomerOnboardingStep: Codable, Equatable, GoogleCloudWKT._AnyPac
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .kajEnrollment: return try container.encode(1)
-      case .customerEnvironment: return try container.encode(2)
+      case .unspecified: return try container.encode("STEP_UNSPECIFIED")
+      case .kajEnrollment: return try container.encode("KAJ_ENROLLMENT")
+      case .customerEnvironment: return try container.encode("CUSTOMER_ENVIRONMENT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

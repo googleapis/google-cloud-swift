@@ -242,12 +242,12 @@ public struct File: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .`open`: return try container.encode(1)
-        case .read: return try container.encode(2)
-        case .rename: return try container.encode(3)
-        case .write: return try container.encode(4)
-        case .execute: return try container.encode(5)
+        case .unspecified: return try container.encode("OPERATION_TYPE_UNSPECIFIED")
+        case .`open`: return try container.encode("OPEN")
+        case .read: return try container.encode("READ")
+        case .rename: return try container.encode("RENAME")
+        case .write: return try container.encode("WRITE")
+        case .execute: return try container.encode("EXECUTE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

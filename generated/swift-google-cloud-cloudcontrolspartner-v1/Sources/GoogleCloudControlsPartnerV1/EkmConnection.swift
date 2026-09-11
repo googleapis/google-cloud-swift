@@ -194,11 +194,11 @@ public struct EkmConnection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .available: return try container.encode(1)
-      case .notAvailable: return try container.encode(2)
-      case .error: return try container.encode(3)
-      case .permissionDenied: return try container.encode(4)
+      case .unspecified: return try container.encode("CONNECTION_STATE_UNSPECIFIED")
+      case .available: return try container.encode("AVAILABLE")
+      case .notAvailable: return try container.encode("NOT_AVAILABLE")
+      case .error: return try container.encode("ERROR")
+      case .permissionDenied: return try container.encode("PERMISSION_DENIED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

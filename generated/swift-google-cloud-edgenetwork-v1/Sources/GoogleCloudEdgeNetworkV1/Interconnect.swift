@@ -161,8 +161,8 @@ public struct Interconnect: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .dedicated: return try container.encode(1)
+      case .unspecified: return try container.encode("INTERCONNECT_TYPE_UNSPECIFIED")
+      case .dedicated: return try container.encode("DEDICATED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

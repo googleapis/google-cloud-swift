@@ -136,13 +136,13 @@ public enum ActivationState: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .keyRequested: return try container.encode(1)
-    case .activating: return try container.encode(2)
-    case .activated: return try container.encode(3)
-    case .deactivating: return try container.encode(4)
-    case .deactivated: return try container.encode(5)
-    case .terminated: return try container.encode(6)
+    case .unspecified: return try container.encode("ACTIVATION_STATE_UNSPECIFIED")
+    case .keyRequested: return try container.encode("ACTIVATION_STATE_KEY_REQUESTED")
+    case .activating: return try container.encode("ACTIVATION_STATE_ACTIVATING")
+    case .activated: return try container.encode("ACTIVATION_STATE_ACTIVATED")
+    case .deactivating: return try container.encode("ACTIVATION_STATE_DEACTIVATING")
+    case .deactivated: return try container.encode("ACTIVATION_STATE_DEACTIVATED")
+    case .terminated: return try container.encode("ACTIVATION_STATE_TERMINATED")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

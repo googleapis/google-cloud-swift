@@ -205,11 +205,11 @@ public struct AwsVmDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .on: return try container.encode(1)
-      case .off: return try container.encode(2)
-      case .suspended: return try container.encode(3)
-      case .pending: return try container.encode(4)
+      case .unspecified: return try container.encode("POWER_STATE_UNSPECIFIED")
+      case .on: return try container.encode("ON")
+      case .off: return try container.encode("OFF")
+      case .suspended: return try container.encode("SUSPENDED")
+      case .pending: return try container.encode("PENDING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -312,9 +312,9 @@ public struct AwsVmDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .efi: return try container.encode(1)
-      case .bios: return try container.encode(2)
+      case .unspecified: return try container.encode("BOOT_OPTION_UNSPECIFIED")
+      case .efi: return try container.encode("EFI")
+      case .bios: return try container.encode("BIOS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -417,9 +417,9 @@ public struct AwsVmDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .hvm: return try container.encode(1)
-      case .paravirtual: return try container.encode(2)
+      case .unspecified: return try container.encode("VM_VIRTUALIZATION_TYPE_UNSPECIFIED")
+      case .hvm: return try container.encode("HVM")
+      case .paravirtual: return try container.encode("PARAVIRTUAL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -534,11 +534,11 @@ public struct AwsVmDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .i386: return try container.encode(1)
-      case .x8664: return try container.encode(2)
-      case .arm64: return try container.encode(3)
-      case .x8664Mac: return try container.encode(4)
+      case .unspecified: return try container.encode("VM_ARCHITECTURE_UNSPECIFIED")
+      case .i386: return try container.encode("I386")
+      case .x8664: return try container.encode("X86_64")
+      case .arm64: return try container.encode("ARM64")
+      case .x8664Mac: return try container.encode("X86_64_MAC")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

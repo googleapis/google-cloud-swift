@@ -183,11 +183,11 @@ public struct PersistenceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .oneHour: return try container.encode(1)
-        case .sixHours: return try container.encode(2)
-        case .twelveHours: return try container.encode(3)
-        case .twentyFourHours: return try container.encode(4)
+        case .unspecified: return try container.encode("SNAPSHOT_PERIOD_UNSPECIFIED")
+        case .oneHour: return try container.encode("ONE_HOUR")
+        case .sixHours: return try container.encode("SIX_HOURS")
+        case .twelveHours: return try container.encode("TWELVE_HOURS")
+        case .twentyFourHours: return try container.encode("TWENTY_FOUR_HOURS")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -334,10 +334,10 @@ public struct PersistenceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .never: return try container.encode(1)
-        case .everySec: return try container.encode(2)
-        case .always: return try container.encode(3)
+        case .unspecified: return try container.encode("APPEND_FSYNC_UNSPECIFIED")
+        case .never: return try container.encode("NEVER")
+        case .everySec: return try container.encode("EVERY_SEC")
+        case .always: return try container.encode("ALWAYS")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -457,10 +457,10 @@ public struct PersistenceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .disabled: return try container.encode(1)
-      case .rdb: return try container.encode(2)
-      case .aof: return try container.encode(3)
+      case .unspecified: return try container.encode("PERSISTENCE_MODE_UNSPECIFIED")
+      case .disabled: return try container.encode("DISABLED")
+      case .rdb: return try container.encode("RDB")
+      case .aof: return try container.encode("AOF")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

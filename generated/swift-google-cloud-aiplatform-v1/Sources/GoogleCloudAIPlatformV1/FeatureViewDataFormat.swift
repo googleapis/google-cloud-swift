@@ -113,9 +113,9 @@
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .keyValue: return try container.encode(1)
-      case .protoStruct: return try container.encode(2)
+      case .unspecified: return try container.encode("FEATURE_VIEW_DATA_FORMAT_UNSPECIFIED")
+      case .keyValue: return try container.encode("KEY_VALUE")
+      case .protoStruct: return try container.encode("PROTO_STRUCT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

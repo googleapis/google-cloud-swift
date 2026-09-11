@@ -143,9 +143,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .allCapacity: return try container.encode(0)
-        case .highlyAvailableCapacity: return try container.encode(1)
-        case .unspecified: return try container.encode(2)
+        case .allCapacity: return try container.encode("ALL_CAPACITY")
+        case .highlyAvailableCapacity: return try container.encode("HIGHLY_AVAILABLE_CAPACITY")
+        case .unspecified: return try container.encode("RESERVATION_OPERATIONAL_MODE_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

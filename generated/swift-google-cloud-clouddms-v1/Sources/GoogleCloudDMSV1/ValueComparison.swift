@@ -125,11 +125,13 @@ public enum ValueComparison: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .ifValueSmallerThan: return try container.encode(1)
-    case .ifValueSmallerEqualThan: return try container.encode(2)
-    case .ifValueLargerThan: return try container.encode(3)
-    case .ifValueLargerEqualThan: return try container.encode(4)
+    case .unspecified: return try container.encode("VALUE_COMPARISON_UNSPECIFIED")
+    case .ifValueSmallerThan: return try container.encode("VALUE_COMPARISON_IF_VALUE_SMALLER_THAN")
+    case .ifValueSmallerEqualThan:
+      return try container.encode("VALUE_COMPARISON_IF_VALUE_SMALLER_EQUAL_THAN")
+    case .ifValueLargerThan: return try container.encode("VALUE_COMPARISON_IF_VALUE_LARGER_THAN")
+    case .ifValueLargerEqualThan:
+      return try container.encode("VALUE_COMPARISON_IF_VALUE_LARGER_EQUAL_THAN")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

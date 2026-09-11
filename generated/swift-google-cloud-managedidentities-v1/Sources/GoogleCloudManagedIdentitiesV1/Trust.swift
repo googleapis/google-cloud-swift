@@ -191,12 +191,12 @@ public struct Trust: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .creating: return try container.encode(1)
-      case .updating: return try container.encode(2)
-      case .deleting: return try container.encode(3)
-      case .connected: return try container.encode(4)
-      case .disconnected: return try container.encode(5)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .creating: return try container.encode("CREATING")
+      case .updating: return try container.encode("UPDATING")
+      case .deleting: return try container.encode("DELETING")
+      case .connected: return try container.encode("CONNECTED")
+      case .disconnected: return try container.encode("DISCONNECTED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -299,9 +299,9 @@ public struct Trust: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .forest: return try container.encode(1)
-      case .external: return try container.encode(2)
+      case .unspecified: return try container.encode("TRUST_TYPE_UNSPECIFIED")
+      case .forest: return try container.encode("FOREST")
+      case .external: return try container.encode("EXTERNAL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -413,10 +413,10 @@ public struct Trust: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .inbound: return try container.encode(1)
-      case .outbound: return try container.encode(2)
-      case .bidirectional: return try container.encode(3)
+      case .unspecified: return try container.encode("TRUST_DIRECTION_UNSPECIFIED")
+      case .inbound: return try container.encode("INBOUND")
+      case .outbound: return try container.encode("OUTBOUND")
+      case .bidirectional: return try container.encode("BIDIRECTIONAL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

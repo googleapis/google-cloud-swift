@@ -168,11 +168,11 @@ public struct HumanReviewStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .skipped: return try container.encode(1)
-      case .validationPassed: return try container.encode(2)
-      case .inProgress: return try container.encode(3)
-      case .error: return try container.encode(4)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .skipped: return try container.encode("SKIPPED")
+      case .validationPassed: return try container.encode("VALIDATION_PASSED")
+      case .inProgress: return try container.encode("IN_PROGRESS")
+      case .error: return try container.encode("ERROR")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

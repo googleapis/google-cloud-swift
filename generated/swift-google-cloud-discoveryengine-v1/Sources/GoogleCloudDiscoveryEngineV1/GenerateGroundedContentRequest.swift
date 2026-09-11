@@ -287,8 +287,8 @@
           public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .unspecified: return try container.encode(0)
-            case .v1Independent: return try container.encode(1)
+            case .unspecified: return try container.encode("VERSION_UNSPECIFIED")
+            case .v1Independent: return try container.encode("V1_INDEPENDENT")
             case .unknownIntValue(let v): return try container.encode(v)
             case .unknownStringValue(let v): return try container.encode(v)
             }

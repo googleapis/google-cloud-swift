@@ -225,9 +225,9 @@ public struct GoldengateDatabricksConnectionProperties: Codable, Equatable, Goog
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .personalAccessToken: return try container.encode(1)
-      case .oauthM2M: return try container.encode(2)
+      case .unspecified: return try container.encode("DATABRICKS_AUTHENTICATION_TYPE_UNSPECIFIED")
+      case .personalAccessToken: return try container.encode("PERSONAL_ACCESS_TOKEN")
+      case .oauthM2M: return try container.encode("OAUTH_M2M")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

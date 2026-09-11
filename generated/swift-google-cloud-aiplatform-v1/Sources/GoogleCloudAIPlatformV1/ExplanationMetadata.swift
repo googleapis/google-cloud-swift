@@ -436,9 +436,9 @@
           public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .unspecified: return try container.encode(0)
-            case .pixels: return try container.encode(1)
-            case .outlines: return try container.encode(2)
+            case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+            case .pixels: return try container.encode("PIXELS")
+            case .outlines: return try container.encode("OUTLINES")
             case .unknownIntValue(let v): return try container.encode(v)
             case .unknownStringValue(let v): return try container.encode(v)
             }
@@ -550,10 +550,10 @@
           public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .unspecified: return try container.encode(0)
-            case .positive: return try container.encode(1)
-            case .negative: return try container.encode(2)
-            case .both: return try container.encode(3)
+            case .unspecified: return try container.encode("POLARITY_UNSPECIFIED")
+            case .positive: return try container.encode("POSITIVE")
+            case .negative: return try container.encode("NEGATIVE")
+            case .both: return try container.encode("BOTH")
             case .unknownIntValue(let v): return try container.encode(v)
             case .unknownStringValue(let v): return try container.encode(v)
             }
@@ -682,13 +682,13 @@
           public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .unspecified: return try container.encode(0)
-            case .pinkGreen: return try container.encode(1)
-            case .viridis: return try container.encode(2)
-            case .red: return try container.encode(3)
-            case .green: return try container.encode(4)
-            case .pinkWhiteGreen: return try container.encode(5)
-            case .redGreen: return try container.encode(6)
+            case .unspecified: return try container.encode("COLOR_MAP_UNSPECIFIED")
+            case .pinkGreen: return try container.encode("PINK_GREEN")
+            case .viridis: return try container.encode("VIRIDIS")
+            case .red: return try container.encode("RED")
+            case .green: return try container.encode("GREEN")
+            case .pinkWhiteGreen: return try container.encode("PINK_WHITE_GREEN")
+            case .redGreen: return try container.encode("RED_GREEN")
             case .unknownIntValue(let v): return try container.encode(v)
             case .unknownStringValue(let v): return try container.encode(v)
             }
@@ -805,11 +805,11 @@
           public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .unspecified: return try container.encode(0)
-            case .`none`: return try container.encode(1)
-            case .original: return try container.encode(2)
-            case .grayscale: return try container.encode(3)
-            case .maskBlack: return try container.encode(4)
+            case .unspecified: return try container.encode("OVERLAY_TYPE_UNSPECIFIED")
+            case .`none`: return try container.encode("NONE")
+            case .original: return try container.encode("ORIGINAL")
+            case .grayscale: return try container.encode("GRAYSCALE")
+            case .maskBlack: return try container.encode("MASK_BLACK")
             case .unknownIntValue(let v): return try container.encode(v)
             case .unknownStringValue(let v): return try container.encode(v)
             }
@@ -999,13 +999,13 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .identity: return try container.encode(1)
-          case .bagOfFeatures: return try container.encode(2)
-          case .bagOfFeaturesSparse: return try container.encode(3)
-          case .indicator: return try container.encode(4)
-          case .combinedEmbedding: return try container.encode(5)
-          case .concatEmbedding: return try container.encode(6)
+          case .unspecified: return try container.encode("ENCODING_UNSPECIFIED")
+          case .identity: return try container.encode("IDENTITY")
+          case .bagOfFeatures: return try container.encode("BAG_OF_FEATURES")
+          case .bagOfFeaturesSparse: return try container.encode("BAG_OF_FEATURES_SPARSE")
+          case .indicator: return try container.encode("INDICATOR")
+          case .combinedEmbedding: return try container.encode("COMBINED_EMBEDDING")
+          case .concatEmbedding: return try container.encode("CONCAT_EMBEDDING")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }

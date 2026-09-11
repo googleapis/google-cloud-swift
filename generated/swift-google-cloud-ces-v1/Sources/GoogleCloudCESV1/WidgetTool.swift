@@ -251,10 +251,10 @@ public struct WidgetTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .`none`: return try container.encode(1)
-        case .llmGenerated: return try container.encode(2)
-        case .`static`: return try container.encode(3)
+        case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+        case .`none`: return try container.encode("NONE")
+        case .llmGenerated: return try container.encode("LLM_GENERATED")
+        case .`static`: return try container.encode("STATIC")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -409,9 +409,9 @@ public struct WidgetTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .fieldMapping: return try container.encode(1)
-        case .pythonScript: return try container.encode(2)
+        case .unspecified: return try container.encode("MODE_UNSPECIFIED")
+        case .fieldMapping: return try container.encode("FIELD_MAPPING")
+        case .pythonScript: return try container.encode("PYTHON_SCRIPT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -586,19 +586,19 @@ public struct WidgetTool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .custom: return try container.encode(1)
-      case .productCarousel: return try container.encode(2)
-      case .productDetails: return try container.encode(3)
-      case .quickActions: return try container.encode(4)
-      case .productComparison: return try container.encode(5)
-      case .advancedProductDetails: return try container.encode(6)
-      case .shortForm: return try container.encode(7)
-      case .overallSatisfaction: return try container.encode(8)
-      case .orderSummary: return try container.encode(9)
-      case .appointmentDetails: return try container.encode(10)
-      case .appointmentScheduler: return try container.encode(11)
-      case .contactForm: return try container.encode(12)
+      case .unspecified: return try container.encode("WIDGET_TYPE_UNSPECIFIED")
+      case .custom: return try container.encode("CUSTOM")
+      case .productCarousel: return try container.encode("PRODUCT_CAROUSEL")
+      case .productDetails: return try container.encode("PRODUCT_DETAILS")
+      case .quickActions: return try container.encode("QUICK_ACTIONS")
+      case .productComparison: return try container.encode("PRODUCT_COMPARISON")
+      case .advancedProductDetails: return try container.encode("ADVANCED_PRODUCT_DETAILS")
+      case .shortForm: return try container.encode("SHORT_FORM")
+      case .overallSatisfaction: return try container.encode("OVERALL_SATISFACTION")
+      case .orderSummary: return try container.encode("ORDER_SUMMARY")
+      case .appointmentDetails: return try container.encode("APPOINTMENT_DETAILS")
+      case .appointmentScheduler: return try container.encode("APPOINTMENT_SCHEDULER")
+      case .contactForm: return try container.encode("CONTACT_FORM")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

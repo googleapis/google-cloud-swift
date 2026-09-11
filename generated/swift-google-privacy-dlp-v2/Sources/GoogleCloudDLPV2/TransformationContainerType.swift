@@ -118,10 +118,10 @@ public enum TransformationContainerType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .transformUnknownContainer: return try container.encode(0)
-    case .transformBody: return try container.encode(1)
-    case .transformMetadata: return try container.encode(2)
-    case .transformTable: return try container.encode(3)
+    case .transformUnknownContainer: return try container.encode("TRANSFORM_UNKNOWN_CONTAINER")
+    case .transformBody: return try container.encode("TRANSFORM_BODY")
+    case .transformMetadata: return try container.encode("TRANSFORM_METADATA")
+    case .transformTable: return try container.encode("TRANSFORM_TABLE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

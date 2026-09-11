@@ -215,10 +215,10 @@ public struct ListTracesRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .minimal: return try container.encode(1)
-      case .rootspan: return try container.encode(2)
-      case .complete: return try container.encode(3)
+      case .unspecified: return try container.encode("VIEW_TYPE_UNSPECIFIED")
+      case .minimal: return try container.encode("MINIMAL")
+      case .rootspan: return try container.encode("ROOTSPAN")
+      case .complete: return try container.encode("COMPLETE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

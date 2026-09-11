@@ -183,8 +183,8 @@ public struct ListTimeSeriesRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .full: return try container.encode(0)
-      case .headers: return try container.encode(1)
+      case .full: return try container.encode("FULL")
+      case .headers: return try container.encode("HEADERS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

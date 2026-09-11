@@ -167,9 +167,9 @@ public struct PatchRollout: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .zoneByZone: return try container.encode(1)
-      case .concurrentZones: return try container.encode(2)
+      case .unspecified: return try container.encode("MODE_UNSPECIFIED")
+      case .zoneByZone: return try container.encode("ZONE_BY_ZONE")
+      case .concurrentZones: return try container.encode("CONCURRENT_ZONES")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

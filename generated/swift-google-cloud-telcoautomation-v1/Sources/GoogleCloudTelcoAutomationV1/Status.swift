@@ -143,14 +143,14 @@ public enum Status: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .inProgress: return try container.encode(1)
-    case .active: return try container.encode(2)
-    case .failed: return try container.encode(3)
-    case .deleting: return try container.encode(4)
-    case .deleted: return try container.encode(5)
-    case .peering: return try container.encode(10)
-    case .notApplicable: return try container.encode(11)
+    case .unspecified: return try container.encode("STATUS_UNSPECIFIED")
+    case .inProgress: return try container.encode("STATUS_IN_PROGRESS")
+    case .active: return try container.encode("STATUS_ACTIVE")
+    case .failed: return try container.encode("STATUS_FAILED")
+    case .deleting: return try container.encode("STATUS_DELETING")
+    case .deleted: return try container.encode("STATUS_DELETED")
+    case .peering: return try container.encode("STATUS_PEERING")
+    case .notApplicable: return try container.encode("STATUS_NOT_APPLICABLE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

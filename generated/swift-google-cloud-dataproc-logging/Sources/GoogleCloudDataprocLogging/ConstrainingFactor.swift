@@ -130,11 +130,13 @@ public enum ConstrainingFactor: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .scalingCappedDueToLackOfQuota: return try container.encode(1)
-    case .reachedMaximumClusterSize: return try container.encode(2)
-    case .reachedMinimumClusterSize: return try container.encode(3)
-    case .secondaryScaledownSingleRequestLimitReached: return try container.encode(4)
+    case .unspecified: return try container.encode("CONSTRAINING_FACTOR_UNSPECIFIED")
+    case .scalingCappedDueToLackOfQuota:
+      return try container.encode("SCALING_CAPPED_DUE_TO_LACK_OF_QUOTA")
+    case .reachedMaximumClusterSize: return try container.encode("REACHED_MAXIMUM_CLUSTER_SIZE")
+    case .reachedMinimumClusterSize: return try container.encode("REACHED_MINIMUM_CLUSTER_SIZE")
+    case .secondaryScaledownSingleRequestLimitReached:
+      return try container.encode("SECONDARY_SCALEDOWN_SINGLE_REQUEST_LIMIT_REACHED")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

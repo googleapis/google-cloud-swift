@@ -135,9 +135,9 @@ public struct DnsKeyDigest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .sha1: return try container.encode(0)
-      case .sha256: return try container.encode(1)
-      case .sha384: return try container.encode(2)
+      case .sha1: return try container.encode("sha1")
+      case .sha256: return try container.encode("sha256")
+      case .sha384: return try container.encode("sha384")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

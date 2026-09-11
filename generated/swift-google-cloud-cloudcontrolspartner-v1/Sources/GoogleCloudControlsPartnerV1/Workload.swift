@@ -188,13 +188,17 @@ public struct Workload: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .localControlsByS3Ns: return try container.encode(1)
-      case .sovereignControlsByTSystems: return try container.encode(2)
-      case .sovereignControlsBySiaMinsait: return try container.encode(3)
-      case .sovereignControlsByPsn: return try container.encode(4)
-      case .sovereignControlsByCntxt: return try container.encode(6)
-      case .sovereignControlsByCntxtNoEkm: return try container.encode(7)
+      case .unspecified: return try container.encode("PARTNER_UNSPECIFIED")
+      case .localControlsByS3Ns: return try container.encode("PARTNER_LOCAL_CONTROLS_BY_S3NS")
+      case .sovereignControlsByTSystems:
+        return try container.encode("PARTNER_SOVEREIGN_CONTROLS_BY_T_SYSTEMS")
+      case .sovereignControlsBySiaMinsait:
+        return try container.encode("PARTNER_SOVEREIGN_CONTROLS_BY_SIA_MINSAIT")
+      case .sovereignControlsByPsn: return try container.encode("PARTNER_SOVEREIGN_CONTROLS_BY_PSN")
+      case .sovereignControlsByCntxt:
+        return try container.encode("PARTNER_SOVEREIGN_CONTROLS_BY_CNTXT")
+      case .sovereignControlsByCntxtNoEkm:
+        return try container.encode("PARTNER_SOVEREIGN_CONTROLS_BY_CNTXT_NO_EKM")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -233,9 +233,9 @@ public struct GoldengateOracleConnectionProperties: Codable, Equatable, GoogleCl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .tls: return try container.encode(1)
-      case .mtls: return try container.encode(2)
+      case .unspecified: return try container.encode("ORACLE_AUTHENTICATION_MODE_UNSPECIFIED")
+      case .tls: return try container.encode("TLS")
+      case .mtls: return try container.encode("MTLS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -338,9 +338,9 @@ public struct GoldengateOracleConnectionProperties: Codable, Equatable, GoogleCl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .direct: return try container.encode(1)
-      case .redirect: return try container.encode(2)
+      case .unspecified: return try container.encode("SESSION_MODE_UNSPECIFIED")
+      case .direct: return try container.encode("DIRECT")
+      case .redirect: return try container.encode("REDIRECT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

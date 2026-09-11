@@ -153,14 +153,14 @@ public enum AudioEncoding: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .linear16: return try container.encode(1)
-    case .mp3: return try container.encode(2)
-    case .oggOpus: return try container.encode(3)
-    case .mulaw: return try container.encode(5)
-    case .alaw: return try container.encode(6)
-    case .pcm: return try container.encode(7)
-    case .m4A: return try container.encode(8)
+    case .unspecified: return try container.encode("AUDIO_ENCODING_UNSPECIFIED")
+    case .linear16: return try container.encode("LINEAR16")
+    case .mp3: return try container.encode("MP3")
+    case .oggOpus: return try container.encode("OGG_OPUS")
+    case .mulaw: return try container.encode("MULAW")
+    case .alaw: return try container.encode("ALAW")
+    case .pcm: return try container.encode("PCM")
+    case .m4A: return try container.encode("M4A")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

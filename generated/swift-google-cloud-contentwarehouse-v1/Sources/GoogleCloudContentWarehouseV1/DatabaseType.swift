@@ -113,9 +113,9 @@ public enum DatabaseType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .dbUnknown: return try container.encode(0)
-    case .dbInfraSpanner: return try container.encode(1)
-    case .dbCloudSqlPostgres: return try container.encode(2)
+    case .dbUnknown: return try container.encode("DB_UNKNOWN")
+    case .dbInfraSpanner: return try container.encode("DB_INFRA_SPANNER")
+    case .dbCloudSqlPostgres: return try container.encode("DB_CLOUD_SQL_POSTGRES")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

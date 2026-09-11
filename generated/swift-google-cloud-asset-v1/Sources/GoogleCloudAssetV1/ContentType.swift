@@ -136,13 +136,13 @@ public enum ContentType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .resource: return try container.encode(1)
-    case .iamPolicy: return try container.encode(2)
-    case .orgPolicy: return try container.encode(4)
-    case .accessPolicy: return try container.encode(5)
-    case .osInventory: return try container.encode(6)
-    case .relationship: return try container.encode(7)
+    case .unspecified: return try container.encode("CONTENT_TYPE_UNSPECIFIED")
+    case .resource: return try container.encode("RESOURCE")
+    case .iamPolicy: return try container.encode("IAM_POLICY")
+    case .orgPolicy: return try container.encode("ORG_POLICY")
+    case .accessPolicy: return try container.encode("ACCESS_POLICY")
+    case .osInventory: return try container.encode("OS_INVENTORY")
+    case .relationship: return try container.encode("RELATIONSHIP")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

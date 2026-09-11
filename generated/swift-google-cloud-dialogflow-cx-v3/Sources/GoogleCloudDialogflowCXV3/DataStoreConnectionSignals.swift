@@ -400,9 +400,9 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .acceptedByGrounding: return try container.encode(1)
-          case .rejectedByGrounding: return try container.encode(2)
+          case .unspecified: return try container.encode("GROUNDING_DECISION_UNSPECIFIED")
+          case .acceptedByGrounding: return try container.encode("ACCEPTED_BY_GROUNDING")
+          case .rejectedByGrounding: return try container.encode("REJECTED_BY_GROUNDING")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -523,12 +523,12 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .veryLow: return try container.encode(1)
-          case .low: return try container.encode(3)
-          case .medium: return try container.encode(4)
-          case .high: return try container.encode(5)
-          case .veryHigh: return try container.encode(6)
+          case .unspecified: return try container.encode("GROUNDING_SCORE_BUCKET_UNSPECIFIED")
+          case .veryLow: return try container.encode("VERY_LOW")
+          case .low: return try container.encode("LOW")
+          case .medium: return try container.encode("MEDIUM")
+          case .high: return try container.encode("HIGH")
+          case .veryHigh: return try container.encode("VERY_HIGH")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -676,9 +676,9 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .acceptedBySafetyCheck: return try container.encode(1)
-          case .rejectedBySafetyCheck: return try container.encode(2)
+          case .unspecified: return try container.encode("SAFETY_DECISION_UNSPECIFIED")
+          case .acceptedBySafetyCheck: return try container.encode("ACCEPTED_BY_SAFETY_CHECK")
+          case .rejectedBySafetyCheck: return try container.encode("REJECTED_BY_SAFETY_CHECK")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -787,10 +787,10 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .`none`: return try container.encode(1)
-          case .query: return try container.encode(2)
-          case .response: return try container.encode(3)
+          case .unspecified: return try container.encode("BANNED_PHRASE_MATCH_UNSPECIFIED")
+          case .`none`: return try container.encode("BANNED_PHRASE_MATCH_NONE")
+          case .query: return try container.encode("BANNED_PHRASE_MATCH_QUERY")
+          case .response: return try container.encode("BANNED_PHRASE_MATCH_RESPONSE")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }

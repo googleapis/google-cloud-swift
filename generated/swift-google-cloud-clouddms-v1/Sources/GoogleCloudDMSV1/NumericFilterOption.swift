@@ -120,10 +120,10 @@ public enum NumericFilterOption: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .all: return try container.encode(1)
-    case .limit: return try container.encode(2)
-    case .limitless: return try container.encode(3)
+    case .unspecified: return try container.encode("NUMERIC_FILTER_OPTION_UNSPECIFIED")
+    case .all: return try container.encode("NUMERIC_FILTER_OPTION_ALL")
+    case .limit: return try container.encode("NUMERIC_FILTER_OPTION_LIMIT")
+    case .limitless: return try container.encode("NUMERIC_FILTER_OPTION_LIMITLESS")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

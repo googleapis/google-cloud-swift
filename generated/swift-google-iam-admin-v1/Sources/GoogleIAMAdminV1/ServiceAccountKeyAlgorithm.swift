@@ -112,9 +112,9 @@ public enum ServiceAccountKeyAlgorithm: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .keyAlgUnspecified: return try container.encode(0)
-    case .keyAlgRsa1024: return try container.encode(1)
-    case .keyAlgRsa2048: return try container.encode(2)
+    case .keyAlgUnspecified: return try container.encode("KEY_ALG_UNSPECIFIED")
+    case .keyAlgRsa1024: return try container.encode("KEY_ALG_RSA_1024")
+    case .keyAlgRsa2048: return try container.encode("KEY_ALG_RSA_2048")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

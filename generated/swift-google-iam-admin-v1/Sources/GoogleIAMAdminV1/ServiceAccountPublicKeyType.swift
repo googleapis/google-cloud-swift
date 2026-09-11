@@ -112,9 +112,9 @@ public enum ServiceAccountPublicKeyType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .typeNone: return try container.encode(0)
-    case .typeX509PemFile: return try container.encode(1)
-    case .typeRawPublicKey: return try container.encode(2)
+    case .typeNone: return try container.encode("TYPE_NONE")
+    case .typeX509PemFile: return try container.encode("TYPE_X509_PEM_FILE")
+    case .typeRawPublicKey: return try container.encode("TYPE_RAW_PUBLIC_KEY")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

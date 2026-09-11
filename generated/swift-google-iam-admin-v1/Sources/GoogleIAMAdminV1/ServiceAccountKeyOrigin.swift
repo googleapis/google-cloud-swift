@@ -112,9 +112,9 @@ public enum ServiceAccountKeyOrigin: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .originUnspecified: return try container.encode(0)
-    case .userProvided: return try container.encode(1)
-    case .googleProvided: return try container.encode(2)
+    case .originUnspecified: return try container.encode("ORIGIN_UNSPECIFIED")
+    case .userProvided: return try container.encode("USER_PROVIDED")
+    case .googleProvided: return try container.encode("GOOGLE_PROVIDED")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

@@ -356,13 +356,13 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .less: return try container.encode(1)
-          case .lessEqual: return try container.encode(2)
-          case .equal: return try container.encode(3)
-          case .greaterEqual: return try container.encode(4)
-          case .greater: return try container.encode(5)
-          case .notEqual: return try container.encode(6)
+          case .unspecified: return try container.encode("OPERATOR_UNSPECIFIED")
+          case .less: return try container.encode("LESS")
+          case .lessEqual: return try container.encode("LESS_EQUAL")
+          case .equal: return try container.encode("EQUAL")
+          case .greaterEqual: return try container.encode("GREATER_EQUAL")
+          case .greater: return try container.encode("GREATER")
+          case .notEqual: return try container.encode("NOT_EQUAL")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }

@@ -186,10 +186,10 @@ public struct ScanRun: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .queued: return try container.encode(1)
-      case .scanning: return try container.encode(2)
-      case .finished: return try container.encode(3)
+      case .unspecified: return try container.encode("EXECUTION_STATE_UNSPECIFIED")
+      case .queued: return try container.encode("QUEUED")
+      case .scanning: return try container.encode("SCANNING")
+      case .finished: return try container.encode("FINISHED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -299,10 +299,10 @@ public struct ScanRun: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .success: return try container.encode(1)
-      case .error: return try container.encode(2)
-      case .killed: return try container.encode(3)
+      case .unspecified: return try container.encode("RESULT_STATE_UNSPECIFIED")
+      case .success: return try container.encode("SUCCESS")
+      case .error: return try container.encode("ERROR")
+      case .killed: return try container.encode("KILLED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

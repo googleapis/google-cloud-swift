@@ -159,11 +159,11 @@ public struct InstallationState: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .pendingCreateApp: return try container.encode(1)
-      case .pendingUserOauth: return try container.encode(2)
-      case .pendingInstallApp: return try container.encode(3)
-      case .complete: return try container.encode(10)
+      case .unspecified: return try container.encode("STAGE_UNSPECIFIED")
+      case .pendingCreateApp: return try container.encode("PENDING_CREATE_APP")
+      case .pendingUserOauth: return try container.encode("PENDING_USER_OAUTH")
+      case .pendingInstallApp: return try container.encode("PENDING_INSTALL_APP")
+      case .complete: return try container.encode("COMPLETE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

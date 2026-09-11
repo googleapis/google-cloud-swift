@@ -300,34 +300,44 @@ public struct MigrationJobVerificationError: Codable, Equatable, GoogleCloudWKT.
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .connectionFailure: return try container.encode(1)
-      case .authenticationFailure: return try container.encode(2)
-      case .invalidConnectionProfileConfig: return try container.encode(3)
-      case .versionIncompatibility: return try container.encode(4)
-      case .connectionProfileTypesIncompatibility: return try container.encode(5)
-      case .noPglogicalInstalled: return try container.encode(7)
-      case .pglogicalNodeAlreadyExists: return try container.encode(8)
-      case .invalidWalLevel: return try container.encode(9)
-      case .invalidSharedPreloadLibrary: return try container.encode(10)
-      case .insufficientMaxReplicationSlots: return try container.encode(11)
-      case .insufficientMaxWalSenders: return try container.encode(12)
-      case .insufficientMaxWorkerProcesses: return try container.encode(13)
-      case .unsupportedExtensions: return try container.encode(14)
-      case .unsupportedMigrationType: return try container.encode(15)
-      case .invalidRdsLogicalReplication: return try container.encode(16)
-      case .unsupportedGtidMode: return try container.encode(17)
-      case .unsupportedTableDefinition: return try container.encode(18)
-      case .unsupportedDefiner: return try container.encode(19)
-      case .cantRestartRunningMigration: return try container.encode(21)
-      case .sourceAlreadySetup: return try container.encode(23)
-      case .tablesWithLimitedSupport: return try container.encode(24)
-      case .unsupportedDatabaseLocale: return try container.encode(25)
-      case .unsupportedDatabaseFdwConfig: return try container.encode(26)
-      case .errorRdbms: return try container.encode(27)
-      case .sourceSizeExceedsThreshold: return try container.encode(28)
-      case .existingConflictingDatabases: return try container.encode(29)
-      case .parallelImportInsufficientPrivilege: return try container.encode(30)
+      case .unspecified: return try container.encode("ERROR_CODE_UNSPECIFIED")
+      case .connectionFailure: return try container.encode("CONNECTION_FAILURE")
+      case .authenticationFailure: return try container.encode("AUTHENTICATION_FAILURE")
+      case .invalidConnectionProfileConfig:
+        return try container.encode("INVALID_CONNECTION_PROFILE_CONFIG")
+      case .versionIncompatibility: return try container.encode("VERSION_INCOMPATIBILITY")
+      case .connectionProfileTypesIncompatibility:
+        return try container.encode("CONNECTION_PROFILE_TYPES_INCOMPATIBILITY")
+      case .noPglogicalInstalled: return try container.encode("NO_PGLOGICAL_INSTALLED")
+      case .pglogicalNodeAlreadyExists: return try container.encode("PGLOGICAL_NODE_ALREADY_EXISTS")
+      case .invalidWalLevel: return try container.encode("INVALID_WAL_LEVEL")
+      case .invalidSharedPreloadLibrary:
+        return try container.encode("INVALID_SHARED_PRELOAD_LIBRARY")
+      case .insufficientMaxReplicationSlots:
+        return try container.encode("INSUFFICIENT_MAX_REPLICATION_SLOTS")
+      case .insufficientMaxWalSenders: return try container.encode("INSUFFICIENT_MAX_WAL_SENDERS")
+      case .insufficientMaxWorkerProcesses:
+        return try container.encode("INSUFFICIENT_MAX_WORKER_PROCESSES")
+      case .unsupportedExtensions: return try container.encode("UNSUPPORTED_EXTENSIONS")
+      case .unsupportedMigrationType: return try container.encode("UNSUPPORTED_MIGRATION_TYPE")
+      case .invalidRdsLogicalReplication:
+        return try container.encode("INVALID_RDS_LOGICAL_REPLICATION")
+      case .unsupportedGtidMode: return try container.encode("UNSUPPORTED_GTID_MODE")
+      case .unsupportedTableDefinition: return try container.encode("UNSUPPORTED_TABLE_DEFINITION")
+      case .unsupportedDefiner: return try container.encode("UNSUPPORTED_DEFINER")
+      case .cantRestartRunningMigration:
+        return try container.encode("CANT_RESTART_RUNNING_MIGRATION")
+      case .sourceAlreadySetup: return try container.encode("SOURCE_ALREADY_SETUP")
+      case .tablesWithLimitedSupport: return try container.encode("TABLES_WITH_LIMITED_SUPPORT")
+      case .unsupportedDatabaseLocale: return try container.encode("UNSUPPORTED_DATABASE_LOCALE")
+      case .unsupportedDatabaseFdwConfig:
+        return try container.encode("UNSUPPORTED_DATABASE_FDW_CONFIG")
+      case .errorRdbms: return try container.encode("ERROR_RDBMS")
+      case .sourceSizeExceedsThreshold: return try container.encode("SOURCE_SIZE_EXCEEDS_THRESHOLD")
+      case .existingConflictingDatabases:
+        return try container.encode("EXISTING_CONFLICTING_DATABASES")
+      case .parallelImportInsufficientPrivilege:
+        return try container.encode("PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

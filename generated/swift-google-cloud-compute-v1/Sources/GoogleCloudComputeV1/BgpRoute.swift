@@ -148,9 +148,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .bgpOriginEgp: return try container.encode(0)
-        case .bgpOriginIgp: return try container.encode(1)
-        case .bgpOriginIncomplete: return try container.encode(2)
+        case .bgpOriginEgp: return try container.encode("BGP_ORIGIN_EGP")
+        case .bgpOriginIgp: return try container.encode("BGP_ORIGIN_IGP")
+        case .bgpOriginIncomplete: return try container.encode("BGP_ORIGIN_INCOMPLETE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

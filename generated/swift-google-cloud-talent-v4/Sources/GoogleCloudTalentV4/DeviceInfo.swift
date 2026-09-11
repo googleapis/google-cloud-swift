@@ -169,13 +169,13 @@ public struct DeviceInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .web: return try container.encode(1)
-      case .mobileWeb: return try container.encode(2)
-      case .android: return try container.encode(3)
-      case .ios: return try container.encode(4)
-      case .bot: return try container.encode(5)
-      case .other: return try container.encode(6)
+      case .unspecified: return try container.encode("DEVICE_TYPE_UNSPECIFIED")
+      case .web: return try container.encode("WEB")
+      case .mobileWeb: return try container.encode("MOBILE_WEB")
+      case .android: return try container.encode("ANDROID")
+      case .ios: return try container.encode("IOS")
+      case .bot: return try container.encode("BOT")
+      case .other: return try container.encode("OTHER")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

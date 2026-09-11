@@ -211,9 +211,9 @@ public struct CloudSqlProperties: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unknown: return try container.encode(0)
-      case .mysql: return try container.encode(1)
-      case .postgres: return try container.encode(2)
+      case .unknown: return try container.encode("DATABASE_ENGINE_UNKNOWN")
+      case .mysql: return try container.encode("DATABASE_ENGINE_MYSQL")
+      case .postgres: return try container.encode("DATABASE_ENGINE_POSTGRES")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

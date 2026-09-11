@@ -155,12 +155,12 @@ public struct AutotuningConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .scaling: return try container.encode(2)
-      case .broadcastHashJoin: return try container.encode(3)
-      case .memory: return try container.encode(4)
-      case .`none`: return try container.encode(5)
-      case .auto: return try container.encode(6)
+      case .unspecified: return try container.encode("SCENARIO_UNSPECIFIED")
+      case .scaling: return try container.encode("SCALING")
+      case .broadcastHashJoin: return try container.encode("BROADCAST_HASH_JOIN")
+      case .memory: return try container.encode("MEMORY")
+      case .`none`: return try container.encode("NONE")
+      case .auto: return try container.encode("AUTO")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

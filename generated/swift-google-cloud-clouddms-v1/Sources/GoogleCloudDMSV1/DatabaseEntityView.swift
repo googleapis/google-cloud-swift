@@ -122,10 +122,10 @@ public enum DatabaseEntityView: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .basic: return try container.encode(1)
-    case .full: return try container.encode(2)
-    case .rootSummary: return try container.encode(3)
+    case .unspecified: return try container.encode("DATABASE_ENTITY_VIEW_UNSPECIFIED")
+    case .basic: return try container.encode("DATABASE_ENTITY_VIEW_BASIC")
+    case .full: return try container.encode("DATABASE_ENTITY_VIEW_FULL")
+    case .rootSummary: return try container.encode("DATABASE_ENTITY_VIEW_ROOT_SUMMARY")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

@@ -146,9 +146,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .invalid: return try container.encode(0)
-        case .thirtySixMonth: return try container.encode(1)
-        case .twelveMonth: return try container.encode(2)
+        case .invalid: return try container.encode("INVALID")
+        case .thirtySixMonth: return try container.encode("THIRTY_SIX_MONTH")
+        case .twelveMonth: return try container.encode("TWELVE_MONTH")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -249,8 +249,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .extend: return try container.encode(0)
-        case .previouscommitmenttermUnspecified: return try container.encode(1)
+        case .extend: return try container.encode("EXTEND")
+        case .previouscommitmenttermUnspecified:
+          return try container.encode("PREVIOUSCOMMITMENTTERM_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

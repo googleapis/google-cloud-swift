@@ -225,13 +225,13 @@ public struct PrivateConnection: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .creating: return try container.encode(1)
-      case .active: return try container.encode(2)
-      case .updating: return try container.encode(3)
-      case .deleting: return try container.encode(4)
-      case .unprovisioned: return try container.encode(5)
-      case .failed: return try container.encode(6)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .creating: return try container.encode("CREATING")
+      case .active: return try container.encode("ACTIVE")
+      case .updating: return try container.encode("UPDATING")
+      case .deleting: return try container.encode("DELETING")
+      case .unprovisioned: return try container.encode("UNPROVISIONED")
+      case .failed: return try container.encode("FAILED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -347,11 +347,11 @@ public struct PrivateConnection: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .privateServiceAccess: return try container.encode(1)
-      case .netappCloudVolumes: return try container.encode(2)
-      case .dellPowerscale: return try container.encode(3)
-      case .thirdPartyService: return try container.encode(4)
+      case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .privateServiceAccess: return try container.encode("PRIVATE_SERVICE_ACCESS")
+      case .netappCloudVolumes: return try container.encode("NETAPP_CLOUD_VOLUMES")
+      case .dellPowerscale: return try container.encode("DELL_POWERSCALE")
+      case .thirdPartyService: return try container.encode("THIRD_PARTY_SERVICE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -454,9 +454,9 @@ public struct PrivateConnection: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .global: return try container.encode(1)
-      case .regional: return try container.encode(2)
+      case .unspecified: return try container.encode("ROUTING_MODE_UNSPECIFIED")
+      case .global: return try container.encode("GLOBAL")
+      case .regional: return try container.encode("REGIONAL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -561,9 +561,9 @@ public struct PrivateConnection: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .peeringActive: return try container.encode(1)
-      case .peeringInactive: return try container.encode(2)
+      case .unspecified: return try container.encode("PEERING_STATE_UNSPECIFIED")
+      case .peeringActive: return try container.encode("PEERING_ACTIVE")
+      case .peeringInactive: return try container.encode("PEERING_INACTIVE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

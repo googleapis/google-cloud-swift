@@ -142,14 +142,14 @@ public enum GatewayType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .apigeeXAndHybrid: return try container.encode(1)
-    case .apigeeEdgePublicCloud: return try container.encode(2)
-    case .apigeeEdgePrivateCloud: return try container.encode(3)
-    case .cloudApiGateway: return try container.encode(4)
-    case .cloudEndpoints: return try container.encode(5)
-    case .apiDiscovery: return try container.encode(6)
-    case .others: return try container.encode(7)
+    case .unspecified: return try container.encode("GATEWAY_TYPE_UNSPECIFIED")
+    case .apigeeXAndHybrid: return try container.encode("APIGEE_X_AND_HYBRID")
+    case .apigeeEdgePublicCloud: return try container.encode("APIGEE_EDGE_PUBLIC_CLOUD")
+    case .apigeeEdgePrivateCloud: return try container.encode("APIGEE_EDGE_PRIVATE_CLOUD")
+    case .cloudApiGateway: return try container.encode("CLOUD_API_GATEWAY")
+    case .cloudEndpoints: return try container.encode("CLOUD_ENDPOINTS")
+    case .apiDiscovery: return try container.encode("API_DISCOVERY")
+    case .others: return try container.encode("OTHERS")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

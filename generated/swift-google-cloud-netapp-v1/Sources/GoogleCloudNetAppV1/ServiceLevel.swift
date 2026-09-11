@@ -124,11 +124,11 @@ public enum ServiceLevel: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .premium: return try container.encode(1)
-    case .extreme: return try container.encode(2)
-    case .standard: return try container.encode(3)
-    case .flex: return try container.encode(4)
+    case .unspecified: return try container.encode("SERVICE_LEVEL_UNSPECIFIED")
+    case .premium: return try container.encode("PREMIUM")
+    case .extreme: return try container.encode("EXTREME")
+    case .standard: return try container.encode("STANDARD")
+    case .flex: return try container.encode("FLEX")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

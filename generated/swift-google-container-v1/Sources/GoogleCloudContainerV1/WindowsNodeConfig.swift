@@ -138,9 +138,9 @@ public struct WindowsNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .ltsc2019: return try container.encode(1)
-      case .ltsc2022: return try container.encode(2)
+      case .unspecified: return try container.encode("OS_VERSION_UNSPECIFIED")
+      case .ltsc2019: return try container.encode("OS_VERSION_LTSC2019")
+      case .ltsc2022: return try container.encode("OS_VERSION_LTSC2022")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -213,10 +213,10 @@ public struct ThreatInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .low: return try container.encode(1)
-        case .medium: return try container.encode(2)
-        case .high: return try container.encode(3)
+        case .unspecified: return try container.encode("CONFIDENCE_LEVEL_UNSPECIFIED")
+        case .low: return try container.encode("LOW")
+        case .medium: return try container.encode("MEDIUM")
+        case .high: return try container.encode("HIGH")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -371,10 +371,10 @@ public struct ThreatInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .manualVerification: return try container.encode(1)
-        case .userReport: return try container.encode(2)
-        case .automatedReport: return try container.encode(3)
+        case .unspecified: return try container.encode("JUSTIFICATION_LABEL_UNSPECIFIED")
+        case .manualVerification: return try container.encode("MANUAL_VERIFICATION")
+        case .userReport: return try container.encode("USER_REPORT")
+        case .automatedReport: return try container.encode("AUTOMATED_REPORT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -494,10 +494,10 @@ public struct ThreatInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .malware: return try container.encode(1)
-      case .socialEngineering: return try container.encode(2)
-      case .unwantedSoftware: return try container.encode(3)
+      case .unspecified: return try container.encode("ABUSE_TYPE_UNSPECIFIED")
+      case .malware: return try container.encode("MALWARE")
+      case .socialEngineering: return try container.encode("SOCIAL_ENGINEERING")
+      case .unwantedSoftware: return try container.encode("UNWANTED_SOFTWARE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

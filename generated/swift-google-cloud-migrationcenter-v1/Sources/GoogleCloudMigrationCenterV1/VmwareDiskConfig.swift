@@ -182,15 +182,15 @@ public struct VmwareDiskConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .flatV1: return try container.encode(1)
-      case .flatV2: return try container.encode(2)
-      case .pmem: return try container.encode(3)
-      case .rdmV1: return try container.encode(4)
-      case .rdmV2: return try container.encode(5)
-      case .sesparse: return try container.encode(6)
-      case .sesparseV1: return try container.encode(7)
-      case .sesparseV2: return try container.encode(8)
+      case .unspecified: return try container.encode("BACKING_TYPE_UNSPECIFIED")
+      case .flatV1: return try container.encode("BACKING_TYPE_FLAT_V1")
+      case .flatV2: return try container.encode("BACKING_TYPE_FLAT_V2")
+      case .pmem: return try container.encode("BACKING_TYPE_PMEM")
+      case .rdmV1: return try container.encode("BACKING_TYPE_RDM_V1")
+      case .rdmV2: return try container.encode("BACKING_TYPE_RDM_V2")
+      case .sesparse: return try container.encode("BACKING_TYPE_SESPARSE")
+      case .sesparseV1: return try container.encode("BACKING_TYPE_SESPARSE_V1")
+      case .sesparseV2: return try container.encode("BACKING_TYPE_SESPARSE_V2")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -299,10 +299,10 @@ public struct VmwareDiskConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .dependent: return try container.encode(1)
-      case .independentPersistent: return try container.encode(2)
-      case .independentNonpersistent: return try container.encode(3)
+      case .unspecified: return try container.encode("VMDK_MODE_UNSPECIFIED")
+      case .dependent: return try container.encode("DEPENDENT")
+      case .independentPersistent: return try container.encode("INDEPENDENT_PERSISTENT")
+      case .independentNonpersistent: return try container.encode("INDEPENDENT_NONPERSISTENT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -405,9 +405,9 @@ public struct VmwareDiskConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .physicalCompatibility: return try container.encode(1)
-      case .virtualCompatibility: return try container.encode(2)
+      case .unspecified: return try container.encode("RDM_COMPATIBILITY_UNSPECIFIED")
+      case .physicalCompatibility: return try container.encode("PHYSICAL_COMPATIBILITY")
+      case .virtualCompatibility: return try container.encode("VIRTUAL_COMPATIBILITY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

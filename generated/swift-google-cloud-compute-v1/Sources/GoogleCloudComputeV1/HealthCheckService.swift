@@ -276,8 +276,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .and: return try container.encode(0)
-        case .noAggregation: return try container.encode(1)
+        case .and: return try container.encode("AND")
+        case .noAggregation: return try container.encode("NO_AGGREGATION")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

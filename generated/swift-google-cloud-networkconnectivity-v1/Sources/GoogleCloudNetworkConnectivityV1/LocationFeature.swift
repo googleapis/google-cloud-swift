@@ -112,9 +112,9 @@ public enum LocationFeature: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .siteToCloudSpokes: return try container.encode(1)
-    case .siteToSiteSpokes: return try container.encode(2)
+    case .unspecified: return try container.encode("LOCATION_FEATURE_UNSPECIFIED")
+    case .siteToCloudSpokes: return try container.encode("SITE_TO_CLOUD_SPOKES")
+    case .siteToSiteSpokes: return try container.encode("SITE_TO_SITE_SPOKES")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

@@ -148,9 +148,9 @@ public struct Annotation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .legacyExportConsent: return try container.encode(1)
-      case .qwiklab: return try container.encode(2)
+      case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .legacyExportConsent: return try container.encode("TYPE_LEGACY_EXPORT_CONSENT")
+      case .qwiklab: return try container.encode("TYPE_QWIKLAB")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

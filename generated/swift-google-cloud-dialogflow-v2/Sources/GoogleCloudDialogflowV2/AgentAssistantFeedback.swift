@@ -327,9 +327,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .irrelevant: return try container.encode(1)
-        case .relevant: return try container.encode(2)
+        case .unspecified: return try container.encode("ANSWER_RELEVANCE_UNSPECIFIED")
+        case .irrelevant: return try container.encode("IRRELEVANT")
+        case .relevant: return try container.encode("RELEVANT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -432,9 +432,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .incorrect: return try container.encode(1)
-        case .correct: return try container.encode(2)
+        case .unspecified: return try container.encode("DOCUMENT_CORRECTNESS_UNSPECIFIED")
+        case .incorrect: return try container.encode("INCORRECT")
+        case .correct: return try container.encode("CORRECT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -537,9 +537,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .inefficient: return try container.encode(1)
-        case .efficient: return try container.encode(2)
+        case .unspecified: return try container.encode("DOCUMENT_EFFICIENCY_UNSPECIFIED")
+        case .inefficient: return try container.encode("INEFFICIENT")
+        case .efficient: return try container.encode("EFFICIENT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

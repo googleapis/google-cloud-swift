@@ -148,10 +148,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .fixedStandard: return try container.encode(0)
-        case .premium: return try container.encode(1)
-        case .standard: return try container.encode(2)
-        case .standardOverridesFixedStandard: return try container.encode(3)
+        case .fixedStandard: return try container.encode("FIXED_STANDARD")
+        case .premium: return try container.encode("PREMIUM")
+        case .standard: return try container.encode("STANDARD")
+        case .standardOverridesFixedStandard:
+          return try container.encode("STANDARD_OVERRIDES_FIXED_STANDARD")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

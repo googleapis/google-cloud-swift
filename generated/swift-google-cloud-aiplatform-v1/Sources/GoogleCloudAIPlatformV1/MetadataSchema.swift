@@ -167,10 +167,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .artifactType: return try container.encode(1)
-        case .executionType: return try container.encode(2)
-        case .contextType: return try container.encode(3)
+        case .unspecified: return try container.encode("METADATA_SCHEMA_TYPE_UNSPECIFIED")
+        case .artifactType: return try container.encode("ARTIFACT_TYPE")
+        case .executionType: return try container.encode("EXECUTION_TYPE")
+        case .contextType: return try container.encode("CONTEXT_TYPE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

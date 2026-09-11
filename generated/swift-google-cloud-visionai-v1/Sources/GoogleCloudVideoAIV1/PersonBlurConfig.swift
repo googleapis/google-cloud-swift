@@ -139,9 +139,9 @@ public struct PersonBlurConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .fullOcculusion: return try container.encode(1)
-      case .blurFilter: return try container.encode(2)
+      case .unspecified: return try container.encode("PERSON_BLUR_TYPE_UNSPECIFIED")
+      case .fullOcculusion: return try container.encode("FULL_OCCULUSION")
+      case .blurFilter: return try container.encode("BLUR_FILTER")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

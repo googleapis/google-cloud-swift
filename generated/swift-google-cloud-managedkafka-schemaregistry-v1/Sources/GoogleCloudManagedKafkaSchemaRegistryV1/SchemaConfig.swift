@@ -175,13 +175,13 @@ public struct SchemaConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .`none`: return try container.encode(0)
-      case .backward: return try container.encode(1)
-      case .backwardTransitive: return try container.encode(2)
-      case .forward: return try container.encode(3)
-      case .forwardTransitive: return try container.encode(4)
-      case .full: return try container.encode(5)
-      case .fullTransitive: return try container.encode(6)
+      case .`none`: return try container.encode("NONE")
+      case .backward: return try container.encode("BACKWARD")
+      case .backwardTransitive: return try container.encode("BACKWARD_TRANSITIVE")
+      case .forward: return try container.encode("FORWARD")
+      case .forwardTransitive: return try container.encode("FORWARD_TRANSITIVE")
+      case .full: return try container.encode("FULL")
+      case .fullTransitive: return try container.encode("FULL_TRANSITIVE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

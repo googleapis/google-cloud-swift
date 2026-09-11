@@ -143,8 +143,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .never: return try container.encode(0)
-        case .onPermanentInstanceDeletion: return try container.encode(1)
+        case .never: return try container.encode("NEVER")
+        case .onPermanentInstanceDeletion:
+          return try container.encode("ON_PERMANENT_INSTANCE_DELETION")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -245,8 +246,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .readOnly: return try container.encode(0)
-        case .readWrite: return try container.encode(1)
+        case .readOnly: return try container.encode("READ_ONLY")
+        case .readWrite: return try container.encode("READ_WRITE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

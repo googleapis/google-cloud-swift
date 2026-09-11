@@ -249,9 +249,9 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleCloudWKT._AnyPackable
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .baselineModel: return try container.encode(1)
-        case .baselineModelV20: return try container.encode(2)
+        case .unspecified: return try container.encode("SUMMARIZATION_MODEL_UNSPECIFIED")
+        case .baselineModel: return try container.encode("BASELINE_MODEL")
+        case .baselineModelV20: return try container.encode("BASELINE_MODEL_V2_0")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

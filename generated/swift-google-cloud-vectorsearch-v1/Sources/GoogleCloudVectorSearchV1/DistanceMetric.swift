@@ -112,9 +112,9 @@ public enum DistanceMetric: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .dotProduct: return try container.encode(1)
-    case .cosineDistance: return try container.encode(2)
+    case .unspecified: return try container.encode("DISTANCE_METRIC_UNSPECIFIED")
+    case .dotProduct: return try container.encode("DOT_PRODUCT")
+    case .cosineDistance: return try container.encode("COSINE_DISTANCE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

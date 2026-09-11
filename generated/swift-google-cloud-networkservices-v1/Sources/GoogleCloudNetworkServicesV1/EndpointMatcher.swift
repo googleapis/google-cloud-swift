@@ -271,9 +271,9 @@ public struct EndpointMatcher: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .matchAny: return try container.encode(1)
-        case .matchAll: return try container.encode(2)
+        case .unspecified: return try container.encode("METADATA_LABEL_MATCH_CRITERIA_UNSPECIFIED")
+        case .matchAny: return try container.encode("MATCH_ANY")
+        case .matchAll: return try container.encode("MATCH_ALL")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

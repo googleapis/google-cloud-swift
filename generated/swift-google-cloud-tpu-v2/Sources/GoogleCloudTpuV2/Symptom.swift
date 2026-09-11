@@ -171,13 +171,13 @@ public struct Symptom: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .lowMemory: return try container.encode(1)
-      case .outOfMemory: return try container.encode(2)
-      case .executeTimedOut: return try container.encode(3)
-      case .meshBuildFail: return try container.encode(4)
-      case .hbmOutOfMemory: return try container.encode(5)
-      case .projectAbuse: return try container.encode(6)
+      case .unspecified: return try container.encode("SYMPTOM_TYPE_UNSPECIFIED")
+      case .lowMemory: return try container.encode("LOW_MEMORY")
+      case .outOfMemory: return try container.encode("OUT_OF_MEMORY")
+      case .executeTimedOut: return try container.encode("EXECUTE_TIMED_OUT")
+      case .meshBuildFail: return try container.encode("MESH_BUILD_FAIL")
+      case .hbmOutOfMemory: return try container.encode("HBM_OUT_OF_MEMORY")
+      case .projectAbuse: return try container.encode("PROJECT_ABUSE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

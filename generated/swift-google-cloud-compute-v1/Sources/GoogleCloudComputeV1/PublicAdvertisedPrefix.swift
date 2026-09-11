@@ -294,8 +294,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .v1: return try container.encode(0)
-        case .v2: return try container.encode(1)
+        case .v1: return try container.encode("V1")
+        case .v2: return try container.encode("V2")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -398,8 +398,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .external: return try container.encode(0)
-        case .`internal`: return try container.encode(1)
+        case .external: return try container.encode("EXTERNAL")
+        case .`internal`: return try container.encode("INTERNAL")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -507,9 +507,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .global: return try container.encode(0)
-        case .globalAndRegional: return try container.encode(1)
-        case .regional: return try container.encode(2)
+        case .global: return try container.encode("GLOBAL")
+        case .globalAndRegional: return try container.encode("GLOBAL_AND_REGIONAL")
+        case .regional: return try container.encode("REGIONAL")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -650,15 +650,17 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .announcedToInternet: return try container.encode(0)
-        case .initial: return try container.encode(1)
-        case .prefixConfigurationComplete: return try container.encode(2)
-        case .prefixConfigurationInProgress: return try container.encode(3)
-        case .prefixRemovalInProgress: return try container.encode(4)
-        case .ptrConfigured: return try container.encode(5)
-        case .readyToAnnounce: return try container.encode(6)
-        case .reverseDnsLookupFailed: return try container.encode(7)
-        case .validated: return try container.encode(8)
+        case .announcedToInternet: return try container.encode("ANNOUNCED_TO_INTERNET")
+        case .initial: return try container.encode("INITIAL")
+        case .prefixConfigurationComplete:
+          return try container.encode("PREFIX_CONFIGURATION_COMPLETE")
+        case .prefixConfigurationInProgress:
+          return try container.encode("PREFIX_CONFIGURATION_IN_PROGRESS")
+        case .prefixRemovalInProgress: return try container.encode("PREFIX_REMOVAL_IN_PROGRESS")
+        case .ptrConfigured: return try container.encode("PTR_CONFIGURED")
+        case .readyToAnnounce: return try container.encode("READY_TO_ANNOUNCE")
+        case .reverseDnsLookupFailed: return try container.encode("REVERSE_DNS_LOOKUP_FAILED")
+        case .validated: return try container.encode("VALIDATED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

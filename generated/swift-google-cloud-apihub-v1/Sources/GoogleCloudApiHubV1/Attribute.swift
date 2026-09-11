@@ -236,9 +236,9 @@ public struct Attribute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .systemDefined: return try container.encode(1)
-      case .userDefined: return try container.encode(2)
+      case .unspecified: return try container.encode("DEFINITION_TYPE_UNSPECIFIED")
+      case .systemDefined: return try container.encode("SYSTEM_DEFINED")
+      case .userDefined: return try container.encode("USER_DEFINED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -384,16 +384,16 @@ public struct Attribute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .api: return try container.encode(1)
-      case .version: return try container.encode(2)
-      case .spec: return try container.encode(3)
-      case .apiOperation: return try container.encode(4)
-      case .deployment: return try container.encode(5)
-      case .dependency: return try container.encode(6)
-      case .definition: return try container.encode(7)
-      case .externalApi: return try container.encode(8)
-      case .plugin: return try container.encode(9)
+      case .unspecified: return try container.encode("SCOPE_UNSPECIFIED")
+      case .api: return try container.encode("API")
+      case .version: return try container.encode("VERSION")
+      case .spec: return try container.encode("SPEC")
+      case .apiOperation: return try container.encode("API_OPERATION")
+      case .deployment: return try container.encode("DEPLOYMENT")
+      case .dependency: return try container.encode("DEPENDENCY")
+      case .definition: return try container.encode("DEFINITION")
+      case .externalApi: return try container.encode("EXTERNAL_API")
+      case .plugin: return try container.encode("PLUGIN")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -508,11 +508,11 @@ public struct Attribute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .`enum`: return try container.encode(1)
-      case .json: return try container.encode(2)
-      case .string: return try container.encode(3)
-      case .uri: return try container.encode(4)
+      case .unspecified: return try container.encode("DATA_TYPE_UNSPECIFIED")
+      case .`enum`: return try container.encode("ENUM")
+      case .json: return try container.encode("JSON")
+      case .string: return try container.encode("STRING")
+      case .uri: return try container.encode("URI")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

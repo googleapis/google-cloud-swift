@@ -170,11 +170,14 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .maintenanceSubtypeUnspecified: return try container.encode(0)
-        case .maintenanceTypeCustomerMaintenance: return try container.encode(1)
-        case .maintenanceTypeDisruptiveUpgrade: return try container.encode(2)
-        case .maintenanceTypeStable: return try container.encode(3)
-        case .maintenanceTypeTransition: return try container.encode(4)
+        case .maintenanceSubtypeUnspecified:
+          return try container.encode("MAINTENANCE_SUBTYPE_UNSPECIFIED")
+        case .maintenanceTypeCustomerMaintenance:
+          return try container.encode("MAINTENANCE_TYPE_CUSTOMER_MAINTENANCE")
+        case .maintenanceTypeDisruptiveUpgrade:
+          return try container.encode("MAINTENANCE_TYPE_DISRUPTIVE_UPGRADE")
+        case .maintenanceTypeStable: return try container.encode("MAINTENANCE_TYPE_STABLE")
+        case .maintenanceTypeTransition: return try container.encode("MAINTENANCE_TYPE_TRANSITION")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -273,8 +276,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .maintenanceTypeUnspecified: return try container.encode(0)
-        case .privateZoneMaintenance: return try container.encode(1)
+        case .maintenanceTypeUnspecified:
+          return try container.encode("MAINTENANCE_TYPE_UNSPECIFIED")
+        case .privateZoneMaintenance: return try container.encode("PRIVATE_ZONE_MAINTENANCE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

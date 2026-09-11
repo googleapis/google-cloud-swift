@@ -304,14 +304,14 @@ public struct PatchJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .started: return try container.encode(1)
-      case .instanceLookup: return try container.encode(2)
-      case .patching: return try container.encode(3)
-      case .succeeded: return try container.encode(4)
-      case .completedWithErrors: return try container.encode(5)
-      case .canceled: return try container.encode(6)
-      case .timedOut: return try container.encode(7)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .started: return try container.encode("STARTED")
+      case .instanceLookup: return try container.encode("INSTANCE_LOOKUP")
+      case .patching: return try container.encode("PATCHING")
+      case .succeeded: return try container.encode("SUCCEEDED")
+      case .completedWithErrors: return try container.encode("COMPLETED_WITH_ERRORS")
+      case .canceled: return try container.encode("CANCELED")
+      case .timedOut: return try container.encode("TIMED_OUT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

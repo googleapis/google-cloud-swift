@@ -128,11 +128,14 @@ public enum FindingType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .coldlineAndArchivalStorageOperationsSpike: return try container.encode(1)
-    case .throttledRequestSpike: return try container.encode(2)
-    case .crossRegionEgressSpike: return try container.encode(3)
-    case .storageGrowthAboveTrend: return try container.encode(4)
+    case .unspecified: return try container.encode("FINDING_TYPE_UNSPECIFIED")
+    case .coldlineAndArchivalStorageOperationsSpike:
+      return try container.encode("FINDING_TYPE_COLDLINE_AND_ARCHIVAL_STORAGE_OPERATIONS_SPIKE")
+    case .throttledRequestSpike: return try container.encode("FINDING_TYPE_THROTTLED_REQUEST_SPIKE")
+    case .crossRegionEgressSpike:
+      return try container.encode("FINDING_TYPE_CROSS_REGION_EGRESS_SPIKE")
+    case .storageGrowthAboveTrend:
+      return try container.encode("FINDING_TYPE_STORAGE_GROWTH_ABOVE_TREND")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

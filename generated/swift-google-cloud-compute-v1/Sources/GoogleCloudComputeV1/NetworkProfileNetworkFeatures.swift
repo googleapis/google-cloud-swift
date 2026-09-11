@@ -467,14 +467,14 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .dnsResolver: return try container.encode(0)
-        case .gceEndpoint: return try container.encode(1)
-        case .ipsecInterconnect: return try container.encode(2)
-        case .natAuto: return try container.encode(3)
-        case .privateServiceConnect: return try container.encode(4)
-        case .serverless: return try container.encode(5)
-        case .sharedLoadbalancerVip: return try container.encode(6)
-        case .vpcPeering: return try container.encode(7)
+        case .dnsResolver: return try container.encode("DNS_RESOLVER")
+        case .gceEndpoint: return try container.encode("GCE_ENDPOINT")
+        case .ipsecInterconnect: return try container.encode("IPSEC_INTERCONNECT")
+        case .natAuto: return try container.encode("NAT_AUTO")
+        case .privateServiceConnect: return try container.encode("PRIVATE_SERVICE_CONNECT")
+        case .serverless: return try container.encode("SERVERLESS")
+        case .sharedLoadbalancerVip: return try container.encode("SHARED_LOADBALANCER_VIP")
+        case .vpcPeering: return try container.encode("VPC_PEERING")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -571,8 +571,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .addressCreationAllowed: return try container.encode(0)
-        case .addressCreationBlocked: return try container.encode(1)
+        case .addressCreationAllowed: return try container.encode("ADDRESS_CREATION_ALLOWED")
+        case .addressCreationBlocked: return try container.encode("ADDRESS_CREATION_BLOCKED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -669,8 +669,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .aliasIpRangesAllowed: return try container.encode(0)
-        case .aliasIpRangesBlocked: return try container.encode(1)
+        case .aliasIpRangesAllowed: return try container.encode("ALIAS_IP_RANGES_ALLOWED")
+        case .aliasIpRangesBlocked: return try container.encode("ALIAS_IP_RANGES_BLOCKED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -767,8 +767,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .autoModeSubnetAllowed: return try container.encode(0)
-        case .autoModeSubnetBlocked: return try container.encode(1)
+        case .autoModeSubnetAllowed: return try container.encode("AUTO_MODE_SUBNET_ALLOWED")
+        case .autoModeSubnetBlocked: return try container.encode("AUTO_MODE_SUBNET_BLOCKED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -865,8 +865,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .classDFirewallsAllowed: return try container.encode(0)
-        case .classDFirewallsBlocked: return try container.encode(1)
+        case .classDFirewallsAllowed: return try container.encode("CLASS_D_FIREWALLS_ALLOWED")
+        case .classDFirewallsBlocked: return try container.encode("CLASS_D_FIREWALLS_BLOCKED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -963,8 +963,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .cloudNatAllowed: return try container.encode(0)
-        case .cloudNatBlocked: return try container.encode(1)
+        case .cloudNatAllowed: return try container.encode("CLOUD_NAT_ALLOWED")
+        case .cloudNatBlocked: return try container.encode("CLOUD_NAT_BLOCKED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1061,8 +1061,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .cloudRouterAllowed: return try container.encode(0)
-        case .cloudRouterBlocked: return try container.encode(1)
+        case .cloudRouterAllowed: return try container.encode("CLOUD_ROUTER_ALLOWED")
+        case .cloudRouterBlocked: return try container.encode("CLOUD_ROUTER_BLOCKED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1159,8 +1159,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .defaultNicAttachmentAllowed: return try container.encode(0)
-        case .defaultNicAttachmentBlocked: return try container.encode(1)
+        case .defaultNicAttachmentAllowed:
+          return try container.encode("DEFAULT_NIC_ATTACHMENT_ALLOWED")
+        case .defaultNicAttachmentBlocked:
+          return try container.encode("DEFAULT_NIC_ATTACHMENT_BLOCKED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1257,8 +1259,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .externalIpAccessAllowed: return try container.encode(0)
-        case .externalIpAccessBlocked: return try container.encode(1)
+        case .externalIpAccessAllowed: return try container.encode("EXTERNAL_IP_ACCESS_ALLOWED")
+        case .externalIpAccessBlocked: return try container.encode("EXTERNAL_IP_ACCESS_BLOCKED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1355,8 +1357,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .firewallPolicyAllowed: return try container.encode(0)
-        case .firewallPolicyBlocked: return try container.encode(1)
+        case .firewallPolicyAllowed: return try container.encode("FIREWALL_POLICY_ALLOWED")
+        case .firewallPolicyBlocked: return try container.encode("FIREWALL_POLICY_BLOCKED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1453,8 +1455,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .interconnectAllowed: return try container.encode(0)
-        case .interconnectBlocked: return try container.encode(1)
+        case .interconnectAllowed: return try container.encode("INTERCONNECT_ALLOWED")
+        case .interconnectBlocked: return try container.encode("INTERCONNECT_BLOCKED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1551,8 +1553,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .ipForwardingAllowed: return try container.encode(0)
-        case .ipForwardingBlocked: return try container.encode(1)
+        case .ipForwardingAllowed: return try container.encode("IP_FORWARDING_ALLOWED")
+        case .ipForwardingBlocked: return try container.encode("IP_FORWARDING_BLOCKED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1649,8 +1651,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .loadBalancingAllowed: return try container.encode(0)
-        case .loadBalancingBlocked: return try container.encode(1)
+        case .loadBalancingAllowed: return try container.encode("LOAD_BALANCING_ALLOWED")
+        case .loadBalancingBlocked: return try container.encode("LOAD_BALANCING_BLOCKED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1747,8 +1749,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .multiNicInSameNetworkAllowed: return try container.encode(0)
-        case .multiNicInSameNetworkBlocked: return try container.encode(1)
+        case .multiNicInSameNetworkAllowed:
+          return try container.encode("MULTI_NIC_IN_SAME_NETWORK_ALLOWED")
+        case .multiNicInSameNetworkBlocked:
+          return try container.encode("MULTI_NIC_IN_SAME_NETWORK_BLOCKED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1845,8 +1849,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .multiNicInSameSubnetworkAllowed: return try container.encode(0)
-        case .multiNicInSameSubnetworkBlocked: return try container.encode(1)
+        case .multiNicInSameSubnetworkAllowed:
+          return try container.encode("MULTI_NIC_IN_SAME_SUBNETWORK_ALLOWED")
+        case .multiNicInSameSubnetworkBlocked:
+          return try container.encode("MULTI_NIC_IN_SAME_SUBNETWORK_BLOCKED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1943,8 +1949,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .multicastAllowed: return try container.encode(0)
-        case .multicastBlocked: return try container.encode(1)
+        case .multicastAllowed: return try container.encode("MULTICAST_ALLOWED")
+        case .multicastBlocked: return try container.encode("MULTICAST_BLOCKED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -2041,8 +2047,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .nccAllowed: return try container.encode(0)
-        case .nccBlocked: return try container.encode(1)
+        case .nccAllowed: return try container.encode("NCC_ALLOWED")
+        case .nccBlocked: return try container.encode("NCC_BLOCKED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -2139,8 +2145,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .networkMigrationAllowed: return try container.encode(0)
-        case .networkMigrationBlocked: return try container.encode(1)
+        case .networkMigrationAllowed: return try container.encode("NETWORK_MIGRATION_ALLOWED")
+        case .networkMigrationBlocked: return try container.encode("NETWORK_MIGRATION_BLOCKED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -2237,8 +2243,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .packetMirroringAllowed: return try container.encode(0)
-        case .packetMirroringBlocked: return try container.encode(1)
+        case .packetMirroringAllowed: return try container.encode("PACKET_MIRRORING_ALLOWED")
+        case .packetMirroringBlocked: return try container.encode("PACKET_MIRRORING_BLOCKED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -2335,8 +2341,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .privateGoogleAccessAllowed: return try container.encode(0)
-        case .privateGoogleAccessBlocked: return try container.encode(1)
+        case .privateGoogleAccessAllowed:
+          return try container.encode("PRIVATE_GOOGLE_ACCESS_ALLOWED")
+        case .privateGoogleAccessBlocked:
+          return try container.encode("PRIVATE_GOOGLE_ACCESS_BLOCKED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -2433,8 +2441,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .pscAllowed: return try container.encode(0)
-        case .pscBlocked: return try container.encode(1)
+        case .pscAllowed: return try container.encode("PSC_ALLOWED")
+        case .pscBlocked: return try container.encode("PSC_BLOCKED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -2531,8 +2539,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .sameNetworkUnicastAllowed: return try container.encode(0)
-        case .sameNetworkUnicastBlocked: return try container.encode(1)
+        case .sameNetworkUnicastAllowed: return try container.encode("SAME_NETWORK_UNICAST_ALLOWED")
+        case .sameNetworkUnicastBlocked: return try container.encode("SAME_NETWORK_UNICAST_BLOCKED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -2629,8 +2637,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .staticRoutesAllowed: return try container.encode(0)
-        case .staticRoutesBlocked: return try container.encode(1)
+        case .staticRoutesAllowed: return try container.encode("STATIC_ROUTES_ALLOWED")
+        case .staticRoutesBlocked: return try container.encode("STATIC_ROUTES_BLOCKED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -2727,8 +2735,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .subinterfacesAllowed: return try container.encode(0)
-        case .subinterfacesBlocked: return try container.encode(1)
+        case .subinterfacesAllowed: return try container.encode("SUBINTERFACES_ALLOWED")
+        case .subinterfacesBlocked: return try container.encode("SUBINTERFACES_BLOCKED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -2825,8 +2833,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .subnetworkCreationAllowed: return try container.encode(0)
-        case .subnetworkCreationBlocked: return try container.encode(1)
+        case .subnetworkCreationAllowed: return try container.encode("SUBNETWORK_CREATION_ALLOWED")
+        case .subnetworkCreationBlocked: return try container.encode("SUBNETWORK_CREATION_BLOCKED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -2923,8 +2931,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .vpcFirewallRulesAllowed: return try container.encode(0)
-        case .vpcFirewallRulesBlocked: return try container.encode(1)
+        case .vpcFirewallRulesAllowed: return try container.encode("VPC_FIREWALL_RULES_ALLOWED")
+        case .vpcFirewallRulesBlocked: return try container.encode("VPC_FIREWALL_RULES_BLOCKED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -3021,8 +3029,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .vpcPeeringAllowed: return try container.encode(0)
-        case .vpcPeeringBlocked: return try container.encode(1)
+        case .vpcPeeringAllowed: return try container.encode("VPC_PEERING_ALLOWED")
+        case .vpcPeeringBlocked: return try container.encode("VPC_PEERING_BLOCKED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -3119,8 +3127,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .vpnAllowed: return try container.encode(0)
-        case .vpnBlocked: return try container.encode(1)
+        case .vpnAllowed: return try container.encode("VPN_ALLOWED")
+        case .vpnBlocked: return try container.encode("VPN_BLOCKED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -3222,9 +3230,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .rdmaRocePolicy: return try container.encode(0)
-        case .ullPolicy: return try container.encode(1)
-        case .vpcPolicy: return try container.encode(2)
+        case .rdmaRocePolicy: return try container.encode("RDMA_ROCE_POLICY")
+        case .ullPolicy: return try container.encode("ULL_POLICY")
+        case .vpcPolicy: return try container.encode("VPC_POLICY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -3347,12 +3355,12 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .gvnic: return try container.encode(0)
-        case .idpf: return try container.encode(1)
-        case .irdma: return try container.encode(2)
-        case .mrdma: return try container.encode(3)
-        case .unspecifiedNicType: return try container.encode(4)
-        case .virtioNet: return try container.encode(5)
+        case .gvnic: return try container.encode("GVNIC")
+        case .idpf: return try container.encode("IDPF")
+        case .irdma: return try container.encode("IRDMA")
+        case .mrdma: return try container.encode("MRDMA")
+        case .unspecifiedNicType: return try container.encode("UNSPECIFIED_NIC_TYPE")
+        case .virtioNet: return try container.encode("VIRTIO_NET")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -3449,8 +3457,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .sdn: return try container.encode(0)
-        case .ull: return try container.encode(1)
+        case .sdn: return try container.encode("MULTICAST_SDN")
+        case .ull: return try container.encode("MULTICAST_ULL")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -3547,8 +3555,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .subnetPurposeCustomHardware: return try container.encode(0)
-        case .subnetPurposePrivate: return try container.encode(1)
+        case .subnetPurposeCustomHardware:
+          return try container.encode("SUBNET_PURPOSE_CUSTOM_HARDWARE")
+        case .subnetPurposePrivate: return try container.encode("SUBNET_PURPOSE_PRIVATE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -3650,9 +3659,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .subnetStackTypeIpv4Ipv6: return try container.encode(0)
-        case .subnetStackTypeIpv4Only: return try container.encode(1)
-        case .subnetStackTypeIpv6Only: return try container.encode(2)
+        case .subnetStackTypeIpv4Ipv6: return try container.encode("SUBNET_STACK_TYPE_IPV4_IPV6")
+        case .subnetStackTypeIpv4Only: return try container.encode("SUBNET_STACK_TYPE_IPV4_ONLY")
+        case .subnetStackTypeIpv6Only: return try container.encode("SUBNET_STACK_TYPE_IPV6_ONLY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -3790,14 +3799,14 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .globalManagedProxy: return try container.encode(0)
-        case .internalHttpsLoadBalancer: return try container.encode(1)
-        case .peerMigration: return try container.encode(2)
-        case .`private`: return try container.encode(3)
-        case .privateNat: return try container.encode(4)
-        case .privateRfc1918: return try container.encode(5)
-        case .privateServiceConnect: return try container.encode(6)
-        case .regionalManagedProxy: return try container.encode(7)
+        case .globalManagedProxy: return try container.encode("GLOBAL_MANAGED_PROXY")
+        case .internalHttpsLoadBalancer: return try container.encode("INTERNAL_HTTPS_LOAD_BALANCER")
+        case .peerMigration: return try container.encode("PEER_MIGRATION")
+        case .`private`: return try container.encode("PRIVATE")
+        case .privateNat: return try container.encode("PRIVATE_NAT")
+        case .privateRfc1918: return try container.encode("PRIVATE_RFC_1918")
+        case .privateServiceConnect: return try container.encode("PRIVATE_SERVICE_CONNECT")
+        case .regionalManagedProxy: return try container.encode("REGIONAL_MANAGED_PROXY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -3902,9 +3911,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .ipv4Ipv6: return try container.encode(0)
-        case .ipv4Only: return try container.encode(1)
-        case .ipv6Only: return try container.encode(2)
+        case .ipv4Ipv6: return try container.encode("IPV4_IPV6")
+        case .ipv4Only: return try container.encode("IPV4_ONLY")
+        case .ipv6Only: return try container.encode("IPV6_ONLY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -4001,8 +4010,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .sdn: return try container.encode(0)
-        case .ull: return try container.encode(1)
+        case .sdn: return try container.encode("UNICAST_SDN")
+        case .ull: return try container.encode("UNICAST_ULL")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -115,9 +115,9 @@ public enum ServingStatus: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .serving: return try container.encode(1)
-    case .stopped: return try container.encode(2)
+    case .unspecified: return try container.encode("SERVING_STATUS_UNSPECIFIED")
+    case .serving: return try container.encode("SERVING")
+    case .stopped: return try container.encode("STOPPED")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

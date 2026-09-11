@@ -328,9 +328,9 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleCloudWKT.
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .downstream: return try container.encode(1)
-      case .upstream: return try container.encode(2)
+      case .unspecified: return try container.encode("SEARCH_DIRECTION_UNSPECIFIED")
+      case .downstream: return try container.encode("DOWNSTREAM")
+      case .upstream: return try container.encode("UPSTREAM")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -428,8 +428,8 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleCloudWKT.
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .entities: return try container.encode(1)
+      case .unspecified: return try container.encode("ENTITY_SET_UNSPECIFIED")
+      case .entities: return try container.encode("ENTITIES")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

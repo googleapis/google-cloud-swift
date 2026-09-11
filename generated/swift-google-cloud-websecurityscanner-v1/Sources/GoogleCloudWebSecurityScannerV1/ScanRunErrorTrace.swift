@@ -178,13 +178,13 @@ public struct ScanRunErrorTrace: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .internalError: return try container.encode(1)
-      case .scanConfigIssue: return try container.encode(2)
-      case .authenticationConfigIssue: return try container.encode(3)
-      case .timedOutWhileScanning: return try container.encode(4)
-      case .tooManyRedirects: return try container.encode(5)
-      case .tooManyHttpErrors: return try container.encode(6)
+      case .unspecified: return try container.encode("CODE_UNSPECIFIED")
+      case .internalError: return try container.encode("INTERNAL_ERROR")
+      case .scanConfigIssue: return try container.encode("SCAN_CONFIG_ISSUE")
+      case .authenticationConfigIssue: return try container.encode("AUTHENTICATION_CONFIG_ISSUE")
+      case .timedOutWhileScanning: return try container.encode("TIMED_OUT_WHILE_SCANNING")
+      case .tooManyRedirects: return try container.encode("TOO_MANY_REDIRECTS")
+      case .tooManyHttpErrors: return try container.encode("TOO_MANY_HTTP_ERRORS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

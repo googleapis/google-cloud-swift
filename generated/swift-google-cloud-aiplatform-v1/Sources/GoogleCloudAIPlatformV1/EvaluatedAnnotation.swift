@@ -226,10 +226,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .truePositive: return try container.encode(1)
-        case .falsePositive: return try container.encode(2)
-        case .falseNegative: return try container.encode(3)
+        case .unspecified: return try container.encode("EVALUATED_ANNOTATION_TYPE_UNSPECIFIED")
+        case .truePositive: return try container.encode("TRUE_POSITIVE")
+        case .falsePositive: return try container.encode("FALSE_POSITIVE")
+        case .falseNegative: return try container.encode("FALSE_NEGATIVE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

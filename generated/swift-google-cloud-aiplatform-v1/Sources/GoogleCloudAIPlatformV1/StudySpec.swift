@@ -308,9 +308,9 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .maximize: return try container.encode(1)
-          case .minimize: return try container.encode(2)
+          case .unspecified: return try container.encode("GOAL_TYPE_UNSPECIFIED")
+          case .maximize: return try container.encode("MAXIMIZE")
+          case .minimize: return try container.encode("MINIMIZE")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -951,10 +951,10 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .unitLinearScale: return try container.encode(1)
-          case .unitLogScale: return try container.encode(2)
-          case .unitReverseLogScale: return try container.encode(3)
+          case .unspecified: return try container.encode("SCALE_TYPE_UNSPECIFIED")
+          case .unitLinearScale: return try container.encode("UNIT_LINEAR_SCALE")
+          case .unitLogScale: return try container.encode("UNIT_LOG_SCALE")
+          case .unitReverseLogScale: return try container.encode("UNIT_REVERSE_LOG_SCALE")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -1343,9 +1343,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .gridSearch: return try container.encode(2)
-        case .randomSearch: return try container.encode(3)
+        case .unspecified: return try container.encode("ALGORITHM_UNSPECIFIED")
+        case .gridSearch: return try container.encode("GRID_SEARCH")
+        case .randomSearch: return try container.encode("RANDOM_SEARCH")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1454,9 +1454,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .low: return try container.encode(1)
-        case .high: return try container.encode(2)
+        case .unspecified: return try container.encode("OBSERVATION_NOISE_UNSPECIFIED")
+        case .low: return try container.encode("LOW")
+        case .high: return try container.encode("HIGH")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1571,9 +1571,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .lastMeasurement: return try container.encode(1)
-        case .bestMeasurement: return try container.encode(2)
+        case .unspecified: return try container.encode("MEASUREMENT_SELECTION_TYPE_UNSPECIFIED")
+        case .lastMeasurement: return try container.encode("LAST_MEASUREMENT")
+        case .bestMeasurement: return try container.encode("BEST_MEASUREMENT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

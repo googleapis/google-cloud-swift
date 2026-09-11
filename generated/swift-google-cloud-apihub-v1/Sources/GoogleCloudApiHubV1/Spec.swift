@@ -201,9 +201,9 @@ public struct Spec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .relaxed: return try container.encode(1)
-      case .strict: return try container.encode(2)
+      case .unspecified: return try container.encode("PARSING_MODE_UNSPECIFIED")
+      case .relaxed: return try container.encode("RELAXED")
+      case .strict: return try container.encode("STRICT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

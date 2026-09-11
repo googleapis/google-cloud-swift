@@ -357,10 +357,10 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .ok: return try container.encode(1)
-          case .failed: return try container.encode(2)
-          case .deadlineExceeded: return try container.encode(3)
+          case .unspecified: return try container.encode("OUTCOME_UNSPECIFIED")
+          case .ok: return try container.encode("OUTCOME_OK")
+          case .failed: return try container.encode("OUTCOME_FAILED")
+          case .deadlineExceeded: return try container.encode("OUTCOME_DEADLINE_EXCEEDED")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }

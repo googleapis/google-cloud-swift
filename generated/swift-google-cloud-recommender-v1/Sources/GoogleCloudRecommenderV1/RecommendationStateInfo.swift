@@ -172,12 +172,12 @@ public struct RecommendationStateInfo: Codable, Equatable, GoogleCloudWKT._AnyPa
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .active: return try container.encode(1)
-      case .succeeded: return try container.encode(3)
-      case .failed: return try container.encode(4)
-      case .dismissed: return try container.encode(5)
-      case .claimed: return try container.encode(6)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .active: return try container.encode("ACTIVE")
+      case .succeeded: return try container.encode("SUCCEEDED")
+      case .failed: return try container.encode("FAILED")
+      case .dismissed: return try container.encode("DISMISSED")
+      case .claimed: return try container.encode("CLAIMED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

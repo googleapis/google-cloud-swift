@@ -260,11 +260,11 @@
             public func encode(to encoder: Encoder) throws {
               var container = encoder.singleValueContainer()
               switch self {
-              case .unspecified: return try container.encode(0)
-              case .vertexAiSearch: return try container.encode(1)
-              case .inlineContent: return try container.encode(2)
-              case .googleSearch: return try container.encode(3)
-              case .googleMaps: return try container.encode(4)
+              case .unspecified: return try container.encode("SOURCE_UNSPECIFIED")
+              case .vertexAiSearch: return try container.encode("VERTEX_AI_SEARCH")
+              case .inlineContent: return try container.encode("INLINE_CONTENT")
+              case .googleSearch: return try container.encode("GOOGLE_SEARCH")
+              case .googleMaps: return try container.encode("GOOGLE_MAPS")
               case .unknownIntValue(let v): return try container.encode(v)
               case .unknownStringValue(let v): return try container.encode(v)
               }
@@ -444,8 +444,8 @@
             public func encode(to encoder: Encoder) throws {
               var container = encoder.singleValueContainer()
               switch self {
-              case .unspecified: return try container.encode(0)
-              case .v1Independent: return try container.encode(1)
+              case .unspecified: return try container.encode("VERSION_UNSPECIFIED")
+              case .v1Independent: return try container.encode("V1_INDEPENDENT")
               case .unknownIntValue(let v): return try container.encode(v)
               case .unknownStringValue(let v): return try container.encode(v)
               }

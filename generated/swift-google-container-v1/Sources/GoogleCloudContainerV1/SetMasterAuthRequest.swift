@@ -170,10 +170,10 @@ public struct SetMasterAuthRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unknown: return try container.encode(0)
-      case .setPassword: return try container.encode(1)
-      case .generatePassword: return try container.encode(2)
-      case .setUsername: return try container.encode(3)
+      case .unknown: return try container.encode("UNKNOWN")
+      case .setPassword: return try container.encode("SET_PASSWORD")
+      case .generatePassword: return try container.encode("GENERATE_PASSWORD")
+      case .setUsername: return try container.encode("SET_USERNAME")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

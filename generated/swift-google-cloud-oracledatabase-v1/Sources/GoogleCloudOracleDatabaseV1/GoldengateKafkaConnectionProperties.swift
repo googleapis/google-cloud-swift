@@ -379,11 +379,11 @@ public struct GoldengateKafkaConnectionProperties: Codable, Equatable, GoogleClo
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .ssl: return try container.encode(1)
-      case .saslSsl: return try container.encode(2)
-      case .plaintext: return try container.encode(3)
-      case .saslPlaintext: return try container.encode(4)
+      case .unspecified: return try container.encode("KAFKA_SECURITY_PROTOCOL_UNSPECIFIED")
+      case .ssl: return try container.encode("SSL")
+      case .saslSsl: return try container.encode("SASL_SSL")
+      case .plaintext: return try container.encode("PLAINTEXT")
+      case .saslPlaintext: return try container.encode("SASL_PLAINTEXT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

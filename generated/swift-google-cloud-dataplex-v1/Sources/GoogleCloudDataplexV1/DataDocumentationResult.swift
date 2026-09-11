@@ -357,10 +357,10 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleCloudWKT._AnyPa
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .agent: return try container.encode(4)
-        case .queryHistory: return try container.encode(5)
-        case .tableConstraints: return try container.encode(6)
+        case .unspecified: return try container.encode("SOURCE_UNSPECIFIED")
+        case .agent: return try container.encode("AGENT")
+        case .queryHistory: return try container.encode("QUERY_HISTORY")
+        case .tableConstraints: return try container.encode("TABLE_CONSTRAINTS")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -457,8 +457,8 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleCloudWKT._AnyPa
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .schemaJoin: return try container.encode(1)
+        case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+        case .schemaJoin: return try container.encode("SCHEMA_JOIN")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

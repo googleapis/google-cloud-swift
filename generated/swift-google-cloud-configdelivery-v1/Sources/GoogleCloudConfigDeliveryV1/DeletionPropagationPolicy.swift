@@ -116,9 +116,9 @@ public enum DeletionPropagationPolicy: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .foreground: return try container.encode(1)
-    case .orphan: return try container.encode(2)
+    case .unspecified: return try container.encode("DELETION_PROPAGATION_POLICY_UNSPECIFIED")
+    case .foreground: return try container.encode("FOREGROUND")
+    case .orphan: return try container.encode("ORPHAN")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

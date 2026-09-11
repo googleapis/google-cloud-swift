@@ -173,14 +173,14 @@ public struct ConnectionStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .creating: return try container.encode(1)
-      case .active: return try container.encode(2)
-      case .inactive: return try container.encode(3)
-      case .deleting: return try container.encode(4)
-      case .updating: return try container.encode(5)
-      case .error: return try container.encode(6)
-      case .authorizationRequired: return try container.encode(7)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .creating: return try container.encode("CREATING")
+      case .active: return try container.encode("ACTIVE")
+      case .inactive: return try container.encode("INACTIVE")
+      case .deleting: return try container.encode("DELETING")
+      case .updating: return try container.encode("UPDATING")
+      case .error: return try container.encode("ERROR")
+      case .authorizationRequired: return try container.encode("AUTHORIZATION_REQUIRED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

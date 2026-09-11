@@ -118,10 +118,10 @@ public enum MetadataType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .metadatatypeUnspecified: return try container.encode(0)
-    case .storageMetadata: return try container.encode(2)
-    case .contentMetadata: return try container.encode(3)
-    case .clientProvidedMetadata: return try container.encode(4)
+    case .metadatatypeUnspecified: return try container.encode("METADATATYPE_UNSPECIFIED")
+    case .storageMetadata: return try container.encode("STORAGE_METADATA")
+    case .contentMetadata: return try container.encode("CONTENT_METADATA")
+    case .clientProvidedMetadata: return try container.encode("CLIENT_PROVIDED_METADATA")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

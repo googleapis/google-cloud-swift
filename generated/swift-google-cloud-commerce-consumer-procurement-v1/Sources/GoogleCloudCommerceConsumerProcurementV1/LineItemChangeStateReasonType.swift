@@ -119,10 +119,12 @@ public enum LineItemChangeStateReasonType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .expired: return try container.encode(1)
-    case .userCancelled: return try container.encode(2)
-    case .systemCancelled: return try container.encode(3)
+    case .unspecified: return try container.encode("LINE_ITEM_CHANGE_STATE_REASON_TYPE_UNSPECIFIED")
+    case .expired: return try container.encode("LINE_ITEM_CHANGE_STATE_REASON_TYPE_EXPIRED")
+    case .userCancelled:
+      return try container.encode("LINE_ITEM_CHANGE_STATE_REASON_TYPE_USER_CANCELLED")
+    case .systemCancelled:
+      return try container.encode("LINE_ITEM_CHANGE_STATE_REASON_TYPE_SYSTEM_CANCELLED")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

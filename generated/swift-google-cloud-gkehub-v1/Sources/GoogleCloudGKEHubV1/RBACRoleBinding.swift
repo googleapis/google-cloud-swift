@@ -274,11 +274,11 @@ public struct RBACRoleBinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unknown: return try container.encode(0)
-        case .admin: return try container.encode(1)
-        case .edit: return try container.encode(2)
-        case .view: return try container.encode(3)
-        case .anthosSupport: return try container.encode(4)
+        case .unknown: return try container.encode("UNKNOWN")
+        case .admin: return try container.encode("ADMIN")
+        case .edit: return try container.encode("EDIT")
+        case .view: return try container.encode("VIEW")
+        case .anthosSupport: return try container.encode("ANTHOS_SUPPORT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

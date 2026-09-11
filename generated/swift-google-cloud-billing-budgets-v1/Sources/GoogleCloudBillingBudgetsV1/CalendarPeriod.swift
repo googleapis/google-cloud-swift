@@ -124,10 +124,10 @@ public enum CalendarPeriod: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .month: return try container.encode(1)
-    case .quarter: return try container.encode(2)
-    case .year: return try container.encode(3)
+    case .unspecified: return try container.encode("CALENDAR_PERIOD_UNSPECIFIED")
+    case .month: return try container.encode("MONTH")
+    case .quarter: return try container.encode("QUARTER")
+    case .year: return try container.encode("YEAR")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

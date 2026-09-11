@@ -253,9 +253,9 @@ public struct NetworkInterface: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .ipv4Only: return try container.encode(1)
-      case .ipv4Ipv6: return try container.encode(2)
+      case .unspecified: return try container.encode("STACK_TYPE_UNSPECIFIED")
+      case .ipv4Only: return try container.encode("IPV4_ONLY")
+      case .ipv4Ipv6: return try container.encode("IPV4_IPV6")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -359,9 +359,9 @@ public struct NetworkInterface: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecifiedIpv6AccessType: return try container.encode(0)
-      case .`internal`: return try container.encode(1)
-      case .external: return try container.encode(2)
+      case .unspecifiedIpv6AccessType: return try container.encode("UNSPECIFIED_IPV6_ACCESS_TYPE")
+      case .`internal`: return try container.encode("INTERNAL")
+      case .external: return try container.encode("EXTERNAL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -464,9 +464,9 @@ public struct NetworkInterface: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .virtioNet: return try container.encode(1)
-      case .gvnic: return try container.encode(2)
+      case .unspecified: return try container.encode("NIC_TYPE_UNSPECIFIED")
+      case .virtioNet: return try container.encode("VIRTIO_NET")
+      case .gvnic: return try container.encode("GVNIC")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -160,10 +160,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .active: return try container.encode(0)
-        case .disabled: return try container.encode(1)
-        case .obsolete: return try container.encode(2)
-        case .ready: return try container.encode(3)
+        case .active: return try container.encode("ACTIVE")
+        case .disabled: return try container.encode("DISABLED")
+        case .obsolete: return try container.encode("OBSOLETE")
+        case .ready: return try container.encode("READY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

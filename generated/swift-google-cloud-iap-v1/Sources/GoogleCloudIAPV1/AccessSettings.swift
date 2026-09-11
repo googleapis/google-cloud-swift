@@ -156,8 +156,9 @@ public struct AccessSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .workforceIdentityFederation: return try container.encode(3)
+      case .unspecified: return try container.encode("IDENTITY_SOURCE_UNSPECIFIED")
+      case .workforceIdentityFederation:
+        return try container.encode("WORKFORCE_IDENTITY_FEDERATION")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

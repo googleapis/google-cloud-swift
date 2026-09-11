@@ -148,8 +148,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .connectionRedundancyMet: return try container.encode(0)
-        case .connectionRedundancyNotMet: return try container.encode(1)
+        case .connectionRedundancyMet: return try container.encode("CONNECTION_REDUNDANCY_MET")
+        case .connectionRedundancyNotMet:
+          return try container.encode("CONNECTION_REDUNDANCY_NOT_MET")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -241,7 +242,7 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .incompleteTunnelsCoverage: return try container.encode(0)
+        case .incompleteTunnelsCoverage: return try container.encode("INCOMPLETE_TUNNELS_COVERAGE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

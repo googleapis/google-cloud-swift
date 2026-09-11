@@ -169,13 +169,13 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .one: return try container.encode(1)
-        case .four: return try container.encode(2)
-        case .eight: return try container.encode(3)
-        case .sixteen: return try container.encode(4)
-        case .thirtyTwo: return try container.encode(5)
-        case .two: return try container.encode(6)
+        case .unspecified: return try container.encode("ADAPTER_SIZE_UNSPECIFIED")
+        case .one: return try container.encode("ADAPTER_SIZE_ONE")
+        case .four: return try container.encode("ADAPTER_SIZE_FOUR")
+        case .eight: return try container.encode("ADAPTER_SIZE_EIGHT")
+        case .sixteen: return try container.encode("ADAPTER_SIZE_SIXTEEN")
+        case .thirtyTwo: return try container.encode("ADAPTER_SIZE_THIRTY_TWO")
+        case .two: return try container.encode("ADAPTER_SIZE_TWO")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

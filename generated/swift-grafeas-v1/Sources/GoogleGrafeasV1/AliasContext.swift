@@ -146,10 +146,10 @@ public struct AliasContext: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .fixed: return try container.encode(1)
-      case .movable: return try container.encode(2)
-      case .other: return try container.encode(4)
+      case .unspecified: return try container.encode("KIND_UNSPECIFIED")
+      case .fixed: return try container.encode("FIXED")
+      case .movable: return try container.encode("MOVABLE")
+      case .other: return try container.encode("OTHER")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

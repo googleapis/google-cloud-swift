@@ -449,50 +449,70 @@ public struct AbortInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .unknownNetwork: return try container.encode(1)
-      case .unknownIp: return try container.encode(2)
-      case .unknownProject: return try container.encode(3)
-      case .permissionDenied: return try container.encode(4)
-      case .noSourceLocation: return try container.encode(5)
-      case .invalidArgument: return try container.encode(6)
-      case .noExternalIp: return try container.encode(7)
-      case .unintendedDestination: return try container.encode(8)
-      case .traceTooLong: return try container.encode(9)
-      case .internalError: return try container.encode(10)
-      case .sourceEndpointNotFound: return try container.encode(11)
-      case .mismatchedSourceNetwork: return try container.encode(12)
-      case .destinationEndpointNotFound: return try container.encode(13)
-      case .mismatchedDestinationNetwork: return try container.encode(14)
-      case .unsupported: return try container.encode(15)
-      case .mismatchedIpVersion: return try container.encode(16)
-      case .gkeKonnectivityProxyUnsupported: return try container.encode(17)
-      case .resourceConfigNotFound: return try container.encode(18)
-      case .googleManagedServiceAmbiguousPscEndpoint: return try container.encode(19)
-      case .sourcePscCloudSqlUnsupported: return try container.encode(20)
-      case .sourceForwardingRuleUnsupported: return try container.encode(21)
-      case .nonRoutableIpAddress: return try container.encode(22)
-      case .sourceIpAddressNotInSourceNetwork: return try container.encode(23)
-      case .vmInstanceConfigNotFound: return try container.encode(24)
-      case .networkConfigNotFound: return try container.encode(25)
-      case .firewallConfigNotFound: return try container.encode(26)
-      case .routeConfigNotFound: return try container.encode(27)
-      case .permissionDeniedNoCloudNatConfigs: return try container.encode(28)
-      case .permissionDeniedNoNegEndpointConfigs: return try container.encode(29)
-      case .unknownIssueInGoogleManagedProject: return try container.encode(30)
-      case .unsupportedGoogleManagedProjectConfig: return try container.encode(31)
-      case .googleManagedServiceUnknownIp: return try container.encode(32)
-      case .sourceRedisClusterUnsupported: return try container.encode(34)
-      case .sourceRedisInstanceUnsupported: return try container.encode(35)
-      case .permissionDeniedNoCloudRouterConfigs: return try container.encode(36)
-      case .noServerlessIpRanges: return try container.encode(37)
-      case .googleManagedServiceAmbiguousEndpoint: return try container.encode(39)
-      case .ipVersionProtocolMismatch: return try container.encode(40)
-      case .gkePodUnknownEndpointLocation: return try container.encode(41)
-      case .noSourceGcpNetworkLocation: return try container.encode(42)
-      case .noSourceNonGcpNetworkLocation: return try container.encode(43)
-      case .noSourceInternetLocation: return try container.encode(44)
-      case .sourceExternalCloudSqlUnsupported: return try container.encode(45)
+      case .unspecified: return try container.encode("CAUSE_UNSPECIFIED")
+      case .unknownNetwork: return try container.encode("UNKNOWN_NETWORK")
+      case .unknownIp: return try container.encode("UNKNOWN_IP")
+      case .unknownProject: return try container.encode("UNKNOWN_PROJECT")
+      case .permissionDenied: return try container.encode("PERMISSION_DENIED")
+      case .noSourceLocation: return try container.encode("NO_SOURCE_LOCATION")
+      case .invalidArgument: return try container.encode("INVALID_ARGUMENT")
+      case .noExternalIp: return try container.encode("NO_EXTERNAL_IP")
+      case .unintendedDestination: return try container.encode("UNINTENDED_DESTINATION")
+      case .traceTooLong: return try container.encode("TRACE_TOO_LONG")
+      case .internalError: return try container.encode("INTERNAL_ERROR")
+      case .sourceEndpointNotFound: return try container.encode("SOURCE_ENDPOINT_NOT_FOUND")
+      case .mismatchedSourceNetwork: return try container.encode("MISMATCHED_SOURCE_NETWORK")
+      case .destinationEndpointNotFound:
+        return try container.encode("DESTINATION_ENDPOINT_NOT_FOUND")
+      case .mismatchedDestinationNetwork:
+        return try container.encode("MISMATCHED_DESTINATION_NETWORK")
+      case .unsupported: return try container.encode("UNSUPPORTED")
+      case .mismatchedIpVersion: return try container.encode("MISMATCHED_IP_VERSION")
+      case .gkeKonnectivityProxyUnsupported:
+        return try container.encode("GKE_KONNECTIVITY_PROXY_UNSUPPORTED")
+      case .resourceConfigNotFound: return try container.encode("RESOURCE_CONFIG_NOT_FOUND")
+      case .googleManagedServiceAmbiguousPscEndpoint:
+        return try container.encode("GOOGLE_MANAGED_SERVICE_AMBIGUOUS_PSC_ENDPOINT")
+      case .sourcePscCloudSqlUnsupported:
+        return try container.encode("SOURCE_PSC_CLOUD_SQL_UNSUPPORTED")
+      case .sourceForwardingRuleUnsupported:
+        return try container.encode("SOURCE_FORWARDING_RULE_UNSUPPORTED")
+      case .nonRoutableIpAddress: return try container.encode("NON_ROUTABLE_IP_ADDRESS")
+      case .sourceIpAddressNotInSourceNetwork:
+        return try container.encode("SOURCE_IP_ADDRESS_NOT_IN_SOURCE_NETWORK")
+      case .vmInstanceConfigNotFound: return try container.encode("VM_INSTANCE_CONFIG_NOT_FOUND")
+      case .networkConfigNotFound: return try container.encode("NETWORK_CONFIG_NOT_FOUND")
+      case .firewallConfigNotFound: return try container.encode("FIREWALL_CONFIG_NOT_FOUND")
+      case .routeConfigNotFound: return try container.encode("ROUTE_CONFIG_NOT_FOUND")
+      case .permissionDeniedNoCloudNatConfigs:
+        return try container.encode("PERMISSION_DENIED_NO_CLOUD_NAT_CONFIGS")
+      case .permissionDeniedNoNegEndpointConfigs:
+        return try container.encode("PERMISSION_DENIED_NO_NEG_ENDPOINT_CONFIGS")
+      case .unknownIssueInGoogleManagedProject:
+        return try container.encode("UNKNOWN_ISSUE_IN_GOOGLE_MANAGED_PROJECT")
+      case .unsupportedGoogleManagedProjectConfig:
+        return try container.encode("UNSUPPORTED_GOOGLE_MANAGED_PROJECT_CONFIG")
+      case .googleManagedServiceUnknownIp:
+        return try container.encode("GOOGLE_MANAGED_SERVICE_UNKNOWN_IP")
+      case .sourceRedisClusterUnsupported:
+        return try container.encode("SOURCE_REDIS_CLUSTER_UNSUPPORTED")
+      case .sourceRedisInstanceUnsupported:
+        return try container.encode("SOURCE_REDIS_INSTANCE_UNSUPPORTED")
+      case .permissionDeniedNoCloudRouterConfigs:
+        return try container.encode("PERMISSION_DENIED_NO_CLOUD_ROUTER_CONFIGS")
+      case .noServerlessIpRanges: return try container.encode("NO_SERVERLESS_IP_RANGES")
+      case .googleManagedServiceAmbiguousEndpoint:
+        return try container.encode("GOOGLE_MANAGED_SERVICE_AMBIGUOUS_ENDPOINT")
+      case .ipVersionProtocolMismatch: return try container.encode("IP_VERSION_PROTOCOL_MISMATCH")
+      case .gkePodUnknownEndpointLocation:
+        return try container.encode("GKE_POD_UNKNOWN_ENDPOINT_LOCATION")
+      case .noSourceGcpNetworkLocation:
+        return try container.encode("NO_SOURCE_GCP_NETWORK_LOCATION")
+      case .noSourceNonGcpNetworkLocation:
+        return try container.encode("NO_SOURCE_NON_GCP_NETWORK_LOCATION")
+      case .noSourceInternetLocation: return try container.encode("NO_SOURCE_INTERNET_LOCATION")
+      case .sourceExternalCloudSqlUnsupported:
+        return try container.encode("SOURCE_EXTERNAL_CLOUD_SQL_UNSUPPORTED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

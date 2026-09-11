@@ -150,9 +150,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .disabled: return try container.encode(0)
-        case .standard: return try container.encode(1)
-        case .standardWithGraphql: return try container.encode(2)
+        case .disabled: return try container.encode("DISABLED")
+        case .standard: return try container.encode("STANDARD")
+        case .standardWithGraphql: return try container.encode("STANDARD_WITH_GRAPHQL")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -249,8 +249,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .normal: return try container.encode(0)
-        case .verbose: return try container.encode(1)
+        case .normal: return try container.encode("NORMAL")
+        case .verbose: return try container.encode("VERBOSE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

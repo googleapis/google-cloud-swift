@@ -224,8 +224,8 @@ public struct Taxonomy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .fineGrainedAccessControl: return try container.encode(1)
+      case .unspecified: return try container.encode("POLICY_TYPE_UNSPECIFIED")
+      case .fineGrainedAccessControl: return try container.encode("FINE_GRAINED_ACCESS_CONTROL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

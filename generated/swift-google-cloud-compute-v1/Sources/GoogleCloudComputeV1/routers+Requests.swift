@@ -1132,9 +1132,9 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .ipv4: return try container.encode(0)
-          case .ipv6: return try container.encode(1)
-          case .unspecifiedIpVersion: return try container.encode(2)
+          case .ipv4: return try container.encode("IPV4")
+          case .ipv6: return try container.encode("IPV6")
+          case .unspecifiedIpVersion: return try container.encode("UNSPECIFIED_IP_VERSION")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -1236,9 +1236,9 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .advertised: return try container.encode(0)
-          case .learned: return try container.encode(1)
-          case .unspecifiedRouteType: return try container.encode(2)
+          case .advertised: return try container.encode("ADVERTISED")
+          case .learned: return try container.encode("LEARNED")
+          case .unspecifiedRouteType: return try container.encode("UNSPECIFIED_ROUTE_TYPE")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }

@@ -202,16 +202,19 @@ public struct AccountVerificationInfo: Codable, Equatable, GoogleCloudWKT._AnyPa
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .successUserVerified: return try container.encode(1)
-      case .errorUserNotVerified: return try container.encode(2)
-      case .errorSiteOnboardingIncomplete: return try container.encode(3)
-      case .errorRecipientNotAllowed: return try container.encode(4)
-      case .errorRecipientAbuseLimitExhausted: return try container.encode(5)
-      case .errorCriticalInternal: return try container.encode(6)
-      case .errorCustomerQuotaExhausted: return try container.encode(7)
-      case .errorVerificationBypassed: return try container.encode(8)
-      case .errorVerdictMismatch: return try container.encode(9)
+      case .unspecified: return try container.encode("RESULT_UNSPECIFIED")
+      case .successUserVerified: return try container.encode("SUCCESS_USER_VERIFIED")
+      case .errorUserNotVerified: return try container.encode("ERROR_USER_NOT_VERIFIED")
+      case .errorSiteOnboardingIncomplete:
+        return try container.encode("ERROR_SITE_ONBOARDING_INCOMPLETE")
+      case .errorRecipientNotAllowed: return try container.encode("ERROR_RECIPIENT_NOT_ALLOWED")
+      case .errorRecipientAbuseLimitExhausted:
+        return try container.encode("ERROR_RECIPIENT_ABUSE_LIMIT_EXHAUSTED")
+      case .errorCriticalInternal: return try container.encode("ERROR_CRITICAL_INTERNAL")
+      case .errorCustomerQuotaExhausted:
+        return try container.encode("ERROR_CUSTOMER_QUOTA_EXHAUSTED")
+      case .errorVerificationBypassed: return try container.encode("ERROR_VERIFICATION_BYPASSED")
+      case .errorVerdictMismatch: return try container.encode("ERROR_VERDICT_MISMATCH")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

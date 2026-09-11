@@ -151,8 +151,8 @@ public struct OAuthConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .clientCredential: return try container.encode(1)
+      case .unspecified: return try container.encode("OAUTH_GRANT_TYPE_UNSPECIFIED")
+      case .clientCredential: return try container.encode("CLIENT_CREDENTIAL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

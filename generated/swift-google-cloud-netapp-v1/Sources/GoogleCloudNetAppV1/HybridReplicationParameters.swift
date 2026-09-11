@@ -185,11 +185,11 @@ public struct HybridReplicationParameters: Codable, Equatable, GoogleCloudWKT._A
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .migration: return try container.encode(1)
-      case .continuousReplication: return try container.encode(2)
-      case .onpremReplication: return try container.encode(3)
-      case .reverseOnpremReplication: return try container.encode(4)
+      case .unspecified: return try container.encode("VOLUME_HYBRID_REPLICATION_TYPE_UNSPECIFIED")
+      case .migration: return try container.encode("MIGRATION")
+      case .continuousReplication: return try container.encode("CONTINUOUS_REPLICATION")
+      case .onpremReplication: return try container.encode("ONPREM_REPLICATION")
+      case .reverseOnpremReplication: return try container.encode("REVERSE_ONPREM_REPLICATION")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

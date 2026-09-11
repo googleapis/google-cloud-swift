@@ -143,9 +143,9 @@ public struct VpcAccessConnector: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .allTraffic: return try container.encode(1)
-      case .privateIpRanges: return try container.encode(2)
+      case .unspecified: return try container.encode("EGRESS_SETTING_UNSPECIFIED")
+      case .allTraffic: return try container.encode("ALL_TRAFFIC")
+      case .privateIpRanges: return try container.encode("PRIVATE_IP_RANGES")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

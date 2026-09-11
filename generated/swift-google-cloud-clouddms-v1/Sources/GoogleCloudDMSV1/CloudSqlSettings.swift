@@ -228,9 +228,9 @@ public struct CloudSqlSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .always: return try container.encode(1)
-      case .never: return try container.encode(2)
+      case .unspecified: return try container.encode("SQL_ACTIVATION_POLICY_UNSPECIFIED")
+      case .always: return try container.encode("ALWAYS")
+      case .never: return try container.encode("NEVER")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -333,9 +333,9 @@ public struct CloudSqlSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .pdSsd: return try container.encode(1)
-      case .pdHdd: return try container.encode(2)
+      case .unspecified: return try container.encode("SQL_DATA_DISK_TYPE_UNSPECIFIED")
+      case .pdSsd: return try container.encode("PD_SSD")
+      case .pdHdd: return try container.encode("PD_HDD")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -486,17 +486,17 @@ public struct CloudSqlSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .mysql56: return try container.encode(1)
-      case .mysql57: return try container.encode(2)
-      case .postgres96: return try container.encode(3)
-      case .postgres11: return try container.encode(4)
-      case .postgres10: return try container.encode(5)
-      case .mysql80: return try container.encode(6)
-      case .postgres12: return try container.encode(7)
-      case .postgres13: return try container.encode(8)
-      case .postgres14: return try container.encode(17)
-      case .postgres15: return try container.encode(18)
+      case .unspecified: return try container.encode("SQL_DATABASE_VERSION_UNSPECIFIED")
+      case .mysql56: return try container.encode("MYSQL_5_6")
+      case .mysql57: return try container.encode("MYSQL_5_7")
+      case .postgres96: return try container.encode("POSTGRES_9_6")
+      case .postgres11: return try container.encode("POSTGRES_11")
+      case .postgres10: return try container.encode("POSTGRES_10")
+      case .mysql80: return try container.encode("MYSQL_8_0")
+      case .postgres12: return try container.encode("POSTGRES_12")
+      case .postgres13: return try container.encode("POSTGRES_13")
+      case .postgres14: return try container.encode("POSTGRES_14")
+      case .postgres15: return try container.encode("POSTGRES_15")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -599,9 +599,9 @@ public struct CloudSqlSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .zonal: return try container.encode(1)
-      case .regional: return try container.encode(2)
+      case .unspecified: return try container.encode("SQL_AVAILABILITY_TYPE_UNSPECIFIED")
+      case .zonal: return try container.encode("ZONAL")
+      case .regional: return try container.encode("REGIONAL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -705,9 +705,9 @@ public struct CloudSqlSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .enterprise: return try container.encode(2)
-      case .enterprisePlus: return try container.encode(3)
+      case .unspecified: return try container.encode("EDITION_UNSPECIFIED")
+      case .enterprise: return try container.encode("ENTERPRISE")
+      case .enterprisePlus: return try container.encode("ENTERPRISE_PLUS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

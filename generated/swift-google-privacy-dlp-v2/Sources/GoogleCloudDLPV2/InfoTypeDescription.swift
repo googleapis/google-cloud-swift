@@ -178,10 +178,10 @@ public struct InfoTypeDescription: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .generalAvailability: return try container.encode(1)
-      case .publicPreview: return try container.encode(2)
-      case .privatePreview: return try container.encode(3)
+      case .unspecified: return try container.encode("INFO_TYPE_LAUNCH_STATUS_UNSPECIFIED")
+      case .generalAvailability: return try container.encode("GENERAL_AVAILABILITY")
+      case .publicPreview: return try container.encode("PUBLIC_PREVIEW")
+      case .privatePreview: return try container.encode("PRIVATE_PREVIEW")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

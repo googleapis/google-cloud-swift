@@ -181,12 +181,12 @@ public struct DbServerProperties: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .creating: return try container.encode(1)
-      case .available: return try container.encode(2)
-      case .unavailable: return try container.encode(3)
-      case .deleting: return try container.encode(4)
-      case .deleted: return try container.encode(5)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .creating: return try container.encode("CREATING")
+      case .available: return try container.encode("AVAILABLE")
+      case .unavailable: return try container.encode("UNAVAILABLE")
+      case .deleting: return try container.encode("DELETING")
+      case .deleted: return try container.encode("DELETED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

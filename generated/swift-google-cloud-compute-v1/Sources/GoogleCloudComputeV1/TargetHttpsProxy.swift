@@ -415,9 +415,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .disable: return try container.encode(0)
-        case .enable: return try container.encode(1)
-        case .`none`: return try container.encode(2)
+        case .disable: return try container.encode("DISABLE")
+        case .enable: return try container.encode("ENABLE")
+        case .`none`: return try container.encode("NONE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -540,10 +540,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .disabled: return try container.encode(0)
-        case .permissive: return try container.encode(1)
-        case .strict: return try container.encode(2)
-        case .unrestricted: return try container.encode(3)
+        case .disabled: return try container.encode("DISABLED")
+        case .permissive: return try container.encode("PERMISSIVE")
+        case .strict: return try container.encode("STRICT")
+        case .unrestricted: return try container.encode("UNRESTRICTED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

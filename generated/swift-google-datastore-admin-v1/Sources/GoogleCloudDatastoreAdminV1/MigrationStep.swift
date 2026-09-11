@@ -143,14 +143,16 @@ public enum MigrationStep: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .start: return try container.encode(1)
-    case .copyAndVerify: return try container.encode(2)
-    case .redirectEventuallyConsistentReads: return try container.encode(3)
-    case .redirectStronglyConsistentReads: return try container.encode(4)
-    case .redirectWrites: return try container.encode(5)
-    case .prepare: return try container.encode(6)
-    case .applyWritesSynchronously: return try container.encode(7)
+    case .unspecified: return try container.encode("MIGRATION_STEP_UNSPECIFIED")
+    case .start: return try container.encode("START")
+    case .copyAndVerify: return try container.encode("COPY_AND_VERIFY")
+    case .redirectEventuallyConsistentReads:
+      return try container.encode("REDIRECT_EVENTUALLY_CONSISTENT_READS")
+    case .redirectStronglyConsistentReads:
+      return try container.encode("REDIRECT_STRONGLY_CONSISTENT_READS")
+    case .redirectWrites: return try container.encode("REDIRECT_WRITES")
+    case .prepare: return try container.encode("PREPARE")
+    case .applyWritesSynchronously: return try container.encode("APPLY_WRITES_SYNCHRONOUSLY")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

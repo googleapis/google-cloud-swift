@@ -178,8 +178,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .custom: return try container.encode(0)
-        case .`default`: return try container.encode(1)
+        case .custom: return try container.encode("CUSTOM")
+        case .`default`: return try container.encode("DEFAULT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -272,7 +272,7 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .allSubnets: return try container.encode(0)
+        case .allSubnets: return try container.encode("ALL_SUBNETS")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

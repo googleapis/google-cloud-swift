@@ -118,10 +118,13 @@ public enum ServerCaMode: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .googleManagedPerInstanceCa: return try container.encode(1)
-    case .googleManagedSharedCa: return try container.encode(2)
-    case .customerManagedCasCa: return try container.encode(3)
+    case .unspecified: return try container.encode("SERVER_CA_MODE_UNSPECIFIED")
+    case .googleManagedPerInstanceCa:
+      return try container.encode("SERVER_CA_MODE_GOOGLE_MANAGED_PER_INSTANCE_CA")
+    case .googleManagedSharedCa:
+      return try container.encode("SERVER_CA_MODE_GOOGLE_MANAGED_SHARED_CA")
+    case .customerManagedCasCa:
+      return try container.encode("SERVER_CA_MODE_CUSTOMER_MANAGED_CAS_CA")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

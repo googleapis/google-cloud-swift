@@ -181,12 +181,13 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .incompatibleMetros: return try container.encode(0)
-        case .notAvailable: return try container.encode(1)
-        case .noInterconnects: return try container.encode(2)
-        case .noInterconnectsInMetroAndZone: return try container.encode(3)
-        case .other: return try container.encode(4)
-        case .unspecified: return try container.encode(5)
+        case .incompatibleMetros: return try container.encode("INCOMPATIBLE_METROS")
+        case .notAvailable: return try container.encode("NOT_AVAILABLE")
+        case .noInterconnects: return try container.encode("NO_INTERCONNECTS")
+        case .noInterconnectsInMetroAndZone:
+          return try container.encode("NO_INTERCONNECTS_IN_METRO_AND_ZONE")
+        case .other: return try container.encode("OTHER")
+        case .unspecified: return try container.encode("UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

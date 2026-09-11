@@ -198,9 +198,9 @@ public struct ComputeThreatListDiffResponse: Codable, Equatable, GoogleCloudWKT.
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .diff: return try container.encode(1)
-      case .reset: return try container.encode(2)
+      case .unspecified: return try container.encode("RESPONSE_TYPE_UNSPECIFIED")
+      case .diff: return try container.encode("DIFF")
+      case .reset: return try container.encode("RESET")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

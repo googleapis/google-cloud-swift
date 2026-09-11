@@ -332,15 +332,16 @@ public struct SingleTenantHsmInstance: Codable, Equatable, GoogleCloudWKT._AnyPa
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .creating: return try container.encode(1)
-      case .pendingTwoFactorAuthRegistration: return try container.encode(2)
-      case .active: return try container.encode(3)
-      case .disabling: return try container.encode(4)
-      case .disabled: return try container.encode(5)
-      case .deleting: return try container.encode(6)
-      case .deleted: return try container.encode(7)
-      case .failed: return try container.encode(8)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .creating: return try container.encode("CREATING")
+      case .pendingTwoFactorAuthRegistration:
+        return try container.encode("PENDING_TWO_FACTOR_AUTH_REGISTRATION")
+      case .active: return try container.encode("ACTIVE")
+      case .disabling: return try container.encode("DISABLING")
+      case .disabled: return try container.encode("DISABLED")
+      case .deleting: return try container.encode("DELETING")
+      case .deleted: return try container.encode("DELETED")
+      case .failed: return try container.encode("FAILED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

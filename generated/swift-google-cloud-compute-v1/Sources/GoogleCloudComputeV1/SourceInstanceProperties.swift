@@ -209,9 +209,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .`none`: return try container.encode(1)
-        case .stop: return try container.encode(2)
+        case .unspecified: return try container.encode("KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED")
+        case .`none`: return try container.encode("NONE")
+        case .stop: return try container.encode("STOP")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -316,9 +316,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .noop: return try container.encode(0)
-        case .unspecified: return try container.encode(1)
-        case .shutdown: return try container.encode(2)
+        case .noop: return try container.encode("NOOP")
+        case .unspecified:
+          return try container.encode("POST_KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED")
+        case .shutdown: return try container.encode("SHUTDOWN")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

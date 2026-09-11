@@ -118,10 +118,10 @@ public enum MetricType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .yarnMemory: return try container.encode(1)
-    case .yarnCores: return try container.encode(2)
-    case .sparkExecutors: return try container.encode(3)
+    case .unspecified: return try container.encode("METRIC_TYPE_UNSPECIFIED")
+    case .yarnMemory: return try container.encode("YARN_MEMORY")
+    case .yarnCores: return try container.encode("YARN_CORES")
+    case .sparkExecutors: return try container.encode("SPARK_EXECUTORS")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

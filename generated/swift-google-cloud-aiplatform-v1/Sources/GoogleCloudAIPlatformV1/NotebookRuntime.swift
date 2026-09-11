@@ -254,9 +254,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .healthy: return try container.encode(1)
-        case .unhealthy: return try container.encode(2)
+        case .unspecified: return try container.encode("HEALTH_STATE_UNSPECIFIED")
+        case .healthy: return try container.encode("HEALTHY")
+        case .unhealthy: return try container.encode("UNHEALTHY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -392,14 +392,14 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .running: return try container.encode(1)
-        case .beingStarted: return try container.encode(2)
-        case .beingStopped: return try container.encode(3)
-        case .stopped: return try container.encode(4)
-        case .beingUpgraded: return try container.encode(5)
-        case .error: return try container.encode(100)
-        case .invalid: return try container.encode(101)
+        case .unspecified: return try container.encode("RUNTIME_STATE_UNSPECIFIED")
+        case .running: return try container.encode("RUNNING")
+        case .beingStarted: return try container.encode("BEING_STARTED")
+        case .beingStopped: return try container.encode("BEING_STOPPED")
+        case .stopped: return try container.encode("STOPPED")
+        case .beingUpgraded: return try container.encode("BEING_UPGRADED")
+        case .error: return try container.encode("ERROR")
+        case .invalid: return try container.encode("INVALID")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -163,10 +163,10 @@ public struct ResourceEnrollmentStatus: Codable, Equatable, GoogleCloudWKT._AnyP
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .notEnrolled: return try container.encode(1)
-      case .inherited: return try container.encode(2)
-      case .enrolled: return try container.encode(3)
+      case .unspecified: return try container.encode("RESOURCE_ENROLLMENT_STATE_UNSPECIFIED")
+      case .notEnrolled: return try container.encode("NOT_ENROLLED")
+      case .inherited: return try container.encode("INHERITED")
+      case .enrolled: return try container.encode("ENROLLED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

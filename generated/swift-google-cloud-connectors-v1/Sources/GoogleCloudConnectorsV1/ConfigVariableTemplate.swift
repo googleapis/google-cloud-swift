@@ -240,13 +240,13 @@ public struct ConfigVariableTemplate: Codable, Equatable, GoogleCloudWKT._AnyPac
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .string: return try container.encode(1)
-      case .int: return try container.encode(2)
-      case .bool: return try container.encode(3)
-      case .secret: return try container.encode(4)
-      case .`enum`: return try container.encode(5)
-      case .authorizationCode: return try container.encode(6)
+      case .unspecified: return try container.encode("VALUE_TYPE_UNSPECIFIED")
+      case .string: return try container.encode("STRING")
+      case .int: return try container.encode("INT")
+      case .bool: return try container.encode("BOOL")
+      case .secret: return try container.encode("SECRET")
+      case .`enum`: return try container.encode("ENUM")
+      case .authorizationCode: return try container.encode("AUTHORIZATION_CODE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -349,9 +349,9 @@ public struct ConfigVariableTemplate: Codable, Equatable, GoogleCloudWKT._AnyPac
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .active: return try container.encode(1)
-      case .deprecated: return try container.encode(2)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .active: return try container.encode("ACTIVE")
+      case .deprecated: return try container.encode("DEPRECATED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -202,12 +202,12 @@ public struct ForecastParams: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .daily: return try container.encode(1)
-      case .weekly: return try container.encode(2)
-      case .monthly: return try container.encode(3)
-      case .yearly: return try container.encode(4)
-      case .hourly: return try container.encode(5)
+      case .unspecified: return try container.encode("PERIOD_UNSPECIFIED")
+      case .daily: return try container.encode("DAILY")
+      case .weekly: return try container.encode("WEEKLY")
+      case .monthly: return try container.encode("MONTHLY")
+      case .yearly: return try container.encode("YEARLY")
+      case .hourly: return try container.encode("HOURLY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

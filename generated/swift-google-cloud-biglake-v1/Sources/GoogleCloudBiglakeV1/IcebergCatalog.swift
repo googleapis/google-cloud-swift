@@ -294,10 +294,10 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unknown: return try container.encode(0)
-        case .primary: return try container.encode(1)
-        case .primaryInProgress: return try container.encode(2)
-        case .secondary: return try container.encode(3)
+        case .unknown: return try container.encode("STATE_UNKNOWN")
+        case .primary: return try container.encode("STATE_PRIMARY")
+        case .primaryInProgress: return try container.encode("STATE_PRIMARY_IN_PROGRESS")
+        case .secondary: return try container.encode("STATE_SECONDARY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1065,10 +1065,10 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .gcsBucket: return try container.encode(1)
-      case .biglake: return try container.encode(3)
-      case .federated: return try container.encode(4)
+      case .unspecified: return try container.encode("CATALOG_TYPE_UNSPECIFIED")
+      case .gcsBucket: return try container.encode("CATALOG_TYPE_GCS_BUCKET")
+      case .biglake: return try container.encode("CATALOG_TYPE_BIGLAKE")
+      case .federated: return try container.encode("CATALOG_TYPE_FEDERATED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -1183,9 +1183,9 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .endUser: return try container.encode(1)
-      case .vendedCredentials: return try container.encode(2)
+      case .unspecified: return try container.encode("CREDENTIAL_MODE_UNSPECIFIED")
+      case .endUser: return try container.encode("CREDENTIAL_MODE_END_USER")
+      case .vendedCredentials: return try container.encode("CREDENTIAL_MODE_VENDED_CREDENTIALS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -161,11 +161,11 @@ public struct MoveRepositoryMetadata: Codable, Equatable, GoogleCloudWKT._AnyPac
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .initialized: return try container.encode(1)
-      case .inProgress: return try container.encode(2)
-      case .success: return try container.encode(3)
-      case .failed: return try container.encode(4)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .initialized: return try container.encode("INITIALIZED")
+      case .inProgress: return try container.encode("IN_PROGRESS")
+      case .success: return try container.encode("SUCCESS")
+      case .failed: return try container.encode("FAILED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

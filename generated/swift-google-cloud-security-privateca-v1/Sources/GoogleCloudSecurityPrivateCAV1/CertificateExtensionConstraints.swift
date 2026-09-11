@@ -218,13 +218,13 @@ public struct CertificateExtensionConstraints: Codable, Equatable, GoogleCloudWK
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .baseKeyUsage: return try container.encode(1)
-      case .extendedKeyUsage: return try container.encode(2)
-      case .caOptions: return try container.encode(3)
-      case .policyIds: return try container.encode(4)
-      case .aiaOcspServers: return try container.encode(5)
-      case .nameConstraints: return try container.encode(6)
+      case .unspecified: return try container.encode("KNOWN_CERTIFICATE_EXTENSION_UNSPECIFIED")
+      case .baseKeyUsage: return try container.encode("BASE_KEY_USAGE")
+      case .extendedKeyUsage: return try container.encode("EXTENDED_KEY_USAGE")
+      case .caOptions: return try container.encode("CA_OPTIONS")
+      case .policyIds: return try container.encode("POLICY_IDS")
+      case .aiaOcspServers: return try container.encode("AIA_OCSP_SERVERS")
+      case .nameConstraints: return try container.encode("NAME_CONSTRAINTS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

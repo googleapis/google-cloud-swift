@@ -157,10 +157,10 @@ public struct RunningService: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .active: return try container.encode(1)
-      case .paused: return try container.encode(2)
-      case .stopped: return try container.encode(3)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .active: return try container.encode("ACTIVE")
+      case .paused: return try container.encode("PAUSED")
+      case .stopped: return try container.encode("STOPPED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -281,12 +281,12 @@ public struct RunningService: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .boot: return try container.encode(1)
-      case .system: return try container.encode(2)
-      case .auto: return try container.encode(3)
-      case .manual: return try container.encode(4)
-      case .disabled: return try container.encode(5)
+      case .unspecified: return try container.encode("START_MODE_UNSPECIFIED")
+      case .boot: return try container.encode("BOOT")
+      case .system: return try container.encode("SYSTEM")
+      case .auto: return try container.encode("AUTO")
+      case .manual: return try container.encode("MANUAL")
+      case .disabled: return try container.encode("DISABLED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -142,9 +142,9 @@ public struct MetadataExchangeResponse: Codable, Equatable, GoogleCloudWKT._AnyP
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .ok: return try container.encode(1)
-      case .error: return try container.encode(2)
+      case .unspecified: return try container.encode("RESPONSE_CODE_UNSPECIFIED")
+      case .ok: return try container.encode("OK")
+      case .error: return try container.encode("ERROR")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

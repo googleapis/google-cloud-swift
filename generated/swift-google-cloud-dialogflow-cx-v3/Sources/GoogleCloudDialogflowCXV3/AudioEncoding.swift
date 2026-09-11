@@ -172,15 +172,16 @@
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .linear16: return try container.encode(1)
-      case .flac: return try container.encode(2)
-      case .mulaw: return try container.encode(3)
-      case .amr: return try container.encode(4)
-      case .amrWb: return try container.encode(5)
-      case .oggOpus: return try container.encode(6)
-      case .speexWithHeaderByte: return try container.encode(7)
-      case .alaw: return try container.encode(8)
+      case .unspecified: return try container.encode("AUDIO_ENCODING_UNSPECIFIED")
+      case .linear16: return try container.encode("AUDIO_ENCODING_LINEAR_16")
+      case .flac: return try container.encode("AUDIO_ENCODING_FLAC")
+      case .mulaw: return try container.encode("AUDIO_ENCODING_MULAW")
+      case .amr: return try container.encode("AUDIO_ENCODING_AMR")
+      case .amrWb: return try container.encode("AUDIO_ENCODING_AMR_WB")
+      case .oggOpus: return try container.encode("AUDIO_ENCODING_OGG_OPUS")
+      case .speexWithHeaderByte:
+        return try container.encode("AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE")
+      case .alaw: return try container.encode("AUDIO_ENCODING_ALAW")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

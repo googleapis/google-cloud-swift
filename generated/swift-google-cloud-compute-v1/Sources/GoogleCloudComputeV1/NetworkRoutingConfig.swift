@@ -159,8 +159,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .legacy: return try container.encode(0)
-        case .standard: return try container.encode(1)
+        case .legacy: return try container.encode("LEGACY")
+        case .standard: return try container.encode("STANDARD")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -257,8 +257,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .addCostToMed: return try container.encode(0)
-        case .`default`: return try container.encode(1)
+        case .addCostToMed: return try container.encode("ADD_COST_TO_MED")
+        case .`default`: return try container.encode("DEFAULT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -355,8 +355,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .addCostToMed: return try container.encode(0)
-        case .`default`: return try container.encode(1)
+        case .addCostToMed: return try container.encode("ADD_COST_TO_MED")
+        case .`default`: return try container.encode("DEFAULT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -453,8 +453,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .global: return try container.encode(0)
-        case .regional: return try container.encode(1)
+        case .global: return try container.encode("GLOBAL")
+        case .regional: return try container.encode("REGIONAL")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

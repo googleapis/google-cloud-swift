@@ -118,10 +118,10 @@ public enum DeviceEncryptionStatus: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .encryptionUnspecified: return try container.encode(0)
-    case .encryptionUnsupported: return try container.encode(1)
-    case .unencrypted: return try container.encode(2)
-    case .encrypted: return try container.encode(3)
+    case .encryptionUnspecified: return try container.encode("ENCRYPTION_UNSPECIFIED")
+    case .encryptionUnsupported: return try container.encode("ENCRYPTION_UNSUPPORTED")
+    case .unencrypted: return try container.encode("UNENCRYPTED")
+    case .encrypted: return try container.encode("ENCRYPTED")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

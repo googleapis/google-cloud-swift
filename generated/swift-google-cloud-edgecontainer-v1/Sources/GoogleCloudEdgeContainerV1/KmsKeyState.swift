@@ -114,9 +114,9 @@ public enum KmsKeyState: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .keyAvailable: return try container.encode(1)
-    case .keyUnavailable: return try container.encode(2)
+    case .unspecified: return try container.encode("KMS_KEY_STATE_UNSPECIFIED")
+    case .keyAvailable: return try container.encode("KMS_KEY_STATE_KEY_AVAILABLE")
+    case .keyUnavailable: return try container.encode("KMS_KEY_STATE_KEY_UNAVAILABLE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

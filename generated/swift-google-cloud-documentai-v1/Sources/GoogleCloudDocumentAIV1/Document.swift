@@ -753,11 +753,11 @@ public struct Document: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .pageUp: return try container.encode(1)
-          case .pageRight: return try container.encode(2)
-          case .pageDown: return try container.encode(3)
-          case .pageLeft: return try container.encode(4)
+          case .unspecified: return try container.encode("ORIENTATION_UNSPECIFIED")
+          case .pageUp: return try container.encode("PAGE_UP")
+          case .pageRight: return try container.encode("PAGE_RIGHT")
+          case .pageDown: return try container.encode("PAGE_DOWN")
+          case .pageLeft: return try container.encode("PAGE_LEFT")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -1084,10 +1084,10 @@ public struct Document: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .unspecified: return try container.encode(0)
-            case .space: return try container.encode(1)
-            case .wideSpace: return try container.encode(2)
-            case .hyphen: return try container.encode(3)
+            case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+            case .space: return try container.encode("SPACE")
+            case .wideSpace: return try container.encode("WIDE_SPACE")
+            case .hyphen: return try container.encode("HYPHEN")
             case .unknownIntValue(let v): return try container.encode(v)
             case .unknownStringValue(let v): return try container.encode(v)
             }
@@ -2068,9 +2068,9 @@ public struct Document: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .extract: return try container.encode(1)
-        case .derive: return try container.encode(2)
+        case .unspecified: return try container.encode("METHOD_UNSPECIFIED")
+        case .extract: return try container.encode("EXTRACT")
+        case .derive: return try container.encode("DERIVE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -2463,14 +2463,14 @@ public struct Document: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .block: return try container.encode(1)
-          case .paragraph: return try container.encode(2)
-          case .line: return try container.encode(3)
-          case .token: return try container.encode(4)
-          case .visualElement: return try container.encode(5)
-          case .table: return try container.encode(6)
-          case .formField: return try container.encode(7)
+          case .unspecified: return try container.encode("LAYOUT_TYPE_UNSPECIFIED")
+          case .block: return try container.encode("BLOCK")
+          case .paragraph: return try container.encode("PARAGRAPH")
+          case .line: return try container.encode("LINE")
+          case .token: return try container.encode("TOKEN")
+          case .visualElement: return try container.encode("VISUAL_ELEMENT")
+          case .table: return try container.encode("TABLE")
+          case .formField: return try container.encode("FORM_FIELD")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -2713,14 +2713,14 @@ public struct Document: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .add: return try container.encode(1)
-        case .remove: return try container.encode(2)
-        case .replace: return try container.encode(3)
-        case .evalRequested: return try container.encode(4)
-        case .evalApproved: return try container.encode(5)
-        case .evalSkipped: return try container.encode(6)
-        case .update: return try container.encode(7)
+        case .unspecified: return try container.encode("OPERATION_TYPE_UNSPECIFIED")
+        case .add: return try container.encode("ADD")
+        case .remove: return try container.encode("REMOVE")
+        case .replace: return try container.encode("REPLACE")
+        case .evalRequested: return try container.encode("EVAL_REQUESTED")
+        case .evalApproved: return try container.encode("EVAL_APPROVED")
+        case .evalSkipped: return try container.encode("EVAL_SKIPPED")
+        case .update: return try container.encode("UPDATE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -4183,11 +4183,11 @@ public struct Document: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .valid: return try container.encode(1)
-          case .invalid: return try container.encode(2)
-          case .skipped: return try container.encode(3)
-          case .notApplicable: return try container.encode(4)
+          case .unspecified: return try container.encode("VALIDATION_RESULT_TYPE_UNSPECIFIED")
+          case .valid: return try container.encode("VALIDATION_RESULT_TYPE_VALID")
+          case .invalid: return try container.encode("VALIDATION_RESULT_TYPE_INVALID")
+          case .skipped: return try container.encode("VALIDATION_RESULT_TYPE_SKIPPED")
+          case .notApplicable: return try container.encode("VALIDATION_RESULT_TYPE_NOT_APPLICABLE")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }

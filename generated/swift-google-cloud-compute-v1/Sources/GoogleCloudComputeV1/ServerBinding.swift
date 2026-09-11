@@ -136,9 +136,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .restartNodeOnAnyServer: return try container.encode(0)
-        case .restartNodeOnMinimalServers: return try container.encode(1)
-        case .serverBindingTypeUnspecified: return try container.encode(2)
+        case .restartNodeOnAnyServer: return try container.encode("RESTART_NODE_ON_ANY_SERVER")
+        case .restartNodeOnMinimalServers:
+          return try container.encode("RESTART_NODE_ON_MINIMAL_SERVERS")
+        case .serverBindingTypeUnspecified:
+          return try container.encode("SERVER_BINDING_TYPE_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

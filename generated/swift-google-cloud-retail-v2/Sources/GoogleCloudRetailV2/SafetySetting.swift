@@ -161,12 +161,12 @@ public struct SafetySetting: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .blockLowAndAbove: return try container.encode(1)
-      case .blockMediumAndAbove: return try container.encode(2)
-      case .blockOnlyHigh: return try container.encode(3)
-      case .blockNone: return try container.encode(4)
-      case .off: return try container.encode(5)
+      case .unspecified: return try container.encode("HARM_BLOCK_THRESHOLD_UNSPECIFIED")
+      case .blockLowAndAbove: return try container.encode("BLOCK_LOW_AND_ABOVE")
+      case .blockMediumAndAbove: return try container.encode("BLOCK_MEDIUM_AND_ABOVE")
+      case .blockOnlyHigh: return try container.encode("BLOCK_ONLY_HIGH")
+      case .blockNone: return try container.encode("BLOCK_NONE")
+      case .off: return try container.encode("OFF")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -269,9 +269,9 @@ public struct SafetySetting: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .severity: return try container.encode(1)
-      case .probability: return try container.encode(2)
+      case .unspecified: return try container.encode("HARM_BLOCK_METHOD_UNSPECIFIED")
+      case .severity: return try container.encode("SEVERITY")
+      case .probability: return try container.encode("PROBABILITY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -113,9 +113,9 @@ public enum IPVersion: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .ipv4: return try container.encode(1)
-    case .ipv6: return try container.encode(2)
+    case .unspecified: return try container.encode("IP_VERSION_UNSPECIFIED")
+    case .ipv4: return try container.encode("IPV4")
+    case .ipv6: return try container.encode("IPV6")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

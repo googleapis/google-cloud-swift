@@ -642,10 +642,10 @@ public struct AuthzPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .clientCertUriSan: return try container.encode(1)
-          case .clientCertDnsNameSan: return try container.encode(2)
-          case .clientCertCommonName: return try container.encode(3)
+          case .unspecified: return try container.encode("PRINCIPAL_SELECTOR_UNSPECIFIED")
+          case .clientCertUriSan: return try container.encode("CLIENT_CERT_URI_SAN")
+          case .clientCertDnsNameSan: return try container.encode("CLIENT_CERT_DNS_NAME_SAN")
+          case .clientCertCommonName: return try container.encode("CLIENT_CERT_COMMON_NAME")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -1093,9 +1093,11 @@ public struct AuthzPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .unspecified: return try container.encode(0)
-            case .skipBaseProtocolMethods: return try container.encode(1)
-            case .matchBaseProtocolMethods: return try container.encode(2)
+            case .unspecified:
+              return try container.encode("BASE_PROTOCOL_METHODS_OPTION_UNSPECIFIED")
+            case .skipBaseProtocolMethods: return try container.encode("SKIP_BASE_PROTOCOL_METHODS")
+            case .matchBaseProtocolMethods:
+              return try container.encode("MATCH_BASE_PROTOCOL_METHODS")
             case .unknownIntValue(let v): return try container.encode(v)
             case .unknownStringValue(let v): return try container.encode(v)
             }
@@ -1363,10 +1365,10 @@ public struct AuthzPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .internalManaged: return try container.encode(1)
-      case .externalManaged: return try container.encode(2)
-      case .internalSelfManaged: return try container.encode(3)
+      case .unspecified: return try container.encode("LOAD_BALANCING_SCHEME_UNSPECIFIED")
+      case .internalManaged: return try container.encode("INTERNAL_MANAGED")
+      case .externalManaged: return try container.encode("EXTERNAL_MANAGED")
+      case .internalSelfManaged: return try container.encode("INTERNAL_SELF_MANAGED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -1476,10 +1478,10 @@ public struct AuthzPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .allow: return try container.encode(1)
-      case .deny: return try container.encode(2)
-      case .custom: return try container.encode(3)
+      case .unspecified: return try container.encode("AUTHZ_ACTION_UNSPECIFIED")
+      case .allow: return try container.encode("ALLOW")
+      case .deny: return try container.encode("DENY")
+      case .custom: return try container.encode("CUSTOM")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -1591,9 +1593,9 @@ public struct AuthzPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .requestAuthz: return try container.encode(1)
-      case .contentAuthz: return try container.encode(2)
+      case .unspecified: return try container.encode("POLICY_PROFILE_UNSPECIFIED")
+      case .requestAuthz: return try container.encode("REQUEST_AUTHZ")
+      case .contentAuthz: return try container.encode("CONTENT_AUTHZ")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

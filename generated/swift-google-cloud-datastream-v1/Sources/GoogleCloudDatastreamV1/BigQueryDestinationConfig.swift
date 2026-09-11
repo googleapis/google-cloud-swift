@@ -393,8 +393,8 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleCloudWKT._Any
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .parquet: return try container.encode(1)
+        case .unspecified: return try container.encode("FILE_FORMAT_UNSPECIFIED")
+        case .parquet: return try container.encode("PARQUET")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -491,8 +491,8 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleCloudWKT._Any
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .iceberg: return try container.encode(1)
+        case .unspecified: return try container.encode("TABLE_FORMAT_UNSPECIFIED")
+        case .iceberg: return try container.encode("ICEBERG")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

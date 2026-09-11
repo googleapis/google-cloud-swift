@@ -159,9 +159,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .md5Optional: return try container.encode(0)
-        case .md5Required: return try container.encode(1)
-        case .md5Unsupported: return try container.encode(2)
+        case .md5Optional: return try container.encode("MD5_OPTIONAL")
+        case .md5Required: return try container.encode("MD5_REQUIRED")
+        case .md5Unsupported: return try container.encode("MD5_UNSUPPORTED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

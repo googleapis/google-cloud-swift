@@ -177,9 +177,9 @@ public struct BinaryAuthorizationConfig: Codable, Equatable, GoogleCloudWKT._Any
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .disabled: return try container.encode(1)
-      case .policyBindings: return try container.encode(2)
+      case .unspecified: return try container.encode("EVALUATION_MODE_UNSPECIFIED")
+      case .disabled: return try container.encode("DISABLED")
+      case .policyBindings: return try container.encode("POLICY_BINDINGS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

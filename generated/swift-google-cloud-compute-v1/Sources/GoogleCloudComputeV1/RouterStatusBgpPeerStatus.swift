@@ -201,9 +201,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .down: return try container.encode(0)
-        case .unknown: return try container.encode(1)
-        case .up: return try container.encode(2)
+        case .down: return try container.encode("DOWN")
+        case .unknown: return try container.encode("UNKNOWN")
+        case .up: return try container.encode("UP")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -317,10 +317,12 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .ipv4PeerOnIpv6OnlyConnection: return try container.encode(0)
-        case .ipv6PeerOnIpv4OnlyConnection: return try container.encode(1)
-        case .md5AuthInternalProblem: return try container.encode(2)
-        case .unspecified: return try container.encode(3)
+        case .ipv4PeerOnIpv6OnlyConnection:
+          return try container.encode("IPV4_PEER_ON_IPV6_ONLY_CONNECTION")
+        case .ipv6PeerOnIpv4OnlyConnection:
+          return try container.encode("IPV6_PEER_ON_IPV4_ONLY_CONNECTION")
+        case .md5AuthInternalProblem: return try container.encode("MD5_AUTH_INTERNAL_PROBLEM")
+        case .unspecified: return try container.encode("STATUS_REASON_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -203,10 +203,10 @@ public struct QuotaInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .project: return try container.encode(1)
-      case .folder: return try container.encode(2)
-      case .organization: return try container.encode(3)
+      case .unspecified: return try container.encode("CONTAINER_TYPE_UNSPECIFIED")
+      case .project: return try container.encode("PROJECT")
+      case .folder: return try container.encode("FOLDER")
+      case .organization: return try container.encode("ORGANIZATION")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

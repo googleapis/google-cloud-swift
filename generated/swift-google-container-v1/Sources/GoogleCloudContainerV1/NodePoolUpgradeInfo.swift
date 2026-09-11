@@ -165,10 +165,10 @@ public struct NodePoolUpgradeInfo: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unknown: return try container.encode(0)
-      case .active: return try container.encode(1)
-      case .minorUpgradePaused: return try container.encode(2)
-      case .upgradePaused: return try container.encode(3)
+      case .unknown: return try container.encode("UNKNOWN")
+      case .active: return try container.encode("ACTIVE")
+      case .minorUpgradePaused: return try container.encode("MINOR_UPGRADE_PAUSED")
+      case .upgradePaused: return try container.encode("UPGRADE_PAUSED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -287,11 +287,13 @@ public struct NodePoolUpgradeInfo: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .maintenanceWindow: return try container.encode(1)
-      case .maintenanceExclusionNoUpgrades: return try container.encode(2)
-      case .maintenanceExclusionNoMinorUpgrades: return try container.encode(3)
-      case .systemConfig: return try container.encode(4)
+      case .unspecified: return try container.encode("AUTO_UPGRADE_PAUSED_REASON_UNSPECIFIED")
+      case .maintenanceWindow: return try container.encode("MAINTENANCE_WINDOW")
+      case .maintenanceExclusionNoUpgrades:
+        return try container.encode("MAINTENANCE_EXCLUSION_NO_UPGRADES")
+      case .maintenanceExclusionNoMinorUpgrades:
+        return try container.encode("MAINTENANCE_EXCLUSION_NO_MINOR_UPGRADES")
+      case .systemConfig: return try container.encode("SYSTEM_CONFIG")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

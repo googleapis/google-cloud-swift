@@ -186,9 +186,9 @@ public struct QueryRuntimeError: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .warning: return try container.encode(1)
-      case .severe: return try container.encode(2)
+      case .unspecified: return try container.encode("ERROR_SEVERITY_UNSPECIFIED")
+      case .warning: return try container.encode("WARNING")
+      case .severe: return try container.encode("SEVERE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -285,8 +285,8 @@ public struct QueryRuntimeError: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .rowLimit: return try container.encode(1)
+      case .unspecified: return try container.encode("METADATA_KEY_UNSPECIFIED")
+      case .rowLimit: return try container.encode("ROW_LIMIT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -395,10 +395,11 @@ public struct QueryRuntimeError: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .rowLimitExceeded: return try container.encode(1)
-      case .defaultRowLimitExceeded: return try container.encode(2)
-      case .curatedQueryDefaultRowLimitExceeded: return try container.encode(3)
+      case .unspecified: return try container.encode("WARNING_REASON_UNSPECIFIED")
+      case .rowLimitExceeded: return try container.encode("ROW_LIMIT_EXCEEDED")
+      case .defaultRowLimitExceeded: return try container.encode("DEFAULT_ROW_LIMIT_EXCEEDED")
+      case .curatedQueryDefaultRowLimitExceeded:
+        return try container.encode("CURATED_QUERY_DEFAULT_ROW_LIMIT_EXCEEDED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

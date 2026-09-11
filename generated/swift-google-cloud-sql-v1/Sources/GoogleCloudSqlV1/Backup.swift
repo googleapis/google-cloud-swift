@@ -333,10 +333,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .automated: return try container.encode(1)
-        case .onDemand: return try container.encode(2)
-        case .`final`: return try container.encode(3)
+        case .unspecified: return try container.encode("SQL_BACKUP_TYPE_UNSPECIFIED")
+        case .automated: return try container.encode("AUTOMATED")
+        case .onDemand: return try container.encode("ON_DEMAND")
+        case .`final`: return try container.encode("FINAL")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -463,13 +463,13 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .enqueued: return try container.encode(1)
-        case .running: return try container.encode(2)
-        case .failed: return try container.encode(3)
-        case .successful: return try container.encode(4)
-        case .deleting: return try container.encode(5)
-        case .deletionFailed: return try container.encode(6)
+        case .unspecified: return try container.encode("SQL_BACKUP_STATE_UNSPECIFIED")
+        case .enqueued: return try container.encode("ENQUEUED")
+        case .running: return try container.encode("RUNNING")
+        case .failed: return try container.encode("FAILED")
+        case .successful: return try container.encode("SUCCESSFUL")
+        case .deleting: return try container.encode("DELETING")
+        case .deletionFailed: return try container.encode("DELETION_FAILED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

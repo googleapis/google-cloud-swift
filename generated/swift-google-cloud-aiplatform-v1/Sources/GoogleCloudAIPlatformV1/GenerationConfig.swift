@@ -355,10 +355,10 @@
           public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .unknown: return try container.encode(0)
-            case .prioritizeQuality: return try container.encode(1)
-            case .balanced: return try container.encode(2)
-            case .prioritizeCost: return try container.encode(3)
+            case .unknown: return try container.encode("UNKNOWN")
+            case .prioritizeQuality: return try container.encode("PRIORITIZE_QUALITY")
+            case .balanced: return try container.encode("BALANCED")
+            case .prioritizeCost: return try container.encode("PRIORITIZE_COST")
             case .unknownIntValue(let v): return try container.encode(v)
             case .unknownStringValue(let v): return try container.encode(v)
             }
@@ -571,11 +571,11 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .low: return try container.encode(1)
-          case .medium: return try container.encode(2)
-          case .high: return try container.encode(3)
-          case .minimal: return try container.encode(4)
+          case .unspecified: return try container.encode("THINKING_LEVEL_UNSPECIFIED")
+          case .low: return try container.encode("LOW")
+          case .medium: return try container.encode("MEDIUM")
+          case .high: return try container.encode("HIGH")
+          case .minimal: return try container.encode("MINIMAL")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -695,10 +695,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .text: return try container.encode(1)
-        case .image: return try container.encode(2)
-        case .audio: return try container.encode(3)
+        case .unspecified: return try container.encode("MODALITY_UNSPECIFIED")
+        case .text: return try container.encode("TEXT")
+        case .image: return try container.encode("IMAGE")
+        case .audio: return try container.encode("AUDIO")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -807,10 +807,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .low: return try container.encode(1)
-        case .medium: return try container.encode(2)
-        case .high: return try container.encode(3)
+        case .unspecified: return try container.encode("MEDIA_RESOLUTION_UNSPECIFIED")
+        case .low: return try container.encode("MEDIA_RESOLUTION_LOW")
+        case .medium: return try container.encode("MEDIA_RESOLUTION_MEDIUM")
+        case .high: return try container.encode("MEDIA_RESOLUTION_HIGH")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

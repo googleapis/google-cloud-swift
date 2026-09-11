@@ -164,12 +164,12 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .tc1: return try container.encode(0)
-        case .tc2: return try container.encode(1)
-        case .tc3: return try container.encode(2)
-        case .tc4: return try container.encode(3)
-        case .tc5: return try container.encode(4)
-        case .tc6: return try container.encode(5)
+        case .tc1: return try container.encode("TC1")
+        case .tc2: return try container.encode("TC2")
+        case .tc3: return try container.encode("TC3")
+        case .tc4: return try container.encode("TC4")
+        case .tc5: return try container.encode("TC5")
+        case .tc6: return try container.encode("TC6")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

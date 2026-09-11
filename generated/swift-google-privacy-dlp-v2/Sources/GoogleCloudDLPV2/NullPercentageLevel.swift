@@ -125,11 +125,11 @@ public enum NullPercentageLevel: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .nullPercentageVeryLow: return try container.encode(1)
-    case .nullPercentageLow: return try container.encode(2)
-    case .nullPercentageMedium: return try container.encode(3)
-    case .nullPercentageHigh: return try container.encode(4)
+    case .unspecified: return try container.encode("NULL_PERCENTAGE_LEVEL_UNSPECIFIED")
+    case .nullPercentageVeryLow: return try container.encode("NULL_PERCENTAGE_VERY_LOW")
+    case .nullPercentageLow: return try container.encode("NULL_PERCENTAGE_LOW")
+    case .nullPercentageMedium: return try container.encode("NULL_PERCENTAGE_MEDIUM")
+    case .nullPercentageHigh: return try container.encode("NULL_PERCENTAGE_HIGH")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

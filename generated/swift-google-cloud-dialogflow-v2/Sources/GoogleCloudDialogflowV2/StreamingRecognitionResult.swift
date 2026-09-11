@@ -248,13 +248,13 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .transcript: return try container.encode(1)
-        case .endOfSingleUtterance: return try container.encode(2)
-        case .dtmfDigits: return try container.encode(3)
-        case .partialDtmfDigits: return try container.encode(4)
-        case .speechActivityBegin: return try container.encode(5)
-        case .speechActivityEnd: return try container.encode(6)
+        case .unspecified: return try container.encode("MESSAGE_TYPE_UNSPECIFIED")
+        case .transcript: return try container.encode("TRANSCRIPT")
+        case .endOfSingleUtterance: return try container.encode("END_OF_SINGLE_UTTERANCE")
+        case .dtmfDigits: return try container.encode("DTMF_DIGITS")
+        case .partialDtmfDigits: return try container.encode("PARTIAL_DTMF_DIGITS")
+        case .speechActivityBegin: return try container.encode("SPEECH_ACTIVITY_BEGIN")
+        case .speechActivityEnd: return try container.encode("SPEECH_ACTIVITY_END")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

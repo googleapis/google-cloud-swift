@@ -233,12 +233,12 @@ public struct TextAnnotation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unknown: return try container.encode(0)
-        case .space: return try container.encode(1)
-        case .sureSpace: return try container.encode(2)
-        case .eolSureSpace: return try container.encode(3)
-        case .hyphen: return try container.encode(4)
-        case .lineBreak: return try container.encode(5)
+        case .unknown: return try container.encode("UNKNOWN")
+        case .space: return try container.encode("SPACE")
+        case .sureSpace: return try container.encode("SURE_SPACE")
+        case .eolSureSpace: return try container.encode("EOL_SURE_SPACE")
+        case .hyphen: return try container.encode("HYPHEN")
+        case .lineBreak: return try container.encode("LINE_BREAK")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

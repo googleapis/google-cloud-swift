@@ -272,8 +272,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .backendServicePolicy: return try container.encode(0)
-        case .dnsPublicIpPolicy: return try container.encode(1)
+        case .backendServicePolicy: return try container.encode("BACKEND_SERVICE_POLICY")
+        case .dnsPublicIpPolicy: return try container.encode("DNS_PUBLIC_IP_POLICY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

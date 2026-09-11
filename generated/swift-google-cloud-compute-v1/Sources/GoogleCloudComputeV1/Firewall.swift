@@ -397,8 +397,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .egress: return try container.encode(0)
-        case .ingress: return try container.encode(1)
+        case .egress: return try container.encode("EGRESS")
+        case .ingress: return try container.encode("INGRESS")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

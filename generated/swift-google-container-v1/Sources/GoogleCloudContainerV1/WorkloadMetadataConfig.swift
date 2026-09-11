@@ -143,9 +143,9 @@ public struct WorkloadMetadataConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .gceMetadata: return try container.encode(1)
-      case .gkeMetadata: return try container.encode(2)
+      case .unspecified: return try container.encode("MODE_UNSPECIFIED")
+      case .gceMetadata: return try container.encode("GCE_METADATA")
+      case .gkeMetadata: return try container.encode("GKE_METADATA")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

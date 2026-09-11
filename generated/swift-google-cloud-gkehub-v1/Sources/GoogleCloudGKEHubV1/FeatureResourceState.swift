@@ -159,12 +159,12 @@ public struct FeatureResourceState: Codable, Equatable, GoogleCloudWKT._AnyPacka
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .enabling: return try container.encode(1)
-      case .active: return try container.encode(2)
-      case .disabling: return try container.encode(3)
-      case .updating: return try container.encode(4)
-      case .serviceUpdating: return try container.encode(5)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .enabling: return try container.encode("ENABLING")
+      case .active: return try container.encode("ACTIVE")
+      case .disabling: return try container.encode("DISABLING")
+      case .updating: return try container.encode("UPDATING")
+      case .serviceUpdating: return try container.encode("SERVICE_UPDATING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

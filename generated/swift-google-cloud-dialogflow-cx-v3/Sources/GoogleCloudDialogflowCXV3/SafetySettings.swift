@@ -264,11 +264,11 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .blockNone: return try container.encode(1)
-          case .blockFew: return try container.encode(2)
-          case .blockSome: return try container.encode(3)
-          case .blockMost: return try container.encode(4)
+          case .unspecified: return try container.encode("SAFETY_FILTER_LEVEL_UNSPECIFIED")
+          case .blockNone: return try container.encode("BLOCK_NONE")
+          case .blockFew: return try container.encode("BLOCK_FEW")
+          case .blockSome: return try container.encode("BLOCK_SOME")
+          case .blockMost: return try container.encode("BLOCK_MOST")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -383,11 +383,11 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .dangerousContent: return try container.encode(1)
-          case .hateSpeech: return try container.encode(2)
-          case .harassment: return try container.encode(3)
-          case .sexuallyExplicitContent: return try container.encode(4)
+          case .unspecified: return try container.encode("SAFETY_CATEGORY_UNSPECIFIED")
+          case .dangerousContent: return try container.encode("DANGEROUS_CONTENT")
+          case .hateSpeech: return try container.encode("HATE_SPEECH")
+          case .harassment: return try container.encode("HARASSMENT")
+          case .sexuallyExplicitContent: return try container.encode("SEXUALLY_EXPLICIT_CONTENT")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -538,9 +538,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .partialMatch: return try container.encode(1)
-        case .wordMatch: return try container.encode(2)
+        case .unspecified: return try container.encode("PHRASE_MATCH_STRATEGY_UNSPECIFIED")
+        case .partialMatch: return try container.encode("PARTIAL_MATCH")
+        case .wordMatch: return try container.encode("WORD_MATCH")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

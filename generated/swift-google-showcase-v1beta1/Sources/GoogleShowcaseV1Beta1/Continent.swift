@@ -123,12 +123,12 @@ public enum Continent: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .africa: return try container.encode(1)
-    case .america: return try container.encode(2)
-    case .antartica: return try container.encode(3)
-    case .australia: return try container.encode(4)
-    case .europe: return try container.encode(5)
+    case .unspecified: return try container.encode("CONTINENT_UNSPECIFIED")
+    case .africa: return try container.encode("AFRICA")
+    case .america: return try container.encode("AMERICA")
+    case .antartica: return try container.encode("ANTARTICA")
+    case .australia: return try container.encode("AUSTRALIA")
+    case .europe: return try container.encode("EUROPE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

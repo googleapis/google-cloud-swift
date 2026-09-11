@@ -245,9 +245,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .`none`: return try container.encode(1)
-        case .stop: return try container.encode(2)
+        case .unspecified: return try container.encode("KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED")
+        case .`none`: return try container.encode("NONE")
+        case .stop: return try container.encode("STOP")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -359,9 +359,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .ephemeralKeyEncryption: return try container.encode(0)
-        case .unspecified: return try container.encode(1)
-        case .standardEncryption: return try container.encode(2)
+        case .ephemeralKeyEncryption: return try container.encode("EPHEMERAL_KEY_ENCRYPTION")
+        case .unspecified: return try container.encode("LOCAL_SSD_ENCRYPTION_MODE_UNSPECIFIED")
+        case .standardEncryption: return try container.encode("STANDARD_ENCRYPTION")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -473,9 +473,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .enableBidirectionalAccessToGoogle: return try container.encode(0)
-        case .enableOutboundVmAccessToGoogle: return try container.encode(1)
-        case .inheritFromSubnetwork: return try container.encode(2)
+        case .enableBidirectionalAccessToGoogle:
+          return try container.encode("ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE")
+        case .enableOutboundVmAccessToGoogle:
+          return try container.encode("ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE")
+        case .inheritFromSubnetwork: return try container.encode("INHERIT_FROM_SUBNETWORK")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

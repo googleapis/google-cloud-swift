@@ -179,10 +179,11 @@ public struct DeleteDeploymentGroupRequest: Codable, Equatable, GoogleCloudWKT._
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .failIfAnyReferencesExist: return try container.encode(1)
-      case .failIfMetadataReferencesExist: return try container.encode(2)
-      case .ignoreDeploymentReferences: return try container.encode(3)
+      case .unspecified: return try container.encode("DEPLOYMENT_REFERENCE_POLICY_UNSPECIFIED")
+      case .failIfAnyReferencesExist: return try container.encode("FAIL_IF_ANY_REFERENCES_EXIST")
+      case .failIfMetadataReferencesExist:
+        return try container.encode("FAIL_IF_METADATA_REFERENCES_EXIST")
+      case .ignoreDeploymentReferences: return try container.encode("IGNORE_DEPLOYMENT_REFERENCES")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

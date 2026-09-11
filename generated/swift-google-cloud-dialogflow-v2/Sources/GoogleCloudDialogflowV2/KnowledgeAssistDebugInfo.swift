@@ -352,17 +352,25 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .queryGenerationOutOfQuota: return try container.encode(1)
-        case .queryGenerationFailed: return try container.encode(2)
-        case .queryGenerationNoQueryGenerated: return try container.encode(3)
-        case .queryGenerationRaiFailed: return try container.encode(4)
-        case .notInAllowlist: return try container.encode(5)
-        case .queryGenerationQueryRedacted: return try container.encode(6)
-        case .queryGenerationLlmResponseParseFailed: return try container.encode(10)
-        case .queryGenerationEmptyConversation: return try container.encode(11)
-        case .queryGenerationEmptyLastMessage: return try container.encode(12)
-        case .queryGenerationTriggeringEventConditionNotMet: return try container.encode(13)
+        case .unspecified:
+          return try container.encode("QUERY_GENERATION_FAILURE_REASON_UNSPECIFIED")
+        case .queryGenerationOutOfQuota:
+          return try container.encode("QUERY_GENERATION_OUT_OF_QUOTA")
+        case .queryGenerationFailed: return try container.encode("QUERY_GENERATION_FAILED")
+        case .queryGenerationNoQueryGenerated:
+          return try container.encode("QUERY_GENERATION_NO_QUERY_GENERATED")
+        case .queryGenerationRaiFailed: return try container.encode("QUERY_GENERATION_RAI_FAILED")
+        case .notInAllowlist: return try container.encode("NOT_IN_ALLOWLIST")
+        case .queryGenerationQueryRedacted:
+          return try container.encode("QUERY_GENERATION_QUERY_REDACTED")
+        case .queryGenerationLlmResponseParseFailed:
+          return try container.encode("QUERY_GENERATION_LLM_RESPONSE_PARSE_FAILED")
+        case .queryGenerationEmptyConversation:
+          return try container.encode("QUERY_GENERATION_EMPTY_CONVERSATION")
+        case .queryGenerationEmptyLastMessage:
+          return try container.encode("QUERY_GENERATION_EMPTY_LAST_MESSAGE")
+        case .queryGenerationTriggeringEventConditionNotMet:
+          return try container.encode("QUERY_GENERATION_TRIGGERING_EVENT_CONDITION_NOT_MET")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -471,10 +479,13 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .queryCategorizationInvalidConfig: return try container.encode(1)
-        case .queryCategorizationResultNotFound: return try container.encode(2)
-        case .queryCategorizationFailed: return try container.encode(3)
+        case .unspecified:
+          return try container.encode("QUERY_CATEGORIZATION_FAILURE_REASON_UNSPECIFIED")
+        case .queryCategorizationInvalidConfig:
+          return try container.encode("QUERY_CATEGORIZATION_INVALID_CONFIG")
+        case .queryCategorizationResultNotFound:
+          return try container.encode("QUERY_CATEGORIZATION_RESULT_NOT_FOUND")
+        case .queryCategorizationFailed: return try container.encode("QUERY_CATEGORIZATION_FAILED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

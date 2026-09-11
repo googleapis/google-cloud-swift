@@ -142,9 +142,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .applyRetentionPolicy: return try container.encode(0)
-        case .keepAutoSnapshots: return try container.encode(1)
-        case .unspecifiedOnSourceDiskDelete: return try container.encode(2)
+        case .applyRetentionPolicy: return try container.encode("APPLY_RETENTION_POLICY")
+        case .keepAutoSnapshots: return try container.encode("KEEP_AUTO_SNAPSHOTS")
+        case .unspecifiedOnSourceDiskDelete:
+          return try container.encode("UNSPECIFIED_ON_SOURCE_DISK_DELETE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

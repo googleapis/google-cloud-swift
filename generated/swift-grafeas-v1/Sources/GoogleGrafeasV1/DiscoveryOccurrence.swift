@@ -236,9 +236,9 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleCloudWKT._AnyPackab
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .pending: return try container.encode(1)
-        case .complete: return try container.encode(2)
+        case .unspecified: return try container.encode("SBOM_STATE_UNSPECIFIED")
+        case .pending: return try container.encode("PENDING")
+        case .complete: return try container.encode("COMPLETE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -382,9 +382,10 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleCloudWKT._AnyPackab
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .success: return try container.encode(1)
-        case .failure: return try container.encode(2)
+        case .unspecified:
+          return try container.encode("VULNERABILITY_ATTESTATION_STATE_UNSPECIFIED")
+        case .success: return try container.encode("SUCCESS")
+        case .failure: return try container.encode("FAILURE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -532,9 +533,9 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .active: return try container.encode(1)
-      case .inactive: return try container.encode(2)
+      case .unspecified: return try container.encode("CONTINUOUS_ANALYSIS_UNSPECIFIED")
+      case .active: return try container.encode("ACTIVE")
+      case .inactive: return try container.encode("INACTIVE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -658,12 +659,12 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .pending: return try container.encode(1)
-      case .scanning: return try container.encode(2)
-      case .complete: return try container.encode(3)
-      case .finishedFailed: return try container.encode(4)
-      case .finishedUnsupported: return try container.encode(5)
+      case .unspecified: return try container.encode("ANALYSIS_STATUS_UNSPECIFIED")
+      case .pending: return try container.encode("PENDING")
+      case .scanning: return try container.encode("SCANNING")
+      case .complete: return try container.encode("COMPLETE")
+      case .finishedFailed: return try container.encode("FINISHED_FAILED")
+      case .finishedUnsupported: return try container.encode("FINISHED_UNSUPPORTED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

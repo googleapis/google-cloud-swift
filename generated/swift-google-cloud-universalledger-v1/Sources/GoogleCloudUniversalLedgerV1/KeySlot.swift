@@ -112,9 +112,9 @@ public enum KeySlot: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .primary: return try container.encode(1)
-    case .alternate: return try container.encode(2)
+    case .unspecified: return try container.encode("KEY_SLOT_UNSPECIFIED")
+    case .primary: return try container.encode("KEY_SLOT_PRIMARY")
+    case .alternate: return try container.encode("KEY_SLOT_ALTERNATE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

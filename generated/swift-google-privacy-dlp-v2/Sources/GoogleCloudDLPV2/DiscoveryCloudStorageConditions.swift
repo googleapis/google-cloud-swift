@@ -190,15 +190,15 @@ public struct DiscoveryCloudStorageConditions: Codable, Equatable, GoogleCloudWK
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .allSupportedObjects: return try container.encode(1)
-      case .standard: return try container.encode(2)
-      case .nearline: return try container.encode(3)
-      case .coldline: return try container.encode(4)
-      case .archive: return try container.encode(5)
-      case .regional: return try container.encode(6)
-      case .multiRegional: return try container.encode(7)
-      case .durableReducedAvailability: return try container.encode(8)
+      case .unspecified: return try container.encode("CLOUD_STORAGE_OBJECT_ATTRIBUTE_UNSPECIFIED")
+      case .allSupportedObjects: return try container.encode("ALL_SUPPORTED_OBJECTS")
+      case .standard: return try container.encode("STANDARD")
+      case .nearline: return try container.encode("NEARLINE")
+      case .coldline: return try container.encode("COLDLINE")
+      case .archive: return try container.encode("ARCHIVE")
+      case .regional: return try container.encode("REGIONAL")
+      case .multiRegional: return try container.encode("MULTI_REGIONAL")
+      case .durableReducedAvailability: return try container.encode("DURABLE_REDUCED_AVAILABILITY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -314,10 +314,10 @@ public struct DiscoveryCloudStorageConditions: Codable, Equatable, GoogleCloudWK
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .allSupportedBuckets: return try container.encode(1)
-      case .autoclassDisabled: return try container.encode(2)
-      case .autoclassEnabled: return try container.encode(3)
+      case .unspecified: return try container.encode("CLOUD_STORAGE_BUCKET_ATTRIBUTE_UNSPECIFIED")
+      case .allSupportedBuckets: return try container.encode("ALL_SUPPORTED_BUCKETS")
+      case .autoclassDisabled: return try container.encode("AUTOCLASS_DISABLED")
+      case .autoclassEnabled: return try container.encode("AUTOCLASS_ENABLED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

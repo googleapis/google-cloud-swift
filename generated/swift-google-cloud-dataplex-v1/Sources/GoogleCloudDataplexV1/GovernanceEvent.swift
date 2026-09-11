@@ -171,9 +171,9 @@ public struct GovernanceEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .table: return try container.encode(1)
-        case .fileset: return try container.encode(2)
+        case .unspecified: return try container.encode("ENTITY_TYPE_UNSPECIFIED")
+        case .table: return try container.encode("TABLE")
+        case .fileset: return try container.encode("FILESET")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -371,23 +371,26 @@ public struct GovernanceEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .resourceIamPolicyUpdate: return try container.encode(1)
-      case .bigqueryTableCreate: return try container.encode(2)
-      case .bigqueryTableUpdate: return try container.encode(3)
-      case .bigqueryTableDelete: return try container.encode(4)
-      case .bigqueryConnectionCreate: return try container.encode(5)
-      case .bigqueryConnectionUpdate: return try container.encode(6)
-      case .bigqueryConnectionDelete: return try container.encode(7)
-      case .bigqueryTaxonomyCreate: return try container.encode(10)
-      case .bigqueryPolicyTagCreate: return try container.encode(11)
-      case .bigqueryPolicyTagDelete: return try container.encode(12)
-      case .bigqueryPolicyTagSetIamPolicy: return try container.encode(13)
-      case .accessPolicyUpdate: return try container.encode(14)
-      case .governanceRuleMatchedResources: return try container.encode(15)
-      case .governanceRuleSearchLimitExceeds: return try container.encode(16)
-      case .governanceRuleErrors: return try container.encode(17)
-      case .governanceRuleProcessing: return try container.encode(18)
+      case .unspecified: return try container.encode("EVENT_TYPE_UNSPECIFIED")
+      case .resourceIamPolicyUpdate: return try container.encode("RESOURCE_IAM_POLICY_UPDATE")
+      case .bigqueryTableCreate: return try container.encode("BIGQUERY_TABLE_CREATE")
+      case .bigqueryTableUpdate: return try container.encode("BIGQUERY_TABLE_UPDATE")
+      case .bigqueryTableDelete: return try container.encode("BIGQUERY_TABLE_DELETE")
+      case .bigqueryConnectionCreate: return try container.encode("BIGQUERY_CONNECTION_CREATE")
+      case .bigqueryConnectionUpdate: return try container.encode("BIGQUERY_CONNECTION_UPDATE")
+      case .bigqueryConnectionDelete: return try container.encode("BIGQUERY_CONNECTION_DELETE")
+      case .bigqueryTaxonomyCreate: return try container.encode("BIGQUERY_TAXONOMY_CREATE")
+      case .bigqueryPolicyTagCreate: return try container.encode("BIGQUERY_POLICY_TAG_CREATE")
+      case .bigqueryPolicyTagDelete: return try container.encode("BIGQUERY_POLICY_TAG_DELETE")
+      case .bigqueryPolicyTagSetIamPolicy:
+        return try container.encode("BIGQUERY_POLICY_TAG_SET_IAM_POLICY")
+      case .accessPolicyUpdate: return try container.encode("ACCESS_POLICY_UPDATE")
+      case .governanceRuleMatchedResources:
+        return try container.encode("GOVERNANCE_RULE_MATCHED_RESOURCES")
+      case .governanceRuleSearchLimitExceeds:
+        return try container.encode("GOVERNANCE_RULE_SEARCH_LIMIT_EXCEEDS")
+      case .governanceRuleErrors: return try container.encode("GOVERNANCE_RULE_ERRORS")
+      case .governanceRuleProcessing: return try container.encode("GOVERNANCE_RULE_PROCESSING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

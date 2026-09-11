@@ -136,9 +136,9 @@ public struct TeradataDialect: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .sql: return try container.encode(1)
-      case .bteq: return try container.encode(2)
+      case .unspecified: return try container.encode("MODE_UNSPECIFIED")
+      case .sql: return try container.encode("SQL")
+      case .bteq: return try container.encode("BTEQ")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

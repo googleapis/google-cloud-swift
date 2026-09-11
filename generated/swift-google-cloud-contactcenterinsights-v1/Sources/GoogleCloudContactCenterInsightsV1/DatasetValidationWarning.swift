@@ -128,11 +128,14 @@ public enum DatasetValidationWarning: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .tooManyInvalidFeedbackLabels: return try container.encode(1)
-    case .insufficientFeedbackLabels: return try container.encode(2)
-    case .insufficientFeedbackLabelsPerAnswer: return try container.encode(3)
-    case .allFeedbackLabelsHaveTheSameAnswer: return try container.encode(4)
+    case .unspecified: return try container.encode("DATASET_VALIDATION_WARNING_UNSPECIFIED")
+    case .tooManyInvalidFeedbackLabels:
+      return try container.encode("TOO_MANY_INVALID_FEEDBACK_LABELS")
+    case .insufficientFeedbackLabels: return try container.encode("INSUFFICIENT_FEEDBACK_LABELS")
+    case .insufficientFeedbackLabelsPerAnswer:
+      return try container.encode("INSUFFICIENT_FEEDBACK_LABELS_PER_ANSWER")
+    case .allFeedbackLabelsHaveTheSameAnswer:
+      return try container.encode("ALL_FEEDBACK_LABELS_HAVE_THE_SAME_ANSWER")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

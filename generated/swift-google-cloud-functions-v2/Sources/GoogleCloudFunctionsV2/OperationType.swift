@@ -118,10 +118,10 @@ public enum OperationType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .operationtypeUnspecified: return try container.encode(0)
-    case .createFunction: return try container.encode(1)
-    case .updateFunction: return try container.encode(2)
-    case .deleteFunction: return try container.encode(3)
+    case .operationtypeUnspecified: return try container.encode("OPERATIONTYPE_UNSPECIFIED")
+    case .createFunction: return try container.encode("CREATE_FUNCTION")
+    case .updateFunction: return try container.encode("UPDATE_FUNCTION")
+    case .deleteFunction: return try container.encode("DELETE_FUNCTION")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

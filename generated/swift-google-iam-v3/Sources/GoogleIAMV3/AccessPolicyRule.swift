@@ -271,9 +271,9 @@ public struct AccessPolicyRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .deny: return try container.encode(1)
-      case .allow: return try container.encode(2)
+      case .unspecified: return try container.encode("EFFECT_UNSPECIFIED")
+      case .deny: return try container.encode("DENY")
+      case .allow: return try container.encode("ALLOW")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

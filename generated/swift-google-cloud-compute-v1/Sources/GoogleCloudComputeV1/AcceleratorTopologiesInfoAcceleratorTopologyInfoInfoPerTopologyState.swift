@@ -159,11 +159,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .available: return try container.encode(0)
-        case .degraded: return try container.encode(1)
-        case .running: return try container.encode(2)
-        case .topologyStateUnspecified: return try container.encode(3)
-        case .unhealthy: return try container.encode(4)
+        case .available: return try container.encode("AVAILABLE")
+        case .degraded: return try container.encode("DEGRADED")
+        case .running: return try container.encode("RUNNING")
+        case .topologyStateUnspecified: return try container.encode("TOPOLOGY_STATE_UNSPECIFIED")
+        case .unhealthy: return try container.encode("UNHEALTHY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

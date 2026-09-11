@@ -158,12 +158,12 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .failed: return try container.encode(0)
-        case .inProgress: return try container.encode(1)
-        case .pending: return try container.encode(2)
-        case .skipped: return try container.encode(3)
-        case .succeeded: return try container.encode(4)
-        case .unspecified: return try container.encode(5)
+        case .failed: return try container.encode("STATE_FAILED")
+        case .inProgress: return try container.encode("STATE_IN_PROGRESS")
+        case .pending: return try container.encode("STATE_PENDING")
+        case .skipped: return try container.encode("STATE_SKIPPED")
+        case .succeeded: return try container.encode("STATE_SUCCEEDED")
+        case .unspecified: return try container.encode("STATE_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

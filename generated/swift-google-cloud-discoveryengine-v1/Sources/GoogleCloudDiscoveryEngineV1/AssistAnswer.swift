@@ -240,11 +240,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .inProgress: return try container.encode(1)
-        case .failed: return try container.encode(2)
-        case .succeeded: return try container.encode(3)
-        case .skipped: return try container.encode(4)
+        case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+        case .inProgress: return try container.encode("IN_PROGRESS")
+        case .failed: return try container.encode("FAILED")
+        case .succeeded: return try container.encode("SUCCEEDED")
+        case .skipped: return try container.encode("SKIPPED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -350,9 +350,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .nonAssistSeekingQueryIgnored: return try container.encode(1)
-        case .customerPolicyViolation: return try container.encode(2)
+        case .unspecified: return try container.encode("ASSIST_SKIPPED_REASON_UNSPECIFIED")
+        case .nonAssistSeekingQueryIgnored:
+          return try container.encode("NON_ASSIST_SEEKING_QUERY_IGNORED")
+        case .customerPolicyViolation: return try container.encode("CUSTOMER_POLICY_VIOLATION")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

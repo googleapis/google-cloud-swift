@@ -356,11 +356,11 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleCloudWKT._AnyPack
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .string: return try container.encode(1)
-      case .integer: return try container.encode(2)
-      case .float: return try container.encode(3)
-      case .`none`: return try container.encode(4)
+      case .unspecified: return try container.encode("VALUE_TYPE_UNSPECIFIED")
+      case .string: return try container.encode("STRING")
+      case .integer: return try container.encode("INTEGER")
+      case .float: return try container.encode("FLOAT")
+      case .`none`: return try container.encode("NONE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -463,9 +463,9 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleCloudWKT._AnyPack
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .database: return try container.encode(1)
-      case .connectionPool: return try container.encode(2)
+      case .unspecified: return try container.encode("SCOPE_UNSPECIFIED")
+      case .database: return try container.encode("DATABASE")
+      case .connectionPool: return try container.encode("CONNECTION_POOL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -169,12 +169,12 @@ public struct ConfigFile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .serviceConfigYaml: return try container.encode(1)
-      case .openApiJson: return try container.encode(2)
-      case .openApiYaml: return try container.encode(3)
-      case .fileDescriptorSetProto: return try container.encode(4)
-      case .protoFile: return try container.encode(6)
+      case .unspecified: return try container.encode("FILE_TYPE_UNSPECIFIED")
+      case .serviceConfigYaml: return try container.encode("SERVICE_CONFIG_YAML")
+      case .openApiJson: return try container.encode("OPEN_API_JSON")
+      case .openApiYaml: return try container.encode("OPEN_API_YAML")
+      case .fileDescriptorSetProto: return try container.encode("FILE_DESCRIPTOR_SET_PROTO")
+      case .protoFile: return try container.encode("PROTO_FILE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

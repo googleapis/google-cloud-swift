@@ -144,9 +144,9 @@ public struct NetworkingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .vpcPeering: return try container.encode(1)
-      case .privateServiceConnect: return try container.encode(2)
+      case .unspecified: return try container.encode("CONNECTION_TYPE_UNSPECIFIED")
+      case .vpcPeering: return try container.encode("VPC_PEERING")
+      case .privateServiceConnect: return try container.encode("PRIVATE_SERVICE_CONNECT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

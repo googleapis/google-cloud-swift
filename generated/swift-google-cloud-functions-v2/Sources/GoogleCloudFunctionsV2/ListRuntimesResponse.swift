@@ -214,13 +214,13 @@ public struct ListRuntimesResponse: Codable, Equatable, GoogleCloudWKT._AnyPacka
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .development: return try container.encode(1)
-      case .alpha: return try container.encode(2)
-      case .beta: return try container.encode(3)
-      case .ga: return try container.encode(4)
-      case .deprecated: return try container.encode(5)
-      case .decommissioned: return try container.encode(6)
+      case .unspecified: return try container.encode("RUNTIME_STAGE_UNSPECIFIED")
+      case .development: return try container.encode("DEVELOPMENT")
+      case .alpha: return try container.encode("ALPHA")
+      case .beta: return try container.encode("BETA")
+      case .ga: return try container.encode("GA")
+      case .deprecated: return try container.encode("DEPRECATED")
+      case .decommissioned: return try container.encode("DECOMMISSIONED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -167,11 +167,11 @@ public enum JobView: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .idOnly: return try container.encode(1)
-    case .minimal: return try container.encode(2)
-    case .small: return try container.encode(3)
-    case .full: return try container.encode(4)
+    case .unspecified: return try container.encode("JOB_VIEW_UNSPECIFIED")
+    case .idOnly: return try container.encode("JOB_VIEW_ID_ONLY")
+    case .minimal: return try container.encode("JOB_VIEW_MINIMAL")
+    case .small: return try container.encode("JOB_VIEW_SMALL")
+    case .full: return try container.encode("JOB_VIEW_FULL")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

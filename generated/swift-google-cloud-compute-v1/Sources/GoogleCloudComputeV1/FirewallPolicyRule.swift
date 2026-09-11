@@ -226,8 +226,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .egress: return try container.encode(0)
-        case .ingress: return try container.encode(1)
+        case .egress: return try container.encode("EGRESS")
+        case .ingress: return try container.encode("INGRESS")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -324,8 +324,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .instances: return try container.encode(0)
-        case .internalManagedLb: return try container.encode(1)
+        case .instances: return try container.encode("INSTANCES")
+        case .internalManagedLb: return try container.encode("INTERNAL_MANAGED_LB")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

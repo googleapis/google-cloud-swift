@@ -441,13 +441,13 @@ public struct WasmPlugin: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .trace: return try container.encode(1)
-        case .debug: return try container.encode(2)
-        case .info: return try container.encode(3)
-        case .warn: return try container.encode(4)
-        case .error: return try container.encode(5)
-        case .critical: return try container.encode(6)
+        case .unspecified: return try container.encode("LOG_LEVEL_UNSPECIFIED")
+        case .trace: return try container.encode("TRACE")
+        case .debug: return try container.encode("DEBUG")
+        case .info: return try container.encode("INFO")
+        case .warn: return try container.encode("WARN")
+        case .error: return try container.encode("ERROR")
+        case .critical: return try container.encode("CRITICAL")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

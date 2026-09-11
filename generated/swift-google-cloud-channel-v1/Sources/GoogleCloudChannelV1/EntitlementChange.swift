@@ -329,21 +329,21 @@ public struct EntitlementChange: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .created: return try container.encode(1)
-      case .pricePlanSwitched: return try container.encode(3)
-      case .commitmentChanged: return try container.encode(4)
-      case .renewed: return try container.encode(5)
-      case .suspended: return try container.encode(6)
-      case .activated: return try container.encode(7)
-      case .cancelled: return try container.encode(8)
-      case .skuChanged: return try container.encode(9)
-      case .renewalSettingChanged: return try container.encode(10)
-      case .paidSubscriptionStarted: return try container.encode(11)
-      case .licenseCapChanged: return try container.encode(12)
-      case .suspensionDetailsChanged: return try container.encode(13)
-      case .trialEndDateExtended: return try container.encode(14)
-      case .trialStarted: return try container.encode(15)
+      case .unspecified: return try container.encode("CHANGE_TYPE_UNSPECIFIED")
+      case .created: return try container.encode("CREATED")
+      case .pricePlanSwitched: return try container.encode("PRICE_PLAN_SWITCHED")
+      case .commitmentChanged: return try container.encode("COMMITMENT_CHANGED")
+      case .renewed: return try container.encode("RENEWED")
+      case .suspended: return try container.encode("SUSPENDED")
+      case .activated: return try container.encode("ACTIVATED")
+      case .cancelled: return try container.encode("CANCELLED")
+      case .skuChanged: return try container.encode("SKU_CHANGED")
+      case .renewalSettingChanged: return try container.encode("RENEWAL_SETTING_CHANGED")
+      case .paidSubscriptionStarted: return try container.encode("PAID_SUBSCRIPTION_STARTED")
+      case .licenseCapChanged: return try container.encode("LICENSE_CAP_CHANGED")
+      case .suspensionDetailsChanged: return try container.encode("SUSPENSION_DETAILS_CHANGED")
+      case .trialEndDateExtended: return try container.encode("TRIAL_END_DATE_EXTENDED")
+      case .trialStarted: return try container.encode("TRIAL_STARTED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -458,11 +458,12 @@ public struct EntitlementChange: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .customerServiceRepresentative: return try container.encode(1)
-      case .system: return try container.encode(2)
-      case .customer: return try container.encode(3)
-      case .reseller: return try container.encode(4)
+      case .unspecified: return try container.encode("OPERATOR_TYPE_UNSPECIFIED")
+      case .customerServiceRepresentative:
+        return try container.encode("CUSTOMER_SERVICE_REPRESENTATIVE")
+      case .system: return try container.encode("SYSTEM")
+      case .customer: return try container.encode("CUSTOMER")
+      case .reseller: return try container.encode("RESELLER")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -573,10 +574,10 @@ public struct EntitlementChange: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .serviceTerminated: return try container.encode(1)
-      case .relationshipEnded: return try container.encode(2)
-      case .partialTransfer: return try container.encode(3)
+      case .unspecified: return try container.encode("CANCELLATION_REASON_UNSPECIFIED")
+      case .serviceTerminated: return try container.encode("SERVICE_TERMINATED")
+      case .relationshipEnded: return try container.encode("RELATIONSHIP_ENDED")
+      case .partialTransfer: return try container.encode("PARTIAL_TRANSFER")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -694,11 +695,11 @@ public struct EntitlementChange: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .resellerRevokedSuspension: return try container.encode(1)
-      case .customerAcceptedPendingTos: return try container.encode(2)
-      case .renewalSettingsChanged: return try container.encode(3)
-      case .otherActivationReason: return try container.encode(100)
+      case .unspecified: return try container.encode("ACTIVATION_REASON_UNSPECIFIED")
+      case .resellerRevokedSuspension: return try container.encode("RESELLER_REVOKED_SUSPENSION")
+      case .customerAcceptedPendingTos: return try container.encode("CUSTOMER_ACCEPTED_PENDING_TOS")
+      case .renewalSettingsChanged: return try container.encode("RENEWAL_SETTINGS_CHANGED")
+      case .otherActivationReason: return try container.encode("OTHER_ACTIVATION_REASON")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

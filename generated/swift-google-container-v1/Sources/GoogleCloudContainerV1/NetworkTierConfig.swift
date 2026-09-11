@@ -148,10 +148,10 @@ public struct NetworkTierConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .`default`: return try container.encode(1)
-      case .premium: return try container.encode(2)
-      case .standard: return try container.encode(3)
+      case .unspecified: return try container.encode("NETWORK_TIER_UNSPECIFIED")
+      case .`default`: return try container.encode("NETWORK_TIER_DEFAULT")
+      case .premium: return try container.encode("NETWORK_TIER_PREMIUM")
+      case .standard: return try container.encode("NETWORK_TIER_STANDARD")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -147,10 +147,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .exactMatch: return try container.encode(1)
-        case .bleu: return try container.encode(2)
-        case .rouge: return try container.encode(3)
+        case .unspecified: return try container.encode("COMPUTATION_BASED_METRIC_TYPE_UNSPECIFIED")
+        case .exactMatch: return try container.encode("EXACT_MATCH")
+        case .bleu: return try container.encode("BLEU")
+        case .rouge: return try container.encode("ROUGE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

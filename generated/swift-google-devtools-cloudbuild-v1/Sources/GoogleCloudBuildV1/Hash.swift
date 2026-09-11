@@ -151,11 +151,11 @@ public struct Hash: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .`none`: return try container.encode(0)
-      case .sha256: return try container.encode(1)
-      case .md5: return try container.encode(2)
-      case .goModuleH1: return try container.encode(3)
-      case .sha512: return try container.encode(4)
+      case .`none`: return try container.encode("NONE")
+      case .sha256: return try container.encode("SHA256")
+      case .md5: return try container.encode("MD5")
+      case .goModuleH1: return try container.encode("GO_MODULE_H1")
+      case .sha512: return try container.encode("SHA512")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

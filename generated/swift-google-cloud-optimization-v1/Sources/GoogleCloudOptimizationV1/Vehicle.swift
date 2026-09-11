@@ -581,9 +581,9 @@ public struct Vehicle: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .driving: return try container.encode(1)
-      case .walking: return try container.encode(2)
+      case .unspecified: return try container.encode("TRAVEL_MODE_UNSPECIFIED")
+      case .driving: return try container.encode("DRIVING")
+      case .walking: return try container.encode("WALKING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -691,9 +691,9 @@ public struct Vehicle: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .lastInFirstOut: return try container.encode(1)
-      case .firstInFirstOut: return try container.encode(2)
+      case .unspecified: return try container.encode("UNLOADING_POLICY_UNSPECIFIED")
+      case .lastInFirstOut: return try container.encode("LAST_IN_FIRST_OUT")
+      case .firstInFirstOut: return try container.encode("FIRST_IN_FIRST_OUT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

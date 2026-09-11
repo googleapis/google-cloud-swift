@@ -779,13 +779,13 @@
           public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .unspecified: return try container.encode(0)
-            case .situation: return try container.encode(1)
-            case .action: return try container.encode(2)
-            case .resolution: return try container.encode(3)
-            case .reasonForCancellation: return try container.encode(4)
-            case .customerSatisfaction: return try container.encode(5)
-            case .entities: return try container.encode(6)
+            case .unspecified: return try container.encode("SECTION_TYPE_UNSPECIFIED")
+            case .situation: return try container.encode("SITUATION")
+            case .action: return try container.encode("ACTION")
+            case .resolution: return try container.encode("RESOLUTION")
+            case .reasonForCancellation: return try container.encode("REASON_FOR_CANCELLATION")
+            case .customerSatisfaction: return try container.encode("CUSTOMER_SATISFACTION")
+            case .entities: return try container.encode("ENTITIES")
             case .unknownIntValue(let v): return try container.encode(v)
             case .unknownStringValue(let v): return try container.encode(v)
             }

@@ -177,9 +177,9 @@ public struct PhraseMatcher: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .allOf: return try container.encode(1)
-      case .anyOf: return try container.encode(2)
+      case .unspecified: return try container.encode("PHRASE_MATCHER_TYPE_UNSPECIFIED")
+      case .allOf: return try container.encode("ALL_OF")
+      case .anyOf: return try container.encode("ANY_OF")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

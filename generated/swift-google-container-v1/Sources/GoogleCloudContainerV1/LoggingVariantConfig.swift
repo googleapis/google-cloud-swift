@@ -136,9 +136,9 @@ public struct LoggingVariantConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .`default`: return try container.encode(1)
-      case .maxThroughput: return try container.encode(2)
+      case .unspecified: return try container.encode("VARIANT_UNSPECIFIED")
+      case .`default`: return try container.encode("DEFAULT")
+      case .maxThroughput: return try container.encode("MAX_THROUGHPUT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

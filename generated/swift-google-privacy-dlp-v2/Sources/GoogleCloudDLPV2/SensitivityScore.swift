@@ -157,11 +157,12 @@ public struct SensitivityScore: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .sensitivityScoreUnspecified: return try container.encode(0)
-      case .sensitivityLow: return try container.encode(10)
-      case .sensitivityUnknown: return try container.encode(12)
-      case .sensitivityModerate: return try container.encode(20)
-      case .sensitivityHigh: return try container.encode(30)
+      case .sensitivityScoreUnspecified:
+        return try container.encode("SENSITIVITY_SCORE_UNSPECIFIED")
+      case .sensitivityLow: return try container.encode("SENSITIVITY_LOW")
+      case .sensitivityUnknown: return try container.encode("SENSITIVITY_UNKNOWN")
+      case .sensitivityModerate: return try container.encode("SENSITIVITY_MODERATE")
+      case .sensitivityHigh: return try container.encode("SENSITIVITY_HIGH")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

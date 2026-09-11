@@ -136,12 +136,12 @@
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .createNew: return try container.encode(1)
-      case .replace: return try container.encode(2)
-      case .keep: return try container.encode(3)
-      case .merge: return try container.encode(4)
-      case .throwError: return try container.encode(5)
+      case .unspecified: return try container.encode("IMPORT_STRATEGY_UNSPECIFIED")
+      case .createNew: return try container.encode("IMPORT_STRATEGY_CREATE_NEW")
+      case .replace: return try container.encode("IMPORT_STRATEGY_REPLACE")
+      case .keep: return try container.encode("IMPORT_STRATEGY_KEEP")
+      case .merge: return try container.encode("IMPORT_STRATEGY_MERGE")
+      case .throwError: return try container.encode("IMPORT_STRATEGY_THROW_ERROR")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -167,10 +167,11 @@ public struct ShipmentTypeRequirement: Codable, Equatable, GoogleCloudWKT._AnyPa
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .performedBySameVehicle: return try container.encode(1)
-      case .inSameVehicleAtPickupTime: return try container.encode(2)
-      case .inSameVehicleAtDeliveryTime: return try container.encode(3)
+      case .unspecified: return try container.encode("REQUIREMENT_MODE_UNSPECIFIED")
+      case .performedBySameVehicle: return try container.encode("PERFORMED_BY_SAME_VEHICLE")
+      case .inSameVehicleAtPickupTime: return try container.encode("IN_SAME_VEHICLE_AT_PICKUP_TIME")
+      case .inSameVehicleAtDeliveryTime:
+        return try container.encode("IN_SAME_VEHICLE_AT_DELIVERY_TIME")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

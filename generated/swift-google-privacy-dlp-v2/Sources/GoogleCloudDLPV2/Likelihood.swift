@@ -144,12 +144,12 @@ public enum Likelihood: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .veryUnlikely: return try container.encode(1)
-    case .unlikely: return try container.encode(2)
-    case .possible: return try container.encode(3)
-    case .likely: return try container.encode(4)
-    case .veryLikely: return try container.encode(5)
+    case .unspecified: return try container.encode("LIKELIHOOD_UNSPECIFIED")
+    case .veryUnlikely: return try container.encode("VERY_UNLIKELY")
+    case .unlikely: return try container.encode("UNLIKELY")
+    case .possible: return try container.encode("POSSIBLE")
+    case .likely: return try container.encode("LIKELY")
+    case .veryLikely: return try container.encode("VERY_LIKELY")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

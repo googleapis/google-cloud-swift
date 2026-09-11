@@ -404,13 +404,13 @@ public struct Dimension: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .issue: return try container.encode(1)
-      case .agent: return try container.encode(2)
-      case .agentTeam: return try container.encode(3)
-      case .qaQuestionId: return try container.encode(4)
-      case .qaQuestionAnswerValue: return try container.encode(5)
-      case .conversationProfileId: return try container.encode(6)
+      case .unspecified: return try container.encode("DIMENSION_KEY_UNSPECIFIED")
+      case .issue: return try container.encode("ISSUE")
+      case .agent: return try container.encode("AGENT")
+      case .agentTeam: return try container.encode("AGENT_TEAM")
+      case .qaQuestionId: return try container.encode("QA_QUESTION_ID")
+      case .qaQuestionAnswerValue: return try container.encode("QA_QUESTION_ANSWER_VALUE")
+      case .conversationProfileId: return try container.encode("CONVERSATION_PROFILE_ID")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

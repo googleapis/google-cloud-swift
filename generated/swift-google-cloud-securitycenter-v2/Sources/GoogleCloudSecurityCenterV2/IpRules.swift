@@ -209,9 +209,9 @@ public struct IpRules: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .ingress: return try container.encode(1)
-      case .egress: return try container.encode(2)
+      case .unspecified: return try container.encode("DIRECTION_UNSPECIFIED")
+      case .ingress: return try container.encode("INGRESS")
+      case .egress: return try container.encode("EGRESS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

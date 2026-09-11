@@ -154,10 +154,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .localRegion: return try container.encode(0)
-        case .nearestMultiRegion: return try container.encode(1)
-        case .specificLocations: return try container.encode(2)
-        case .storageLocationPolicyUnspecified: return try container.encode(3)
+        case .localRegion: return try container.encode("LOCAL_REGION")
+        case .nearestMultiRegion: return try container.encode("NEAREST_MULTI_REGION")
+        case .specificLocations: return try container.encode("SPECIFIC_LOCATIONS")
+        case .storageLocationPolicyUnspecified:
+          return try container.encode("STORAGE_LOCATION_POLICY_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

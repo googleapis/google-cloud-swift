@@ -112,9 +112,11 @@ public enum CurationType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .defaultCurationForApiMetadata: return try container.encode(1)
-    case .customCurationForApiMetadata: return try container.encode(2)
+    case .unspecified: return try container.encode("CURATION_TYPE_UNSPECIFIED")
+    case .defaultCurationForApiMetadata:
+      return try container.encode("DEFAULT_CURATION_FOR_API_METADATA")
+    case .customCurationForApiMetadata:
+      return try container.encode("CUSTOM_CURATION_FOR_API_METADATA")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

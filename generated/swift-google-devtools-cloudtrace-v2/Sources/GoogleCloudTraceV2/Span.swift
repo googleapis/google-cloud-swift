@@ -407,9 +407,9 @@ public struct Span: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .sent: return try container.encode(1)
-          case .received: return try container.encode(2)
+          case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+          case .sent: return try container.encode("SENT")
+          case .received: return try container.encode("RECEIVED")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -624,9 +624,9 @@ public struct Span: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .childLinkedSpan: return try container.encode(1)
-        case .parentLinkedSpan: return try container.encode(2)
+        case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+        case .childLinkedSpan: return try container.encode("CHILD_LINKED_SPAN")
+        case .parentLinkedSpan: return try container.encode("PARENT_LINKED_SPAN")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -807,12 +807,12 @@ public struct Span: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .`internal`: return try container.encode(1)
-      case .server: return try container.encode(2)
-      case .client: return try container.encode(3)
-      case .producer: return try container.encode(4)
-      case .consumer: return try container.encode(5)
+      case .unspecified: return try container.encode("SPAN_KIND_UNSPECIFIED")
+      case .`internal`: return try container.encode("INTERNAL")
+      case .server: return try container.encode("SERVER")
+      case .client: return try container.encode("CLIENT")
+      case .producer: return try container.encode("PRODUCER")
+      case .consumer: return try container.encode("CONSUMER")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

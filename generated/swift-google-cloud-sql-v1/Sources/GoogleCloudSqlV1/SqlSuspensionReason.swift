@@ -134,12 +134,12 @@
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .billingIssue: return try container.encode(2)
-      case .legalIssue: return try container.encode(3)
-      case .operationalIssue: return try container.encode(4)
-      case .kmsKeyIssue: return try container.encode(5)
-      case .projectAbuse: return try container.encode(8)
+      case .unspecified: return try container.encode("SQL_SUSPENSION_REASON_UNSPECIFIED")
+      case .billingIssue: return try container.encode("BILLING_ISSUE")
+      case .legalIssue: return try container.encode("LEGAL_ISSUE")
+      case .operationalIssue: return try container.encode("OPERATIONAL_ISSUE")
+      case .kmsKeyIssue: return try container.encode("KMS_KEY_ISSUE")
+      case .projectAbuse: return try container.encode("PROJECT_ABUSE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

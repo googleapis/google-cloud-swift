@@ -125,11 +125,11 @@ public enum TokenType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .oidc: return try container.encode(1)
-    case .pki: return try container.encode(2)
-    case .limitedAws: return try container.encode(3)
-    case .awsPrincipaltags: return try container.encode(4)
+    case .unspecified: return try container.encode("TOKEN_TYPE_UNSPECIFIED")
+    case .oidc: return try container.encode("TOKEN_TYPE_OIDC")
+    case .pki: return try container.encode("TOKEN_TYPE_PKI")
+    case .limitedAws: return try container.encode("TOKEN_TYPE_LIMITED_AWS")
+    case .awsPrincipaltags: return try container.encode("TOKEN_TYPE_AWS_PRINCIPALTAGS")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

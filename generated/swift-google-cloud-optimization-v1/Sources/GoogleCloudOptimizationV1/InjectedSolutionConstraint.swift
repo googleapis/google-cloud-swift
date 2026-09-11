@@ -285,10 +285,12 @@ public struct InjectedSolutionConstraint: Codable, Equatable, GoogleCloudWKT._An
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .relaxVisitTimesAfterThreshold: return try container.encode(1)
-          case .relaxVisitTimesAndSequenceAfterThreshold: return try container.encode(2)
-          case .relaxAllAfterThreshold: return try container.encode(3)
+          case .unspecified: return try container.encode("LEVEL_UNSPECIFIED")
+          case .relaxVisitTimesAfterThreshold:
+            return try container.encode("RELAX_VISIT_TIMES_AFTER_THRESHOLD")
+          case .relaxVisitTimesAndSequenceAfterThreshold:
+            return try container.encode("RELAX_VISIT_TIMES_AND_SEQUENCE_AFTER_THRESHOLD")
+          case .relaxAllAfterThreshold: return try container.encode("RELAX_ALL_AFTER_THRESHOLD")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }

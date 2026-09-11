@@ -137,13 +137,13 @@ public enum ComparisonType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .comparisonUnspecified: return try container.encode(0)
-    case .comparisonGt: return try container.encode(1)
-    case .comparisonGe: return try container.encode(2)
-    case .comparisonLt: return try container.encode(3)
-    case .comparisonLe: return try container.encode(4)
-    case .comparisonEq: return try container.encode(5)
-    case .comparisonNe: return try container.encode(6)
+    case .comparisonUnspecified: return try container.encode("COMPARISON_UNSPECIFIED")
+    case .comparisonGt: return try container.encode("COMPARISON_GT")
+    case .comparisonGe: return try container.encode("COMPARISON_GE")
+    case .comparisonLt: return try container.encode("COMPARISON_LT")
+    case .comparisonLe: return try container.encode("COMPARISON_LE")
+    case .comparisonEq: return try container.encode("COMPARISON_EQ")
+    case .comparisonNe: return try container.encode("COMPARISON_NE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

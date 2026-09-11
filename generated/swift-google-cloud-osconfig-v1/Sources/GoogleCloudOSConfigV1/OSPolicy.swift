@@ -875,9 +875,9 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .installed: return try container.encode(1)
-          case .removed: return try container.encode(2)
+          case .unspecified: return try container.encode("DESIRED_STATE_UNSPECIFIED")
+          case .installed: return try container.encode("INSTALLED")
+          case .removed: return try container.encode("REMOVED")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -1132,9 +1132,9 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .unspecified: return try container.encode(0)
-            case .deb: return try container.encode(1)
-            case .debSrc: return try container.encode(2)
+            case .unspecified: return try container.encode("ARCHIVE_TYPE_UNSPECIFIED")
+            case .deb: return try container.encode("DEB")
+            case .debSrc: return try container.encode("DEB_SRC")
             case .unknownIntValue(let v): return try container.encode(v)
             case .unknownStringValue(let v): return try container.encode(v)
             }
@@ -1565,10 +1565,10 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .unspecified: return try container.encode(0)
-            case .`none`: return try container.encode(1)
-            case .shell: return try container.encode(2)
-            case .powershell: return try container.encode(3)
+            case .unspecified: return try container.encode("INTERPRETER_UNSPECIFIED")
+            case .`none`: return try container.encode("NONE")
+            case .shell: return try container.encode("SHELL")
+            case .powershell: return try container.encode("POWERSHELL")
             case .unknownIntValue(let v): return try container.encode(v)
             case .unknownStringValue(let v): return try container.encode(v)
             }
@@ -1804,10 +1804,10 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .present: return try container.encode(1)
-          case .absent: return try container.encode(2)
-          case .contentsMatch: return try container.encode(3)
+          case .unspecified: return try container.encode("DESIRED_STATE_UNSPECIFIED")
+          case .present: return try container.encode("PRESENT")
+          case .absent: return try container.encode("ABSENT")
+          case .contentsMatch: return try container.encode("CONTENTS_MATCH")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -2013,9 +2013,9 @@ public struct OSPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .validation: return try container.encode(1)
-      case .enforcement: return try container.encode(2)
+      case .unspecified: return try container.encode("MODE_UNSPECIFIED")
+      case .validation: return try container.encode("VALIDATION")
+      case .enforcement: return try container.encode("ENFORCEMENT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

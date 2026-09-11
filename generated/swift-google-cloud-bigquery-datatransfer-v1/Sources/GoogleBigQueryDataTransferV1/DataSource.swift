@@ -211,10 +211,11 @@ public struct DataSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .authorizationCode: return try container.encode(1)
-      case .googlePlusAuthorizationCode: return try container.encode(2)
-      case .firstPartyOauth: return try container.encode(3)
+      case .unspecified: return try container.encode("AUTHORIZATION_TYPE_UNSPECIFIED")
+      case .authorizationCode: return try container.encode("AUTHORIZATION_CODE")
+      case .googlePlusAuthorizationCode:
+        return try container.encode("GOOGLE_PLUS_AUTHORIZATION_CODE")
+      case .firstPartyOauth: return try container.encode("FIRST_PARTY_OAUTH")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -321,9 +322,9 @@ public struct DataSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .slidingWindow: return try container.encode(1)
-      case .customSlidingWindow: return try container.encode(2)
+      case .unspecified: return try container.encode("DATA_REFRESH_TYPE_UNSPECIFIED")
+      case .slidingWindow: return try container.encode("SLIDING_WINDOW")
+      case .customSlidingWindow: return try container.encode("CUSTOM_SLIDING_WINDOW")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

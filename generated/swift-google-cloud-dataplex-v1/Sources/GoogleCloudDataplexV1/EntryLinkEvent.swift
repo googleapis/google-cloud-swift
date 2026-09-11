@@ -142,9 +142,9 @@ public struct EntryLinkEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .entryLinkCreate: return try container.encode(1)
-      case .entryLinkDelete: return try container.encode(2)
+      case .unspecified: return try container.encode("EVENT_TYPE_UNSPECIFIED")
+      case .entryLinkCreate: return try container.encode("ENTRY_LINK_CREATE")
+      case .entryLinkDelete: return try container.encode("ENTRY_LINK_DELETE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

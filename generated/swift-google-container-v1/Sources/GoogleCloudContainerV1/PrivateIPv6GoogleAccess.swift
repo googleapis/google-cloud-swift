@@ -119,10 +119,14 @@ public enum PrivateIPv6GoogleAccess: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .privateIpv6GoogleAccessUnspecified: return try container.encode(0)
-    case .privateIpv6GoogleAccessDisabled: return try container.encode(1)
-    case .privateIpv6GoogleAccessToGoogle: return try container.encode(2)
-    case .privateIpv6GoogleAccessBidirectional: return try container.encode(3)
+    case .privateIpv6GoogleAccessUnspecified:
+      return try container.encode("PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED")
+    case .privateIpv6GoogleAccessDisabled:
+      return try container.encode("PRIVATE_IPV6_GOOGLE_ACCESS_DISABLED")
+    case .privateIpv6GoogleAccessToGoogle:
+      return try container.encode("PRIVATE_IPV6_GOOGLE_ACCESS_TO_GOOGLE")
+    case .privateIpv6GoogleAccessBidirectional:
+      return try container.encode("PRIVATE_IPV6_GOOGLE_ACCESS_BIDIRECTIONAL")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

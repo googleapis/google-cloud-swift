@@ -137,13 +137,13 @@ public enum DatabaseVersion: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .postgres13: return try container.encode(1)
-    case .postgres14: return try container.encode(2)
-    case .postgres15: return try container.encode(3)
-    case .postgres16: return try container.encode(4)
-    case .postgres17: return try container.encode(5)
-    case .postgres18: return try container.encode(6)
+    case .unspecified: return try container.encode("DATABASE_VERSION_UNSPECIFIED")
+    case .postgres13: return try container.encode("POSTGRES_13")
+    case .postgres14: return try container.encode("POSTGRES_14")
+    case .postgres15: return try container.encode("POSTGRES_15")
+    case .postgres16: return try container.encode("POSTGRES_16")
+    case .postgres17: return try container.encode("POSTGRES_17")
+    case .postgres18: return try container.encode("POSTGRES_18")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

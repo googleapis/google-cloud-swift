@@ -142,9 +142,9 @@ public struct AmazonS3BucketConditions: Codable, Equatable, GoogleCloudWKT._AnyP
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .typeUnspecified: return try container.encode(0)
-      case .typeAllSupported: return try container.encode(1)
-      case .typeGeneralPurpose: return try container.encode(2)
+      case .typeUnspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .typeAllSupported: return try container.encode("TYPE_ALL_SUPPORTED")
+      case .typeGeneralPurpose: return try container.encode("TYPE_GENERAL_PURPOSE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -266,12 +266,12 @@ public struct AmazonS3BucketConditions: Codable, Equatable, GoogleCloudWKT._AnyP
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .allSupportedClasses: return try container.encode(1)
-      case .standard: return try container.encode(2)
-      case .standardInfrequentAccess: return try container.encode(4)
-      case .glacierInstantRetrieval: return try container.encode(6)
-      case .intelligentTiering: return try container.encode(7)
+      case .unspecified: return try container.encode("UNSPECIFIED")
+      case .allSupportedClasses: return try container.encode("ALL_SUPPORTED_CLASSES")
+      case .standard: return try container.encode("STANDARD")
+      case .standardInfrequentAccess: return try container.encode("STANDARD_INFREQUENT_ACCESS")
+      case .glacierInstantRetrieval: return try container.encode("GLACIER_INSTANT_RETRIEVAL")
+      case .intelligentTiering: return try container.encode("INTELLIGENT_TIERING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

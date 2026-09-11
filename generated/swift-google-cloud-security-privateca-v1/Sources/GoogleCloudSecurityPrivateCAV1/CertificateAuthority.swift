@@ -498,9 +498,9 @@ public struct CertificateAuthority: Codable, Equatable, GoogleCloudWKT._AnyPacka
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .selfSigned: return try container.encode(1)
-      case .subordinate: return try container.encode(2)
+      case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .selfSigned: return try container.encode("SELF_SIGNED")
+      case .subordinate: return try container.encode("SUBORDINATE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -661,12 +661,12 @@ public struct CertificateAuthority: Codable, Equatable, GoogleCloudWKT._AnyPacka
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .enabled: return try container.encode(1)
-      case .disabled: return try container.encode(2)
-      case .staged: return try container.encode(3)
-      case .awaitingUserActivation: return try container.encode(4)
-      case .deleted: return try container.encode(5)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .enabled: return try container.encode("ENABLED")
+      case .disabled: return try container.encode("DISABLED")
+      case .staged: return try container.encode("STAGED")
+      case .awaitingUserActivation: return try container.encode("AWAITING_USER_ACTIVATION")
+      case .deleted: return try container.encode("DELETED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -813,15 +813,15 @@ public struct CertificateAuthority: Codable, Equatable, GoogleCloudWKT._AnyPacka
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .rsaPss2048Sha256: return try container.encode(1)
-      case .rsaPss3072Sha256: return try container.encode(2)
-      case .rsaPss4096Sha256: return try container.encode(3)
-      case .ecP256Sha256: return try container.encode(4)
-      case .ecP384Sha384: return try container.encode(5)
-      case .rsaPkcs12048Sha256: return try container.encode(6)
-      case .rsaPkcs13072Sha256: return try container.encode(7)
-      case .rsaPkcs14096Sha256: return try container.encode(8)
+      case .unspecified: return try container.encode("SIGN_HASH_ALGORITHM_UNSPECIFIED")
+      case .rsaPss2048Sha256: return try container.encode("RSA_PSS_2048_SHA256")
+      case .rsaPss3072Sha256: return try container.encode("RSA_PSS_3072_SHA256")
+      case .rsaPss4096Sha256: return try container.encode("RSA_PSS_4096_SHA256")
+      case .ecP256Sha256: return try container.encode("EC_P256_SHA256")
+      case .ecP384Sha384: return try container.encode("EC_P384_SHA384")
+      case .rsaPkcs12048Sha256: return try container.encode("RSA_PKCS1_2048_SHA256")
+      case .rsaPkcs13072Sha256: return try container.encode("RSA_PKCS1_3072_SHA256")
+      case .rsaPkcs14096Sha256: return try container.encode("RSA_PKCS1_4096_SHA256")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

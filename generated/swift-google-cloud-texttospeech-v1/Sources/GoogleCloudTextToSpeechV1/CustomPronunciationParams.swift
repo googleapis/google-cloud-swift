@@ -176,11 +176,11 @@ public struct CustomPronunciationParams: Codable, Equatable, GoogleCloudWKT._Any
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .ipa: return try container.encode(1)
-      case .xSampa: return try container.encode(2)
-      case .japaneseYomigana: return try container.encode(3)
-      case .pinyin: return try container.encode(4)
+      case .unspecified: return try container.encode("PHONETIC_ENCODING_UNSPECIFIED")
+      case .ipa: return try container.encode("PHONETIC_ENCODING_IPA")
+      case .xSampa: return try container.encode("PHONETIC_ENCODING_X_SAMPA")
+      case .japaneseYomigana: return try container.encode("PHONETIC_ENCODING_JAPANESE_YOMIGANA")
+      case .pinyin: return try container.encode("PHONETIC_ENCODING_PINYIN")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

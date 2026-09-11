@@ -794,9 +794,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .serviceAccount: return try container.encode(2)
-        case .agentIdentity: return try container.encode(3)
+        case .unspecified: return try container.encode("IDENTITY_TYPE_UNSPECIFIED")
+        case .serviceAccount: return try container.encode("SERVICE_ACCOUNT")
+        case .agentIdentity: return try container.encode("AGENT_IDENTITY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

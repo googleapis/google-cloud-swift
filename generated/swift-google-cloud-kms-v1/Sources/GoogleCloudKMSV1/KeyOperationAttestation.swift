@@ -193,9 +193,9 @@ public struct KeyOperationAttestation: Codable, Equatable, GoogleCloudWKT._AnyPa
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .caviumV1Compressed: return try container.encode(3)
-      case .caviumV2Compressed: return try container.encode(4)
+      case .unspecified: return try container.encode("ATTESTATION_FORMAT_UNSPECIFIED")
+      case .caviumV1Compressed: return try container.encode("CAVIUM_V1_COMPRESSED")
+      case .caviumV2Compressed: return try container.encode("CAVIUM_V2_COMPRESSED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

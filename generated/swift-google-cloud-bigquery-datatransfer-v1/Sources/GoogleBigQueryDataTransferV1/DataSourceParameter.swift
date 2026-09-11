@@ -276,14 +276,14 @@ public struct DataSourceParameter: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .string: return try container.encode(1)
-      case .integer: return try container.encode(2)
-      case .double: return try container.encode(3)
-      case .boolean: return try container.encode(4)
-      case .record: return try container.encode(5)
-      case .plusPage: return try container.encode(6)
-      case .list: return try container.encode(7)
+      case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .string: return try container.encode("STRING")
+      case .integer: return try container.encode("INTEGER")
+      case .double: return try container.encode("DOUBLE")
+      case .boolean: return try container.encode("BOOLEAN")
+      case .record: return try container.encode("RECORD")
+      case .plusPage: return try container.encode("PLUS_PAGE")
+      case .list: return try container.encode("LIST")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

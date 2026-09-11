@@ -149,9 +149,9 @@ public struct EncryptionInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .googleDefaultEncryption: return try container.encode(1)
-      case .customerManagedEncryption: return try container.encode(2)
+      case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .googleDefaultEncryption: return try container.encode("GOOGLE_DEFAULT_ENCRYPTION")
+      case .customerManagedEncryption: return try container.encode("CUSTOMER_MANAGED_ENCRYPTION")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -291,15 +291,15 @@ public struct EncryptionInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .enabled: return try container.encode(1)
-      case .permissionDenied: return try container.encode(2)
-      case .disabled: return try container.encode(3)
-      case .destroyed: return try container.encode(4)
-      case .destroyScheduled: return try container.encode(5)
-      case .ekmKeyUnreachableDetected: return try container.encode(6)
-      case .billingDisabled: return try container.encode(7)
-      case .unknownFailure: return try container.encode(8)
+      case .unspecified: return try container.encode("KMS_KEY_STATE_UNSPECIFIED")
+      case .enabled: return try container.encode("ENABLED")
+      case .permissionDenied: return try container.encode("PERMISSION_DENIED")
+      case .disabled: return try container.encode("DISABLED")
+      case .destroyed: return try container.encode("DESTROYED")
+      case .destroyScheduled: return try container.encode("DESTROY_SCHEDULED")
+      case .ekmKeyUnreachableDetected: return try container.encode("EKM_KEY_UNREACHABLE_DETECTED")
+      case .billingDisabled: return try container.encode("BILLING_DISABLED")
+      case .unknownFailure: return try container.encode("UNKNOWN_FAILURE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

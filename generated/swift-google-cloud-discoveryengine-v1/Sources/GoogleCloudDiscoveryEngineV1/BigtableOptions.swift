@@ -291,14 +291,14 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .string: return try container.encode(1)
-        case .number: return try container.encode(2)
-        case .integer: return try container.encode(3)
-        case .varInteger: return try container.encode(4)
-        case .bigNumeric: return try container.encode(5)
-        case .boolean: return try container.encode(6)
-        case .json: return try container.encode(7)
+        case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+        case .string: return try container.encode("STRING")
+        case .number: return try container.encode("NUMBER")
+        case .integer: return try container.encode("INTEGER")
+        case .varInteger: return try container.encode("VAR_INTEGER")
+        case .bigNumeric: return try container.encode("BIG_NUMERIC")
+        case .boolean: return try container.encode("BOOLEAN")
+        case .json: return try container.encode("JSON")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -401,9 +401,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .text: return try container.encode(1)
-        case .binary: return try container.encode(2)
+        case .unspecified: return try container.encode("ENCODING_UNSPECIFIED")
+        case .text: return try container.encode("TEXT")
+        case .binary: return try container.encode("BINARY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -130,11 +130,11 @@
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .primary: return try container.encode(1)
-      case .outgoing: return try container.encode(2)
-      case .`private`: return try container.encode(3)
-      case .migrated1StGen: return try container.encode(4)
+      case .unspecified: return try container.encode("SQL_IP_ADDRESS_TYPE_UNSPECIFIED")
+      case .primary: return try container.encode("PRIMARY")
+      case .outgoing: return try container.encode("OUTGOING")
+      case .`private`: return try container.encode("PRIVATE")
+      case .migrated1StGen: return try container.encode("MIGRATED_1ST_GEN")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

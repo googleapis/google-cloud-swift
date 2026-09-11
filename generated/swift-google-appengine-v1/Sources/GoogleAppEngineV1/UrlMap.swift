@@ -238,11 +238,15 @@ public struct UrlMap: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .redirectHttpResponseCode301: return try container.encode(1)
-      case .redirectHttpResponseCode302: return try container.encode(2)
-      case .redirectHttpResponseCode303: return try container.encode(3)
-      case .redirectHttpResponseCode307: return try container.encode(4)
+      case .unspecified: return try container.encode("REDIRECT_HTTP_RESPONSE_CODE_UNSPECIFIED")
+      case .redirectHttpResponseCode301:
+        return try container.encode("REDIRECT_HTTP_RESPONSE_CODE_301")
+      case .redirectHttpResponseCode302:
+        return try container.encode("REDIRECT_HTTP_RESPONSE_CODE_302")
+      case .redirectHttpResponseCode303:
+        return try container.encode("REDIRECT_HTTP_RESPONSE_CODE_303")
+      case .redirectHttpResponseCode307:
+        return try container.encode("REDIRECT_HTTP_RESPONSE_CODE_307")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

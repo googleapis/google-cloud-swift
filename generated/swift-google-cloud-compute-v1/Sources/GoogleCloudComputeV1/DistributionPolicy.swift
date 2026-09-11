@@ -167,10 +167,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .any: return try container.encode(0)
-        case .anySingleZone: return try container.encode(1)
-        case .balanced: return try container.encode(2)
-        case .even: return try container.encode(3)
+        case .any: return try container.encode("ANY")
+        case .anySingleZone: return try container.encode("ANY_SINGLE_ZONE")
+        case .balanced: return try container.encode("BALANCED")
+        case .even: return try container.encode("EVEN")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

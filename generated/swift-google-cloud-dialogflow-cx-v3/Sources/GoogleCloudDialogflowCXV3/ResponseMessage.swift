@@ -861,10 +861,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .entryPrompt: return try container.encode(1)
-        case .parameterPrompt: return try container.encode(2)
-        case .handlerPrompt: return try container.encode(3)
+        case .unspecified: return try container.encode("RESPONSE_TYPE_UNSPECIFIED")
+        case .entryPrompt: return try container.encode("ENTRY_PROMPT")
+        case .parameterPrompt: return try container.encode("PARAMETER_PROMPT")
+        case .handlerPrompt: return try container.encode("HANDLER_PROMPT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

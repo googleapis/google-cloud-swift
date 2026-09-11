@@ -142,9 +142,9 @@ public struct MockConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .fail: return try container.encode(1)
-      case .passThrough: return try container.encode(2)
+      case .unspecified: return try container.encode("UNMATCHED_TOOL_CALL_BEHAVIOR_UNSPECIFIED")
+      case .fail: return try container.encode("FAIL")
+      case .passThrough: return try container.encode("PASS_THROUGH")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

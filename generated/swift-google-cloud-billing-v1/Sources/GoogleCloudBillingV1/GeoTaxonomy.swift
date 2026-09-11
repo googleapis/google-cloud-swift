@@ -148,10 +148,10 @@ public struct GeoTaxonomy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .global: return try container.encode(1)
-      case .regional: return try container.encode(2)
-      case .multiRegional: return try container.encode(3)
+      case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .global: return try container.encode("GLOBAL")
+      case .regional: return try container.encode("REGIONAL")
+      case .multiRegional: return try container.encode("MULTI_REGIONAL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

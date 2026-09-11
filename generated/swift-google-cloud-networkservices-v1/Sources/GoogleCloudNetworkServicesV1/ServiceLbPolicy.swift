@@ -304,11 +304,11 @@ public struct ServiceLbPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .sprayToWorld: return try container.encode(3)
-      case .sprayToRegion: return try container.encode(4)
-      case .waterfallByRegion: return try container.encode(5)
-      case .waterfallByZone: return try container.encode(6)
+      case .unspecified: return try container.encode("LOAD_BALANCING_ALGORITHM_UNSPECIFIED")
+      case .sprayToWorld: return try container.encode("SPRAY_TO_WORLD")
+      case .sprayToRegion: return try container.encode("SPRAY_TO_REGION")
+      case .waterfallByRegion: return try container.encode("WATERFALL_BY_REGION")
+      case .waterfallByZone: return try container.encode("WATERFALL_BY_ZONE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -406,8 +406,8 @@ public struct ServiceLbPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .region: return try container.encode(1)
+      case .unspecified: return try container.encode("ISOLATION_GRANULARITY_UNSPECIFIED")
+      case .region: return try container.encode("REGION")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -512,9 +512,9 @@ public struct ServiceLbPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .nearest: return try container.encode(1)
-      case .strict: return try container.encode(2)
+      case .unspecified: return try container.encode("ISOLATION_MODE_UNSPECIFIED")
+      case .nearest: return try container.encode("NEAREST")
+      case .strict: return try container.encode("STRICT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

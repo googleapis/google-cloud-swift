@@ -119,10 +119,10 @@
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .firstGen: return try container.encode(1)
-      case .secondGen: return try container.encode(2)
-      case .external: return try container.encode(3)
+      case .unspecified: return try container.encode("SQL_BACKEND_TYPE_UNSPECIFIED")
+      case .firstGen: return try container.encode("FIRST_GEN")
+      case .secondGen: return try container.encode("SECOND_GEN")
+      case .external: return try container.encode("EXTERNAL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

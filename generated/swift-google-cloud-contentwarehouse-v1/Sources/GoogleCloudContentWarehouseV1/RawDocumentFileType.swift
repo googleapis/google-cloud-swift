@@ -136,13 +136,13 @@ public enum RawDocumentFileType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .pdf: return try container.encode(1)
-    case .docx: return try container.encode(2)
-    case .xlsx: return try container.encode(3)
-    case .pptx: return try container.encode(4)
-    case .text: return try container.encode(5)
-    case .tiff: return try container.encode(6)
+    case .unspecified: return try container.encode("RAW_DOCUMENT_FILE_TYPE_UNSPECIFIED")
+    case .pdf: return try container.encode("RAW_DOCUMENT_FILE_TYPE_PDF")
+    case .docx: return try container.encode("RAW_DOCUMENT_FILE_TYPE_DOCX")
+    case .xlsx: return try container.encode("RAW_DOCUMENT_FILE_TYPE_XLSX")
+    case .pptx: return try container.encode("RAW_DOCUMENT_FILE_TYPE_PPTX")
+    case .text: return try container.encode("RAW_DOCUMENT_FILE_TYPE_TEXT")
+    case .tiff: return try container.encode("RAW_DOCUMENT_FILE_TYPE_TIFF")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

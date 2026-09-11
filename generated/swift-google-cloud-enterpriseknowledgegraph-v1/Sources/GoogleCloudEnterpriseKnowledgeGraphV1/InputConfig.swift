@@ -179,14 +179,14 @@ public struct InputConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .people: return try container.encode(1)
-      case .establishment: return try container.encode(2)
-      case .property: return try container.encode(3)
-      case .product: return try container.encode(4)
-      case .organization: return try container.encode(5)
-      case .localBusiness: return try container.encode(6)
-      case .person: return try container.encode(7)
+      case .unspecified: return try container.encode("ENTITY_TYPE_UNSPECIFIED")
+      case .people: return try container.encode("PEOPLE")
+      case .establishment: return try container.encode("ESTABLISHMENT")
+      case .property: return try container.encode("PROPERTY")
+      case .product: return try container.encode("PRODUCT")
+      case .organization: return try container.encode("ORGANIZATION")
+      case .localBusiness: return try container.encode("LOCAL_BUSINESS")
+      case .person: return try container.encode("PERSON")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

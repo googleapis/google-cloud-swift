@@ -238,9 +238,9 @@ public struct Server: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .external: return try container.encode(1)
-      case .`internal`: return try container.encode(2)
+      case .unspecified: return try container.encode("ACCESS_TYPE_UNSPECIFIED")
+      case .external: return try container.encode("EXTERNAL")
+      case .`internal`: return try container.encode("INTERNAL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -379,15 +379,15 @@ public struct Server: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .creating: return try container.encode(1)
-      case .starting: return try container.encode(2)
-      case .active: return try container.encode(3)
-      case .stopping: return try container.encode(4)
-      case .stopped: return try container.encode(5)
-      case .deleting: return try container.encode(6)
-      case .error: return try container.encode(7)
-      case .updating: return try container.encode(8)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .creating: return try container.encode("CREATING")
+      case .starting: return try container.encode("STARTING")
+      case .active: return try container.encode("ACTIVE")
+      case .stopping: return try container.encode("STOPPING")
+      case .stopped: return try container.encode("STOPPED")
+      case .deleting: return try container.encode("DELETING")
+      case .error: return try container.encode("ERROR")
+      case .updating: return try container.encode("UPDATING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

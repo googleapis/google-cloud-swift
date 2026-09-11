@@ -126,10 +126,10 @@ public enum SecurityLevel: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .secureDefault: return try container.encode(0)
-    case .secureNever: return try container.encode(1)
-    case .secureOptional: return try container.encode(2)
-    case .secureAlways: return try container.encode(3)
+    case .secureDefault: return try container.encode("SECURE_DEFAULT")
+    case .secureNever: return try container.encode("SECURE_NEVER")
+    case .secureOptional: return try container.encode("SECURE_OPTIONAL")
+    case .secureAlways: return try container.encode("SECURE_ALWAYS")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

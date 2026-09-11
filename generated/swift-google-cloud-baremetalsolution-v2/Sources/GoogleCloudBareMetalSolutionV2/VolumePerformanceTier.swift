@@ -118,10 +118,10 @@ public enum VolumePerformanceTier: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .shared: return try container.encode(1)
-    case .assigned: return try container.encode(2)
-    case .ht: return try container.encode(3)
+    case .unspecified: return try container.encode("VOLUME_PERFORMANCE_TIER_UNSPECIFIED")
+    case .shared: return try container.encode("VOLUME_PERFORMANCE_TIER_SHARED")
+    case .assigned: return try container.encode("VOLUME_PERFORMANCE_TIER_ASSIGNED")
+    case .ht: return try container.encode("VOLUME_PERFORMANCE_TIER_HT")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

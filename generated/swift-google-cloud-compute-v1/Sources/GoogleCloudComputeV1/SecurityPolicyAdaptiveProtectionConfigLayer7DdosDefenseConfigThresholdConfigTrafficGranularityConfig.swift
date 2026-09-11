@@ -149,9 +149,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .httpHeaderHost: return try container.encode(0)
-        case .httpPath: return try container.encode(1)
-        case .unspecifiedType: return try container.encode(2)
+        case .httpHeaderHost: return try container.encode("HTTP_HEADER_HOST")
+        case .httpPath: return try container.encode("HTTP_PATH")
+        case .unspecifiedType: return try container.encode("UNSPECIFIED_TYPE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

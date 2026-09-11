@@ -246,11 +246,11 @@ public struct GitFileSource: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unknown: return try container.encode(0)
-      case .cloudSourceRepositories: return try container.encode(1)
-      case .github: return try container.encode(2)
-      case .bitbucketServer: return try container.encode(3)
-      case .gitlab: return try container.encode(4)
+      case .unknown: return try container.encode("UNKNOWN")
+      case .cloudSourceRepositories: return try container.encode("CLOUD_SOURCE_REPOSITORIES")
+      case .github: return try container.encode("GITHUB")
+      case .bitbucketServer: return try container.encode("BITBUCKET_SERVER")
+      case .gitlab: return try container.encode("GITLAB")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

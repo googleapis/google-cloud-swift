@@ -112,9 +112,9 @@ public enum FilterMatchState: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .noMatchFound: return try container.encode(1)
-    case .matchFound: return try container.encode(2)
+    case .unspecified: return try container.encode("FILTER_MATCH_STATE_UNSPECIFIED")
+    case .noMatchFound: return try container.encode("NO_MATCH_FOUND")
+    case .matchFound: return try container.encode("MATCH_FOUND")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

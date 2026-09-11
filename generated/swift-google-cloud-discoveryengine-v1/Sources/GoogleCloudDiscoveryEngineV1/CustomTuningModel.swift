@@ -195,14 +195,14 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .trainingPaused: return try container.encode(1)
-        case .training: return try container.encode(2)
-        case .trainingComplete: return try container.encode(3)
-        case .readyForServing: return try container.encode(4)
-        case .trainingFailed: return try container.encode(5)
-        case .noImprovement: return try container.encode(6)
-        case .inputValidationFailed: return try container.encode(7)
+        case .unspecified: return try container.encode("MODEL_STATE_UNSPECIFIED")
+        case .trainingPaused: return try container.encode("TRAINING_PAUSED")
+        case .training: return try container.encode("TRAINING")
+        case .trainingComplete: return try container.encode("TRAINING_COMPLETE")
+        case .readyForServing: return try container.encode("READY_FOR_SERVING")
+        case .trainingFailed: return try container.encode("TRAINING_FAILED")
+        case .noImprovement: return try container.encode("NO_IMPROVEMENT")
+        case .inputValidationFailed: return try container.encode("INPUT_VALIDATION_FAILED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

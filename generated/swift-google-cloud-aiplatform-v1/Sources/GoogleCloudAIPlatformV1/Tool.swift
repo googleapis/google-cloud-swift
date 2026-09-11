@@ -403,8 +403,8 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .browser: return try container.encode(1)
+          case .unspecified: return try container.encode("ENVIRONMENT_UNSPECIFIED")
+          case .browser: return try container.encode("ENVIRONMENT_BROWSER")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -545,13 +545,13 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .blockLowAndAbove: return try container.encode(30)
-        case .blockMediumAndAbove: return try container.encode(40)
-        case .blockHighAndAbove: return try container.encode(50)
-        case .blockHigherAndAbove: return try container.encode(55)
-        case .blockVeryHighAndAbove: return try container.encode(60)
-        case .blockOnlyExtremelyHigh: return try container.encode(100)
+        case .unspecified: return try container.encode("PHISH_BLOCK_THRESHOLD_UNSPECIFIED")
+        case .blockLowAndAbove: return try container.encode("BLOCK_LOW_AND_ABOVE")
+        case .blockMediumAndAbove: return try container.encode("BLOCK_MEDIUM_AND_ABOVE")
+        case .blockHighAndAbove: return try container.encode("BLOCK_HIGH_AND_ABOVE")
+        case .blockHigherAndAbove: return try container.encode("BLOCK_HIGHER_AND_ABOVE")
+        case .blockVeryHighAndAbove: return try container.encode("BLOCK_VERY_HIGH_AND_ABOVE")
+        case .blockOnlyExtremelyHigh: return try container.encode("BLOCK_ONLY_EXTREMELY_HIGH")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

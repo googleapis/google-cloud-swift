@@ -192,8 +192,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .namedSetTypeCommunity: return try container.encode(0)
-        case .namedSetTypePrefix: return try container.encode(1)
+        case .namedSetTypeCommunity: return try container.encode("NAMED_SET_TYPE_COMMUNITY")
+        case .namedSetTypePrefix: return try container.encode("NAMED_SET_TYPE_PREFIX")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

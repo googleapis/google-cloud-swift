@@ -156,10 +156,10 @@ public struct TreeEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .tree: return try container.encode(1)
-      case .blob: return try container.encode(2)
-      case .commit: return try container.encode(3)
+      case .unspecified: return try container.encode("OBJECT_TYPE_UNSPECIFIED")
+      case .tree: return try container.encode("TREE")
+      case .blob: return try container.encode("BLOB")
+      case .commit: return try container.encode("COMMIT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

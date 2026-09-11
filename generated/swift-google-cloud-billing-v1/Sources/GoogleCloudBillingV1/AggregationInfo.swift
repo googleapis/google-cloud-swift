@@ -142,9 +142,9 @@ public struct AggregationInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .account: return try container.encode(1)
-      case .project: return try container.encode(2)
+      case .unspecified: return try container.encode("AGGREGATION_LEVEL_UNSPECIFIED")
+      case .account: return try container.encode("ACCOUNT")
+      case .project: return try container.encode("PROJECT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -246,9 +246,9 @@ public struct AggregationInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .daily: return try container.encode(1)
-      case .monthly: return try container.encode(2)
+      case .unspecified: return try container.encode("AGGREGATION_INTERVAL_UNSPECIFIED")
+      case .daily: return try container.encode("DAILY")
+      case .monthly: return try container.encode("MONTHLY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

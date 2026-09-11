@@ -360,14 +360,14 @@ public struct Preview: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .creating: return try container.encode(1)
-      case .succeeded: return try container.encode(2)
-      case .applying: return try container.encode(3)
-      case .stale: return try container.encode(4)
-      case .deleting: return try container.encode(5)
-      case .failed: return try container.encode(6)
-      case .deleted: return try container.encode(7)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .creating: return try container.encode("CREATING")
+      case .succeeded: return try container.encode("SUCCEEDED")
+      case .applying: return try container.encode("APPLYING")
+      case .stale: return try container.encode("STALE")
+      case .deleting: return try container.encode("DELETING")
+      case .failed: return try container.encode("FAILED")
+      case .deleted: return try container.encode("DELETED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -471,9 +471,9 @@ public struct Preview: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .`default`: return try container.encode(1)
-      case .delete: return try container.encode(2)
+      case .unspecified: return try container.encode("PREVIEW_MODE_UNSPECIFIED")
+      case .`default`: return try container.encode("DEFAULT")
+      case .delete: return try container.encode("DELETE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -606,14 +606,17 @@ public struct Preview: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .cloudBuildPermissionDenied: return try container.encode(1)
-      case .bucketCreationPermissionDenied: return try container.encode(2)
-      case .bucketCreationFailed: return try container.encode(3)
-      case .deploymentLockAcquireFailed: return try container.encode(4)
-      case .previewBuildApiFailed: return try container.encode(5)
-      case .previewBuildRunFailed: return try container.encode(6)
-      case .externalValueSourceImportFailed: return try container.encode(7)
+      case .unspecified: return try container.encode("ERROR_CODE_UNSPECIFIED")
+      case .cloudBuildPermissionDenied: return try container.encode("CLOUD_BUILD_PERMISSION_DENIED")
+      case .bucketCreationPermissionDenied:
+        return try container.encode("BUCKET_CREATION_PERMISSION_DENIED")
+      case .bucketCreationFailed: return try container.encode("BUCKET_CREATION_FAILED")
+      case .deploymentLockAcquireFailed:
+        return try container.encode("DEPLOYMENT_LOCK_ACQUIRE_FAILED")
+      case .previewBuildApiFailed: return try container.encode("PREVIEW_BUILD_API_FAILED")
+      case .previewBuildRunFailed: return try container.encode("PREVIEW_BUILD_RUN_FAILED")
+      case .externalValueSourceImportFailed:
+        return try container.encode("EXTERNAL_VALUE_SOURCE_IMPORT_FAILED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -179,10 +179,10 @@ public struct UtilizationReport: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .creating: return try container.encode(1)
-      case .succeeded: return try container.encode(2)
-      case .failed: return try container.encode(3)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .creating: return try container.encode("CREATING")
+      case .succeeded: return try container.encode("SUCCEEDED")
+      case .failed: return try container.encode("FAILED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -291,10 +291,10 @@ public struct UtilizationReport: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .week: return try container.encode(1)
-      case .month: return try container.encode(2)
-      case .year: return try container.encode(3)
+      case .unspecified: return try container.encode("TIME_FRAME_UNSPECIFIED")
+      case .week: return try container.encode("WEEK")
+      case .month: return try container.encode("MONTH")
+      case .year: return try container.encode("YEAR")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

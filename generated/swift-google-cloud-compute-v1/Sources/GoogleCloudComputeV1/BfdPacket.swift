@@ -295,16 +295,19 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .administrativelyDown: return try container.encode(0)
-        case .concatenatedPathDown: return try container.encode(1)
-        case .controlDetectionTimeExpired: return try container.encode(2)
-        case .unspecified: return try container.encode(3)
-        case .echoFunctionFailed: return try container.encode(4)
-        case .forwardingPlaneReset: return try container.encode(5)
-        case .neighborSignaledSessionDown: return try container.encode(6)
-        case .noDiagnostic: return try container.encode(7)
-        case .pathDown: return try container.encode(8)
-        case .reverseConcatenatedPathDown: return try container.encode(9)
+        case .administrativelyDown: return try container.encode("ADMINISTRATIVELY_DOWN")
+        case .concatenatedPathDown: return try container.encode("CONCATENATED_PATH_DOWN")
+        case .controlDetectionTimeExpired:
+          return try container.encode("CONTROL_DETECTION_TIME_EXPIRED")
+        case .unspecified: return try container.encode("DIAGNOSTIC_UNSPECIFIED")
+        case .echoFunctionFailed: return try container.encode("ECHO_FUNCTION_FAILED")
+        case .forwardingPlaneReset: return try container.encode("FORWARDING_PLANE_RESET")
+        case .neighborSignaledSessionDown:
+          return try container.encode("NEIGHBOR_SIGNALED_SESSION_DOWN")
+        case .noDiagnostic: return try container.encode("NO_DIAGNOSTIC")
+        case .pathDown: return try container.encode("PATH_DOWN")
+        case .reverseConcatenatedPathDown:
+          return try container.encode("REVERSE_CONCATENATED_PATH_DOWN")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -416,11 +419,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .adminDown: return try container.encode(0)
-        case .down: return try container.encode(1)
-        case .`init`: return try container.encode(2)
-        case .unspecified: return try container.encode(3)
-        case .up: return try container.encode(4)
+        case .adminDown: return try container.encode("ADMIN_DOWN")
+        case .down: return try container.encode("DOWN")
+        case .`init`: return try container.encode("INIT")
+        case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+        case .up: return try container.encode("UP")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

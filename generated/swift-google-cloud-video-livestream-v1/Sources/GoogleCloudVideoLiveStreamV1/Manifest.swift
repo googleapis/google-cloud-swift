@@ -189,9 +189,9 @@ public struct Manifest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .hls: return try container.encode(1)
-      case .dash: return try container.encode(2)
+      case .unspecified: return try container.encode("MANIFEST_TYPE_UNSPECIFIED")
+      case .hls: return try container.encode("HLS")
+      case .dash: return try container.encode("DASH")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

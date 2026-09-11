@@ -128,11 +128,11 @@ public enum AllowAccessState: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .granted: return try container.encode(1)
-    case .notGranted: return try container.encode(2)
-    case .unknownConditional: return try container.encode(3)
-    case .unknownInfo: return try container.encode(4)
+    case .unspecified: return try container.encode("ALLOW_ACCESS_STATE_UNSPECIFIED")
+    case .granted: return try container.encode("ALLOW_ACCESS_STATE_GRANTED")
+    case .notGranted: return try container.encode("ALLOW_ACCESS_STATE_NOT_GRANTED")
+    case .unknownConditional: return try container.encode("ALLOW_ACCESS_STATE_UNKNOWN_CONDITIONAL")
+    case .unknownInfo: return try container.encode("ALLOW_ACCESS_STATE_UNKNOWN_INFO")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

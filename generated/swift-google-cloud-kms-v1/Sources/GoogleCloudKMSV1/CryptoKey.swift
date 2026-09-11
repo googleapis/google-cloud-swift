@@ -431,14 +431,14 @@ public struct CryptoKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .encryptDecrypt: return try container.encode(1)
-      case .asymmetricSign: return try container.encode(5)
-      case .asymmetricDecrypt: return try container.encode(6)
-      case .rawEncryptDecrypt: return try container.encode(7)
-      case .mac: return try container.encode(9)
-      case .keyEncapsulation: return try container.encode(10)
-      case .aesWrapping: return try container.encode(11)
+      case .unspecified: return try container.encode("CRYPTO_KEY_PURPOSE_UNSPECIFIED")
+      case .encryptDecrypt: return try container.encode("ENCRYPT_DECRYPT")
+      case .asymmetricSign: return try container.encode("ASYMMETRIC_SIGN")
+      case .asymmetricDecrypt: return try container.encode("ASYMMETRIC_DECRYPT")
+      case .rawEncryptDecrypt: return try container.encode("RAW_ENCRYPT_DECRYPT")
+      case .mac: return try container.encode("MAC")
+      case .keyEncapsulation: return try container.encode("KEY_ENCAPSULATION")
+      case .aesWrapping: return try container.encode("AES_WRAPPING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

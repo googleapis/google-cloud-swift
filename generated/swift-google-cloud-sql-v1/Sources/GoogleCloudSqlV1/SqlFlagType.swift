@@ -143,14 +143,14 @@
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .boolean: return try container.encode(1)
-      case .string: return try container.encode(2)
-      case .integer: return try container.encode(3)
-      case .`none`: return try container.encode(4)
-      case .mysqlTimezoneOffset: return try container.encode(5)
-      case .float: return try container.encode(6)
-      case .repeatedString: return try container.encode(7)
+      case .unspecified: return try container.encode("SQL_FLAG_TYPE_UNSPECIFIED")
+      case .boolean: return try container.encode("BOOLEAN")
+      case .string: return try container.encode("STRING")
+      case .integer: return try container.encode("INTEGER")
+      case .`none`: return try container.encode("NONE")
+      case .mysqlTimezoneOffset: return try container.encode("MYSQL_TIMEZONE_OFFSET")
+      case .float: return try container.encode("FLOAT")
+      case .repeatedString: return try container.encode("REPEATED_STRING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

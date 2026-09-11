@@ -933,114 +933,184 @@ public struct DropInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .unknownExternalAddress: return try container.encode(1)
-      case .foreignIpDisallowed: return try container.encode(2)
-      case .firewallRule: return try container.encode(3)
-      case .noRoute: return try container.encode(4)
-      case .routeBlackhole: return try container.encode(5)
-      case .routeWrongNetwork: return try container.encode(6)
-      case .privateTrafficToInternet: return try container.encode(7)
-      case .privateGoogleAccessDisallowed: return try container.encode(8)
-      case .noExternalAddress: return try container.encode(9)
-      case .unknownInternalAddress: return try container.encode(10)
-      case .forwardingRuleMismatch: return try container.encode(11)
-      case .forwardingRuleNoInstances: return try container.encode(12)
-      case .firewallBlockingLoadBalancerBackendHealthCheck: return try container.encode(13)
-      case .instanceNotRunning: return try container.encode(14)
-      case .trafficTypeBlocked: return try container.encode(15)
-      case .gkeMasterUnauthorizedAccess: return try container.encode(16)
-      case .cloudSqlInstanceUnauthorizedAccess: return try container.encode(17)
-      case .droppedInsideGkeService: return try container.encode(18)
-      case .droppedInsideCloudSqlService: return try container.encode(19)
-      case .googleManagedServiceNoPeering: return try container.encode(20)
-      case .cloudSqlInstanceNoIpAddress: return try container.encode(21)
-      case .cloudFunctionNotActive: return try container.encode(22)
-      case .vpcConnectorNotSet: return try container.encode(23)
-      case .vpcConnectorNotRunning: return try container.encode(24)
-      case .forwardingRuleRegionMismatch: return try container.encode(25)
-      case .pscConnectionNotAccepted: return try container.encode(26)
-      case .gkeClusterNotRunning: return try container.encode(27)
-      case .cloudSqlInstanceNotRunning: return try container.encode(28)
-      case .cloudRunRevisionNotReady: return try container.encode(29)
-      case .gkeControlPlaneRegionMismatch: return try container.encode(30)
-      case .publicGkeControlPlaneToPrivateDestination: return try container.encode(31)
-      case .gkeControlPlaneNoRoute: return try container.encode(32)
-      case .cloudSqlInstanceNotConfiguredForExternalTraffic: return try container.encode(33)
-      case .publicCloudSqlInstanceToPrivateDestination: return try container.encode(34)
-      case .cloudSqlInstanceNoRoute: return try container.encode(35)
-      case .gkePscEndpointMissing: return try container.encode(36)
-      case .droppedInsidePscServiceProducer: return try container.encode(37)
-      case .googleManagedServiceNoPscEndpoint: return try container.encode(38)
-      case .loadBalancerHasNoProxySubnet: return try container.encode(39)
-      case .cloudNatNoAddresses: return try container.encode(40)
-      case .pscEndpointAccessedFromPeeredNetwork: return try container.encode(41)
-      case .routeNextHopIpAddressNotResolved: return try container.encode(42)
-      case .routeNextHopResourceNotFound: return try container.encode(43)
-      case .noRouteFromInternetToPrivateIpv6Address: return try container.encode(44)
-      case .vpnTunnelLocalSelectorMismatch: return try container.encode(45)
-      case .vpnTunnelRemoteSelectorMismatch: return try container.encode(46)
-      case .privateGoogleAccessViaVpnTunnelUnsupported: return try container.encode(47)
-      case .pscNegProducerEndpointNoGlobalAccess: return try container.encode(48)
-      case .routeNextHopInstanceWrongNetwork: return try container.encode(49)
-      case .routeNextHopInstanceNonPrimaryIp: return try container.encode(50)
-      case .routeNextHopForwardingRuleIpMismatch: return try container.encode(51)
-      case .routeNextHopVpnTunnelNotEstablished: return try container.encode(52)
-      case .routeNextHopForwardingRuleTypeInvalid: return try container.encode(53)
-      case .pscNegProducerForwardingRuleMultiplePorts: return try container.encode(54)
-      case .hybridNegNonDynamicRouteMatched: return try container.encode(55)
-      case .hybridNegNonLocalDynamicRouteMatched: return try container.encode(56)
-      case .noNatSubnetsForPscServiceAttachment: return try container.encode(57)
-      case .cloudSqlPscNegUnsupported: return try container.encode(58)
-      case .routingLoop: return try container.encode(59)
-      case .vpcConnectorServerlessTrafficBlocked: return try container.encode(60)
-      case .vpcConnectorHealthCheckTrafficBlocked: return try container.encode(61)
-      case .droppedInsideGoogleManagedService: return try container.encode(62)
-      case .cloudSqlConnectorRequired: return try container.encode(63)
-      case .pscTransitivityNotPropagated: return try container.encode(64)
-      case .loadBalancerBackendInvalidNetwork: return try container.encode(65)
-      case .backendServiceNamedPortNotDefined: return try container.encode(66)
-      case .destinationIsPrivateNatIpRange: return try container.encode(67)
-      case .redisInstanceNotRunning: return try container.encode(68)
-      case .redisClusterNotRunning: return try container.encode(69)
-      case .droppedInsideRedisInstanceService: return try container.encode(70)
-      case .redisInstanceUnsupportedPort: return try container.encode(71)
-      case .redisInstanceConnectingFromPupiAddress: return try container.encode(72)
-      case .redisInstanceNoRouteToDestinationNetwork: return try container.encode(73)
-      case .redisInstanceNoExternalIp: return try container.encode(74)
-      case .droppedInsideRedisClusterService: return try container.encode(75)
-      case .redisClusterUnsupportedPort: return try container.encode(76)
-      case .redisClusterNoExternalIp: return try container.encode(77)
-      case .redisInstanceUnsupportedProtocol: return try container.encode(78)
-      case .redisClusterUnsupportedProtocol: return try container.encode(79)
-      case .noAdvertisedRouteToGcpDestination: return try container.encode(80)
-      case .noTrafficSelectorToGcpDestination: return try container.encode(81)
-      case .noKnownRouteFromPeeredNetworkToDestination: return try container.encode(82)
-      case .privateNatToPscEndpointUnsupported: return try container.encode(83)
-      case .ingressFirewallTagsUnsupportedByDirectVpcEgress: return try container.encode(85)
-      case .pscPortMappingPortMismatch: return try container.encode(86)
-      case .pscPortMappingWithoutPscConnectionUnsupported: return try container.encode(87)
-      case .unsupportedRouteMatchedForNat64Destination: return try container.encode(88)
-      case .trafficFromHybridEndpointToInternetDisallowed: return try container.encode(89)
-      case .noMatchingNat64Gateway: return try container.encode(90)
-      case .loadBalancerBackendIpVersionMismatch: return try container.encode(96)
-      case .noKnownRouteFromNccNetworkToDestination: return try container.encode(97)
-      case .noRouteFromExternalIpv6SourceToPrivateIpv6Address: return try container.encode(98)
-      case .cloudNatProtocolUnsupported: return try container.encode(99)
-      case .l2InterconnectUnsupportedProtocol: return try container.encode(100)
-      case .l2InterconnectUnsupportedPort: return try container.encode(101)
-      case .l2InterconnectDestinationIpMismatch: return try container.encode(102)
-      case .gkePodNotRunning: return try container.encode(103)
-      case .nccRouteWithinHybridSubnetUnsupported: return try container.encode(104)
-      case .hybridSubnetRegionMismatch: return try container.encode(105)
-      case .hybridSubnetNoRoute: return try container.encode(106)
-      case .noConfiguredPrivateNat64Rule: return try container.encode(107)
-      case .gkeNetworkPolicy: return try container.encode(108)
-      case .noRouteFromInternetToPrivateIpv4Address: return try container.encode(109)
-      case .noValidRouteFromGoogleManagedNetworkToDestination: return try container.encode(110)
-      case .privateConnectionNoRunningInstance: return try container.encode(111)
-      case .cloudRunJobNotReady: return try container.encode(113)
-      case .droppedInsideDmsPrivateConnection: return try container.encode(114)
+      case .unspecified: return try container.encode("CAUSE_UNSPECIFIED")
+      case .unknownExternalAddress: return try container.encode("UNKNOWN_EXTERNAL_ADDRESS")
+      case .foreignIpDisallowed: return try container.encode("FOREIGN_IP_DISALLOWED")
+      case .firewallRule: return try container.encode("FIREWALL_RULE")
+      case .noRoute: return try container.encode("NO_ROUTE")
+      case .routeBlackhole: return try container.encode("ROUTE_BLACKHOLE")
+      case .routeWrongNetwork: return try container.encode("ROUTE_WRONG_NETWORK")
+      case .privateTrafficToInternet: return try container.encode("PRIVATE_TRAFFIC_TO_INTERNET")
+      case .privateGoogleAccessDisallowed:
+        return try container.encode("PRIVATE_GOOGLE_ACCESS_DISALLOWED")
+      case .noExternalAddress: return try container.encode("NO_EXTERNAL_ADDRESS")
+      case .unknownInternalAddress: return try container.encode("UNKNOWN_INTERNAL_ADDRESS")
+      case .forwardingRuleMismatch: return try container.encode("FORWARDING_RULE_MISMATCH")
+      case .forwardingRuleNoInstances: return try container.encode("FORWARDING_RULE_NO_INSTANCES")
+      case .firewallBlockingLoadBalancerBackendHealthCheck:
+        return try container.encode("FIREWALL_BLOCKING_LOAD_BALANCER_BACKEND_HEALTH_CHECK")
+      case .instanceNotRunning: return try container.encode("INSTANCE_NOT_RUNNING")
+      case .trafficTypeBlocked: return try container.encode("TRAFFIC_TYPE_BLOCKED")
+      case .gkeMasterUnauthorizedAccess:
+        return try container.encode("GKE_MASTER_UNAUTHORIZED_ACCESS")
+      case .cloudSqlInstanceUnauthorizedAccess:
+        return try container.encode("CLOUD_SQL_INSTANCE_UNAUTHORIZED_ACCESS")
+      case .droppedInsideGkeService: return try container.encode("DROPPED_INSIDE_GKE_SERVICE")
+      case .droppedInsideCloudSqlService:
+        return try container.encode("DROPPED_INSIDE_CLOUD_SQL_SERVICE")
+      case .googleManagedServiceNoPeering:
+        return try container.encode("GOOGLE_MANAGED_SERVICE_NO_PEERING")
+      case .cloudSqlInstanceNoIpAddress:
+        return try container.encode("CLOUD_SQL_INSTANCE_NO_IP_ADDRESS")
+      case .cloudFunctionNotActive: return try container.encode("CLOUD_FUNCTION_NOT_ACTIVE")
+      case .vpcConnectorNotSet: return try container.encode("VPC_CONNECTOR_NOT_SET")
+      case .vpcConnectorNotRunning: return try container.encode("VPC_CONNECTOR_NOT_RUNNING")
+      case .forwardingRuleRegionMismatch:
+        return try container.encode("FORWARDING_RULE_REGION_MISMATCH")
+      case .pscConnectionNotAccepted: return try container.encode("PSC_CONNECTION_NOT_ACCEPTED")
+      case .gkeClusterNotRunning: return try container.encode("GKE_CLUSTER_NOT_RUNNING")
+      case .cloudSqlInstanceNotRunning:
+        return try container.encode("CLOUD_SQL_INSTANCE_NOT_RUNNING")
+      case .cloudRunRevisionNotReady: return try container.encode("CLOUD_RUN_REVISION_NOT_READY")
+      case .gkeControlPlaneRegionMismatch:
+        return try container.encode("GKE_CONTROL_PLANE_REGION_MISMATCH")
+      case .publicGkeControlPlaneToPrivateDestination:
+        return try container.encode("PUBLIC_GKE_CONTROL_PLANE_TO_PRIVATE_DESTINATION")
+      case .gkeControlPlaneNoRoute: return try container.encode("GKE_CONTROL_PLANE_NO_ROUTE")
+      case .cloudSqlInstanceNotConfiguredForExternalTraffic:
+        return try container.encode("CLOUD_SQL_INSTANCE_NOT_CONFIGURED_FOR_EXTERNAL_TRAFFIC")
+      case .publicCloudSqlInstanceToPrivateDestination:
+        return try container.encode("PUBLIC_CLOUD_SQL_INSTANCE_TO_PRIVATE_DESTINATION")
+      case .cloudSqlInstanceNoRoute: return try container.encode("CLOUD_SQL_INSTANCE_NO_ROUTE")
+      case .gkePscEndpointMissing: return try container.encode("GKE_PSC_ENDPOINT_MISSING")
+      case .droppedInsidePscServiceProducer:
+        return try container.encode("DROPPED_INSIDE_PSC_SERVICE_PRODUCER")
+      case .googleManagedServiceNoPscEndpoint:
+        return try container.encode("GOOGLE_MANAGED_SERVICE_NO_PSC_ENDPOINT")
+      case .loadBalancerHasNoProxySubnet:
+        return try container.encode("LOAD_BALANCER_HAS_NO_PROXY_SUBNET")
+      case .cloudNatNoAddresses: return try container.encode("CLOUD_NAT_NO_ADDRESSES")
+      case .pscEndpointAccessedFromPeeredNetwork:
+        return try container.encode("PSC_ENDPOINT_ACCESSED_FROM_PEERED_NETWORK")
+      case .routeNextHopIpAddressNotResolved:
+        return try container.encode("ROUTE_NEXT_HOP_IP_ADDRESS_NOT_RESOLVED")
+      case .routeNextHopResourceNotFound:
+        return try container.encode("ROUTE_NEXT_HOP_RESOURCE_NOT_FOUND")
+      case .noRouteFromInternetToPrivateIpv6Address:
+        return try container.encode("NO_ROUTE_FROM_INTERNET_TO_PRIVATE_IPV6_ADDRESS")
+      case .vpnTunnelLocalSelectorMismatch:
+        return try container.encode("VPN_TUNNEL_LOCAL_SELECTOR_MISMATCH")
+      case .vpnTunnelRemoteSelectorMismatch:
+        return try container.encode("VPN_TUNNEL_REMOTE_SELECTOR_MISMATCH")
+      case .privateGoogleAccessViaVpnTunnelUnsupported:
+        return try container.encode("PRIVATE_GOOGLE_ACCESS_VIA_VPN_TUNNEL_UNSUPPORTED")
+      case .pscNegProducerEndpointNoGlobalAccess:
+        return try container.encode("PSC_NEG_PRODUCER_ENDPOINT_NO_GLOBAL_ACCESS")
+      case .routeNextHopInstanceWrongNetwork:
+        return try container.encode("ROUTE_NEXT_HOP_INSTANCE_WRONG_NETWORK")
+      case .routeNextHopInstanceNonPrimaryIp:
+        return try container.encode("ROUTE_NEXT_HOP_INSTANCE_NON_PRIMARY_IP")
+      case .routeNextHopForwardingRuleIpMismatch:
+        return try container.encode("ROUTE_NEXT_HOP_FORWARDING_RULE_IP_MISMATCH")
+      case .routeNextHopVpnTunnelNotEstablished:
+        return try container.encode("ROUTE_NEXT_HOP_VPN_TUNNEL_NOT_ESTABLISHED")
+      case .routeNextHopForwardingRuleTypeInvalid:
+        return try container.encode("ROUTE_NEXT_HOP_FORWARDING_RULE_TYPE_INVALID")
+      case .pscNegProducerForwardingRuleMultiplePorts:
+        return try container.encode("PSC_NEG_PRODUCER_FORWARDING_RULE_MULTIPLE_PORTS")
+      case .hybridNegNonDynamicRouteMatched:
+        return try container.encode("HYBRID_NEG_NON_DYNAMIC_ROUTE_MATCHED")
+      case .hybridNegNonLocalDynamicRouteMatched:
+        return try container.encode("HYBRID_NEG_NON_LOCAL_DYNAMIC_ROUTE_MATCHED")
+      case .noNatSubnetsForPscServiceAttachment:
+        return try container.encode("NO_NAT_SUBNETS_FOR_PSC_SERVICE_ATTACHMENT")
+      case .cloudSqlPscNegUnsupported: return try container.encode("CLOUD_SQL_PSC_NEG_UNSUPPORTED")
+      case .routingLoop: return try container.encode("ROUTING_LOOP")
+      case .vpcConnectorServerlessTrafficBlocked:
+        return try container.encode("VPC_CONNECTOR_SERVERLESS_TRAFFIC_BLOCKED")
+      case .vpcConnectorHealthCheckTrafficBlocked:
+        return try container.encode("VPC_CONNECTOR_HEALTH_CHECK_TRAFFIC_BLOCKED")
+      case .droppedInsideGoogleManagedService:
+        return try container.encode("DROPPED_INSIDE_GOOGLE_MANAGED_SERVICE")
+      case .cloudSqlConnectorRequired: return try container.encode("CLOUD_SQL_CONNECTOR_REQUIRED")
+      case .pscTransitivityNotPropagated:
+        return try container.encode("PSC_TRANSITIVITY_NOT_PROPAGATED")
+      case .loadBalancerBackendInvalidNetwork:
+        return try container.encode("LOAD_BALANCER_BACKEND_INVALID_NETWORK")
+      case .backendServiceNamedPortNotDefined:
+        return try container.encode("BACKEND_SERVICE_NAMED_PORT_NOT_DEFINED")
+      case .destinationIsPrivateNatIpRange:
+        return try container.encode("DESTINATION_IS_PRIVATE_NAT_IP_RANGE")
+      case .redisInstanceNotRunning: return try container.encode("REDIS_INSTANCE_NOT_RUNNING")
+      case .redisClusterNotRunning: return try container.encode("REDIS_CLUSTER_NOT_RUNNING")
+      case .droppedInsideRedisInstanceService:
+        return try container.encode("DROPPED_INSIDE_REDIS_INSTANCE_SERVICE")
+      case .redisInstanceUnsupportedPort:
+        return try container.encode("REDIS_INSTANCE_UNSUPPORTED_PORT")
+      case .redisInstanceConnectingFromPupiAddress:
+        return try container.encode("REDIS_INSTANCE_CONNECTING_FROM_PUPI_ADDRESS")
+      case .redisInstanceNoRouteToDestinationNetwork:
+        return try container.encode("REDIS_INSTANCE_NO_ROUTE_TO_DESTINATION_NETWORK")
+      case .redisInstanceNoExternalIp: return try container.encode("REDIS_INSTANCE_NO_EXTERNAL_IP")
+      case .droppedInsideRedisClusterService:
+        return try container.encode("DROPPED_INSIDE_REDIS_CLUSTER_SERVICE")
+      case .redisClusterUnsupportedPort:
+        return try container.encode("REDIS_CLUSTER_UNSUPPORTED_PORT")
+      case .redisClusterNoExternalIp: return try container.encode("REDIS_CLUSTER_NO_EXTERNAL_IP")
+      case .redisInstanceUnsupportedProtocol:
+        return try container.encode("REDIS_INSTANCE_UNSUPPORTED_PROTOCOL")
+      case .redisClusterUnsupportedProtocol:
+        return try container.encode("REDIS_CLUSTER_UNSUPPORTED_PROTOCOL")
+      case .noAdvertisedRouteToGcpDestination:
+        return try container.encode("NO_ADVERTISED_ROUTE_TO_GCP_DESTINATION")
+      case .noTrafficSelectorToGcpDestination:
+        return try container.encode("NO_TRAFFIC_SELECTOR_TO_GCP_DESTINATION")
+      case .noKnownRouteFromPeeredNetworkToDestination:
+        return try container.encode("NO_KNOWN_ROUTE_FROM_PEERED_NETWORK_TO_DESTINATION")
+      case .privateNatToPscEndpointUnsupported:
+        return try container.encode("PRIVATE_NAT_TO_PSC_ENDPOINT_UNSUPPORTED")
+      case .ingressFirewallTagsUnsupportedByDirectVpcEgress:
+        return try container.encode("INGRESS_FIREWALL_TAGS_UNSUPPORTED_BY_DIRECT_VPC_EGRESS")
+      case .pscPortMappingPortMismatch:
+        return try container.encode("PSC_PORT_MAPPING_PORT_MISMATCH")
+      case .pscPortMappingWithoutPscConnectionUnsupported:
+        return try container.encode("PSC_PORT_MAPPING_WITHOUT_PSC_CONNECTION_UNSUPPORTED")
+      case .unsupportedRouteMatchedForNat64Destination:
+        return try container.encode("UNSUPPORTED_ROUTE_MATCHED_FOR_NAT64_DESTINATION")
+      case .trafficFromHybridEndpointToInternetDisallowed:
+        return try container.encode("TRAFFIC_FROM_HYBRID_ENDPOINT_TO_INTERNET_DISALLOWED")
+      case .noMatchingNat64Gateway: return try container.encode("NO_MATCHING_NAT64_GATEWAY")
+      case .loadBalancerBackendIpVersionMismatch:
+        return try container.encode("LOAD_BALANCER_BACKEND_IP_VERSION_MISMATCH")
+      case .noKnownRouteFromNccNetworkToDestination:
+        return try container.encode("NO_KNOWN_ROUTE_FROM_NCC_NETWORK_TO_DESTINATION")
+      case .noRouteFromExternalIpv6SourceToPrivateIpv6Address:
+        return try container.encode("NO_ROUTE_FROM_EXTERNAL_IPV6_SOURCE_TO_PRIVATE_IPV6_ADDRESS")
+      case .cloudNatProtocolUnsupported:
+        return try container.encode("CLOUD_NAT_PROTOCOL_UNSUPPORTED")
+      case .l2InterconnectUnsupportedProtocol:
+        return try container.encode("L2_INTERCONNECT_UNSUPPORTED_PROTOCOL")
+      case .l2InterconnectUnsupportedPort:
+        return try container.encode("L2_INTERCONNECT_UNSUPPORTED_PORT")
+      case .l2InterconnectDestinationIpMismatch:
+        return try container.encode("L2_INTERCONNECT_DESTINATION_IP_MISMATCH")
+      case .gkePodNotRunning: return try container.encode("GKE_POD_NOT_RUNNING")
+      case .nccRouteWithinHybridSubnetUnsupported:
+        return try container.encode("NCC_ROUTE_WITHIN_HYBRID_SUBNET_UNSUPPORTED")
+      case .hybridSubnetRegionMismatch: return try container.encode("HYBRID_SUBNET_REGION_MISMATCH")
+      case .hybridSubnetNoRoute: return try container.encode("HYBRID_SUBNET_NO_ROUTE")
+      case .noConfiguredPrivateNat64Rule:
+        return try container.encode("NO_CONFIGURED_PRIVATE_NAT64_RULE")
+      case .gkeNetworkPolicy: return try container.encode("GKE_NETWORK_POLICY")
+      case .noRouteFromInternetToPrivateIpv4Address:
+        return try container.encode("NO_ROUTE_FROM_INTERNET_TO_PRIVATE_IPV4_ADDRESS")
+      case .noValidRouteFromGoogleManagedNetworkToDestination:
+        return try container.encode("NO_VALID_ROUTE_FROM_GOOGLE_MANAGED_NETWORK_TO_DESTINATION")
+      case .privateConnectionNoRunningInstance:
+        return try container.encode("PRIVATE_CONNECTION_NO_RUNNING_INSTANCE")
+      case .cloudRunJobNotReady: return try container.encode("CLOUD_RUN_JOB_NOT_READY")
+      case .droppedInsideDmsPrivateConnection:
+        return try container.encode("DROPPED_INSIDE_DMS_PRIVATE_CONNECTION")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

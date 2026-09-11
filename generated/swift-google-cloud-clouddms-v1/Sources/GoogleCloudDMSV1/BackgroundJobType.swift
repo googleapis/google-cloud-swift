@@ -126,11 +126,11 @@ public enum BackgroundJobType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .sourceSeed: return try container.encode(1)
-    case .convert: return try container.encode(2)
-    case .applyDestination: return try container.encode(3)
-    case .importRulesFile: return try container.encode(5)
+    case .unspecified: return try container.encode("BACKGROUND_JOB_TYPE_UNSPECIFIED")
+    case .sourceSeed: return try container.encode("BACKGROUND_JOB_TYPE_SOURCE_SEED")
+    case .convert: return try container.encode("BACKGROUND_JOB_TYPE_CONVERT")
+    case .applyDestination: return try container.encode("BACKGROUND_JOB_TYPE_APPLY_DESTINATION")
+    case .importRulesFile: return try container.encode("BACKGROUND_JOB_TYPE_IMPORT_RULES_FILE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

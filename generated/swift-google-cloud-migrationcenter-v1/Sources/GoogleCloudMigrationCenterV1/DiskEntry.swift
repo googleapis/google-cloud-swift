@@ -242,14 +242,14 @@ public struct DiskEntry: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .ide: return try container.encode(1)
-      case .sata: return try container.encode(2)
-      case .sas: return try container.encode(3)
-      case .scsi: return try container.encode(4)
-      case .nvme: return try container.encode(5)
-      case .fc: return try container.encode(6)
-      case .iscsi: return try container.encode(7)
+      case .unspecified: return try container.encode("INTERFACE_TYPE_UNSPECIFIED")
+      case .ide: return try container.encode("IDE")
+      case .sata: return try container.encode("SATA")
+      case .sas: return try container.encode("SAS")
+      case .scsi: return try container.encode("SCSI")
+      case .nvme: return try container.encode("NVME")
+      case .fc: return try container.encode("FC")
+      case .iscsi: return try container.encode("ISCSI")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

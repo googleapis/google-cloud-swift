@@ -474,8 +474,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .external: return try container.encode(0)
-        case .`internal`: return try container.encode(1)
+        case .external: return try container.encode("EXTERNAL")
+        case .`internal`: return try container.encode("INTERNAL")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -572,8 +572,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .vmAndFr: return try container.encode(0)
-        case .vmOnly: return try container.encode(1)
+        case .vmAndFr: return try container.encode("VM_AND_FR")
+        case .vmOnly: return try container.encode("VM_ONLY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -678,9 +678,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .disableGoogleAccess: return try container.encode(0)
-        case .enableBidirectionalAccessToGoogle: return try container.encode(1)
-        case .enableOutboundVmAccessToGoogle: return try container.encode(2)
+        case .disableGoogleAccess: return try container.encode("DISABLE_GOOGLE_ACCESS")
+        case .enableBidirectionalAccessToGoogle:
+          return try container.encode("ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE")
+        case .enableOutboundVmAccessToGoogle:
+          return try container.encode("ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -818,14 +820,14 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .globalManagedProxy: return try container.encode(0)
-        case .internalHttpsLoadBalancer: return try container.encode(1)
-        case .peerMigration: return try container.encode(2)
-        case .`private`: return try container.encode(3)
-        case .privateNat: return try container.encode(4)
-        case .privateRfc1918: return try container.encode(5)
-        case .privateServiceConnect: return try container.encode(6)
-        case .regionalManagedProxy: return try container.encode(7)
+        case .globalManagedProxy: return try container.encode("GLOBAL_MANAGED_PROXY")
+        case .internalHttpsLoadBalancer: return try container.encode("INTERNAL_HTTPS_LOAD_BALANCER")
+        case .peerMigration: return try container.encode("PEER_MIGRATION")
+        case .`private`: return try container.encode("PRIVATE")
+        case .privateNat: return try container.encode("PRIVATE_NAT")
+        case .privateRfc1918: return try container.encode("PRIVATE_RFC_1918")
+        case .privateServiceConnect: return try container.encode("PRIVATE_SERVICE_CONNECT")
+        case .regionalManagedProxy: return try container.encode("REGIONAL_MANAGED_PROXY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -943,10 +945,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .arpAllRanges: return try container.encode(0)
-        case .arpBroadcastPrimaryRange: return try container.encode(1)
-        case .arpBroadcastPrimaryRangeWithLearning: return try container.encode(2)
-        case .arpPrimaryRange: return try container.encode(3)
+        case .arpAllRanges: return try container.encode("ARP_ALL_RANGES")
+        case .arpBroadcastPrimaryRange: return try container.encode("ARP_BROADCAST_PRIMARY_RANGE")
+        case .arpBroadcastPrimaryRangeWithLearning:
+          return try container.encode("ARP_BROADCAST_PRIMARY_RANGE_WITH_LEARNING")
+        case .arpPrimaryRange: return try container.encode("ARP_PRIMARY_RANGE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1045,8 +1048,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .active: return try container.encode(0)
-        case .backup: return try container.encode(1)
+        case .active: return try container.encode("ACTIVE")
+        case .backup: return try container.encode("BACKUP")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1151,9 +1154,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .ipv4Ipv6: return try container.encode(0)
-        case .ipv4Only: return try container.encode(1)
-        case .ipv6Only: return try container.encode(2)
+        case .ipv4Ipv6: return try container.encode("IPV4_IPV6")
+        case .ipv4Only: return try container.encode("IPV4_ONLY")
+        case .ipv6Only: return try container.encode("IPV6_ONLY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1252,8 +1255,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .draining: return try container.encode(0)
-        case .ready: return try container.encode(1)
+        case .draining: return try container.encode("DRAINING")
+        case .ready: return try container.encode("READY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

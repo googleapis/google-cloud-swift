@@ -147,11 +147,11 @@ public enum MatchingType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .fullMatch: return try container.encode(1)
-    case .partialMatch: return try container.encode(2)
-    case .inverseMatch: return try container.encode(3)
-    case .ruleSpecific: return try container.encode(4)
+    case .unspecified: return try container.encode("MATCHING_TYPE_UNSPECIFIED")
+    case .fullMatch: return try container.encode("MATCHING_TYPE_FULL_MATCH")
+    case .partialMatch: return try container.encode("MATCHING_TYPE_PARTIAL_MATCH")
+    case .inverseMatch: return try container.encode("MATCHING_TYPE_INVERSE_MATCH")
+    case .ruleSpecific: return try container.encode("MATCHING_TYPE_RULE_SPECIFIC")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

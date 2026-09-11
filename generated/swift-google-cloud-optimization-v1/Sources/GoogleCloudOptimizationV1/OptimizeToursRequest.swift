@@ -394,9 +394,10 @@ public struct OptimizeToursRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .defaultSolve: return try container.encode(0)
-      case .validateOnly: return try container.encode(1)
-      case .detectSomeInfeasibleShipments: return try container.encode(2)
+      case .defaultSolve: return try container.encode("DEFAULT_SOLVE")
+      case .validateOnly: return try container.encode("VALIDATE_ONLY")
+      case .detectSomeInfeasibleShipments:
+        return try container.encode("DETECT_SOME_INFEASIBLE_SHIPMENTS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -500,9 +501,9 @@ public struct OptimizeToursRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .returnFast: return try container.encode(1)
-      case .consumeAllAvailableTime: return try container.encode(2)
+      case .unspecified: return try container.encode("SEARCH_MODE_UNSPECIFIED")
+      case .returnFast: return try container.encode("RETURN_FAST")
+      case .consumeAllAvailableTime: return try container.encode("CONSUME_ALL_AVAILABLE_TIME")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -156,9 +156,9 @@ public struct ConnectionSchemaMetadata: Codable, Equatable, GoogleCloudWKT._AnyP
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .refreshing: return try container.encode(1)
-      case .updated: return try container.encode(2)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .refreshing: return try container.encode("REFRESHING")
+      case .updated: return try container.encode("UPDATED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

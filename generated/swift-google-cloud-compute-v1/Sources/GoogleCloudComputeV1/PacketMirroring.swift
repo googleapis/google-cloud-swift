@@ -198,8 +198,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .`false`: return try container.encode(0)
-        case .`true`: return try container.encode(1)
+        case .`false`: return try container.encode("FALSE")
+        case .`true`: return try container.encode("TRUE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

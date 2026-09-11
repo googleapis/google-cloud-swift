@@ -270,10 +270,10 @@ public struct MigrationProgressEvent: Codable, Equatable, GoogleCloudWKT._AnyPac
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .pessimistic: return try container.encode(1)
-      case .optimistic: return try container.encode(2)
-      case .optimisticWithEntityGroups: return try container.encode(3)
+      case .unspecified: return try container.encode("CONCURRENCY_MODE_UNSPECIFIED")
+      case .pessimistic: return try container.encode("PESSIMISTIC")
+      case .optimistic: return try container.encode("OPTIMISTIC")
+      case .optimisticWithEntityGroups: return try container.encode("OPTIMISTIC_WITH_ENTITY_GROUPS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

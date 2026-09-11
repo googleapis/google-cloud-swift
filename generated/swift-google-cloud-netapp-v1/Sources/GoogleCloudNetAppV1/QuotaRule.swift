@@ -176,11 +176,11 @@ public struct QuotaRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .individualUserQuota: return try container.encode(1)
-      case .individualGroupQuota: return try container.encode(2)
-      case .defaultUserQuota: return try container.encode(3)
-      case .defaultGroupQuota: return try container.encode(4)
+      case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .individualUserQuota: return try container.encode("INDIVIDUAL_USER_QUOTA")
+      case .individualGroupQuota: return try container.encode("INDIVIDUAL_GROUP_QUOTA")
+      case .defaultUserQuota: return try container.encode("DEFAULT_USER_QUOTA")
+      case .defaultGroupQuota: return try container.encode("DEFAULT_GROUP_QUOTA")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -301,12 +301,12 @@ public struct QuotaRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .creating: return try container.encode(1)
-      case .updating: return try container.encode(2)
-      case .deleting: return try container.encode(3)
-      case .ready: return try container.encode(4)
-      case .error: return try container.encode(5)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .creating: return try container.encode("CREATING")
+      case .updating: return try container.encode("UPDATING")
+      case .deleting: return try container.encode("DELETING")
+      case .ready: return try container.encode("READY")
+      case .error: return try container.encode("ERROR")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

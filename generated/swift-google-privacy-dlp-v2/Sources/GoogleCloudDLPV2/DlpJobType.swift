@@ -112,9 +112,9 @@ public enum DlpJobType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .inspectJob: return try container.encode(1)
-    case .riskAnalysisJob: return try container.encode(2)
+    case .unspecified: return try container.encode("DLP_JOB_TYPE_UNSPECIFIED")
+    case .inspectJob: return try container.encode("INSPECT_JOB")
+    case .riskAnalysisJob: return try container.encode("RISK_ANALYSIS_JOB")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

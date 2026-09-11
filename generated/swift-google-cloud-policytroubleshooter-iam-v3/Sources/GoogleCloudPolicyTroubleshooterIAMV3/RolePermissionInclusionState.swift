@@ -118,10 +118,10 @@ public enum RolePermissionInclusionState: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .rolePermissionIncluded: return try container.encode(1)
-    case .rolePermissionNotIncluded: return try container.encode(2)
-    case .rolePermissionUnknownInfo: return try container.encode(3)
+    case .unspecified: return try container.encode("ROLE_PERMISSION_INCLUSION_STATE_UNSPECIFIED")
+    case .rolePermissionIncluded: return try container.encode("ROLE_PERMISSION_INCLUDED")
+    case .rolePermissionNotIncluded: return try container.encode("ROLE_PERMISSION_NOT_INCLUDED")
+    case .rolePermissionUnknownInfo: return try container.encode("ROLE_PERMISSION_UNKNOWN_INFO")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

@@ -168,11 +168,11 @@ public struct ConfigSyncState: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .notInstalled: return try container.encode(1)
-      case .installed: return try container.encode(2)
-      case .terminating: return try container.encode(3)
-      case .installing: return try container.encode(4)
+      case .unspecified: return try container.encode("CRD_STATE_UNSPECIFIED")
+      case .notInstalled: return try container.encode("NOT_INSTALLED")
+      case .installed: return try container.encode("INSTALLED")
+      case .terminating: return try container.encode("TERMINATING")
+      case .installing: return try container.encode("INSTALLING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -286,11 +286,11 @@ public struct ConfigSyncState: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .configSyncNotInstalled: return try container.encode(1)
-      case .configSyncInstalled: return try container.encode(2)
-      case .configSyncError: return try container.encode(3)
-      case .configSyncPending: return try container.encode(4)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .configSyncNotInstalled: return try container.encode("CONFIG_SYNC_NOT_INSTALLED")
+      case .configSyncInstalled: return try container.encode("CONFIG_SYNC_INSTALLED")
+      case .configSyncError: return try container.encode("CONFIG_SYNC_ERROR")
+      case .configSyncPending: return try container.encode("CONFIG_SYNC_PENDING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

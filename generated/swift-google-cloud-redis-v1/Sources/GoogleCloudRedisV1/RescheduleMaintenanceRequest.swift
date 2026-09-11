@@ -158,10 +158,10 @@ public struct RescheduleMaintenanceRequest: Codable, Equatable, GoogleCloudWKT._
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .immediate: return try container.encode(1)
-      case .nextAvailableWindow: return try container.encode(2)
-      case .specificTime: return try container.encode(3)
+      case .unspecified: return try container.encode("RESCHEDULE_TYPE_UNSPECIFIED")
+      case .immediate: return try container.encode("IMMEDIATE")
+      case .nextAvailableWindow: return try container.encode("NEXT_AVAILABLE_WINDOW")
+      case .specificTime: return try container.encode("SPECIFIC_TIME")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

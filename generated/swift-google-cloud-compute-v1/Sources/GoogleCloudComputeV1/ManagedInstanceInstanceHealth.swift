@@ -161,11 +161,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .draining: return try container.encode(0)
-        case .healthy: return try container.encode(1)
-        case .timeout: return try container.encode(2)
-        case .unhealthy: return try container.encode(3)
-        case .unknown: return try container.encode(4)
+        case .draining: return try container.encode("DRAINING")
+        case .healthy: return try container.encode("HEALTHY")
+        case .timeout: return try container.encode("TIMEOUT")
+        case .unhealthy: return try container.encode("UNHEALTHY")
+        case .unknown: return try container.encode("UNKNOWN")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

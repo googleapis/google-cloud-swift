@@ -168,9 +168,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .bin: return try container.encode(0)
-        case .undefined: return try container.encode(1)
-        case .x509: return try container.encode(2)
+        case .bin: return try container.encode("BIN")
+        case .undefined: return try container.encode("UNDEFINED")
+        case .x509: return try container.encode("X509")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -601,12 +601,12 @@
             public func encode(to encoder: Encoder) throws {
               var container = encoder.singleValueContainer()
               switch self {
-              case .unspecified: return try container.encode(0)
-              case .list: return try container.encode(1)
-              case .`get`: return try container.encode(2)
-              case .create: return try container.encode(3)
-              case .update: return try container.encode(4)
-              case .delete: return try container.encode(5)
+              case .unspecified: return try container.encode("OPERATION_TYPE_UNSPECIFIED")
+              case .list: return try container.encode("LIST")
+              case .`get`: return try container.encode("GET")
+              case .create: return try container.encode("CREATE")
+              case .update: return try container.encode("UPDATE")
+              case .delete: return try container.encode("DELETE")
               case .unknownIntValue(let v): return try container.encode(v)
               case .unknownStringValue(let v): return try container.encode(v)
               }
@@ -925,8 +925,8 @@
           public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .unspecified: return try container.encode(0)
-            case .clientCredential: return try container.encode(1)
+            case .unspecified: return try container.encode("OAUTH_GRANT_TYPE_UNSPECIFIED")
+            case .clientCredential: return try container.encode("CLIENT_CREDENTIAL")
             case .unknownIntValue(let v): return try container.encode(v)
             case .unknownStringValue(let v): return try container.encode(v)
             }
@@ -1077,9 +1077,9 @@
           public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .unspecified: return try container.encode(0)
-            case .idToken: return try container.encode(1)
-            case .accessToken: return try container.encode(2)
+            case .unspecified: return try container.encode("SERVICE_AGENT_AUTH_UNSPECIFIED")
+            case .idToken: return try container.encode("ID_TOKEN")
+            case .accessToken: return try container.encode("ACCESS_TOKEN")
             case .unknownIntValue(let v): return try container.encode(v)
             case .unknownStringValue(let v): return try container.encode(v)
             }
@@ -1240,9 +1240,9 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .header: return try container.encode(1)
-          case .queryString: return try container.encode(2)
+          case .unspecified: return try container.encode("REQUEST_LOCATION_UNSPECIFIED")
+          case .header: return try container.encode("HEADER")
+          case .queryString: return try container.encode("QUERY_STRING")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -1494,9 +1494,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .`required`: return try container.encode(1)
-        case .notRequired: return try container.encode(2)
+        case .unspecified: return try container.encode("CONFIRMATION_REQUIREMENT_UNSPECIFIED")
+        case .`required`: return try container.encode("REQUIRED")
+        case .notRequired: return try container.encode("NOT_REQUIRED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1617,12 +1617,12 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .`get`: return try container.encode(1)
-        case .post: return try container.encode(2)
-        case .put: return try container.encode(3)
-        case .delete: return try container.encode(4)
-        case .patch: return try container.encode(5)
+        case .unspecified: return try container.encode("METHOD_TYPE_UNSPECIFIED")
+        case .`get`: return try container.encode("GET")
+        case .post: return try container.encode("POST")
+        case .put: return try container.encode("PUT")
+        case .delete: return try container.encode("DELETE")
+        case .patch: return try container.encode("PATCH")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

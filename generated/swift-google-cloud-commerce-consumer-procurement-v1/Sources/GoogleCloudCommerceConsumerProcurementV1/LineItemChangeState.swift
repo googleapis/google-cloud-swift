@@ -146,13 +146,13 @@ public enum LineItemChangeState: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .pendingApproval: return try container.encode(1)
-    case .approved: return try container.encode(2)
-    case .completed: return try container.encode(3)
-    case .rejected: return try container.encode(4)
-    case .abandoned: return try container.encode(5)
-    case .activating: return try container.encode(6)
+    case .unspecified: return try container.encode("LINE_ITEM_CHANGE_STATE_UNSPECIFIED")
+    case .pendingApproval: return try container.encode("LINE_ITEM_CHANGE_STATE_PENDING_APPROVAL")
+    case .approved: return try container.encode("LINE_ITEM_CHANGE_STATE_APPROVED")
+    case .completed: return try container.encode("LINE_ITEM_CHANGE_STATE_COMPLETED")
+    case .rejected: return try container.encode("LINE_ITEM_CHANGE_STATE_REJECTED")
+    case .abandoned: return try container.encode("LINE_ITEM_CHANGE_STATE_ABANDONED")
+    case .activating: return try container.encode("LINE_ITEM_CHANGE_STATE_ACTIVATING")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

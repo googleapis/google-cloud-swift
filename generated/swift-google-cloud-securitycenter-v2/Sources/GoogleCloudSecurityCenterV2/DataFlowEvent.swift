@@ -157,10 +157,10 @@ public struct DataFlowEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .read: return try container.encode(1)
-      case .move: return try container.encode(2)
-      case .copy: return try container.encode(3)
+      case .unspecified: return try container.encode("OPERATION_UNSPECIFIED")
+      case .read: return try container.encode("READ")
+      case .move: return try container.encode("MOVE")
+      case .copy: return try container.encode("COPY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -177,15 +177,15 @@ public struct DatabaseManagementConfig: Codable, Equatable, GoogleCloudWKT._AnyP
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .enabling: return try container.encode(1)
-      case .enabled: return try container.encode(2)
-      case .disabling: return try container.encode(3)
-      case .disabled: return try container.encode(4)
-      case .updating: return try container.encode(5)
-      case .failedEnabling: return try container.encode(6)
-      case .failedDisabling: return try container.encode(7)
-      case .failedUpdating: return try container.encode(8)
+      case .unspecified: return try container.encode("MANAGEMENT_STATE_UNSPECIFIED")
+      case .enabling: return try container.encode("ENABLING")
+      case .enabled: return try container.encode("ENABLED")
+      case .disabling: return try container.encode("DISABLING")
+      case .disabled: return try container.encode("DISABLED")
+      case .updating: return try container.encode("UPDATING")
+      case .failedEnabling: return try container.encode("FAILED_ENABLING")
+      case .failedDisabling: return try container.encode("FAILED_DISABLING")
+      case .failedUpdating: return try container.encode("FAILED_UPDATING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -288,9 +288,9 @@ public struct DatabaseManagementConfig: Codable, Equatable, GoogleCloudWKT._AnyP
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .basic: return try container.encode(1)
-      case .advanced: return try container.encode(2)
+      case .unspecified: return try container.encode("MANAGEMENT_TYPE_UNSPECIFIED")
+      case .basic: return try container.encode("BASIC")
+      case .advanced: return try container.encode("ADVANCED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

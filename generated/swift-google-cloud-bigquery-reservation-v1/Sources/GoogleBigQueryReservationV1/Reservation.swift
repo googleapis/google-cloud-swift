@@ -446,10 +446,10 @@ public struct Reservation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .autoscaleOnly: return try container.encode(1)
-      case .idleSlotsOnly: return try container.encode(2)
-      case .allSlots: return try container.encode(3)
+      case .unspecified: return try container.encode("SCALING_MODE_UNSPECIFIED")
+      case .autoscaleOnly: return try container.encode("AUTOSCALE_ONLY")
+      case .idleSlotsOnly: return try container.encode("IDLE_SLOTS_ONLY")
+      case .allSlots: return try container.encode("ALL_SLOTS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

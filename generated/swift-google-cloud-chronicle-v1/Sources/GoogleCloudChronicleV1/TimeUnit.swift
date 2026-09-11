@@ -135,14 +135,14 @@ public enum TimeUnit: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .second: return try container.encode(1)
-    case .minute: return try container.encode(2)
-    case .hour: return try container.encode(3)
-    case .day: return try container.encode(4)
-    case .week: return try container.encode(5)
-    case .month: return try container.encode(6)
-    case .year: return try container.encode(7)
+    case .unspecified: return try container.encode("TIME_UNIT_UNSPECIFIED")
+    case .second: return try container.encode("SECOND")
+    case .minute: return try container.encode("MINUTE")
+    case .hour: return try container.encode("HOUR")
+    case .day: return try container.encode("DAY")
+    case .week: return try container.encode("WEEK")
+    case .month: return try container.encode("MONTH")
+    case .year: return try container.encode("YEAR")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

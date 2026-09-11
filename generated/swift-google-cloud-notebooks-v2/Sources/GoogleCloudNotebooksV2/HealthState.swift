@@ -130,11 +130,11 @@ public enum HealthState: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .healthy: return try container.encode(1)
-    case .unhealthy: return try container.encode(2)
-    case .agentNotInstalled: return try container.encode(3)
-    case .agentNotRunning: return try container.encode(4)
+    case .unspecified: return try container.encode("HEALTH_STATE_UNSPECIFIED")
+    case .healthy: return try container.encode("HEALTHY")
+    case .unhealthy: return try container.encode("UNHEALTHY")
+    case .agentNotInstalled: return try container.encode("AGENT_NOT_INSTALLED")
+    case .agentNotRunning: return try container.encode("AGENT_NOT_RUNNING")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

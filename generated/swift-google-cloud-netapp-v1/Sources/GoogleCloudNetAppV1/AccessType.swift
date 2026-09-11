@@ -118,10 +118,10 @@ public enum AccessType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .readOnly: return try container.encode(1)
-    case .readWrite: return try container.encode(2)
-    case .readNone: return try container.encode(3)
+    case .unspecified: return try container.encode("ACCESS_TYPE_UNSPECIFIED")
+    case .readOnly: return try container.encode("READ_ONLY")
+    case .readWrite: return try container.encode("READ_WRITE")
+    case .readNone: return try container.encode("READ_NONE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

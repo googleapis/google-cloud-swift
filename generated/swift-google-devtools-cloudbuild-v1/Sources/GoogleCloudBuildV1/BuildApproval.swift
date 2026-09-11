@@ -155,11 +155,11 @@ public struct BuildApproval: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .pending: return try container.encode(1)
-      case .approved: return try container.encode(2)
-      case .rejected: return try container.encode(3)
-      case .cancelled: return try container.encode(5)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .pending: return try container.encode("PENDING")
+      case .approved: return try container.encode("APPROVED")
+      case .rejected: return try container.encode("REJECTED")
+      case .cancelled: return try container.encode("CANCELLED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

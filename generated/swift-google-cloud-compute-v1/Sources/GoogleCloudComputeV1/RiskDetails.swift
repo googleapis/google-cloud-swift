@@ -163,11 +163,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .critical: return try container.encode(0)
-        case .high: return try container.encode(1)
-        case .low: return try container.encode(2)
-        case .medium: return try container.encode(3)
-        case .unspecified: return try container.encode(4)
+        case .critical: return try container.encode("CRITICAL")
+        case .high: return try container.encode("HIGH")
+        case .low: return try container.encode("LOW")
+        case .medium: return try container.encode("MEDIUM")
+        case .unspecified: return try container.encode("SEVERITY_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -266,8 +266,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .globalDns: return try container.encode(0)
-        case .riskTypeUnspecified: return try container.encode(1)
+        case .globalDns: return try container.encode("GLOBAL_DNS")
+        case .riskTypeUnspecified: return try container.encode("RISK_TYPE_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

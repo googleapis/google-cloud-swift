@@ -153,9 +153,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .training: return try container.encode(1)
-        case .serving: return try container.encode(2)
+        case .unspecified: return try container.encode("LOG_SOURCE_UNSPECIFIED")
+        case .training: return try container.encode("TRAINING")
+        case .serving: return try container.encode("SERVING")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -258,9 +258,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .predict: return try container.encode(1)
-        case .explain: return try container.encode(2)
+        case .unspecified: return try container.encode("LOG_TYPE_UNSPECIFIED")
+        case .predict: return try container.encode("PREDICT")
+        case .explain: return try container.encode("EXPLAIN")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -234,9 +234,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .online: return try container.encode(1)
-        case .offline: return try container.encode(2)
+        case .unspecified: return try container.encode("EXTERNAL_SYNC_MODE_UNSPECIFIED")
+        case .online: return try container.encode("ONLINE")
+        case .offline: return try container.encode("OFFLINE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -340,9 +340,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .logical: return try container.encode(1)
-        case .physical: return try container.encode(2)
+        case .unspecified: return try container.encode("MIGRATION_TYPE_UNSPECIFIED")
+        case .logical: return try container.encode("LOGICAL")
+        case .physical: return try container.encode("PHYSICAL")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

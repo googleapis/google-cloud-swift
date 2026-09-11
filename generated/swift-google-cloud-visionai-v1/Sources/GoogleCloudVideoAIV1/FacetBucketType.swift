@@ -124,11 +124,11 @@ public enum FacetBucketType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .value: return try container.encode(1)
-    case .datetime: return try container.encode(2)
-    case .fixedRange: return try container.encode(3)
-    case .customRange: return try container.encode(4)
+    case .unspecified: return try container.encode("FACET_BUCKET_TYPE_UNSPECIFIED")
+    case .value: return try container.encode("FACET_BUCKET_TYPE_VALUE")
+    case .datetime: return try container.encode("FACET_BUCKET_TYPE_DATETIME")
+    case .fixedRange: return try container.encode("FACET_BUCKET_TYPE_FIXED_RANGE")
+    case .customRange: return try container.encode("FACET_BUCKET_TYPE_CUSTOM_RANGE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

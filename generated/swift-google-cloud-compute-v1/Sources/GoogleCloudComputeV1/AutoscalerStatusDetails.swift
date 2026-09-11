@@ -320,26 +320,35 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .allInstancesUnhealthy: return try container.encode(0)
-        case .backendServiceDoesNotExist: return try container.encode(1)
-        case .cappedAtMaxNumReplicas: return try container.encode(2)
-        case .customMetricDataPointsTooSparse: return try container.encode(3)
-        case .customMetricInvalid: return try container.encode(4)
-        case .minEqualsMax: return try container.encode(5)
-        case .missingCustomMetricDataPoints: return try container.encode(6)
-        case .missingLoadBalancingDataPoints: return try container.encode(7)
-        case .modeOff: return try container.encode(8)
-        case .modeOnlyScaleOut: return try container.encode(9)
-        case .modeOnlyUp: return try container.encode(10)
-        case .moreThanOneBackendService: return try container.encode(11)
-        case .notEnoughQuotaAvailable: return try container.encode(12)
-        case .regionResourceStockout: return try container.encode(13)
-        case .scalingTargetDoesNotExist: return try container.encode(14)
-        case .scheduledInstancesGreaterThanAutoscalerMax: return try container.encode(15)
-        case .scheduledInstancesLessThanAutoscalerMin: return try container.encode(16)
-        case .unknown: return try container.encode(17)
-        case .unsupportedMaxRateLoadBalancingConfiguration: return try container.encode(18)
-        case .zoneResourceStockout: return try container.encode(19)
+        case .allInstancesUnhealthy: return try container.encode("ALL_INSTANCES_UNHEALTHY")
+        case .backendServiceDoesNotExist:
+          return try container.encode("BACKEND_SERVICE_DOES_NOT_EXIST")
+        case .cappedAtMaxNumReplicas: return try container.encode("CAPPED_AT_MAX_NUM_REPLICAS")
+        case .customMetricDataPointsTooSparse:
+          return try container.encode("CUSTOM_METRIC_DATA_POINTS_TOO_SPARSE")
+        case .customMetricInvalid: return try container.encode("CUSTOM_METRIC_INVALID")
+        case .minEqualsMax: return try container.encode("MIN_EQUALS_MAX")
+        case .missingCustomMetricDataPoints:
+          return try container.encode("MISSING_CUSTOM_METRIC_DATA_POINTS")
+        case .missingLoadBalancingDataPoints:
+          return try container.encode("MISSING_LOAD_BALANCING_DATA_POINTS")
+        case .modeOff: return try container.encode("MODE_OFF")
+        case .modeOnlyScaleOut: return try container.encode("MODE_ONLY_SCALE_OUT")
+        case .modeOnlyUp: return try container.encode("MODE_ONLY_UP")
+        case .moreThanOneBackendService:
+          return try container.encode("MORE_THAN_ONE_BACKEND_SERVICE")
+        case .notEnoughQuotaAvailable: return try container.encode("NOT_ENOUGH_QUOTA_AVAILABLE")
+        case .regionResourceStockout: return try container.encode("REGION_RESOURCE_STOCKOUT")
+        case .scalingTargetDoesNotExist:
+          return try container.encode("SCALING_TARGET_DOES_NOT_EXIST")
+        case .scheduledInstancesGreaterThanAutoscalerMax:
+          return try container.encode("SCHEDULED_INSTANCES_GREATER_THAN_AUTOSCALER_MAX")
+        case .scheduledInstancesLessThanAutoscalerMin:
+          return try container.encode("SCHEDULED_INSTANCES_LESS_THAN_AUTOSCALER_MIN")
+        case .unknown: return try container.encode("UNKNOWN")
+        case .unsupportedMaxRateLoadBalancingConfiguration:
+          return try container.encode("UNSUPPORTED_MAX_RATE_LOAD_BALANCING_CONFIGURATION")
+        case .zoneResourceStockout: return try container.encode("ZONE_RESOURCE_STOCKOUT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

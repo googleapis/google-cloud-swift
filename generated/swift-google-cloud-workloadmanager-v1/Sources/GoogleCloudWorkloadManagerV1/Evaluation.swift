@@ -195,10 +195,10 @@ public struct Evaluation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .sap: return try container.encode(1)
-      case .sqlServer: return try container.encode(2)
-      case .other: return try container.encode(3)
+      case .unspecified: return try container.encode("EVALUATION_TYPE_UNSPECIFIED")
+      case .sap: return try container.encode("SAP")
+      case .sqlServer: return try container.encode("SQL_SERVER")
+      case .other: return try container.encode("OTHER")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

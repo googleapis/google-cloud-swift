@@ -130,12 +130,12 @@ public enum FrameworkCategory: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .industryDefinedStandard: return try container.encode(1)
-    case .assuredWorkloads: return try container.encode(2)
-    case .dataSecurity: return try container.encode(3)
-    case .googleBestPractices: return try container.encode(4)
-    case .customFramework: return try container.encode(5)
+    case .unspecified: return try container.encode("FRAMEWORK_CATEGORY_UNSPECIFIED")
+    case .industryDefinedStandard: return try container.encode("INDUSTRY_DEFINED_STANDARD")
+    case .assuredWorkloads: return try container.encode("ASSURED_WORKLOADS")
+    case .dataSecurity: return try container.encode("DATA_SECURITY")
+    case .googleBestPractices: return try container.encode("GOOGLE_BEST_PRACTICES")
+    case .customFramework: return try container.encode("CUSTOM_FRAMEWORK")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

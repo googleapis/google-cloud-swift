@@ -209,14 +209,14 @@ public struct RiskAnalysis: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .automation: return try container.encode(1)
-      case .unexpectedEnvironment: return try container.encode(2)
-      case .tooMuchTraffic: return try container.encode(3)
-      case .unexpectedUsagePatterns: return try container.encode(4)
-      case .lowConfidenceScore: return try container.encode(5)
-      case .suspectedCarding: return try container.encode(6)
-      case .suspectedChargeback: return try container.encode(7)
+      case .unspecified: return try container.encode("CLASSIFICATION_REASON_UNSPECIFIED")
+      case .automation: return try container.encode("AUTOMATION")
+      case .unexpectedEnvironment: return try container.encode("UNEXPECTED_ENVIRONMENT")
+      case .tooMuchTraffic: return try container.encode("TOO_MUCH_TRAFFIC")
+      case .unexpectedUsagePatterns: return try container.encode("UNEXPECTED_USAGE_PATTERNS")
+      case .lowConfidenceScore: return try container.encode("LOW_CONFIDENCE_SCORE")
+      case .suspectedCarding: return try container.encode("SUSPECTED_CARDING")
+      case .suspectedChargeback: return try container.encode("SUSPECTED_CHARGEBACK")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -328,10 +328,10 @@ public struct RiskAnalysis: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .nocaptcha: return try container.encode(1)
-      case .passed: return try container.encode(2)
-      case .failed: return try container.encode(3)
+      case .unspecified: return try container.encode("CHALLENGE_UNSPECIFIED")
+      case .nocaptcha: return try container.encode("NOCAPTCHA")
+      case .passed: return try container.encode("PASSED")
+      case .failed: return try container.encode("FAILED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

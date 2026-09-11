@@ -201,12 +201,14 @@ public struct FraudPreventionAssessment: Codable, Equatable, GoogleCloudWKT._Any
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .highTransactionVelocity: return try container.encode(1)
-        case .excessiveEnumerationPattern: return try container.encode(2)
-        case .shortIdentityHistory: return try container.encode(3)
-        case .geolocationDiscrepancy: return try container.encode(4)
-        case .associatedWithFraudCluster: return try container.encode(5)
+        case .unspecified: return try container.encode("REASON_UNSPECIFIED")
+        case .highTransactionVelocity: return try container.encode("HIGH_TRANSACTION_VELOCITY")
+        case .excessiveEnumerationPattern:
+          return try container.encode("EXCESSIVE_ENUMERATION_PATTERN")
+        case .shortIdentityHistory: return try container.encode("SHORT_IDENTITY_HISTORY")
+        case .geolocationDiscrepancy: return try container.encode("GEOLOCATION_DISCREPANCY")
+        case .associatedWithFraudCluster:
+          return try container.encode("ASSOCIATED_WITH_FRAUD_CLUSTER")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

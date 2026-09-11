@@ -201,11 +201,11 @@ public struct ParameterDefinition: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .int64: return try container.encode(1)
-      case .string: return try container.encode(2)
-      case .double: return try container.encode(3)
-      case .boolean: return try container.encode(4)
+      case .unspecified: return try container.encode("PARAMETER_TYPE_UNSPECIFIED")
+      case .int64: return try container.encode("INT64")
+      case .string: return try container.encode("STRING")
+      case .double: return try container.encode("DOUBLE")
+      case .boolean: return try container.encode("BOOLEAN")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

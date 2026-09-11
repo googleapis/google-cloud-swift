@@ -118,10 +118,10 @@ public enum FlowControlLimitExceededBehaviorProto: Codable, Equatable, Sendable 
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unsetBehavior: return try container.encode(0)
-    case .throwException: return try container.encode(1)
-    case .block: return try container.encode(2)
-    case .ignore: return try container.encode(3)
+    case .unsetBehavior: return try container.encode("UNSET_BEHAVIOR")
+    case .throwException: return try container.encode("THROW_EXCEPTION")
+    case .block: return try container.encode("BLOCK")
+    case .ignore: return try container.encode("IGNORE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

@@ -229,11 +229,11 @@ public struct NotificationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .upgradeAvailableEvent: return try container.encode(1)
-      case .upgradeEvent: return try container.encode(2)
-      case .securityBulletinEvent: return try container.encode(3)
-      case .upgradeInfoEvent: return try container.encode(4)
+      case .unspecified: return try container.encode("EVENT_TYPE_UNSPECIFIED")
+      case .upgradeAvailableEvent: return try container.encode("UPGRADE_AVAILABLE_EVENT")
+      case .upgradeEvent: return try container.encode("UPGRADE_EVENT")
+      case .securityBulletinEvent: return try container.encode("SECURITY_BULLETIN_EVENT")
+      case .upgradeInfoEvent: return try container.encode("UPGRADE_INFO_EVENT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

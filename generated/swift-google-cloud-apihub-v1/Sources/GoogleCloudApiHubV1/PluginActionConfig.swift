@@ -169,10 +169,10 @@ public struct PluginActionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .apiHubOnDemandTrigger: return try container.encode(1)
-      case .apiHubScheduleTrigger: return try container.encode(2)
-      case .nonApiHubManaged: return try container.encode(3)
+      case .unspecified: return try container.encode("TRIGGER_MODE_UNSPECIFIED")
+      case .apiHubOnDemandTrigger: return try container.encode("API_HUB_ON_DEMAND_TRIGGER")
+      case .apiHubScheduleTrigger: return try container.encode("API_HUB_SCHEDULE_TRIGGER")
+      case .nonApiHubManaged: return try container.encode("NON_API_HUB_MANAGED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -213,14 +213,14 @@ public struct ProvisioningConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .draft: return try container.encode(1)
-      case .submitted: return try container.encode(2)
-      case .provisioning: return try container.encode(3)
-      case .provisioned: return try container.encode(4)
-      case .validated: return try container.encode(5)
-      case .cancelled: return try container.encode(6)
-      case .failed: return try container.encode(7)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .draft: return try container.encode("DRAFT")
+      case .submitted: return try container.encode("SUBMITTED")
+      case .provisioning: return try container.encode("PROVISIONING")
+      case .provisioned: return try container.encode("PROVISIONED")
+      case .validated: return try container.encode("VALIDATED")
+      case .cancelled: return try container.encode("CANCELLED")
+      case .failed: return try container.encode("FAILED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

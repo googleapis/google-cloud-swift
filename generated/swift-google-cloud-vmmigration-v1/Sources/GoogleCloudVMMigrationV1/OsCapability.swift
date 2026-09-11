@@ -119,10 +119,11 @@ public enum OsCapability: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .nvmeStorageAccess: return try container.encode(1)
-    case .gvnicNetworkInterface: return try container.encode(2)
-    case .idpfNetworkInterface: return try container.encode(3)
+    case .unspecified: return try container.encode("OS_CAPABILITY_UNSPECIFIED")
+    case .nvmeStorageAccess: return try container.encode("OS_CAPABILITY_NVME_STORAGE_ACCESS")
+    case .gvnicNetworkInterface:
+      return try container.encode("OS_CAPABILITY_GVNIC_NETWORK_INTERFACE")
+    case .idpfNetworkInterface: return try container.encode("OS_CAPABILITY_IDPF_NETWORK_INTERFACE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

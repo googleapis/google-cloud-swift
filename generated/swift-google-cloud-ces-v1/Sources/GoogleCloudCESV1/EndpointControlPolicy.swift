@@ -148,9 +148,9 @@ public struct EndpointControlPolicy: Codable, Equatable, GoogleCloudWKT._AnyPack
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .vpcscOnly: return try container.encode(1)
-      case .always: return try container.encode(2)
+      case .unspecified: return try container.encode("ENFORCEMENT_SCOPE_UNSPECIFIED")
+      case .vpcscOnly: return try container.encode("VPCSC_ONLY")
+      case .always: return try container.encode("ALWAYS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

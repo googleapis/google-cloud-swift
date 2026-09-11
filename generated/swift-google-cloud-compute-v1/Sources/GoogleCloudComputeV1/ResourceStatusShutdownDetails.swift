@@ -144,8 +144,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .pendingStop: return try container.encode(0)
-        case .stopping: return try container.encode(1)
+        case .pendingStop: return try container.encode("PENDING_STOP")
+        case .stopping: return try container.encode("STOPPING")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -244,8 +244,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .deleted: return try container.encode(0)
-        case .stopped: return try container.encode(1)
+        case .deleted: return try container.encode("DELETED")
+        case .stopped: return try container.encode("STOPPED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

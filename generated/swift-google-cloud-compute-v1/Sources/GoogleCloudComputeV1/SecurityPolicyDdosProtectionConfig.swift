@@ -165,11 +165,12 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .disabled: return try container.encode(1)
-        case .enabled: return try container.encode(2)
-        case .preview: return try container.encode(3)
-        case .unspecifiedAdaptiveProtection: return try container.encode(4)
+        case .unspecified: return try container.encode("DDOS_ADAPTIVE_PROTECTION_UNSPECIFIED")
+        case .disabled: return try container.encode("DISABLED")
+        case .enabled: return try container.encode("ENABLED")
+        case .preview: return try container.encode("PREVIEW")
+        case .unspecifiedAdaptiveProtection:
+          return try container.encode("UNSPECIFIED_ADAPTIVE_PROTECTION")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -271,9 +272,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .advanced: return try container.encode(0)
-        case .advancedPreview: return try container.encode(1)
-        case .standard: return try container.encode(2)
+        case .advanced: return try container.encode("ADVANCED")
+        case .advancedPreview: return try container.encode("ADVANCED_PREVIEW")
+        case .standard: return try container.encode("STANDARD")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

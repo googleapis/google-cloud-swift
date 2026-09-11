@@ -126,10 +126,10 @@
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .canary: return try container.encode(1)
-      case .stable: return try container.encode(2)
-      case .week5: return try container.encode(3)
+      case .unspecified: return try container.encode("SQL_UPDATE_TRACK_UNSPECIFIED")
+      case .canary: return try container.encode("canary")
+      case .stable: return try container.encode("stable")
+      case .week5: return try container.encode("week5")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

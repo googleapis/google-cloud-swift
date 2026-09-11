@@ -126,11 +126,11 @@
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .cloudSqlInstance: return try container.encode(1)
-      case .onPremisesInstance: return try container.encode(2)
-      case .readReplicaInstance: return try container.encode(3)
-      case .readPoolInstance: return try container.encode(5)
+      case .unspecified: return try container.encode("SQL_INSTANCE_TYPE_UNSPECIFIED")
+      case .cloudSqlInstance: return try container.encode("CLOUD_SQL_INSTANCE")
+      case .onPremisesInstance: return try container.encode("ON_PREMISES_INSTANCE")
+      case .readReplicaInstance: return try container.encode("READ_REPLICA_INSTANCE")
+      case .readPoolInstance: return try container.encode("READ_POOL_INSTANCE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

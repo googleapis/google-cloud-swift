@@ -141,9 +141,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .create: return try container.encode(0)
-        case .reject: return try container.encode(1)
-        case .unspecified: return try container.encode(2)
+        case .create: return try container.encode("CREATE")
+        case .reject: return try container.encode("REJECT")
+        case .unspecified: return try container.encode("UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -443,8 +443,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .pageless: return try container.encode(0)
-        case .paginated: return try container.encode(1)
+        case .pageless: return try container.encode("PAGELESS")
+        case .paginated: return try container.encode("PAGINATED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -177,9 +177,9 @@ public struct ListJobsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .all: return try container.encode(0)
-      case .active: return try container.encode(1)
-      case .nonActive: return try container.encode(2)
+      case .all: return try container.encode("ALL")
+      case .active: return try container.encode("ACTIVE")
+      case .nonActive: return try container.encode("NON_ACTIVE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

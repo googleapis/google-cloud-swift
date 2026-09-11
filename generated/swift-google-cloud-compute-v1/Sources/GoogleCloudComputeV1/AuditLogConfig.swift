@@ -168,10 +168,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .adminRead: return try container.encode(0)
-        case .dataRead: return try container.encode(1)
-        case .dataWrite: return try container.encode(2)
-        case .unspecified: return try container.encode(3)
+        case .adminRead: return try container.encode("ADMIN_READ")
+        case .dataRead: return try container.encode("DATA_READ")
+        case .dataWrite: return try container.encode("DATA_WRITE")
+        case .unspecified: return try container.encode("LOG_TYPE_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

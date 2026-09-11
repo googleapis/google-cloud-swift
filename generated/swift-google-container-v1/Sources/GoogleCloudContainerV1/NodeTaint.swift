@@ -153,10 +153,10 @@ public struct NodeTaint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .noSchedule: return try container.encode(1)
-      case .preferNoSchedule: return try container.encode(2)
-      case .noExecute: return try container.encode(3)
+      case .unspecified: return try container.encode("EFFECT_UNSPECIFIED")
+      case .noSchedule: return try container.encode("NO_SCHEDULE")
+      case .preferNoSchedule: return try container.encode("PREFER_NO_SCHEDULE")
+      case .noExecute: return try container.encode("NO_EXECUTE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

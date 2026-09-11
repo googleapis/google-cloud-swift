@@ -118,10 +118,10 @@ public enum CloudProvider: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .googleCloudPlatform: return try container.encode(1)
-    case .amazonWebServices: return try container.encode(2)
-    case .microsoftAzure: return try container.encode(3)
+    case .unspecified: return try container.encode("CLOUD_PROVIDER_UNSPECIFIED")
+    case .googleCloudPlatform: return try container.encode("GOOGLE_CLOUD_PLATFORM")
+    case .amazonWebServices: return try container.encode("AMAZON_WEB_SERVICES")
+    case .microsoftAzure: return try container.encode("MICROSOFT_AZURE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

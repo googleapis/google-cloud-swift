@@ -123,10 +123,10 @@ public enum LocalizationState: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .notApplicable: return try container.encode(1)
-    case .pending: return try container.encode(2)
-    case .completed: return try container.encode(3)
+    case .unspecified: return try container.encode("LOCALIZATION_STATE_UNSPECIFIED")
+    case .notApplicable: return try container.encode("LOCALIZATION_STATE_NOT_APPLICABLE")
+    case .pending: return try container.encode("LOCALIZATION_STATE_PENDING")
+    case .completed: return try container.encode("LOCALIZATION_STATE_COMPLETED")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

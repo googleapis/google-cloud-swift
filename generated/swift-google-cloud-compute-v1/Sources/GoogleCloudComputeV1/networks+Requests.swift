@@ -679,8 +679,8 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .incoming: return try container.encode(0)
-          case .outgoing: return try container.encode(1)
+          case .incoming: return try container.encode("INCOMING")
+          case .outgoing: return try container.encode("OUTGOING")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }

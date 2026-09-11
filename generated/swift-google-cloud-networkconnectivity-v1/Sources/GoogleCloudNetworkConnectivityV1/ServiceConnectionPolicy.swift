@@ -236,8 +236,9 @@ public struct ServiceConnectionPolicy: Codable, Equatable, GoogleCloudWKT._AnyPa
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .customResourceHierarchyLevels: return try container.encode(1)
+        case .unspecified: return try container.encode("PRODUCER_INSTANCE_LOCATION_UNSPECIFIED")
+        case .customResourceHierarchyLevels:
+          return try container.encode("CUSTOM_RESOURCE_HIERARCHY_LEVELS")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -467,13 +468,13 @@ public struct ServiceConnectionPolicy: Codable, Equatable, GoogleCloudWKT._AnyPa
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .active: return try container.encode(1)
-      case .failed: return try container.encode(2)
-      case .creating: return try container.encode(3)
-      case .deleting: return try container.encode(4)
-      case .createRepairing: return try container.encode(5)
-      case .deleteRepairing: return try container.encode(6)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .active: return try container.encode("ACTIVE")
+      case .failed: return try container.encode("FAILED")
+      case .creating: return try container.encode("CREATING")
+      case .deleting: return try container.encode("DELETING")
+      case .createRepairing: return try container.encode("CREATE_REPAIRING")
+      case .deleteRepairing: return try container.encode("DELETE_REPAIRING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

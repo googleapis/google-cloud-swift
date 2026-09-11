@@ -134,12 +134,12 @@ public enum ResourceState: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .stateUnknown: return try container.encode(0)
-    case .statePending: return try container.encode(1)
-    case .stateProvisioning: return try container.encode(2)
-    case .stateRunning: return try container.encode(3)
-    case .stateSuspended: return try container.encode(4)
-    case .stateDeleting: return try container.encode(5)
+    case .stateUnknown: return try container.encode("STATE_UNKNOWN")
+    case .statePending: return try container.encode("STATE_PENDING")
+    case .stateProvisioning: return try container.encode("STATE_PROVISIONING")
+    case .stateRunning: return try container.encode("STATE_RUNNING")
+    case .stateSuspended: return try container.encode("STATE_SUSPENDED")
+    case .stateDeleting: return try container.encode("STATE_DELETING")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

@@ -142,14 +142,14 @@ public enum DayOfWeek: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .monday: return try container.encode(1)
-    case .tuesday: return try container.encode(2)
-    case .wednesday: return try container.encode(3)
-    case .thursday: return try container.encode(4)
-    case .friday: return try container.encode(5)
-    case .saturday: return try container.encode(6)
-    case .sunday: return try container.encode(7)
+    case .unspecified: return try container.encode("DAY_OF_WEEK_UNSPECIFIED")
+    case .monday: return try container.encode("MONDAY")
+    case .tuesday: return try container.encode("TUESDAY")
+    case .wednesday: return try container.encode("WEDNESDAY")
+    case .thursday: return try container.encode("THURSDAY")
+    case .friday: return try container.encode("FRIDAY")
+    case .saturday: return try container.encode("SATURDAY")
+    case .sunday: return try container.encode("SUNDAY")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

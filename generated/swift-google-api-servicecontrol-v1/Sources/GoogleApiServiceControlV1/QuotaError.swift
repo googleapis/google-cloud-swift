@@ -177,12 +177,12 @@ public struct QuotaError: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .resourceExhausted: return try container.encode(8)
-      case .apiKeyInvalid: return try container.encode(105)
-      case .billingNotActive: return try container.encode(107)
-      case .projectDeleted: return try container.encode(108)
-      case .apiKeyExpired: return try container.encode(112)
+      case .unspecified: return try container.encode("UNSPECIFIED")
+      case .resourceExhausted: return try container.encode("RESOURCE_EXHAUSTED")
+      case .apiKeyInvalid: return try container.encode("API_KEY_INVALID")
+      case .billingNotActive: return try container.encode("BILLING_NOT_ACTIVE")
+      case .projectDeleted: return try container.encode("PROJECT_DELETED")
+      case .apiKeyExpired: return try container.encode("API_KEY_EXPIRED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

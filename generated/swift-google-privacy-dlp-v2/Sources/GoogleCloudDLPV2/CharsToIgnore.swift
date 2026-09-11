@@ -199,12 +199,12 @@ public struct CharsToIgnore: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .numeric: return try container.encode(1)
-      case .alphaUpperCase: return try container.encode(2)
-      case .alphaLowerCase: return try container.encode(3)
-      case .punctuation: return try container.encode(4)
-      case .whitespace: return try container.encode(5)
+      case .unspecified: return try container.encode("COMMON_CHARS_TO_IGNORE_UNSPECIFIED")
+      case .numeric: return try container.encode("NUMERIC")
+      case .alphaUpperCase: return try container.encode("ALPHA_UPPER_CASE")
+      case .alphaLowerCase: return try container.encode("ALPHA_LOWER_CASE")
+      case .punctuation: return try container.encode("PUNCTUATION")
+      case .whitespace: return try container.encode("WHITESPACE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

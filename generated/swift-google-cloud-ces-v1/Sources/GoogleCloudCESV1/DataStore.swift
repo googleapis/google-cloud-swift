@@ -211,11 +211,11 @@ public struct DataStore: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .publicWeb: return try container.encode(1)
-      case .unstructured: return try container.encode(2)
-      case .faq: return try container.encode(3)
-      case .connector: return try container.encode(4)
+      case .unspecified: return try container.encode("DATA_STORE_TYPE_UNSPECIFIED")
+      case .publicWeb: return try container.encode("PUBLIC_WEB")
+      case .unstructured: return try container.encode("UNSTRUCTURED")
+      case .faq: return try container.encode("FAQ")
+      case .connector: return try container.encode("CONNECTOR")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -318,9 +318,9 @@ public struct DataStore: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .documents: return try container.encode(1)
-      case .chunks: return try container.encode(2)
+      case .unspecified: return try container.encode("DOCUMENT_PROCESSING_MODE_UNSPECIFIED")
+      case .documents: return try container.encode("DOCUMENTS")
+      case .chunks: return try container.encode("CHUNKS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

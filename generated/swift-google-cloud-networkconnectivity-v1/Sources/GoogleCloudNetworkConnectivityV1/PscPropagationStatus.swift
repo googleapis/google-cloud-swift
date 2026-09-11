@@ -193,13 +193,15 @@ public struct PscPropagationStatus: Codable, Equatable, GoogleCloudWKT._AnyPacka
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .ready: return try container.encode(1)
-      case .propagating: return try container.encode(2)
-      case .errorProducerPropagatedConnectionLimitExceeded: return try container.encode(3)
-      case .errorProducerNatIpSpaceExhausted: return try container.encode(4)
-      case .errorProducerQuotaExceeded: return try container.encode(5)
-      case .errorConsumerQuotaExceeded: return try container.encode(6)
+      case .unspecified: return try container.encode("CODE_UNSPECIFIED")
+      case .ready: return try container.encode("READY")
+      case .propagating: return try container.encode("PROPAGATING")
+      case .errorProducerPropagatedConnectionLimitExceeded:
+        return try container.encode("ERROR_PRODUCER_PROPAGATED_CONNECTION_LIMIT_EXCEEDED")
+      case .errorProducerNatIpSpaceExhausted:
+        return try container.encode("ERROR_PRODUCER_NAT_IP_SPACE_EXHAUSTED")
+      case .errorProducerQuotaExceeded: return try container.encode("ERROR_PRODUCER_QUOTA_EXCEEDED")
+      case .errorConsumerQuotaExceeded: return try container.encode("ERROR_CONSUMER_QUOTA_EXCEEDED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

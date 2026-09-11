@@ -220,9 +220,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .deltaPerMinute: return try container.encode(0)
-        case .deltaPerSecond: return try container.encode(1)
-        case .gauge: return try container.encode(2)
+        case .deltaPerMinute: return try container.encode("DELTA_PER_MINUTE")
+        case .deltaPerSecond: return try container.encode("DELTA_PER_SECOND")
+        case .gauge: return try container.encode("GAUGE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

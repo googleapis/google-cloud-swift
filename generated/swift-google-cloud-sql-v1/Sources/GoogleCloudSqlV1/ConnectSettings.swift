@@ -252,10 +252,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .googleManagedInternalCa: return try container.encode(1)
-        case .googleManagedCasCa: return try container.encode(2)
-        case .customerManagedCasCa: return try container.encode(3)
+        case .unspecified: return try container.encode("CA_MODE_UNSPECIFIED")
+        case .googleManagedInternalCa: return try container.encode("GOOGLE_MANAGED_INTERNAL_CA")
+        case .googleManagedCasCa: return try container.encode("GOOGLE_MANAGED_CAS_CA")
+        case .customerManagedCasCa: return try container.encode("CUSTOMER_MANAGED_CAS_CA")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -353,8 +353,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .clientProtocolType: return try container.encode(1)
+        case .unspecified: return try container.encode("MDX_PROTOCOL_SUPPORT_UNSPECIFIED")
+        case .clientProtocolType: return try container.encode("CLIENT_PROTOCOL_TYPE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

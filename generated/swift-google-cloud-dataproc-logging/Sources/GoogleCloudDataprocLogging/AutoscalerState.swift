@@ -136,13 +136,13 @@ public enum AutoscalerState: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .cooldown: return try container.encode(1)
-    case .scaling: return try container.encode(2)
-    case .stopped: return try container.encode(3)
-    case .failed: return try container.encode(4)
-    case .initializing: return try container.encode(5)
-    case .recommending: return try container.encode(6)
+    case .unspecified: return try container.encode("AUTOSCALER_STATE_UNSPECIFIED")
+    case .cooldown: return try container.encode("COOLDOWN")
+    case .scaling: return try container.encode("SCALING")
+    case .stopped: return try container.encode("STOPPED")
+    case .failed: return try container.encode("FAILED")
+    case .initializing: return try container.encode("INITIALIZING")
+    case .recommending: return try container.encode("RECOMMENDING")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

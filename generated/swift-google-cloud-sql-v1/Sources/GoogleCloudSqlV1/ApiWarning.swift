@@ -158,11 +158,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .regionUnreachable: return try container.encode(1)
-        case .maxResultsExceedsLimit: return try container.encode(2)
-        case .compromisedCredentials: return try container.encode(3)
-        case .internalStateFailure: return try container.encode(4)
+        case .unspecified: return try container.encode("SQL_API_WARNING_CODE_UNSPECIFIED")
+        case .regionUnreachable: return try container.encode("REGION_UNREACHABLE")
+        case .maxResultsExceedsLimit: return try container.encode("MAX_RESULTS_EXCEEDS_LIMIT")
+        case .compromisedCredentials: return try container.encode("COMPROMISED_CREDENTIALS")
+        case .internalStateFailure: return try container.encode("INTERNAL_STATE_FAILURE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

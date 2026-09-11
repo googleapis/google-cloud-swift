@@ -145,9 +145,9 @@ public struct AttachedDisk: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .readWrite: return try container.encode(1)
-      case .readOnly: return try container.encode(2)
+      case .unspecified: return try container.encode("DISK_MODE_UNSPECIFIED")
+      case .readWrite: return try container.encode("READ_WRITE")
+      case .readOnly: return try container.encode("READ_ONLY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

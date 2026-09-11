@@ -130,12 +130,12 @@ public enum DiscountType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .regionalDiscount: return try container.encode(1)
-    case .promotionalDiscount: return try container.encode(2)
-    case .salesDiscount: return try container.encode(3)
-    case .resellerMargin: return try container.encode(4)
-    case .dealCode: return try container.encode(5)
+    case .unspecified: return try container.encode("DISCOUNT_TYPE_UNSPECIFIED")
+    case .regionalDiscount: return try container.encode("REGIONAL_DISCOUNT")
+    case .promotionalDiscount: return try container.encode("PROMOTIONAL_DISCOUNT")
+    case .salesDiscount: return try container.encode("SALES_DISCOUNT")
+    case .resellerMargin: return try container.encode("RESELLER_MARGIN")
+    case .dealCode: return try container.encode("DEAL_CODE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

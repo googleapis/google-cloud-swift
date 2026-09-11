@@ -201,9 +201,9 @@ public struct AccessConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .oneToOneNat: return try container.encode(1)
-      case .directIpv6: return try container.encode(2)
+      case .unspecified: return try container.encode("ACCESS_TYPE_UNSPECIFIED")
+      case .oneToOneNat: return try container.encode("ONE_TO_ONE_NAT")
+      case .directIpv6: return try container.encode("DIRECT_IPV6")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -308,9 +308,9 @@ public struct AccessConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .premium: return try container.encode(1)
-      case .standard: return try container.encode(2)
+      case .unspecified: return try container.encode("NETWORK_TIER_UNSPECIFIED")
+      case .premium: return try container.encode("PREMIUM")
+      case .standard: return try container.encode("STANDARD")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

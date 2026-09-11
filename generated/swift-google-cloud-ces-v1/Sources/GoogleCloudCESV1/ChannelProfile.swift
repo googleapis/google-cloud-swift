@@ -189,9 +189,9 @@ public struct ChannelProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unknown: return try container.encode(0)
-        case .concise: return try container.encode(1)
-        case .chatty: return try container.encode(2)
+        case .unknown: return try container.encode("UNKNOWN")
+        case .concise: return try container.encode("CONCISE")
+        case .chatty: return try container.encode("CHATTY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -404,11 +404,11 @@ public struct ChannelProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .chatAndVoice: return try container.encode(1)
-        case .voiceOnly: return try container.encode(2)
-        case .chatOnly: return try container.encode(3)
-        case .chatVoiceAndVideo: return try container.encode(4)
+        case .unspecified: return try container.encode("MODALITY_UNSPECIFIED")
+        case .chatAndVoice: return try container.encode("CHAT_AND_VOICE")
+        case .voiceOnly: return try container.encode("VOICE_ONLY")
+        case .chatOnly: return try container.encode("CHAT_ONLY")
+        case .chatVoiceAndVideo: return try container.encode("CHAT_VOICE_AND_VIDEO")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -511,9 +511,9 @@ public struct ChannelProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .light: return try container.encode(1)
-        case .dark: return try container.encode(2)
+        case .unspecified: return try container.encode("THEME_UNSPECIFIED")
+        case .light: return try container.encode("LIGHT")
+        case .dark: return try container.encode("DARK")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -767,17 +767,18 @@ public struct ChannelProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unknown: return try container.encode(0)
-      case .webUi: return try container.encode(2)
-      case .api: return try container.encode(3)
-      case .twilio: return try container.encode(4)
-      case .googleTelephonyPlatform: return try container.encode(5)
-      case .contactCenterAsAService: return try container.encode(6)
-      case .five9: return try container.encode(7)
-      case .contactCenterIntegration: return try container.encode(8)
-      case .whatsapp: return try container.encode(9)
-      case .instagram: return try container.encode(10)
-      case .contactCenterAsAServiceChat: return try container.encode(11)
+      case .unknown: return try container.encode("UNKNOWN")
+      case .webUi: return try container.encode("WEB_UI")
+      case .api: return try container.encode("API")
+      case .twilio: return try container.encode("TWILIO")
+      case .googleTelephonyPlatform: return try container.encode("GOOGLE_TELEPHONY_PLATFORM")
+      case .contactCenterAsAService: return try container.encode("CONTACT_CENTER_AS_A_SERVICE")
+      case .five9: return try container.encode("FIVE9")
+      case .contactCenterIntegration: return try container.encode("CONTACT_CENTER_INTEGRATION")
+      case .whatsapp: return try container.encode("WHATSAPP")
+      case .instagram: return try container.encode("INSTAGRAM")
+      case .contactCenterAsAServiceChat:
+        return try container.encode("CONTACT_CENTER_AS_A_SERVICE_CHAT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

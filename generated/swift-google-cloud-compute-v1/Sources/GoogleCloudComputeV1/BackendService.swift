@@ -871,8 +871,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .automatic: return try container.encode(0)
-        case .disabled: return try container.encode(1)
+        case .automatic: return try container.encode("AUTOMATIC")
+        case .disabled: return try container.encode("DISABLED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -974,9 +974,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .prepare: return try container.encode(0)
-        case .testAllTraffic: return try container.encode(1)
-        case .testByPercentage: return try container.encode(2)
+        case .prepare: return try container.encode("PREPARE")
+        case .testAllTraffic: return try container.encode("TEST_ALL_TRAFFIC")
+        case .testByPercentage: return try container.encode("TEST_BY_PERCENTAGE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1095,10 +1095,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .ipv4Only: return try container.encode(0)
-        case .ipv6Only: return try container.encode(1)
-        case .unspecified: return try container.encode(2)
-        case .preferIpv6: return try container.encode(3)
+        case .ipv4Only: return try container.encode("IPV4_ONLY")
+        case .ipv6Only: return try container.encode("IPV6_ONLY")
+        case .unspecified: return try container.encode("IP_ADDRESS_SELECTION_POLICY_UNSPECIFIED")
+        case .preferIpv6: return try container.encode("PREFER_IPV6")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1225,12 +1225,13 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .external: return try container.encode(0)
-        case .externalManaged: return try container.encode(1)
-        case .`internal`: return try container.encode(2)
-        case .internalManaged: return try container.encode(3)
-        case .internalSelfManaged: return try container.encode(4)
-        case .invalidLoadBalancingScheme: return try container.encode(5)
+        case .external: return try container.encode("EXTERNAL")
+        case .externalManaged: return try container.encode("EXTERNAL_MANAGED")
+        case .`internal`: return try container.encode("INTERNAL")
+        case .internalManaged: return try container.encode("INTERNAL_MANAGED")
+        case .internalSelfManaged: return try container.encode("INTERNAL_SELF_MANAGED")
+        case .invalidLoadBalancingScheme:
+          return try container.encode("INVALID_LOAD_BALANCING_SCHEME")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1405,16 +1406,16 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .invalidLbPolicy: return try container.encode(0)
-        case .leastRequest: return try container.encode(1)
-        case .maglev: return try container.encode(2)
-        case .originalDestination: return try container.encode(3)
-        case .random: return try container.encode(4)
-        case .ringHash: return try container.encode(5)
-        case .roundRobin: return try container.encode(6)
-        case .weightedGcpRendezvous: return try container.encode(7)
-        case .weightedMaglev: return try container.encode(8)
-        case .weightedRoundRobin: return try container.encode(9)
+        case .invalidLbPolicy: return try container.encode("INVALID_LB_POLICY")
+        case .leastRequest: return try container.encode("LEAST_REQUEST")
+        case .maglev: return try container.encode("MAGLEV")
+        case .originalDestination: return try container.encode("ORIGINAL_DESTINATION")
+        case .random: return try container.encode("RANDOM")
+        case .ringHash: return try container.encode("RING_HASH")
+        case .roundRobin: return try container.encode("ROUND_ROBIN")
+        case .weightedGcpRendezvous: return try container.encode("WEIGHTED_GCP_RENDEZVOUS")
+        case .weightedMaglev: return try container.encode("WEIGHTED_MAGLEV")
+        case .weightedRoundRobin: return try container.encode("WEIGHTED_ROUND_ROBIN")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1554,15 +1555,15 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .grpc: return try container.encode(0)
-        case .h2C: return try container.encode(1)
-        case .http: return try container.encode(2)
-        case .http2: return try container.encode(3)
-        case .https: return try container.encode(4)
-        case .ssl: return try container.encode(5)
-        case .tcp: return try container.encode(6)
-        case .udp: return try container.encode(7)
-        case .unspecified: return try container.encode(8)
+        case .grpc: return try container.encode("GRPC")
+        case .h2C: return try container.encode("H2C")
+        case .http: return try container.encode("HTTP")
+        case .http2: return try container.encode("HTTP2")
+        case .https: return try container.encode("HTTPS")
+        case .ssl: return try container.encode("SSL")
+        case .tcp: return try container.encode("TCP")
+        case .udp: return try container.encode("UDP")
+        case .unspecified: return try container.encode("UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1720,15 +1721,15 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .clientIp: return try container.encode(0)
-        case .clientIpNoDestination: return try container.encode(1)
-        case .clientIpPortProto: return try container.encode(2)
-        case .clientIpProto: return try container.encode(3)
-        case .generatedCookie: return try container.encode(4)
-        case .headerField: return try container.encode(5)
-        case .httpCookie: return try container.encode(6)
-        case .`none`: return try container.encode(7)
-        case .strongCookieAffinity: return try container.encode(8)
+        case .clientIp: return try container.encode("CLIENT_IP")
+        case .clientIpNoDestination: return try container.encode("CLIENT_IP_NO_DESTINATION")
+        case .clientIpPortProto: return try container.encode("CLIENT_IP_PORT_PROTO")
+        case .clientIpProto: return try container.encode("CLIENT_IP_PROTO")
+        case .generatedCookie: return try container.encode("GENERATED_COOKIE")
+        case .headerField: return try container.encode("HEADER_FIELD")
+        case .httpCookie: return try container.encode("HTTP_COOKIE")
+        case .`none`: return try container.encode("NONE")
+        case .strongCookieAffinity: return try container.encode("STRONG_COOKIE_AFFINITY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -136,9 +136,9 @@ public struct DataplaneV2Config: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .disabled: return try container.encode(3)
-      case .scaleOptimized: return try container.encode(4)
+      case .unspecified: return try container.encode("SCALABILITY_MODE_UNSPECIFIED")
+      case .disabled: return try container.encode("DISABLED")
+      case .scaleOptimized: return try container.encode("SCALE_OPTIMIZED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

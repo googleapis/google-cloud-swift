@@ -299,10 +299,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .map: return try container.encode(1)
-        case .list: return try container.encode(2)
-        case .regexp: return try container.encode(3)
+        case .unspecified: return try container.encode("KIND_UNSPECIFIED")
+        case .map: return try container.encode("KIND_MAP")
+        case .list: return try container.encode("KIND_LIST")
+        case .regexp: return try container.encode("KIND_REGEXP")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -402,8 +402,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .`default`: return try container.encode(1)
+        case .unspecified: return try container.encode("AUTO_EXPANSION_MODE_UNSPECIFIED")
+        case .`default`: return try container.encode("AUTO_EXPANSION_MODE_DEFAULT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

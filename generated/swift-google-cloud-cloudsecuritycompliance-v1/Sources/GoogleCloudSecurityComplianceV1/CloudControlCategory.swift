@@ -218,26 +218,35 @@ public enum CloudControlCategory: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .ccCategoryInfrastructure: return try container.encode(1)
-    case .ccCategoryArtificialIntelligence: return try container.encode(2)
-    case .ccCategoryPhysicalSecurity: return try container.encode(3)
-    case .ccCategoryDataSecurity: return try container.encode(4)
-    case .ccCategoryNetworkSecurity: return try container.encode(5)
-    case .ccCategoryIncidentManagement: return try container.encode(6)
-    case .ccCategoryIdentityAndAccessManagement: return try container.encode(7)
-    case .ccCategoryEncryption: return try container.encode(8)
-    case .ccCategoryLogsManagementAndInfrastructure: return try container.encode(9)
-    case .ccCategoryHrAdminAndProcesses: return try container.encode(10)
-    case .ccCategoryThirdPartyAndSubProcessorManagement: return try container.encode(11)
-    case .ccCategoryLegalAndDisclosures: return try container.encode(12)
-    case .ccCategoryVulnerabilityManagement: return try container.encode(13)
-    case .ccCategoryPrivacy: return try container.encode(14)
-    case .ccCategoryBcdr: return try container.encode(15)
-    case .ccCategoryAdminAccess: return try container.encode(16)
-    case .ccCategoryDataResidency: return try container.encode(17)
-    case .ccCategoryResourceUsageRestriction: return try container.encode(18)
-    case .ccCategoryServiceSpecific: return try container.encode(19)
+    case .unspecified: return try container.encode("CLOUD_CONTROL_CATEGORY_UNSPECIFIED")
+    case .ccCategoryInfrastructure: return try container.encode("CC_CATEGORY_INFRASTRUCTURE")
+    case .ccCategoryArtificialIntelligence:
+      return try container.encode("CC_CATEGORY_ARTIFICIAL_INTELLIGENCE")
+    case .ccCategoryPhysicalSecurity: return try container.encode("CC_CATEGORY_PHYSICAL_SECURITY")
+    case .ccCategoryDataSecurity: return try container.encode("CC_CATEGORY_DATA_SECURITY")
+    case .ccCategoryNetworkSecurity: return try container.encode("CC_CATEGORY_NETWORK_SECURITY")
+    case .ccCategoryIncidentManagement:
+      return try container.encode("CC_CATEGORY_INCIDENT_MANAGEMENT")
+    case .ccCategoryIdentityAndAccessManagement:
+      return try container.encode("CC_CATEGORY_IDENTITY_AND_ACCESS_MANAGEMENT")
+    case .ccCategoryEncryption: return try container.encode("CC_CATEGORY_ENCRYPTION")
+    case .ccCategoryLogsManagementAndInfrastructure:
+      return try container.encode("CC_CATEGORY_LOGS_MANAGEMENT_AND_INFRASTRUCTURE")
+    case .ccCategoryHrAdminAndProcesses:
+      return try container.encode("CC_CATEGORY_HR_ADMIN_AND_PROCESSES")
+    case .ccCategoryThirdPartyAndSubProcessorManagement:
+      return try container.encode("CC_CATEGORY_THIRD_PARTY_AND_SUB_PROCESSOR_MANAGEMENT")
+    case .ccCategoryLegalAndDisclosures:
+      return try container.encode("CC_CATEGORY_LEGAL_AND_DISCLOSURES")
+    case .ccCategoryVulnerabilityManagement:
+      return try container.encode("CC_CATEGORY_VULNERABILITY_MANAGEMENT")
+    case .ccCategoryPrivacy: return try container.encode("CC_CATEGORY_PRIVACY")
+    case .ccCategoryBcdr: return try container.encode("CC_CATEGORY_BCDR")
+    case .ccCategoryAdminAccess: return try container.encode("CC_CATEGORY_ADMIN_ACCESS")
+    case .ccCategoryDataResidency: return try container.encode("CC_CATEGORY_DATA_RESIDENCY")
+    case .ccCategoryResourceUsageRestriction:
+      return try container.encode("CC_CATEGORY_RESOURCE_USAGE_RESTRICTION")
+    case .ccCategoryServiceSpecific: return try container.encode("CC_CATEGORY_SERVICE_SPECIFIC")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

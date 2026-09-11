@@ -138,11 +138,11 @@ public enum DeploymentLevel: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .hydration: return try container.encode(1)
-    case .singleDeployment: return try container.encode(2)
-    case .multiDeployment: return try container.encode(3)
-    case .workloadClusterDeployment: return try container.encode(4)
+    case .unspecified: return try container.encode("DEPLOYMENT_LEVEL_UNSPECIFIED")
+    case .hydration: return try container.encode("HYDRATION")
+    case .singleDeployment: return try container.encode("SINGLE_DEPLOYMENT")
+    case .multiDeployment: return try container.encode("MULTI_DEPLOYMENT")
+    case .workloadClusterDeployment: return try container.encode("WORKLOAD_CLUSTER_DEPLOYMENT")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

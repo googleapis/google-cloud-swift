@@ -121,10 +121,10 @@ public enum ResourceVisibility: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .`public`: return try container.encode(10)
-    case .inconclusive: return try container.encode(15)
-    case .restricted: return try container.encode(20)
+    case .unspecified: return try container.encode("RESOURCE_VISIBILITY_UNSPECIFIED")
+    case .`public`: return try container.encode("RESOURCE_VISIBILITY_PUBLIC")
+    case .inconclusive: return try container.encode("RESOURCE_VISIBILITY_INCONCLUSIVE")
+    case .restricted: return try container.encode("RESOURCE_VISIBILITY_RESTRICTED")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

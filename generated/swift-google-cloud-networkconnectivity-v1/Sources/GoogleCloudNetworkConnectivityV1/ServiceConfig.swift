@@ -151,10 +151,13 @@ public struct ServiceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .networkServiceTierPremiumOnly: return try container.encode(1)
-      case .networkServiceTierStandardOnly: return try container.encode(2)
-      case .requestEndpointRegionalEndpointOnly: return try container.encode(3)
+      case .unspecified: return try container.encode("ELIGIBILITY_CRITERIA_UNSPECIFIED")
+      case .networkServiceTierPremiumOnly:
+        return try container.encode("NETWORK_SERVICE_TIER_PREMIUM_ONLY")
+      case .networkServiceTierStandardOnly:
+        return try container.encode("NETWORK_SERVICE_TIER_STANDARD_ONLY")
+      case .requestEndpointRegionalEndpointOnly:
+        return try container.encode("REQUEST_ENDPOINT_REGIONAL_ENDPOINT_ONLY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

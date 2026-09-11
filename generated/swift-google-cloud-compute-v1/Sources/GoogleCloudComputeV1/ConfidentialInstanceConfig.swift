@@ -160,12 +160,12 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .bmsai: return try container.encode(0)
-        case .cca: return try container.encode(1)
-        case .unspecified: return try container.encode(2)
-        case .sev: return try container.encode(3)
-        case .sevSnp: return try container.encode(4)
-        case .tdx: return try container.encode(5)
+        case .bmsai: return try container.encode("BMSAI")
+        case .cca: return try container.encode("CCA")
+        case .unspecified: return try container.encode("CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED")
+        case .sev: return try container.encode("SEV")
+        case .sevSnp: return try container.encode("SEV_SNP")
+        case .tdx: return try container.encode("TDX")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

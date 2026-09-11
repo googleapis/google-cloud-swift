@@ -368,9 +368,9 @@ public struct Repository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .release: return try container.encode(1)
-        case .snapshot: return try container.encode(2)
+        case .unspecified: return try container.encode("VERSION_POLICY_UNSPECIFIED")
+        case .release: return try container.encode("RELEASE")
+        case .snapshot: return try container.encode("SNAPSHOT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -563,9 +563,9 @@ public struct Repository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .inherited: return try container.encode(1)
-        case .disabled: return try container.encode(2)
+        case .unspecified: return try container.encode("ENABLEMENT_CONFIG_UNSPECIFIED")
+        case .inherited: return try container.encode("INHERITED")
+        case .disabled: return try container.encode("DISABLED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -675,10 +675,10 @@ public struct Repository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .scanningUnsupported: return try container.encode(1)
-        case .scanningDisabled: return try container.encode(2)
-        case .scanningActive: return try container.encode(3)
+        case .unspecified: return try container.encode("ENABLEMENT_STATE_UNSPECIFIED")
+        case .scanningUnsupported: return try container.encode("SCANNING_UNSUPPORTED")
+        case .scanningDisabled: return try container.encode("SCANNING_DISABLED")
+        case .scanningActive: return try container.encode("SCANNING_ACTIVE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -841,17 +841,17 @@ public struct Repository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .docker: return try container.encode(1)
-      case .maven: return try container.encode(2)
-      case .npm: return try container.encode(3)
-      case .apt: return try container.encode(5)
-      case .yum: return try container.encode(6)
-      case .python: return try container.encode(8)
-      case .kfp: return try container.encode(9)
-      case .go: return try container.encode(10)
-      case .generic: return try container.encode(11)
-      case .ruby: return try container.encode(12)
+      case .unspecified: return try container.encode("FORMAT_UNSPECIFIED")
+      case .docker: return try container.encode("DOCKER")
+      case .maven: return try container.encode("MAVEN")
+      case .npm: return try container.encode("NPM")
+      case .apt: return try container.encode("APT")
+      case .yum: return try container.encode("YUM")
+      case .python: return try container.encode("PYTHON")
+      case .kfp: return try container.encode("KFP")
+      case .go: return try container.encode("GO")
+      case .generic: return try container.encode("GENERIC")
+      case .ruby: return try container.encode("RUBY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -961,10 +961,10 @@ public struct Repository: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .standardRepository: return try container.encode(1)
-      case .virtualRepository: return try container.encode(2)
-      case .remoteRepository: return try container.encode(3)
+      case .unspecified: return try container.encode("MODE_UNSPECIFIED")
+      case .standardRepository: return try container.encode("STANDARD_REPOSITORY")
+      case .virtualRepository: return try container.encode("VIRTUAL_REPOSITORY")
+      case .remoteRepository: return try container.encode("REMOTE_REPOSITORY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

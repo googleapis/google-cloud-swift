@@ -148,10 +148,10 @@ public struct PipelineConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .dataform: return try container.encode(1)
-      case .sql: return try container.encode(3)
-      case .notebook: return try container.encode(4)
+      case .unspecified: return try container.encode("PIPELINE_TYPE_UNSPECIFIED")
+      case .dataform: return try container.encode("DATAFORM")
+      case .sql: return try container.encode("SQL")
+      case .notebook: return try container.encode("NOTEBOOK")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

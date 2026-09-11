@@ -275,10 +275,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .cacheAllStatic: return try container.encode(0)
-        case .forceCacheAll: return try container.encode(1)
-        case .invalidCacheMode: return try container.encode(2)
-        case .useOriginHeaders: return try container.encode(3)
+        case .cacheAllStatic: return try container.encode("CACHE_ALL_STATIC")
+        case .forceCacheAll: return try container.encode("FORCE_CACHE_ALL")
+        case .invalidCacheMode: return try container.encode("INVALID_CACHE_MODE")
+        case .useOriginHeaders: return try container.encode("USE_ORIGIN_HEADERS")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

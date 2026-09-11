@@ -219,12 +219,12 @@ public struct LoggingServer: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .udp: return try container.encode(1)
-      case .tcp: return try container.encode(2)
-      case .tls: return try container.encode(3)
-      case .ssl: return try container.encode(4)
-      case .relp: return try container.encode(5)
+      case .unspecified: return try container.encode("PROTOCOL_UNSPECIFIED")
+      case .udp: return try container.encode("UDP")
+      case .tcp: return try container.encode("TCP")
+      case .tls: return try container.encode("TLS")
+      case .ssl: return try container.encode("SSL")
+      case .relp: return try container.encode("RELP")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -327,9 +327,9 @@ public struct LoggingServer: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .esxi: return try container.encode(1)
-      case .vcsa: return try container.encode(2)
+      case .unspecified: return try container.encode("SOURCE_TYPE_UNSPECIFIED")
+      case .esxi: return try container.encode("ESXI")
+      case .vcsa: return try container.encode("VCSA")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

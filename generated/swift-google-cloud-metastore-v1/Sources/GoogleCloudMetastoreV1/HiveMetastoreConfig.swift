@@ -166,9 +166,9 @@ public struct HiveMetastoreConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .thrift: return try container.encode(1)
-      case .grpc: return try container.encode(2)
+      case .unspecified: return try container.encode("ENDPOINT_PROTOCOL_UNSPECIFIED")
+      case .thrift: return try container.encode("THRIFT")
+      case .grpc: return try container.encode("GRPC")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

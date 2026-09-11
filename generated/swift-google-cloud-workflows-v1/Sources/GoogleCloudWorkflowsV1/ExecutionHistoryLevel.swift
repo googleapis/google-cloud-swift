@@ -112,9 +112,9 @@ public enum ExecutionHistoryLevel: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .executionHistoryBasic: return try container.encode(1)
-    case .executionHistoryDetailed: return try container.encode(2)
+    case .unspecified: return try container.encode("EXECUTION_HISTORY_LEVEL_UNSPECIFIED")
+    case .executionHistoryBasic: return try container.encode("EXECUTION_HISTORY_BASIC")
+    case .executionHistoryDetailed: return try container.encode("EXECUTION_HISTORY_DETAILED")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

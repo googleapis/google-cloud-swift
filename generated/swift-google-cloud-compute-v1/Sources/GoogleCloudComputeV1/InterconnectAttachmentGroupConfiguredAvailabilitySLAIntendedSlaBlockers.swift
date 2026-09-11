@@ -188,13 +188,14 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .incompatibleMetros: return try container.encode(1)
-        case .incompatibleRegions: return try container.encode(2)
-        case .missingGlobalRouting: return try container.encode(3)
-        case .noAttachments: return try container.encode(4)
-        case .noAttachmentsInMetroAndZone: return try container.encode(5)
-        case .other: return try container.encode(6)
+        case .unspecified: return try container.encode("BLOCKER_TYPE_UNSPECIFIED")
+        case .incompatibleMetros: return try container.encode("INCOMPATIBLE_METROS")
+        case .incompatibleRegions: return try container.encode("INCOMPATIBLE_REGIONS")
+        case .missingGlobalRouting: return try container.encode("MISSING_GLOBAL_ROUTING")
+        case .noAttachments: return try container.encode("NO_ATTACHMENTS")
+        case .noAttachmentsInMetroAndZone:
+          return try container.encode("NO_ATTACHMENTS_IN_METRO_AND_ZONE")
+        case .other: return try container.encode("OTHER")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

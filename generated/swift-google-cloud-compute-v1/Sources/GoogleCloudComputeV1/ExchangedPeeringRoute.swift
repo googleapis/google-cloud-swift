@@ -154,9 +154,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .dynamicPeeringRoute: return try container.encode(0)
-        case .staticPeeringRoute: return try container.encode(1)
-        case .subnetPeeringRoute: return try container.encode(2)
+        case .dynamicPeeringRoute: return try container.encode("DYNAMIC_PEERING_ROUTE")
+        case .staticPeeringRoute: return try container.encode("STATIC_PEERING_ROUTE")
+        case .subnetPeeringRoute: return try container.encode("SUBNET_PEERING_ROUTE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

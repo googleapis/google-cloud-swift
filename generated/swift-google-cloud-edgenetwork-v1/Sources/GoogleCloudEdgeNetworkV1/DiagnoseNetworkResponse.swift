@@ -167,9 +167,9 @@ public struct DiagnoseNetworkResponse: Codable, Equatable, GoogleCloudWKT._AnyPa
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .secure: return try container.encode(1)
-        case .unsecure: return try container.encode(2)
+        case .unspecified: return try container.encode("MACSEC_STATUS_UNSPECIFIED")
+        case .secure: return try container.encode("SECURE")
+        case .unsecure: return try container.encode("UNSECURE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

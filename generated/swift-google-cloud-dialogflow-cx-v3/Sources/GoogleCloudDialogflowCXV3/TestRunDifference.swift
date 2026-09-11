@@ -159,12 +159,12 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .intent: return try container.encode(1)
-        case .page: return try container.encode(2)
-        case .parameters: return try container.encode(3)
-        case .utterance: return try container.encode(4)
-        case .flow: return try container.encode(5)
+        case .unspecified: return try container.encode("DIFF_TYPE_UNSPECIFIED")
+        case .intent: return try container.encode("INTENT")
+        case .page: return try container.encode("PAGE")
+        case .parameters: return try container.encode("PARAMETERS")
+        case .utterance: return try container.encode("UTTERANCE")
+        case .flow: return try container.encode("FLOW")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

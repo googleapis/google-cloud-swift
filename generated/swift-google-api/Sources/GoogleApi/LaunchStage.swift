@@ -164,14 +164,14 @@ public enum LaunchStage: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .earlyAccess: return try container.encode(1)
-    case .alpha: return try container.encode(2)
-    case .beta: return try container.encode(3)
-    case .ga: return try container.encode(4)
-    case .deprecated: return try container.encode(5)
-    case .unimplemented: return try container.encode(6)
-    case .prelaunch: return try container.encode(7)
+    case .unspecified: return try container.encode("LAUNCH_STAGE_UNSPECIFIED")
+    case .earlyAccess: return try container.encode("EARLY_ACCESS")
+    case .alpha: return try container.encode("ALPHA")
+    case .beta: return try container.encode("BETA")
+    case .ga: return try container.encode("GA")
+    case .deprecated: return try container.encode("DEPRECATED")
+    case .unimplemented: return try container.encode("UNIMPLEMENTED")
+    case .prelaunch: return try container.encode("PRELAUNCH")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

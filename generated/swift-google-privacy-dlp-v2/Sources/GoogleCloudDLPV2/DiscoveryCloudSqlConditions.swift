@@ -149,10 +149,11 @@ public struct DiscoveryCloudSqlConditions: Codable, Equatable, GoogleCloudWKT._A
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .allSupportedDatabaseEngines: return try container.encode(1)
-      case .mysql: return try container.encode(2)
-      case .postgres: return try container.encode(3)
+      case .unspecified: return try container.encode("DATABASE_ENGINE_UNSPECIFIED")
+      case .allSupportedDatabaseEngines:
+        return try container.encode("ALL_SUPPORTED_DATABASE_ENGINES")
+      case .mysql: return try container.encode("MYSQL")
+      case .postgres: return try container.encode("POSTGRES")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -255,9 +256,10 @@ public struct DiscoveryCloudSqlConditions: Codable, Equatable, GoogleCloudWKT._A
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .allSupportedTypes: return try container.encode(1)
-      case .table: return try container.encode(2)
+      case .unspecified: return try container.encode("DATABASE_RESOURCE_TYPE_UNSPECIFIED")
+      case .allSupportedTypes:
+        return try container.encode("DATABASE_RESOURCE_TYPE_ALL_SUPPORTED_TYPES")
+      case .table: return try container.encode("DATABASE_RESOURCE_TYPE_TABLE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

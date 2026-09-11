@@ -343,9 +343,9 @@ public struct PolicyBinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .principalAccessBoundary: return try container.encode(1)
-      case .access: return try container.encode(2)
+      case .unspecified: return try container.encode("POLICY_KIND_UNSPECIFIED")
+      case .principalAccessBoundary: return try container.encode("PRINCIPAL_ACCESS_BOUNDARY")
+      case .access: return try container.encode("ACCESS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

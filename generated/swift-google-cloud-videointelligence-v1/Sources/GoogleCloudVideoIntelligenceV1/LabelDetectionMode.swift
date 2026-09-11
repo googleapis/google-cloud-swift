@@ -118,10 +118,10 @@ public enum LabelDetectionMode: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .shotMode: return try container.encode(1)
-    case .frameMode: return try container.encode(2)
-    case .shotAndFrameMode: return try container.encode(3)
+    case .unspecified: return try container.encode("LABEL_DETECTION_MODE_UNSPECIFIED")
+    case .shotMode: return try container.encode("SHOT_MODE")
+    case .frameMode: return try container.encode("FRAME_MODE")
+    case .shotAndFrameMode: return try container.encode("SHOT_AND_FRAME_MODE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

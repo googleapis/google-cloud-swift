@@ -237,10 +237,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .active: return try container.encode(0)
-        case .deleting: return try container.encode(1)
-        case .error: return try container.encode(2)
-        case .pending: return try container.encode(3)
+        case .active: return try container.encode("ACTIVE")
+        case .deleting: return try container.encode("DELETING")
+        case .error: return try container.encode("ERROR")
+        case .pending: return try container.encode("PENDING")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

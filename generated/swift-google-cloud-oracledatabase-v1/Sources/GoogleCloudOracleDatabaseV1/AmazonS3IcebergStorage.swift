@@ -151,9 +151,9 @@ public struct AmazonS3IcebergStorage: Codable, Equatable, GoogleCloudWKT._AnyPac
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .s3: return try container.encode(1)
-      case .s3A: return try container.encode(2)
+      case .unspecified: return try container.encode("SCHEME_TYPE_UNSPECIFIED")
+      case .s3: return try container.encode("S3")
+      case .s3A: return try container.encode("S3A")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

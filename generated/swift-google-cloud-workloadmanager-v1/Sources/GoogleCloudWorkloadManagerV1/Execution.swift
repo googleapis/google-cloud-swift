@@ -206,8 +206,8 @@ public struct Execution: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .bigQueryTable: return try container.encode(1)
+        case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+        case .bigQueryTable: return try container.encode("BIG_QUERY_TABLE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -401,10 +401,10 @@ public struct Execution: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .running: return try container.encode(1)
-      case .succeeded: return try container.encode(2)
-      case .failed: return try container.encode(3)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .running: return try container.encode("RUNNING")
+      case .succeeded: return try container.encode("SUCCEEDED")
+      case .failed: return try container.encode("FAILED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -507,9 +507,9 @@ public struct Execution: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .oneTime: return try container.encode(1)
-      case .scheduled: return try container.encode(2)
+      case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .oneTime: return try container.encode("ONE_TIME")
+      case .scheduled: return try container.encode("SCHEDULED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -612,9 +612,9 @@ public struct Execution: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .scanner: return try container.encode(1)
-      case .v2: return try container.encode(2)
+      case .unspecified: return try container.encode("ENGINE_UNSPECIFIED")
+      case .scanner: return try container.encode("ENGINE_SCANNER")
+      case .v2: return try container.encode("V2")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

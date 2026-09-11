@@ -180,12 +180,12 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .onDemand: return try container.encode(1)
-        case .lowCost: return try container.encode(2)
-        case .standard: return try container.encode(3)
-        case .spot: return try container.encode(4)
-        case .flexStart: return try container.encode(6)
+        case .unspecified: return try container.encode("STRATEGY_UNSPECIFIED")
+        case .onDemand: return try container.encode("ON_DEMAND")
+        case .lowCost: return try container.encode("LOW_COST")
+        case .standard: return try container.encode("STANDARD")
+        case .spot: return try container.encode("SPOT")
+        case .flexStart: return try container.encode("FLEX_START")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

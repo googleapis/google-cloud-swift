@@ -527,10 +527,10 @@ public struct ScanConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .chromeLinux: return try container.encode(1)
-      case .chromeAndroid: return try container.encode(2)
-      case .safariIphone: return try container.encode(3)
+      case .unspecified: return try container.encode("USER_AGENT_UNSPECIFIED")
+      case .chromeLinux: return try container.encode("CHROME_LINUX")
+      case .chromeAndroid: return try container.encode("CHROME_ANDROID")
+      case .safariIphone: return try container.encode("SAFARI_IPHONE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -635,9 +635,9 @@ public struct ScanConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .normal: return try container.encode(1)
-      case .low: return try container.encode(2)
+      case .unspecified: return try container.encode("RISK_LEVEL_UNSPECIFIED")
+      case .normal: return try container.encode("NORMAL")
+      case .low: return try container.encode("LOW")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -741,9 +741,10 @@ public struct ScanConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .enabled: return try container.encode(1)
-      case .disabled: return try container.encode(2)
+      case .unspecified:
+        return try container.encode("EXPORT_TO_SECURITY_COMMAND_CENTER_UNSPECIFIED")
+      case .enabled: return try container.encode("ENABLED")
+      case .disabled: return try container.encode("DISABLED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

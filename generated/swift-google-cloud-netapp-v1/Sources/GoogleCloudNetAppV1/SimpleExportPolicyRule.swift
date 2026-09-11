@@ -257,10 +257,10 @@ public struct SimpleExportPolicyRule: Codable, Equatable, GoogleCloudWKT._AnyPac
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .noRootSquash: return try container.encode(1)
-      case .rootSquash: return try container.encode(2)
-      case .allSquash: return try container.encode(3)
+      case .unspecified: return try container.encode("SQUASH_MODE_UNSPECIFIED")
+      case .noRootSquash: return try container.encode("NO_ROOT_SQUASH")
+      case .rootSquash: return try container.encode("ROOT_SQUASH")
+      case .allSquash: return try container.encode("ALL_SQUASH")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

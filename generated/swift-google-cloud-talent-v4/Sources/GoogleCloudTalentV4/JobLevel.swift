@@ -132,12 +132,12 @@ public enum JobLevel: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .entryLevel: return try container.encode(1)
-    case .experienced: return try container.encode(2)
-    case .manager: return try container.encode(3)
-    case .director: return try container.encode(4)
-    case .executive: return try container.encode(5)
+    case .unspecified: return try container.encode("JOB_LEVEL_UNSPECIFIED")
+    case .entryLevel: return try container.encode("ENTRY_LEVEL")
+    case .experienced: return try container.encode("EXPERIENCED")
+    case .manager: return try container.encode("MANAGER")
+    case .director: return try container.encode("DIRECTOR")
+    case .executive: return try container.encode("EXECUTIVE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

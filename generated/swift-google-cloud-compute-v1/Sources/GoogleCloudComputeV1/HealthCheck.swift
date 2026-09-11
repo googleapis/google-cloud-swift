@@ -270,14 +270,14 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .grpc: return try container.encode(0)
-        case .grpcWithTls: return try container.encode(1)
-        case .http: return try container.encode(2)
-        case .http2: return try container.encode(3)
-        case .https: return try container.encode(4)
-        case .invalid: return try container.encode(5)
-        case .ssl: return try container.encode(6)
-        case .tcp: return try container.encode(7)
+        case .grpc: return try container.encode("GRPC")
+        case .grpcWithTls: return try container.encode("GRPC_WITH_TLS")
+        case .http: return try container.encode("HTTP")
+        case .http2: return try container.encode("HTTP2")
+        case .https: return try container.encode("HTTPS")
+        case .invalid: return try container.encode("INVALID")
+        case .ssl: return try container.encode("SSL")
+        case .tcp: return try container.encode("TCP")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

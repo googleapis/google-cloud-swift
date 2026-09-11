@@ -628,10 +628,10 @@ public struct ContainerdConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .pull: return try container.encode(1)
-        case .resolve: return try container.encode(2)
-        case .push: return try container.encode(3)
+        case .unspecified: return try container.encode("HOST_CAPABILITY_UNSPECIFIED")
+        case .pull: return try container.encode("HOST_CAPABILITY_PULL")
+        case .resolve: return try container.encode("HOST_CAPABILITY_RESOLVE")
+        case .push: return try container.encode("HOST_CAPABILITY_PUSH")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

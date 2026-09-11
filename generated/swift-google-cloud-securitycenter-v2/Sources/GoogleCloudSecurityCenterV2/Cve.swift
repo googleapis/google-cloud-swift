@@ -186,11 +186,11 @@ public struct Cve: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .low: return try container.encode(1)
-      case .medium: return try container.encode(2)
-      case .high: return try container.encode(3)
-      case .critical: return try container.encode(4)
+      case .unspecified: return try container.encode("RISK_RATING_UNSPECIFIED")
+      case .low: return try container.encode("LOW")
+      case .medium: return try container.encode("MEDIUM")
+      case .high: return try container.encode("HIGH")
+      case .critical: return try container.encode("CRITICAL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -313,12 +313,12 @@ public struct Cve: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .wide: return try container.encode(1)
-      case .confirmed: return try container.encode(2)
-      case .available: return try container.encode(3)
-      case .anticipated: return try container.encode(4)
-      case .noKnown: return try container.encode(5)
+      case .unspecified: return try container.encode("EXPLOITATION_ACTIVITY_UNSPECIFIED")
+      case .wide: return try container.encode("WIDE")
+      case .confirmed: return try container.encode("CONFIRMED")
+      case .available: return try container.encode("AVAILABLE")
+      case .anticipated: return try container.encode("ANTICIPATED")
+      case .noKnown: return try container.encode("NO_KNOWN")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

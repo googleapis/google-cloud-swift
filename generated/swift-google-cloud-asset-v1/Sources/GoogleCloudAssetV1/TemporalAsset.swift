@@ -162,11 +162,11 @@ public struct TemporalAsset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .present: return try container.encode(1)
-      case .invalid: return try container.encode(2)
-      case .doesNotExist: return try container.encode(3)
-      case .deleted: return try container.encode(4)
+      case .unspecified: return try container.encode("PRIOR_ASSET_STATE_UNSPECIFIED")
+      case .present: return try container.encode("PRESENT")
+      case .invalid: return try container.encode("INVALID")
+      case .doesNotExist: return try container.encode("DOES_NOT_EXIST")
+      case .deleted: return try container.encode("DELETED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

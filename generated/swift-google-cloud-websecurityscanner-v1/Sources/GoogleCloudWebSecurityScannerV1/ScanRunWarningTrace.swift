@@ -163,12 +163,13 @@ public struct ScanRunWarningTrace: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .insufficientCrawlResults: return try container.encode(1)
-      case .tooManyCrawlResults: return try container.encode(2)
-      case .tooManyFuzzTasks: return try container.encode(3)
-      case .blockedByIap: return try container.encode(4)
-      case .noStartingUrlFoundForManagedScan: return try container.encode(5)
+      case .unspecified: return try container.encode("CODE_UNSPECIFIED")
+      case .insufficientCrawlResults: return try container.encode("INSUFFICIENT_CRAWL_RESULTS")
+      case .tooManyCrawlResults: return try container.encode("TOO_MANY_CRAWL_RESULTS")
+      case .tooManyFuzzTasks: return try container.encode("TOO_MANY_FUZZ_TASKS")
+      case .blockedByIap: return try container.encode("BLOCKED_BY_IAP")
+      case .noStartingUrlFoundForManagedScan:
+        return try container.encode("NO_STARTING_URL_FOUND_FOR_MANAGED_SCAN")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

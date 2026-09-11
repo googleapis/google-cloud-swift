@@ -329,10 +329,10 @@ public struct Revision: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .create: return try container.encode(1)
-      case .update: return try container.encode(2)
-      case .delete: return try container.encode(3)
+      case .unspecified: return try container.encode("ACTION_UNSPECIFIED")
+      case .create: return try container.encode("CREATE")
+      case .update: return try container.encode("UPDATE")
+      case .delete: return try container.encode("DELETE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -441,10 +441,10 @@ public struct Revision: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .applying: return try container.encode(1)
-      case .applied: return try container.encode(2)
-      case .failed: return try container.encode(3)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .applying: return try container.encode("APPLYING")
+      case .applied: return try container.encode("APPLIED")
+      case .failed: return try container.encode("FAILED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -568,12 +568,13 @@ public struct Revision: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .cloudBuildPermissionDenied: return try container.encode(1)
-      case .applyBuildApiFailed: return try container.encode(4)
-      case .applyBuildRunFailed: return try container.encode(5)
-      case .quotaValidationFailed: return try container.encode(7)
-      case .externalValueSourceImportFailed: return try container.encode(8)
+      case .unspecified: return try container.encode("ERROR_CODE_UNSPECIFIED")
+      case .cloudBuildPermissionDenied: return try container.encode("CLOUD_BUILD_PERMISSION_DENIED")
+      case .applyBuildApiFailed: return try container.encode("APPLY_BUILD_API_FAILED")
+      case .applyBuildRunFailed: return try container.encode("APPLY_BUILD_RUN_FAILED")
+      case .quotaValidationFailed: return try container.encode("QUOTA_VALIDATION_FAILED")
+      case .externalValueSourceImportFailed:
+        return try container.encode("EXTERNAL_VALUE_SOURCE_IMPORT_FAILED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

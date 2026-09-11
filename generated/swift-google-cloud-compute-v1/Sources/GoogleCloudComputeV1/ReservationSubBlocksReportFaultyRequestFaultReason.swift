@@ -154,11 +154,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .faultBehaviorUnspecified: return try container.encode(0)
-        case .gpuError: return try container.encode(1)
-        case .performance: return try container.encode(2)
-        case .silentDataCorruption: return try container.encode(3)
-        case .switchFailure: return try container.encode(4)
+        case .faultBehaviorUnspecified: return try container.encode("FAULT_BEHAVIOR_UNSPECIFIED")
+        case .gpuError: return try container.encode("GPU_ERROR")
+        case .performance: return try container.encode("PERFORMANCE")
+        case .silentDataCorruption: return try container.encode("SILENT_DATA_CORRUPTION")
+        case .switchFailure: return try container.encode("SWITCH_FAILURE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

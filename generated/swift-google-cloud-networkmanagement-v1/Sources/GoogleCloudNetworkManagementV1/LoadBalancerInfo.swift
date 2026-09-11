@@ -170,12 +170,12 @@ public struct LoadBalancerInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .internalTcpUdp: return try container.encode(1)
-      case .networkTcpUdp: return try container.encode(2)
-      case .httpProxy: return try container.encode(3)
-      case .tcpProxy: return try container.encode(4)
-      case .sslProxy: return try container.encode(5)
+      case .unspecified: return try container.encode("LOAD_BALANCER_TYPE_UNSPECIFIED")
+      case .internalTcpUdp: return try container.encode("INTERNAL_TCP_UDP")
+      case .networkTcpUdp: return try container.encode("NETWORK_TCP_UDP")
+      case .httpProxy: return try container.encode("HTTP_PROXY")
+      case .tcpProxy: return try container.encode("TCP_PROXY")
+      case .sslProxy: return try container.encode("SSL_PROXY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -284,10 +284,10 @@ public struct LoadBalancerInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .backendService: return try container.encode(1)
-      case .targetPool: return try container.encode(2)
-      case .targetInstance: return try container.encode(3)
+      case .unspecified: return try container.encode("BACKEND_TYPE_UNSPECIFIED")
+      case .backendService: return try container.encode("BACKEND_SERVICE")
+      case .targetPool: return try container.encode("TARGET_POOL")
+      case .targetInstance: return try container.encode("TARGET_INSTANCE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

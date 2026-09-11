@@ -153,7 +153,7 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .srcIpsV1: return try container.encode(0)
+        case .srcIpsV1: return try container.encode("SRC_IPS_V1")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

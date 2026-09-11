@@ -151,10 +151,10 @@ public struct SecurityPostureConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .disabled: return try container.encode(1)
-      case .basic: return try container.encode(2)
-      case .enterprise: return try container.encode(3)
+      case .unspecified: return try container.encode("MODE_UNSPECIFIED")
+      case .disabled: return try container.encode("DISABLED")
+      case .basic: return try container.encode("BASIC")
+      case .enterprise: return try container.encode("ENTERPRISE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -269,10 +269,10 @@ public struct SecurityPostureConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .vulnerabilityDisabled: return try container.encode(1)
-      case .vulnerabilityBasic: return try container.encode(2)
-      case .vulnerabilityEnterprise: return try container.encode(3)
+      case .unspecified: return try container.encode("VULNERABILITY_MODE_UNSPECIFIED")
+      case .vulnerabilityDisabled: return try container.encode("VULNERABILITY_DISABLED")
+      case .vulnerabilityBasic: return try container.encode("VULNERABILITY_BASIC")
+      case .vulnerabilityEnterprise: return try container.encode("VULNERABILITY_ENTERPRISE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -162,9 +162,9 @@ public struct DeleteDeploymentRequest: Codable, Equatable, GoogleCloudWKT._AnyPa
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .delete: return try container.encode(1)
-      case .abandon: return try container.encode(2)
+      case .unspecified: return try container.encode("DELETE_POLICY_UNSPECIFIED")
+      case .delete: return try container.encode("DELETE")
+      case .abandon: return try container.encode("ABANDON")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

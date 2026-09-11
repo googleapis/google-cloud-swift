@@ -130,12 +130,12 @@ public enum AuthType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .noAuth: return try container.encode(1)
-    case .googleServiceAccount: return try container.encode(2)
-    case .userPassword: return try container.encode(3)
-    case .apiKey: return try container.encode(4)
-    case .oauth2ClientCredentials: return try container.encode(5)
+    case .unspecified: return try container.encode("AUTH_TYPE_UNSPECIFIED")
+    case .noAuth: return try container.encode("NO_AUTH")
+    case .googleServiceAccount: return try container.encode("GOOGLE_SERVICE_ACCOUNT")
+    case .userPassword: return try container.encode("USER_PASSWORD")
+    case .apiKey: return try container.encode("API_KEY")
+    case .oauth2ClientCredentials: return try container.encode("OAUTH2_CLIENT_CREDENTIALS")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

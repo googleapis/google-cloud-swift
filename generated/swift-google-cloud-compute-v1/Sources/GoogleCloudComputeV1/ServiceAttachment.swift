@@ -371,9 +371,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .acceptAutomatic: return try container.encode(0)
-        case .acceptManual: return try container.encode(1)
-        case .unspecified: return try container.encode(2)
+        case .acceptAutomatic: return try container.encode("ACCEPT_AUTOMATIC")
+        case .acceptManual: return try container.encode("ACCEPT_MANUAL")
+        case .unspecified: return try container.encode("CONNECTION_PREFERENCE_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

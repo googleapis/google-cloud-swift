@@ -135,8 +135,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .effective: return try container.encode(0)
-        case .ineffective: return try container.encode(1)
+        case .effective: return try container.encode("EFFECTIVE")
+        case .ineffective: return try container.encode("INEFFECTIVE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

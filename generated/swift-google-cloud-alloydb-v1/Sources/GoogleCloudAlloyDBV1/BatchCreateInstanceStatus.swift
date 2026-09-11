@@ -197,13 +197,13 @@ public struct BatchCreateInstanceStatus: Codable, Equatable, GoogleCloudWKT._Any
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .pendingCreate: return try container.encode(1)
-      case .ready: return try container.encode(2)
-      case .creating: return try container.encode(3)
-      case .deleting: return try container.encode(4)
-      case .failed: return try container.encode(5)
-      case .rolledBack: return try container.encode(6)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .pendingCreate: return try container.encode("PENDING_CREATE")
+      case .ready: return try container.encode("READY")
+      case .creating: return try container.encode("CREATING")
+      case .deleting: return try container.encode("DELETING")
+      case .failed: return try container.encode("FAILED")
+      case .rolledBack: return try container.encode("ROLLED_BACK")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

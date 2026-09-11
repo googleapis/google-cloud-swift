@@ -130,12 +130,12 @@ public enum PaymentPlan: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .commitment: return try container.encode(1)
-    case .flexible: return try container.encode(2)
-    case .free: return try container.encode(3)
-    case .trial: return try container.encode(4)
-    case .offline: return try container.encode(5)
+    case .unspecified: return try container.encode("PAYMENT_PLAN_UNSPECIFIED")
+    case .commitment: return try container.encode("COMMITMENT")
+    case .flexible: return try container.encode("FLEXIBLE")
+    case .free: return try container.encode("FREE")
+    case .trial: return try container.encode("TRIAL")
+    case .offline: return try container.encode("OFFLINE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

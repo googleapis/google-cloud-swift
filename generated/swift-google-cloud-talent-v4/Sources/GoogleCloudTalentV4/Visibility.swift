@@ -123,10 +123,10 @@ public enum Visibility: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .accountOnly: return try container.encode(1)
-    case .sharedWithGoogle: return try container.encode(2)
-    case .sharedWithPublic: return try container.encode(3)
+    case .unspecified: return try container.encode("VISIBILITY_UNSPECIFIED")
+    case .accountOnly: return try container.encode("ACCOUNT_ONLY")
+    case .sharedWithGoogle: return try container.encode("SHARED_WITH_GOOGLE")
+    case .sharedWithPublic: return try container.encode("SHARED_WITH_PUBLIC")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

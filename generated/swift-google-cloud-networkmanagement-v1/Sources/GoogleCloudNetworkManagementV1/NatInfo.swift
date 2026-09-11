@@ -249,12 +249,12 @@ public struct NatInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .internalToExternal: return try container.encode(1)
-      case .externalToInternal: return try container.encode(2)
-      case .cloudNat: return try container.encode(3)
-      case .privateServiceConnect: return try container.encode(4)
-      case .gkePodIpMasquerading: return try container.encode(5)
+      case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .internalToExternal: return try container.encode("INTERNAL_TO_EXTERNAL")
+      case .externalToInternal: return try container.encode("EXTERNAL_TO_INTERNAL")
+      case .cloudNat: return try container.encode("CLOUD_NAT")
+      case .privateServiceConnect: return try container.encode("PRIVATE_SERVICE_CONNECT")
+      case .gkePodIpMasquerading: return try container.encode("GKE_POD_IP_MASQUERADING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -375,12 +375,12 @@ public struct NatInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .publicNat44: return try container.encode(1)
-      case .publicNat64: return try container.encode(2)
-      case .privateNatNcc: return try container.encode(3)
-      case .privateNatHybrid: return try container.encode(4)
-      case .privateNat64: return try container.encode(5)
+      case .unspecified: return try container.encode("CLOUD_NAT_GATEWAY_TYPE_UNSPECIFIED")
+      case .publicNat44: return try container.encode("PUBLIC_NAT44")
+      case .publicNat64: return try container.encode("PUBLIC_NAT64")
+      case .privateNatNcc: return try container.encode("PRIVATE_NAT_NCC")
+      case .privateNatHybrid: return try container.encode("PRIVATE_NAT_HYBRID")
+      case .privateNat64: return try container.encode("PRIVATE_NAT64")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

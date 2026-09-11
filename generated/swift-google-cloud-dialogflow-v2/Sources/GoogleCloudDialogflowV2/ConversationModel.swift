@@ -279,15 +279,15 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .creating: return try container.encode(1)
-        case .undeployed: return try container.encode(2)
-        case .deploying: return try container.encode(3)
-        case .deployed: return try container.encode(4)
-        case .undeploying: return try container.encode(5)
-        case .deleting: return try container.encode(6)
-        case .failed: return try container.encode(7)
-        case .pending: return try container.encode(8)
+        case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+        case .creating: return try container.encode("CREATING")
+        case .undeployed: return try container.encode("UNDEPLOYED")
+        case .deploying: return try container.encode("DEPLOYING")
+        case .deployed: return try container.encode("DEPLOYED")
+        case .undeploying: return try container.encode("UNDEPLOYING")
+        case .deleting: return try container.encode("DELETING")
+        case .failed: return try container.encode("FAILED")
+        case .pending: return try container.encode("PENDING")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -390,9 +390,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .smartReplyDualEncoderModel: return try container.encode(2)
-        case .smartReplyBertModel: return try container.encode(6)
+        case .unspecified: return try container.encode("MODEL_TYPE_UNSPECIFIED")
+        case .smartReplyDualEncoderModel:
+          return try container.encode("SMART_REPLY_DUAL_ENCODER_MODEL")
+        case .smartReplyBertModel: return try container.encode("SMART_REPLY_BERT_MODEL")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

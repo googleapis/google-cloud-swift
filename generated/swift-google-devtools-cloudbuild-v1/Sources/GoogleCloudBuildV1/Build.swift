@@ -325,10 +325,10 @@ public struct Build: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .info: return try container.encode(1)
-        case .warning: return try container.encode(2)
-        case .alert: return try container.encode(3)
+        case .unspecified: return try container.encode("PRIORITY_UNSPECIFIED")
+        case .info: return try container.encode("INFO")
+        case .warning: return try container.encode("WARNING")
+        case .alert: return try container.encode("ALERT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -493,13 +493,13 @@ public struct Build: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .pushFailed: return try container.encode(1)
-        case .pushImageNotFound: return try container.encode(2)
-        case .pushNotAuthorized: return try container.encode(3)
-        case .loggingFailure: return try container.encode(4)
-        case .userBuildStep: return try container.encode(5)
-        case .fetchSourceFailed: return try container.encode(6)
+        case .unspecified: return try container.encode("FAILURE_TYPE_UNSPECIFIED")
+        case .pushFailed: return try container.encode("PUSH_FAILED")
+        case .pushImageNotFound: return try container.encode("PUSH_IMAGE_NOT_FOUND")
+        case .pushNotAuthorized: return try container.encode("PUSH_NOT_AUTHORIZED")
+        case .loggingFailure: return try container.encode("LOGGING_FAILURE")
+        case .userBuildStep: return try container.encode("USER_BUILD_STEP")
+        case .fetchSourceFailed: return try container.encode("FETCH_SOURCE_FAILED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -656,16 +656,16 @@ public struct Build: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unknown: return try container.encode(0)
-      case .queued: return try container.encode(1)
-      case .working: return try container.encode(2)
-      case .success: return try container.encode(3)
-      case .failure: return try container.encode(4)
-      case .internalError: return try container.encode(5)
-      case .timeout: return try container.encode(6)
-      case .cancelled: return try container.encode(7)
-      case .expired: return try container.encode(9)
-      case .pending: return try container.encode(10)
+      case .unknown: return try container.encode("STATUS_UNKNOWN")
+      case .queued: return try container.encode("QUEUED")
+      case .working: return try container.encode("WORKING")
+      case .success: return try container.encode("SUCCESS")
+      case .failure: return try container.encode("FAILURE")
+      case .internalError: return try container.encode("INTERNAL_ERROR")
+      case .timeout: return try container.encode("TIMEOUT")
+      case .cancelled: return try container.encode("CANCELLED")
+      case .expired: return try container.encode("EXPIRED")
+      case .pending: return try container.encode("PENDING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

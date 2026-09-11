@@ -190,9 +190,9 @@ public struct DisruptionEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .podNotEnoughPdb: return try container.encode(1)
-      case .podPdbViolation: return try container.encode(2)
+      case .unspecified: return try container.encode("DISRUPTION_TYPE_UNSPECIFIED")
+      case .podNotEnoughPdb: return try container.encode("POD_NOT_ENOUGH_PDB")
+      case .podPdbViolation: return try container.encode("POD_PDB_VIOLATION")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

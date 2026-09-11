@@ -266,9 +266,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .bmsai: return try container.encode(0)
-        case .tdx: return try container.encode(1)
-        case .unspecified: return try container.encode(2)
+        case .bmsai: return try container.encode("CONFIDENTIAL_COMPUTE_TYPE_BMSAI")
+        case .tdx: return try container.encode("CONFIDENTIAL_COMPUTE_TYPE_TDX")
+        case .unspecified: return try container.encode("CONFIDENTIAL_COMPUTE_TYPE_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -366,8 +366,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .dense: return try container.encode(0)
-        case .unspecified: return try container.encode(1)
+        case .dense: return try container.encode("DENSE")
+        case .unspecified: return try container.encode("DEPLOYMENT_TYPE_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -472,9 +472,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .noEarlyAccess: return try container.encode(0)
-        case .wave1: return try container.encode(1)
-        case .wave2: return try container.encode(2)
+        case .noEarlyAccess: return try container.encode("NO_EARLY_ACCESS")
+        case .wave1: return try container.encode("WAVE1")
+        case .wave2: return try container.encode("WAVE2")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -587,9 +587,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .capacityOptimized: return try container.encode(0)
-        case .unspecified: return try container.encode(1)
-        case .standard: return try container.encode(2)
+        case .capacityOptimized: return try container.encode("CAPACITY_OPTIMIZED")
+        case .unspecified: return try container.encode("PROTECTION_TIER_UNSPECIFIED")
+        case .standard: return try container.encode("STANDARD")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -695,9 +695,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .grouped: return try container.encode(0)
-        case .groupMaintenanceTypeUnspecified: return try container.encode(1)
-        case .independent: return try container.encode(2)
+        case .grouped: return try container.encode("GROUPED")
+        case .groupMaintenanceTypeUnspecified:
+          return try container.encode("GROUP_MAINTENANCE_TYPE_UNSPECIFIED")
+        case .independent: return try container.encode("INDEPENDENT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -814,11 +815,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .creating: return try container.encode(0)
-        case .deleting: return try container.encode(1)
-        case .invalid: return try container.encode(2)
-        case .ready: return try container.encode(3)
-        case .updating: return try container.encode(4)
+        case .creating: return try container.encode("CREATING")
+        case .deleting: return try container.encode("DELETING")
+        case .invalid: return try container.encode("INVALID")
+        case .ready: return try container.encode("READY")
+        case .updating: return try container.encode("UPDATING")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -219,10 +219,10 @@ public struct Asset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .ready: return try container.encode(1)
-        case .applying: return try container.encode(2)
-        case .error: return try container.encode(3)
+        case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+        case .ready: return try container.encode("READY")
+        case .applying: return try container.encode("APPLYING")
+        case .error: return try container.encode("ERROR")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -576,9 +576,9 @@ public struct Asset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .storageBucket: return try container.encode(1)
-        case .bigqueryDataset: return try container.encode(2)
+        case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+        case .storageBucket: return try container.encode("STORAGE_BUCKET")
+        case .bigqueryDataset: return try container.encode("BIGQUERY_DATASET")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -682,9 +682,9 @@ public struct Asset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .direct: return try container.encode(1)
-        case .managed: return try container.encode(2)
+        case .unspecified: return try container.encode("ACCESS_MODE_UNSPECIFIED")
+        case .direct: return try container.encode("DIRECT")
+        case .managed: return try container.encode("MANAGED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -830,9 +830,9 @@ public struct Asset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .ready: return try container.encode(1)
-        case .error: return try container.encode(2)
+        case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+        case .ready: return try container.encode("READY")
+        case .error: return try container.encode("ERROR")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1040,11 +1040,11 @@ public struct Asset: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .scheduled: return try container.encode(1)
-        case .inProgress: return try container.encode(2)
-        case .paused: return try container.encode(3)
-        case .disabled: return try container.encode(5)
+        case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+        case .scheduled: return try container.encode("SCHEDULED")
+        case .inProgress: return try container.encode("IN_PROGRESS")
+        case .paused: return try container.encode("PAUSED")
+        case .disabled: return try container.encode("DISABLED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

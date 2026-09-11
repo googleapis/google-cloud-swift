@@ -116,9 +116,9 @@ public enum DiscoveryType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .`private`: return try container.encode(1)
-    case .`public`: return try container.encode(2)
+    case .unspecified: return try container.encode("DISCOVERY_TYPE_UNSPECIFIED")
+    case .`private`: return try container.encode("DISCOVERY_TYPE_PRIVATE")
+    case .`public`: return try container.encode("DISCOVERY_TYPE_PUBLIC")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

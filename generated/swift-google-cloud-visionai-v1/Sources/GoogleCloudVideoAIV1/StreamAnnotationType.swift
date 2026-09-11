@@ -117,9 +117,9 @@ public enum StreamAnnotationType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .activeZone: return try container.encode(1)
-    case .crossingLine: return try container.encode(2)
+    case .unspecified: return try container.encode("STREAM_ANNOTATION_TYPE_UNSPECIFIED")
+    case .activeZone: return try container.encode("STREAM_ANNOTATION_TYPE_ACTIVE_ZONE")
+    case .crossingLine: return try container.encode("STREAM_ANNOTATION_TYPE_CROSSING_LINE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

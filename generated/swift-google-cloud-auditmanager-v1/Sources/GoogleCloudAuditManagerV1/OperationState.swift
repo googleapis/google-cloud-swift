@@ -150,15 +150,19 @@ public enum OperationState: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .notStarted: return try container.encode(10)
-    case .evaluationInProgress: return try container.encode(20)
-    case .evaluationDone: return try container.encode(21)
-    case .evidenceReportGenerationInProgress: return try container.encode(30)
-    case .evidenceReportGenerationDone: return try container.encode(31)
-    case .evidenceUploadInProgress: return try container.encode(40)
-    case .done: return try container.encode(50)
-    case .failed: return try container.encode(60)
+    case .unspecified: return try container.encode("OPERATION_STATE_UNSPECIFIED")
+    case .notStarted: return try container.encode("OPERATION_STATE_NOT_STARTED")
+    case .evaluationInProgress:
+      return try container.encode("OPERATION_STATE_EVALUATION_IN_PROGRESS")
+    case .evaluationDone: return try container.encode("OPERATION_STATE_EVALUATION_DONE")
+    case .evidenceReportGenerationInProgress:
+      return try container.encode("OPERATION_STATE_EVIDENCE_REPORT_GENERATION_IN_PROGRESS")
+    case .evidenceReportGenerationDone:
+      return try container.encode("OPERATION_STATE_EVIDENCE_REPORT_GENERATION_DONE")
+    case .evidenceUploadInProgress:
+      return try container.encode("OPERATION_STATE_EVIDENCE_UPLOAD_IN_PROGRESS")
+    case .done: return try container.encode("OPERATION_STATE_DONE")
+    case .failed: return try container.encode("OPERATION_STATE_FAILED")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

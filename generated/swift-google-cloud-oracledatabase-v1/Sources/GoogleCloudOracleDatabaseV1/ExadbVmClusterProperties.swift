@@ -208,9 +208,9 @@ public struct ExadbVmClusterProperties: Codable, Equatable, GoogleCloudWKT._AnyP
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .licenseIncluded: return try container.encode(1)
-      case .bringYourOwnLicense: return try container.encode(2)
+      case .unspecified: return try container.encode("LICENSE_MODEL_UNSPECIFIED")
+      case .licenseIncluded: return try container.encode("LICENSE_INCLUDED")
+      case .bringYourOwnLicense: return try container.encode("BRING_YOUR_OWN_LICENSE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -343,14 +343,14 @@ public struct ExadbVmClusterProperties: Codable, Equatable, GoogleCloudWKT._AnyP
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .provisioning: return try container.encode(1)
-      case .available: return try container.encode(2)
-      case .updating: return try container.encode(3)
-      case .terminating: return try container.encode(4)
-      case .terminated: return try container.encode(5)
-      case .failed: return try container.encode(6)
-      case .maintenanceInProgress: return try container.encode(7)
+      case .unspecified: return try container.encode("EXADB_VM_CLUSTER_LIFECYCLE_STATE_UNSPECIFIED")
+      case .provisioning: return try container.encode("PROVISIONING")
+      case .available: return try container.encode("AVAILABLE")
+      case .updating: return try container.encode("UPDATING")
+      case .terminating: return try container.encode("TERMINATING")
+      case .terminated: return try container.encode("TERMINATED")
+      case .failed: return try container.encode("FAILED")
+      case .maintenanceInProgress: return try container.encode("MAINTENANCE_IN_PROGRESS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -455,9 +455,9 @@ public struct ExadbVmClusterProperties: Codable, Equatable, GoogleCloudWKT._AnyP
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .smartStorage: return try container.encode(1)
-      case .blockStorage: return try container.encode(2)
+      case .unspecified: return try container.encode("SHAPE_ATTRIBUTE_UNSPECIFIED")
+      case .smartStorage: return try container.encode("SMART_STORAGE")
+      case .blockStorage: return try container.encode("BLOCK_STORAGE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

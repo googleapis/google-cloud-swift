@@ -126,11 +126,11 @@ public enum DataType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .video: return try container.encode(1)
-    case .proto: return try container.encode(2)
-    case .image: return try container.encode(3)
-    case .placeholder: return try container.encode(4)
+    case .unspecified: return try container.encode("DATA_TYPE_UNSPECIFIED")
+    case .video: return try container.encode("VIDEO")
+    case .proto: return try container.encode("PROTO")
+    case .image: return try container.encode("IMAGE")
+    case .placeholder: return try container.encode("PLACEHOLDER")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

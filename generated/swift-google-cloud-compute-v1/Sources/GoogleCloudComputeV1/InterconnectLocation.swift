@@ -238,9 +238,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .ifCrossSiteNetwork: return try container.encode(0)
-        case .ifL2Forwarding: return try container.encode(1)
-        case .ifMacsec: return try container.encode(2)
+        case .ifCrossSiteNetwork: return try container.encode("IF_CROSS_SITE_NETWORK")
+        case .ifL2Forwarding: return try container.encode("IF_L2_FORWARDING")
+        case .ifMacsec: return try container.encode("IF_MACSEC")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -346,9 +346,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .linkTypeEthernet100GLr: return try container.encode(0)
-        case .linkTypeEthernet10GLr: return try container.encode(1)
-        case .linkTypeEthernet400GLr4: return try container.encode(2)
+        case .linkTypeEthernet100GLr: return try container.encode("LINK_TYPE_ETHERNET_100G_LR")
+        case .linkTypeEthernet10GLr: return try container.encode("LINK_TYPE_ETHERNET_10G_LR")
+        case .linkTypeEthernet400GLr4: return try container.encode("LINK_TYPE_ETHERNET_400G_LR4")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -485,16 +485,16 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .africa: return try container.encode(0)
-        case .asiaPac: return try container.encode(1)
-        case .cAfrica: return try container.encode(2)
-        case .cAsiaPac: return try container.encode(3)
-        case .cEurope: return try container.encode(4)
-        case .cNorthAmerica: return try container.encode(5)
-        case .cSouthAmerica: return try container.encode(6)
-        case .europe: return try container.encode(7)
-        case .northAmerica: return try container.encode(8)
-        case .southAmerica: return try container.encode(9)
+        case .africa: return try container.encode("AFRICA")
+        case .asiaPac: return try container.encode("ASIA_PAC")
+        case .cAfrica: return try container.encode("C_AFRICA")
+        case .cAsiaPac: return try container.encode("C_ASIA_PAC")
+        case .cEurope: return try container.encode("C_EUROPE")
+        case .cNorthAmerica: return try container.encode("C_NORTH_AMERICA")
+        case .cSouthAmerica: return try container.encode("C_SOUTH_AMERICA")
+        case .europe: return try container.encode("EUROPE")
+        case .northAmerica: return try container.encode("NORTH_AMERICA")
+        case .southAmerica: return try container.encode("SOUTH_AMERICA")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -593,8 +593,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .available: return try container.encode(0)
-        case .closed: return try container.encode(1)
+        case .available: return try container.encode("AVAILABLE")
+        case .closed: return try container.encode("CLOSED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -291,9 +291,9 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleCloudWKT._
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .modelBased: return try container.encode(1)
-        case .templateBased: return try container.encode(2)
+        case .unspecified: return try container.encode("TRAINING_METHOD_UNSPECIFIED")
+        case .modelBased: return try container.encode("MODEL_BASED")
+        case .templateBased: return try container.encode("TEMPLATE_BASED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

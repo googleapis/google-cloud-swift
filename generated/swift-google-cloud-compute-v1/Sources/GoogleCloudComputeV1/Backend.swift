@@ -298,11 +298,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .connection: return try container.encode(0)
-        case .customMetrics: return try container.encode(1)
-        case .inFlight: return try container.encode(2)
-        case .rate: return try container.encode(3)
-        case .utilization: return try container.encode(4)
+        case .connection: return try container.encode("CONNECTION")
+        case .customMetrics: return try container.encode("CUSTOM_METRICS")
+        case .inFlight: return try container.encode("IN_FLIGHT")
+        case .rate: return try container.encode("RATE")
+        case .utilization: return try container.encode("UTILIZATION")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -407,9 +407,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .`default`: return try container.encode(0)
-        case .unspecified: return try container.encode(1)
-        case .preferred: return try container.encode(2)
+        case .`default`: return try container.encode("DEFAULT")
+        case .unspecified: return try container.encode("PREFERENCE_UNSPECIFIED")
+        case .preferred: return try container.encode("PREFERRED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -515,9 +515,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .long: return try container.encode(0)
-        case .short: return try container.encode(1)
-        case .unspecified: return try container.encode(2)
+        case .long: return try container.encode("LONG")
+        case .short: return try container.encode("SHORT")
+        case .unspecified: return try container.encode("TRAFFIC_DURATION_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

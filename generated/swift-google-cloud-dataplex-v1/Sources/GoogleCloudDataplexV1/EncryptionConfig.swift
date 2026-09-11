@@ -191,9 +191,9 @@ public struct EncryptionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unknown: return try container.encode(0)
-        case .internalError: return try container.encode(1)
-        case .requireUserAction: return try container.encode(2)
+        case .unknown: return try container.encode("UNKNOWN")
+        case .internalError: return try container.encode("INTERNAL_ERROR")
+        case .requireUserAction: return try container.encode("REQUIRE_USER_ACTION")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -318,10 +318,10 @@ public struct EncryptionConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .encrypting: return try container.encode(1)
-      case .completed: return try container.encode(2)
-      case .failed: return try container.encode(3)
+      case .unspecified: return try container.encode("ENCRYPTION_STATE_UNSPECIFIED")
+      case .encrypting: return try container.encode("ENCRYPTING")
+      case .completed: return try container.encode("COMPLETED")
+      case .failed: return try container.encode("FAILED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

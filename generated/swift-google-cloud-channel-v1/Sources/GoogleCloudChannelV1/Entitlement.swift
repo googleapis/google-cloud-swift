@@ -207,9 +207,9 @@ public struct Entitlement: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .active: return try container.encode(1)
-      case .suspended: return try container.encode(5)
+      case .unspecified: return try container.encode("PROVISIONING_STATE_UNSPECIFIED")
+      case .active: return try container.encode("ACTIVE")
+      case .suspended: return try container.encode("SUSPENDED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -335,12 +335,12 @@ public struct Entitlement: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .resellerInitiated: return try container.encode(1)
-      case .trialEnded: return try container.encode(2)
-      case .renewalWithTypeCancel: return try container.encode(3)
-      case .pendingTosAcceptance: return try container.encode(4)
-      case .other: return try container.encode(100)
+      case .unspecified: return try container.encode("SUSPENSION_REASON_UNSPECIFIED")
+      case .resellerInitiated: return try container.encode("RESELLER_INITIATED")
+      case .trialEnded: return try container.encode("TRIAL_ENDED")
+      case .renewalWithTypeCancel: return try container.encode("RENEWAL_WITH_TYPE_CANCEL")
+      case .pendingTosAcceptance: return try container.encode("PENDING_TOS_ACCEPTANCE")
+      case .other: return try container.encode("OTHER")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

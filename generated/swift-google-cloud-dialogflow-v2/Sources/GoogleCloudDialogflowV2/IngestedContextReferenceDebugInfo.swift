@@ -200,13 +200,14 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .succeeded: return try container.encode(1)
-          case .contextNotAvailable: return try container.encode(2)
-          case .parseFailed: return try container.encode(3)
-          case .invalidEntry: return try container.encode(4)
-          case .invalidFormat: return try container.encode(5)
-          case .languageMismatch: return try container.encode(6)
+          case .unspecified: return try container.encode("INGESTION_STATUS_UNSPECIFIED")
+          case .succeeded: return try container.encode("INGESTION_STATUS_SUCCEEDED")
+          case .contextNotAvailable:
+            return try container.encode("INGESTION_STATUS_CONTEXT_NOT_AVAILABLE")
+          case .parseFailed: return try container.encode("INGESTION_STATUS_PARSE_FAILED")
+          case .invalidEntry: return try container.encode("INGESTION_STATUS_INVALID_ENTRY")
+          case .invalidFormat: return try container.encode("INGESTION_STATUS_INVALID_FORMAT")
+          case .languageMismatch: return try container.encode("INGESTION_STATUS_LANGUAGE_MISMATCH")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }

@@ -190,9 +190,9 @@ public struct MetadataOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .skip: return try container.encode(1)
-      case .preserve: return try container.encode(2)
+      case .unspecified: return try container.encode("SYMLINK_UNSPECIFIED")
+      case .skip: return try container.encode("SYMLINK_SKIP")
+      case .preserve: return try container.encode("SYMLINK_PRESERVE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -295,9 +295,9 @@ public struct MetadataOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .skip: return try container.encode(1)
-      case .preserve: return try container.encode(2)
+      case .unspecified: return try container.encode("MODE_UNSPECIFIED")
+      case .skip: return try container.encode("MODE_SKIP")
+      case .preserve: return try container.encode("MODE_PRESERVE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -400,9 +400,9 @@ public struct MetadataOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .skip: return try container.encode(1)
-      case .number: return try container.encode(2)
+      case .unspecified: return try container.encode("GID_UNSPECIFIED")
+      case .skip: return try container.encode("GID_SKIP")
+      case .number: return try container.encode("GID_NUMBER")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -505,9 +505,9 @@ public struct MetadataOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .skip: return try container.encode(1)
-      case .number: return try container.encode(2)
+      case .unspecified: return try container.encode("UID_UNSPECIFIED")
+      case .skip: return try container.encode("UID_SKIP")
+      case .number: return try container.encode("UID_NUMBER")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -614,9 +614,9 @@ public struct MetadataOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .destinationBucketDefault: return try container.encode(1)
-      case .preserve: return try container.encode(2)
+      case .unspecified: return try container.encode("ACL_UNSPECIFIED")
+      case .destinationBucketDefault: return try container.encode("ACL_DESTINATION_BUCKET_DEFAULT")
+      case .preserve: return try container.encode("ACL_PRESERVE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -746,13 +746,14 @@ public struct MetadataOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .destinationBucketDefault: return try container.encode(1)
-      case .preserve: return try container.encode(2)
-      case .standard: return try container.encode(3)
-      case .nearline: return try container.encode(4)
-      case .coldline: return try container.encode(5)
-      case .archive: return try container.encode(6)
+      case .unspecified: return try container.encode("STORAGE_CLASS_UNSPECIFIED")
+      case .destinationBucketDefault:
+        return try container.encode("STORAGE_CLASS_DESTINATION_BUCKET_DEFAULT")
+      case .preserve: return try container.encode("STORAGE_CLASS_PRESERVE")
+      case .standard: return try container.encode("STORAGE_CLASS_STANDARD")
+      case .nearline: return try container.encode("STORAGE_CLASS_NEARLINE")
+      case .coldline: return try container.encode("STORAGE_CLASS_COLDLINE")
+      case .archive: return try container.encode("STORAGE_CLASS_ARCHIVE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -855,9 +856,9 @@ public struct MetadataOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .skip: return try container.encode(1)
-      case .preserve: return try container.encode(2)
+      case .unspecified: return try container.encode("TEMPORARY_HOLD_UNSPECIFIED")
+      case .skip: return try container.encode("TEMPORARY_HOLD_SKIP")
+      case .preserve: return try container.encode("TEMPORARY_HOLD_PRESERVE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -962,9 +963,10 @@ public struct MetadataOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .destinationBucketDefault: return try container.encode(1)
-      case .preserve: return try container.encode(2)
+      case .unspecified: return try container.encode("KMS_KEY_UNSPECIFIED")
+      case .destinationBucketDefault:
+        return try container.encode("KMS_KEY_DESTINATION_BUCKET_DEFAULT")
+      case .preserve: return try container.encode("KMS_KEY_PRESERVE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -1071,9 +1073,10 @@ public struct MetadataOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .skip: return try container.encode(1)
-      case .preserveAsCustomTime: return try container.encode(2)
+      case .unspecified: return try container.encode("TIME_CREATED_UNSPECIFIED")
+      case .skip: return try container.encode("TIME_CREATED_SKIP")
+      case .preserveAsCustomTime:
+        return try container.encode("TIME_CREATED_PRESERVE_AS_CUSTOM_TIME")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

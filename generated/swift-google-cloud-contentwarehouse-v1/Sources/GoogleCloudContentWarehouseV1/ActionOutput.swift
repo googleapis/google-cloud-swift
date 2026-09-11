@@ -154,11 +154,11 @@ public struct ActionOutput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unknown: return try container.encode(0)
-      case .actionSucceeded: return try container.encode(1)
-      case .actionFailed: return try container.encode(2)
-      case .actionTimedOut: return try container.encode(3)
-      case .actionPending: return try container.encode(4)
+      case .unknown: return try container.encode("UNKNOWN")
+      case .actionSucceeded: return try container.encode("ACTION_SUCCEEDED")
+      case .actionFailed: return try container.encode("ACTION_FAILED")
+      case .actionTimedOut: return try container.encode("ACTION_TIMED_OUT")
+      case .actionPending: return try container.encode("ACTION_PENDING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

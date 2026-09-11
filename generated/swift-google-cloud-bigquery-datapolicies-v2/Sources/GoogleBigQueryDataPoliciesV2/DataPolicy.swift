@@ -239,10 +239,10 @@ public struct DataPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .dataMaskingPolicy: return try container.encode(1)
-      case .rawDataAccessPolicy: return try container.encode(2)
-      case .columnLevelSecurityPolicy: return try container.encode(3)
+      case .unspecified: return try container.encode("DATA_POLICY_TYPE_UNSPECIFIED")
+      case .dataMaskingPolicy: return try container.encode("DATA_MASKING_POLICY")
+      case .rawDataAccessPolicy: return try container.encode("RAW_DATA_ACCESS_POLICY")
+      case .columnLevelSecurityPolicy: return try container.encode("COLUMN_LEVEL_SECURITY_POLICY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -346,9 +346,9 @@ public struct DataPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .v1: return try container.encode(1)
-      case .v2: return try container.encode(2)
+      case .unspecified: return try container.encode("VERSION_UNSPECIFIED")
+      case .v1: return try container.encode("V1")
+      case .v2: return try container.encode("V2")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

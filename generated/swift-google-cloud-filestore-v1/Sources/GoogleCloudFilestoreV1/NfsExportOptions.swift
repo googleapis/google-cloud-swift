@@ -165,9 +165,9 @@ public struct NfsExportOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .readOnly: return try container.encode(1)
-      case .readWrite: return try container.encode(2)
+      case .unspecified: return try container.encode("ACCESS_MODE_UNSPECIFIED")
+      case .readOnly: return try container.encode("READ_ONLY")
+      case .readWrite: return try container.encode("READ_WRITE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -270,9 +270,9 @@ public struct NfsExportOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .noRootSquash: return try container.encode(1)
-      case .rootSquash: return try container.encode(2)
+      case .unspecified: return try container.encode("SQUASH_MODE_UNSPECIFIED")
+      case .noRootSquash: return try container.encode("NO_ROOT_SQUASH")
+      case .rootSquash: return try container.encode("ROOT_SQUASH")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -194,16 +194,16 @@ public struct JobStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .pending: return try container.encode(1)
-      case .running: return try container.encode(2)
-      case .cancelPending: return try container.encode(3)
-      case .cancelled: return try container.encode(4)
-      case .done: return try container.encode(5)
-      case .error: return try container.encode(6)
-      case .cancelStarted: return try container.encode(7)
-      case .setupDone: return try container.encode(8)
-      case .attemptFailure: return try container.encode(9)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .pending: return try container.encode("PENDING")
+      case .running: return try container.encode("RUNNING")
+      case .cancelPending: return try container.encode("CANCEL_PENDING")
+      case .cancelled: return try container.encode("CANCELLED")
+      case .done: return try container.encode("DONE")
+      case .error: return try container.encode("ERROR")
+      case .cancelStarted: return try container.encode("CANCEL_STARTED")
+      case .setupDone: return try container.encode("SETUP_DONE")
+      case .attemptFailure: return try container.encode("ATTEMPT_FAILURE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -322,10 +322,10 @@ public struct JobStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .submitted: return try container.encode(1)
-      case .queued: return try container.encode(2)
-      case .staleStatus: return try container.encode(3)
+      case .unspecified: return try container.encode("UNSPECIFIED")
+      case .submitted: return try container.encode("SUBMITTED")
+      case .queued: return try container.encode("QUEUED")
+      case .staleStatus: return try container.encode("STALE_STATUS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

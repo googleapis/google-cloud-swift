@@ -363,9 +363,9 @@ public struct Volume: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .ssd: return try container.encode(1)
-      case .hdd: return try container.encode(2)
+      case .unspecified: return try container.encode("STORAGE_TYPE_UNSPECIFIED")
+      case .ssd: return try container.encode("SSD")
+      case .hdd: return try container.encode("HDD")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -487,12 +487,12 @@ public struct Volume: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .creating: return try container.encode(1)
-      case .ready: return try container.encode(2)
-      case .deleting: return try container.encode(3)
-      case .updating: return try container.encode(4)
-      case .coolOff: return try container.encode(5)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .creating: return try container.encode("CREATING")
+      case .ready: return try container.encode("READY")
+      case .deleting: return try container.encode("DELETING")
+      case .updating: return try container.encode("UPDATING")
+      case .coolOff: return try container.encode("COOL_OFF")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -603,10 +603,10 @@ public struct Volume: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .disabled: return try container.encode(1)
-      case .oldestFirst: return try container.encode(2)
-      case .newestFirst: return try container.encode(3)
+      case .unspecified: return try container.encode("SNAPSHOT_AUTO_DELETE_BEHAVIOR_UNSPECIFIED")
+      case .disabled: return try container.encode("DISABLED")
+      case .oldestFirst: return try container.encode("OLDEST_FIRST")
+      case .newestFirst: return try container.encode("NEWEST_FIRST")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -710,9 +710,9 @@ public struct Volume: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .fibreChannel: return try container.encode(1)
-      case .nfs: return try container.encode(2)
+      case .unspecified: return try container.encode("PROTOCOL_UNSPECIFIED")
+      case .fibreChannel: return try container.encode("FIBRE_CHANNEL")
+      case .nfs: return try container.encode("NFS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -815,9 +815,9 @@ public struct Volume: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .generic: return try container.encode(1)
-      case .hana: return try container.encode(2)
+      case .unspecified: return try container.encode("WORKLOAD_PROFILE_UNSPECIFIED")
+      case .generic: return try container.encode("GENERIC")
+      case .hana: return try container.encode("HANA")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -254,9 +254,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .arm64: return try container.encode(1)
-        case .x8664: return try container.encode(2)
+        case .unspecified: return try container.encode("ARCHITECTURE_UNSPECIFIED")
+        case .arm64: return try container.encode("ARM64")
+        case .x8664: return try container.encode("X86_64")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -353,8 +353,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .nvme: return try container.encode(0)
-        case .scsi: return try container.encode(1)
+        case .nvme: return try container.encode("NVME")
+        case .scsi: return try container.encode("SCSI")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -455,8 +455,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .readOnly: return try container.encode(0)
-        case .readWrite: return try container.encode(1)
+        case .readOnly: return try container.encode("READ_ONLY")
+        case .readWrite: return try container.encode("READ_WRITE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -555,8 +555,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .diskSavedStateUnspecified: return try container.encode(0)
-        case .preserved: return try container.encode(1)
+        case .diskSavedStateUnspecified: return try container.encode("DISK_SAVED_STATE_UNSPECIFIED")
+        case .preserved: return try container.encode("PRESERVED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -653,8 +653,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .persistent: return try container.encode(0)
-        case .scratch: return try container.encode(1)
+        case .persistent: return try container.encode("PERSISTENT")
+        case .scratch: return try container.encode("SCRATCH")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

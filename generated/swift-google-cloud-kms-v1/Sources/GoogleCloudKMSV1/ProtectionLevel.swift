@@ -134,12 +134,12 @@ public enum ProtectionLevel: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .software: return try container.encode(1)
-    case .hsm: return try container.encode(2)
-    case .external: return try container.encode(3)
-    case .externalVpc: return try container.encode(4)
-    case .hsmSingleTenant: return try container.encode(5)
+    case .unspecified: return try container.encode("PROTECTION_LEVEL_UNSPECIFIED")
+    case .software: return try container.encode("SOFTWARE")
+    case .hsm: return try container.encode("HSM")
+    case .external: return try container.encode("EXTERNAL")
+    case .externalVpc: return try container.encode("EXTERNAL_VPC")
+    case .hsmSingleTenant: return try container.encode("HSM_SINGLE_TENANT")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

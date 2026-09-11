@@ -152,9 +152,9 @@ public struct VolumeSnapshot: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .adHoc: return try container.encode(1)
-      case .scheduled: return try container.encode(2)
+      case .unspecified: return try container.encode("SNAPSHOT_TYPE_UNSPECIFIED")
+      case .adHoc: return try container.encode("AD_HOC")
+      case .scheduled: return try container.encode("SCHEDULED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

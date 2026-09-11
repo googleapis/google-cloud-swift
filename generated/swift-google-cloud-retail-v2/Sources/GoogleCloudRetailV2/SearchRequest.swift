@@ -816,9 +816,9 @@ public struct SearchRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .disabled: return try container.encode(1)
-        case .enabled: return try container.encode(2)
+        case .unspecified: return try container.encode("MODE_UNSPECIFIED")
+        case .disabled: return try container.encode("DISABLED")
+        case .enabled: return try container.encode("ENABLED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1088,9 +1088,9 @@ public struct SearchRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .disabled: return try container.encode(1)
-        case .auto: return try container.encode(3)
+        case .unspecified: return try container.encode("CONDITION_UNSPECIFIED")
+        case .disabled: return try container.encode("DISABLED")
+        case .auto: return try container.encode("AUTO")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1235,9 +1235,9 @@ public struct SearchRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .auto: return try container.encode(1)
-        case .disabled: return try container.encode(2)
+        case .unspecified: return try container.encode("MODE_UNSPECIFIED")
+        case .auto: return try container.encode("AUTO")
+        case .disabled: return try container.encode("DISABLED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1389,9 +1389,9 @@ public struct SearchRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .suggestionOnly: return try container.encode(1)
-        case .auto: return try container.encode(2)
+        case .unspecified: return try container.encode("MODE_UNSPECIFIED")
+        case .suggestionOnly: return try container.encode("SUGGESTION_ONLY")
+        case .auto: return try container.encode("AUTO")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1774,9 +1774,9 @@ public struct SearchRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .productSearchOnly: return try container.encode(1)
-      case .facetedSearchOnly: return try container.encode(2)
+      case .unspecified: return try container.encode("SEARCH_MODE_UNSPECIFIED")
+      case .productSearchOnly: return try container.encode("PRODUCT_SEARCH_ONLY")
+      case .facetedSearchOnly: return try container.encode("FACETED_SEARCH_ONLY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -394,9 +394,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .external: return try container.encode(0)
-        case .`internal`: return try container.encode(1)
-        case .unspecifiedType: return try container.encode(2)
+        case .external: return try container.encode("EXTERNAL")
+        case .`internal`: return try container.encode("INTERNAL")
+        case .unspecifiedType: return try container.encode("UNSPECIFIED_TYPE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -498,9 +498,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .ipv4: return try container.encode(0)
-        case .ipv6: return try container.encode(1)
-        case .unspecifiedVersion: return try container.encode(2)
+        case .ipv4: return try container.encode("IPV4")
+        case .ipv6: return try container.encode("IPV6")
+        case .unspecifiedVersion: return try container.encode("UNSPECIFIED_VERSION")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -599,8 +599,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .netlb: return try container.encode(0)
-        case .vm: return try container.encode(1)
+        case .netlb: return try container.encode("NETLB")
+        case .vm: return try container.encode("VM")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -714,10 +714,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .fixedStandard: return try container.encode(0)
-        case .premium: return try container.encode(1)
-        case .standard: return try container.encode(2)
-        case .standardOverridesFixedStandard: return try container.encode(3)
+        case .fixedStandard: return try container.encode("FIXED_STANDARD")
+        case .premium: return try container.encode("PREMIUM")
+        case .standard: return try container.encode("STANDARD")
+        case .standardOverridesFixedStandard:
+          return try container.encode("STANDARD_OVERRIDES_FIXED_STANDARD")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -860,14 +861,14 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .dnsResolver: return try container.encode(0)
-        case .gceEndpoint: return try container.encode(1)
-        case .ipsecInterconnect: return try container.encode(2)
-        case .natAuto: return try container.encode(3)
-        case .privateServiceConnect: return try container.encode(4)
-        case .serverless: return try container.encode(5)
-        case .sharedLoadbalancerVip: return try container.encode(6)
-        case .vpcPeering: return try container.encode(7)
+        case .dnsResolver: return try container.encode("DNS_RESOLVER")
+        case .gceEndpoint: return try container.encode("GCE_ENDPOINT")
+        case .ipsecInterconnect: return try container.encode("IPSEC_INTERCONNECT")
+        case .natAuto: return try container.encode("NAT_AUTO")
+        case .privateServiceConnect: return try container.encode("PRIVATE_SERVICE_CONNECT")
+        case .serverless: return try container.encode("SERVERLESS")
+        case .sharedLoadbalancerVip: return try container.encode("SHARED_LOADBALANCER_VIP")
+        case .vpcPeering: return try container.encode("VPC_PEERING")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -972,9 +973,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .inUse: return try container.encode(0)
-        case .reserved: return try container.encode(1)
-        case .reserving: return try container.encode(2)
+        case .inUse: return try container.encode("IN_USE")
+        case .reserved: return try container.encode("RESERVED")
+        case .reserving: return try container.encode("RESERVING")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

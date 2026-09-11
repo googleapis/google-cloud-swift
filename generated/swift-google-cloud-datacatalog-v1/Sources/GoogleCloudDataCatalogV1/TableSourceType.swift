@@ -118,10 +118,10 @@ public enum TableSourceType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .bigqueryView: return try container.encode(2)
-    case .bigqueryTable: return try container.encode(5)
-    case .bigqueryMaterializedView: return try container.encode(7)
+    case .unspecified: return try container.encode("TABLE_SOURCE_TYPE_UNSPECIFIED")
+    case .bigqueryView: return try container.encode("BIGQUERY_VIEW")
+    case .bigqueryTable: return try container.encode("BIGQUERY_TABLE")
+    case .bigqueryMaterializedView: return try container.encode("BIGQUERY_MATERIALIZED_VIEW")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

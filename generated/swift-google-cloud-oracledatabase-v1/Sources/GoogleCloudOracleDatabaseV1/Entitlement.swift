@@ -164,12 +164,13 @@ public struct Entitlement: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .accountNotLinked: return try container.encode(1)
-      case .accountNotActive: return try container.encode(2)
-      case .active: return try container.encode(3)
-      case .accountSuspended: return try container.encode(4)
-      case .notApprovedInPrivateMarketplace: return try container.encode(5)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .accountNotLinked: return try container.encode("ACCOUNT_NOT_LINKED")
+      case .accountNotActive: return try container.encode("ACCOUNT_NOT_ACTIVE")
+      case .active: return try container.encode("ACTIVE")
+      case .accountSuspended: return try container.encode("ACCOUNT_SUSPENDED")
+      case .notApprovedInPrivateMarketplace:
+        return try container.encode("NOT_APPROVED_IN_PRIVATE_MARKETPLACE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

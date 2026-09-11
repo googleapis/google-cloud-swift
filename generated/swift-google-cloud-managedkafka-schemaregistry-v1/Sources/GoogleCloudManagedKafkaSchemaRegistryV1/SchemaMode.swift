@@ -154,10 +154,10 @@ public struct SchemaMode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .`none`: return try container.encode(0)
-      case .readonly: return try container.encode(1)
-      case .readwrite: return try container.encode(2)
-      case .`import`: return try container.encode(3)
+      case .`none`: return try container.encode("NONE")
+      case .readonly: return try container.encode("READONLY")
+      case .readwrite: return try container.encode("READWRITE")
+      case .`import`: return try container.encode("IMPORT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

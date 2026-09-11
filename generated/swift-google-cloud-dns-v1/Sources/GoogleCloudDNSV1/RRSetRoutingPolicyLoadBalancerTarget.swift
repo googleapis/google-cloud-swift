@@ -155,9 +155,9 @@ public struct RRSetRoutingPolicyLoadBalancerTarget: Codable, Equatable, GoogleCl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .undefined: return try container.encode(0)
-      case .tcp: return try container.encode(1)
-      case .udp: return try container.encode(2)
+      case .undefined: return try container.encode("undefined")
+      case .tcp: return try container.encode("tcp")
+      case .udp: return try container.encode("udp")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -265,10 +265,10 @@ public struct RRSetRoutingPolicyLoadBalancerTarget: Codable, Equatable, GoogleCl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .`none`: return try container.encode(0)
-      case .globalL7Ilb: return try container.encode(1)
-      case .regionalL4Ilb: return try container.encode(2)
-      case .regionalL7Ilb: return try container.encode(3)
+      case .`none`: return try container.encode("none")
+      case .globalL7Ilb: return try container.encode("globalL7ilb")
+      case .regionalL4Ilb: return try container.encode("regionalL4ilb")
+      case .regionalL7Ilb: return try container.encode("regionalL7ilb")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -112,9 +112,9 @@ public enum TransferType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .`import`: return try container.encode(1)
-    case .export: return try container.encode(2)
+    case .unspecified: return try container.encode("TRANSFER_TYPE_UNSPECIFIED")
+    case .`import`: return try container.encode("IMPORT")
+    case .export: return try container.encode("EXPORT")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

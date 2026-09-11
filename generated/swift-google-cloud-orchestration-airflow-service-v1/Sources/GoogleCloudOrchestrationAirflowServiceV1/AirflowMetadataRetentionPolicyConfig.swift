@@ -140,9 +140,9 @@ public struct AirflowMetadataRetentionPolicyConfig: Codable, Equatable, GoogleCl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .enabled: return try container.encode(1)
-      case .disabled: return try container.encode(2)
+      case .unspecified: return try container.encode("RETENTION_MODE_UNSPECIFIED")
+      case .enabled: return try container.encode("RETENTION_MODE_ENABLED")
+      case .disabled: return try container.encode("RETENTION_MODE_DISABLED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

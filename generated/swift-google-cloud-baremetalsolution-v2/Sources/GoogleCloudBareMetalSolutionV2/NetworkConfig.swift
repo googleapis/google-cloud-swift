@@ -208,9 +208,9 @@ public struct NetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .client: return try container.encode(1)
-      case .`private`: return try container.encode(2)
+      case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .client: return try container.encode("CLIENT")
+      case .`private`: return try container.encode("PRIVATE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -325,11 +325,11 @@ public struct NetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .bw1Gbps: return try container.encode(1)
-      case .bw2Gbps: return try container.encode(2)
-      case .bw5Gbps: return try container.encode(3)
-      case .bw10Gbps: return try container.encode(4)
+      case .unspecified: return try container.encode("BANDWIDTH_UNSPECIFIED")
+      case .bw1Gbps: return try container.encode("BW_1_GBPS")
+      case .bw2Gbps: return try container.encode("BW_2_GBPS")
+      case .bw5Gbps: return try container.encode("BW_5_GBPS")
+      case .bw10Gbps: return try container.encode("BW_10_GBPS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -444,11 +444,11 @@ public struct NetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .disabled: return try container.encode(1)
-      case .high26: return try container.encode(2)
-      case .high27: return try container.encode(3)
-      case .high28: return try container.encode(4)
+      case .unspecified: return try container.encode("SERVICE_CIDR_UNSPECIFIED")
+      case .disabled: return try container.encode("DISABLED")
+      case .high26: return try container.encode("HIGH_26")
+      case .high27: return try container.encode("HIGH_27")
+      case .high28: return try container.encode("HIGH_28")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

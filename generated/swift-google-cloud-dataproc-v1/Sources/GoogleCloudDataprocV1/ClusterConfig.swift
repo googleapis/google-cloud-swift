@@ -234,10 +234,10 @@ public struct ClusterConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .standard: return try container.encode(1)
-      case .singleNode: return try container.encode(2)
-      case .zeroScale: return try container.encode(3)
+      case .unspecified: return try container.encode("CLUSTER_TYPE_UNSPECIFIED")
+      case .standard: return try container.encode("STANDARD")
+      case .singleNode: return try container.encode("SINGLE_NODE")
+      case .zeroScale: return try container.encode("ZERO_SCALE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -340,9 +340,9 @@ public struct ClusterConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .standard: return try container.encode(1)
-      case .premium: return try container.encode(2)
+      case .unspecified: return try container.encode("CLUSTER_TIER_UNSPECIFIED")
+      case .standard: return try container.encode("CLUSTER_TIER_STANDARD")
+      case .premium: return try container.encode("CLUSTER_TIER_PREMIUM")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -445,9 +445,9 @@ public struct ClusterConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .`default`: return try container.encode(1)
-      case .lightning: return try container.encode(2)
+      case .unspecified: return try container.encode("ENGINE_UNSPECIFIED")
+      case .`default`: return try container.encode("DEFAULT")
+      case .lightning: return try container.encode("LIGHTNING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

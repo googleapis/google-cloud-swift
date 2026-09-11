@@ -282,9 +282,9 @@ public struct CertificateIssuanceConfig: Codable, Equatable, GoogleCloudWKT._Any
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .rsa2048: return try container.encode(1)
-      case .ecdsaP256: return try container.encode(4)
+      case .unspecified: return try container.encode("KEY_ALGORITHM_UNSPECIFIED")
+      case .rsa2048: return try container.encode("RSA_2048")
+      case .ecdsaP256: return try container.encode("ECDSA_P256")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

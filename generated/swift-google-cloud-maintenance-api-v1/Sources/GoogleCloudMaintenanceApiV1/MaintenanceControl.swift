@@ -150,10 +150,10 @@ public struct MaintenanceControl: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .apply: return try container.encode(1)
-      case .managePolicy: return try container.encode(2)
-      case .reschedule: return try container.encode(3)
+      case .unspecified: return try container.encode("CONTROL_UNSPECIFIED")
+      case .apply: return try container.encode("APPLY")
+      case .managePolicy: return try container.encode("MANAGE_POLICY")
+      case .reschedule: return try container.encode("RESCHEDULE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

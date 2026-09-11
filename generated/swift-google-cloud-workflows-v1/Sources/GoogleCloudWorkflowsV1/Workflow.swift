@@ -366,8 +366,8 @@ public struct Workflow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .kmsError: return try container.encode(1)
+        case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+        case .kmsError: return try container.encode("KMS_ERROR")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -481,9 +481,9 @@ public struct Workflow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .active: return try container.encode(1)
-      case .unavailable: return try container.encode(2)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .active: return try container.encode("ACTIVE")
+      case .unavailable: return try container.encode("UNAVAILABLE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -594,10 +594,10 @@ public struct Workflow: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .logAllCalls: return try container.encode(1)
-      case .logErrorsOnly: return try container.encode(2)
-      case .logNone: return try container.encode(3)
+      case .unspecified: return try container.encode("CALL_LOG_LEVEL_UNSPECIFIED")
+      case .logAllCalls: return try container.encode("LOG_ALL_CALLS")
+      case .logErrorsOnly: return try container.encode("LOG_ERRORS_ONLY")
+      case .logNone: return try container.encode("LOG_NONE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -169,9 +169,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .matchAll: return try container.encode(0)
-        case .matchAny: return try container.encode(1)
-        case .notSet: return try container.encode(2)
+        case .matchAll: return try container.encode("MATCH_ALL")
+        case .matchAny: return try container.encode("MATCH_ANY")
+        case .notSet: return try container.encode("NOT_SET")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

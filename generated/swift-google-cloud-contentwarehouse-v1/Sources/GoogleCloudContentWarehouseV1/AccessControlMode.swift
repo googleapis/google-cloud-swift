@@ -120,10 +120,12 @@ public enum AccessControlMode: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .aclModeUnknown: return try container.encode(0)
-    case .aclModeUniversalAccess: return try container.encode(1)
-    case .aclModeDocumentLevelAccessControlByoid: return try container.encode(2)
-    case .aclModeDocumentLevelAccessControlGci: return try container.encode(3)
+    case .aclModeUnknown: return try container.encode("ACL_MODE_UNKNOWN")
+    case .aclModeUniversalAccess: return try container.encode("ACL_MODE_UNIVERSAL_ACCESS")
+    case .aclModeDocumentLevelAccessControlByoid:
+      return try container.encode("ACL_MODE_DOCUMENT_LEVEL_ACCESS_CONTROL_BYOID")
+    case .aclModeDocumentLevelAccessControlGci:
+      return try container.encode("ACL_MODE_DOCUMENT_LEVEL_ACCESS_CONTROL_GCI")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

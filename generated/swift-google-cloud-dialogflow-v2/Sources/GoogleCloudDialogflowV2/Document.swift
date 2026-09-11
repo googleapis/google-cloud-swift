@@ -320,11 +320,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .faq: return try container.encode(1)
-        case .extractiveQa: return try container.encode(2)
-        case .articleSuggestion: return try container.encode(3)
-        case .agentFacingSmartReply: return try container.encode(4)
+        case .unspecified: return try container.encode("KNOWLEDGE_TYPE_UNSPECIFIED")
+        case .faq: return try container.encode("FAQ")
+        case .extractiveQa: return try container.encode("EXTRACTIVE_QA")
+        case .articleSuggestion: return try container.encode("ARTICLE_SUGGESTION")
+        case .agentFacingSmartReply: return try container.encode("AGENT_FACING_SMART_REPLY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -445,12 +445,12 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .creating: return try container.encode(1)
-        case .active: return try container.encode(2)
-        case .updating: return try container.encode(3)
-        case .reloading: return try container.encode(4)
-        case .deleting: return try container.encode(5)
+        case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+        case .creating: return try container.encode("CREATING")
+        case .active: return try container.encode("ACTIVE")
+        case .updating: return try container.encode("UPDATING")
+        case .reloading: return try container.encode("RELOADING")
+        case .deleting: return try container.encode("DELETING")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -147,10 +147,10 @@ public struct TimeFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .createTime: return try container.encode(1)
-      case .updateTime: return try container.encode(2)
-      case .dispositionTime: return try container.encode(3)
+      case .unspecified: return try container.encode("TIME_FIELD_UNSPECIFIED")
+      case .createTime: return try container.encode("CREATE_TIME")
+      case .updateTime: return try container.encode("UPDATE_TIME")
+      case .dispositionTime: return try container.encode("DISPOSITION_TIME")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

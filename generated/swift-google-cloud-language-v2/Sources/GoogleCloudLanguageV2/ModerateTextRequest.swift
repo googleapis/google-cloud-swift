@@ -143,9 +143,9 @@ public struct ModerateTextRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .modelVersion1: return try container.encode(1)
-      case .modelVersion2: return try container.encode(2)
+      case .unspecified: return try container.encode("MODEL_VERSION_UNSPECIFIED")
+      case .modelVersion1: return try container.encode("MODEL_VERSION_1")
+      case .modelVersion2: return try container.encode("MODEL_VERSION_2")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

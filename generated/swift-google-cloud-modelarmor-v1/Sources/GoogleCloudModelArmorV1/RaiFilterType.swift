@@ -124,11 +124,11 @@ public enum RaiFilterType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .sexuallyExplicit: return try container.encode(2)
-    case .hateSpeech: return try container.encode(3)
-    case .harassment: return try container.encode(6)
-    case .dangerous: return try container.encode(17)
+    case .unspecified: return try container.encode("RAI_FILTER_TYPE_UNSPECIFIED")
+    case .sexuallyExplicit: return try container.encode("SEXUALLY_EXPLICIT")
+    case .hateSpeech: return try container.encode("HATE_SPEECH")
+    case .harassment: return try container.encode("HARASSMENT")
+    case .dangerous: return try container.encode("DANGEROUS")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

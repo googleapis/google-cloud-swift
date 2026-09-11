@@ -115,9 +115,10 @@ public enum InTransitEncryptionConfig: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .inTransitEncryptionDisabled: return try container.encode(1)
-    case .inTransitEncryptionInterNodeTransparent: return try container.encode(2)
+    case .unspecified: return try container.encode("IN_TRANSIT_ENCRYPTION_CONFIG_UNSPECIFIED")
+    case .inTransitEncryptionDisabled: return try container.encode("IN_TRANSIT_ENCRYPTION_DISABLED")
+    case .inTransitEncryptionInterNodeTransparent:
+      return try container.encode("IN_TRANSIT_ENCRYPTION_INTER_NODE_TRANSPARENT")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

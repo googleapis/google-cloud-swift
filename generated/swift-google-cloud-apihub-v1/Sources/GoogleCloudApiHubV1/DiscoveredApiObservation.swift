@@ -188,10 +188,10 @@ public struct DiscoveredApiObservation: Codable, Equatable, GoogleCloudWKT._AnyP
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .rest: return try container.encode(1)
-      case .grpc: return try container.encode(2)
-      case .graphql: return try container.encode(3)
+      case .unspecified: return try container.encode("STYLE_UNSPECIFIED")
+      case .rest: return try container.encode("REST")
+      case .grpc: return try container.encode("GRPC")
+      case .graphql: return try container.encode("GRAPHQL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -294,9 +294,9 @@ public struct DiscoveredApiObservation: Codable, Equatable, GoogleCloudWKT._AnyP
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .gcpXlb: return try container.encode(1)
-      case .gcpIlb: return try container.encode(2)
+      case .unspecified: return try container.encode("SOURCE_TYPE_UNSPECIFIED")
+      case .gcpXlb: return try container.encode("GCP_XLB")
+      case .gcpIlb: return try container.encode("GCP_ILB")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -187,9 +187,9 @@ public struct Network: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .client: return try container.encode(1)
-      case .`private`: return try container.encode(2)
+      case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .client: return try container.encode("CLIENT")
+      case .`private`: return try container.encode("PRIVATE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -304,11 +304,11 @@ public struct Network: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .provisioning: return try container.encode(1)
-      case .provisioned: return try container.encode(2)
-      case .deprovisioning: return try container.encode(3)
-      case .updating: return try container.encode(4)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .provisioning: return try container.encode("PROVISIONING")
+      case .provisioned: return try container.encode("PROVISIONED")
+      case .deprovisioning: return try container.encode("DEPROVISIONING")
+      case .updating: return try container.encode("UPDATING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

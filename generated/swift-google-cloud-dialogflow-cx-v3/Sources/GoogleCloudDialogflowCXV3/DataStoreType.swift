@@ -121,10 +121,10 @@
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .publicWeb: return try container.encode(1)
-      case .unstructured: return try container.encode(2)
-      case .structured: return try container.encode(3)
+      case .unspecified: return try container.encode("DATA_STORE_TYPE_UNSPECIFIED")
+      case .publicWeb: return try container.encode("PUBLIC_WEB")
+      case .unstructured: return try container.encode("UNSTRUCTURED")
+      case .structured: return try container.encode("STRUCTURED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

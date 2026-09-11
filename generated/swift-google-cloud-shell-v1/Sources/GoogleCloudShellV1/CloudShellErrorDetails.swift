@@ -161,12 +161,12 @@ public struct CloudShellErrorDetails: Codable, Equatable, GoogleCloudWKT._AnyPac
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .imageUnavailable: return try container.encode(1)
-      case .cloudShellDisabled: return try container.encode(2)
-      case .tosViolation: return try container.encode(4)
-      case .quotaExceeded: return try container.encode(5)
-      case .environmentUnavailable: return try container.encode(6)
+      case .unspecified: return try container.encode("CLOUD_SHELL_ERROR_CODE_UNSPECIFIED")
+      case .imageUnavailable: return try container.encode("IMAGE_UNAVAILABLE")
+      case .cloudShellDisabled: return try container.encode("CLOUD_SHELL_DISABLED")
+      case .tosViolation: return try container.encode("TOS_VIOLATION")
+      case .quotaExceeded: return try container.encode("QUOTA_EXCEEDED")
+      case .environmentUnavailable: return try container.encode("ENVIRONMENT_UNAVAILABLE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

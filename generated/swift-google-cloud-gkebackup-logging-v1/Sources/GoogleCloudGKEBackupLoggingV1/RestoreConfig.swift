@@ -524,13 +524,13 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .remove: return try container.encode(1)
-        case .move: return try container.encode(2)
-        case .copy: return try container.encode(3)
-        case .add: return try container.encode(4)
-        case .test: return try container.encode(5)
-        case .replace: return try container.encode(6)
+        case .unspecified: return try container.encode("OP_UNSPECIFIED")
+        case .remove: return try container.encode("REMOVE")
+        case .move: return try container.encode("MOVE")
+        case .copy: return try container.encode("COPY")
+        case .add: return try container.encode("ADD")
+        case .test: return try container.encode("TEST")
+        case .replace: return try container.encode("REPLACE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -761,10 +761,12 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .restoreVolumeDataFromBackup: return try container.encode(1)
-      case .reuseVolumeHandleFromBackup: return try container.encode(2)
-      case .noVolumeDataRestoration: return try container.encode(3)
+      case .unspecified: return try container.encode("VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED")
+      case .restoreVolumeDataFromBackup:
+        return try container.encode("RESTORE_VOLUME_DATA_FROM_BACKUP")
+      case .reuseVolumeHandleFromBackup:
+        return try container.encode("REUSE_VOLUME_HANDLE_FROM_BACKUP")
+      case .noVolumeDataRestoration: return try container.encode("NO_VOLUME_DATA_RESTORATION")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -872,9 +874,9 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .useExistingVersion: return try container.encode(1)
-      case .useBackupVersion: return try container.encode(2)
+      case .unspecified: return try container.encode("CLUSTER_RESOURCE_CONFLICT_POLICY_UNSPECIFIED")
+      case .useExistingVersion: return try container.encode("USE_EXISTING_VERSION")
+      case .useBackupVersion: return try container.encode("USE_BACKUP_VERSION")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -1030,12 +1032,13 @@ public struct RestoreConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .deleteAndRestore: return try container.encode(1)
-      case .failOnConflict: return try container.encode(2)
-      case .mergeSkipOnConflict: return try container.encode(3)
-      case .mergeReplaceVolumeOnConflict: return try container.encode(4)
-      case .mergeReplaceOnConflict: return try container.encode(5)
+      case .unspecified: return try container.encode("NAMESPACED_RESOURCE_RESTORE_MODE_UNSPECIFIED")
+      case .deleteAndRestore: return try container.encode("DELETE_AND_RESTORE")
+      case .failOnConflict: return try container.encode("FAIL_ON_CONFLICT")
+      case .mergeSkipOnConflict: return try container.encode("MERGE_SKIP_ON_CONFLICT")
+      case .mergeReplaceVolumeOnConflict:
+        return try container.encode("MERGE_REPLACE_VOLUME_ON_CONFLICT")
+      case .mergeReplaceOnConflict: return try container.encode("MERGE_REPLACE_ON_CONFLICT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

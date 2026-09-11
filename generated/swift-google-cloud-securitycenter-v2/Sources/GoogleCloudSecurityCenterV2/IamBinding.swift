@@ -145,9 +145,9 @@ public struct IamBinding: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .add: return try container.encode(1)
-      case .remove: return try container.encode(2)
+      case .unspecified: return try container.encode("ACTION_UNSPECIFIED")
+      case .add: return try container.encode("ADD")
+      case .remove: return try container.encode("REMOVE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

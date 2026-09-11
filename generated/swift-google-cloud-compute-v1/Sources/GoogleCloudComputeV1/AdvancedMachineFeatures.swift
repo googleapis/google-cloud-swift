@@ -175,10 +175,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .architectural: return try container.encode(0)
-        case .enhanced: return try container.encode(1)
-        case .unspecified: return try container.encode(2)
-        case .standard: return try container.encode(3)
+        case .architectural: return try container.encode("ARCHITECTURAL")
+        case .enhanced: return try container.encode("ENHANCED")
+        case .unspecified: return try container.encode("PERFORMANCE_MONITORING_UNIT_UNSPECIFIED")
+        case .standard: return try container.encode("STANDARD")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

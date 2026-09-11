@@ -1082,9 +1082,9 @@
             public func encode(to encoder: Encoder) throws {
               var container = encoder.singleValueContainer()
               switch self {
-              case .unspecified: return try container.encode(0)
-              case .numerical: return try container.encode(1)
-              case .freshness: return try container.encode(2)
+              case .unspecified: return try container.encode("ATTRIBUTE_TYPE_UNSPECIFIED")
+              case .numerical: return try container.encode("NUMERICAL")
+              case .freshness: return try container.encode("FRESHNESS")
               case .unknownIntValue(let v): return try container.encode(v)
               case .unknownStringValue(let v): return try container.encode(v)
               }
@@ -1183,8 +1183,8 @@
             public func encode(to encoder: Encoder) throws {
               var container = encoder.singleValueContainer()
               switch self {
-              case .unspecified: return try container.encode(0)
-              case .linear: return try container.encode(1)
+              case .unspecified: return try container.encode("INTERPOLATION_TYPE_UNSPECIFIED")
+              case .linear: return try container.encode("LINEAR")
               case .unknownIntValue(let v): return try container.encode(v)
               case .unknownStringValue(let v): return try container.encode(v)
               }
@@ -1363,9 +1363,9 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .disabled: return try container.encode(1)
-          case .auto: return try container.encode(2)
+          case .unspecified: return try container.encode("CONDITION_UNSPECIFIED")
+          case .disabled: return try container.encode("DISABLED")
+          case .auto: return try container.encode("AUTO")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -1518,9 +1518,9 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .suggestionOnly: return try container.encode(1)
-          case .auto: return try container.encode(2)
+          case .unspecified: return try container.encode("MODE_UNSPECIFIED")
+          case .suggestionOnly: return try container.encode("SUGGESTION_ONLY")
+          case .auto: return try container.encode("AUTO")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -2090,9 +2090,9 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .documents: return try container.encode(1)
-          case .chunks: return try container.encode(2)
+          case .unspecified: return try container.encode("SEARCH_RESULT_MODE_UNSPECIFIED")
+          case .documents: return try container.encode("DOCUMENTS")
+          case .chunks: return try container.encode("CHUNKS")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -2269,9 +2269,9 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .conditionUnspecified: return try container.encode(0)
-          case .disabled: return try container.encode(1)
-          case .enabled: return try container.encode(2)
+          case .conditionUnspecified: return try container.encode("CONDITION_UNSPECIFIED")
+          case .disabled: return try container.encode("DISABLED")
+          case .enabled: return try container.encode("ENABLED")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -2380,9 +2380,9 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .hardFilter: return try container.encode(1)
-          case .softBoost: return try container.encode(2)
+          case .unspecified: return try container.encode("EXTRACTED_FILTER_BEHAVIOR_UNSPECIFIED")
+          case .hardFilter: return try container.encode("HARD_FILTER")
+          case .softBoost: return try container.encode("SOFT_BOOST")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -2535,10 +2535,10 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .disabled: return try container.encode(1)
-          case .enabled: return try container.encode(2)
-          case .auto: return try container.encode(3)
+          case .unspecified: return try container.encode("CONDITION_UNSPECIFIED")
+          case .disabled: return try container.encode("DISABLED")
+          case .enabled: return try container.encode("ENABLED")
+          case .auto: return try container.encode("AUTO")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -2677,9 +2677,10 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .matchHighlightingDisabled: return try container.encode(1)
-          case .matchHighlightingEnabled: return try container.encode(2)
+          case .unspecified: return try container.encode("MATCH_HIGHLIGHTING_CONDITION_UNSPECIFIED")
+          case .matchHighlightingDisabled:
+            return try container.encode("MATCH_HIGHLIGHTING_DISABLED")
+          case .matchHighlightingEnabled: return try container.encode("MATCH_HIGHLIGHTING_ENABLED")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -2838,9 +2839,10 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .dropCrowdedResults: return try container.encode(1)
-          case .demoteCrowdedResultsToEnd: return try container.encode(2)
+          case .unspecified: return try container.encode("MODE_UNSPECIFIED")
+          case .dropCrowdedResults: return try container.encode("DROP_CROWDED_RESULTS")
+          case .demoteCrowdedResultsToEnd:
+            return try container.encode("DEMOTE_CROWDED_RESULTS_TO_END")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -3213,11 +3215,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .byoe: return try container.encode(1)
-        case .clearbox: return try container.encode(2)
-        case .rankByEmbedding: return try container.encode(3)
-        case .rankByFormula: return try container.encode(4)
+        case .unspecified: return try container.encode("RANKING_EXPRESSION_BACKEND_UNSPECIFIED")
+        case .byoe: return try container.encode("BYOE")
+        case .clearbox: return try container.encode("CLEARBOX")
+        case .rankByEmbedding: return try container.encode("RANK_BY_EMBEDDING")
+        case .rankByFormula: return try container.encode("RANK_BY_FORMULA")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -3335,11 +3337,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .lowest: return try container.encode(1)
-        case .low: return try container.encode(2)
-        case .medium: return try container.encode(3)
-        case .high: return try container.encode(4)
+        case .unspecified: return try container.encode("RELEVANCE_THRESHOLD_UNSPECIFIED")
+        case .lowest: return try container.encode("LOWEST")
+        case .low: return try container.encode("LOW")
+        case .medium: return try container.encode("MEDIUM")
+        case .high: return try container.encode("HIGH")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -424,14 +424,14 @@ public struct NodePool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .updateStarted: return try container.encode(1)
-          case .creatingGreenPool: return try container.encode(2)
-          case .cordoningBluePool: return try container.encode(3)
-          case .drainingBluePool: return try container.encode(4)
-          case .nodePoolSoaking: return try container.encode(5)
-          case .deletingBluePool: return try container.encode(6)
-          case .rollbackStarted: return try container.encode(7)
+          case .unspecified: return try container.encode("PHASE_UNSPECIFIED")
+          case .updateStarted: return try container.encode("UPDATE_STARTED")
+          case .creatingGreenPool: return try container.encode("CREATING_GREEN_POOL")
+          case .cordoningBluePool: return try container.encode("CORDONING_BLUE_POOL")
+          case .drainingBluePool: return try container.encode("DRAINING_BLUE_POOL")
+          case .nodePoolSoaking: return try container.encode("NODE_POOL_SOAKING")
+          case .deletingBluePool: return try container.encode("DELETING_BLUE_POOL")
+          case .rollbackStarted: return try container.encode("ROLLBACK_STARTED")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -584,8 +584,8 @@ public struct NodePool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .compact: return try container.encode(1)
+        case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+        case .compact: return try container.encode("COMPACT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -922,13 +922,13 @@ public struct NodePool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .provisioning: return try container.encode(1)
-      case .running: return try container.encode(2)
-      case .runningWithError: return try container.encode(3)
-      case .reconciling: return try container.encode(4)
-      case .stopping: return try container.encode(5)
-      case .error: return try container.encode(6)
+      case .unspecified: return try container.encode("STATUS_UNSPECIFIED")
+      case .provisioning: return try container.encode("PROVISIONING")
+      case .running: return try container.encode("RUNNING")
+      case .runningWithError: return try container.encode("RUNNING_WITH_ERROR")
+      case .reconciling: return try container.encode("RECONCILING")
+      case .stopping: return try container.encode("STOPPING")
+      case .error: return try container.encode("ERROR")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

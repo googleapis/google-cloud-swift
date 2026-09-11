@@ -268,9 +268,9 @@ public struct CaPool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .pem: return try container.encode(1)
-        case .der: return try container.encode(2)
+        case .unspecified: return try container.encode("ENCODING_FORMAT_UNSPECIFIED")
+        case .pem: return try container.encode("PEM")
+        case .der: return try container.encode("DER")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -688,10 +688,10 @@ public struct CaPool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
           public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .unspecified: return try container.encode(0)
-            case .ecdsaP256: return try container.encode(1)
-            case .ecdsaP384: return try container.encode(2)
-            case .eddsa25519: return try container.encode(3)
+            case .unspecified: return try container.encode("EC_SIGNATURE_ALGORITHM_UNSPECIFIED")
+            case .ecdsaP256: return try container.encode("ECDSA_P256")
+            case .ecdsaP384: return try container.encode("ECDSA_P384")
+            case .eddsa25519: return try container.encode("EDDSA_25519")
             case .unknownIntValue(let v): return try container.encode(v)
             case .unknownStringValue(let v): return try container.encode(v)
             }
@@ -894,9 +894,9 @@ public struct CaPool: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .enterprise: return try container.encode(1)
-      case .devops: return try container.encode(2)
+      case .unspecified: return try container.encode("TIER_UNSPECIFIED")
+      case .enterprise: return try container.encode("ENTERPRISE")
+      case .devops: return try container.encode("DEVOPS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

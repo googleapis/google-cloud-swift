@@ -119,10 +119,10 @@
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .autoDnsOk: return try container.encode(1)
-      case .autoDnsFailed: return try container.encode(2)
-      case .autoDnsUnknown: return try container.encode(3)
+      case .unspecified: return try container.encode("AUTO_DNS_STATUS_UNSPECIFIED")
+      case .autoDnsOk: return try container.encode("AUTO_DNS_OK")
+      case .autoDnsFailed: return try container.encode("AUTO_DNS_FAILED")
+      case .autoDnsUnknown: return try container.encode("AUTO_DNS_UNKNOWN")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

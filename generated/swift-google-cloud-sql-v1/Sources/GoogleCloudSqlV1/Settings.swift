@@ -342,10 +342,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .always: return try container.encode(1)
-        case .never: return try container.encode(2)
-        case .onDemand: return try container.encode(3)
+        case .unspecified: return try container.encode("SQL_ACTIVATION_POLICY_UNSPECIFIED")
+        case .always: return try container.encode("ALWAYS")
+        case .never: return try container.encode("NEVER")
+        case .onDemand: return try container.encode("ON_DEMAND")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -454,10 +454,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .enterprise: return try container.encode(2)
-        case .enterprisePlus: return try container.encode(3)
-        case .developer: return try container.encode(5)
+        case .unspecified: return try container.encode("EDITION_UNSPECIFIED")
+        case .enterprise: return try container.encode("ENTERPRISE")
+        case .enterprisePlus: return try container.encode("ENTERPRISE_PLUS")
+        case .developer: return try container.encode("DEVELOPER")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -562,9 +562,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .notRequired: return try container.encode(1)
-        case .`required`: return try container.encode(2)
+        case .unspecified: return try container.encode("CONNECTOR_ENFORCEMENT_UNSPECIFIED")
+        case .notRequired: return try container.encode("NOT_REQUIRED")
+        case .`required`: return try container.encode("REQUIRED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -669,9 +669,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .disallowDataApi: return try container.encode(1)
-        case .allowDataApi: return try container.encode(2)
+        case .unspecified: return try container.encode("DATA_API_ACCESS_UNSPECIFIED")
+        case .disallowDataApi: return try container.encode("DISALLOW_DATA_API")
+        case .allowDataApi: return try container.encode("ALLOW_DATA_API")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

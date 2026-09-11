@@ -164,11 +164,11 @@ public struct ReleaseChannel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .rapid: return try container.encode(1)
-      case .regular: return try container.encode(2)
-      case .stable: return try container.encode(3)
-      case .extended: return try container.encode(4)
+      case .unspecified: return try container.encode("UNSPECIFIED")
+      case .rapid: return try container.encode("RAPID")
+      case .regular: return try container.encode("REGULAR")
+      case .stable: return try container.encode("STABLE")
+      case .extended: return try container.encode("EXTENDED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

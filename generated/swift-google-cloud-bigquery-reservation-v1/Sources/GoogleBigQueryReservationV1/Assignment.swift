@@ -293,16 +293,20 @@ public struct Assignment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .pipeline: return try container.encode(1)
-      case .query: return try container.encode(2)
-      case .mlExternal: return try container.encode(3)
-      case .background: return try container.encode(4)
-      case .continuous: return try container.encode(6)
-      case .backgroundChangeDataCapture: return try container.encode(7)
-      case .backgroundColumnMetadataIndex: return try container.encode(8)
-      case .backgroundSearchIndexRefresh: return try container.encode(9)
-      case .automaticMaterializedViewRefresh: return try container.encode(10)
+      case .unspecified: return try container.encode("JOB_TYPE_UNSPECIFIED")
+      case .pipeline: return try container.encode("PIPELINE")
+      case .query: return try container.encode("QUERY")
+      case .mlExternal: return try container.encode("ML_EXTERNAL")
+      case .background: return try container.encode("BACKGROUND")
+      case .continuous: return try container.encode("CONTINUOUS")
+      case .backgroundChangeDataCapture:
+        return try container.encode("BACKGROUND_CHANGE_DATA_CAPTURE")
+      case .backgroundColumnMetadataIndex:
+        return try container.encode("BACKGROUND_COLUMN_METADATA_INDEX")
+      case .backgroundSearchIndexRefresh:
+        return try container.encode("BACKGROUND_SEARCH_INDEX_REFRESH")
+      case .automaticMaterializedViewRefresh:
+        return try container.encode("AUTOMATIC_MATERIALIZED_VIEW_REFRESH")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -408,9 +412,9 @@ public struct Assignment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .pending: return try container.encode(1)
-      case .active: return try container.encode(2)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .pending: return try container.encode("PENDING")
+      case .active: return try container.encode("ACTIVE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -495,18 +495,18 @@ public struct DiscoveryEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .config: return try container.encode(1)
-      case .entityCreated: return try container.encode(2)
-      case .entityUpdated: return try container.encode(3)
-      case .entityDeleted: return try container.encode(4)
-      case .partitionCreated: return try container.encode(5)
-      case .partitionUpdated: return try container.encode(6)
-      case .partitionDeleted: return try container.encode(7)
-      case .tablePublished: return try container.encode(10)
-      case .tableUpdated: return try container.encode(11)
-      case .tableIgnored: return try container.encode(12)
-      case .tableDeleted: return try container.encode(13)
+      case .unspecified: return try container.encode("EVENT_TYPE_UNSPECIFIED")
+      case .config: return try container.encode("CONFIG")
+      case .entityCreated: return try container.encode("ENTITY_CREATED")
+      case .entityUpdated: return try container.encode("ENTITY_UPDATED")
+      case .entityDeleted: return try container.encode("ENTITY_DELETED")
+      case .partitionCreated: return try container.encode("PARTITION_CREATED")
+      case .partitionUpdated: return try container.encode("PARTITION_UPDATED")
+      case .partitionDeleted: return try container.encode("PARTITION_DELETED")
+      case .tablePublished: return try container.encode("TABLE_PUBLISHED")
+      case .tableUpdated: return try container.encode("TABLE_UPDATED")
+      case .tableIgnored: return try container.encode("TABLE_IGNORED")
+      case .tableDeleted: return try container.encode("TABLE_DELETED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -609,9 +609,9 @@ public struct DiscoveryEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .table: return try container.encode(1)
-      case .fileset: return try container.encode(2)
+      case .unspecified: return try container.encode("ENTITY_TYPE_UNSPECIFIED")
+      case .table: return try container.encode("TABLE")
+      case .fileset: return try container.encode("FILESET")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -720,10 +720,10 @@ public struct DiscoveryEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .externalTable: return try container.encode(1)
-      case .biglakeTable: return try container.encode(2)
-      case .objectTable: return try container.encode(3)
+      case .unspecified: return try container.encode("TABLE_TYPE_UNSPECIFIED")
+      case .externalTable: return try container.encode("EXTERNAL_TABLE")
+      case .biglakeTable: return try container.encode("BIGLAKE_TABLE")
+      case .objectTable: return try container.encode("OBJECT_TABLE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

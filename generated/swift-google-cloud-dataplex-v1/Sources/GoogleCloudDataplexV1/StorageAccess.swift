@@ -137,9 +137,9 @@ public struct StorageAccess: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .direct: return try container.encode(1)
-      case .managed: return try container.encode(2)
+      case .unspecified: return try container.encode("ACCESS_MODE_UNSPECIFIED")
+      case .direct: return try container.encode("DIRECT")
+      case .managed: return try container.encode("MANAGED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

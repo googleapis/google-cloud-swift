@@ -142,8 +142,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .manual: return try container.encode(0)
-        case .scaleOutPool: return try container.encode(1)
+        case .manual: return try container.encode("MANUAL")
+        case .scaleOutPool: return try container.encode("SCALE_OUT_POOL")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

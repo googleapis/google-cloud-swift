@@ -369,9 +369,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .cloudArmor: return try container.encode(0)
-        case .cloudArmorEdge: return try container.encode(1)
-        case .cloudArmorNetwork: return try container.encode(2)
+        case .cloudArmor: return try container.encode("CLOUD_ARMOR")
+        case .cloudArmorEdge: return try container.encode("CLOUD_ARMOR_EDGE")
+        case .cloudArmorNetwork: return try container.encode("CLOUD_ARMOR_NETWORK")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

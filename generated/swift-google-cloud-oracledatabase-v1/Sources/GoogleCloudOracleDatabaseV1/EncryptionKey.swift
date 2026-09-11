@@ -142,9 +142,9 @@ public struct EncryptionKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .googleManaged: return try container.encode(1)
-      case .oracleManaged: return try container.encode(2)
+      case .unspecified: return try container.encode("PROVIDER_UNSPECIFIED")
+      case .googleManaged: return try container.encode("GOOGLE_MANAGED")
+      case .oracleManaged: return try container.encode("ORACLE_MANAGED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

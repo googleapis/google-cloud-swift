@@ -225,11 +225,11 @@ public struct NetworkPeering: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .inactive: return try container.encode(1)
-      case .active: return try container.encode(2)
-      case .creating: return try container.encode(3)
-      case .deleting: return try container.encode(4)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .inactive: return try container.encode("INACTIVE")
+      case .active: return try container.encode("ACTIVE")
+      case .creating: return try container.encode("CREATING")
+      case .deleting: return try container.encode("DELETING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -367,14 +367,14 @@ public struct NetworkPeering: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .standard: return try container.encode(1)
-      case .vmwareEngineNetwork: return try container.encode(2)
-      case .privateServicesAccess: return try container.encode(3)
-      case .netappCloudVolumes: return try container.encode(4)
-      case .thirdPartyService: return try container.encode(5)
-      case .dellPowerscale: return try container.encode(6)
-      case .googleCloudNetappVolumes: return try container.encode(7)
+      case .unspecified: return try container.encode("PEER_NETWORK_TYPE_UNSPECIFIED")
+      case .standard: return try container.encode("STANDARD")
+      case .vmwareEngineNetwork: return try container.encode("VMWARE_ENGINE_NETWORK")
+      case .privateServicesAccess: return try container.encode("PRIVATE_SERVICES_ACCESS")
+      case .netappCloudVolumes: return try container.encode("NETAPP_CLOUD_VOLUMES")
+      case .thirdPartyService: return try container.encode("THIRD_PARTY_SERVICE")
+      case .dellPowerscale: return try container.encode("DELL_POWERSCALE")
+      case .googleCloudNetappVolumes: return try container.encode("GOOGLE_CLOUD_NETAPP_VOLUMES")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

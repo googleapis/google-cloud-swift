@@ -351,8 +351,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .disabled: return try container.encode(0)
-        case .v2: return try container.encode(1)
+        case .disabled: return try container.encode("IGMP_QUERY_DISABLED")
+        case .v2: return try container.encode("IGMP_QUERY_V2")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -451,8 +451,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .external: return try container.encode(0)
-        case .`internal`: return try container.encode(1)
+        case .external: return try container.encode("EXTERNAL")
+        case .`internal`: return try container.encode("INTERNAL")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -575,12 +575,12 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .gvnic: return try container.encode(0)
-        case .idpf: return try container.encode(1)
-        case .irdma: return try container.encode(2)
-        case .mrdma: return try container.encode(3)
-        case .unspecifiedNicType: return try container.encode(4)
-        case .virtioNet: return try container.encode(5)
+        case .gvnic: return try container.encode("GVNIC")
+        case .idpf: return try container.encode("IDPF")
+        case .irdma: return try container.encode("IRDMA")
+        case .mrdma: return try container.encode("MRDMA")
+        case .unspecifiedNicType: return try container.encode("UNSPECIFIED_NIC_TYPE")
+        case .virtioNet: return try container.encode("VIRTIO_NET")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -685,9 +685,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .ipv4Ipv6: return try container.encode(0)
-        case .ipv4Only: return try container.encode(1)
-        case .ipv6Only: return try container.encode(2)
+        case .ipv4Ipv6: return try container.encode("IPV4_IPV6")
+        case .ipv4Only: return try container.encode("IPV4_ONLY")
+        case .ipv6Only: return try container.encode("IPV6_ONLY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

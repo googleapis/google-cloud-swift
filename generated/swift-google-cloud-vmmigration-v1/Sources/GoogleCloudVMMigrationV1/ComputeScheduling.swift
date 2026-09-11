@@ -157,9 +157,9 @@ public struct ComputeScheduling: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .terminate: return try container.encode(1)
-      case .migrate: return try container.encode(2)
+      case .unspecified: return try container.encode("ON_HOST_MAINTENANCE_UNSPECIFIED")
+      case .terminate: return try container.encode("TERMINATE")
+      case .migrate: return try container.encode("MIGRATE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -265,9 +265,9 @@ public struct ComputeScheduling: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .automaticRestart: return try container.encode(1)
-      case .noAutomaticRestart: return try container.encode(2)
+      case .unspecified: return try container.encode("RESTART_TYPE_UNSPECIFIED")
+      case .automaticRestart: return try container.encode("AUTOMATIC_RESTART")
+      case .noAutomaticRestart: return try container.encode("NO_AUTOMATIC_RESTART")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

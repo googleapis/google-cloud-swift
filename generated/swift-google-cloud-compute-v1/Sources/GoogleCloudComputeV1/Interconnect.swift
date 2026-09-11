@@ -510,9 +510,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .ifCrossSiteNetwork: return try container.encode(0)
-        case .ifL2Forwarding: return try container.encode(1)
-        case .ifMacsec: return try container.encode(2)
+        case .ifCrossSiteNetwork: return try container.encode("IF_CROSS_SITE_NETWORK")
+        case .ifL2Forwarding: return try container.encode("IF_L2_FORWARDING")
+        case .ifMacsec: return try container.encode("IF_MACSEC")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -617,9 +617,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .dedicated: return try container.encode(0)
-        case .itPrivate: return try container.encode(1)
-        case .partner: return try container.encode(2)
+        case .dedicated: return try container.encode("DEDICATED")
+        case .itPrivate: return try container.encode("IT_PRIVATE")
+        case .partner: return try container.encode("PARTNER")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -725,9 +725,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .ethernet100GLr: return try container.encode(0)
-        case .ethernet10GLr: return try container.encode(1)
-        case .ethernet400GLr4: return try container.encode(2)
+        case .ethernet100GLr: return try container.encode("LINK_TYPE_ETHERNET_100G_LR")
+        case .ethernet10GLr: return try container.encode("LINK_TYPE_ETHERNET_10G_LR")
+        case .ethernet400GLr4: return try container.encode("LINK_TYPE_ETHERNET_400G_LR4")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -828,8 +828,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .osActive: return try container.encode(0)
-        case .osUnprovisioned: return try container.encode(1)
+        case .osActive: return try container.encode("OS_ACTIVE")
+        case .osUnprovisioned: return try container.encode("OS_UNPROVISIONED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -934,9 +934,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .ifCrossSiteNetwork: return try container.encode(0)
-        case .ifL2Forwarding: return try container.encode(1)
-        case .ifMacsec: return try container.encode(2)
+        case .ifCrossSiteNetwork: return try container.encode("IF_CROSS_SITE_NETWORK")
+        case .ifL2Forwarding: return try container.encode("IF_L2_FORWARDING")
+        case .ifMacsec: return try container.encode("IF_MACSEC")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1037,8 +1037,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .active: return try container.encode(0)
-        case .unprovisioned: return try container.encode(1)
+        case .active: return try container.encode("ACTIVE")
+        case .unprovisioned: return try container.encode("UNPROVISIONED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1137,8 +1137,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .a: return try container.encode(0)
-        case .b: return try container.encode(1)
+        case .a: return try container.encode("SUBZONE_A")
+        case .b: return try container.encode("SUBZONE_B")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -298,13 +298,13 @@ public struct EffectiveVpcFlowLogsConfig: Codable, Equatable, GoogleCloudWKT._An
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .subnet: return try container.encode(1)
-      case .computeApiSubnet: return try container.encode(2)
-      case .network: return try container.encode(3)
-      case .vpnTunnel: return try container.encode(4)
-      case .interconnectAttachment: return try container.encode(5)
-      case .organization: return try container.encode(6)
+      case .unspecified: return try container.encode("SCOPE_UNSPECIFIED")
+      case .subnet: return try container.encode("SUBNET")
+      case .computeApiSubnet: return try container.encode("COMPUTE_API_SUBNET")
+      case .network: return try container.encode("NETWORK")
+      case .vpnTunnel: return try container.encode("VPN_TUNNEL")
+      case .interconnectAttachment: return try container.encode("INTERCONNECT_ATTACHMENT")
+      case .organization: return try container.encode("ORGANIZATION")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

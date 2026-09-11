@@ -176,9 +176,9 @@ public struct Subnet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .bonded: return try container.encode(1)
-      case .nonBonded: return try container.encode(2)
+      case .unspecified: return try container.encode("BONDING_TYPE_UNSPECIFIED")
+      case .bonded: return try container.encode("BONDED")
+      case .nonBonded: return try container.encode("NON_BONDED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

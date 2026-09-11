@@ -218,9 +218,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .delete: return try container.encode(0)
-        case .unspecified: return try container.encode(1)
-        case .stop: return try container.encode(2)
+        case .delete: return try container.encode("DELETE")
+        case .unspecified: return try container.encode("INSTANCE_TERMINATION_ACTION_UNSPECIFIED")
+        case .stop: return try container.encode("STOP")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -324,8 +324,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .migrate: return try container.encode(0)
-        case .terminate: return try container.encode(1)
+        case .migrate: return try container.encode("MIGRATE")
+        case .terminate: return try container.encode("TERMINATE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -437,10 +437,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .flexStart: return try container.encode(0)
-        case .reservationBound: return try container.encode(1)
-        case .spot: return try container.encode(2)
-        case .standard: return try container.encode(3)
+        case .flexStart: return try container.encode("FLEX_START")
+        case .reservationBound: return try container.encode("RESERVATION_BOUND")
+        case .spot: return try container.encode("SPOT")
+        case .standard: return try container.encode("STANDARD")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

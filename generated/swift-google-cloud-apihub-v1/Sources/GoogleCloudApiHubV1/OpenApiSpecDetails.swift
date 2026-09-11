@@ -154,10 +154,10 @@ public struct OpenApiSpecDetails: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .openApiSpec20: return try container.encode(1)
-      case .openApiSpec30: return try container.encode(2)
-      case .openApiSpec31: return try container.encode(3)
+      case .unspecified: return try container.encode("FORMAT_UNSPECIFIED")
+      case .openApiSpec20: return try container.encode("OPEN_API_SPEC_2_0")
+      case .openApiSpec30: return try container.encode("OPEN_API_SPEC_3_0")
+      case .openApiSpec31: return try container.encode("OPEN_API_SPEC_3_1")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -120,10 +120,10 @@ public enum HybridReplicationSchedule: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .every10Minutes: return try container.encode(1)
-    case .hourly: return try container.encode(2)
-    case .daily: return try container.encode(3)
+    case .unspecified: return try container.encode("HYBRID_REPLICATION_SCHEDULE_UNSPECIFIED")
+    case .every10Minutes: return try container.encode("EVERY_10_MINUTES")
+    case .hourly: return try container.encode("HOURLY")
+    case .daily: return try container.encode("DAILY")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

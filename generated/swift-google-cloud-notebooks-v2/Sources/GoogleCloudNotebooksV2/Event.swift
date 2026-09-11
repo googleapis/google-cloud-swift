@@ -168,12 +168,12 @@ public struct Event: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .idle: return try container.encode(1)
-      case .heartbeat: return try container.encode(2)
-      case .health: return try container.encode(3)
-      case .maintenance: return try container.encode(4)
-      case .metadataChange: return try container.encode(5)
+      case .unspecified: return try container.encode("EVENT_TYPE_UNSPECIFIED")
+      case .idle: return try container.encode("IDLE")
+      case .heartbeat: return try container.encode("HEARTBEAT")
+      case .health: return try container.encode("HEALTH")
+      case .maintenance: return try container.encode("MAINTENANCE")
+      case .metadataChange: return try container.encode("METADATA_CHANGE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

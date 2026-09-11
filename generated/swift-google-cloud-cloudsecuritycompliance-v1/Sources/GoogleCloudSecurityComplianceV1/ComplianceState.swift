@@ -130,12 +130,12 @@ public enum ComplianceState: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .compliant: return try container.encode(1)
-    case .violation: return try container.encode(2)
-    case .manualReviewNeeded: return try container.encode(3)
-    case .error: return try container.encode(4)
-    case .auditNotSupported: return try container.encode(5)
+    case .unspecified: return try container.encode("COMPLIANCE_STATE_UNSPECIFIED")
+    case .compliant: return try container.encode("COMPLIANT")
+    case .violation: return try container.encode("VIOLATION")
+    case .manualReviewNeeded: return try container.encode("MANUAL_REVIEW_NEEDED")
+    case .error: return try container.encode("ERROR")
+    case .auditNotSupported: return try container.encode("AUDIT_NOT_SUPPORTED")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

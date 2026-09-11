@@ -158,10 +158,11 @@ public struct SoleTenancyPreferences: Codable, Equatable, GoogleCloudWKT._AnyPac
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .`default`: return try container.encode(1)
-      case .restartInPlace: return try container.encode(2)
-      case .migrateWithinNodeGroup: return try container.encode(3)
+      case .unspecified: return try container.encode("HOST_MAINTENANCE_POLICY_UNSPECIFIED")
+      case .`default`: return try container.encode("HOST_MAINTENANCE_POLICY_DEFAULT")
+      case .restartInPlace: return try container.encode("HOST_MAINTENANCE_POLICY_RESTART_IN_PLACE")
+      case .migrateWithinNodeGroup:
+        return try container.encode("HOST_MAINTENANCE_POLICY_MIGRATE_WITHIN_NODE_GROUP")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -270,10 +271,10 @@ public struct SoleTenancyPreferences: Codable, Equatable, GoogleCloudWKT._AnyPac
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .onDemand: return try container.encode(1)
-      case .commitment1Year: return try container.encode(2)
-      case .commitment3Year: return try container.encode(3)
+      case .unspecified: return try container.encode("COMMITMENT_PLAN_UNSPECIFIED")
+      case .onDemand: return try container.encode("ON_DEMAND")
+      case .commitment1Year: return try container.encode("COMMITMENT_1_YEAR")
+      case .commitment3Year: return try container.encode("COMMITMENT_3_YEAR")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

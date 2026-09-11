@@ -158,8 +158,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .allocatePerWire: return try container.encode(0)
-        case .sharedWithWireGroup: return try container.encode(1)
+        case .allocatePerWire: return try container.encode("ALLOCATE_PER_WIRE")
+        case .sharedWithWireGroup: return try container.encode("SHARED_WITH_WIRE_GROUP")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -259,8 +259,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .disablePort: return try container.encode(0)
-        case .`none`: return try container.encode(1)
+        case .disablePort: return try container.encode("DISABLE_PORT")
+        case .`none`: return try container.encode("NONE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

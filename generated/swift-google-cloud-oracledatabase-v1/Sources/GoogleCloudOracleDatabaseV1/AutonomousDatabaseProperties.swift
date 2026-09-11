@@ -400,9 +400,9 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleCloudWKT._
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .standardEdition: return try container.encode(1)
-      case .enterpriseEdition: return try container.encode(2)
+      case .unspecified: return try container.encode("DATABASE_EDITION_UNSPECIFIED")
+      case .standardEdition: return try container.encode("STANDARD_EDITION")
+      case .enterpriseEdition: return try container.encode("ENTERPRISE_EDITION")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -505,9 +505,9 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleCloudWKT._
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .licenseIncluded: return try container.encode(1)
-      case .bringYourOwnLicense: return try container.encode(2)
+      case .unspecified: return try container.encode("LICENSE_TYPE_UNSPECIFIED")
+      case .licenseIncluded: return try container.encode("LICENSE_INCLUDED")
+      case .bringYourOwnLicense: return try container.encode("BRING_YOUR_OWN_LICENSE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -611,9 +611,9 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleCloudWKT._
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .early: return try container.encode(1)
-      case .regular: return try container.encode(2)
+      case .unspecified: return try container.encode("MAINTENANCE_SCHEDULE_TYPE_UNSPECIFIED")
+      case .early: return try container.encode("EARLY")
+      case .regular: return try container.encode("REGULAR")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -722,10 +722,10 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleCloudWKT._
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .adg: return try container.encode(1)
-      case .backupBased: return try container.encode(2)
-      case .notAvailable: return try container.encode(3)
+      case .unspecified: return try container.encode("LOCAL_DISASTER_RECOVERY_TYPE_UNSPECIFIED")
+      case .adg: return try container.encode("ADG")
+      case .backupBased: return try container.encode("BACKUP_BASED")
+      case .notAvailable: return try container.encode("NOT_AVAILABLE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -846,12 +846,12 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleCloudWKT._
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .registering: return try container.encode(1)
-      case .registered: return try container.encode(2)
-      case .deregistering: return try container.encode(3)
-      case .notRegistered: return try container.encode(4)
-      case .failed: return try container.encode(5)
+      case .unspecified: return try container.encode("DATA_SAFE_STATE_UNSPECIFIED")
+      case .registering: return try container.encode("REGISTERING")
+      case .registered: return try container.encode("REGISTERED")
+      case .deregistering: return try container.encode("DEREGISTERING")
+      case .notRegistered: return try container.encode("NOT_REGISTERED")
+      case .failed: return try container.encode("FAILED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -978,13 +978,13 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleCloudWKT._
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .enabling: return try container.encode(1)
-      case .enabled: return try container.encode(2)
-      case .disabling: return try container.encode(3)
-      case .notEnabled: return try container.encode(4)
-      case .failedEnabling: return try container.encode(5)
-      case .failedDisabling: return try container.encode(6)
+      case .unspecified: return try container.encode("DATABASE_MANAGEMENT_STATE_UNSPECIFIED")
+      case .enabling: return try container.encode("ENABLING")
+      case .enabled: return try container.encode("ENABLED")
+      case .disabling: return try container.encode("DISABLING")
+      case .notEnabled: return try container.encode("NOT_ENABLED")
+      case .failedEnabling: return try container.encode("FAILED_ENABLING")
+      case .failedDisabling: return try container.encode("FAILED_DISABLING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -1087,9 +1087,9 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleCloudWKT._
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .readOnly: return try container.encode(1)
-      case .readWrite: return try container.encode(2)
+      case .unspecified: return try container.encode("OPEN_MODE_UNSPECIFIED")
+      case .readOnly: return try container.encode("READ_ONLY")
+      case .readWrite: return try container.encode("READ_WRITE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -1192,9 +1192,9 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleCloudWKT._
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .restricted: return try container.encode(1)
-      case .unrestricted: return try container.encode(2)
+      case .unspecified: return try container.encode("PERMISSION_LEVEL_UNSPECIFIED")
+      case .restricted: return try container.encode("RESTRICTED")
+      case .unrestricted: return try container.encode("UNRESTRICTED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -1299,9 +1299,9 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleCloudWKT._
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .automatic: return try container.encode(1)
-      case .manual: return try container.encode(2)
+      case .unspecified: return try container.encode("REFRESHABLE_MODE_UNSPECIFIED")
+      case .automatic: return try container.encode("AUTOMATIC")
+      case .manual: return try container.encode("MANUAL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -1404,9 +1404,9 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleCloudWKT._
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .refreshing: return try container.encode(1)
-      case .notRefreshing: return try container.encode(2)
+      case .unspecified: return try container.encode("REFRESHABLE_STATE_UNSPECIFIED")
+      case .refreshing: return try container.encode("REFRESHING")
+      case .notRefreshing: return try container.encode("NOT_REFRESHING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -1527,12 +1527,12 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleCloudWKT._
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .primary: return try container.encode(1)
-      case .standby: return try container.encode(2)
-      case .disabledStandby: return try container.encode(3)
-      case .backupCopy: return try container.encode(4)
-      case .snapshotStandby: return try container.encode(5)
+      case .unspecified: return try container.encode("ROLE_UNSPECIFIED")
+      case .primary: return try container.encode("PRIMARY")
+      case .standby: return try container.encode("STANDBY")
+      case .disabledStandby: return try container.encode("DISABLED_STANDBY")
+      case .backupCopy: return try container.encode("BACKUP_COPY")
+      case .snapshotStandby: return try container.encode("SNAPSHOT_STANDBY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

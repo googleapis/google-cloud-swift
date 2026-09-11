@@ -135,8 +135,8 @@ public struct GkeAutoUpgradeConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .accelerated: return try container.encode(1)
+      case .unspecified: return try container.encode("PATCH_MODE_UNSPECIFIED")
+      case .accelerated: return try container.encode("ACCELERATED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -800,12 +800,14 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .proprietary: return try container.encode(1)
-        case .googleOwnedOssWithGoogleCheckpoint: return try container.encode(2)
-        case .thirdPartyOwnedOssWithGoogleCheckpoint: return try container.encode(3)
-        case .googleOwnedOss: return try container.encode(4)
-        case .thirdPartyOwnedOss: return try container.encode(5)
+        case .unspecified: return try container.encode("OPEN_SOURCE_CATEGORY_UNSPECIFIED")
+        case .proprietary: return try container.encode("PROPRIETARY")
+        case .googleOwnedOssWithGoogleCheckpoint:
+          return try container.encode("GOOGLE_OWNED_OSS_WITH_GOOGLE_CHECKPOINT")
+        case .thirdPartyOwnedOssWithGoogleCheckpoint:
+          return try container.encode("THIRD_PARTY_OWNED_OSS_WITH_GOOGLE_CHECKPOINT")
+        case .googleOwnedOss: return try container.encode("GOOGLE_OWNED_OSS")
+        case .thirdPartyOwnedOss: return try container.encode("THIRD_PARTY_OWNED_OSS")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -927,11 +929,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .experimental: return try container.encode(1)
-        case .privatePreview: return try container.encode(2)
-        case .publicPreview: return try container.encode(3)
-        case .ga: return try container.encode(4)
+        case .unspecified: return try container.encode("LAUNCH_STAGE_UNSPECIFIED")
+        case .experimental: return try container.encode("EXPERIMENTAL")
+        case .privatePreview: return try container.encode("PRIVATE_PREVIEW")
+        case .publicPreview: return try container.encode("PUBLIC_PREVIEW")
+        case .ga: return try container.encode("GA")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1034,9 +1036,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .stable: return try container.encode(1)
-        case .unstable: return try container.encode(2)
+        case .unspecified: return try container.encode("VERSION_STATE_UNSPECIFIED")
+        case .stable: return try container.encode("VERSION_STATE_STABLE")
+        case .unstable: return try container.encode("VERSION_STATE_UNSTABLE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

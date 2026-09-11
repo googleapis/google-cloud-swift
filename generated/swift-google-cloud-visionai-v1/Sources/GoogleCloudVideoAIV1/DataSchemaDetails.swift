@@ -387,9 +387,9 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .noSearch: return try container.encode(0)
-        case .exactSearch: return try container.encode(1)
-        case .smartSearch: return try container.encode(2)
+        case .noSearch: return try container.encode("NO_SEARCH")
+        case .exactSearch: return try container.encode("EXACT_SEARCH")
+        case .smartSearch: return try container.encode("SMART_SEARCH")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -607,16 +607,16 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .integer: return try container.encode(1)
-      case .float: return try container.encode(2)
-      case .string: return try container.encode(3)
-      case .datetime: return try container.encode(5)
-      case .customizedStruct: return try container.encode(6)
-      case .geoCoordinate: return try container.encode(7)
-      case .protoAny: return try container.encode(8)
-      case .boolean: return try container.encode(9)
-      case .list: return try container.encode(10)
+      case .unspecified: return try container.encode("DATA_TYPE_UNSPECIFIED")
+      case .integer: return try container.encode("INTEGER")
+      case .float: return try container.encode("FLOAT")
+      case .string: return try container.encode("STRING")
+      case .datetime: return try container.encode("DATETIME")
+      case .customizedStruct: return try container.encode("CUSTOMIZED_STRUCT")
+      case .geoCoordinate: return try container.encode("GEO_COORDINATE")
+      case .protoAny: return try container.encode("PROTO_ANY")
+      case .boolean: return try container.encode("BOOLEAN")
+      case .list: return try container.encode("LIST")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -719,9 +719,9 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .assetLevel: return try container.encode(1)
-      case .partitionLevel: return try container.encode(2)
+      case .unspecified: return try container.encode("GRANULARITY_UNSPECIFIED")
+      case .assetLevel: return try container.encode("GRANULARITY_ASSET_LEVEL")
+      case .partitionLevel: return try container.encode("GRANULARITY_PARTITION_LEVEL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

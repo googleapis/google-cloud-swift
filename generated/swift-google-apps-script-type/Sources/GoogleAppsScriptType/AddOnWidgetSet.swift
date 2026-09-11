@@ -166,14 +166,14 @@ public struct AddOnWidgetSet: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .datePicker: return try container.encode(1)
-      case .styledButtons: return try container.encode(2)
-      case .persistentForms: return try container.encode(3)
-      case .fixedFooter: return try container.encode(4)
-      case .updateSubjectAndRecipients: return try container.encode(5)
-      case .gridWidget: return try container.encode(6)
-      case .addonComposeUiAction: return try container.encode(7)
+      case .unspecified: return try container.encode("WIDGET_TYPE_UNSPECIFIED")
+      case .datePicker: return try container.encode("DATE_PICKER")
+      case .styledButtons: return try container.encode("STYLED_BUTTONS")
+      case .persistentForms: return try container.encode("PERSISTENT_FORMS")
+      case .fixedFooter: return try container.encode("FIXED_FOOTER")
+      case .updateSubjectAndRecipients: return try container.encode("UPDATE_SUBJECT_AND_RECIPIENTS")
+      case .gridWidget: return try container.encode("GRID_WIDGET")
+      case .addonComposeUiAction: return try container.encode("ADDON_COMPOSE_UI_ACTION")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

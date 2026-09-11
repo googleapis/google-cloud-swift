@@ -318,9 +318,9 @@ public struct TransferRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .parentToChild: return try container.encode(1)
-      case .childToParent: return try container.encode(2)
+      case .unspecified: return try container.encode("DIRECTION_UNSPECIFIED")
+      case .parentToChild: return try container.encode("PARENT_TO_CHILD")
+      case .childToParent: return try container.encode("CHILD_TO_PARENT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

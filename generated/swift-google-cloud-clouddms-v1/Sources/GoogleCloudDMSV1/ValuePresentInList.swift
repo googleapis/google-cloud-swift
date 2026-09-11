@@ -113,9 +113,9 @@ public enum ValuePresentInList: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .ifValueList: return try container.encode(1)
-    case .ifValueNotList: return try container.encode(2)
+    case .unspecified: return try container.encode("VALUE_PRESENT_IN_LIST_UNSPECIFIED")
+    case .ifValueList: return try container.encode("VALUE_PRESENT_IN_LIST_IF_VALUE_LIST")
+    case .ifValueNotList: return try container.encode("VALUE_PRESENT_IN_LIST_IF_VALUE_NOT_LIST")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

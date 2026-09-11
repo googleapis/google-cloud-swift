@@ -186,11 +186,11 @@ public struct QueryTemplate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .drafted: return try container.encode(1)
-      case .pending: return try container.encode(2)
-      case .deleted: return try container.encode(3)
-      case .approved: return try container.encode(4)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .drafted: return try container.encode("DRAFTED")
+      case .pending: return try container.encode("PENDING")
+      case .deleted: return try container.encode("DELETED")
+      case .approved: return try container.encode("APPROVED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

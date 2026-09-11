@@ -176,9 +176,9 @@ public struct TailLogEntriesResponse: Codable, Equatable, GoogleCloudWKT._AnyPac
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .rateLimit: return try container.encode(1)
-        case .notConsumed: return try container.encode(2)
+        case .unspecified: return try container.encode("REASON_UNSPECIFIED")
+        case .rateLimit: return try container.encode("RATE_LIMIT")
+        case .notConsumed: return try container.encode("NOT_CONSUMED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -209,12 +209,12 @@ public struct NetworkConnection: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .opening: return try container.encode(1)
-      case .`open`: return try container.encode(2)
-      case .listen: return try container.encode(3)
-      case .closing: return try container.encode(4)
-      case .closed: return try container.encode(5)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .opening: return try container.encode("OPENING")
+      case .`open`: return try container.encode("OPEN")
+      case .listen: return try container.encode("LISTEN")
+      case .closing: return try container.encode("CLOSING")
+      case .closed: return try container.encode("CLOSED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

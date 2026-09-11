@@ -265,14 +265,14 @@ public struct Spoke: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .pendingReview: return try container.encode(1)
-        case .rejected: return try container.encode(2)
-        case .paused: return try container.encode(3)
-        case .failed: return try container.encode(4)
-        case .updatePendingReview: return try container.encode(5)
-        case .updateRejected: return try container.encode(6)
-        case .updateFailed: return try container.encode(7)
+        case .unspecified: return try container.encode("CODE_UNSPECIFIED")
+        case .pendingReview: return try container.encode("PENDING_REVIEW")
+        case .rejected: return try container.encode("REJECTED")
+        case .paused: return try container.encode("PAUSED")
+        case .failed: return try container.encode("FAILED")
+        case .updatePendingReview: return try container.encode("UPDATE_PENDING_REVIEW")
+        case .updateRejected: return try container.encode("UPDATE_REJECTED")
+        case .updateFailed: return try container.encode("UPDATE_FAILED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

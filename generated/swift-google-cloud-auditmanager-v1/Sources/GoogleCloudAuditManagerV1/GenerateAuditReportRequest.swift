@@ -220,8 +220,8 @@ public struct GenerateAuditReportRequest: Codable, Equatable, GoogleCloudWKT._An
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .odf: return try container.encode(1)
+      case .unspecified: return try container.encode("AUDIT_REPORT_FORMAT_UNSPECIFIED")
+      case .odf: return try container.encode("AUDIT_REPORT_FORMAT_ODF")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

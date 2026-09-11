@@ -156,16 +156,20 @@
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .`none`: return try container.encode(1)
-      case .searchOutOfQuota: return try container.encode(2)
-      case .searchEmptyResults: return try container.encode(3)
-      case .answerGenerationGenAiDisabled: return try container.encode(4)
-      case .answerGenerationOutOfQuota: return try container.encode(5)
-      case .answerGenerationError: return try container.encode(6)
-      case .answerGenerationNotEnoughInfo: return try container.encode(7)
-      case .answerGenerationRaiFailed: return try container.encode(8)
-      case .answerGenerationNotGrounded: return try container.encode(9)
+      case .unspecified: return try container.encode("DATASTORE_RESPONSE_REASON_UNSPECIFIED")
+      case .`none`: return try container.encode("NONE")
+      case .searchOutOfQuota: return try container.encode("SEARCH_OUT_OF_QUOTA")
+      case .searchEmptyResults: return try container.encode("SEARCH_EMPTY_RESULTS")
+      case .answerGenerationGenAiDisabled:
+        return try container.encode("ANSWER_GENERATION_GEN_AI_DISABLED")
+      case .answerGenerationOutOfQuota:
+        return try container.encode("ANSWER_GENERATION_OUT_OF_QUOTA")
+      case .answerGenerationError: return try container.encode("ANSWER_GENERATION_ERROR")
+      case .answerGenerationNotEnoughInfo:
+        return try container.encode("ANSWER_GENERATION_NOT_ENOUGH_INFO")
+      case .answerGenerationRaiFailed: return try container.encode("ANSWER_GENERATION_RAI_FAILED")
+      case .answerGenerationNotGrounded:
+        return try container.encode("ANSWER_GENERATION_NOT_GROUNDED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -140,9 +140,10 @@ public struct ManagedOpenTelemetryConfig: Codable, Equatable, GoogleCloudWKT._An
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .`none`: return try container.encode(1)
-      case .collectionAndInstrumentationComponents: return try container.encode(2)
+      case .unspecified: return try container.encode("SCOPE_UNSPECIFIED")
+      case .`none`: return try container.encode("NONE")
+      case .collectionAndInstrumentationComponents:
+        return try container.encode("COLLECTION_AND_INSTRUMENTATION_COMPONENTS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

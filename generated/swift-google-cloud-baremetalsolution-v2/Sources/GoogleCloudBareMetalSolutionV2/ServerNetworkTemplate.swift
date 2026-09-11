@@ -201,9 +201,9 @@ public struct ServerNetworkTemplate: Codable, Equatable, GoogleCloudWKT._AnyPack
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .bond: return try container.encode(1)
-        case .nic: return try container.encode(2)
+        case .unspecified: return try container.encode("INTERFACE_TYPE_UNSPECIFIED")
+        case .bond: return try container.encode("BOND")
+        case .nic: return try container.encode("NIC")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

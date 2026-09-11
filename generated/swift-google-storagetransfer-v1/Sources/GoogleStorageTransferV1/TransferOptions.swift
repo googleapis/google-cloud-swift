@@ -178,10 +178,10 @@ public struct TransferOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .different: return try container.encode(1)
-      case .never: return try container.encode(2)
-      case .always: return try container.encode(3)
+      case .unspecified: return try container.encode("OVERWRITE_WHEN_UNSPECIFIED")
+      case .different: return try container.encode("DIFFERENT")
+      case .never: return try container.encode("NEVER")
+      case .always: return try container.encode("ALWAYS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

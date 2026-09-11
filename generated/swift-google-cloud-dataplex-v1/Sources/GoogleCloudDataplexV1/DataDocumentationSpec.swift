@@ -150,10 +150,10 @@ public struct DataDocumentationSpec: Codable, Equatable, GoogleCloudWKT._AnyPack
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .all: return try container.encode(1)
-      case .tableAndColumnDescriptions: return try container.encode(2)
-      case .sqlQueries: return try container.encode(3)
+      case .unspecified: return try container.encode("GENERATION_SCOPE_UNSPECIFIED")
+      case .all: return try container.encode("ALL")
+      case .tableAndColumnDescriptions: return try container.encode("TABLE_AND_COLUMN_DESCRIPTIONS")
+      case .sqlQueries: return try container.encode("SQL_QUERIES")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

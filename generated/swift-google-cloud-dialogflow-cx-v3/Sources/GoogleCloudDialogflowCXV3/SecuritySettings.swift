@@ -371,10 +371,10 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .mulaw: return try container.encode(1)
-          case .mp3: return try container.encode(2)
-          case .ogg: return try container.encode(3)
+          case .unspecified: return try container.encode("AUDIO_FORMAT_UNSPECIFIED")
+          case .mulaw: return try container.encode("MULAW")
+          case .mp3: return try container.encode("MP3")
+          case .ogg: return try container.encode("OGG")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -520,8 +520,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .redactWithService: return try container.encode(1)
+        case .unspecified: return try container.encode("REDACTION_STRATEGY_UNSPECIFIED")
+        case .redactWithService: return try container.encode("REDACT_WITH_SERVICE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -620,8 +620,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .redactDiskStorage: return try container.encode(2)
+        case .unspecified: return try container.encode("REDACTION_SCOPE_UNSPECIFIED")
+        case .redactDiskStorage: return try container.encode("REDACT_DISK_STORAGE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -720,8 +720,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .removeAfterConversation: return try container.encode(1)
+        case .unspecified: return try container.encode("RETENTION_STRATEGY_UNSPECIFIED")
+        case .removeAfterConversation: return try container.encode("REMOVE_AFTER_CONVERSATION")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -819,8 +819,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .dialogflowHistory: return try container.encode(1)
+        case .unspecified: return try container.encode("PURGE_DATA_TYPE_UNSPECIFIED")
+        case .dialogflowHistory: return try container.encode("DIALOGFLOW_HISTORY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

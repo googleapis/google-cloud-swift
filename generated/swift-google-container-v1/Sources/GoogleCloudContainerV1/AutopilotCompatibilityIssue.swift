@@ -163,10 +163,10 @@ public struct AutopilotCompatibilityIssue: Codable, Equatable, GoogleCloudWKT._A
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .incompatibility: return try container.encode(1)
-      case .additionalConfigRequired: return try container.encode(2)
-      case .passedWithOptionalConfig: return try container.encode(3)
+      case .unspecified: return try container.encode("UNSPECIFIED")
+      case .incompatibility: return try container.encode("INCOMPATIBILITY")
+      case .additionalConfigRequired: return try container.encode("ADDITIONAL_CONFIG_REQUIRED")
+      case .passedWithOptionalConfig: return try container.encode("PASSED_WITH_OPTIONAL_CONFIG")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

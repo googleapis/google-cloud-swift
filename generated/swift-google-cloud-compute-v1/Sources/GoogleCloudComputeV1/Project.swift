@@ -201,9 +201,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .caEnterpriseAnnual: return try container.encode(0)
-        case .caEnterprisePaygo: return try container.encode(1)
-        case .caStandard: return try container.encode(2)
+        case .caEnterpriseAnnual: return try container.encode("CA_ENTERPRISE_ANNUAL")
+        case .caEnterprisePaygo: return try container.encode("CA_ENTERPRISE_PAYGO")
+        case .caStandard: return try container.encode("CA_STANDARD")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -317,10 +317,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .fixedStandard: return try container.encode(0)
-        case .premium: return try container.encode(1)
-        case .standard: return try container.encode(2)
-        case .standardOverridesFixedStandard: return try container.encode(3)
+        case .fixedStandard: return try container.encode("FIXED_STANDARD")
+        case .premium: return try container.encode("PREMIUM")
+        case .standard: return try container.encode("STANDARD")
+        case .standardOverridesFixedStandard:
+          return try container.encode("STANDARD_OVERRIDES_FIXED_STANDARD")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -427,10 +428,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .globalDefault: return try container.encode(0)
-        case .unspecifiedVmDnsSetting: return try container.encode(1)
-        case .zonalDefault: return try container.encode(2)
-        case .zonalOnly: return try container.encode(3)
+        case .globalDefault: return try container.encode("GLOBAL_DEFAULT")
+        case .unspecifiedVmDnsSetting: return try container.encode("UNSPECIFIED_VM_DNS_SETTING")
+        case .zonalDefault: return try container.encode("ZONAL_DEFAULT")
+        case .zonalOnly: return try container.encode("ZONAL_ONLY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -527,8 +528,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .host: return try container.encode(0)
-        case .unspecifiedXpnProjectStatus: return try container.encode(1)
+        case .host: return try container.encode("HOST")
+        case .unspecifiedXpnProjectStatus:
+          return try container.encode("UNSPECIFIED_XPN_PROJECT_STATUS")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

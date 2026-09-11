@@ -153,11 +153,11 @@ public struct AutoMlVideoActionRecognitionInputs: Codable, Equatable, GoogleClou
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .cloud: return try container.encode(1)
-      case .mobileVersatile1: return try container.encode(2)
-      case .mobileJetsonVersatile1: return try container.encode(3)
-      case .mobileCoralVersatile1: return try container.encode(4)
+      case .unspecified: return try container.encode("MODEL_TYPE_UNSPECIFIED")
+      case .cloud: return try container.encode("CLOUD")
+      case .mobileVersatile1: return try container.encode("MOBILE_VERSATILE_1")
+      case .mobileJetsonVersatile1: return try container.encode("MOBILE_JETSON_VERSATILE_1")
+      case .mobileCoralVersatile1: return try container.encode("MOBILE_CORAL_VERSATILE_1")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

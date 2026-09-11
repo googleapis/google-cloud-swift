@@ -288,9 +288,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .include: return try container.encode(1)
-        case .exclude: return try container.encode(2)
+        case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+        case .include: return try container.encode("INCLUDE")
+        case .exclude: return try container.encode("EXCLUDE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -421,13 +421,13 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .pending: return try container.encode(1)
-        case .failed: return try container.encode(2)
-        case .succeeded: return try container.encode(3)
-        case .deleting: return try container.encode(4)
-        case .cancellable: return try container.encode(5)
-        case .cancelled: return try container.encode(6)
+        case .unspecified: return try container.encode("INDEXING_STATUS_UNSPECIFIED")
+        case .pending: return try container.encode("PENDING")
+        case .failed: return try container.encode("FAILED")
+        case .succeeded: return try container.encode("SUCCEEDED")
+        case .deleting: return try container.encode("DELETING")
+        case .cancellable: return try container.encode("CANCELLABLE")
+        case .cancelled: return try container.encode("CANCELLED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

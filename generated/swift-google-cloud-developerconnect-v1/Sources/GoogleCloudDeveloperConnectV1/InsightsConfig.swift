@@ -261,10 +261,10 @@ public struct InsightsConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .complete: return try container.encode(3)
-      case .error: return try container.encode(4)
-      case .pending: return try container.encode(5)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .complete: return try container.encode("COMPLETE")
+      case .error: return try container.encode("ERROR")
+      case .pending: return try container.encode("PENDING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

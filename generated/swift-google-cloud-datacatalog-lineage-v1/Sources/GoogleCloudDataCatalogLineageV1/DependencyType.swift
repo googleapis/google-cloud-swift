@@ -112,9 +112,9 @@ public enum DependencyType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .exactCopy: return try container.encode(1)
-    case .other: return try container.encode(3)
+    case .unspecified: return try container.encode("DEPENDENCY_TYPE_UNSPECIFIED")
+    case .exactCopy: return try container.encode("EXACT_COPY")
+    case .other: return try container.encode("OTHER")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

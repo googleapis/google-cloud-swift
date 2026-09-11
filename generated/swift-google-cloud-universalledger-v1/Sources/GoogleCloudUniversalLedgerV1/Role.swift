@@ -124,11 +124,11 @@ public enum Role: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .payer: return try container.encode(5)
-    case .receiver: return try container.encode(6)
-    case .contractCreator: return try container.encode(7)
-    case .contractParticipant: return try container.encode(8)
+    case .unspecified: return try container.encode("ROLE_UNSPECIFIED")
+    case .payer: return try container.encode("ROLE_PAYER")
+    case .receiver: return try container.encode("ROLE_RECEIVER")
+    case .contractCreator: return try container.encode("ROLE_CONTRACT_CREATOR")
+    case .contractParticipant: return try container.encode("ROLE_CONTRACT_PARTICIPANT")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

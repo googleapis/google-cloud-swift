@@ -280,9 +280,9 @@ public struct DiscoveredApiOperation: Codable, Equatable, GoogleCloudWKT._AnyPac
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .known: return try container.encode(1)
-      case .unknown: return try container.encode(2)
+      case .unspecified: return try container.encode("CLASSIFICATION_UNSPECIFIED")
+      case .known: return try container.encode("KNOWN")
+      case .unknown: return try container.encode("UNKNOWN")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

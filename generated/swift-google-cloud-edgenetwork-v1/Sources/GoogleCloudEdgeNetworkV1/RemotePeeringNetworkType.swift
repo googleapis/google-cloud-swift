@@ -113,9 +113,11 @@ public enum RemotePeeringNetworkType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .customerInternal: return try container.encode(1)
-    case .customerInternet: return try container.encode(2)
+    case .unspecified: return try container.encode("REMOTE_PEERING_NETWORK_TYPE_UNSPECIFIED")
+    case .customerInternal:
+      return try container.encode("REMOTE_PEERING_NETWORK_TYPE_CUSTOMER_INTERNAL")
+    case .customerInternet:
+      return try container.encode("REMOTE_PEERING_NETWORK_TYPE_CUSTOMER_INTERNET")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

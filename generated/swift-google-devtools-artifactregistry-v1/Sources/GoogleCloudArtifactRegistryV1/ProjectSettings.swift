@@ -173,12 +173,17 @@ public struct ProjectSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .redirectionFromGcrIoDisabled: return try container.encode(1)
-      case .redirectionFromGcrIoEnabled: return try container.encode(2)
-      case .redirectionFromGcrIoFinalized: return try container.encode(3)
-      case .redirectionFromGcrIoEnabledAndCopying: return try container.encode(5)
-      case .redirectionFromGcrIoPartialAndCopying: return try container.encode(6)
+      case .unspecified: return try container.encode("REDIRECTION_STATE_UNSPECIFIED")
+      case .redirectionFromGcrIoDisabled:
+        return try container.encode("REDIRECTION_FROM_GCR_IO_DISABLED")
+      case .redirectionFromGcrIoEnabled:
+        return try container.encode("REDIRECTION_FROM_GCR_IO_ENABLED")
+      case .redirectionFromGcrIoFinalized:
+        return try container.encode("REDIRECTION_FROM_GCR_IO_FINALIZED")
+      case .redirectionFromGcrIoEnabledAndCopying:
+        return try container.encode("REDIRECTION_FROM_GCR_IO_ENABLED_AND_COPYING")
+      case .redirectionFromGcrIoPartialAndCopying:
+        return try container.encode("REDIRECTION_FROM_GCR_IO_PARTIAL_AND_COPYING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -165,11 +165,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .negligible: return try container.encode(1)
-        case .low: return try container.encode(2)
-        case .medium: return try container.encode(3)
-        case .high: return try container.encode(4)
+        case .unspecified: return try container.encode("HARM_PROBABILITY_UNSPECIFIED")
+        case .negligible: return try container.encode("NEGLIGIBLE")
+        case .low: return try container.encode("LOW")
+        case .medium: return try container.encode("MEDIUM")
+        case .high: return try container.encode("HIGH")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -284,11 +284,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .negligible: return try container.encode(1)
-        case .low: return try container.encode(2)
-        case .medium: return try container.encode(3)
-        case .high: return try container.encode(4)
+        case .unspecified: return try container.encode("HARM_SEVERITY_UNSPECIFIED")
+        case .negligible: return try container.encode("HARM_SEVERITY_NEGLIGIBLE")
+        case .low: return try container.encode("HARM_SEVERITY_LOW")
+        case .medium: return try container.encode("HARM_SEVERITY_MEDIUM")
+        case .high: return try container.encode("HARM_SEVERITY_HIGH")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

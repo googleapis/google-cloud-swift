@@ -236,10 +236,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .humanAgent: return try container.encode(1)
-        case .automatedAgent: return try container.encode(2)
-        case .endUser: return try container.encode(3)
+        case .unspecified: return try container.encode("ROLE_UNSPECIFIED")
+        case .humanAgent: return try container.encode("HUMAN_AGENT")
+        case .automatedAgent: return try container.encode("AUTOMATED_AGENT")
+        case .endUser: return try container.encode("END_USER")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -362,12 +362,12 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .livePerson: return try container.encode(1)
-        case .genesysCloud: return try container.encode(2)
-        case .twilio: return try container.encode(3)
-        case .salesforce: return try container.encode(4)
-        case .other: return try container.encode(8)
+        case .unspecified: return try container.encode("AGENT_DESKTOP_SOURCE_UNSPECIFIED")
+        case .livePerson: return try container.encode("LIVE_PERSON")
+        case .genesysCloud: return try container.encode("GENESYS_CLOUD")
+        case .twilio: return try container.encode("TWILIO")
+        case .salesforce: return try container.encode("SALESFORCE")
+        case .other: return try container.encode("OTHER")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

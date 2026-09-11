@@ -118,9 +118,9 @@ public enum WireFormat: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .extProcGrpc: return try container.encode(1)
-    case .extAuthzGrpc: return try container.encode(3)
+    case .unspecified: return try container.encode("WIRE_FORMAT_UNSPECIFIED")
+    case .extProcGrpc: return try container.encode("EXT_PROC_GRPC")
+    case .extAuthzGrpc: return try container.encode("EXT_AUTHZ_GRPC")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

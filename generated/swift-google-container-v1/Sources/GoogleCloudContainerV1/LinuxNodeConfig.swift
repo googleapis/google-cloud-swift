@@ -784,9 +784,10 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .enforceSignedModules: return try container.encode(1)
-        case .doNotEnforceSignedModules: return try container.encode(2)
+        case .unspecified: return try container.encode("POLICY_UNSPECIFIED")
+        case .enforceSignedModules: return try container.encode("ENFORCE_SIGNED_MODULES")
+        case .doNotEnforceSignedModules:
+          return try container.encode("DO_NOT_ENFORCE_SIGNED_MODULES")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -981,9 +982,9 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .v1: return try container.encode(1)
-      case .v2: return try container.encode(2)
+      case .unspecified: return try container.encode("CGROUP_MODE_UNSPECIFIED")
+      case .v1: return try container.encode("CGROUP_MODE_V1")
+      case .v2: return try container.encode("CGROUP_MODE_V2")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -1093,10 +1094,10 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .always: return try container.encode(1)
-      case .madvise: return try container.encode(2)
-      case .never: return try container.encode(3)
+      case .unspecified: return try container.encode("TRANSPARENT_HUGEPAGE_ENABLED_UNSPECIFIED")
+      case .always: return try container.encode("TRANSPARENT_HUGEPAGE_ENABLED_ALWAYS")
+      case .madvise: return try container.encode("TRANSPARENT_HUGEPAGE_ENABLED_MADVISE")
+      case .never: return try container.encode("TRANSPARENT_HUGEPAGE_ENABLED_NEVER")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -1229,12 +1230,13 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .always: return try container.encode(1)
-      case .`defer`: return try container.encode(2)
-      case .deferWithMadvise: return try container.encode(3)
-      case .madvise: return try container.encode(4)
-      case .never: return try container.encode(5)
+      case .unspecified: return try container.encode("TRANSPARENT_HUGEPAGE_DEFRAG_UNSPECIFIED")
+      case .always: return try container.encode("TRANSPARENT_HUGEPAGE_DEFRAG_ALWAYS")
+      case .`defer`: return try container.encode("TRANSPARENT_HUGEPAGE_DEFRAG_DEFER")
+      case .deferWithMadvise:
+        return try container.encode("TRANSPARENT_HUGEPAGE_DEFRAG_DEFER_WITH_MADVISE")
+      case .madvise: return try container.encode("TRANSPARENT_HUGEPAGE_DEFRAG_MADVISE")
+      case .never: return try container.encode("TRANSPARENT_HUGEPAGE_DEFRAG_NEVER")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

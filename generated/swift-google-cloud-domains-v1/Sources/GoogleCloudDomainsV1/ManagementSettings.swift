@@ -147,9 +147,9 @@ public struct ManagementSettings: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .automaticRenewal: return try container.encode(1)
-      case .manualRenewal: return try container.encode(2)
+      case .unspecified: return try container.encode("RENEWAL_METHOD_UNSPECIFIED")
+      case .automaticRenewal: return try container.encode("AUTOMATIC_RENEWAL")
+      case .manualRenewal: return try container.encode("MANUAL_RENEWAL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

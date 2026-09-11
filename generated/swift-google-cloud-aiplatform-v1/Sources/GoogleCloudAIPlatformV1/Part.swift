@@ -338,11 +338,12 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .mediaResolutionUnspecified: return try container.encode(0)
-          case .mediaResolutionLow: return try container.encode(1)
-          case .mediaResolutionMedium: return try container.encode(2)
-          case .mediaResolutionHigh: return try container.encode(3)
-          case .mediaResolutionUltraHigh: return try container.encode(4)
+          case .mediaResolutionUnspecified:
+            return try container.encode("MEDIA_RESOLUTION_UNSPECIFIED")
+          case .mediaResolutionLow: return try container.encode("MEDIA_RESOLUTION_LOW")
+          case .mediaResolutionMedium: return try container.encode("MEDIA_RESOLUTION_MEDIUM")
+          case .mediaResolutionHigh: return try container.encode("MEDIA_RESOLUTION_HIGH")
+          case .mediaResolutionUltraHigh: return try container.encode("MEDIA_RESOLUTION_ULTRA_HIGH")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }

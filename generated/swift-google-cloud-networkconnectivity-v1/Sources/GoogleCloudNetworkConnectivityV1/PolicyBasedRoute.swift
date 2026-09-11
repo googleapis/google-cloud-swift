@@ -399,8 +399,8 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .ipv4: return try container.encode(1)
+        case .unspecified: return try container.encode("PROTOCOL_VERSION_UNSPECIFIED")
+        case .ipv4: return try container.encode("IPV4")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -552,9 +552,9 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .warningUnspecified: return try container.encode(0)
-        case .resourceNotActive: return try container.encode(1)
-        case .resourceBeingModified: return try container.encode(2)
+        case .warningUnspecified: return try container.encode("WARNING_UNSPECIFIED")
+        case .resourceNotActive: return try container.encode("RESOURCE_NOT_ACTIVE")
+        case .resourceBeingModified: return try container.encode("RESOURCE_BEING_MODIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -665,8 +665,8 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .defaultRouting: return try container.encode(1)
+      case .unspecified: return try container.encode("OTHER_ROUTES_UNSPECIFIED")
+      case .defaultRouting: return try container.encode("DEFAULT_ROUTING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

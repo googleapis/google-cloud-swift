@@ -136,13 +136,13 @@ public enum OperationsInsightsState: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .enabling: return try container.encode(1)
-    case .enabled: return try container.encode(2)
-    case .disabling: return try container.encode(3)
-    case .notEnabled: return try container.encode(4)
-    case .failedEnabling: return try container.encode(5)
-    case .failedDisabling: return try container.encode(6)
+    case .unspecified: return try container.encode("OPERATIONS_INSIGHTS_STATE_UNSPECIFIED")
+    case .enabling: return try container.encode("ENABLING")
+    case .enabled: return try container.encode("ENABLED")
+    case .disabling: return try container.encode("DISABLING")
+    case .notEnabled: return try container.encode("NOT_ENABLED")
+    case .failedEnabling: return try container.encode("FAILED_ENABLING")
+    case .failedDisabling: return try container.encode("FAILED_DISABLING")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

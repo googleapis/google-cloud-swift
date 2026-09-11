@@ -313,8 +313,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .v1: return try container.encode(0)
-        case .v2: return try container.encode(1)
+        case .v1: return try container.encode("V1")
+        case .v2: return try container.encode("V2")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -417,8 +417,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .external: return try container.encode(0)
-        case .`internal`: return try container.encode(1)
+        case .external: return try container.encode("EXTERNAL")
+        case .`internal`: return try container.encode("INTERNAL")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -537,10 +537,13 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .delegation: return try container.encode(0)
-        case .externalIpv6ForwardingRuleCreation: return try container.encode(1)
-        case .externalIpv6SubnetworkCreation: return try container.encode(2)
-        case .internalIpv6SubnetworkCreation: return try container.encode(3)
+        case .delegation: return try container.encode("DELEGATION")
+        case .externalIpv6ForwardingRuleCreation:
+          return try container.encode("EXTERNAL_IPV6_FORWARDING_RULE_CREATION")
+        case .externalIpv6SubnetworkCreation:
+          return try container.encode("EXTERNAL_IPV6_SUBNETWORK_CREATION")
+        case .internalIpv6SubnetworkCreation:
+          return try container.encode("INTERNAL_IPV6_SUBNETWORK_CREATION")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -671,13 +674,13 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .active: return try container.encode(0)
-        case .announced: return try container.encode(1)
-        case .announcedToGoogle: return try container.encode(2)
-        case .announcedToInternet: return try container.encode(3)
-        case .deleting: return try container.encode(4)
-        case .initializing: return try container.encode(5)
-        case .readyToAnnounce: return try container.encode(6)
+        case .active: return try container.encode("ACTIVE")
+        case .announced: return try container.encode("ANNOUNCED")
+        case .announcedToGoogle: return try container.encode("ANNOUNCED_TO_GOOGLE")
+        case .announcedToInternet: return try container.encode("ANNOUNCED_TO_INTERNET")
+        case .deleting: return try container.encode("DELETING")
+        case .initializing: return try container.encode("INITIALIZING")
+        case .readyToAnnounce: return try container.encode("READY_TO_ANNOUNCE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

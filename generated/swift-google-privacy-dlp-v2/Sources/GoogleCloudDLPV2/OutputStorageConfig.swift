@@ -214,12 +214,12 @@ public struct OutputStorageConfig: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .basicColumns: return try container.encode(1)
-      case .gcsColumns: return try container.encode(2)
-      case .datastoreColumns: return try container.encode(3)
-      case .bigQueryColumns: return try container.encode(4)
-      case .allColumns: return try container.encode(5)
+      case .unspecified: return try container.encode("OUTPUT_SCHEMA_UNSPECIFIED")
+      case .basicColumns: return try container.encode("BASIC_COLUMNS")
+      case .gcsColumns: return try container.encode("GCS_COLUMNS")
+      case .datastoreColumns: return try container.encode("DATASTORE_COLUMNS")
+      case .bigQueryColumns: return try container.encode("BIG_QUERY_COLUMNS")
+      case .allColumns: return try container.encode("ALL_COLUMNS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

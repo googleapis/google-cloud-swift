@@ -178,9 +178,9 @@ public struct MaintenanceWindow: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .customPreference: return try container.encode(1)
-      case .noPreference: return try container.encode(2)
+      case .unspecified: return try container.encode("MAINTENANCE_WINDOW_PREFERENCE_UNSPECIFIED")
+      case .customPreference: return try container.encode("CUSTOM_PREFERENCE")
+      case .noPreference: return try container.encode("NO_PREFERENCE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -284,9 +284,9 @@ public struct MaintenanceWindow: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .rolling: return try container.encode(1)
-      case .nonRolling: return try container.encode(2)
+      case .unspecified: return try container.encode("PATCHING_MODE_UNSPECIFIED")
+      case .rolling: return try container.encode("ROLLING")
+      case .nonRolling: return try container.encode("NON_ROLLING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

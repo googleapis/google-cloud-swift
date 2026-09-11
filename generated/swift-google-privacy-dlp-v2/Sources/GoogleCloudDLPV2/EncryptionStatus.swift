@@ -112,9 +112,9 @@ public enum EncryptionStatus: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .encryptionGoogleManaged: return try container.encode(1)
-    case .encryptionCustomerManaged: return try container.encode(2)
+    case .unspecified: return try container.encode("ENCRYPTION_STATUS_UNSPECIFIED")
+    case .encryptionGoogleManaged: return try container.encode("ENCRYPTION_GOOGLE_MANAGED")
+    case .encryptionCustomerManaged: return try container.encode("ENCRYPTION_CUSTOMER_MANAGED")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

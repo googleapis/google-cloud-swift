@@ -137,8 +137,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .excludeAllMetadata: return try container.encode(0)
-        case .includeAllMetadata: return try container.encode(1)
+        case .excludeAllMetadata: return try container.encode("EXCLUDE_ALL_METADATA")
+        case .includeAllMetadata: return try container.encode("INCLUDE_ALL_METADATA")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -378,11 +378,12 @@ public struct OSPolicyAssignmentReport: Codable, Equatable, GoogleCloudWKT._AnyP
           public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .unspecified: return try container.encode(0)
-            case .validation: return try container.encode(1)
-            case .desiredStateCheck: return try container.encode(2)
-            case .desiredStateEnforcement: return try container.encode(3)
-            case .desiredStateCheckPostEnforcement: return try container.encode(4)
+            case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+            case .validation: return try container.encode("VALIDATION")
+            case .desiredStateCheck: return try container.encode("DESIRED_STATE_CHECK")
+            case .desiredStateEnforcement: return try container.encode("DESIRED_STATE_ENFORCEMENT")
+            case .desiredStateCheckPostEnforcement:
+              return try container.encode("DESIRED_STATE_CHECK_POST_ENFORCEMENT")
             case .unknownIntValue(let v): return try container.encode(v)
             case .unknownStringValue(let v): return try container.encode(v)
             }
@@ -536,9 +537,9 @@ public struct OSPolicyAssignmentReport: Codable, Equatable, GoogleCloudWKT._AnyP
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unknown: return try container.encode(0)
-          case .compliant: return try container.encode(1)
-          case .nonCompliant: return try container.encode(2)
+          case .unknown: return try container.encode("UNKNOWN")
+          case .compliant: return try container.encode("COMPLIANT")
+          case .nonCompliant: return try container.encode("NON_COMPLIANT")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -670,9 +671,9 @@ public struct OSPolicyAssignmentReport: Codable, Equatable, GoogleCloudWKT._AnyP
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unknown: return try container.encode(0)
-        case .compliant: return try container.encode(1)
-        case .nonCompliant: return try container.encode(2)
+        case .unknown: return try container.encode("UNKNOWN")
+        case .compliant: return try container.encode("COMPLIANT")
+        case .nonCompliant: return try container.encode("NON_COMPLIANT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

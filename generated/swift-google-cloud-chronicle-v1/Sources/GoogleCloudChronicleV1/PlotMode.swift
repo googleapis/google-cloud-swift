@@ -118,10 +118,10 @@ public enum PlotMode: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .points: return try container.encode(1)
-    case .heatmap: return try container.encode(2)
-    case .both: return try container.encode(3)
+    case .unspecified: return try container.encode("PLOT_MODE_UNSPECIFIED")
+    case .points: return try container.encode("PLOT_MODE_POINTS")
+    case .heatmap: return try container.encode("PLOT_MODE_HEATMAP")
+    case .both: return try container.encode("PLOT_MODE_BOTH")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

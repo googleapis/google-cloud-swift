@@ -175,10 +175,10 @@ public struct DescribeDatabaseEntitiesRequest: Codable, Equatable, GoogleCloudWK
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .sourceTree: return try container.encode(1)
-      case .draftTree: return try container.encode(2)
-      case .destinationTree: return try container.encode(3)
+      case .unspecified: return try container.encode("DB_TREE_TYPE_UNSPECIFIED")
+      case .sourceTree: return try container.encode("SOURCE_TREE")
+      case .draftTree: return try container.encode("DRAFT_TREE")
+      case .destinationTree: return try container.encode("DESTINATION_TREE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

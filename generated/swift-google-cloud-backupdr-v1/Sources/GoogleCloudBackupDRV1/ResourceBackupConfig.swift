@@ -194,11 +194,11 @@ public struct ResourceBackupConfig: Codable, Equatable, GoogleCloudWKT._AnyPacka
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .cloudSqlInstance: return try container.encode(1)
-      case .computeEngineVm: return try container.encode(2)
-      case .computeEngineDisk: return try container.encode(3)
-      case .computeEngineRegionalDisk: return try container.encode(4)
+      case .unspecified: return try container.encode("RESOURCE_TYPE_UNSPECIFIED")
+      case .cloudSqlInstance: return try container.encode("CLOUD_SQL_INSTANCE")
+      case .computeEngineVm: return try container.encode("COMPUTE_ENGINE_VM")
+      case .computeEngineDisk: return try container.encode("COMPUTE_ENGINE_DISK")
+      case .computeEngineRegionalDisk: return try container.encode("COMPUTE_ENGINE_REGIONAL_DISK")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

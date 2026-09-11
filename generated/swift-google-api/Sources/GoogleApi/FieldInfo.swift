@@ -170,11 +170,11 @@ public struct FieldInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .uuid4: return try container.encode(1)
-      case .ipv4: return try container.encode(2)
-      case .ipv6: return try container.encode(3)
-      case .ipv4OrIpv6: return try container.encode(4)
+      case .unspecified: return try container.encode("FORMAT_UNSPECIFIED")
+      case .uuid4: return try container.encode("UUID4")
+      case .ipv4: return try container.encode("IPV4")
+      case .ipv6: return try container.encode("IPV6")
+      case .ipv4OrIpv6: return try container.encode("IPV4_OR_IPV6")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

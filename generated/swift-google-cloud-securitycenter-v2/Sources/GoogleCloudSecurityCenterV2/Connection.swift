@@ -194,12 +194,12 @@ public struct Connection: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .icmp: return try container.encode(1)
-      case .tcp: return try container.encode(6)
-      case .udp: return try container.encode(17)
-      case .gre: return try container.encode(47)
-      case .esp: return try container.encode(50)
+      case .unspecified: return try container.encode("PROTOCOL_UNSPECIFIED")
+      case .icmp: return try container.encode("ICMP")
+      case .tcp: return try container.encode("TCP")
+      case .udp: return try container.encode("UDP")
+      case .gre: return try container.encode("GRE")
+      case .esp: return try container.encode("ESP")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

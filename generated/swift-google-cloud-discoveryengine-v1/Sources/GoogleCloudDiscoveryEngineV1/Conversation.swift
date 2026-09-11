@@ -155,9 +155,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .inProgress: return try container.encode(1)
-        case .completed: return try container.encode(2)
+        case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+        case .inProgress: return try container.encode("IN_PROGRESS")
+        case .completed: return try container.encode("COMPLETED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

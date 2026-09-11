@@ -165,11 +165,12 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .conditionsNotMet: return try container.encode(0)
-        case .notSupported: return try container.encode(1)
-        case .noCapacity: return try container.encode(2)
-        case .otherLocationStatusUndefined: return try container.encode(3)
-        case .recommended: return try container.encode(4)
+        case .conditionsNotMet: return try container.encode("CONDITIONS_NOT_MET")
+        case .notSupported: return try container.encode("NOT_SUPPORTED")
+        case .noCapacity: return try container.encode("NO_CAPACITY")
+        case .otherLocationStatusUndefined:
+          return try container.encode("OTHER_LOCATION_STATUS_UNDEFINED")
+        case .recommended: return try container.encode("RECOMMENDED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

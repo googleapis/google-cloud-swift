@@ -120,10 +120,10 @@ public enum DetectionConfidenceLevel: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .lowAndAbove: return try container.encode(1)
-    case .mediumAndAbove: return try container.encode(2)
-    case .high: return try container.encode(3)
+    case .unspecified: return try container.encode("DETECTION_CONFIDENCE_LEVEL_UNSPECIFIED")
+    case .lowAndAbove: return try container.encode("LOW_AND_ABOVE")
+    case .mediumAndAbove: return try container.encode("MEDIUM_AND_ABOVE")
+    case .high: return try container.encode("HIGH")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

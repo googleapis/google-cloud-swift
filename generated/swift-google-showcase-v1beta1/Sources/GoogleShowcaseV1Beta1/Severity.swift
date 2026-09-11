@@ -114,10 +114,10 @@ public enum Severity: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unnecessary: return try container.encode(0)
-    case .necessary: return try container.encode(1)
-    case .urgent: return try container.encode(2)
-    case .critical: return try container.encode(3)
+    case .unnecessary: return try container.encode("UNNECESSARY")
+    case .necessary: return try container.encode("NECESSARY")
+    case .urgent: return try container.encode("URGENT")
+    case .critical: return try container.encode("CRITICAL")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

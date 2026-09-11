@@ -366,10 +366,10 @@ public struct Endpoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .gcpNetwork: return try container.encode(1)
-      case .nonGcpNetwork: return try container.encode(2)
-      case .internet: return try container.encode(3)
+      case .unspecified: return try container.encode("NETWORK_TYPE_UNSPECIFIED")
+      case .gcpNetwork: return try container.encode("GCP_NETWORK")
+      case .nonGcpNetwork: return try container.encode("NON_GCP_NETWORK")
+      case .internet: return try container.encode("INTERNET")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -485,11 +485,11 @@ public struct Endpoint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .instance: return try container.encode(1)
-      case .loadBalancer: return try container.encode(2)
-      case .vpnGateway: return try container.encode(3)
-      case .psc: return try container.encode(4)
+      case .unspecified: return try container.encode("FORWARDING_RULE_TARGET_UNSPECIFIED")
+      case .instance: return try container.encode("INSTANCE")
+      case .loadBalancer: return try container.encode("LOAD_BALANCER")
+      case .vpnGateway: return try container.encode("VPN_GATEWAY")
+      case .psc: return try container.encode("PSC")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

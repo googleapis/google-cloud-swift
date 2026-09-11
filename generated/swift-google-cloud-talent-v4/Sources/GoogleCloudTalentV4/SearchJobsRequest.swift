@@ -572,13 +572,13 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .`none`: return try container.encode(1)
-        case .low: return try container.encode(2)
-        case .mild: return try container.encode(3)
-        case .medium: return try container.encode(4)
-        case .high: return try container.encode(5)
-        case .extreme: return try container.encode(6)
+        case .unspecified: return try container.encode("IMPORTANCE_LEVEL_UNSPECIFIED")
+        case .`none`: return try container.encode("NONE")
+        case .low: return try container.encode("LOW")
+        case .mild: return try container.encode("MILD")
+        case .medium: return try container.encode("MEDIUM")
+        case .high: return try container.encode("HIGH")
+        case .extreme: return try container.encode("EXTREME")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -699,9 +699,9 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .jobSearch: return try container.encode(1)
-      case .featuredJobSearch: return try container.encode(2)
+      case .unspecified: return try container.encode("SEARCH_MODE_UNSPECIFIED")
+      case .jobSearch: return try container.encode("JOB_SEARCH")
+      case .featuredJobSearch: return try container.encode("FEATURED_JOB_SEARCH")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -850,13 +850,14 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .disabled: return try container.encode(1)
-      case .simple: return try container.encode(2)
-      case .onePerCompany: return try container.encode(3)
-      case .twoPerCompany: return try container.encode(4)
-      case .diversifyByLooserSimilarity: return try container.encode(5)
-      case .maxThreePerCompany: return try container.encode(6)
+      case .unspecified: return try container.encode("DIVERSIFICATION_LEVEL_UNSPECIFIED")
+      case .disabled: return try container.encode("DISABLED")
+      case .simple: return try container.encode("SIMPLE")
+      case .onePerCompany: return try container.encode("ONE_PER_COMPANY")
+      case .twoPerCompany: return try container.encode("TWO_PER_COMPANY")
+      case .diversifyByLooserSimilarity:
+        return try container.encode("DIVERSIFY_BY_LOOSER_SIMILARITY")
+      case .maxThreePerCompany: return try container.encode("MAX_THREE_PER_COMPANY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -1005,10 +1006,10 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .keywordMatchDisabled: return try container.encode(1)
-      case .keywordMatchAll: return try container.encode(2)
-      case .keywordMatchTitleOnly: return try container.encode(3)
+      case .unspecified: return try container.encode("KEYWORD_MATCH_MODE_UNSPECIFIED")
+      case .keywordMatchDisabled: return try container.encode("KEYWORD_MATCH_DISABLED")
+      case .keywordMatchAll: return try container.encode("KEYWORD_MATCH_ALL")
+      case .keywordMatchTitleOnly: return try container.encode("KEYWORD_MATCH_TITLE_ONLY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -1126,11 +1127,11 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .lowest: return try container.encode(1)
-      case .low: return try container.encode(2)
-      case .medium: return try container.encode(3)
-      case .high: return try container.encode(4)
+      case .unspecified: return try container.encode("RELEVANCE_THRESHOLD_UNSPECIFIED")
+      case .lowest: return try container.encode("LOWEST")
+      case .low: return try container.encode("LOW")
+      case .medium: return try container.encode("MEDIUM")
+      case .high: return try container.encode("HIGH")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

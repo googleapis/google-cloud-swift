@@ -170,11 +170,11 @@ public struct UpgradeDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unknown: return try container.encode(0)
-      case .failed: return try container.encode(1)
-      case .succeeded: return try container.encode(2)
-      case .canceled: return try container.encode(3)
-      case .running: return try container.encode(4)
+      case .unknown: return try container.encode("UNKNOWN")
+      case .failed: return try container.encode("FAILED")
+      case .succeeded: return try container.encode("SUCCEEDED")
+      case .canceled: return try container.encode("CANCELED")
+      case .running: return try container.encode("RUNNING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -277,9 +277,9 @@ public struct UpgradeDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .automatic: return try container.encode(1)
-      case .manual: return try container.encode(2)
+      case .unspecified: return try container.encode("START_TYPE_UNSPECIFIED")
+      case .automatic: return try container.encode("AUTOMATIC")
+      case .manual: return try container.encode("MANUAL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

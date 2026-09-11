@@ -135,13 +135,13 @@ public enum ScalingDecisionType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .scaleUp: return try container.encode(1)
-    case .scaleDown: return try container.encode(2)
-    case .noScale: return try container.encode(3)
-    case .mixed: return try container.encode(4)
-    case .cancel: return try container.encode(5)
-    case .doNotCancel: return try container.encode(6)
+    case .unspecified: return try container.encode("SCALING_DECISION_TYPE_UNSPECIFIED")
+    case .scaleUp: return try container.encode("SCALE_UP")
+    case .scaleDown: return try container.encode("SCALE_DOWN")
+    case .noScale: return try container.encode("NO_SCALE")
+    case .mixed: return try container.encode("MIXED")
+    case .cancel: return try container.encode("CANCEL")
+    case .doNotCancel: return try container.encode("DO_NOT_CANCEL")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

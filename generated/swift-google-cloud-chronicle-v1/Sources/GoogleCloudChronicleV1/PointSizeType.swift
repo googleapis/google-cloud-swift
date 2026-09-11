@@ -112,9 +112,9 @@ public enum PointSizeType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .fixed: return try container.encode(1)
-    case .proportionalToSize: return try container.encode(2)
+    case .unspecified: return try container.encode("POINT_SIZE_TYPE_UNSPECIFIED")
+    case .fixed: return try container.encode("POINT_SIZE_TYPE_FIXED")
+    case .proportionalToSize: return try container.encode("POINT_SIZE_TYPE_PROPORTIONAL_TO_SIZE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

@@ -119,10 +119,10 @@ public enum BigQueryTableType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .table: return try container.encode(1)
-    case .externalBigLake: return try container.encode(2)
-    case .snapshot: return try container.encode(3)
+    case .unspecified: return try container.encode("BIG_QUERY_TABLE_TYPE_UNSPECIFIED")
+    case .table: return try container.encode("BIG_QUERY_TABLE_TYPE_TABLE")
+    case .externalBigLake: return try container.encode("BIG_QUERY_TABLE_TYPE_EXTERNAL_BIG_LAKE")
+    case .snapshot: return try container.encode("BIG_QUERY_TABLE_TYPE_SNAPSHOT")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

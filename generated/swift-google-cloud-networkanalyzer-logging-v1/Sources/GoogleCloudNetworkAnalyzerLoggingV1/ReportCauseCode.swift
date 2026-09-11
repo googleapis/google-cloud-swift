@@ -427,64 +427,113 @@ public enum ReportCauseCode: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .routeInvalidNextHopVmIpForwardingDisabled: return try container.encode(1)
-    case .routeInvalidNextHopVmDeleted: return try container.encode(2)
-    case .routeInvalidNextHopVmStopped: return try container.encode(3)
-    case .routeInvalidNextHopIlbMisconfigured: return try container.encode(4)
-    case .routeInvalidNextHopVpnTunnelDeleted: return try container.encode(5)
-    case .routeInvalidNextHopIlbBackendIpForwardingDisabled: return try container.encode(6)
-    case .routeInvalidNextHopIlbVipNotAssigned: return try container.encode(7)
-    case .routeInvalidNextHopVmWrongNetwork: return try container.encode(8)
-    case .routeInvalidNextHopVmNonPrimaryIp: return try container.encode(9)
-    case .routeInvalidNextHopVpnTunnelNotEstablished: return try container.encode(10)
-    case .routeInvalidNextHopIpNotAssigned: return try container.encode(11)
-    case .routeInvalidNextHopForwardingRuleIpMismatch: return try container.encode(12)
-    case .routeInvalidNextHopForwardingRuleTypeInvalid: return try container.encode(13)
-    case .ipUtilizationIpAllocationRatioHigh: return try container.encode(20)
-    case .ipUtilizationIpAllocationSummary: return try container.encode(21)
-    case .gkeNodeToControlPlaneBlockedByRoutingIssue: return try container.encode(201)
+    case .unspecified: return try container.encode("REPORT_CAUSE_CODE_UNSPECIFIED")
+    case .routeInvalidNextHopVmIpForwardingDisabled:
+      return try container.encode("ROUTE_INVALID_NEXT_HOP_VM_IP_FORWARDING_DISABLED")
+    case .routeInvalidNextHopVmDeleted:
+      return try container.encode("ROUTE_INVALID_NEXT_HOP_VM_DELETED")
+    case .routeInvalidNextHopVmStopped:
+      return try container.encode("ROUTE_INVALID_NEXT_HOP_VM_STOPPED")
+    case .routeInvalidNextHopIlbMisconfigured:
+      return try container.encode("ROUTE_INVALID_NEXT_HOP_ILB_MISCONFIGURED")
+    case .routeInvalidNextHopVpnTunnelDeleted:
+      return try container.encode("ROUTE_INVALID_NEXT_HOP_VPN_TUNNEL_DELETED")
+    case .routeInvalidNextHopIlbBackendIpForwardingDisabled:
+      return try container.encode("ROUTE_INVALID_NEXT_HOP_ILB_BACKEND_IP_FORWARDING_DISABLED")
+    case .routeInvalidNextHopIlbVipNotAssigned:
+      return try container.encode("ROUTE_INVALID_NEXT_HOP_ILB_VIP_NOT_ASSIGNED")
+    case .routeInvalidNextHopVmWrongNetwork:
+      return try container.encode("ROUTE_INVALID_NEXT_HOP_VM_WRONG_NETWORK")
+    case .routeInvalidNextHopVmNonPrimaryIp:
+      return try container.encode("ROUTE_INVALID_NEXT_HOP_VM_NON_PRIMARY_IP")
+    case .routeInvalidNextHopVpnTunnelNotEstablished:
+      return try container.encode("ROUTE_INVALID_NEXT_HOP_VPN_TUNNEL_NOT_ESTABLISHED")
+    case .routeInvalidNextHopIpNotAssigned:
+      return try container.encode("ROUTE_INVALID_NEXT_HOP_IP_NOT_ASSIGNED")
+    case .routeInvalidNextHopForwardingRuleIpMismatch:
+      return try container.encode("ROUTE_INVALID_NEXT_HOP_FORWARDING_RULE_IP_MISMATCH")
+    case .routeInvalidNextHopForwardingRuleTypeInvalid:
+      return try container.encode("ROUTE_INVALID_NEXT_HOP_FORWARDING_RULE_TYPE_INVALID")
+    case .ipUtilizationIpAllocationRatioHigh:
+      return try container.encode("IP_UTILIZATION_IP_ALLOCATION_RATIO_HIGH")
+    case .ipUtilizationIpAllocationSummary:
+      return try container.encode("IP_UTILIZATION_IP_ALLOCATION_SUMMARY")
+    case .gkeNodeToControlPlaneBlockedByRoutingIssue:
+      return try container.encode("GKE_NODE_TO_CONTROL_PLANE_BLOCKED_BY_ROUTING_ISSUE")
     case .gkeNodeToControlPlanePublicEndpointBlockedByEgressFirewall:
-      return try container.encode(202)
+      return try container.encode(
+        "GKE_NODE_TO_CONTROL_PLANE_PUBLIC_ENDPOINT_BLOCKED_BY_EGRESS_FIREWALL")
     case .gkeNodeToControlPlanePrivateEndpointBlockedByEgressFirewall:
-      return try container.encode(203)
-    case .gkeControlPlaneToNodeBlockedByRoutingIssue: return try container.encode(211)
-    case .gkeControlPlaneToNodeBlockedByIngressFirewallOnNode: return try container.encode(212)
-    case .gkeIpUtilizationPodRangesAllocationHigh: return try container.encode(221)
-    case .gkeIpUtilizationPodRangesAllocationLimitesAutoscaling: return try container.encode(222)
-    case .gkeNodeServiceAccountServiceAccountDisabled: return try container.encode(243)
-    case .gkeNodeServiceAccountDefaultServiceAccountUsed: return try container.encode(244)
-    case .gkeNodeServiceAccountBadOauthScopes: return try container.encode(245)
-    case .gkeIpMasqAgentConfigMapNotCoveringPodCidr: return try container.encode(251)
-    case .gkeIpMasqAgentCustomConfigNotCoveringPodCidr: return try container.encode(252)
-    case .cloudSqlPrivateIpBlockedByEgressFirewall: return try container.encode(601)
-    case .cloudSqlPrivateIpBlockedByRoutingIssue: return try container.encode(602)
-    case .cloudSqlPrivateIpInstanceNotRunning: return try container.encode(603)
-    case .dynamicRouteShadowedFullyShadowedBySubnetRoute: return try container.encode(801)
-    case .dynamicRouteShadowedFullyShadowedByPeeringSubnetRoute: return try container.encode(802)
-    case .dynamicRouteShadowedFullyShadowedByStaticRoute: return try container.encode(803)
-    case .dynamicRouteShadowedFullyShadowedByPeeringStaticRoute: return try container.encode(804)
-    case .dynamicRouteShadowedPartiallyShadowedBySubnetRoute: return try container.encode(805)
+      return try container.encode(
+        "GKE_NODE_TO_CONTROL_PLANE_PRIVATE_ENDPOINT_BLOCKED_BY_EGRESS_FIREWALL")
+    case .gkeControlPlaneToNodeBlockedByRoutingIssue:
+      return try container.encode("GKE_CONTROL_PLANE_TO_NODE_BLOCKED_BY_ROUTING_ISSUE")
+    case .gkeControlPlaneToNodeBlockedByIngressFirewallOnNode:
+      return try container.encode("GKE_CONTROL_PLANE_TO_NODE_BLOCKED_BY_INGRESS_FIREWALL_ON_NODE")
+    case .gkeIpUtilizationPodRangesAllocationHigh:
+      return try container.encode("GKE_IP_UTILIZATION_POD_RANGES_ALLOCATION_HIGH")
+    case .gkeIpUtilizationPodRangesAllocationLimitesAutoscaling:
+      return try container.encode("GKE_IP_UTILIZATION_POD_RANGES_ALLOCATION_LIMITES_AUTOSCALING")
+    case .gkeNodeServiceAccountServiceAccountDisabled:
+      return try container.encode("GKE_NODE_SERVICE_ACCOUNT_SERVICE_ACCOUNT_DISABLED")
+    case .gkeNodeServiceAccountDefaultServiceAccountUsed:
+      return try container.encode("GKE_NODE_SERVICE_ACCOUNT_DEFAULT_SERVICE_ACCOUNT_USED")
+    case .gkeNodeServiceAccountBadOauthScopes:
+      return try container.encode("GKE_NODE_SERVICE_ACCOUNT_BAD_OAUTH_SCOPES")
+    case .gkeIpMasqAgentConfigMapNotCoveringPodCidr:
+      return try container.encode("GKE_IP_MASQ_AGENT_CONFIG_MAP_NOT_COVERING_POD_CIDR")
+    case .gkeIpMasqAgentCustomConfigNotCoveringPodCidr:
+      return try container.encode("GKE_IP_MASQ_AGENT_CUSTOM_CONFIG_NOT_COVERING_POD_CIDR")
+    case .cloudSqlPrivateIpBlockedByEgressFirewall:
+      return try container.encode("CLOUD_SQL_PRIVATE_IP_BLOCKED_BY_EGRESS_FIREWALL")
+    case .cloudSqlPrivateIpBlockedByRoutingIssue:
+      return try container.encode("CLOUD_SQL_PRIVATE_IP_BLOCKED_BY_ROUTING_ISSUE")
+    case .cloudSqlPrivateIpInstanceNotRunning:
+      return try container.encode("CLOUD_SQL_PRIVATE_IP_INSTANCE_NOT_RUNNING")
+    case .dynamicRouteShadowedFullyShadowedBySubnetRoute:
+      return try container.encode("DYNAMIC_ROUTE_SHADOWED_FULLY_SHADOWED_BY_SUBNET_ROUTE")
+    case .dynamicRouteShadowedFullyShadowedByPeeringSubnetRoute:
+      return try container.encode("DYNAMIC_ROUTE_SHADOWED_FULLY_SHADOWED_BY_PEERING_SUBNET_ROUTE")
+    case .dynamicRouteShadowedFullyShadowedByStaticRoute:
+      return try container.encode("DYNAMIC_ROUTE_SHADOWED_FULLY_SHADOWED_BY_STATIC_ROUTE")
+    case .dynamicRouteShadowedFullyShadowedByPeeringStaticRoute:
+      return try container.encode("DYNAMIC_ROUTE_SHADOWED_FULLY_SHADOWED_BY_PEERING_STATIC_ROUTE")
+    case .dynamicRouteShadowedPartiallyShadowedBySubnetRoute:
+      return try container.encode("DYNAMIC_ROUTE_SHADOWED_PARTIALLY_SHADOWED_BY_SUBNET_ROUTE")
     case .dynamicRouteShadowedPartiallyShadowedByPeeringSubnetRoute:
-      return try container.encode(806)
-    case .dynamicRouteShadowedPartiallyShadowedByStaticRoute: return try container.encode(807)
+      return try container.encode(
+        "DYNAMIC_ROUTE_SHADOWED_PARTIALLY_SHADOWED_BY_PEERING_SUBNET_ROUTE")
+    case .dynamicRouteShadowedPartiallyShadowedByStaticRoute:
+      return try container.encode("DYNAMIC_ROUTE_SHADOWED_PARTIALLY_SHADOWED_BY_STATIC_ROUTE")
     case .dynamicRouteShadowedPartiallyShadowedByPeeringStaticRoute:
-      return try container.encode(808)
-    case .dynamicRouteShadowedFullyShadowedByNccSubnetRoute: return try container.encode(821)
-    case .nccDynamicRouteShadowedFullyShadowedBySubnetRoute: return try container.encode(822)
-    case .nccDynamicRouteShadowedFullyShadowedByPeeringSubnetRoute: return try container.encode(823)
-    case .nccDynamicRouteShadowedFullyShadowedByStaticRoute: return try container.encode(824)
+      return try container.encode(
+        "DYNAMIC_ROUTE_SHADOWED_PARTIALLY_SHADOWED_BY_PEERING_STATIC_ROUTE")
+    case .dynamicRouteShadowedFullyShadowedByNccSubnetRoute:
+      return try container.encode("DYNAMIC_ROUTE_SHADOWED_FULLY_SHADOWED_BY_NCC_SUBNET_ROUTE")
+    case .nccDynamicRouteShadowedFullyShadowedBySubnetRoute:
+      return try container.encode("NCC_DYNAMIC_ROUTE_SHADOWED_FULLY_SHADOWED_BY_SUBNET_ROUTE")
+    case .nccDynamicRouteShadowedFullyShadowedByPeeringSubnetRoute:
+      return try container.encode(
+        "NCC_DYNAMIC_ROUTE_SHADOWED_FULLY_SHADOWED_BY_PEERING_SUBNET_ROUTE")
+    case .nccDynamicRouteShadowedFullyShadowedByStaticRoute:
+      return try container.encode("NCC_DYNAMIC_ROUTE_SHADOWED_FULLY_SHADOWED_BY_STATIC_ROUTE")
     case .loadBalancerHealthCheckFirewallHealthCheckFirewallNotConfigured:
-      return try container.encode(1001)
-    case .loadBalancerHealthCheckFirewallHealthCheckRangeBlocked: return try container.encode(1002)
+      return try container.encode(
+        "LOAD_BALANCER_HEALTH_CHECK_FIREWALL_HEALTH_CHECK_FIREWALL_NOT_CONFIGURED")
+    case .loadBalancerHealthCheckFirewallHealthCheckRangeBlocked:
+      return try container.encode("LOAD_BALANCER_HEALTH_CHECK_FIREWALL_HEALTH_CHECK_RANGE_BLOCKED")
     case .loadBalancerHealthCheckFirewallFirewallConfigInconsistent:
-      return try container.encode(1003)
+      return try container.encode(
+        "LOAD_BALANCER_HEALTH_CHECK_FIREWALL_FIREWALL_CONFIG_INCONSISTENT")
     case .loadBalancerHealthCheckFirewallHealthCheckRangePartiallyBlocked:
-      return try container.encode(1004)
+      return try container.encode(
+        "LOAD_BALANCER_HEALTH_CHECK_FIREWALL_HEALTH_CHECK_RANGE_PARTIALLY_BLOCKED")
     case .loadBalancerBestPracticesBackendServiceBalancingModeBreaksSessionAffinity:
-      return try container.encode(1021)
+      return try container.encode(
+        "LOAD_BALANCER_BEST_PRACTICES_BACKEND_SERVICE_BALANCING_MODE_BREAKS_SESSION_AFFINITY")
     case .loadBalancerBestPracticesBackendServiceHealthCheckPortMismatch:
-      return try container.encode(1024)
+      return try container.encode(
+        "LOAD_BALANCER_BEST_PRACTICES_BACKEND_SERVICE_HEALTH_CHECK_PORT_MISMATCH")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

@@ -118,10 +118,10 @@ public enum RuleActionType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .preventive: return try container.encode(1)
-    case .detective: return try container.encode(2)
-    case .audit: return try container.encode(3)
+    case .unspecified: return try container.encode("RULE_ACTION_TYPE_UNSPECIFIED")
+    case .preventive: return try container.encode("RULE_ACTION_TYPE_PREVENTIVE")
+    case .detective: return try container.encode("RULE_ACTION_TYPE_DETECTIVE")
+    case .audit: return try container.encode("RULE_ACTION_TYPE_AUDIT")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

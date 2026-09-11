@@ -232,10 +232,10 @@ public struct Conversation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .text: return try container.encode(1)
-      case .audio: return try container.encode(2)
-      case .multimodal: return try container.encode(3)
+      case .unspecified: return try container.encode("CHANNEL_TYPE_UNSPECIFIED")
+      case .text: return try container.encode("TEXT")
+      case .audio: return try container.encode("AUDIO")
+      case .multimodal: return try container.encode("MULTIMODAL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -351,11 +351,11 @@ public struct Conversation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .live: return try container.encode(1)
-      case .simulator: return try container.encode(2)
-      case .eval: return try container.encode(3)
-      case .agentTool: return try container.encode(4)
+      case .unspecified: return try container.encode("SOURCE_UNSPECIFIED")
+      case .live: return try container.encode("LIVE")
+      case .simulator: return try container.encode("SIMULATOR")
+      case .eval: return try container.encode("EVAL")
+      case .agentTool: return try container.encode("AGENT_TOOL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -488,14 +488,14 @@ public struct Conversation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .text: return try container.encode(1)
-      case .audio: return try container.encode(2)
-      case .image: return try container.encode(3)
-      case .blob: return try container.encode(4)
-      case .toolResponse: return try container.encode(5)
-      case .variables: return try container.encode(6)
-      case .event: return try container.encode(7)
+      case .unspecified: return try container.encode("INPUT_TYPE_UNSPECIFIED")
+      case .text: return try container.encode("INPUT_TYPE_TEXT")
+      case .audio: return try container.encode("INPUT_TYPE_AUDIO")
+      case .image: return try container.encode("INPUT_TYPE_IMAGE")
+      case .blob: return try container.encode("INPUT_TYPE_BLOB")
+      case .toolResponse: return try container.encode("INPUT_TYPE_TOOL_RESPONSE")
+      case .variables: return try container.encode("INPUT_TYPE_VARIABLES")
+      case .event: return try container.encode("INPUT_TYPE_EVENT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

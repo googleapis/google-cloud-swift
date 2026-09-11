@@ -894,15 +894,15 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .ready: return try container.encode(1)
-      case .stopped: return try container.encode(2)
-      case .creating: return try container.encode(3)
-      case .deleting: return try container.encode(4)
-      case .maintenance: return try container.encode(5)
-      case .failed: return try container.encode(6)
-      case .bootstrapping: return try container.encode(8)
-      case .promoting: return try container.encode(9)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .ready: return try container.encode("READY")
+      case .stopped: return try container.encode("STOPPED")
+      case .creating: return try container.encode("CREATING")
+      case .deleting: return try container.encode("DELETING")
+      case .maintenance: return try container.encode("MAINTENANCE")
+      case .failed: return try container.encode("FAILED")
+      case .bootstrapping: return try container.encode("BOOTSTRAPPING")
+      case .promoting: return try container.encode("PROMOTING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -1016,10 +1016,10 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .primary: return try container.encode(1)
-      case .readPool: return try container.encode(2)
-      case .secondary: return try container.encode(3)
+      case .unspecified: return try container.encode("INSTANCE_TYPE_UNSPECIFIED")
+      case .primary: return try container.encode("PRIMARY")
+      case .readPool: return try container.encode("READ_POOL")
+      case .secondary: return try container.encode("SECONDARY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -1127,9 +1127,9 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .zonal: return try container.encode(1)
-      case .regional: return try container.encode(2)
+      case .unspecified: return try container.encode("AVAILABILITY_TYPE_UNSPECIFIED")
+      case .zonal: return try container.encode("ZONAL")
+      case .regional: return try container.encode("REGIONAL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -1232,9 +1232,9 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .always: return try container.encode(1)
-      case .never: return try container.encode(2)
+      case .unspecified: return try container.encode("ACTIVATION_POLICY_UNSPECIFIED")
+      case .always: return try container.encode("ALWAYS")
+      case .never: return try container.encode("NEVER")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

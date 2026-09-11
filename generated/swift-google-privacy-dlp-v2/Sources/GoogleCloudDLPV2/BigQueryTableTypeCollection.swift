@@ -119,9 +119,11 @@ public enum BigQueryTableTypeCollection: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .bigQueryCollectionUnspecified: return try container.encode(0)
-    case .bigQueryCollectionAllTypes: return try container.encode(1)
-    case .bigQueryCollectionOnlySupportedTypes: return try container.encode(2)
+    case .bigQueryCollectionUnspecified:
+      return try container.encode("BIG_QUERY_COLLECTION_UNSPECIFIED")
+    case .bigQueryCollectionAllTypes: return try container.encode("BIG_QUERY_COLLECTION_ALL_TYPES")
+    case .bigQueryCollectionOnlySupportedTypes:
+      return try container.encode("BIG_QUERY_COLLECTION_ONLY_SUPPORTED_TYPES")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

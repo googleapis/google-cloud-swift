@@ -143,9 +143,9 @@ public struct CloudSqlBigQueryConnectionSpec: Codable, Equatable, GoogleCloudWKT
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .postgres: return try container.encode(1)
-      case .mysql: return try container.encode(2)
+      case .unspecified: return try container.encode("DATABASE_TYPE_UNSPECIFIED")
+      case .postgres: return try container.encode("POSTGRES")
+      case .mysql: return try container.encode("MYSQL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

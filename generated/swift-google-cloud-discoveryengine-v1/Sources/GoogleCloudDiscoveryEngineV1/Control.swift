@@ -464,9 +464,9 @@
           public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .unspecified: return try container.encode(0)
-            case .numerical: return try container.encode(1)
-            case .freshness: return try container.encode(2)
+            case .unspecified: return try container.encode("ATTRIBUTE_TYPE_UNSPECIFIED")
+            case .numerical: return try container.encode("NUMERICAL")
+            case .freshness: return try container.encode("FRESHNESS")
             case .unknownIntValue(let v): return try container.encode(v)
             case .unknownStringValue(let v): return try container.encode(v)
             }
@@ -565,8 +565,8 @@
           public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .unspecified: return try container.encode(0)
-            case .linear: return try container.encode(1)
+            case .unspecified: return try container.encode("INTERPOLATION_TYPE_UNSPECIFIED")
+            case .linear: return try container.encode("LINEAR")
             case .unknownIntValue(let v): return try container.encode(v)
             case .unknownStringValue(let v): return try container.encode(v)
             }

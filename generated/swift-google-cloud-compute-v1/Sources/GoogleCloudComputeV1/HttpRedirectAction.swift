@@ -206,11 +206,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .found: return try container.encode(0)
-        case .movedPermanentlyDefault: return try container.encode(1)
-        case .permanentRedirect: return try container.encode(2)
-        case .seeOther: return try container.encode(3)
-        case .temporaryRedirect: return try container.encode(4)
+        case .found: return try container.encode("FOUND")
+        case .movedPermanentlyDefault: return try container.encode("MOVED_PERMANENTLY_DEFAULT")
+        case .permanentRedirect: return try container.encode("PERMANENT_REDIRECT")
+        case .seeOther: return try container.encode("SEE_OTHER")
+        case .temporaryRedirect: return try container.encode("TEMPORARY_REDIRECT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

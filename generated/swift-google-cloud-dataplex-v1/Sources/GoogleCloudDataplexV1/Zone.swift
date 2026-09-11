@@ -200,9 +200,9 @@ public struct Zone: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .singleRegion: return try container.encode(1)
-        case .multiRegion: return try container.encode(2)
+        case .unspecified: return try container.encode("LOCATION_TYPE_UNSPECIFIED")
+        case .singleRegion: return try container.encode("SINGLE_REGION")
+        case .multiRegion: return try container.encode("MULTI_REGION")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -527,9 +527,9 @@ public struct Zone: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .raw: return try container.encode(1)
-      case .curated: return try container.encode(2)
+      case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .raw: return try container.encode("RAW")
+      case .curated: return try container.encode("CURATED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

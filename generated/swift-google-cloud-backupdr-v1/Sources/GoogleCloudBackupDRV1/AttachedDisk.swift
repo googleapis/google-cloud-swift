@@ -233,9 +233,9 @@ public struct AttachedDisk: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .scratch: return try container.encode(1)
-      case .persistent: return try container.encode(2)
+      case .unspecified: return try container.encode("DISK_TYPE_UNSPECIFIED")
+      case .scratch: return try container.encode("SCRATCH")
+      case .persistent: return try container.encode("PERSISTENT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -349,10 +349,10 @@ public struct AttachedDisk: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .readWrite: return try container.encode(1)
-      case .readOnly: return try container.encode(2)
-      case .locked: return try container.encode(3)
+      case .unspecified: return try container.encode("DISK_MODE_UNSPECIFIED")
+      case .readWrite: return try container.encode("READ_WRITE")
+      case .readOnly: return try container.encode("READ_ONLY")
+      case .locked: return try container.encode("LOCKED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -467,11 +467,11 @@ public struct AttachedDisk: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .scsi: return try container.encode(1)
-      case .nvme: return try container.encode(2)
-      case .nvdimm: return try container.encode(3)
-      case .iscsi: return try container.encode(4)
+      case .unspecified: return try container.encode("DISK_INTERFACE_UNSPECIFIED")
+      case .scsi: return try container.encode("SCSI")
+      case .nvme: return try container.encode("NVME")
+      case .nvdimm: return try container.encode("NVDIMM")
+      case .iscsi: return try container.encode("ISCSI")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -568,8 +568,8 @@ public struct AttachedDisk: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .preserved: return try container.encode(1)
+      case .unspecified: return try container.encode("DISK_SAVED_STATE_UNSPECIFIED")
+      case .preserved: return try container.encode("PRESERVED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -139,9 +139,9 @@ public struct JsonFileFormat: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .noSchemaFile: return try container.encode(1)
-      case .avroSchemaFile: return try container.encode(2)
+      case .unspecified: return try container.encode("SCHEMA_FILE_FORMAT_UNSPECIFIED")
+      case .noSchemaFile: return try container.encode("NO_SCHEMA_FILE")
+      case .avroSchemaFile: return try container.encode("AVRO_SCHEMA_FILE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -244,9 +244,9 @@ public struct JsonFileFormat: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .noCompression: return try container.encode(1)
-      case .gzip: return try container.encode(2)
+      case .unspecified: return try container.encode("JSON_COMPRESSION_UNSPECIFIED")
+      case .noCompression: return try container.encode("NO_COMPRESSION")
+      case .gzip: return try container.encode("GZIP")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -163,9 +163,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .zonalAffinityDisabled: return try container.encode(0)
-        case .zonalAffinitySpillCrossZone: return try container.encode(1)
-        case .zonalAffinityStayWithinZone: return try container.encode(2)
+        case .zonalAffinityDisabled: return try container.encode("ZONAL_AFFINITY_DISABLED")
+        case .zonalAffinitySpillCrossZone:
+          return try container.encode("ZONAL_AFFINITY_SPILL_CROSS_ZONE")
+        case .zonalAffinityStayWithinZone:
+          return try container.encode("ZONAL_AFFINITY_STAY_WITHIN_ZONE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

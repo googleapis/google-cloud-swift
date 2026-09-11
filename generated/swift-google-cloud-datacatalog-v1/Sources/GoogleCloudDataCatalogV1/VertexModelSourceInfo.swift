@@ -174,14 +174,14 @@ public struct VertexModelSourceInfo: Codable, Equatable, GoogleCloudWKT._AnyPack
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .automl: return try container.encode(1)
-      case .custom: return try container.encode(2)
-      case .bqml: return try container.encode(3)
-      case .modelGarden: return try container.encode(4)
-      case .genie: return try container.encode(5)
-      case .customTextEmbedding: return try container.encode(6)
-      case .marketplace: return try container.encode(7)
+      case .unspecified: return try container.encode("MODEL_SOURCE_TYPE_UNSPECIFIED")
+      case .automl: return try container.encode("AUTOML")
+      case .custom: return try container.encode("CUSTOM")
+      case .bqml: return try container.encode("BQML")
+      case .modelGarden: return try container.encode("MODEL_GARDEN")
+      case .genie: return try container.encode("GENIE")
+      case .customTextEmbedding: return try container.encode("CUSTOM_TEXT_EMBEDDING")
+      case .marketplace: return try container.encode("MARKETPLACE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -130,8 +130,8 @@ public struct ProviderConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .serviceMaintained: return try container.encode(1)
+      case .unspecified: return try container.encode("PROVIDER_SOURCE_UNSPECIFIED")
+      case .serviceMaintained: return try container.encode("SERVICE_MAINTAINED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

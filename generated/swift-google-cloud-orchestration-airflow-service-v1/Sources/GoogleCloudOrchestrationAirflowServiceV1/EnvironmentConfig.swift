@@ -250,10 +250,10 @@ public struct EnvironmentConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .small: return try container.encode(1)
-      case .medium: return try container.encode(2)
-      case .large: return try container.encode(3)
+      case .unspecified: return try container.encode("ENVIRONMENT_SIZE_UNSPECIFIED")
+      case .small: return try container.encode("ENVIRONMENT_SIZE_SMALL")
+      case .medium: return try container.encode("ENVIRONMENT_SIZE_MEDIUM")
+      case .large: return try container.encode("ENVIRONMENT_SIZE_LARGE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -350,8 +350,8 @@ public struct EnvironmentConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .highResilience: return try container.encode(1)
+      case .unspecified: return try container.encode("RESILIENCE_MODE_UNSPECIFIED")
+      case .highResilience: return try container.encode("HIGH_RESILIENCE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

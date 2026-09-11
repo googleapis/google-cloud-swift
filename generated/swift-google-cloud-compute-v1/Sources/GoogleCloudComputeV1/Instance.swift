@@ -575,9 +575,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .`none`: return try container.encode(1)
-        case .stop: return try container.encode(2)
+        case .unspecified: return try container.encode("KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED")
+        case .`none`: return try container.encode("NONE")
+        case .stop: return try container.encode("STOP")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -689,9 +689,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .ephemeralKeyEncryption: return try container.encode(0)
-        case .unspecified: return try container.encode(1)
-        case .standardEncryption: return try container.encode(2)
+        case .ephemeralKeyEncryption: return try container.encode("EPHEMERAL_KEY_ENCRYPTION")
+        case .unspecified: return try container.encode("LOCAL_SSD_ENCRYPTION_MODE_UNSPECIFIED")
+        case .standardEncryption: return try container.encode("STANDARD_ENCRYPTION")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -803,9 +803,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .enableBidirectionalAccessToGoogle: return try container.encode(0)
-        case .enableOutboundVmAccessToGoogle: return try container.encode(1)
-        case .inheritFromSubnetwork: return try container.encode(2)
+        case .enableBidirectionalAccessToGoogle:
+          return try container.encode("ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE")
+        case .enableOutboundVmAccessToGoogle:
+          return try container.encode("ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE")
+        case .inheritFromSubnetwork: return try container.encode("INHERIT_FROM_SUBNETWORK")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -968,18 +970,18 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .deprovisioning: return try container.encode(0)
-        case .pending: return try container.encode(1)
-        case .pendingStop: return try container.encode(2)
-        case .provisioning: return try container.encode(3)
-        case .repairing: return try container.encode(4)
-        case .running: return try container.encode(5)
-        case .staging: return try container.encode(6)
-        case .stopped: return try container.encode(7)
-        case .stopping: return try container.encode(8)
-        case .suspended: return try container.encode(9)
-        case .suspending: return try container.encode(10)
-        case .terminated: return try container.encode(11)
+        case .deprovisioning: return try container.encode("DEPROVISIONING")
+        case .pending: return try container.encode("PENDING")
+        case .pendingStop: return try container.encode("PENDING_STOP")
+        case .provisioning: return try container.encode("PROVISIONING")
+        case .repairing: return try container.encode("REPAIRING")
+        case .running: return try container.encode("RUNNING")
+        case .staging: return try container.encode("STAGING")
+        case .stopped: return try container.encode("STOPPED")
+        case .stopping: return try container.encode("STOPPING")
+        case .suspended: return try container.encode("SUSPENDED")
+        case .suspending: return try container.encode("SUSPENDING")
+        case .terminated: return try container.encode("TERMINATED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

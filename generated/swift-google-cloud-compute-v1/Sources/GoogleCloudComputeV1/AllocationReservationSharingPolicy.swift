@@ -137,9 +137,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .allowAll: return try container.encode(0)
-        case .disallowAll: return try container.encode(1)
-        case .unspecified: return try container.encode(2)
+        case .allowAll: return try container.encode("ALLOW_ALL")
+        case .disallowAll: return try container.encode("DISALLOW_ALL")
+        case .unspecified: return try container.encode("SERVICE_SHARE_TYPE_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -123,10 +123,10 @@ public enum LoginRequirement: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .loginUnspecified: return try container.encode(0)
-    case .loginOptional: return try container.encode(1)
-    case .loginAdmin: return try container.encode(2)
-    case .loginRequired: return try container.encode(3)
+    case .loginUnspecified: return try container.encode("LOGIN_UNSPECIFIED")
+    case .loginOptional: return try container.encode("LOGIN_OPTIONAL")
+    case .loginAdmin: return try container.encode("LOGIN_ADMIN")
+    case .loginRequired: return try container.encode("LOGIN_REQUIRED")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

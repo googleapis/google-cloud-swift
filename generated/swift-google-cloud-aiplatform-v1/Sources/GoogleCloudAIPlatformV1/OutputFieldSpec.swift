@@ -158,11 +158,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .content: return try container.encode(1)
-        case .text: return try container.encode(2)
-        case .image: return try container.encode(3)
-        case .audio: return try container.encode(4)
+        case .unspecified: return try container.encode("FIELD_TYPE_UNSPECIFIED")
+        case .content: return try container.encode("CONTENT")
+        case .text: return try container.encode("TEXT")
+        case .image: return try container.encode("IMAGE")
+        case .audio: return try container.encode("AUDIO")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

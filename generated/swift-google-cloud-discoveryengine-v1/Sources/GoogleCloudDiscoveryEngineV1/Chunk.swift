@@ -404,10 +404,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .shareholderStructure: return try container.encode(1)
-        case .signatureStructure: return try container.encode(2)
-        case .checkboxStructure: return try container.encode(3)
+        case .unspecified: return try container.encode("STRUCTURE_TYPE_UNSPECIFIED")
+        case .shareholderStructure: return try container.encode("SHAREHOLDER_STRUCTURE")
+        case .signatureStructure: return try container.encode("SIGNATURE_STRUCTURE")
+        case .checkboxStructure: return try container.encode("CHECKBOX_STRUCTURE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

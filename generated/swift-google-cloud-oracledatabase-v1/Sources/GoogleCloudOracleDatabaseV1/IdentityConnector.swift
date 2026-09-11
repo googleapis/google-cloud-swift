@@ -155,11 +155,11 @@ public struct IdentityConnector: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .connected: return try container.encode(1)
-      case .partiallyConnected: return try container.encode(2)
-      case .disconnected: return try container.encode(3)
-      case .unknown: return try container.encode(4)
+      case .unspecified: return try container.encode("CONNECTION_STATE_UNSPECIFIED")
+      case .connected: return try container.encode("CONNECTED")
+      case .partiallyConnected: return try container.encode("PARTIALLY_CONNECTED")
+      case .disconnected: return try container.encode("DISCONNECTED")
+      case .unknown: return try container.encode("UNKNOWN")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

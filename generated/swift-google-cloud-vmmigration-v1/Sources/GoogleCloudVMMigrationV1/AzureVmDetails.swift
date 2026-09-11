@@ -329,14 +329,14 @@ public struct AzureVmDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .starting: return try container.encode(1)
-      case .running: return try container.encode(2)
-      case .stopping: return try container.encode(3)
-      case .stopped: return try container.encode(4)
-      case .deallocating: return try container.encode(5)
-      case .deallocated: return try container.encode(6)
-      case .unknown: return try container.encode(7)
+      case .unspecified: return try container.encode("POWER_STATE_UNSPECIFIED")
+      case .starting: return try container.encode("STARTING")
+      case .running: return try container.encode("RUNNING")
+      case .stopping: return try container.encode("STOPPING")
+      case .stopped: return try container.encode("STOPPED")
+      case .deallocating: return try container.encode("DEALLOCATING")
+      case .deallocated: return try container.encode("DEALLOCATED")
+      case .unknown: return try container.encode("UNKNOWN")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -439,9 +439,9 @@ public struct AzureVmDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .efi: return try container.encode(1)
-      case .bios: return try container.encode(2)
+      case .unspecified: return try container.encode("BOOT_OPTION_UNSPECIFIED")
+      case .efi: return try container.encode("EFI")
+      case .bios: return try container.encode("BIOS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -544,9 +544,9 @@ public struct AzureVmDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .x86Family: return try container.encode(1)
-      case .arm64: return try container.encode(2)
+      case .unspecified: return try container.encode("VM_ARCHITECTURE_UNSPECIFIED")
+      case .x86Family: return try container.encode("VM_ARCHITECTURE_X86_FAMILY")
+      case .arm64: return try container.encode("VM_ARCHITECTURE_ARM64")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

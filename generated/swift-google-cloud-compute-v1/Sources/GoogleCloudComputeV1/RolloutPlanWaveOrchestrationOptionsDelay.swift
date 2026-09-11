@@ -159,9 +159,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .batch: return try container.encode(0)
-        case .location: return try container.encode(1)
-        case .unspecified: return try container.encode(2)
+        case .batch: return try container.encode("DELIMITER_BATCH")
+        case .location: return try container.encode("DELIMITER_LOCATION")
+        case .unspecified: return try container.encode("DELIMITER_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -270,9 +270,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .minimum: return try container.encode(0)
-        case .offset: return try container.encode(1)
-        case .unspecified: return try container.encode(2)
+        case .minimum: return try container.encode("TYPE_MINIMUM")
+        case .offset: return try container.encode("TYPE_OFFSET")
+        case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

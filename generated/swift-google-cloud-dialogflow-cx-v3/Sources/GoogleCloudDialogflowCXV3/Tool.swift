@@ -616,8 +616,8 @@
           public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .unspecified: return try container.encode(0)
-            case .clientCredential: return try container.encode(1)
+            case .unspecified: return try container.encode("OAUTH_GRANT_TYPE_UNSPECIFIED")
+            case .clientCredential: return try container.encode("CLIENT_CREDENTIAL")
             case .unknownIntValue(let v): return try container.encode(v)
             case .unknownStringValue(let v): return try container.encode(v)
             }
@@ -768,9 +768,9 @@
           public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .unspecified: return try container.encode(0)
-            case .idToken: return try container.encode(1)
-            case .accessToken: return try container.encode(2)
+            case .unspecified: return try container.encode("SERVICE_AGENT_AUTH_UNSPECIFIED")
+            case .idToken: return try container.encode("ID_TOKEN")
+            case .accessToken: return try container.encode("ACCESS_TOKEN")
             case .unknownIntValue(let v): return try container.encode(v)
             case .unknownStringValue(let v): return try container.encode(v)
             }
@@ -974,9 +974,9 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .header: return try container.encode(1)
-          case .queryString: return try container.encode(2)
+          case .unspecified: return try container.encode("REQUEST_LOCATION_UNSPECIFIED")
+          case .header: return try container.encode("HEADER")
+          case .queryString: return try container.encode("QUERY_STRING")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -1230,9 +1230,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .customizedTool: return try container.encode(1)
-        case .builtinTool: return try container.encode(2)
+        case .unspecified: return try container.encode("TOOL_TYPE_UNSPECIFIED")
+        case .customizedTool: return try container.encode("CUSTOMIZED_TOOL")
+        case .builtinTool: return try container.encode("BUILTIN_TOOL")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

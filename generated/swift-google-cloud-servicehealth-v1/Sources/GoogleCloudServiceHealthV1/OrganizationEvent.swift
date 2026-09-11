@@ -185,8 +185,8 @@ public struct OrganizationEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .incident: return try container.encode(2)
+      case .unspecified: return try container.encode("EVENT_CATEGORY_UNSPECIFIED")
+      case .incident: return try container.encode("INCIDENT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -292,9 +292,9 @@ public struct OrganizationEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .confirmedIncident: return try container.encode(1)
-      case .emergingIncident: return try container.encode(2)
+      case .unspecified: return try container.encode("DETAILED_CATEGORY_UNSPECIFIED")
+      case .confirmedIncident: return try container.encode("CONFIRMED_INCIDENT")
+      case .emergingIncident: return try container.encode("EMERGING_INCIDENT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -400,9 +400,9 @@ public struct OrganizationEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .active: return try container.encode(1)
-      case .closed: return try container.encode(2)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .active: return try container.encode("ACTIVE")
+      case .closed: return try container.encode("CLOSED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -543,13 +543,13 @@ public struct OrganizationEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .emerging: return try container.encode(1)
-      case .confirmed: return try container.encode(2)
-      case .resolved: return try container.encode(3)
-      case .merged: return try container.encode(4)
-      case .autoClosed: return try container.encode(9)
-      case .falsePositive: return try container.encode(10)
+      case .unspecified: return try container.encode("DETAILED_STATE_UNSPECIFIED")
+      case .emerging: return try container.encode("EMERGING")
+      case .confirmed: return try container.encode("CONFIRMED")
+      case .resolved: return try container.encode("RESOLVED")
+      case .merged: return try container.encode("MERGED")
+      case .autoClosed: return try container.encode("AUTO_CLOSED")
+      case .falsePositive: return try container.encode("FALSE_POSITIVE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

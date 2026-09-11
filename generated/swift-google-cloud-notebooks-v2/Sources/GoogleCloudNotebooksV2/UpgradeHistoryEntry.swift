@@ -167,10 +167,10 @@ public struct UpgradeHistoryEntry: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .started: return try container.encode(1)
-      case .succeeded: return try container.encode(2)
-      case .failed: return try container.encode(3)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .started: return try container.encode("STARTED")
+      case .succeeded: return try container.encode("SUCCEEDED")
+      case .failed: return try container.encode("FAILED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -273,9 +273,9 @@ public struct UpgradeHistoryEntry: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .upgrade: return try container.encode(1)
-      case .rollback: return try container.encode(2)
+      case .unspecified: return try container.encode("ACTION_UNSPECIFIED")
+      case .upgrade: return try container.encode("UPGRADE")
+      case .rollback: return try container.encode("ROLLBACK")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -139,9 +139,9 @@ public struct CloudSqlInstanceInitializationConfig: Codable, Equatable, GoogleCl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .enterprise: return try container.encode(1)
-      case .enterprisePlus: return try container.encode(2)
+      case .unspecified: return try container.encode("EDITION_UNSPECIFIED")
+      case .enterprise: return try container.encode("ENTERPRISE")
+      case .enterprisePlus: return try container.encode("ENTERPRISE_PLUS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

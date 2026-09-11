@@ -139,8 +139,9 @@ public struct RollbackSafeUpgradeStatus: Codable, Equatable, GoogleCloudWKT._Any
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .kcpMinorUpgradeRollbackSafeMode: return try container.encode(1)
+      case .unspecified: return try container.encode("MODE_UNSPECIFIED")
+      case .kcpMinorUpgradeRollbackSafeMode:
+        return try container.encode("KCP_MINOR_UPGRADE_ROLLBACK_SAFE_MODE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

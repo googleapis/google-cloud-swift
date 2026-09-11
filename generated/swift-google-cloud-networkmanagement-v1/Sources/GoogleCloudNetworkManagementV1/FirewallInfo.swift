@@ -261,18 +261,24 @@ public struct FirewallInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .hierarchicalFirewallPolicyRule: return try container.encode(1)
-      case .vpcFirewallRule: return try container.encode(2)
-      case .impliedVpcFirewallRule: return try container.encode(3)
-      case .serverlessVpcAccessManagedFirewallRule: return try container.encode(4)
-      case .networkFirewallPolicyRule: return try container.encode(5)
-      case .networkRegionalFirewallPolicyRule: return try container.encode(6)
-      case .systemNetworkFirewallPolicyRule: return try container.encode(7)
-      case .systemRegionalNetworkFirewallPolicyRule: return try container.encode(8)
-      case .unsupportedFirewallPolicyRule: return try container.encode(100)
-      case .trackingState: return try container.encode(101)
-      case .analysisSkipped: return try container.encode(102)
+      case .unspecified: return try container.encode("FIREWALL_RULE_TYPE_UNSPECIFIED")
+      case .hierarchicalFirewallPolicyRule:
+        return try container.encode("HIERARCHICAL_FIREWALL_POLICY_RULE")
+      case .vpcFirewallRule: return try container.encode("VPC_FIREWALL_RULE")
+      case .impliedVpcFirewallRule: return try container.encode("IMPLIED_VPC_FIREWALL_RULE")
+      case .serverlessVpcAccessManagedFirewallRule:
+        return try container.encode("SERVERLESS_VPC_ACCESS_MANAGED_FIREWALL_RULE")
+      case .networkFirewallPolicyRule: return try container.encode("NETWORK_FIREWALL_POLICY_RULE")
+      case .networkRegionalFirewallPolicyRule:
+        return try container.encode("NETWORK_REGIONAL_FIREWALL_POLICY_RULE")
+      case .systemNetworkFirewallPolicyRule:
+        return try container.encode("SYSTEM_NETWORK_FIREWALL_POLICY_RULE")
+      case .systemRegionalNetworkFirewallPolicyRule:
+        return try container.encode("SYSTEM_REGIONAL_NETWORK_FIREWALL_POLICY_RULE")
+      case .unsupportedFirewallPolicyRule:
+        return try container.encode("UNSUPPORTED_FIREWALL_POLICY_RULE")
+      case .trackingState: return try container.encode("TRACKING_STATE")
+      case .analysisSkipped: return try container.encode("ANALYSIS_SKIPPED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -376,9 +382,9 @@ public struct FirewallInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .instances: return try container.encode(1)
-      case .internalManagedLb: return try container.encode(2)
+      case .unspecified: return try container.encode("TARGET_TYPE_UNSPECIFIED")
+      case .instances: return try container.encode("INSTANCES")
+      case .internalManagedLb: return try container.encode("INTERNAL_MANAGED_LB")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

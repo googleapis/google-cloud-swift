@@ -148,10 +148,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .all: return try container.encode(0)
-        case .unspecified: return try container.encode(1)
-        case .runningVms: return try container.encode(2)
-        case .unusedCapacity: return try container.encode(3)
+        case .all: return try container.encode("ALL")
+        case .unspecified: return try container.encode("MAINTENANCE_SCOPE_UNSPECIFIED")
+        case .runningVms: return try container.encode("RUNNING_VMS")
+        case .unusedCapacity: return try container.encode("UNUSED_CAPACITY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -117,9 +117,9 @@ public enum GroupResourceType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .resourceTypeUnspecified: return try container.encode(0)
-    case .instance: return try container.encode(1)
-    case .awsElbLoadBalancer: return try container.encode(2)
+    case .resourceTypeUnspecified: return try container.encode("RESOURCE_TYPE_UNSPECIFIED")
+    case .instance: return try container.encode("INSTANCE")
+    case .awsElbLoadBalancer: return try container.encode("AWS_ELB_LOAD_BALANCER")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

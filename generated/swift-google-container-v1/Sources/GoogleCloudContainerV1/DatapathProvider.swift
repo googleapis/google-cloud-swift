@@ -116,9 +116,9 @@ public enum DatapathProvider: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .legacyDatapath: return try container.encode(1)
-    case .advancedDatapath: return try container.encode(2)
+    case .unspecified: return try container.encode("DATAPATH_PROVIDER_UNSPECIFIED")
+    case .legacyDatapath: return try container.encode("LEGACY_DATAPATH")
+    case .advancedDatapath: return try container.encode("ADVANCED_DATAPATH")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

@@ -852,10 +852,10 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .anyIdentity: return try container.encode(1)
-      case .anyUserAccount: return try container.encode(2)
-      case .anyServiceAccount: return try container.encode(3)
+      case .unspecified: return try container.encode("IDENTITY_TYPE_UNSPECIFIED")
+      case .anyIdentity: return try container.encode("ANY_IDENTITY")
+      case .anyUserAccount: return try container.encode("ANY_USER_ACCOUNT")
+      case .anyServiceAccount: return try container.encode("ANY_SERVICE_ACCOUNT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

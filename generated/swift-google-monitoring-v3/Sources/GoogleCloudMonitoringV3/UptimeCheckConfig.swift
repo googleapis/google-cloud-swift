@@ -727,13 +727,13 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .statusClass1Xx: return try container.encode(100)
-          case .statusClass2Xx: return try container.encode(200)
-          case .statusClass3Xx: return try container.encode(300)
-          case .statusClass4Xx: return try container.encode(400)
-          case .statusClass5Xx: return try container.encode(500)
-          case .any: return try container.encode(1000)
+          case .unspecified: return try container.encode("STATUS_CLASS_UNSPECIFIED")
+          case .statusClass1Xx: return try container.encode("STATUS_CLASS_1XX")
+          case .statusClass2Xx: return try container.encode("STATUS_CLASS_2XX")
+          case .statusClass3Xx: return try container.encode("STATUS_CLASS_3XX")
+          case .statusClass4Xx: return try container.encode("STATUS_CLASS_4XX")
+          case .statusClass5Xx: return try container.encode("STATUS_CLASS_5XX")
+          case .any: return try container.encode("STATUS_CLASS_ANY")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -880,8 +880,9 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .oidcToken: return try container.encode(1)
+          case .unspecified:
+            return try container.encode("SERVICE_AGENT_AUTHENTICATION_TYPE_UNSPECIFIED")
+          case .oidcToken: return try container.encode("OIDC_TOKEN")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -996,9 +997,9 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .methodUnspecified: return try container.encode(0)
-        case .`get`: return try container.encode(1)
-        case .post: return try container.encode(2)
+        case .methodUnspecified: return try container.encode("METHOD_UNSPECIFIED")
+        case .`get`: return try container.encode("GET")
+        case .post: return try container.encode("POST")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1104,9 +1105,9 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .typeUnspecified: return try container.encode(0)
-        case .urlEncoded: return try container.encode(1)
-        case .userProvided: return try container.encode(2)
+        case .typeUnspecified: return try container.encode("TYPE_UNSPECIFIED")
+        case .urlEncoded: return try container.encode("URL_ENCODED")
+        case .userProvided: return try container.encode("USER_PROVIDED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1387,9 +1388,9 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .exactMatch: return try container.encode(1)
-          case .regexMatch: return try container.encode(2)
+          case .unspecified: return try container.encode("JSON_PATH_MATCHER_OPTION_UNSPECIFIED")
+          case .exactMatch: return try container.encode("EXACT_MATCH")
+          case .regexMatch: return try container.encode("REGEX_MATCH")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -1543,13 +1544,13 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .containsString: return try container.encode(1)
-        case .notContainsString: return try container.encode(2)
-        case .matchesRegex: return try container.encode(3)
-        case .notMatchesRegex: return try container.encode(4)
-        case .matchesJsonPath: return try container.encode(5)
-        case .notMatchesJsonPath: return try container.encode(6)
+        case .unspecified: return try container.encode("CONTENT_MATCHER_OPTION_UNSPECIFIED")
+        case .containsString: return try container.encode("CONTAINS_STRING")
+        case .notContainsString: return try container.encode("NOT_CONTAINS_STRING")
+        case .matchesRegex: return try container.encode("MATCHES_REGEX")
+        case .notMatchesRegex: return try container.encode("NOT_MATCHES_REGEX")
+        case .matchesJsonPath: return try container.encode("MATCHES_JSON_PATH")
+        case .notMatchesJsonPath: return try container.encode("NOT_MATCHES_JSON_PATH")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1676,9 +1677,9 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .staticIpCheckers: return try container.encode(1)
-      case .vpcCheckers: return try container.encode(3)
+      case .unspecified: return try container.encode("CHECKER_TYPE_UNSPECIFIED")
+      case .staticIpCheckers: return try container.encode("STATIC_IP_CHECKERS")
+      case .vpcCheckers: return try container.encode("VPC_CHECKERS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

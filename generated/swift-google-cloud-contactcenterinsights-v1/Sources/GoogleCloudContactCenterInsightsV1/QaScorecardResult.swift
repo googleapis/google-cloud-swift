@@ -256,9 +256,9 @@ public struct QaScorecardResult: Codable, Equatable, GoogleCloudWKT._AnyPackable
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .systemGeneratedOnly: return try container.encode(1)
-        case .includesManualEdits: return try container.encode(2)
+        case .unspecified: return try container.encode("SOURCE_TYPE_UNSPECIFIED")
+        case .systemGeneratedOnly: return try container.encode("SYSTEM_GENERATED_ONLY")
+        case .includesManualEdits: return try container.encode("INCLUDES_MANUAL_EDITS")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

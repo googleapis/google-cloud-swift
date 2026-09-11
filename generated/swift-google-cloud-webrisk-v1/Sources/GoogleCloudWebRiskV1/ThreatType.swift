@@ -126,11 +126,12 @@ public enum ThreatType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .malware: return try container.encode(1)
-    case .socialEngineering: return try container.encode(2)
-    case .unwantedSoftware: return try container.encode(3)
-    case .socialEngineeringExtendedCoverage: return try container.encode(4)
+    case .unspecified: return try container.encode("THREAT_TYPE_UNSPECIFIED")
+    case .malware: return try container.encode("MALWARE")
+    case .socialEngineering: return try container.encode("SOCIAL_ENGINEERING")
+    case .unwantedSoftware: return try container.encode("UNWANTED_SOFTWARE")
+    case .socialEngineeringExtendedCoverage:
+      return try container.encode("SOCIAL_ENGINEERING_EXTENDED_COVERAGE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

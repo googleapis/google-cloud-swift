@@ -178,11 +178,11 @@ public struct GkeNodePoolTarget: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .`default`: return try container.encode(1)
-      case .controller: return try container.encode(2)
-      case .sparkDriver: return try container.encode(3)
-      case .sparkExecutor: return try container.encode(4)
+      case .unspecified: return try container.encode("ROLE_UNSPECIFIED")
+      case .`default`: return try container.encode("DEFAULT")
+      case .controller: return try container.encode("CONTROLLER")
+      case .sparkDriver: return try container.encode("SPARK_DRIVER")
+      case .sparkExecutor: return try container.encode("SPARK_EXECUTOR")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

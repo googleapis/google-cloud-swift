@@ -157,10 +157,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .creating: return try container.encode(0)
-        case .done: return try container.encode(1)
-        case .rollingBack: return try container.encode(2)
-        case .unspecified: return try container.encode(3)
+        case .creating: return try container.encode("CREATING")
+        case .done: return try container.encode("DONE")
+        case .rollingBack: return try container.encode("ROLLING_BACK")
+        case .unspecified: return try container.encode("STATUS_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

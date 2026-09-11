@@ -368,12 +368,12 @@ public struct Table: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .stateNotKnown: return try container.encode(0)
-        case .initializing: return try container.encode(1)
-        case .plannedMaintenance: return try container.encode(2)
-        case .unplannedMaintenance: return try container.encode(3)
-        case .ready: return try container.encode(4)
-        case .readyOptimizing: return try container.encode(5)
+        case .stateNotKnown: return try container.encode("STATE_NOT_KNOWN")
+        case .initializing: return try container.encode("INITIALIZING")
+        case .plannedMaintenance: return try container.encode("PLANNED_MAINTENANCE")
+        case .unplannedMaintenance: return try container.encode("UNPLANNED_MAINTENANCE")
+        case .ready: return try container.encode("READY")
+        case .readyOptimizing: return try container.encode("READY_OPTIMIZING")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -535,9 +535,9 @@ public struct Table: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .millis: return try container.encode(1)
-      case .micros: return try container.encode(2)
+      case .unspecified: return try container.encode("TIMESTAMP_GRANULARITY_UNSPECIFIED")
+      case .millis: return try container.encode("MILLIS")
+      case .micros: return try container.encode("MICROS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -659,12 +659,12 @@ public struct Table: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .nameOnly: return try container.encode(1)
-      case .schemaView: return try container.encode(2)
-      case .replicationView: return try container.encode(3)
-      case .full: return try container.encode(4)
-      case .encryptionView: return try container.encode(5)
+      case .unspecified: return try container.encode("VIEW_UNSPECIFIED")
+      case .nameOnly: return try container.encode("NAME_ONLY")
+      case .schemaView: return try container.encode("SCHEMA_VIEW")
+      case .replicationView: return try container.encode("REPLICATION_VIEW")
+      case .full: return try container.encode("FULL")
+      case .encryptionView: return try container.encode("ENCRYPTION_VIEW")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -117,9 +117,10 @@ public enum DomainOverrideStrategy: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecifiedDomainOverrideStrategy: return try container.encode(0)
-    case .strict: return try container.encode(1)
-    case .`override`: return try container.encode(2)
+    case .unspecifiedDomainOverrideStrategy:
+      return try container.encode("UNSPECIFIED_DOMAIN_OVERRIDE_STRATEGY")
+    case .strict: return try container.encode("STRICT")
+    case .`override`: return try container.encode("OVERRIDE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

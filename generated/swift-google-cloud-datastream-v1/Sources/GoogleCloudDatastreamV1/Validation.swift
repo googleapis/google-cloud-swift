@@ -157,11 +157,11 @@ public struct Validation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .notExecuted: return try container.encode(1)
-      case .failed: return try container.encode(2)
-      case .passed: return try container.encode(3)
-      case .warning: return try container.encode(4)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .notExecuted: return try container.encode("NOT_EXECUTED")
+      case .failed: return try container.encode("FAILED")
+      case .passed: return try container.encode("PASSED")
+      case .warning: return try container.encode("WARNING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

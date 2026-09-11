@@ -179,9 +179,9 @@ public struct GoldengateDeploymentEnvironment: Codable, Equatable, GoogleCloudWK
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .dataReplicationCategory: return try container.encode(1)
-      case .dataTransformsCategory: return try container.encode(2)
+      case .unspecified: return try container.encode("DEPLOYMENT_CATEGORY_UNSPECIFIED")
+      case .dataReplicationCategory: return try container.encode("DATA_REPLICATION_CATEGORY")
+      case .dataTransformsCategory: return try container.encode("DATA_TRANSFORMS_CATEGORY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -284,9 +284,9 @@ public struct GoldengateDeploymentEnvironment: Codable, Equatable, GoogleCloudWK
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .production: return try container.encode(1)
-      case .developmentOrTesting: return try container.encode(2)
+      case .unspecified: return try container.encode("DEPLOYMENT_ENVIRONMENT_TYPE_UNSPECIFIED")
+      case .production: return try container.encode("PRODUCTION")
+      case .developmentOrTesting: return try container.encode("DEVELOPMENT_OR_TESTING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

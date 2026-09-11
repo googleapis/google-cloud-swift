@@ -114,9 +114,9 @@ public enum RunMode: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .live: return try container.encode(1)
-    case .submission: return try container.encode(2)
+    case .unspecified: return try container.encode("RUN_MODE_UNSPECIFIED")
+    case .live: return try container.encode("LIVE")
+    case .submission: return try container.encode("SUBMISSION")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

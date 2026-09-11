@@ -524,12 +524,13 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .metricUnspecified: return try container.encode(0)
-          case .containedSessionNoCallbackRate: return try container.encode(1)
-          case .liveAgentHandoffRate: return try container.encode(2)
-          case .callbackSessionRate: return try container.encode(3)
-          case .abandonedSessionRate: return try container.encode(4)
-          case .sessionEndRate: return try container.encode(5)
+          case .metricUnspecified: return try container.encode("METRIC_UNSPECIFIED")
+          case .containedSessionNoCallbackRate:
+            return try container.encode("CONTAINED_SESSION_NO_CALLBACK_RATE")
+          case .liveAgentHandoffRate: return try container.encode("LIVE_AGENT_HANDOFF_RATE")
+          case .callbackSessionRate: return try container.encode("CALLBACK_SESSION_RATE")
+          case .abandonedSessionRate: return try container.encode("ABANDONED_SESSION_RATE")
+          case .sessionEndRate: return try container.encode("SESSION_END_RATE")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -638,10 +639,10 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .totalNoMatchCount: return try container.encode(1)
-          case .totalTurnCount: return try container.encode(2)
-          case .averageTurnCount: return try container.encode(3)
+          case .unspecified: return try container.encode("COUNT_TYPE_UNSPECIFIED")
+          case .totalNoMatchCount: return try container.encode("TOTAL_NO_MATCH_COUNT")
+          case .totalTurnCount: return try container.encode("TOTAL_TURN_COUNT")
+          case .averageTurnCount: return try container.encode("AVERAGE_TURN_COUNT")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -767,11 +768,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .draft: return try container.encode(1)
-        case .running: return try container.encode(2)
-        case .done: return try container.encode(3)
-        case .rolloutFailed: return try container.encode(4)
+        case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+        case .draft: return try container.encode("DRAFT")
+        case .running: return try container.encode("RUNNING")
+        case .done: return try container.encode("DONE")
+        case .rolloutFailed: return try container.encode("ROLLOUT_FAILED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

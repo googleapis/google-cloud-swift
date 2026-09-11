@@ -131,12 +131,12 @@ public enum SpokeType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .vpnTunnel: return try container.encode(1)
-    case .interconnectAttachment: return try container.encode(2)
-    case .routerAppliance: return try container.encode(3)
-    case .vpcNetwork: return try container.encode(4)
-    case .producerVpcNetwork: return try container.encode(7)
+    case .unspecified: return try container.encode("SPOKE_TYPE_UNSPECIFIED")
+    case .vpnTunnel: return try container.encode("VPN_TUNNEL")
+    case .interconnectAttachment: return try container.encode("INTERCONNECT_ATTACHMENT")
+    case .routerAppliance: return try container.encode("ROUTER_APPLIANCE")
+    case .vpcNetwork: return try container.encode("VPC_NETWORK")
+    case .producerVpcNetwork: return try container.encode("PRODUCER_VPC_NETWORK")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

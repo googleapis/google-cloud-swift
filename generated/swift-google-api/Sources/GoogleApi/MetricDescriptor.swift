@@ -343,10 +343,11 @@ public struct MetricDescriptor: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .project: return try container.encode(1)
-        case .organization: return try container.encode(2)
-        case .folder: return try container.encode(3)
+        case .unspecified:
+          return try container.encode("TIME_SERIES_RESOURCE_HIERARCHY_LEVEL_UNSPECIFIED")
+        case .project: return try container.encode("PROJECT")
+        case .organization: return try container.encode("ORGANIZATION")
+        case .folder: return try container.encode("FOLDER")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -472,10 +473,10 @@ public struct MetricDescriptor: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .gauge: return try container.encode(1)
-      case .delta: return try container.encode(2)
-      case .cumulative: return try container.encode(3)
+      case .unspecified: return try container.encode("METRIC_KIND_UNSPECIFIED")
+      case .gauge: return try container.encode("GAUGE")
+      case .delta: return try container.encode("DELTA")
+      case .cumulative: return try container.encode("CUMULATIVE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -606,13 +607,13 @@ public struct MetricDescriptor: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .bool: return try container.encode(1)
-      case .int64: return try container.encode(2)
-      case .double: return try container.encode(3)
-      case .string: return try container.encode(4)
-      case .distribution: return try container.encode(5)
-      case .money: return try container.encode(6)
+      case .unspecified: return try container.encode("VALUE_TYPE_UNSPECIFIED")
+      case .bool: return try container.encode("BOOL")
+      case .int64: return try container.encode("INT64")
+      case .double: return try container.encode("DOUBLE")
+      case .string: return try container.encode("STRING")
+      case .distribution: return try container.encode("DISTRIBUTION")
+      case .money: return try container.encode("MONEY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

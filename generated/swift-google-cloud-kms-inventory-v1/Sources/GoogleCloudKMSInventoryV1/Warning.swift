@@ -156,10 +156,12 @@ public struct Warning: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .insufficientPermissionsPartialData: return try container.encode(1)
-      case .resourceLimitExceededPartialData: return try container.encode(2)
-      case .orgLessProjectPartialData: return try container.encode(3)
+      case .unspecified: return try container.encode("WARNING_CODE_UNSPECIFIED")
+      case .insufficientPermissionsPartialData:
+        return try container.encode("INSUFFICIENT_PERMISSIONS_PARTIAL_DATA")
+      case .resourceLimitExceededPartialData:
+        return try container.encode("RESOURCE_LIMIT_EXCEEDED_PARTIAL_DATA")
+      case .orgLessProjectPartialData: return try container.encode("ORG_LESS_PROJECT_PARTIAL_DATA")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

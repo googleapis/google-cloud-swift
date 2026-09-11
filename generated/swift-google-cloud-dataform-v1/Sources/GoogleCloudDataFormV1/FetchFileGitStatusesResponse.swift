@@ -176,11 +176,11 @@ public struct FetchFileGitStatusesResponse: Codable, Equatable, GoogleCloudWKT._
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .added: return try container.encode(1)
-        case .deleted: return try container.encode(2)
-        case .modified: return try container.encode(3)
-        case .hasConflicts: return try container.encode(4)
+        case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+        case .added: return try container.encode("ADDED")
+        case .deleted: return try container.encode("DELETED")
+        case .modified: return try container.encode("MODIFIED")
+        case .hasConflicts: return try container.encode("HAS_CONFLICTS")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -162,12 +162,12 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .abandoned: return try container.encode(0)
-        case .done: return try container.encode(1)
-        case .failed: return try container.encode(2)
-        case .propagated: return try container.encode(3)
-        case .propagating: return try container.encode(4)
-        case .unspecified: return try container.encode(5)
+        case .abandoned: return try container.encode("ABANDONED")
+        case .done: return try container.encode("DONE")
+        case .failed: return try container.encode("FAILED")
+        case .propagated: return try container.encode("PROPAGATED")
+        case .propagating: return try container.encode("PROPAGATING")
+        case .unspecified: return try container.encode("UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

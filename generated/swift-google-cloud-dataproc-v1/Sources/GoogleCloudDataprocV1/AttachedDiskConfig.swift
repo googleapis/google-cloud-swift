@@ -161,11 +161,11 @@ public struct AttachedDiskConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .hyperdiskBalanced: return try container.encode(1)
-      case .hyperdiskExtreme: return try container.encode(2)
-      case .hyperdiskMl: return try container.encode(3)
-      case .hyperdiskThroughput: return try container.encode(4)
+      case .unspecified: return try container.encode("DISK_TYPE_UNSPECIFIED")
+      case .hyperdiskBalanced: return try container.encode("HYPERDISK_BALANCED")
+      case .hyperdiskExtreme: return try container.encode("HYPERDISK_EXTREME")
+      case .hyperdiskMl: return try container.encode("HYPERDISK_ML")
+      case .hyperdiskThroughput: return try container.encode("HYPERDISK_THROUGHPUT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

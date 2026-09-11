@@ -114,9 +114,10 @@ public enum BigQuerySchemaModification: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .schemaModificationUnspecified: return try container.encode(0)
-    case .schemaNewColumns: return try container.encode(1)
-    case .schemaRemovedColumns: return try container.encode(2)
+    case .schemaModificationUnspecified:
+      return try container.encode("SCHEMA_MODIFICATION_UNSPECIFIED")
+    case .schemaNewColumns: return try container.encode("SCHEMA_NEW_COLUMNS")
+    case .schemaRemovedColumns: return try container.encode("SCHEMA_REMOVED_COLUMNS")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

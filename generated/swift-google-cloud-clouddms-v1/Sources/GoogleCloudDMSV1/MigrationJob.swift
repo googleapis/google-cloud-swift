@@ -451,10 +451,10 @@ public struct MigrationJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .min: return try container.encode(1)
-        case .optimal: return try container.encode(2)
-        case .max: return try container.encode(3)
+        case .unspecified: return try container.encode("DUMP_PARALLEL_LEVEL_UNSPECIFIED")
+        case .min: return try container.encode("MIN")
+        case .optimal: return try container.encode("OPTIMAL")
+        case .max: return try container.encode("MAX")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -646,22 +646,22 @@ public struct MigrationJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .maintenance: return try container.encode(1)
-      case .draft: return try container.encode(2)
-      case .creating: return try container.encode(3)
-      case .notStarted: return try container.encode(4)
-      case .running: return try container.encode(5)
-      case .failed: return try container.encode(6)
-      case .completed: return try container.encode(7)
-      case .deleting: return try container.encode(8)
-      case .stopping: return try container.encode(9)
-      case .stopped: return try container.encode(10)
-      case .deleted: return try container.encode(11)
-      case .updating: return try container.encode(12)
-      case .starting: return try container.encode(13)
-      case .restarting: return try container.encode(14)
-      case .resuming: return try container.encode(15)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .maintenance: return try container.encode("MAINTENANCE")
+      case .draft: return try container.encode("DRAFT")
+      case .creating: return try container.encode("CREATING")
+      case .notStarted: return try container.encode("NOT_STARTED")
+      case .running: return try container.encode("RUNNING")
+      case .failed: return try container.encode("FAILED")
+      case .completed: return try container.encode("COMPLETED")
+      case .deleting: return try container.encode("DELETING")
+      case .stopping: return try container.encode("STOPPING")
+      case .stopped: return try container.encode("STOPPED")
+      case .deleted: return try container.encode("DELETED")
+      case .updating: return try container.encode("UPDATING")
+      case .starting: return try container.encode("STARTING")
+      case .restarting: return try container.encode("RESTARTING")
+      case .resuming: return try container.encode("RESUMING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -782,12 +782,13 @@ public struct MigrationJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .fullDump: return try container.encode(1)
-      case .cdc: return try container.encode(2)
-      case .promoteInProgress: return try container.encode(3)
-      case .waitingForSourceWritesToStop: return try container.encode(4)
-      case .preparingTheDump: return try container.encode(5)
+      case .unspecified: return try container.encode("PHASE_UNSPECIFIED")
+      case .fullDump: return try container.encode("FULL_DUMP")
+      case .cdc: return try container.encode("CDC")
+      case .promoteInProgress: return try container.encode("PROMOTE_IN_PROGRESS")
+      case .waitingForSourceWritesToStop:
+        return try container.encode("WAITING_FOR_SOURCE_WRITES_TO_STOP")
+      case .preparingTheDump: return try container.encode("PREPARING_THE_DUMP")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -890,9 +891,9 @@ public struct MigrationJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .oneTime: return try container.encode(1)
-      case .continuous: return try container.encode(2)
+      case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .oneTime: return try container.encode("ONE_TIME")
+      case .continuous: return try container.encode("CONTINUOUS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

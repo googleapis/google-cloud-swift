@@ -182,14 +182,14 @@ public struct CommonMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .initializing: return try container.encode(1)
-      case .processing: return try container.encode(2)
-      case .cancelling: return try container.encode(3)
-      case .finalizing: return try container.encode(4)
-      case .successful: return try container.encode(5)
-      case .failed: return try container.encode(6)
-      case .cancelled: return try container.encode(7)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .initializing: return try container.encode("INITIALIZING")
+      case .processing: return try container.encode("PROCESSING")
+      case .cancelling: return try container.encode("CANCELLING")
+      case .finalizing: return try container.encode("FINALIZING")
+      case .successful: return try container.encode("SUCCESSFUL")
+      case .failed: return try container.encode("FAILED")
+      case .cancelled: return try container.encode("CANCELLED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

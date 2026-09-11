@@ -118,10 +118,10 @@ public enum DocumentCreatorDefaultRole: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .documentAdmin: return try container.encode(1)
-    case .documentEditor: return try container.encode(2)
-    case .documentViewer: return try container.encode(3)
+    case .unspecified: return try container.encode("DOCUMENT_CREATOR_DEFAULT_ROLE_UNSPECIFIED")
+    case .documentAdmin: return try container.encode("DOCUMENT_ADMIN")
+    case .documentEditor: return try container.encode("DOCUMENT_EDITOR")
+    case .documentViewer: return try container.encode("DOCUMENT_VIEWER")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

@@ -257,14 +257,14 @@ public struct DataMaskingPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .sha256: return try container.encode(3)
-      case .alwaysNull: return try container.encode(5)
-      case .defaultMaskingValue: return try container.encode(7)
-      case .lastFourCharacters: return try container.encode(9)
-      case .firstFourCharacters: return try container.encode(10)
-      case .emailMask: return try container.encode(12)
-      case .dateYearMask: return try container.encode(13)
+      case .unspecified: return try container.encode("PREDEFINED_EXPRESSION_UNSPECIFIED")
+      case .sha256: return try container.encode("SHA256")
+      case .alwaysNull: return try container.encode("ALWAYS_NULL")
+      case .defaultMaskingValue: return try container.encode("DEFAULT_MASKING_VALUE")
+      case .lastFourCharacters: return try container.encode("LAST_FOUR_CHARACTERS")
+      case .firstFourCharacters: return try container.encode("FIRST_FOUR_CHARACTERS")
+      case .emailMask: return try container.encode("EMAIL_MASK")
+      case .dateYearMask: return try container.encode("DATE_YEAR_MASK")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

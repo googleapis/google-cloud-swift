@@ -194,10 +194,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .allSimilar: return try container.encode(1)
-        case .sameClassSimilar: return try container.encode(2)
-        case .sameClassDissimilar: return try container.encode(3)
+        case .unspecified: return try container.encode("QUERY_TYPE_UNSPECIFIED")
+        case .allSimilar: return try container.encode("ALL_SIMILAR")
+        case .sameClassSimilar: return try container.encode("SAME_CLASS_SIMILAR")
+        case .sameClassDissimilar: return try container.encode("SAME_CLASS_DISSIMILAR")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

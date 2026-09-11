@@ -169,10 +169,10 @@ public struct AuditLogConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .adminRead: return try container.encode(1)
-      case .dataWrite: return try container.encode(2)
-      case .dataRead: return try container.encode(3)
+      case .unspecified: return try container.encode("LOG_TYPE_UNSPECIFIED")
+      case .adminRead: return try container.encode("ADMIN_READ")
+      case .dataWrite: return try container.encode("DATA_WRITE")
+      case .dataRead: return try container.encode("DATA_READ")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

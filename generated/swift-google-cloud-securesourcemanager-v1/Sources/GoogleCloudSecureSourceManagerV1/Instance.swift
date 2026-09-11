@@ -380,12 +380,12 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .creating: return try container.encode(1)
-      case .active: return try container.encode(2)
-      case .deleting: return try container.encode(3)
-      case .paused: return try container.encode(4)
-      case .unknown: return try container.encode(6)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .creating: return try container.encode("CREATING")
+      case .active: return try container.encode("ACTIVE")
+      case .deleting: return try container.encode("DELETING")
+      case .paused: return try container.encode("PAUSED")
+      case .unknown: return try container.encode("UNKNOWN")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -490,9 +490,9 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .pausedCmekUnavailable: return try container.encode(1)
-      case .instanceResuming: return try container.encode(2)
+      case .unspecified: return try container.encode("STATE_NOTE_UNSPECIFIED")
+      case .pausedCmekUnavailable: return try container.encode("PAUSED_CMEK_UNAVAILABLE")
+      case .instanceResuming: return try container.encode("INSTANCE_RESUMING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

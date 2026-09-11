@@ -254,10 +254,10 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleCloudWKT.
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .`none`: return try container.encode(1)
-      case .primary: return try container.encode(2)
-      case .secondary: return try container.encode(3)
+      case .unspecified: return try container.encode("CLUSTER_ROLE_UNSPECIFIED")
+      case .`none`: return try container.encode("NONE")
+      case .primary: return try container.encode("PRIMARY")
+      case .secondary: return try container.encode("SECONDARY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

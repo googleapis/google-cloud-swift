@@ -149,10 +149,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .local: return try container.encode(0)
-        case .organization: return try container.encode(1)
-        case .unspecified: return try container.encode(2)
-        case .specificProjects: return try container.encode(3)
+        case .local: return try container.encode("LOCAL")
+        case .organization: return try container.encode("ORGANIZATION")
+        case .unspecified: return try container.encode("SHARE_TYPE_UNSPECIFIED")
+        case .specificProjects: return try container.encode("SPECIFIC_PROJECTS")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

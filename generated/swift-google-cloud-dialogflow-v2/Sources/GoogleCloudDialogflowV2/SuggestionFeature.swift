@@ -163,13 +163,13 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .articleSuggestion: return try container.encode(1)
-        case .faq: return try container.encode(2)
-        case .smartReply: return try container.encode(3)
-        case .conversationSummarization: return try container.encode(8)
-        case .knowledgeSearch: return try container.encode(14)
-        case .knowledgeAssist: return try container.encode(15)
+        case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+        case .articleSuggestion: return try container.encode("ARTICLE_SUGGESTION")
+        case .faq: return try container.encode("FAQ")
+        case .smartReply: return try container.encode("SMART_REPLY")
+        case .conversationSummarization: return try container.encode("CONVERSATION_SUMMARIZATION")
+        case .knowledgeSearch: return try container.encode("KNOWLEDGE_SEARCH")
+        case .knowledgeAssist: return try container.encode("KNOWLEDGE_ASSIST")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

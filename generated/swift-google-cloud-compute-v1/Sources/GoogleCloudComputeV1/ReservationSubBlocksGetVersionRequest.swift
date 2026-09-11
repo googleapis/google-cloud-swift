@@ -136,9 +136,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .sbomSelectionCurrent: return try container.encode(0)
-        case .sbomSelectionTarget: return try container.encode(1)
-        case .sbomSelectionUnspecified: return try container.encode(2)
+        case .sbomSelectionCurrent: return try container.encode("SBOM_SELECTION_CURRENT")
+        case .sbomSelectionTarget: return try container.encode("SBOM_SELECTION_TARGET")
+        case .sbomSelectionUnspecified: return try container.encode("SBOM_SELECTION_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -311,9 +311,9 @@ public struct Kubernetes: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .role: return try container.encode(1)
-        case .clusterRole: return try container.encode(2)
+        case .unspecified: return try container.encode("KIND_UNSPECIFIED")
+        case .role: return try container.encode("ROLE")
+        case .clusterRole: return try container.encode("CLUSTER_ROLE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -506,10 +506,10 @@ public struct Kubernetes: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .user: return try container.encode(1)
-        case .serviceaccount: return try container.encode(2)
-        case .group: return try container.encode(3)
+        case .unspecified: return try container.encode("AUTH_TYPE_UNSPECIFIED")
+        case .user: return try container.encode("USER")
+        case .serviceaccount: return try container.encode("SERVICEACCOUNT")
+        case .group: return try container.encode("GROUP")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

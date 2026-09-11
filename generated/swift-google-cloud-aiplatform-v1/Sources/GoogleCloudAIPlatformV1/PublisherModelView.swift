@@ -120,10 +120,11 @@
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .basic: return try container.encode(1)
-      case .full: return try container.encode(2)
-      case .publisherModelVersionViewBasic: return try container.encode(3)
+      case .unspecified: return try container.encode("PUBLISHER_MODEL_VIEW_UNSPECIFIED")
+      case .basic: return try container.encode("PUBLISHER_MODEL_VIEW_BASIC")
+      case .full: return try container.encode("PUBLISHER_MODEL_VIEW_FULL")
+      case .publisherModelVersionViewBasic:
+        return try container.encode("PUBLISHER_MODEL_VERSION_VIEW_BASIC")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

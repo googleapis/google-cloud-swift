@@ -211,10 +211,10 @@ public struct VmwareEngineNetwork: Codable, Equatable, GoogleCloudWKT._AnyPackab
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .intranet: return try container.encode(1)
-        case .internet: return try container.encode(2)
-        case .googleCloud: return try container.encode(3)
+        case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+        case .intranet: return try container.encode("INTRANET")
+        case .internet: return try container.encode("INTERNET")
+        case .googleCloud: return try container.encode("GOOGLE_CLOUD")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -340,11 +340,11 @@ public struct VmwareEngineNetwork: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .creating: return try container.encode(1)
-      case .active: return try container.encode(2)
-      case .updating: return try container.encode(3)
-      case .deleting: return try container.encode(4)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .creating: return try container.encode("CREATING")
+      case .active: return try container.encode("ACTIVE")
+      case .updating: return try container.encode("UPDATING")
+      case .deleting: return try container.encode("DELETING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -449,9 +449,9 @@ public struct VmwareEngineNetwork: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .legacy: return try container.encode(1)
-      case .standard: return try container.encode(2)
+      case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .legacy: return try container.encode("LEGACY")
+      case .standard: return try container.encode("STANDARD")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

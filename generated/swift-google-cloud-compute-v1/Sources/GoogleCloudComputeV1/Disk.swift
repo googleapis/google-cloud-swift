@@ -690,9 +690,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .readOnlyMany: return try container.encode(0)
-        case .readWriteMany: return try container.encode(1)
-        case .readWriteSingle: return try container.encode(2)
+        case .readOnlyMany: return try container.encode("READ_ONLY_MANY")
+        case .readWriteMany: return try container.encode("READ_WRITE_MANY")
+        case .readWriteSingle: return try container.encode("READ_WRITE_SINGLE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -797,9 +797,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .arm64: return try container.encode(1)
-        case .x8664: return try container.encode(2)
+        case .unspecified: return try container.encode("ARCHITECTURE_UNSPECIFIED")
+        case .arm64: return try container.encode("ARM64")
+        case .x8664: return try container.encode("X86_64")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -923,12 +923,12 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .creating: return try container.encode(0)
-        case .deleting: return try container.encode(1)
-        case .failed: return try container.encode(2)
-        case .ready: return try container.encode(3)
-        case .restoring: return try container.encode(4)
-        case .unavailable: return try container.encode(5)
+        case .creating: return try container.encode("CREATING")
+        case .deleting: return try container.encode("DELETING")
+        case .failed: return try container.encode("FAILED")
+        case .ready: return try container.encode("READY")
+        case .restoring: return try container.encode("RESTORING")
+        case .unavailable: return try container.encode("UNAVAILABLE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

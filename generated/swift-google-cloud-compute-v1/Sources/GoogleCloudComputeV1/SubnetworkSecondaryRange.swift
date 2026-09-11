@@ -175,9 +175,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .ipv4: return try container.encode(0)
-        case .ipv6: return try container.encode(1)
-        case .unspecified: return try container.encode(2)
+        case .ipv4: return try container.encode("IPV4")
+        case .ipv6: return try container.encode("IPV6")
+        case .unspecified: return try container.encode("IP_VERSION_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

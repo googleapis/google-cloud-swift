@@ -124,11 +124,11 @@ public enum Severity: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .error: return try container.encode(1)
-    case .warning: return try container.encode(2)
-    case .info: return try container.encode(3)
-    case .hint: return try container.encode(4)
+    case .unspecified: return try container.encode("SEVERITY_UNSPECIFIED")
+    case .error: return try container.encode("SEVERITY_ERROR")
+    case .warning: return try container.encode("SEVERITY_WARNING")
+    case .info: return try container.encode("SEVERITY_INFO")
+    case .hint: return try container.encode("SEVERITY_HINT")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

@@ -162,10 +162,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .global: return try container.encode(0)
-        case .localRegion: return try container.encode(1)
-        case .lpGlobal: return try container.encode(2)
-        case .lpLocalRegion: return try container.encode(3)
+        case .global: return try container.encode("GLOBAL")
+        case .localRegion: return try container.encode("LOCAL_REGION")
+        case .lpGlobal: return try container.encode("LP_GLOBAL")
+        case .lpLocalRegion: return try container.encode("LP_LOCAL_REGION")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

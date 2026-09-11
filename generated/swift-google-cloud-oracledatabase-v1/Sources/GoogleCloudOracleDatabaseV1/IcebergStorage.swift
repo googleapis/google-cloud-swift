@@ -202,10 +202,10 @@ public struct IcebergStorage: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .amazonS3: return try container.encode(1)
-      case .googleCloudStorage: return try container.encode(2)
-      case .azureDataLakeStorage: return try container.encode(3)
+      case .unspecified: return try container.encode("STORAGE_TYPE_UNSPECIFIED")
+      case .amazonS3: return try container.encode("AMAZON_S3")
+      case .googleCloudStorage: return try container.encode("GOOGLE_CLOUD_STORAGE")
+      case .azureDataLakeStorage: return try container.encode("AZURE_DATA_LAKE_STORAGE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

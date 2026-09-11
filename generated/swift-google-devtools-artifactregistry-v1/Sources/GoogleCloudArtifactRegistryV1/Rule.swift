@@ -153,9 +153,9 @@ public struct Rule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .allow: return try container.encode(1)
-      case .deny: return try container.encode(2)
+      case .unspecified: return try container.encode("ACTION_UNSPECIFIED")
+      case .allow: return try container.encode("ALLOW")
+      case .deny: return try container.encode("DENY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -252,8 +252,8 @@ public struct Rule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .download: return try container.encode(1)
+      case .unspecified: return try container.encode("OPERATION_UNSPECIFIED")
+      case .download: return try container.encode("DOWNLOAD")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

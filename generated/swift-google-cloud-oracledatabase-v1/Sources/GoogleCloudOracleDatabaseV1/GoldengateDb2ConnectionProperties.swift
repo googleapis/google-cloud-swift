@@ -250,9 +250,9 @@ public struct GoldengateDb2ConnectionProperties: Codable, Equatable, GoogleCloud
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .plain: return try container.encode(1)
-      case .tls: return try container.encode(2)
+      case .unspecified: return try container.encode("DB2_SECURITY_PROTOCOL_UNSPECIFIED")
+      case .plain: return try container.encode("PLAIN")
+      case .tls: return try container.encode("TLS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

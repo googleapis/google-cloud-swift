@@ -238,12 +238,12 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .replace: return try container.encode(1)
-        case .merge: return try container.encode(2)
-        case .rename: return try container.encode(3)
-        case .reportConflict: return try container.encode(4)
-        case .keep: return try container.encode(5)
+        case .unspecified: return try container.encode("MERGE_OPTION_UNSPECIFIED")
+        case .replace: return try container.encode("REPLACE")
+        case .merge: return try container.encode("MERGE")
+        case .rename: return try container.encode("RENAME")
+        case .reportConflict: return try container.encode("REPORT_CONFLICT")
+        case .keep: return try container.encode("KEEP")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

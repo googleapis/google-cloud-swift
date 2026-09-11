@@ -169,8 +169,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .portPairMatchingRemoteLocation: return try container.encode(0)
-        case .portPairUnconstrainedRemoteLocation: return try container.encode(1)
+        case .portPairMatchingRemoteLocation:
+          return try container.encode("PORT_PAIR_MATCHING_REMOTE_LOCATION")
+        case .portPairUnconstrainedRemoteLocation:
+          return try container.encode("PORT_PAIR_UNCONSTRAINED_REMOTE_LOCATION")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -274,8 +276,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .portPairMatchingVlan: return try container.encode(0)
-        case .portPairUnconstrainedVlan: return try container.encode(1)
+        case .portPairMatchingVlan: return try container.encode("PORT_PAIR_MATCHING_VLAN")
+        case .portPairUnconstrainedVlan: return try container.encode("PORT_PAIR_UNCONSTRAINED_VLAN")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

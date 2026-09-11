@@ -304,12 +304,12 @@
           public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .unspecified: return try container.encode(0)
-            case .blockLowAndAbove: return try container.encode(1)
-            case .blockMediumAndAbove: return try container.encode(2)
-            case .blockOnlyHigh: return try container.encode(3)
-            case .blockNone: return try container.encode(4)
-            case .off: return try container.encode(5)
+            case .unspecified: return try container.encode("HARM_BLOCK_THRESHOLD_UNSPECIFIED")
+            case .blockLowAndAbove: return try container.encode("BLOCK_LOW_AND_ABOVE")
+            case .blockMediumAndAbove: return try container.encode("BLOCK_MEDIUM_AND_ABOVE")
+            case .blockOnlyHigh: return try container.encode("BLOCK_ONLY_HIGH")
+            case .blockNone: return try container.encode("BLOCK_NONE")
+            case .off: return try container.encode("OFF")
             case .unknownIntValue(let v): return try container.encode(v)
             case .unknownStringValue(let v): return try container.encode(v)
             }
@@ -502,9 +502,9 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .low: return try container.encode(1)
-          case .high: return try container.encode(2)
+          case .unspecified: return try container.encode("FILTERING_LEVEL_UNSPECIFIED")
+          case .low: return try container.encode("FILTERING_LEVEL_LOW")
+          case .high: return try container.encode("FILTERING_LEVEL_HIGH")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -1413,12 +1413,14 @@
           public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .unspecified: return try container.encode(0)
-            case .adversarialQuery: return try container.encode(1)
-            case .nonAnswerSeekingQuery: return try container.encode(2)
-            case .jailBreakingQuery: return try container.encode(3)
-            case .nonAnswerSeekingQueryV2: return try container.encode(4)
-            case .userDefinedClassificationQuery: return try container.encode(5)
+            case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+            case .adversarialQuery: return try container.encode("ADVERSARIAL_QUERY")
+            case .nonAnswerSeekingQuery: return try container.encode("NON_ANSWER_SEEKING_QUERY")
+            case .jailBreakingQuery: return try container.encode("JAIL_BREAKING_QUERY")
+            case .nonAnswerSeekingQueryV2:
+              return try container.encode("NON_ANSWER_SEEKING_QUERY_V2")
+            case .userDefinedClassificationQuery:
+              return try container.encode("USER_DEFINED_CLASSIFICATION_QUERY")
             case .unknownIntValue(let v): return try container.encode(v)
             case .unknownStringValue(let v): return try container.encode(v)
             }
@@ -1593,9 +1595,9 @@
             public func encode(to encoder: Encoder) throws {
               var container = encoder.singleValueContainer()
               switch self {
-              case .unspecified: return try container.encode(0)
-              case .small: return try container.encode(1)
-              case .large: return try container.encode(2)
+              case .unspecified: return try container.encode("MODEL_TYPE_UNSPECIFIED")
+              case .small: return try container.encode("SMALL")
+              case .large: return try container.encode("LARGE")
               case .unknownIntValue(let v): return try container.encode(v)
               case .unknownStringValue(let v): return try container.encode(v)
               }

@@ -170,11 +170,11 @@ public struct NodeGroupOperationMetadata: Codable, Equatable, GoogleCloudWKT._An
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .create: return try container.encode(1)
-      case .update: return try container.encode(2)
-      case .delete: return try container.encode(3)
-      case .resize: return try container.encode(4)
+      case .unspecified: return try container.encode("NODE_GROUP_OPERATION_TYPE_UNSPECIFIED")
+      case .create: return try container.encode("CREATE")
+      case .update: return try container.encode("UPDATE")
+      case .delete: return try container.encode("DELETE")
+      case .resize: return try container.encode("RESIZE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

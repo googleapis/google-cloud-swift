@@ -241,9 +241,9 @@ public struct ServiceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .privateRangesOnly: return try container.encode(1)
-      case .allTraffic: return try container.encode(2)
+      case .unspecified: return try container.encode("VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED")
+      case .privateRangesOnly: return try container.encode("PRIVATE_RANGES_ONLY")
+      case .allTraffic: return try container.encode("ALL_TRAFFIC")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -356,10 +356,10 @@ public struct ServiceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .allowAll: return try container.encode(1)
-      case .allowInternalOnly: return try container.encode(2)
-      case .allowInternalAndGclb: return try container.encode(3)
+      case .unspecified: return try container.encode("INGRESS_SETTINGS_UNSPECIFIED")
+      case .allowAll: return try container.encode("ALLOW_ALL")
+      case .allowInternalOnly: return try container.encode("ALLOW_INTERNAL_ONLY")
+      case .allowInternalAndGclb: return try container.encode("ALLOW_INTERNAL_AND_GCLB")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -471,9 +471,9 @@ public struct ServiceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .secureAlways: return try container.encode(1)
-      case .secureOptional: return try container.encode(2)
+      case .unspecified: return try container.encode("SECURITY_LEVEL_UNSPECIFIED")
+      case .secureAlways: return try container.encode("SECURE_ALWAYS")
+      case .secureOptional: return try container.encode("SECURE_OPTIONAL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

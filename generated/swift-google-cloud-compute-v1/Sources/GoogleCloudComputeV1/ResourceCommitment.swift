@@ -174,11 +174,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .accelerator: return try container.encode(0)
-        case .localSsd: return try container.encode(1)
-        case .memory: return try container.encode(2)
-        case .unspecified: return try container.encode(3)
-        case .vcpu: return try container.encode(4)
+        case .accelerator: return try container.encode("ACCELERATOR")
+        case .localSsd: return try container.encode("LOCAL_SSD")
+        case .memory: return try container.encode("MEMORY")
+        case .unspecified: return try container.encode("UNSPECIFIED")
+        case .vcpu: return try container.encode("VCPU")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

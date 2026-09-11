@@ -208,10 +208,10 @@ public struct LocationFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .telecommuteExcluded: return try container.encode(1)
-      case .telecommuteAllowed: return try container.encode(2)
-      case .telecommuteJobsExcluded: return try container.encode(3)
+      case .unspecified: return try container.encode("TELECOMMUTE_PREFERENCE_UNSPECIFIED")
+      case .telecommuteExcluded: return try container.encode("TELECOMMUTE_EXCLUDED")
+      case .telecommuteAllowed: return try container.encode("TELECOMMUTE_ALLOWED")
+      case .telecommuteJobsExcluded: return try container.encode("TELECOMMUTE_JOBS_EXCLUDED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

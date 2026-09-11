@@ -145,9 +145,11 @@ public struct Error: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .errorInfoUnspecified: return try container.encode(0)
-      case .imageScanUnavailableInRegion: return try container.encode(1)
-      case .fileStoreClusterUnsupported: return try container.encode(2)
+      case .errorInfoUnspecified: return try container.encode("ERROR_INFO_UNSPECIFIED")
+      case .imageScanUnavailableInRegion:
+        return try container.encode("IMAGE_SCAN_UNAVAILABLE_IN_REGION")
+      case .fileStoreClusterUnsupported:
+        return try container.encode("FILE_STORE_CLUSTER_UNSUPPORTED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

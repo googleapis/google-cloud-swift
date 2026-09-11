@@ -136,13 +136,13 @@ public enum RepairState: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .succeeded: return try container.encode(1)
-    case .cancelled: return try container.encode(2)
-    case .failed: return try container.encode(3)
-    case .inProgress: return try container.encode(4)
-    case .pending: return try container.encode(5)
-    case .aborted: return try container.encode(7)
+    case .unspecified: return try container.encode("REPAIR_STATE_UNSPECIFIED")
+    case .succeeded: return try container.encode("REPAIR_STATE_SUCCEEDED")
+    case .cancelled: return try container.encode("REPAIR_STATE_CANCELLED")
+    case .failed: return try container.encode("REPAIR_STATE_FAILED")
+    case .inProgress: return try container.encode("REPAIR_STATE_IN_PROGRESS")
+    case .pending: return try container.encode("REPAIR_STATE_PENDING")
+    case .aborted: return try container.encode("REPAIR_STATE_ABORTED")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

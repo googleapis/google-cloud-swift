@@ -123,10 +123,10 @@
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .generic: return try container.encode(1)
-      case .media: return try container.encode(2)
-      case .healthcareFhir: return try container.encode(7)
+      case .unspecified: return try container.encode("INDUSTRY_VERTICAL_UNSPECIFIED")
+      case .generic: return try container.encode("GENERIC")
+      case .media: return try container.encode("MEDIA")
+      case .healthcareFhir: return try container.encode("HEALTHCARE_FHIR")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

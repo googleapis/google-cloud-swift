@@ -186,15 +186,16 @@ public struct StatusCondition: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unknown: return try container.encode(0)
-      case .gceStockout: return try container.encode(1)
-      case .gkeServiceAccountDeleted: return try container.encode(2)
-      case .gceQuotaExceeded: return try container.encode(3)
-      case .setByOperator: return try container.encode(4)
-      case .cloudKmsKeyError: return try container.encode(7)
-      case .caExpiring: return try container.encode(9)
-      case .nodeServiceAccountMissingPermissions: return try container.encode(10)
-      case .cloudKmsKeyDestroyed: return try container.encode(11)
+      case .unknown: return try container.encode("UNKNOWN")
+      case .gceStockout: return try container.encode("GCE_STOCKOUT")
+      case .gkeServiceAccountDeleted: return try container.encode("GKE_SERVICE_ACCOUNT_DELETED")
+      case .gceQuotaExceeded: return try container.encode("GCE_QUOTA_EXCEEDED")
+      case .setByOperator: return try container.encode("SET_BY_OPERATOR")
+      case .cloudKmsKeyError: return try container.encode("CLOUD_KMS_KEY_ERROR")
+      case .caExpiring: return try container.encode("CA_EXPIRING")
+      case .nodeServiceAccountMissingPermissions:
+        return try container.encode("NODE_SERVICE_ACCOUNT_MISSING_PERMISSIONS")
+      case .cloudKmsKeyDestroyed: return try container.encode("CLOUD_KMS_KEY_DESTROYED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

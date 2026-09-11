@@ -114,9 +114,9 @@ public enum AuthFailAction: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .redirect: return try container.encode(1)
-    case .unauthorized: return try container.encode(2)
+    case .unspecified: return try container.encode("AUTH_FAIL_ACTION_UNSPECIFIED")
+    case .redirect: return try container.encode("AUTH_FAIL_ACTION_REDIRECT")
+    case .unauthorized: return try container.encode("AUTH_FAIL_ACTION_UNAUTHORIZED")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

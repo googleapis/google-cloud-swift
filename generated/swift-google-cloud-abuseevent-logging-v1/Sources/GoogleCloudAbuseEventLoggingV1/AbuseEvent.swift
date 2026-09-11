@@ -264,13 +264,13 @@ public struct AbuseEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .cryptoMining: return try container.encode(1)
-      case .leakedCredentials: return try container.encode(2)
-      case .phishing: return try container.encode(3)
-      case .malware: return try container.encode(4)
-      case .noAbuse: return try container.encode(5)
-      case .intrusionAttempt: return try container.encode(6)
+      case .unspecified: return try container.encode("DETECTION_TYPE_UNSPECIFIED")
+      case .cryptoMining: return try container.encode("CRYPTO_MINING")
+      case .leakedCredentials: return try container.encode("LEAKED_CREDENTIALS")
+      case .phishing: return try container.encode("PHISHING")
+      case .malware: return try container.encode("MALWARE")
+      case .noAbuse: return try container.encode("NO_ABUSE")
+      case .intrusionAttempt: return try container.encode("INTRUSION_ATTEMPT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -394,12 +394,12 @@ public struct AbuseEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .notify: return try container.encode(1)
-      case .projectSuspension: return try container.encode(2)
-      case .reinstate: return try container.encode(3)
-      case .warn: return try container.encode(4)
-      case .resourceSuspension: return try container.encode(5)
+      case .unspecified: return try container.encode("ACTION_TYPE_UNSPECIFIED")
+      case .notify: return try container.encode("NOTIFY")
+      case .projectSuspension: return try container.encode("PROJECT_SUSPENSION")
+      case .reinstate: return try container.encode("REINSTATE")
+      case .warn: return try container.encode("WARN")
+      case .resourceSuspension: return try container.encode("RESOURCE_SUSPENSION")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -239,11 +239,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .internet: return try container.encode(0)
-        case .intraVpc: return try container.encode(1)
-        case .nonInternet: return try container.encode(2)
-        case .unspecified: return try container.encode(3)
-        case .vpcNetworks: return try container.encode(4)
+        case .internet: return try container.encode("INTERNET")
+        case .intraVpc: return try container.encode("INTRA_VPC")
+        case .nonInternet: return try container.encode("NON_INTERNET")
+        case .unspecified: return try container.encode("UNSPECIFIED")
+        case .vpcNetworks: return try container.encode("VPC_NETWORKS")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -355,11 +355,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .internet: return try container.encode(0)
-        case .intraVpc: return try container.encode(1)
-        case .nonInternet: return try container.encode(2)
-        case .unspecified: return try container.encode(3)
-        case .vpcNetworks: return try container.encode(4)
+        case .internet: return try container.encode("INTERNET")
+        case .intraVpc: return try container.encode("INTRA_VPC")
+        case .nonInternet: return try container.encode("NON_INTERNET")
+        case .unspecified: return try container.encode("UNSPECIFIED")
+        case .vpcNetworks: return try container.encode("VPC_NETWORKS")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -471,11 +471,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .internet: return try container.encode(0)
-        case .intraVpc: return try container.encode(1)
-        case .nonInternet: return try container.encode(2)
-        case .unspecified: return try container.encode(3)
-        case .vpcNetworks: return try container.encode(4)
+        case .internet: return try container.encode("INTERNET")
+        case .intraVpc: return try container.encode("INTRA_VPC")
+        case .nonInternet: return try container.encode("NON_INTERNET")
+        case .unspecified: return try container.encode("UNSPECIFIED")
+        case .vpcNetworks: return try container.encode("VPC_NETWORKS")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -587,11 +587,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .internet: return try container.encode(0)
-        case .intraVpc: return try container.encode(1)
-        case .nonInternet: return try container.encode(2)
-        case .unspecified: return try container.encode(3)
-        case .vpcNetworks: return try container.encode(4)
+        case .internet: return try container.encode("INTERNET")
+        case .intraVpc: return try container.encode("INTRA_VPC")
+        case .nonInternet: return try container.encode("NON_INTERNET")
+        case .unspecified: return try container.encode("UNSPECIFIED")
+        case .vpcNetworks: return try container.encode("VPC_NETWORKS")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

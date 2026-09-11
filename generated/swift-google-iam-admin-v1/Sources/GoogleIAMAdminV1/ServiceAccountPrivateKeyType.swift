@@ -114,9 +114,9 @@ public enum ServiceAccountPrivateKeyType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .typeUnspecified: return try container.encode(0)
-    case .typePkcs12File: return try container.encode(1)
-    case .typeGoogleCredentialsFile: return try container.encode(2)
+    case .typeUnspecified: return try container.encode("TYPE_UNSPECIFIED")
+    case .typePkcs12File: return try container.encode("TYPE_PKCS12_FILE")
+    case .typeGoogleCredentialsFile: return try container.encode("TYPE_GOOGLE_CREDENTIALS_FILE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

@@ -139,13 +139,13 @@
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .hateSpeech: return try container.encode(1)
-      case .dangerousContent: return try container.encode(2)
-      case .harassment: return try container.encode(3)
-      case .sexuallyExplicit: return try container.encode(4)
-      case .civicIntegrity: return try container.encode(5)
-      case .jailbreak: return try container.encode(6)
+      case .unspecified: return try container.encode("HARM_CATEGORY_UNSPECIFIED")
+      case .hateSpeech: return try container.encode("HARM_CATEGORY_HATE_SPEECH")
+      case .dangerousContent: return try container.encode("HARM_CATEGORY_DANGEROUS_CONTENT")
+      case .harassment: return try container.encode("HARM_CATEGORY_HARASSMENT")
+      case .sexuallyExplicit: return try container.encode("HARM_CATEGORY_SEXUALLY_EXPLICIT")
+      case .civicIntegrity: return try container.encode("HARM_CATEGORY_CIVIC_INTEGRITY")
+      case .jailbreak: return try container.encode("HARM_CATEGORY_JAILBREAK")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -196,10 +196,10 @@ public struct LineageOutput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .metadata: return try container.encode(1)
-        case .queryLog: return try container.encode(2)
-        case .script: return try container.encode(3)
+        case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+        case .metadata: return try container.encode("METADATA")
+        case .queryLog: return try container.encode("QUERY_LOG")
+        case .script: return try container.encode("SCRIPT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -392,11 +392,11 @@ public struct LineageOutput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .succeeded: return try container.encode(1)
-          case .failed: return try container.encode(2)
-          case .inProgress: return try container.encode(3)
-          case .skipped: return try container.encode(4)
+          case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+          case .succeeded: return try container.encode("SUCCEEDED")
+          case .failed: return try container.encode("FAILED")
+          case .inProgress: return try container.encode("IN_PROGRESS")
+          case .skipped: return try container.encode("SKIPPED")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -511,9 +511,9 @@ public struct LineageOutput: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .inputIngestion: return try container.encode(1000)
-        case .postprocessing: return try container.encode(2000)
+        case .unspecified: return try container.encode("PROCESSING_STAGE_UNSPECIFIED")
+        case .inputIngestion: return try container.encode("INPUT_INGESTION")
+        case .postprocessing: return try container.encode("POSTPROCESSING")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

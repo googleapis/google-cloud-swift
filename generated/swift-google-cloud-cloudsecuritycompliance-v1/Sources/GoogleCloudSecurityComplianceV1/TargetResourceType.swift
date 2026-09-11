@@ -124,11 +124,13 @@ public enum TargetResourceType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .targetResourceCrmTypeOrg: return try container.encode(1)
-    case .targetResourceCrmTypeFolder: return try container.encode(2)
-    case .targetResourceCrmTypeProject: return try container.encode(3)
-    case .application: return try container.encode(4)
+    case .unspecified: return try container.encode("TARGET_RESOURCE_TYPE_UNSPECIFIED")
+    case .targetResourceCrmTypeOrg: return try container.encode("TARGET_RESOURCE_CRM_TYPE_ORG")
+    case .targetResourceCrmTypeFolder:
+      return try container.encode("TARGET_RESOURCE_CRM_TYPE_FOLDER")
+    case .targetResourceCrmTypeProject:
+      return try container.encode("TARGET_RESOURCE_CRM_TYPE_PROJECT")
+    case .application: return try container.encode("TARGET_RESOURCE_TYPE_APPLICATION")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

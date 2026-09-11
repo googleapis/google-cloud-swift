@@ -119,10 +119,10 @@ public enum HttpAuthorizationHeader: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .systemIdToken: return try container.encode(1)
-    case .userIdToken: return try container.encode(2)
-    case .`none`: return try container.encode(3)
+    case .unspecified: return try container.encode("HTTP_AUTHORIZATION_HEADER_UNSPECIFIED")
+    case .systemIdToken: return try container.encode("SYSTEM_ID_TOKEN")
+    case .userIdToken: return try container.encode("USER_ID_TOKEN")
+    case .`none`: return try container.encode("NONE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

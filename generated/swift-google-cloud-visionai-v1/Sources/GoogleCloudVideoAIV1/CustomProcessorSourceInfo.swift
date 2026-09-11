@@ -296,10 +296,10 @@ public struct CustomProcessorSourceInfo: Codable, Equatable, GoogleCloudWKT._Any
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .vertexAutoml: return try container.encode(1)
-      case .vertexCustom: return try container.encode(2)
-      case .productRecognizer: return try container.encode(3)
+      case .unspecified: return try container.encode("SOURCE_TYPE_UNSPECIFIED")
+      case .vertexAutoml: return try container.encode("VERTEX_AUTOML")
+      case .vertexCustom: return try container.encode("VERTEX_CUSTOM")
+      case .productRecognizer: return try container.encode("PRODUCT_RECOGNIZER")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

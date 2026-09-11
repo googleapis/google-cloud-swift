@@ -249,9 +249,9 @@ public struct ExportInsightsDataRequest: Codable, Equatable, GoogleCloudWKT._Any
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .writeTruncate: return try container.encode(1)
-      case .writeAppend: return try container.encode(2)
+      case .unspecified: return try container.encode("WRITE_DISPOSITION_UNSPECIFIED")
+      case .writeTruncate: return try container.encode("WRITE_TRUNCATE")
+      case .writeAppend: return try container.encode("WRITE_APPEND")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

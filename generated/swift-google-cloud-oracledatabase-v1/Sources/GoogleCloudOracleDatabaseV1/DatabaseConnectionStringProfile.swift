@@ -232,12 +232,12 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleCloudWK
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .high: return try container.encode(1)
-      case .medium: return try container.encode(2)
-      case .low: return try container.encode(3)
-      case .tp: return try container.encode(4)
-      case .tpurgent: return try container.encode(5)
+      case .unspecified: return try container.encode("CONSUMER_GROUP_UNSPECIFIED")
+      case .high: return try container.encode("HIGH")
+      case .medium: return try container.encode("MEDIUM")
+      case .low: return try container.encode("LOW")
+      case .tp: return try container.encode("TP")
+      case .tpurgent: return try container.encode("TPURGENT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -340,9 +340,9 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleCloudWK
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .fqdn: return try container.encode(1)
-      case .ip: return try container.encode(2)
+      case .unspecified: return try container.encode("HOST_FORMAT_UNSPECIFIED")
+      case .fqdn: return try container.encode("FQDN")
+      case .ip: return try container.encode("IP")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -445,9 +445,9 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleCloudWK
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .tcp: return try container.encode(1)
-      case .tcps: return try container.encode(2)
+      case .unspecified: return try container.encode("PROTOCOL_UNSPECIFIED")
+      case .tcp: return try container.encode("TCP")
+      case .tcps: return try container.encode("TCPS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -550,9 +550,9 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleCloudWK
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .direct: return try container.encode(1)
-      case .`indirect`: return try container.encode(2)
+      case .unspecified: return try container.encode("SESSION_MODE_UNSPECIFIED")
+      case .direct: return try container.encode("DIRECT")
+      case .`indirect`: return try container.encode("INDIRECT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -661,10 +661,10 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleCloudWK
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .long: return try container.encode(1)
-      case .ezconnect: return try container.encode(2)
-      case .ezconnectplus: return try container.encode(3)
+      case .unspecified: return try container.encode("SYNTAX_FORMAT_UNSPECIFIED")
+      case .long: return try container.encode("LONG")
+      case .ezconnect: return try container.encode("EZCONNECT")
+      case .ezconnectplus: return try container.encode("EZCONNECTPLUS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -767,9 +767,9 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleCloudWK
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .server: return try container.encode(1)
-      case .mutual: return try container.encode(2)
+      case .unspecified: return try container.encode("TLS_AUTHENTICATION_UNSPECIFIED")
+      case .server: return try container.encode("SERVER")
+      case .mutual: return try container.encode("MUTUAL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

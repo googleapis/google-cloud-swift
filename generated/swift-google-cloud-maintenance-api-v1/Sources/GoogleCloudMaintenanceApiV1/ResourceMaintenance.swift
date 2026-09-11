@@ -311,11 +311,11 @@ public struct ResourceMaintenance: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .scheduled: return try container.encode(1)
-      case .running: return try container.encode(2)
-      case .cancelled: return try container.encode(3)
-      case .succeeded: return try container.encode(4)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .scheduled: return try container.encode("SCHEDULED")
+      case .running: return try container.encode("RUNNING")
+      case .cancelled: return try container.encode("CANCELLED")
+      case .succeeded: return try container.encode("SUCCEEDED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

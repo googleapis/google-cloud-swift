@@ -225,12 +225,12 @@ public struct QuotaOperation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .normal: return try container.encode(1)
-      case .bestEffort: return try container.encode(2)
-      case .checkOnly: return try container.encode(3)
-      case .queryOnly: return try container.encode(4)
-      case .adjustOnly: return try container.encode(5)
+      case .unspecified: return try container.encode("UNSPECIFIED")
+      case .normal: return try container.encode("NORMAL")
+      case .bestEffort: return try container.encode("BEST_EFFORT")
+      case .checkOnly: return try container.encode("CHECK_ONLY")
+      case .queryOnly: return try container.encode("QUERY_ONLY")
+      case .adjustOnly: return try container.encode("ADJUST_ONLY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

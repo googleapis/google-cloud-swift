@@ -158,10 +158,10 @@ public struct SearchGrantsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .hadCreated: return try container.encode(1)
-      case .canApprove: return try container.encode(2)
-      case .hadApproved: return try container.encode(3)
+      case .unspecified: return try container.encode("CALLER_RELATIONSHIP_TYPE_UNSPECIFIED")
+      case .hadCreated: return try container.encode("HAD_CREATED")
+      case .canApprove: return try container.encode("CAN_APPROVE")
+      case .hadApproved: return try container.encode("HAD_APPROVED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

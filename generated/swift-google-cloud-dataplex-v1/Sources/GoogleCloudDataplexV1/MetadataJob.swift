@@ -564,10 +564,10 @@ public struct MetadataJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .full: return try container.encode(1)
-        case .incremental: return try container.encode(2)
-        case .`none`: return try container.encode(3)
+        case .unspecified: return try container.encode("SYNC_MODE_UNSPECIFIED")
+        case .full: return try container.encode("FULL")
+        case .incremental: return try container.encode("INCREMENTAL")
+        case .`none`: return try container.encode("NONE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -681,9 +681,9 @@ public struct MetadataJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .debug: return try container.encode(1)
-        case .info: return try container.encode(2)
+        case .unspecified: return try container.encode("LOG_LEVEL_UNSPECIFIED")
+        case .debug: return try container.encode("DEBUG")
+        case .info: return try container.encode("INFO")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -987,14 +987,14 @@ public struct MetadataJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .queued: return try container.encode(1)
-        case .running: return try container.encode(2)
-        case .canceling: return try container.encode(3)
-        case .canceled: return try container.encode(4)
-        case .succeeded: return try container.encode(5)
-        case .failed: return try container.encode(6)
-        case .succeededWithErrors: return try container.encode(7)
+        case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+        case .queued: return try container.encode("QUEUED")
+        case .running: return try container.encode("RUNNING")
+        case .canceling: return try container.encode("CANCELING")
+        case .canceled: return try container.encode("CANCELED")
+        case .succeeded: return try container.encode("SUCCEEDED")
+        case .failed: return try container.encode("FAILED")
+        case .succeededWithErrors: return try container.encode("SUCCEEDED_WITH_ERRORS")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1108,9 +1108,9 @@ public struct MetadataJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .`import`: return try container.encode(1)
-      case .export: return try container.encode(2)
+      case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .`import`: return try container.encode("IMPORT")
+      case .export: return try container.encode("EXPORT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

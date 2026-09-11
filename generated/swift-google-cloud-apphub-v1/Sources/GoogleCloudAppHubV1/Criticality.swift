@@ -148,11 +148,11 @@ public struct Criticality: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .missionCritical: return try container.encode(1)
-      case .high: return try container.encode(2)
-      case .medium: return try container.encode(3)
-      case .low: return try container.encode(4)
+      case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .missionCritical: return try container.encode("MISSION_CRITICAL")
+      case .high: return try container.encode("HIGH")
+      case .medium: return try container.encode("MEDIUM")
+      case .low: return try container.encode("LOW")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

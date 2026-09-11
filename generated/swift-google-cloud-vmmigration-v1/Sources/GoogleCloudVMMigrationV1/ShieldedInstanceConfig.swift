@@ -149,9 +149,9 @@ public struct ShieldedInstanceConfig: Codable, Equatable, GoogleCloudWKT._AnyPac
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .`true`: return try container.encode(1)
-      case .`false`: return try container.encode(2)
+      case .unspecified: return try container.encode("SECURE_BOOT_UNSPECIFIED")
+      case .`true`: return try container.encode("TRUE")
+      case .`false`: return try container.encode("FALSE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

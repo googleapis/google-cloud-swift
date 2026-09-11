@@ -149,10 +149,10 @@ public struct AccessControlAction: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unknown: return try container.encode(0)
-      case .addPolicyBinding: return try container.encode(1)
-      case .removePolicyBinding: return try container.encode(2)
-      case .replacePolicyBinding: return try container.encode(3)
+      case .unknown: return try container.encode("UNKNOWN")
+      case .addPolicyBinding: return try container.encode("ADD_POLICY_BINDING")
+      case .removePolicyBinding: return try container.encode("REMOVE_POLICY_BINDING")
+      case .replacePolicyBinding: return try container.encode("REPLACE_POLICY_BINDING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

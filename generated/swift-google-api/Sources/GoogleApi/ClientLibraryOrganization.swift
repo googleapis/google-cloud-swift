@@ -143,14 +143,14 @@ public enum ClientLibraryOrganization: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .cloud: return try container.encode(1)
-    case .ads: return try container.encode(2)
-    case .photos: return try container.encode(3)
-    case .streetView: return try container.encode(4)
-    case .shopping: return try container.encode(5)
-    case .geo: return try container.encode(6)
-    case .generativeAi: return try container.encode(7)
+    case .unspecified: return try container.encode("CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED")
+    case .cloud: return try container.encode("CLOUD")
+    case .ads: return try container.encode("ADS")
+    case .photos: return try container.encode("PHOTOS")
+    case .streetView: return try container.encode("STREET_VIEW")
+    case .shopping: return try container.encode("SHOPPING")
+    case .geo: return try container.encode("GEO")
+    case .generativeAi: return try container.encode("GENERATIVE_AI")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

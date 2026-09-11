@@ -113,10 +113,10 @@ public enum LegendAlign: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .auto: return try container.encode(1)
-    case .`left`: return try container.encode(2)
-    case .`right`: return try container.encode(3)
+    case .unspecified: return try container.encode("LEGEND_ALIGN_UNSPECIFIED")
+    case .auto: return try container.encode("AUTO")
+    case .`left`: return try container.encode("LEFT")
+    case .`right`: return try container.encode("RIGHT")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

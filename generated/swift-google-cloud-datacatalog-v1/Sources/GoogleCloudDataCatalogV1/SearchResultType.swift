@@ -124,10 +124,10 @@ public enum SearchResultType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .entry: return try container.encode(1)
-    case .tagTemplate: return try container.encode(2)
-    case .entryGroup: return try container.encode(3)
+    case .unspecified: return try container.encode("SEARCH_RESULT_TYPE_UNSPECIFIED")
+    case .entry: return try container.encode("ENTRY")
+    case .tagTemplate: return try container.encode("TAG_TEMPLATE")
+    case .entryGroup: return try container.encode("ENTRY_GROUP")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

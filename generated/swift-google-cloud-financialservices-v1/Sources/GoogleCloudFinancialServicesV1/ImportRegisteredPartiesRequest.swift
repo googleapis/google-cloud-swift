@@ -157,9 +157,9 @@ public struct ImportRegisteredPartiesRequest: Codable, Equatable, GoogleCloudWKT
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .replace: return try container.encode(1)
-      case .append: return try container.encode(2)
+      case .unspecified: return try container.encode("UPDATE_MODE_UNSPECIFIED")
+      case .replace: return try container.encode("REPLACE")
+      case .append: return try container.encode("APPEND")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

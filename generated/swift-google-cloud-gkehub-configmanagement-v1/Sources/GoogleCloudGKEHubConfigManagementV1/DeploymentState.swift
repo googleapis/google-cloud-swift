@@ -124,11 +124,11 @@ public enum DeploymentState: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .notInstalled: return try container.encode(1)
-    case .installed: return try container.encode(2)
-    case .error: return try container.encode(3)
-    case .pending: return try container.encode(4)
+    case .unspecified: return try container.encode("DEPLOYMENT_STATE_UNSPECIFIED")
+    case .notInstalled: return try container.encode("NOT_INSTALLED")
+    case .installed: return try container.encode("INSTALLED")
+    case .error: return try container.encode("ERROR")
+    case .pending: return try container.encode("PENDING")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

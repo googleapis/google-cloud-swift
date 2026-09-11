@@ -142,10 +142,10 @@ public struct FitDescriptor: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .fit: return try container.encode(1)
-      case .noFit: return try container.encode(2)
-      case .requiresEffort: return try container.encode(3)
+      case .unspecified: return try container.encode("FIT_LEVEL_UNSPECIFIED")
+      case .fit: return try container.encode("FIT")
+      case .noFit: return try container.encode("NO_FIT")
+      case .requiresEffort: return try container.encode("REQUIRES_EFFORT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

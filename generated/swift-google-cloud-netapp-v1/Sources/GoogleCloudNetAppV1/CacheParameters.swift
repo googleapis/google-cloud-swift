@@ -183,11 +183,11 @@ public struct CacheParameters: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .pendingClusterPeering: return try container.encode(1)
-      case .pendingSvmPeering: return try container.encode(2)
-      case .peered: return try container.encode(3)
-      case .error: return try container.encode(4)
+      case .unspecified: return try container.encode("CACHE_STATE_UNSPECIFIED")
+      case .pendingClusterPeering: return try container.encode("PENDING_CLUSTER_PEERING")
+      case .pendingSvmPeering: return try container.encode("PENDING_SVM_PEERING")
+      case .peered: return try container.encode("PEERED")
+      case .error: return try container.encode("ERROR")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

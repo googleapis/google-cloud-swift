@@ -166,12 +166,12 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .deleteAcknowledged: return try container.encode(0)
-        case .unspecified: return try container.encode(1)
-        case .localCancelRequested: return try container.encode(2)
-        case .localDeleteRequested: return try container.encode(3)
-        case .peerCancelRequested: return try container.encode(4)
-        case .peerDeleteRequested: return try container.encode(5)
+        case .deleteAcknowledged: return try container.encode("DELETE_ACKNOWLEDGED")
+        case .unspecified: return try container.encode("DELETE_STATUS_UNSPECIFIED")
+        case .localCancelRequested: return try container.encode("LOCAL_CANCEL_REQUESTED")
+        case .localDeleteRequested: return try container.encode("LOCAL_DELETE_REQUESTED")
+        case .peerCancelRequested: return try container.encode("PEER_CANCEL_REQUESTED")
+        case .peerDeleteRequested: return try container.encode("PEER_DELETE_REQUESTED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -283,10 +283,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .inSync: return try container.encode(0)
-        case .pendingLocalAcknowledment: return try container.encode(1)
-        case .pendingPeerAcknowledgement: return try container.encode(2)
-        case .unspecified: return try container.encode(3)
+        case .inSync: return try container.encode("IN_SYNC")
+        case .pendingLocalAcknowledment: return try container.encode("PENDING_LOCAL_ACKNOWLEDMENT")
+        case .pendingPeerAcknowledgement:
+          return try container.encode("PENDING_PEER_ACKNOWLEDGEMENT")
+        case .unspecified: return try container.encode("UPDATE_STATUS_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

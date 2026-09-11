@@ -174,11 +174,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .highAlarm: return try container.encode(0)
-        case .highWarning: return try container.encode(1)
-        case .lowAlarm: return try container.encode(2)
-        case .lowWarning: return try container.encode(3)
-        case .ok: return try container.encode(4)
+        case .highAlarm: return try container.encode("HIGH_ALARM")
+        case .highWarning: return try container.encode("HIGH_WARNING")
+        case .lowAlarm: return try container.encode("LOW_ALARM")
+        case .lowWarning: return try container.encode("LOW_WARNING")
+        case .ok: return try container.encode("OK")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

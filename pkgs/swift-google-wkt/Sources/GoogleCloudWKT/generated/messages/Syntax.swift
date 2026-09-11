@@ -112,9 +112,9 @@ public enum Syntax: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .proto2: return try container.encode(0)
-    case .proto3: return try container.encode(1)
-    case .editions: return try container.encode(2)
+    case .proto2: return try container.encode("SYNTAX_PROTO2")
+    case .proto3: return try container.encode("SYNTAX_PROTO3")
+    case .editions: return try container.encode("SYNTAX_EDITIONS")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

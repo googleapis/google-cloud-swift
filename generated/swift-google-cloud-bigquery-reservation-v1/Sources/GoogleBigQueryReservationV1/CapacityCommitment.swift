@@ -270,16 +270,16 @@ public struct CapacityCommitment: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .monthly: return try container.encode(2)
-      case .flex: return try container.encode(3)
-      case .annual: return try container.encode(4)
-      case .trial: return try container.encode(5)
-      case .`none`: return try container.encode(6)
-      case .flexFlatRate: return try container.encode(7)
-      case .monthlyFlatRate: return try container.encode(8)
-      case .annualFlatRate: return try container.encode(9)
-      case .threeYear: return try container.encode(10)
+      case .unspecified: return try container.encode("COMMITMENT_PLAN_UNSPECIFIED")
+      case .monthly: return try container.encode("MONTHLY")
+      case .flex: return try container.encode("FLEX")
+      case .annual: return try container.encode("ANNUAL")
+      case .trial: return try container.encode("TRIAL")
+      case .`none`: return try container.encode("NONE")
+      case .flexFlatRate: return try container.encode("FLEX_FLAT_RATE")
+      case .monthlyFlatRate: return try container.encode("MONTHLY_FLAT_RATE")
+      case .annualFlatRate: return try container.encode("ANNUAL_FLAT_RATE")
+      case .threeYear: return try container.encode("THREE_YEAR")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -391,10 +391,10 @@ public struct CapacityCommitment: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .pending: return try container.encode(1)
-      case .active: return try container.encode(2)
-      case .failed: return try container.encode(3)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .pending: return try container.encode("PENDING")
+      case .active: return try container.encode("ACTIVE")
+      case .failed: return try container.encode("FAILED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -426,16 +426,19 @@ public struct ImportJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .rsaOaep3072Sha1Aes256: return try container.encode(1)
-      case .rsaOaep4096Sha1Aes256: return try container.encode(2)
-      case .rsaOaep3072Sha256Aes256: return try container.encode(3)
-      case .rsaOaep4096Sha256Aes256: return try container.encode(4)
-      case .rsaOaep3072Sha256: return try container.encode(5)
-      case .rsaOaep4096Sha256: return try container.encode(6)
-      case .hpkeKemMlKem768HkdfSha256Aes256Gcm: return try container.encode(8)
-      case .hpkeKemMlKem1024HkdfSha256Aes256Gcm: return try container.encode(9)
-      case .hpkeKemXwingHkdfSha256Aes256Gcm: return try container.encode(10)
+      case .unspecified: return try container.encode("IMPORT_METHOD_UNSPECIFIED")
+      case .rsaOaep3072Sha1Aes256: return try container.encode("RSA_OAEP_3072_SHA1_AES_256")
+      case .rsaOaep4096Sha1Aes256: return try container.encode("RSA_OAEP_4096_SHA1_AES_256")
+      case .rsaOaep3072Sha256Aes256: return try container.encode("RSA_OAEP_3072_SHA256_AES_256")
+      case .rsaOaep4096Sha256Aes256: return try container.encode("RSA_OAEP_4096_SHA256_AES_256")
+      case .rsaOaep3072Sha256: return try container.encode("RSA_OAEP_3072_SHA256")
+      case .rsaOaep4096Sha256: return try container.encode("RSA_OAEP_4096_SHA256")
+      case .hpkeKemMlKem768HkdfSha256Aes256Gcm:
+        return try container.encode("HPKE_KEM_ML_KEM_768_HKDF_SHA256_AES_256_GCM")
+      case .hpkeKemMlKem1024HkdfSha256Aes256Gcm:
+        return try container.encode("HPKE_KEM_ML_KEM_1024_HKDF_SHA256_AES_256_GCM")
+      case .hpkeKemXwingHkdfSha256Aes256Gcm:
+        return try container.encode("HPKE_KEM_XWING_HKDF_SHA256_AES_256_GCM")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -559,10 +562,10 @@ public struct ImportJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .pendingGeneration: return try container.encode(1)
-      case .active: return try container.encode(2)
-      case .expired: return try container.encode(3)
+      case .unspecified: return try container.encode("IMPORT_JOB_STATE_UNSPECIFIED")
+      case .pendingGeneration: return try container.encode("PENDING_GENERATION")
+      case .active: return try container.encode("ACTIVE")
+      case .expired: return try container.encode("EXPIRED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

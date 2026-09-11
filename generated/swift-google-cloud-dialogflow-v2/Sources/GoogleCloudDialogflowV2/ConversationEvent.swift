@@ -249,13 +249,13 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .conversationStarted: return try container.encode(1)
-        case .conversationFinished: return try container.encode(2)
-        case .humanInterventionNeeded: return try container.encode(3)
-        case .unrecoverableError: return try container.encode(4)
-        case .newMessage: return try container.encode(5)
-        case .newRecognitionResult: return try container.encode(7)
+        case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+        case .conversationStarted: return try container.encode("CONVERSATION_STARTED")
+        case .conversationFinished: return try container.encode("CONVERSATION_FINISHED")
+        case .humanInterventionNeeded: return try container.encode("HUMAN_INTERVENTION_NEEDED")
+        case .unrecoverableError: return try container.encode("UNRECOVERABLE_ERROR")
+        case .newMessage: return try container.encode("NEW_MESSAGE")
+        case .newRecognitionResult: return try container.encode("NEW_RECOGNITION_RESULT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

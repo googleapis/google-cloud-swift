@@ -339,11 +339,11 @@ public struct DocumentSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .optionalOnce: return try container.encode(1)
-          case .optionalMultiple: return try container.encode(2)
-          case .requiredOnce: return try container.encode(3)
-          case .requiredMultiple: return try container.encode(4)
+          case .unspecified: return try container.encode("OCCURRENCE_TYPE_UNSPECIFIED")
+          case .optionalOnce: return try container.encode("OPTIONAL_ONCE")
+          case .optionalMultiple: return try container.encode("OPTIONAL_MULTIPLE")
+          case .requiredOnce: return try container.encode("REQUIRED_ONCE")
+          case .requiredMultiple: return try container.encode("REQUIRED_MULTIPLE")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -448,9 +448,9 @@ public struct DocumentSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .extract: return try container.encode(1)
-          case .derive: return try container.encode(2)
+          case .unspecified: return try container.encode("METHOD_UNSPECIFIED")
+          case .extract: return try container.encode("EXTRACT")
+          case .derive: return try container.encode("DERIVE")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }

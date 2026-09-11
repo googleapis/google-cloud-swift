@@ -173,12 +173,12 @@ public struct PickTimeSeriesFilter: Codable, Equatable, GoogleCloudWKT._AnyPacka
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .mean: return try container.encode(1)
-      case .max: return try container.encode(2)
-      case .min: return try container.encode(3)
-      case .sum: return try container.encode(4)
-      case .latest: return try container.encode(5)
+      case .unspecified: return try container.encode("METHOD_UNSPECIFIED")
+      case .mean: return try container.encode("METHOD_MEAN")
+      case .max: return try container.encode("METHOD_MAX")
+      case .min: return try container.encode("METHOD_MIN")
+      case .sum: return try container.encode("METHOD_SUM")
+      case .latest: return try container.encode("METHOD_LATEST")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -282,9 +282,9 @@ public struct PickTimeSeriesFilter: Codable, Equatable, GoogleCloudWKT._AnyPacka
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .top: return try container.encode(1)
-      case .bottom: return try container.encode(2)
+      case .unspecified: return try container.encode("DIRECTION_UNSPECIFIED")
+      case .top: return try container.encode("TOP")
+      case .bottom: return try container.encode("BOTTOM")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

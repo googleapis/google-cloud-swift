@@ -267,10 +267,10 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .`default`: return try container.encode(1)
-          case .enabled: return try container.encode(2)
-          case .disabled: return try container.encode(3)
+          case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+          case .`default`: return try container.encode("DEFAULT")
+          case .enabled: return try container.encode("ENABLED")
+          case .disabled: return try container.encode("DISABLED")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -388,10 +388,11 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .latestStats: return try container.encode(1)
-          case .mostRecentSnapshotStats: return try container.encode(2)
-          case .previousImportFeaturesStats: return try container.encode(3)
+          case .unspecified: return try container.encode("BASELINE_UNSPECIFIED")
+          case .latestStats: return try container.encode("LATEST_STATS")
+          case .mostRecentSnapshotStats: return try container.encode("MOST_RECENT_SNAPSHOT_STATS")
+          case .previousImportFeaturesStats:
+            return try container.encode("PREVIOUS_IMPORT_FEATURES_STATS")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }

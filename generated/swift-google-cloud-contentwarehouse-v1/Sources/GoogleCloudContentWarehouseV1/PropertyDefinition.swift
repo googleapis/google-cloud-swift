@@ -355,13 +355,13 @@ public struct PropertyDefinition: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .highest: return try container.encode(1)
-      case .higher: return try container.encode(2)
-      case .high: return try container.encode(3)
-      case .medium: return try container.encode(4)
-      case .low: return try container.encode(5)
-      case .lowest: return try container.encode(6)
+      case .unspecified: return try container.encode("RETRIEVAL_IMPORTANCE_UNSPECIFIED")
+      case .highest: return try container.encode("HIGHEST")
+      case .higher: return try container.encode("HIGHER")
+      case .high: return try container.encode("HIGH")
+      case .medium: return try container.encode("MEDIUM")
+      case .low: return try container.encode("LOW")
+      case .lowest: return try container.encode("LOWEST")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

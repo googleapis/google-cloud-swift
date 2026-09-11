@@ -392,12 +392,12 @@ public struct HttpOperationDetails: Codable, Equatable, GoogleCloudWKT._AnyPacka
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .bool: return try container.encode(1)
-      case .integer: return try container.encode(2)
-      case .float: return try container.encode(3)
-      case .string: return try container.encode(4)
-      case .uuid: return try container.encode(5)
+      case .unspecified: return try container.encode("DATA_TYPE_UNSPECIFIED")
+      case .bool: return try container.encode("BOOL")
+      case .integer: return try container.encode("INTEGER")
+      case .float: return try container.encode("FLOAT")
+      case .string: return try container.encode("STRING")
+      case .uuid: return try container.encode("UUID")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

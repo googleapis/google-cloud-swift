@@ -282,11 +282,11 @@ public struct ProbingDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .reachable: return try container.encode(1)
-      case .unreachable: return try container.encode(2)
-      case .reachabilityInconsistent: return try container.encode(3)
-      case .undetermined: return try container.encode(4)
+      case .unspecified: return try container.encode("PROBING_RESULT_UNSPECIFIED")
+      case .reachable: return try container.encode("REACHABLE")
+      case .unreachable: return try container.encode("UNREACHABLE")
+      case .reachabilityInconsistent: return try container.encode("REACHABILITY_INCONSISTENT")
+      case .undetermined: return try container.encode("UNDETERMINED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -390,9 +390,9 @@ public struct ProbingDetails: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .permissionDenied: return try container.encode(1)
-      case .noSourceLocation: return try container.encode(2)
+      case .unspecified: return try container.encode("PROBING_ABORT_CAUSE_UNSPECIFIED")
+      case .permissionDenied: return try container.encode("PERMISSION_DENIED")
+      case .noSourceLocation: return try container.encode("NO_SOURCE_LOCATION")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

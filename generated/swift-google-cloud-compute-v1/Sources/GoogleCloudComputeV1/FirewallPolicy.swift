@@ -307,9 +307,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .rdmaRocePolicy: return try container.encode(0)
-        case .ullPolicy: return try container.encode(1)
-        case .vpcPolicy: return try container.encode(2)
+        case .rdmaRocePolicy: return try container.encode("RDMA_ROCE_POLICY")
+        case .ullPolicy: return try container.encode("ULL_POLICY")
+        case .vpcPolicy: return try container.encode("VPC_POLICY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -184,14 +184,15 @@ public struct GoogleServiceInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .iap: return try container.encode(1)
-      case .gfeProxyOrHealthCheckProber: return try container.encode(2)
-      case .cloudDns: return try container.encode(3)
-      case .googleApi: return try container.encode(4)
-      case .googleApiPsc: return try container.encode(5)
-      case .googleApiVpcSc: return try container.encode(6)
-      case .serverlessVpcAccess: return try container.encode(7)
+      case .unspecified: return try container.encode("GOOGLE_SERVICE_TYPE_UNSPECIFIED")
+      case .iap: return try container.encode("IAP")
+      case .gfeProxyOrHealthCheckProber:
+        return try container.encode("GFE_PROXY_OR_HEALTH_CHECK_PROBER")
+      case .cloudDns: return try container.encode("CLOUD_DNS")
+      case .googleApi: return try container.encode("GOOGLE_API")
+      case .googleApiPsc: return try container.encode("GOOGLE_API_PSC")
+      case .googleApiVpcSc: return try container.encode("GOOGLE_API_VPC_SC")
+      case .serverlessVpcAccess: return try container.encode("SERVERLESS_VPC_ACCESS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

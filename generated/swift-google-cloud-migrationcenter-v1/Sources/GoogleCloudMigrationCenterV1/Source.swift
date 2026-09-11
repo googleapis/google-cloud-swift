@@ -180,11 +180,11 @@ public struct Source: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unknown: return try container.encode(0)
-      case .upload: return try container.encode(1)
-      case .guestOsScan: return try container.encode(2)
-      case .inventoryScan: return try container.encode(3)
-      case .custom: return try container.encode(4)
+      case .unknown: return try container.encode("SOURCE_TYPE_UNKNOWN")
+      case .upload: return try container.encode("SOURCE_TYPE_UPLOAD")
+      case .guestOsScan: return try container.encode("SOURCE_TYPE_GUEST_OS_SCAN")
+      case .inventoryScan: return try container.encode("SOURCE_TYPE_INVENTORY_SCAN")
+      case .custom: return try container.encode("SOURCE_TYPE_CUSTOM")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -294,10 +294,10 @@ public struct Source: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .active: return try container.encode(1)
-      case .deleting: return try container.encode(2)
-      case .invalid: return try container.encode(3)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .active: return try container.encode("ACTIVE")
+      case .deleting: return try container.encode("DELETING")
+      case .invalid: return try container.encode("INVALID")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

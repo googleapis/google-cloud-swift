@@ -242,12 +242,12 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .unknown: return try container.encode(1)
-        case .healthy: return try container.encode(2)
-        case .unhealthy: return try container.encode(3)
-        case .draining: return try container.encode(4)
-        case .timeout: return try container.encode(5)
+        case .unspecified: return try container.encode("LIVENESS_STATE_UNSPECIFIED")
+        case .unknown: return try container.encode("UNKNOWN")
+        case .healthy: return try container.encode("HEALTHY")
+        case .unhealthy: return try container.encode("UNHEALTHY")
+        case .draining: return try container.encode("DRAINING")
+        case .timeout: return try container.encode("TIMEOUT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -358,9 +358,9 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .resident: return try container.encode(1)
-      case .`dynamic`: return try container.encode(2)
+      case .unspecified: return try container.encode("UNSPECIFIED")
+      case .resident: return try container.encode("RESIDENT")
+      case .`dynamic`: return try container.encode("DYNAMIC")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

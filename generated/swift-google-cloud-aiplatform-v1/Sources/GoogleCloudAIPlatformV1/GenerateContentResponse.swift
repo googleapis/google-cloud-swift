@@ -210,13 +210,13 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .safety: return try container.encode(1)
-          case .other: return try container.encode(2)
-          case .blocklist: return try container.encode(3)
-          case .prohibitedContent: return try container.encode(4)
-          case .modelArmor: return try container.encode(5)
-          case .jailbreak: return try container.encode(6)
+          case .unspecified: return try container.encode("BLOCKED_REASON_UNSPECIFIED")
+          case .safety: return try container.encode("SAFETY")
+          case .other: return try container.encode("OTHER")
+          case .blocklist: return try container.encode("BLOCKLIST")
+          case .prohibitedContent: return try container.encode("PROHIBITED_CONTENT")
+          case .modelArmor: return try container.encode("MODEL_ARMOR")
+          case .jailbreak: return try container.encode("JAILBREAK")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -401,11 +401,11 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .onDemand: return try container.encode(1)
-          case .provisionedThroughput: return try container.encode(2)
-          case .onDemandPriority: return try container.encode(3)
-          case .onDemandFlex: return try container.encode(4)
+          case .unspecified: return try container.encode("TRAFFIC_TYPE_UNSPECIFIED")
+          case .onDemand: return try container.encode("ON_DEMAND")
+          case .provisionedThroughput: return try container.encode("PROVISIONED_THROUGHPUT")
+          case .onDemandPriority: return try container.encode("ON_DEMAND_PRIORITY")
+          case .onDemandFlex: return try container.encode("ON_DEMAND_FLEX")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }

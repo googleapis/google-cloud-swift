@@ -155,11 +155,11 @@ public struct EkmMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .fortanix: return try container.encode(1)
-      case .futurex: return try container.encode(2)
-      case .thales: return try container.encode(3)
-      case .virtru: return try container.encode(4)
+      case .unspecified: return try container.encode("EKM_SOLUTION_UNSPECIFIED")
+      case .fortanix: return try container.encode("FORTANIX")
+      case .futurex: return try container.encode("FUTUREX")
+      case .thales: return try container.encode("THALES")
+      case .virtru: return try container.encode("VIRTRU")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

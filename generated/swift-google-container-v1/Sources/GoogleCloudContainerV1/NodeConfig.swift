@@ -415,9 +415,9 @@ public struct NodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .standardEncryption: return try container.encode(1)
-      case .ephemeralKeyEncryption: return try container.encode(2)
+      case .unspecified: return try container.encode("LOCAL_SSD_ENCRYPTION_MODE_UNSPECIFIED")
+      case .standardEncryption: return try container.encode("STANDARD_ENCRYPTION")
+      case .ephemeralKeyEncryption: return try container.encode("EPHEMERAL_KEY_ENCRYPTION")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -523,9 +523,9 @@ public struct NodeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .v1: return try container.encode(1)
-      case .v2: return try container.encode(2)
+      case .unspecified: return try container.encode("EFFECTIVE_CGROUP_MODE_UNSPECIFIED")
+      case .v1: return try container.encode("EFFECTIVE_CGROUP_MODE_V1")
+      case .v2: return try container.encode("EFFECTIVE_CGROUP_MODE_V2")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -968,10 +968,10 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .inProgress: return try container.encode(1)
-          case .failed: return try container.encode(2)
-          case .succeeded: return try container.encode(3)
+          case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+          case .inProgress: return try container.encode("IN_PROGRESS")
+          case .failed: return try container.encode("FAILED")
+          case .succeeded: return try container.encode("SUCCEEDED")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -1154,12 +1154,14 @@
           public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .unspecified: return try container.encode(0)
-            case .adversarialQuery: return try container.encode(1)
-            case .nonAnswerSeekingQuery: return try container.encode(2)
-            case .jailBreakingQuery: return try container.encode(3)
-            case .nonAnswerSeekingQueryV2: return try container.encode(4)
-            case .userDefinedClassificationQuery: return try container.encode(5)
+            case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+            case .adversarialQuery: return try container.encode("ADVERSARIAL_QUERY")
+            case .nonAnswerSeekingQuery: return try container.encode("NON_ANSWER_SEEKING_QUERY")
+            case .jailBreakingQuery: return try container.encode("JAIL_BREAKING_QUERY")
+            case .nonAnswerSeekingQueryV2:
+              return try container.encode("NON_ANSWER_SEEKING_QUERY_V2")
+            case .userDefinedClassificationQuery:
+              return try container.encode("USER_DEFINED_CLASSIFICATION_QUERY")
             case .unknownIntValue(let v): return try container.encode(v)
             case .unknownStringValue(let v): return try container.encode(v)
             }
@@ -1297,11 +1299,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .inProgress: return try container.encode(1)
-        case .failed: return try container.encode(2)
-        case .succeeded: return try container.encode(3)
-        case .streaming: return try container.encode(4)
+        case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+        case .inProgress: return try container.encode("IN_PROGRESS")
+        case .failed: return try container.encode("FAILED")
+        case .succeeded: return try container.encode("SUCCEEDED")
+        case .streaming: return try container.encode("STREAMING")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1490,18 +1492,21 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .adversarialQueryIgnored: return try container.encode(1)
-        case .nonAnswerSeekingQueryIgnored: return try container.encode(2)
-        case .outOfDomainQueryIgnored: return try container.encode(3)
-        case .potentialPolicyViolation: return try container.encode(4)
-        case .noRelevantContent: return try container.encode(5)
-        case .jailBreakingQueryIgnored: return try container.encode(6)
-        case .customerPolicyViolation: return try container.encode(7)
-        case .nonAnswerSeekingQueryIgnoredV2: return try container.encode(8)
-        case .lowGroundedAnswer: return try container.encode(9)
-        case .userDefinedClassificationQueryIgnored: return try container.encode(10)
-        case .unhelpfulAnswer: return try container.encode(11)
+        case .unspecified: return try container.encode("ANSWER_SKIPPED_REASON_UNSPECIFIED")
+        case .adversarialQueryIgnored: return try container.encode("ADVERSARIAL_QUERY_IGNORED")
+        case .nonAnswerSeekingQueryIgnored:
+          return try container.encode("NON_ANSWER_SEEKING_QUERY_IGNORED")
+        case .outOfDomainQueryIgnored: return try container.encode("OUT_OF_DOMAIN_QUERY_IGNORED")
+        case .potentialPolicyViolation: return try container.encode("POTENTIAL_POLICY_VIOLATION")
+        case .noRelevantContent: return try container.encode("NO_RELEVANT_CONTENT")
+        case .jailBreakingQueryIgnored: return try container.encode("JAIL_BREAKING_QUERY_IGNORED")
+        case .customerPolicyViolation: return try container.encode("CUSTOMER_POLICY_VIOLATION")
+        case .nonAnswerSeekingQueryIgnoredV2:
+          return try container.encode("NON_ANSWER_SEEKING_QUERY_IGNORED_V2")
+        case .lowGroundedAnswer: return try container.encode("LOW_GROUNDED_ANSWER")
+        case .userDefinedClassificationQueryIgnored:
+          return try container.encode("USER_DEFINED_CLASSIFICATION_QUERY_IGNORED")
+        case .unhelpfulAnswer: return try container.encode("UNHELPFUL_ANSWER")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -205,8 +205,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .ipv4Ipv6: return try container.encode(0)
-        case .ipv4Only: return try container.encode(1)
+        case .ipv4Ipv6: return try container.encode("IPV4_IPV6")
+        case .ipv4Only: return try container.encode("IPV4_ONLY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -306,8 +306,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .active: return try container.encode(0)
-        case .inactive: return try container.encode(1)
+        case .active: return try container.encode("ACTIVE")
+        case .inactive: return try container.encode("INACTIVE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -420,9 +420,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .consensus: return try container.encode(0)
-        case .independent: return try container.encode(1)
-        case .unspecified: return try container.encode(2)
+        case .consensus: return try container.encode("CONSENSUS")
+        case .independent: return try container.encode("INDEPENDENT")
+        case .unspecified: return try container.encode("UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

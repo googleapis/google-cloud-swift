@@ -184,12 +184,12 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .interval10Min: return try container.encode(0)
-        case .interval15Min: return try container.encode(1)
-        case .interval1Min: return try container.encode(2)
-        case .interval30Sec: return try container.encode(3)
-        case .interval5Min: return try container.encode(4)
-        case .interval5Sec: return try container.encode(5)
+        case .interval10Min: return try container.encode("INTERVAL_10_MIN")
+        case .interval15Min: return try container.encode("INTERVAL_15_MIN")
+        case .interval1Min: return try container.encode("INTERVAL_1_MIN")
+        case .interval30Sec: return try container.encode("INTERVAL_30_SEC")
+        case .interval5Min: return try container.encode("INTERVAL_5_MIN")
+        case .interval5Sec: return try container.encode("INTERVAL_5_SEC")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -291,9 +291,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .customMetadata: return try container.encode(0)
-        case .excludeAllMetadata: return try container.encode(1)
-        case .includeAllMetadata: return try container.encode(2)
+        case .customMetadata: return try container.encode("CUSTOM_METADATA")
+        case .excludeAllMetadata: return try container.encode("EXCLUDE_ALL_METADATA")
+        case .includeAllMetadata: return try container.encode("INCLUDE_ALL_METADATA")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

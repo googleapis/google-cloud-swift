@@ -146,9 +146,9 @@ public struct AutoTranscriptionConfig: Codable, Equatable, GoogleCloudWKT._AnyPa
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .`async`: return try container.encode(1)
-      case .sync: return try container.encode(2)
+      case .unspecified: return try container.encode("DISPLAY_TIMING_UNSPECIFIED")
+      case .`async`: return try container.encode("ASYNC")
+      case .sync: return try container.encode("SYNC")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -260,10 +260,10 @@ public struct AutoTranscriptionConfig: Codable, Equatable, GoogleCloudWKT._AnyPa
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .lowLatency: return try container.encode(1)
-      case .balancedQuality: return try container.encode(2)
-      case .improvedQuality: return try container.encode(3)
+      case .unspecified: return try container.encode("QUALITY_PRESET_UNSPECIFIED")
+      case .lowLatency: return try container.encode("LOW_LATENCY")
+      case .balancedQuality: return try container.encode("BALANCED_QUALITY")
+      case .improvedQuality: return try container.encode("IMPROVED_QUALITY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

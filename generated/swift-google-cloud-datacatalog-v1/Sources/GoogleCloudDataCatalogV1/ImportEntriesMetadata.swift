@@ -160,11 +160,11 @@ public struct ImportEntriesMetadata: Codable, Equatable, GoogleCloudWKT._AnyPack
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .importQueued: return try container.encode(1)
-      case .importInProgress: return try container.encode(2)
-      case .importDone: return try container.encode(3)
-      case .importObsolete: return try container.encode(4)
+      case .unspecified: return try container.encode("IMPORT_STATE_UNSPECIFIED")
+      case .importQueued: return try container.encode("IMPORT_QUEUED")
+      case .importInProgress: return try container.encode("IMPORT_IN_PROGRESS")
+      case .importDone: return try container.encode("IMPORT_DONE")
+      case .importObsolete: return try container.encode("IMPORT_OBSOLETE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

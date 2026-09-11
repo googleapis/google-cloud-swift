@@ -244,16 +244,17 @@ public struct Replication: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .creating: return try container.encode(1)
-      case .ready: return try container.encode(2)
-      case .updating: return try container.encode(3)
-      case .deleting: return try container.encode(5)
-      case .error: return try container.encode(6)
-      case .pendingClusterPeering: return try container.encode(8)
-      case .pendingSvmPeering: return try container.encode(9)
-      case .pendingRemoteResync: return try container.encode(10)
-      case .externallyManagedReplication: return try container.encode(11)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .creating: return try container.encode("CREATING")
+      case .ready: return try container.encode("READY")
+      case .updating: return try container.encode("UPDATING")
+      case .deleting: return try container.encode("DELETING")
+      case .error: return try container.encode("ERROR")
+      case .pendingClusterPeering: return try container.encode("PENDING_CLUSTER_PEERING")
+      case .pendingSvmPeering: return try container.encode("PENDING_SVM_PEERING")
+      case .pendingRemoteResync: return try container.encode("PENDING_REMOTE_RESYNC")
+      case .externallyManagedReplication:
+        return try container.encode("EXTERNALLY_MANAGED_REPLICATION")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -357,9 +358,9 @@ public struct Replication: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .source: return try container.encode(1)
-      case .destination: return try container.encode(2)
+      case .unspecified: return try container.encode("REPLICATION_ROLE_UNSPECIFIED")
+      case .source: return try container.encode("SOURCE")
+      case .destination: return try container.encode("DESTINATION")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -470,10 +471,10 @@ public struct Replication: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .every10Minutes: return try container.encode(1)
-      case .hourly: return try container.encode(2)
-      case .daily: return try container.encode(3)
+      case .unspecified: return try container.encode("REPLICATION_SCHEDULE_UNSPECIFIED")
+      case .every10Minutes: return try container.encode("EVERY_10_MINUTES")
+      case .hourly: return try container.encode("HOURLY")
+      case .daily: return try container.encode("DAILY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -614,15 +615,15 @@ public struct Replication: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .preparing: return try container.encode(1)
-      case .mirrored: return try container.encode(2)
-      case .stopped: return try container.encode(3)
-      case .transferring: return try container.encode(4)
-      case .baselineTransferring: return try container.encode(5)
-      case .aborted: return try container.encode(6)
-      case .externallyManaged: return try container.encode(7)
-      case .pendingPeering: return try container.encode(8)
+      case .unspecified: return try container.encode("MIRROR_STATE_UNSPECIFIED")
+      case .preparing: return try container.encode("PREPARING")
+      case .mirrored: return try container.encode("MIRRORED")
+      case .stopped: return try container.encode("STOPPED")
+      case .transferring: return try container.encode("TRANSFERRING")
+      case .baselineTransferring: return try container.encode("BASELINE_TRANSFERRING")
+      case .aborted: return try container.encode("ABORTED")
+      case .externallyManaged: return try container.encode("EXTERNALLY_MANAGED")
+      case .pendingPeering: return try container.encode("PENDING_PEERING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -739,11 +740,11 @@ public struct Replication: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .migration: return try container.encode(1)
-      case .continuousReplication: return try container.encode(2)
-      case .onpremReplication: return try container.encode(3)
-      case .reverseOnpremReplication: return try container.encode(4)
+      case .unspecified: return try container.encode("HYBRID_REPLICATION_TYPE_UNSPECIFIED")
+      case .migration: return try container.encode("MIGRATION")
+      case .continuousReplication: return try container.encode("CONTINUOUS_REPLICATION")
+      case .onpremReplication: return try container.encode("ONPREM_REPLICATION")
+      case .reverseOnpremReplication: return try container.encode("REVERSE_ONPREM_REPLICATION")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

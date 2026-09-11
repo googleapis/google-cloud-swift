@@ -245,9 +245,10 @@ public struct ServerTlsPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .allowInvalidOrMissingClientCert: return try container.encode(1)
-        case .rejectInvalid: return try container.encode(2)
+        case .unspecified: return try container.encode("CLIENT_VALIDATION_MODE_UNSPECIFIED")
+        case .allowInvalidOrMissingClientCert:
+          return try container.encode("ALLOW_INVALID_OR_MISSING_CLIENT_CERT")
+        case .rejectInvalid: return try container.encode("REJECT_INVALID")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

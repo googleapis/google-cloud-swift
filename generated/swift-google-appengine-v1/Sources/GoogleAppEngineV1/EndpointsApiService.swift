@@ -167,9 +167,9 @@ public struct EndpointsApiService: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecifiedRolloutStrategy: return try container.encode(0)
-      case .fixed: return try container.encode(1)
-      case .managed: return try container.encode(2)
+      case .unspecifiedRolloutStrategy: return try container.encode("UNSPECIFIED_ROLLOUT_STRATEGY")
+      case .fixed: return try container.encode("FIXED")
+      case .managed: return try container.encode("MANAGED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

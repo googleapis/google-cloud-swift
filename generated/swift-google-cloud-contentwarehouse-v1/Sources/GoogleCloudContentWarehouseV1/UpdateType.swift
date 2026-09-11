@@ -141,13 +141,17 @@ public enum UpdateType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .replace: return try container.encode(1)
-    case .merge: return try container.encode(2)
-    case .insertPropertiesByNames: return try container.encode(3)
-    case .replacePropertiesByNames: return try container.encode(4)
-    case .deletePropertiesByNames: return try container.encode(5)
-    case .mergeAndReplaceOrInsertPropertiesByNames: return try container.encode(6)
+    case .unspecified: return try container.encode("UPDATE_TYPE_UNSPECIFIED")
+    case .replace: return try container.encode("UPDATE_TYPE_REPLACE")
+    case .merge: return try container.encode("UPDATE_TYPE_MERGE")
+    case .insertPropertiesByNames:
+      return try container.encode("UPDATE_TYPE_INSERT_PROPERTIES_BY_NAMES")
+    case .replacePropertiesByNames:
+      return try container.encode("UPDATE_TYPE_REPLACE_PROPERTIES_BY_NAMES")
+    case .deletePropertiesByNames:
+      return try container.encode("UPDATE_TYPE_DELETE_PROPERTIES_BY_NAMES")
+    case .mergeAndReplaceOrInsertPropertiesByNames:
+      return try container.encode("UPDATE_TYPE_MERGE_AND_REPLACE_OR_INSERT_PROPERTIES_BY_NAMES")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

@@ -237,12 +237,12 @@ public struct Case: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .new: return try container.encode(1)
-      case .inProgressGoogleSupport: return try container.encode(2)
-      case .actionRequired: return try container.encode(3)
-      case .solutionProvided: return try container.encode(4)
-      case .closed: return try container.encode(5)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .new: return try container.encode("NEW")
+      case .inProgressGoogleSupport: return try container.encode("IN_PROGRESS_GOOGLE_SUPPORT")
+      case .actionRequired: return try container.encode("ACTION_REQUIRED")
+      case .solutionProvided: return try container.encode("SOLUTION_PROVIDED")
+      case .closed: return try container.encode("CLOSED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -366,12 +366,12 @@ public struct Case: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .p0: return try container.encode(1)
-      case .p1: return try container.encode(2)
-      case .p2: return try container.encode(3)
-      case .p3: return try container.encode(4)
-      case .p4: return try container.encode(5)
+      case .unspecified: return try container.encode("PRIORITY_UNSPECIFIED")
+      case .p0: return try container.encode("P0")
+      case .p1: return try container.encode("P1")
+      case .p2: return try container.encode("P2")
+      case .p3: return try container.encode("P3")
+      case .p4: return try container.encode("P4")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

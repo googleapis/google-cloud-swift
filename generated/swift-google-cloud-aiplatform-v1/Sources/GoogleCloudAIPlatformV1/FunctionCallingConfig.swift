@@ -171,11 +171,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .auto: return try container.encode(1)
-        case .any: return try container.encode(2)
-        case .`none`: return try container.encode(3)
-        case .validated: return try container.encode(5)
+        case .unspecified: return try container.encode("MODE_UNSPECIFIED")
+        case .auto: return try container.encode("AUTO")
+        case .any: return try container.encode("ANY")
+        case .`none`: return try container.encode("NONE")
+        case .validated: return try container.encode("VALIDATED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

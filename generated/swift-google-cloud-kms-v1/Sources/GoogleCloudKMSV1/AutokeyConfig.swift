@@ -187,11 +187,11 @@ public struct AutokeyConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .active: return try container.encode(1)
-      case .keyProjectDeleted: return try container.encode(2)
-      case .uninitialized: return try container.encode(3)
-      case .keyProjectPermissionDenied: return try container.encode(4)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .active: return try container.encode("ACTIVE")
+      case .keyProjectDeleted: return try container.encode("KEY_PROJECT_DELETED")
+      case .uninitialized: return try container.encode("UNINITIALIZED")
+      case .keyProjectPermissionDenied: return try container.encode("KEY_PROJECT_PERMISSION_DENIED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -319,10 +319,10 @@ public struct AutokeyConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .dedicatedKeyProject: return try container.encode(1)
-      case .resourceProject: return try container.encode(2)
-      case .disabled: return try container.encode(3)
+      case .unspecified: return try container.encode("KEY_PROJECT_RESOLUTION_MODE_UNSPECIFIED")
+      case .dedicatedKeyProject: return try container.encode("DEDICATED_KEY_PROJECT")
+      case .resourceProject: return try container.encode("RESOURCE_PROJECT")
+      case .disabled: return try container.encode("DISABLED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

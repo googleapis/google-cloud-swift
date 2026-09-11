@@ -150,11 +150,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .chipError: return try container.encode(1)
-        case .performance: return try container.encode(2)
-        case .silentDataCorruption: return try container.encode(3)
-        case .unrecoverableGpuError: return try container.encode(4)
+        case .unspecified: return try container.encode("BEHAVIOR_UNSPECIFIED")
+        case .chipError: return try container.encode("CHIP_ERROR")
+        case .performance: return try container.encode("PERFORMANCE")
+        case .silentDataCorruption: return try container.encode("SILENT_DATA_CORRUPTION")
+        case .unrecoverableGpuError: return try container.encode("UNRECOVERABLE_GPU_ERROR")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

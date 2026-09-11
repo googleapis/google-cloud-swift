@@ -174,8 +174,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .external: return try container.encode(0)
-        case .`internal`: return try container.encode(1)
+        case .external: return try container.encode("EXTERNAL")
+        case .`internal`: return try container.encode("INTERNAL")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -294,10 +294,13 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .delegation: return try container.encode(0)
-        case .externalIpv6ForwardingRuleCreation: return try container.encode(1)
-        case .externalIpv6SubnetworkCreation: return try container.encode(2)
-        case .internalIpv6SubnetworkCreation: return try container.encode(3)
+        case .delegation: return try container.encode("DELEGATION")
+        case .externalIpv6ForwardingRuleCreation:
+          return try container.encode("EXTERNAL_IPV6_FORWARDING_RULE_CREATION")
+        case .externalIpv6SubnetworkCreation:
+          return try container.encode("EXTERNAL_IPV6_SUBNETWORK_CREATION")
+        case .internalIpv6SubnetworkCreation:
+          return try container.encode("INTERNAL_IPV6_SUBNETWORK_CREATION")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -394,8 +397,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .active: return try container.encode(0)
-        case .inactive: return try container.encode(1)
+        case .active: return try container.encode("ACTIVE")
+        case .inactive: return try container.encode("INACTIVE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

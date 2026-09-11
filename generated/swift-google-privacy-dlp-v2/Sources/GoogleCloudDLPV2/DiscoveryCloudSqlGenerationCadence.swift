@@ -178,9 +178,10 @@ public struct DiscoveryCloudSqlGenerationCadence: Codable, Equatable, GoogleClou
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .sqlSchemaModificationUnspecified: return try container.encode(0)
-        case .newColumns: return try container.encode(1)
-        case .removedColumns: return try container.encode(2)
+        case .sqlSchemaModificationUnspecified:
+          return try container.encode("SQL_SCHEMA_MODIFICATION_UNSPECIFIED")
+        case .newColumns: return try container.encode("NEW_COLUMNS")
+        case .removedColumns: return try container.encode("REMOVED_COLUMNS")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

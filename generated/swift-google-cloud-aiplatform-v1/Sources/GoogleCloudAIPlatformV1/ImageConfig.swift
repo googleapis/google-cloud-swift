@@ -200,10 +200,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .allowAll: return try container.encode(1)
-        case .allowAdult: return try container.encode(2)
-        case .allowNone: return try container.encode(3)
+        case .unspecified: return try container.encode("PERSON_GENERATION_UNSPECIFIED")
+        case .allowAll: return try container.encode("ALLOW_ALL")
+        case .allowAdult: return try container.encode("ALLOW_ADULT")
+        case .allowNone: return try container.encode("ALLOW_NONE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

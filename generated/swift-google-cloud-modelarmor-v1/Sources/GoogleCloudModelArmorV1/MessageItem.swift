@@ -145,10 +145,10 @@ public struct MessageItem: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .info: return try container.encode(1)
-      case .warning: return try container.encode(2)
-      case .error: return try container.encode(3)
+      case .unspecified: return try container.encode("MESSAGE_TYPE_UNSPECIFIED")
+      case .info: return try container.encode("INFO")
+      case .warning: return try container.encode("WARNING")
+      case .error: return try container.encode("ERROR")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

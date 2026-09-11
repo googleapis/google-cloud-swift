@@ -118,10 +118,10 @@ public enum PromotionalOrderType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .promotionalTypeUnspecified: return try container.encode(0)
-    case .newUpgrade: return try container.encode(1)
-    case .transfer: return try container.encode(2)
-    case .promotionSwitch: return try container.encode(3)
+    case .promotionalTypeUnspecified: return try container.encode("PROMOTIONAL_TYPE_UNSPECIFIED")
+    case .newUpgrade: return try container.encode("NEW_UPGRADE")
+    case .transfer: return try container.encode("TRANSFER")
+    case .promotionSwitch: return try container.encode("PROMOTION_SWITCH")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

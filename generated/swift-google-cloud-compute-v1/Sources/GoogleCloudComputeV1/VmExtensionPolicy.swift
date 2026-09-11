@@ -199,9 +199,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .active: return try container.encode(0)
-        case .deleting: return try container.encode(1)
-        case .unspecified: return try container.encode(2)
+        case .active: return try container.encode("ACTIVE")
+        case .deleting: return try container.encode("DELETING")
+        case .unspecified: return try container.encode("STATE_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -130,12 +130,12 @@ public enum DashboardType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .curated: return try container.encode(1)
-    case .`private`: return try container.encode(2)
-    case .`public`: return try container.encode(3)
-    case .custom: return try container.encode(4)
-    case .marketplace: return try container.encode(5)
+    case .unspecified: return try container.encode("DASHBOARD_TYPE_UNSPECIFIED")
+    case .curated: return try container.encode("CURATED")
+    case .`private`: return try container.encode("PRIVATE")
+    case .`public`: return try container.encode("PUBLIC")
+    case .custom: return try container.encode("CUSTOM")
+    case .marketplace: return try container.encode("MARKETPLACE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

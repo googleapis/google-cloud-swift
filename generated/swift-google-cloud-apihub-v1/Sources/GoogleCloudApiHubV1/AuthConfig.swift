@@ -336,12 +336,12 @@ public struct AuthConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .query: return try container.encode(1)
-        case .header: return try container.encode(2)
-        case .path: return try container.encode(3)
-        case .body: return try container.encode(4)
-        case .cookie: return try container.encode(5)
+        case .unspecified: return try container.encode("HTTP_ELEMENT_LOCATION_UNSPECIFIED")
+        case .query: return try container.encode("QUERY")
+        case .header: return try container.encode("HEADER")
+        case .path: return try container.encode("PATH")
+        case .body: return try container.encode("BODY")
+        case .cookie: return try container.encode("COOKIE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

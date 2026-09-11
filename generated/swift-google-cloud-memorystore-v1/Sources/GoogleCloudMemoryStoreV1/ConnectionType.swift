@@ -118,10 +118,10 @@ public enum ConnectionType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .discovery: return try container.encode(1)
-    case .primary: return try container.encode(2)
-    case .reader: return try container.encode(3)
+    case .unspecified: return try container.encode("CONNECTION_TYPE_UNSPECIFIED")
+    case .discovery: return try container.encode("CONNECTION_TYPE_DISCOVERY")
+    case .primary: return try container.encode("CONNECTION_TYPE_PRIMARY")
+    case .reader: return try container.encode("CONNECTION_TYPE_READER")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

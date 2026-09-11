@@ -206,13 +206,13 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .attachReadOnly: return try container.encode(0)
-        case .blank: return try container.encode(1)
-        case .customImage: return try container.encode(2)
-        case .`default`: return try container.encode(3)
-        case .doNotInclude: return try container.encode(4)
-        case .sourceImage: return try container.encode(5)
-        case .sourceImageFamily: return try container.encode(6)
+        case .attachReadOnly: return try container.encode("ATTACH_READ_ONLY")
+        case .blank: return try container.encode("BLANK")
+        case .customImage: return try container.encode("CUSTOM_IMAGE")
+        case .`default`: return try container.encode("DEFAULT")
+        case .doNotInclude: return try container.encode("DO_NOT_INCLUDE")
+        case .sourceImage: return try container.encode("SOURCE_IMAGE")
+        case .sourceImageFamily: return try container.encode("SOURCE_IMAGE_FAMILY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

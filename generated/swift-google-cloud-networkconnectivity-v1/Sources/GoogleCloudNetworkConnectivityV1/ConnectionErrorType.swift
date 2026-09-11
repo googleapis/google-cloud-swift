@@ -119,10 +119,10 @@ public enum ConnectionErrorType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .errorInternal: return try container.encode(1)
-    case .errorConsumerSide: return try container.encode(2)
-    case .errorProducerSide: return try container.encode(3)
+    case .unspecified: return try container.encode("CONNECTION_ERROR_TYPE_UNSPECIFIED")
+    case .errorInternal: return try container.encode("ERROR_INTERNAL")
+    case .errorConsumerSide: return try container.encode("ERROR_CONSUMER_SIDE")
+    case .errorProducerSide: return try container.encode("ERROR_PRODUCER_SIDE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

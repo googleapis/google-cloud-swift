@@ -191,11 +191,11 @@ public struct Cvssv3: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .network: return try container.encode(1)
-      case .adjacent: return try container.encode(2)
-      case .local: return try container.encode(3)
-      case .physical: return try container.encode(4)
+      case .unspecified: return try container.encode("ATTACK_VECTOR_UNSPECIFIED")
+      case .network: return try container.encode("ATTACK_VECTOR_NETWORK")
+      case .adjacent: return try container.encode("ATTACK_VECTOR_ADJACENT")
+      case .local: return try container.encode("ATTACK_VECTOR_LOCAL")
+      case .physical: return try container.encode("ATTACK_VECTOR_PHYSICAL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -305,9 +305,9 @@ public struct Cvssv3: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .low: return try container.encode(1)
-      case .high: return try container.encode(2)
+      case .unspecified: return try container.encode("ATTACK_COMPLEXITY_UNSPECIFIED")
+      case .low: return try container.encode("ATTACK_COMPLEXITY_LOW")
+      case .high: return try container.encode("ATTACK_COMPLEXITY_HIGH")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -424,10 +424,10 @@ public struct Cvssv3: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .`none`: return try container.encode(1)
-      case .low: return try container.encode(2)
-      case .high: return try container.encode(3)
+      case .unspecified: return try container.encode("PRIVILEGES_REQUIRED_UNSPECIFIED")
+      case .`none`: return try container.encode("PRIVILEGES_REQUIRED_NONE")
+      case .low: return try container.encode("PRIVILEGES_REQUIRED_LOW")
+      case .high: return try container.encode("PRIVILEGES_REQUIRED_HIGH")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -533,9 +533,9 @@ public struct Cvssv3: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .`none`: return try container.encode(1)
-      case .`required`: return try container.encode(2)
+      case .unspecified: return try container.encode("USER_INTERACTION_UNSPECIFIED")
+      case .`none`: return try container.encode("USER_INTERACTION_NONE")
+      case .`required`: return try container.encode("USER_INTERACTION_REQUIRED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -641,9 +641,9 @@ public struct Cvssv3: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .unchanged: return try container.encode(1)
-      case .changed: return try container.encode(2)
+      case .unspecified: return try container.encode("SCOPE_UNSPECIFIED")
+      case .unchanged: return try container.encode("SCOPE_UNCHANGED")
+      case .changed: return try container.encode("SCOPE_CHANGED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -754,10 +754,10 @@ public struct Cvssv3: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .high: return try container.encode(1)
-      case .low: return try container.encode(2)
-      case .`none`: return try container.encode(3)
+      case .unspecified: return try container.encode("IMPACT_UNSPECIFIED")
+      case .high: return try container.encode("IMPACT_HIGH")
+      case .low: return try container.encode("IMPACT_LOW")
+      case .`none`: return try container.encode("IMPACT_NONE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

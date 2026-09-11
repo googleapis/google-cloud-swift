@@ -142,9 +142,9 @@ public struct AutoMlImageObjectDetectionMetadata: Codable, Equatable, GoogleClou
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .budgetReached: return try container.encode(1)
-      case .modelConverged: return try container.encode(2)
+      case .unspecified: return try container.encode("SUCCESSFUL_STOP_REASON_UNSPECIFIED")
+      case .budgetReached: return try container.encode("BUDGET_REACHED")
+      case .modelConverged: return try container.encode("MODEL_CONVERGED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

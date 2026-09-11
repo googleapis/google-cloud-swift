@@ -219,12 +219,12 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .applying: return try container.encode(0)
-        case .deleting: return try container.encode(1)
-        case .effective: return try container.encode(2)
-        case .`none`: return try container.encode(3)
-        case .unapplied: return try container.encode(4)
-        case .unappliedDeletion: return try container.encode(5)
+        case .applying: return try container.encode("APPLYING")
+        case .deleting: return try container.encode("DELETING")
+        case .effective: return try container.encode("EFFECTIVE")
+        case .`none`: return try container.encode("NONE")
+        case .unapplied: return try container.encode("UNAPPLIED")
+        case .unappliedDeletion: return try container.encode("UNAPPLIED_DELETION")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

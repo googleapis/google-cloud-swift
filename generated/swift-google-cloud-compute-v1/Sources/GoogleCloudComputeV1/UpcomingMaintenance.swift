@@ -252,23 +252,26 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .failureDisk: return try container.encode(0)
-        case .failureGpu: return try container.encode(1)
-        case .failureGpuMultipleFaultyHostsCustomerReported: return try container.encode(2)
-        case .failureGpuNvlinkSwitchCustomerReported: return try container.encode(3)
-        case .failureGpuTemperature: return try container.encode(4)
-        case .failureGpuXid: return try container.encode(5)
-        case .failureInfra: return try container.encode(6)
-        case .failureInterface: return try container.encode(7)
-        case .failureMemory: return try container.encode(8)
-        case .failureNetwork: return try container.encode(9)
-        case .failureNvlink: return try container.encode(10)
-        case .failureRedundantHardwareFault: return try container.encode(11)
-        case .failureTpu: return try container.encode(12)
-        case .infrastructureRelocation: return try container.encode(13)
-        case .maintenanceReasonUnknown: return try container.encode(14)
-        case .plannedNetworkUpdate: return try container.encode(15)
-        case .plannedUpdate: return try container.encode(16)
+        case .failureDisk: return try container.encode("FAILURE_DISK")
+        case .failureGpu: return try container.encode("FAILURE_GPU")
+        case .failureGpuMultipleFaultyHostsCustomerReported:
+          return try container.encode("FAILURE_GPU_MULTIPLE_FAULTY_HOSTS_CUSTOMER_REPORTED")
+        case .failureGpuNvlinkSwitchCustomerReported:
+          return try container.encode("FAILURE_GPU_NVLINK_SWITCH_CUSTOMER_REPORTED")
+        case .failureGpuTemperature: return try container.encode("FAILURE_GPU_TEMPERATURE")
+        case .failureGpuXid: return try container.encode("FAILURE_GPU_XID")
+        case .failureInfra: return try container.encode("FAILURE_INFRA")
+        case .failureInterface: return try container.encode("FAILURE_INTERFACE")
+        case .failureMemory: return try container.encode("FAILURE_MEMORY")
+        case .failureNetwork: return try container.encode("FAILURE_NETWORK")
+        case .failureNvlink: return try container.encode("FAILURE_NVLINK")
+        case .failureRedundantHardwareFault:
+          return try container.encode("FAILURE_REDUNDANT_HARDWARE_FAULT")
+        case .failureTpu: return try container.encode("FAILURE_TPU")
+        case .infrastructureRelocation: return try container.encode("INFRASTRUCTURE_RELOCATION")
+        case .maintenanceReasonUnknown: return try container.encode("MAINTENANCE_REASON_UNKNOWN")
+        case .plannedNetworkUpdate: return try container.encode("PLANNED_NETWORK_UPDATE")
+        case .plannedUpdate: return try container.encode("PLANNED_UPDATE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -373,9 +376,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .ongoing: return try container.encode(0)
-        case .pending: return try container.encode(1)
-        case .unknown: return try container.encode(2)
+        case .ongoing: return try container.encode("ONGOING")
+        case .pending: return try container.encode("PENDING")
+        case .unknown: return try container.encode("UNKNOWN")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -489,10 +492,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .multiple: return try container.encode(0)
-        case .scheduled: return try container.encode(1)
-        case .unknownType: return try container.encode(2)
-        case .unscheduled: return try container.encode(3)
+        case .multiple: return try container.encode("MULTIPLE")
+        case .scheduled: return try container.encode("SCHEDULED")
+        case .unknownType: return try container.encode("UNKNOWN_TYPE")
+        case .unscheduled: return try container.encode("UNSCHEDULED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

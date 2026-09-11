@@ -576,10 +576,10 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .squaredL2Distance: return try container.encode(1)
-          case .cosineDistance: return try container.encode(2)
-          case .dotProductDistance: return try container.encode(3)
+          case .unspecified: return try container.encode("DISTANCE_MEASURE_TYPE_UNSPECIFIED")
+          case .squaredL2Distance: return try container.encode("SQUARED_L2_DISTANCE")
+          case .cosineDistance: return try container.encode("COSINE_DISTANCE")
+          case .dotProductDistance: return try container.encode("DOT_PRODUCT_DISTANCE")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -908,9 +908,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .project: return try container.encode(1)
-        case .featureView: return try container.encode(2)
+        case .unspecified: return try container.encode("SERVICE_AGENT_TYPE_UNSPECIFIED")
+        case .project: return try container.encode("SERVICE_AGENT_TYPE_PROJECT")
+        case .featureView: return try container.encode("SERVICE_AGENT_TYPE_FEATURE_VIEW")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

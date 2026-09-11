@@ -178,14 +178,18 @@ public struct ProvisionDeploymentGroupOperationMetadata: Codable, Equatable, Goo
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .validatingDeploymentGroup: return try container.encode(1)
-      case .associatingDeploymentsToDeploymentGroup: return try container.encode(2)
-      case .provisioningDeploymentUnits: return try container.encode(3)
-      case .disassociatingDeploymentsFromDeploymentGroup: return try container.encode(4)
-      case .succeeded: return try container.encode(5)
-      case .failed: return try container.encode(6)
-      case .deprovisioningDeploymentUnits: return try container.encode(7)
+      case .unspecified: return try container.encode("PROVISION_DEPLOYMENT_GROUP_STEP_UNSPECIFIED")
+      case .validatingDeploymentGroup: return try container.encode("VALIDATING_DEPLOYMENT_GROUP")
+      case .associatingDeploymentsToDeploymentGroup:
+        return try container.encode("ASSOCIATING_DEPLOYMENTS_TO_DEPLOYMENT_GROUP")
+      case .provisioningDeploymentUnits:
+        return try container.encode("PROVISIONING_DEPLOYMENT_UNITS")
+      case .disassociatingDeploymentsFromDeploymentGroup:
+        return try container.encode("DISASSOCIATING_DEPLOYMENTS_FROM_DEPLOYMENT_GROUP")
+      case .succeeded: return try container.encode("SUCCEEDED")
+      case .failed: return try container.encode("FAILED")
+      case .deprovisioningDeploymentUnits:
+        return try container.encode("DEPROVISIONING_DEPLOYMENT_UNITS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

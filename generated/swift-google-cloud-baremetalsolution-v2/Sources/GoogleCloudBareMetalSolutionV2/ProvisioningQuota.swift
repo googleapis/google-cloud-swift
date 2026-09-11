@@ -248,10 +248,10 @@ public struct ProvisioningQuota: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .server: return try container.encode(1)
-      case .storage: return try container.encode(2)
-      case .network: return try container.encode(3)
+      case .unspecified: return try container.encode("ASSET_TYPE_UNSPECIFIED")
+      case .server: return try container.encode("ASSET_TYPE_SERVER")
+      case .storage: return try container.encode("ASSET_TYPE_STORAGE")
+      case .network: return try container.encode("ASSET_TYPE_NETWORK")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

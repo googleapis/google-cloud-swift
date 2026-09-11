@@ -1439,10 +1439,10 @@ public struct AlertPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .inactive: return try container.encode(1)
-        case .active: return try container.encode(2)
-        case .noOp: return try container.encode(3)
+        case .unspecified: return try container.encode("EVALUATION_MISSING_DATA_UNSPECIFIED")
+        case .inactive: return try container.encode("EVALUATION_MISSING_DATA_INACTIVE")
+        case .active: return try container.encode("EVALUATION_MISSING_DATA_ACTIVE")
+        case .noOp: return try container.encode("EVALUATION_MISSING_DATA_NO_OP")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1700,9 +1700,9 @@ public struct AlertPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .opened: return try container.encode(1)
-        case .closed: return try container.encode(3)
+        case .unspecified: return try container.encode("NOTIFICATION_PROMPT_UNSPECIFIED")
+        case .opened: return try container.encode("OPENED")
+        case .closed: return try container.encode("CLOSED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1828,10 +1828,10 @@ public struct AlertPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .combineUnspecified: return try container.encode(0)
-      case .and: return try container.encode(1)
-      case .or: return try container.encode(2)
-      case .andWithMatchingResource: return try container.encode(3)
+      case .combineUnspecified: return try container.encode("COMBINE_UNSPECIFIED")
+      case .and: return try container.encode("AND")
+      case .or: return try container.encode("OR")
+      case .andWithMatchingResource: return try container.encode("AND_WITH_MATCHING_RESOURCE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -1944,10 +1944,10 @@ public struct AlertPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .critical: return try container.encode(1)
-      case .error: return try container.encode(2)
-      case .warning: return try container.encode(3)
+      case .unspecified: return try container.encode("SEVERITY_UNSPECIFIED")
+      case .critical: return try container.encode("CRITICAL")
+      case .error: return try container.encode("ERROR")
+      case .warning: return try container.encode("WARNING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

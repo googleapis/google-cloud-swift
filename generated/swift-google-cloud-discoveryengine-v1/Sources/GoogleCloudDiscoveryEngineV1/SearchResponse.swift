@@ -914,17 +914,19 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .adversarialQueryIgnored: return try container.encode(1)
-          case .nonSummarySeekingQueryIgnored: return try container.encode(2)
-          case .outOfDomainQueryIgnored: return try container.encode(3)
-          case .potentialPolicyViolation: return try container.encode(4)
-          case .llmAddonNotEnabled: return try container.encode(5)
-          case .noRelevantContent: return try container.encode(6)
-          case .jailBreakingQueryIgnored: return try container.encode(7)
-          case .customerPolicyViolation: return try container.encode(8)
-          case .nonSummarySeekingQueryIgnoredV2: return try container.encode(9)
-          case .timeOut: return try container.encode(10)
+          case .unspecified: return try container.encode("SUMMARY_SKIPPED_REASON_UNSPECIFIED")
+          case .adversarialQueryIgnored: return try container.encode("ADVERSARIAL_QUERY_IGNORED")
+          case .nonSummarySeekingQueryIgnored:
+            return try container.encode("NON_SUMMARY_SEEKING_QUERY_IGNORED")
+          case .outOfDomainQueryIgnored: return try container.encode("OUT_OF_DOMAIN_QUERY_IGNORED")
+          case .potentialPolicyViolation: return try container.encode("POTENTIAL_POLICY_VIOLATION")
+          case .llmAddonNotEnabled: return try container.encode("LLM_ADDON_NOT_ENABLED")
+          case .noRelevantContent: return try container.encode("NO_RELEVANT_CONTENT")
+          case .jailBreakingQueryIgnored: return try container.encode("JAIL_BREAKING_QUERY_IGNORED")
+          case .customerPolicyViolation: return try container.encode("CUSTOMER_POLICY_VIOLATION")
+          case .nonSummarySeekingQueryIgnoredV2:
+            return try container.encode("NON_SUMMARY_SEEKING_QUERY_IGNORED_V2")
+          case .timeOut: return try container.encode("TIME_OUT")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -1244,12 +1246,12 @@
             public func encode(to encoder: Encoder) throws {
               var container = encoder.singleValueContainer()
               switch self {
-              case .unspecified: return try container.encode(0)
-              case .equals: return try container.encode(1)
-              case .lessThanEquals: return try container.encode(2)
-              case .lessThan: return try container.encode(3)
-              case .greaterThanEquals: return try container.encode(4)
-              case .greaterThan: return try container.encode(5)
+              case .unspecified: return try container.encode("COMPARISON_UNSPECIFIED")
+              case .equals: return try container.encode("EQUALS")
+              case .lessThanEquals: return try container.encode("LESS_THAN_EQUALS")
+              case .lessThan: return try container.encode("LESS_THAN")
+              case .greaterThanEquals: return try container.encode("GREATER_THAN_EQUALS")
+              case .greaterThan: return try container.encode("GREATER_THAN")
               case .unknownIntValue(let v): return try container.encode(v)
               case .unknownStringValue(let v): return try container.encode(v)
               }
@@ -1693,9 +1695,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .disabled: return try container.encode(1)
-        case .enabled: return try container.encode(2)
+        case .unspecified: return try container.encode("SEMANTIC_STATE_UNSPECIFIED")
+        case .disabled: return try container.encode("DISABLED")
+        case .enabled: return try container.encode("ENABLED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -254,9 +254,9 @@ public struct SessionEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .sparkSql: return try container.encode(1)
-        case .bigquery: return try container.encode(2)
+        case .unspecified: return try container.encode("ENGINE_UNSPECIFIED")
+        case .sparkSql: return try container.encode("SPARK_SQL")
+        case .bigquery: return try container.encode("BIGQUERY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -383,11 +383,11 @@ public struct SessionEvent: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .start: return try container.encode(1)
-      case .stop: return try container.encode(2)
-      case .query: return try container.encode(3)
-      case .create: return try container.encode(4)
+      case .unspecified: return try container.encode("EVENT_TYPE_UNSPECIFIED")
+      case .start: return try container.encode("START")
+      case .stop: return try container.encode("STOP")
+      case .query: return try container.encode("QUERY")
+      case .create: return try container.encode("CREATE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

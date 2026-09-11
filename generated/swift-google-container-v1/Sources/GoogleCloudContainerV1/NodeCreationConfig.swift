@@ -137,9 +137,9 @@ public struct NodeCreationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .viaKubelet: return try container.encode(1)
-      case .viaControlPlane: return try container.encode(2)
+      case .unspecified: return try container.encode("MODE_UNSPECIFIED")
+      case .viaKubelet: return try container.encode("VIA_KUBELET")
+      case .viaControlPlane: return try container.encode("VIA_CONTROL_PLANE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

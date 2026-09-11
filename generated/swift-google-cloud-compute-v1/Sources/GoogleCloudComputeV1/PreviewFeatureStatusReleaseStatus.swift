@@ -144,10 +144,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .deprecated: return try container.encode(0)
-        case .ga: return try container.encode(1)
-        case .preview: return try container.encode(2)
-        case .unspecified: return try container.encode(3)
+        case .deprecated: return try container.encode("DEPRECATED")
+        case .ga: return try container.encode("GA")
+        case .preview: return try container.encode("PREVIEW")
+        case .unspecified: return try container.encode("STAGE_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

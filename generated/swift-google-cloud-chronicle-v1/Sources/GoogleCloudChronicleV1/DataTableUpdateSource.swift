@@ -118,10 +118,10 @@ public enum DataTableUpdateSource: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .user: return try container.encode(1)
-    case .rule: return try container.encode(2)
-    case .search: return try container.encode(3)
+    case .unspecified: return try container.encode("DATA_TABLE_UPDATE_SOURCE_UNSPECIFIED")
+    case .user: return try container.encode("USER")
+    case .rule: return try container.encode("RULE")
+    case .search: return try container.encode("SEARCH")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

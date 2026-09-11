@@ -262,11 +262,11 @@ public struct WebKeySettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .score: return try container.encode(1)
-      case .checkbox: return try container.encode(2)
-      case .invisible: return try container.encode(3)
-      case .policyBasedChallenge: return try container.encode(5)
+      case .unspecified: return try container.encode("INTEGRATION_TYPE_UNSPECIFIED")
+      case .score: return try container.encode("SCORE")
+      case .checkbox: return try container.encode("CHECKBOX")
+      case .invisible: return try container.encode("INVISIBLE")
+      case .policyBasedChallenge: return try container.encode("POLICY_BASED_CHALLENGE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -377,10 +377,10 @@ public struct WebKeySettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .usability: return try container.encode(1)
-      case .balance: return try container.encode(2)
-      case .security: return try container.encode(3)
+      case .unspecified: return try container.encode("CHALLENGE_SECURITY_PREFERENCE_UNSPECIFIED")
+      case .usability: return try container.encode("USABILITY")
+      case .balance: return try container.encode("BALANCE")
+      case .security: return try container.encode("SECURITY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

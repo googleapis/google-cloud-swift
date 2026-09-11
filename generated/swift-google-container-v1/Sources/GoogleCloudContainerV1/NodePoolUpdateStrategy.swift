@@ -122,10 +122,10 @@ public enum NodePoolUpdateStrategy: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .blueGreen: return try container.encode(2)
-    case .surge: return try container.encode(3)
-    case .shortLived: return try container.encode(5)
+    case .unspecified: return try container.encode("NODE_POOL_UPDATE_STRATEGY_UNSPECIFIED")
+    case .blueGreen: return try container.encode("BLUE_GREEN")
+    case .surge: return try container.encode("SURGE")
+    case .shortLived: return try container.encode("SHORT_LIVED")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

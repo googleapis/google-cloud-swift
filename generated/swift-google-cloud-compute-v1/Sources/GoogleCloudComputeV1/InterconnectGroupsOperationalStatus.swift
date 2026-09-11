@@ -153,10 +153,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .degraded: return try container.encode(0)
-        case .fullyDown: return try container.encode(1)
-        case .fullyUp: return try container.encode(2)
-        case .groupsStatusUnspecified: return try container.encode(3)
+        case .degraded: return try container.encode("DEGRADED")
+        case .fullyDown: return try container.encode("FULLY_DOWN")
+        case .fullyUp: return try container.encode("FULLY_UP")
+        case .groupsStatusUnspecified: return try container.encode("GROUPS_STATUS_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

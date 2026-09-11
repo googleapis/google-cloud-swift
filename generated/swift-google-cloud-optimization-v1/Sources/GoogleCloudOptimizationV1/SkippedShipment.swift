@@ -263,14 +263,19 @@ public struct SkippedShipment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .noVehicle: return try container.encode(1)
-        case .demandExceedsVehicleCapacity: return try container.encode(2)
-        case .cannotBePerformedWithinVehicleDistanceLimit: return try container.encode(3)
-        case .cannotBePerformedWithinVehicleDurationLimit: return try container.encode(4)
-        case .cannotBePerformedWithinVehicleTravelDurationLimit: return try container.encode(5)
-        case .cannotBePerformedWithinVehicleTimeWindows: return try container.encode(6)
-        case .vehicleNotAllowed: return try container.encode(7)
+        case .unspecified: return try container.encode("CODE_UNSPECIFIED")
+        case .noVehicle: return try container.encode("NO_VEHICLE")
+        case .demandExceedsVehicleCapacity:
+          return try container.encode("DEMAND_EXCEEDS_VEHICLE_CAPACITY")
+        case .cannotBePerformedWithinVehicleDistanceLimit:
+          return try container.encode("CANNOT_BE_PERFORMED_WITHIN_VEHICLE_DISTANCE_LIMIT")
+        case .cannotBePerformedWithinVehicleDurationLimit:
+          return try container.encode("CANNOT_BE_PERFORMED_WITHIN_VEHICLE_DURATION_LIMIT")
+        case .cannotBePerformedWithinVehicleTravelDurationLimit:
+          return try container.encode("CANNOT_BE_PERFORMED_WITHIN_VEHICLE_TRAVEL_DURATION_LIMIT")
+        case .cannotBePerformedWithinVehicleTimeWindows:
+          return try container.encode("CANNOT_BE_PERFORMED_WITHIN_VEHICLE_TIME_WINDOWS")
+        case .vehicleNotAllowed: return try container.encode("VEHICLE_NOT_ALLOWED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

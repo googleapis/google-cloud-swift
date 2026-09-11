@@ -134,8 +134,9 @@ public struct AccessMetadata: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .resourceLocationsOrgPolicyCreateConstraint: return try container.encode(1)
+      case .unspecified: return try container.encode("CONSTRAINT_TYPE_UNSPECIFIED")
+      case .resourceLocationsOrgPolicyCreateConstraint:
+        return try container.encode("RESOURCE_LOCATIONS_ORG_POLICY_CREATE_CONSTRAINT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

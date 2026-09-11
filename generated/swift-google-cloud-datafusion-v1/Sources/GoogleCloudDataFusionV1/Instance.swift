@@ -248,10 +248,10 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .basic: return try container.encode(1)
-      case .enterprise: return try container.encode(2)
-      case .developer: return try container.encode(3)
+      case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .basic: return try container.encode("BASIC")
+      case .enterprise: return try container.encode("ENTERPRISE")
+      case .developer: return try container.encode("DEVELOPER")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -403,17 +403,17 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .creating: return try container.encode(1)
-      case .active: return try container.encode(2)
-      case .failed: return try container.encode(3)
-      case .deleting: return try container.encode(4)
-      case .upgrading: return try container.encode(5)
-      case .restarting: return try container.encode(6)
-      case .updating: return try container.encode(7)
-      case .autoUpdating: return try container.encode(8)
-      case .autoUpgrading: return try container.encode(9)
-      case .disabled: return try container.encode(10)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .creating: return try container.encode("CREATING")
+      case .active: return try container.encode("ACTIVE")
+      case .failed: return try container.encode("FAILED")
+      case .deleting: return try container.encode("DELETING")
+      case .upgrading: return try container.encode("UPGRADING")
+      case .restarting: return try container.encode("RESTARTING")
+      case .updating: return try container.encode("UPDATING")
+      case .autoUpdating: return try container.encode("AUTO_UPDATING")
+      case .autoUpgrading: return try container.encode("AUTO_UPGRADING")
+      case .disabled: return try container.encode("DISABLED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -510,8 +510,8 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .kmsKeyIssue: return try container.encode(1)
+      case .unspecified: return try container.encode("DISABLED_REASON_UNSPECIFIED")
+      case .kmsKeyIssue: return try container.encode("KMS_KEY_ISSUE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

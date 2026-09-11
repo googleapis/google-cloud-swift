@@ -394,10 +394,10 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .alwaysGenerate: return try container.encode(1)
-          case .generateIfMissing: return try container.encode(2)
-          case .doNotGenerate: return try container.encode(3)
+          case .unspecified: return try container.encode("SUMMARY_GENERATION_OPTION_UNSPECIFIED")
+          case .alwaysGenerate: return try container.encode("ALWAYS_GENERATE")
+          case .generateIfMissing: return try container.encode("GENERATE_IF_MISSING")
+          case .doNotGenerate: return try container.encode("DO_NOT_GENERATE")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -579,9 +579,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .agentAssistConversations: return try container.encode(1)
-        case .insightsConversations: return try container.encode(2)
+        case .unspecified: return try container.encode("INPUT_DATA_SOURCE_TYPE_UNSPECIFIED")
+        case .agentAssistConversations: return try container.encode("AGENT_ASSIST_CONVERSATIONS")
+        case .insightsConversations: return try container.encode("INSIGHTS_CONVERSATIONS")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

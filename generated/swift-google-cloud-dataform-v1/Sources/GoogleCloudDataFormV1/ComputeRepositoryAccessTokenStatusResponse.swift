@@ -151,11 +151,11 @@ public struct ComputeRepositoryAccessTokenStatusResponse: Codable, Equatable, Go
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .notFound: return try container.encode(1)
-      case .invalid: return try container.encode(2)
-      case .valid: return try container.encode(3)
-      case .permissionDenied: return try container.encode(4)
+      case .unspecified: return try container.encode("TOKEN_STATUS_UNSPECIFIED")
+      case .notFound: return try container.encode("NOT_FOUND")
+      case .invalid: return try container.encode("INVALID")
+      case .valid: return try container.encode("VALID")
+      case .permissionDenied: return try container.encode("PERMISSION_DENIED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

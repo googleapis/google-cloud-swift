@@ -114,9 +114,9 @@ public enum ClientLibraryDestination: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .github: return try container.encode(10)
-    case .packageManager: return try container.encode(20)
+    case .unspecified: return try container.encode("CLIENT_LIBRARY_DESTINATION_UNSPECIFIED")
+    case .github: return try container.encode("GITHUB")
+    case .packageManager: return try container.encode("PACKAGE_MANAGER")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

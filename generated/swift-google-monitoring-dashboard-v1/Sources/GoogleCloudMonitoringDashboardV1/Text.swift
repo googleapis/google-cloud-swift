@@ -192,10 +192,10 @@ public struct Text: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .hLeft: return try container.encode(1)
-        case .hCenter: return try container.encode(2)
-        case .hRight: return try container.encode(3)
+        case .unspecified: return try container.encode("HORIZONTAL_ALIGNMENT_UNSPECIFIED")
+        case .hLeft: return try container.encode("H_LEFT")
+        case .hCenter: return try container.encode("H_CENTER")
+        case .hRight: return try container.encode("H_RIGHT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -304,10 +304,10 @@ public struct Text: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .vTop: return try container.encode(1)
-        case .vCenter: return try container.encode(2)
-        case .vBottom: return try container.encode(3)
+        case .unspecified: return try container.encode("VERTICAL_ALIGNMENT_UNSPECIFIED")
+        case .vTop: return try container.encode("V_TOP")
+        case .vCenter: return try container.encode("V_CENTER")
+        case .vBottom: return try container.encode("V_BOTTOM")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -428,12 +428,12 @@ public struct Text: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .pExtraSmall: return try container.encode(1)
-        case .pSmall: return try container.encode(2)
-        case .pMedium: return try container.encode(3)
-        case .pLarge: return try container.encode(4)
-        case .pExtraLarge: return try container.encode(5)
+        case .unspecified: return try container.encode("PADDING_SIZE_UNSPECIFIED")
+        case .pExtraSmall: return try container.encode("P_EXTRA_SMALL")
+        case .pSmall: return try container.encode("P_SMALL")
+        case .pMedium: return try container.encode("P_MEDIUM")
+        case .pLarge: return try container.encode("P_LARGE")
+        case .pExtraLarge: return try container.encode("P_EXTRA_LARGE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -554,12 +554,12 @@ public struct Text: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .fsExtraSmall: return try container.encode(1)
-        case .fsSmall: return try container.encode(2)
-        case .fsMedium: return try container.encode(3)
-        case .fsLarge: return try container.encode(4)
-        case .fsExtraLarge: return try container.encode(5)
+        case .unspecified: return try container.encode("FONT_SIZE_UNSPECIFIED")
+        case .fsExtraSmall: return try container.encode("FS_EXTRA_SMALL")
+        case .fsSmall: return try container.encode("FS_SMALL")
+        case .fsMedium: return try container.encode("FS_MEDIUM")
+        case .fsLarge: return try container.encode("FS_LARGE")
+        case .fsExtraLarge: return try container.encode("FS_EXTRA_LARGE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -723,19 +723,19 @@ public struct Text: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .plTop: return try container.encode(1)
-        case .plRight: return try container.encode(2)
-        case .plBottom: return try container.encode(3)
-        case .plLeft: return try container.encode(4)
-        case .plTopLeft: return try container.encode(5)
-        case .plTopRight: return try container.encode(6)
-        case .plRightTop: return try container.encode(7)
-        case .plRightBottom: return try container.encode(8)
-        case .plBottomRight: return try container.encode(9)
-        case .plBottomLeft: return try container.encode(10)
-        case .plLeftBottom: return try container.encode(11)
-        case .plLeftTop: return try container.encode(12)
+        case .unspecified: return try container.encode("POINTER_LOCATION_UNSPECIFIED")
+        case .plTop: return try container.encode("PL_TOP")
+        case .plRight: return try container.encode("PL_RIGHT")
+        case .plBottom: return try container.encode("PL_BOTTOM")
+        case .plLeft: return try container.encode("PL_LEFT")
+        case .plTopLeft: return try container.encode("PL_TOP_LEFT")
+        case .plTopRight: return try container.encode("PL_TOP_RIGHT")
+        case .plRightTop: return try container.encode("PL_RIGHT_TOP")
+        case .plRightBottom: return try container.encode("PL_RIGHT_BOTTOM")
+        case .plBottomRight: return try container.encode("PL_BOTTOM_RIGHT")
+        case .plBottomLeft: return try container.encode("PL_BOTTOM_LEFT")
+        case .plLeftBottom: return try container.encode("PL_LEFT_BOTTOM")
+        case .plLeftTop: return try container.encode("PL_LEFT_TOP")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -849,9 +849,9 @@ public struct Text: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .markdown: return try container.encode(1)
-      case .raw: return try container.encode(2)
+      case .unspecified: return try container.encode("FORMAT_UNSPECIFIED")
+      case .markdown: return try container.encode("MARKDOWN")
+      case .raw: return try container.encode("RAW")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -161,11 +161,11 @@ public struct ReservationAffinity: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .noReservation: return try container.encode(1)
-      case .anyReservation: return try container.encode(2)
-      case .specificReservation: return try container.encode(3)
-      case .anyReservationThenFail: return try container.encode(4)
+      case .unspecified: return try container.encode("UNSPECIFIED")
+      case .noReservation: return try container.encode("NO_RESERVATION")
+      case .anyReservation: return try container.encode("ANY_RESERVATION")
+      case .specificReservation: return try container.encode("SPECIFIC_RESERVATION")
+      case .anyReservationThenFail: return try container.encode("ANY_RESERVATION_THEN_FAIL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

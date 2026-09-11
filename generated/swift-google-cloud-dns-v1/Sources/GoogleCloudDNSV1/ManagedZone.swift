@@ -176,8 +176,8 @@ public struct ManagedZone: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .`public`: return try container.encode(0)
-      case .`private`: return try container.encode(1)
+      case .`public`: return try container.encode("public")
+      case .`private`: return try container.encode("private")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

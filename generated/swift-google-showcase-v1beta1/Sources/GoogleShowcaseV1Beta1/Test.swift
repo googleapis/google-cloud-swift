@@ -250,10 +250,10 @@ public struct Test: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .`required`: return try container.encode(1)
-      case .recommended: return try container.encode(2)
-      case .`optional`: return try container.encode(3)
+      case .unspecified: return try container.encode("EXPECTATION_LEVEL_UNSPECIFIED")
+      case .`required`: return try container.encode("REQUIRED")
+      case .recommended: return try container.encode("RECOMMENDED")
+      case .`optional`: return try container.encode("OPTIONAL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

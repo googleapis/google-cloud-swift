@@ -146,9 +146,9 @@ public struct MaintenanceExclusionOptions: Codable, Equatable, GoogleCloudWKT._A
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .noUpgrades: return try container.encode(0)
-      case .noMinorUpgrades: return try container.encode(1)
-      case .noMinorOrNodeUpgrades: return try container.encode(2)
+      case .noUpgrades: return try container.encode("NO_UPGRADES")
+      case .noMinorUpgrades: return try container.encode("NO_MINOR_UPGRADES")
+      case .noMinorOrNodeUpgrades: return try container.encode("NO_MINOR_OR_NODE_UPGRADES")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -247,8 +247,8 @@ public struct MaintenanceExclusionOptions: Codable, Equatable, GoogleCloudWKT._A
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .untilEndOfSupport: return try container.encode(1)
+      case .unspecified: return try container.encode("END_TIME_BEHAVIOR_UNSPECIFIED")
+      case .untilEndOfSupport: return try container.encode("UNTIL_END_OF_SUPPORT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

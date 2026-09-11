@@ -118,10 +118,10 @@ public enum SigningAlgorithm: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .rsassaPssSha256: return try container.encode(1)
-    case .rsassaPkcs1V15Sha256: return try container.encode(2)
-    case .ecdsaP256Sha256: return try container.encode(3)
+    case .unspecified: return try container.encode("SIGNING_ALGORITHM_UNSPECIFIED")
+    case .rsassaPssSha256: return try container.encode("RSASSA_PSS_SHA256")
+    case .rsassaPkcs1V15Sha256: return try container.encode("RSASSA_PKCS1V15_SHA256")
+    case .ecdsaP256Sha256: return try container.encode("ECDSA_P256_SHA256")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

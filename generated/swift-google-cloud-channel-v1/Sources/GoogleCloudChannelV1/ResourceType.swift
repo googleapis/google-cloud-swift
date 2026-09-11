@@ -147,14 +147,14 @@ public enum ResourceType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .seat: return try container.encode(1)
-    case .mau: return try container.encode(2)
-    case .gb: return try container.encode(3)
-    case .licensedUser: return try container.encode(4)
-    case .minutes: return try container.encode(5)
-    case .iaasUsage: return try container.encode(6)
-    case .subscription: return try container.encode(7)
+    case .unspecified: return try container.encode("RESOURCE_TYPE_UNSPECIFIED")
+    case .seat: return try container.encode("SEAT")
+    case .mau: return try container.encode("MAU")
+    case .gb: return try container.encode("GB")
+    case .licensedUser: return try container.encode("LICENSED_USER")
+    case .minutes: return try container.encode("MINUTES")
+    case .iaasUsage: return try container.encode("IAAS_USAGE")
+    case .subscription: return try container.encode("SUBSCRIPTION")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

@@ -230,12 +230,12 @@ public struct Distribution: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .error: return try container.encode(5)
-      case .notReady: return try container.encode(6)
-      case .ready: return try container.encode(7)
-      case .awaitingInput: return try container.encode(8)
-      case .distributing: return try container.encode(9)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .error: return try container.encode("ERROR")
+      case .notReady: return try container.encode("NOT_READY")
+      case .ready: return try container.encode("READY")
+      case .awaitingInput: return try container.encode("AWAITING_INPUT")
+      case .distributing: return try container.encode("DISTRIBUTING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

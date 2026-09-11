@@ -369,12 +369,16 @@ public struct Violation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .remediationBooleanOrgPolicyViolation: return try container.encode(1)
-        case .remediationListAllowedValuesOrgPolicyViolation: return try container.encode(2)
-        case .remediationListDeniedValuesOrgPolicyViolation: return try container.encode(3)
+        case .unspecified: return try container.encode("REMEDIATION_TYPE_UNSPECIFIED")
+        case .remediationBooleanOrgPolicyViolation:
+          return try container.encode("REMEDIATION_BOOLEAN_ORG_POLICY_VIOLATION")
+        case .remediationListAllowedValuesOrgPolicyViolation:
+          return try container.encode("REMEDIATION_LIST_ALLOWED_VALUES_ORG_POLICY_VIOLATION")
+        case .remediationListDeniedValuesOrgPolicyViolation:
+          return try container.encode("REMEDIATION_LIST_DENIED_VALUES_ORG_POLICY_VIOLATION")
         case .remediationRestrictCmekCryptoKeyProjectsOrgPolicyViolation:
-          return try container.encode(4)
+          return try container.encode(
+            "REMEDIATION_RESTRICT_CMEK_CRYPTO_KEY_PROJECTS_ORG_POLICY_VIOLATION")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -494,10 +498,10 @@ public struct Violation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .resolved: return try container.encode(2)
-      case .unresolved: return try container.encode(3)
-      case .exception: return try container.encode(4)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .resolved: return try container.encode("RESOLVED")
+      case .unresolved: return try container.encode("UNRESOLVED")
+      case .exception: return try container.encode("EXCEPTION")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -261,8 +261,8 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleCloudWKT._AnyPackabl
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .mp4: return try container.encode(1)
+          case .unspecified: return try container.encode("CONTAINER_FORMAT_UNSPECIFIED")
+          case .mp4: return try container.encode("CONTAINER_FORMAT_MP4")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }

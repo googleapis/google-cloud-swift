@@ -142,9 +142,9 @@ public struct EncryptionInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .googleDefaultEncryption: return try container.encode(1)
-      case .customerManagedEncryption: return try container.encode(2)
+      case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .googleDefaultEncryption: return try container.encode("GOOGLE_DEFAULT_ENCRYPTION")
+      case .customerManagedEncryption: return try container.encode("CUSTOMER_MANAGED_ENCRYPTION")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

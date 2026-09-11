@@ -166,9 +166,9 @@ public struct NodePoolAutoscaling: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .balanced: return try container.encode(1)
-      case .any: return try container.encode(2)
+      case .unspecified: return try container.encode("LOCATION_POLICY_UNSPECIFIED")
+      case .balanced: return try container.encode("BALANCED")
+      case .any: return try container.encode("ANY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

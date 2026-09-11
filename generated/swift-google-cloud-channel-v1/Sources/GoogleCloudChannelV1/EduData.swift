@@ -142,9 +142,9 @@ public struct EduData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .k12: return try container.encode(1)
-      case .university: return try container.encode(2)
+      case .unspecified: return try container.encode("INSTITUTE_TYPE_UNSPECIFIED")
+      case .k12: return try container.encode("K12")
+      case .university: return try container.encode("UNIVERSITY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -277,14 +277,14 @@ public struct EduData: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .size1100: return try container.encode(1)
-      case .size101500: return try container.encode(2)
-      case .size5011000: return try container.encode(3)
-      case .size10012000: return try container.encode(4)
-      case .size20015000: return try container.encode(5)
-      case .size500110000: return try container.encode(6)
-      case .size10001OrMore: return try container.encode(7)
+      case .unspecified: return try container.encode("INSTITUTE_SIZE_UNSPECIFIED")
+      case .size1100: return try container.encode("SIZE_1_100")
+      case .size101500: return try container.encode("SIZE_101_500")
+      case .size5011000: return try container.encode("SIZE_501_1000")
+      case .size10012000: return try container.encode("SIZE_1001_2000")
+      case .size20015000: return try container.encode("SIZE_2001_5000")
+      case .size500110000: return try container.encode("SIZE_5001_10000")
+      case .size10001OrMore: return try container.encode("SIZE_10001_OR_MORE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

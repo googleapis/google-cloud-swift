@@ -246,10 +246,10 @@ public struct RoutineSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .`in`: return try container.encode(1)
-        case .out: return try container.encode(2)
-        case .`inout`: return try container.encode(3)
+        case .unspecified: return try container.encode("MODE_UNSPECIFIED")
+        case .`in`: return try container.encode("IN")
+        case .out: return try container.encode("OUT")
+        case .`inout`: return try container.encode("INOUT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -363,9 +363,9 @@ public struct RoutineSpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .scalarFunction: return try container.encode(1)
-      case .procedure: return try container.encode(2)
+      case .unspecified: return try container.encode("ROUTINE_TYPE_UNSPECIFIED")
+      case .scalarFunction: return try container.encode("SCALAR_FUNCTION")
+      case .procedure: return try container.encode("PROCEDURE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

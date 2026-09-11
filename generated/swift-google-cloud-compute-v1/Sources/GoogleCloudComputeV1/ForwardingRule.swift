@@ -768,13 +768,13 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .ah: return try container.encode(0)
-        case .esp: return try container.encode(1)
-        case .icmp: return try container.encode(2)
-        case .l3Default: return try container.encode(3)
-        case .sctp: return try container.encode(4)
-        case .tcp: return try container.encode(5)
-        case .udp: return try container.encode(6)
+        case .ah: return try container.encode("AH")
+        case .esp: return try container.encode("ESP")
+        case .icmp: return try container.encode("ICMP")
+        case .l3Default: return try container.encode("L3_DEFAULT")
+        case .sctp: return try container.encode("SCTP")
+        case .tcp: return try container.encode("TCP")
+        case .udp: return try container.encode("UDP")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -876,9 +876,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .prepare: return try container.encode(0)
-        case .testAllTraffic: return try container.encode(1)
-        case .testByPercentage: return try container.encode(2)
+        case .prepare: return try container.encode("PREPARE")
+        case .testAllTraffic: return try container.encode("TEST_ALL_TRAFFIC")
+        case .testByPercentage: return try container.encode("TEST_BY_PERCENTAGE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -980,9 +980,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .ipv4: return try container.encode(0)
-        case .ipv6: return try container.encode(1)
-        case .unspecifiedVersion: return try container.encode(2)
+        case .ipv4: return try container.encode("IPV4")
+        case .ipv6: return try container.encode("IPV6")
+        case .unspecifiedVersion: return try container.encode("UNSPECIFIED_VERSION")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1099,12 +1099,12 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .external: return try container.encode(0)
-        case .externalManaged: return try container.encode(1)
-        case .`internal`: return try container.encode(2)
-        case .internalManaged: return try container.encode(3)
-        case .internalSelfManaged: return try container.encode(4)
-        case .invalid: return try container.encode(5)
+        case .external: return try container.encode("EXTERNAL")
+        case .externalManaged: return try container.encode("EXTERNAL_MANAGED")
+        case .`internal`: return try container.encode("INTERNAL")
+        case .internalManaged: return try container.encode("INTERNAL_MANAGED")
+        case .internalSelfManaged: return try container.encode("INTERNAL_SELF_MANAGED")
+        case .invalid: return try container.encode("INVALID")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1218,10 +1218,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .fixedStandard: return try container.encode(0)
-        case .premium: return try container.encode(1)
-        case .standard: return try container.encode(2)
-        case .standardOverridesFixedStandard: return try container.encode(3)
+        case .fixedStandard: return try container.encode("FIXED_STANDARD")
+        case .premium: return try container.encode("PREMIUM")
+        case .standard: return try container.encode("STANDARD")
+        case .standardOverridesFixedStandard:
+          return try container.encode("STANDARD_OVERRIDES_FIXED_STANDARD")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1345,12 +1346,12 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .accepted: return try container.encode(0)
-        case .closed: return try container.encode(1)
-        case .needsAttention: return try container.encode(2)
-        case .pending: return try container.encode(3)
-        case .rejected: return try container.encode(4)
-        case .statusUnspecified: return try container.encode(5)
+        case .accepted: return try container.encode("ACCEPTED")
+        case .closed: return try container.encode("CLOSED")
+        case .needsAttention: return try container.encode("NEEDS_ATTENTION")
+        case .pending: return try container.encode("PENDING")
+        case .rejected: return try container.encode("REJECTED")
+        case .statusUnspecified: return try container.encode("STATUS_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

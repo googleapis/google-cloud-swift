@@ -232,10 +232,10 @@ public struct SecretVersion: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .enabled: return try container.encode(1)
-      case .disabled: return try container.encode(2)
-      case .destroyed: return try container.encode(3)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .enabled: return try container.encode("ENABLED")
+      case .disabled: return try container.encode("DISABLED")
+      case .destroyed: return try container.encode("DESTROYED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

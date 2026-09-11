@@ -206,10 +206,10 @@ public struct StreamingRecognitionFeatures: Codable, Equatable, GoogleCloudWKT._
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .standard: return try container.encode(1)
-      case .supershort: return try container.encode(2)
-      case .short: return try container.encode(3)
+      case .unspecified: return try container.encode("ENDPOINTING_SENSITIVITY_UNSPECIFIED")
+      case .standard: return try container.encode("ENDPOINTING_SENSITIVITY_STANDARD")
+      case .supershort: return try container.encode("ENDPOINTING_SENSITIVITY_SUPERSHORT")
+      case .short: return try container.encode("ENDPOINTING_SENSITIVITY_SHORT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

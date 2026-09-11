@@ -124,11 +124,12 @@ public enum LineItemChangeType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .create: return try container.encode(1)
-    case .update: return try container.encode(2)
-    case .cancel: return try container.encode(3)
-    case .revertCancellation: return try container.encode(4)
+    case .unspecified: return try container.encode("LINE_ITEM_CHANGE_TYPE_UNSPECIFIED")
+    case .create: return try container.encode("LINE_ITEM_CHANGE_TYPE_CREATE")
+    case .update: return try container.encode("LINE_ITEM_CHANGE_TYPE_UPDATE")
+    case .cancel: return try container.encode("LINE_ITEM_CHANGE_TYPE_CANCEL")
+    case .revertCancellation:
+      return try container.encode("LINE_ITEM_CHANGE_TYPE_REVERT_CANCELLATION")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

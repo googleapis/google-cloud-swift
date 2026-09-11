@@ -464,9 +464,9 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .full: return try container.encode(1)
-          case .archive: return try container.encode(2)
+          case .unspecified: return try container.encode("GARBAGE_COLLECTION_MODE_UNSPECIFIED")
+          case .full: return try container.encode("FULL")
+          case .archive: return try container.encode("ARCHIVE")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -699,11 +699,11 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .mainnet: return try container.encode(1)
-        case .testnetGoerliPrater: return try container.encode(2)
-        case .testnetSepolia: return try container.encode(3)
-        case .testnetHolesky: return try container.encode(4)
+        case .unspecified: return try container.encode("NETWORK_UNSPECIFIED")
+        case .mainnet: return try container.encode("MAINNET")
+        case .testnetGoerliPrater: return try container.encode("TESTNET_GOERLI_PRATER")
+        case .testnetSepolia: return try container.encode("TESTNET_SEPOLIA")
+        case .testnetHolesky: return try container.encode("TESTNET_HOLESKY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -819,10 +819,10 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .light: return try container.encode(1)
-        case .full: return try container.encode(2)
-        case .archive: return try container.encode(3)
+        case .unspecified: return try container.encode("NODE_TYPE_UNSPECIFIED")
+        case .light: return try container.encode("LIGHT")
+        case .full: return try container.encode("FULL")
+        case .archive: return try container.encode("ARCHIVE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -935,9 +935,9 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .geth: return try container.encode(1)
-        case .erigon: return try container.encode(2)
+        case .unspecified: return try container.encode("EXECUTION_CLIENT_UNSPECIFIED")
+        case .geth: return try container.encode("GETH")
+        case .erigon: return try container.encode("ERIGON")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1044,8 +1044,8 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .lighthouse: return try container.encode(1)
+        case .unspecified: return try container.encode("CONSENSUS_CLIENT_UNSPECIFIED")
+        case .lighthouse: return try container.encode("LIGHTHOUSE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1160,8 +1160,8 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .ethereum: return try container.encode(1)
+      case .unspecified: return try container.encode("BLOCKCHAIN_TYPE_UNSPECIFIED")
+      case .ethereum: return try container.encode("ETHEREUM")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -1301,15 +1301,15 @@ public struct BlockchainNode: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .creating: return try container.encode(1)
-      case .deleting: return try container.encode(2)
-      case .running: return try container.encode(4)
-      case .error: return try container.encode(5)
-      case .updating: return try container.encode(6)
-      case .repairing: return try container.encode(7)
-      case .reconciling: return try container.encode(8)
-      case .syncing: return try container.encode(9)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .creating: return try container.encode("CREATING")
+      case .deleting: return try container.encode("DELETING")
+      case .running: return try container.encode("RUNNING")
+      case .error: return try container.encode("ERROR")
+      case .updating: return try container.encode("UPDATING")
+      case .repairing: return try container.encode("REPAIRING")
+      case .reconciling: return try container.encode("RECONCILING")
+      case .syncing: return try container.encode("SYNCING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

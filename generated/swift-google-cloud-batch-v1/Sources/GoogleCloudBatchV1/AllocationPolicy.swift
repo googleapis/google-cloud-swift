@@ -788,10 +788,10 @@ public struct AllocationPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .gvnic: return try container.encode(1)
-        case .irdma: return try container.encode(2)
-        case .mrdma: return try container.encode(3)
+        case .unspecified: return try container.encode("NIC_TYPE_UNSPECIFIED")
+        case .gvnic: return try container.encode("GVNIC")
+        case .irdma: return try container.encode("IRDMA")
+        case .mrdma: return try container.encode("MRDMA")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1009,12 +1009,12 @@ public struct AllocationPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .standard: return try container.encode(1)
-      case .spot: return try container.encode(2)
-      case .preemptible: return try container.encode(3)
-      case .reservationBound: return try container.encode(4)
-      case .flexStart: return try container.encode(5)
+      case .unspecified: return try container.encode("PROVISIONING_MODEL_UNSPECIFIED")
+      case .standard: return try container.encode("STANDARD")
+      case .spot: return try container.encode("SPOT")
+      case .preemptible: return try container.encode("PREEMPTIBLE")
+      case .reservationBound: return try container.encode("RESERVATION_BOUND")
+      case .flexStart: return try container.encode("FLEX_START")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

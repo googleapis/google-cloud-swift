@@ -198,10 +198,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .creating: return try container.encode(0)
-        case .deleting: return try container.encode(1)
-        case .invalid: return try container.encode(2)
-        case .ready: return try container.encode(3)
+        case .creating: return try container.encode("CREATING")
+        case .deleting: return try container.encode("DELETING")
+        case .invalid: return try container.encode("INVALID")
+        case .ready: return try container.encode("READY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -158,11 +158,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .contains: return try container.encode(0)
-        case .endsWith: return try container.encode(1)
-        case .equals: return try container.encode(2)
-        case .equalsAny: return try container.encode(3)
-        case .startsWith: return try container.encode(4)
+        case .contains: return try container.encode("CONTAINS")
+        case .endsWith: return try container.encode("ENDS_WITH")
+        case .equals: return try container.encode("EQUALS")
+        case .equalsAny: return try container.encode("EQUALS_ANY")
+        case .startsWith: return try container.encode("STARTS_WITH")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

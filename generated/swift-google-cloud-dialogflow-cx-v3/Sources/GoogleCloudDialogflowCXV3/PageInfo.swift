@@ -304,10 +304,10 @@
           public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .unspecified: return try container.encode(0)
-            case .empty: return try container.encode(1)
-            case .invalid: return try container.encode(2)
-            case .filled: return try container.encode(3)
+            case .unspecified: return try container.encode("PARAMETER_STATE_UNSPECIFIED")
+            case .empty: return try container.encode("EMPTY")
+            case .invalid: return try container.encode("INVALID")
+            case .filled: return try container.encode("FILLED")
             case .unknownIntValue(let v): return try container.encode(v)
             case .unknownStringValue(let v): return try container.encode(v)
             }

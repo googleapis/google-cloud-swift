@@ -142,9 +142,9 @@ public struct Domain: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .ai: return try container.encode(1)
-      case .code: return try container.encode(2)
+      case .unspecified: return try container.encode("CATEGORY_UNSPECIFIED")
+      case .ai: return try container.encode("AI")
+      case .code: return try container.encode("CODE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -285,14 +285,14 @@ public struct Domain: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .model: return try container.encode(1)
-      case .textEmbedding: return try container.encode(2)
-      case .vertexPlugin: return try container.encode(3)
-      case .vectorPlugin: return try container.encode(4)
-      case .sourceCode: return try container.encode(5)
-      case .service: return try container.encode(6)
-      case .embedding: return try container.encode(7)
+      case .unspecified: return try container.encode("SIGNAL_UNSPECIFIED")
+      case .model: return try container.encode("MODEL")
+      case .textEmbedding: return try container.encode("TEXT_EMBEDDING")
+      case .vertexPlugin: return try container.encode("VERTEX_PLUGIN")
+      case .vectorPlugin: return try container.encode("VECTOR_PLUGIN")
+      case .sourceCode: return try container.encode("SOURCE_CODE")
+      case .service: return try container.encode("SERVICE")
+      case .embedding: return try container.encode("EMBEDDING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -148,9 +148,9 @@ public struct RestrictAllowedResourcesRequest: Codable, Equatable, GoogleCloudWK
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .allowAllGcpResources: return try container.encode(1)
-      case .allowCompliantResources: return try container.encode(2)
+      case .unspecified: return try container.encode("RESTRICTION_TYPE_UNSPECIFIED")
+      case .allowAllGcpResources: return try container.encode("ALLOW_ALL_GCP_RESOURCES")
+      case .allowCompliantResources: return try container.encode("ALLOW_COMPLIANT_RESOURCES")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

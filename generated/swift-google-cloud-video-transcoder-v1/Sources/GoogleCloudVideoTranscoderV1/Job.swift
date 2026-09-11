@@ -304,11 +304,11 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .pending: return try container.encode(1)
-      case .running: return try container.encode(2)
-      case .succeeded: return try container.encode(3)
-      case .failed: return try container.encode(4)
+      case .unspecified: return try container.encode("PROCESSING_STATE_UNSPECIFIED")
+      case .pending: return try container.encode("PENDING")
+      case .running: return try container.encode("RUNNING")
+      case .succeeded: return try container.encode("SUCCEEDED")
+      case .failed: return try container.encode("FAILED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -414,9 +414,9 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .interactive: return try container.encode(1)
-      case .batch: return try container.encode(2)
+      case .unspecified: return try container.encode("PROCESSING_MODE_UNSPECIFIED")
+      case .interactive: return try container.encode("PROCESSING_MODE_INTERACTIVE")
+      case .batch: return try container.encode("PROCESSING_MODE_BATCH")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -519,9 +519,9 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .autodetect: return try container.encode(1)
-      case .disabled: return try container.encode(2)
+      case .unspecified: return try container.encode("OPTIMIZATION_STRATEGY_UNSPECIFIED")
+      case .autodetect: return try container.encode("AUTODETECT")
+      case .disabled: return try container.encode("DISABLED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

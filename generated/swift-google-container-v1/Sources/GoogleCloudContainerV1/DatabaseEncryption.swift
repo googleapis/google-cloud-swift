@@ -203,10 +203,11 @@ public struct DatabaseEncryption: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unknown: return try container.encode(0)
-      case .encrypted: return try container.encode(1)
-      case .decrypted: return try container.encode(2)
-      case .allObjectsEncryptionEnabled: return try container.encode(3)
+      case .unknown: return try container.encode("UNKNOWN")
+      case .encrypted: return try container.encode("ENCRYPTED")
+      case .decrypted: return try container.encode("DECRYPTED")
+      case .allObjectsEncryptionEnabled:
+        return try container.encode("ALL_OBJECTS_ENCRYPTION_ENABLED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -356,16 +357,19 @@ public struct DatabaseEncryption: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .decrypted: return try container.encode(2)
-      case .encryptionPending: return try container.encode(3)
-      case .encryptionError: return try container.encode(4)
-      case .decryptionPending: return try container.encode(5)
-      case .decryptionError: return try container.encode(6)
-      case .encrypted: return try container.encode(7)
-      case .allObjectsEncryptionEnabled: return try container.encode(8)
-      case .allObjectsEncryptionPending: return try container.encode(9)
-      case .allObjectsEncryptionError: return try container.encode(10)
+      case .unspecified: return try container.encode("CURRENT_STATE_UNSPECIFIED")
+      case .decrypted: return try container.encode("CURRENT_STATE_DECRYPTED")
+      case .encryptionPending: return try container.encode("CURRENT_STATE_ENCRYPTION_PENDING")
+      case .encryptionError: return try container.encode("CURRENT_STATE_ENCRYPTION_ERROR")
+      case .decryptionPending: return try container.encode("CURRENT_STATE_DECRYPTION_PENDING")
+      case .decryptionError: return try container.encode("CURRENT_STATE_DECRYPTION_ERROR")
+      case .encrypted: return try container.encode("CURRENT_STATE_ENCRYPTED")
+      case .allObjectsEncryptionEnabled:
+        return try container.encode("CURRENT_STATE_ALL_OBJECTS_ENCRYPTION_ENABLED")
+      case .allObjectsEncryptionPending:
+        return try container.encode("CURRENT_STATE_ALL_OBJECTS_ENCRYPTION_PENDING")
+      case .allObjectsEncryptionError:
+        return try container.encode("CURRENT_STATE_ALL_OBJECTS_ENCRYPTION_ERROR")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

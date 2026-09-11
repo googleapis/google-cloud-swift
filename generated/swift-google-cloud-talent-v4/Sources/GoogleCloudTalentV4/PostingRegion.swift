@@ -143,10 +143,10 @@ public enum PostingRegion: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .administrativeArea: return try container.encode(1)
-    case .nation: return try container.encode(2)
-    case .telecommute: return try container.encode(3)
+    case .unspecified: return try container.encode("POSTING_REGION_UNSPECIFIED")
+    case .administrativeArea: return try container.encode("ADMINISTRATIVE_AREA")
+    case .nation: return try container.encode("NATION")
+    case .telecommute: return try container.encode("TELECOMMUTE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

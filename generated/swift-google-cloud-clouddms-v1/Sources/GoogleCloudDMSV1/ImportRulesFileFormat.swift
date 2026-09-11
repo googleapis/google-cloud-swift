@@ -112,9 +112,11 @@ public enum ImportRulesFileFormat: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .harbourBridgeSessionFile: return try container.encode(1)
-    case .oratopgConfigFile: return try container.encode(2)
+    case .unspecified: return try container.encode("IMPORT_RULES_FILE_FORMAT_UNSPECIFIED")
+    case .harbourBridgeSessionFile:
+      return try container.encode("IMPORT_RULES_FILE_FORMAT_HARBOUR_BRIDGE_SESSION_FILE")
+    case .oratopgConfigFile:
+      return try container.encode("IMPORT_RULES_FILE_FORMAT_ORATOPG_CONFIG_FILE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

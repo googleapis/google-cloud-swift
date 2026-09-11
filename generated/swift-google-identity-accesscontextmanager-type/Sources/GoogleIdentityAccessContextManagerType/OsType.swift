@@ -137,13 +137,13 @@ public enum OsType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .osUnspecified: return try container.encode(0)
-    case .desktopMac: return try container.encode(1)
-    case .desktopWindows: return try container.encode(2)
-    case .desktopLinux: return try container.encode(3)
-    case .android: return try container.encode(4)
-    case .ios: return try container.encode(5)
-    case .desktopChromeOs: return try container.encode(6)
+    case .osUnspecified: return try container.encode("OS_UNSPECIFIED")
+    case .desktopMac: return try container.encode("DESKTOP_MAC")
+    case .desktopWindows: return try container.encode("DESKTOP_WINDOWS")
+    case .desktopLinux: return try container.encode("DESKTOP_LINUX")
+    case .android: return try container.encode("ANDROID")
+    case .ios: return try container.encode("IOS")
+    case .desktopChromeOs: return try container.encode("DESKTOP_CHROME_OS")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

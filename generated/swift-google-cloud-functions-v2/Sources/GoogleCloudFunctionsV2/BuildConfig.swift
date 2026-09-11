@@ -290,9 +290,9 @@ public struct BuildConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .containerRegistry: return try container.encode(1)
-      case .artifactRegistry: return try container.encode(2)
+      case .unspecified: return try container.encode("DOCKER_REGISTRY_UNSPECIFIED")
+      case .containerRegistry: return try container.encode("CONTAINER_REGISTRY")
+      case .artifactRegistry: return try container.encode("ARTIFACT_REGISTRY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

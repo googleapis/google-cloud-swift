@@ -180,13 +180,13 @@ public struct DeployJobRun: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .cloudBuildUnavailable: return try container.encode(1)
-      case .executionFailed: return try container.encode(2)
-      case .deadlineExceeded: return try container.encode(3)
-      case .missingResourcesForCanary: return try container.encode(4)
-      case .cloudBuildRequestFailed: return try container.encode(5)
-      case .deployFeatureNotSupported: return try container.encode(6)
+      case .unspecified: return try container.encode("FAILURE_CAUSE_UNSPECIFIED")
+      case .cloudBuildUnavailable: return try container.encode("CLOUD_BUILD_UNAVAILABLE")
+      case .executionFailed: return try container.encode("EXECUTION_FAILED")
+      case .deadlineExceeded: return try container.encode("DEADLINE_EXCEEDED")
+      case .missingResourcesForCanary: return try container.encode("MISSING_RESOURCES_FOR_CANARY")
+      case .cloudBuildRequestFailed: return try container.encode("CLOUD_BUILD_REQUEST_FAILED")
+      case .deployFeatureNotSupported: return try container.encode("DEPLOY_FEATURE_NOT_SUPPORTED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

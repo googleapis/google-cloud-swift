@@ -126,10 +126,10 @@ public enum ConnectionState: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .missingCredentials: return try container.encode(1)
-    case .available: return try container.encode(2)
-    case .error: return try container.encode(3)
+    case .unspecified: return try container.encode("CONNECTION_STATE_UNSPECIFIED")
+    case .missingCredentials: return try container.encode("MISSING_CREDENTIALS")
+    case .available: return try container.encode("AVAILABLE")
+    case .error: return try container.encode("ERROR")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

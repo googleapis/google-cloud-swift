@@ -234,13 +234,13 @@ public struct Insight: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .cost: return try container.encode(1)
-      case .security: return try container.encode(2)
-      case .performance: return try container.encode(3)
-      case .manageability: return try container.encode(4)
-      case .sustainability: return try container.encode(5)
-      case .reliability: return try container.encode(6)
+      case .unspecified: return try container.encode("CATEGORY_UNSPECIFIED")
+      case .cost: return try container.encode("COST")
+      case .security: return try container.encode("SECURITY")
+      case .performance: return try container.encode("PERFORMANCE")
+      case .manageability: return try container.encode("MANAGEABILITY")
+      case .sustainability: return try container.encode("SUSTAINABILITY")
+      case .reliability: return try container.encode("RELIABILITY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -355,11 +355,11 @@ public struct Insight: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .low: return try container.encode(1)
-      case .medium: return try container.encode(2)
-      case .high: return try container.encode(3)
-      case .critical: return try container.encode(4)
+      case .unspecified: return try container.encode("SEVERITY_UNSPECIFIED")
+      case .low: return try container.encode("LOW")
+      case .medium: return try container.encode("MEDIUM")
+      case .high: return try container.encode("HIGH")
+      case .critical: return try container.encode("CRITICAL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

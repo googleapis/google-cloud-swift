@@ -201,9 +201,9 @@ public struct DiskRestoreProperties: Codable, Equatable, GoogleCloudWKT._AnyPack
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .readWriteSingle: return try container.encode(0)
-      case .readWriteMany: return try container.encode(1)
-      case .readOnlyMany: return try container.encode(2)
+      case .readWriteSingle: return try container.encode("READ_WRITE_SINGLE")
+      case .readWriteMany: return try container.encode("READ_WRITE_MANY")
+      case .readOnlyMany: return try container.encode("READ_ONLY_MANY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -306,9 +306,9 @@ public struct DiskRestoreProperties: Codable, Equatable, GoogleCloudWKT._AnyPack
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .x8664: return try container.encode(1)
-      case .arm64: return try container.encode(2)
+      case .unspecified: return try container.encode("ARCHITECTURE_UNSPECIFIED")
+      case .x8664: return try container.encode("X86_64")
+      case .arm64: return try container.encode("ARM64")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

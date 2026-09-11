@@ -297,14 +297,14 @@ public struct Channel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .streaming: return try container.encode(1)
-      case .awaitingInput: return try container.encode(2)
-      case .streamingError: return try container.encode(4)
-      case .streamingNoInput: return try container.encode(5)
-      case .stopped: return try container.encode(6)
-      case .starting: return try container.encode(7)
-      case .stopping: return try container.encode(8)
+      case .unspecified: return try container.encode("STREAMING_STATE_UNSPECIFIED")
+      case .streaming: return try container.encode("STREAMING")
+      case .awaitingInput: return try container.encode("AWAITING_INPUT")
+      case .streamingError: return try container.encode("STREAMING_ERROR")
+      case .streamingNoInput: return try container.encode("STREAMING_NO_INPUT")
+      case .stopped: return try container.encode("STOPPED")
+      case .starting: return try container.encode("STARTING")
+      case .stopping: return try container.encode("STOPPING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

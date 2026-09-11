@@ -159,10 +159,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .inSlo: return try container.encode(0)
-        case .outOfSlo: return try container.encode(1)
-        case .sloUnknown: return try container.encode(2)
-        case .unspecified: return try container.encode(3)
+        case .inSlo: return try container.encode("AVAILABILITY_SLO_STATUS_IN_SLO")
+        case .outOfSlo: return try container.encode("AVAILABILITY_SLO_STATUS_OUT_OF_SLO")
+        case .sloUnknown: return try container.encode("AVAILABILITY_SLO_STATUS_SLO_UNKNOWN")
+        case .unspecified: return try container.encode("AVAILABILITY_SLO_STATUS_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -267,9 +267,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .healthy: return try container.encode(0)
-        case .unhealthy: return try container.encode(1)
-        case .unspecified: return try container.encode(2)
+        case .healthy: return try container.encode("HEALTH_STATUS_HEALTHY")
+        case .unhealthy: return try container.encode("HEALTH_STATUS_UNHEALTHY")
+        case .unspecified: return try container.encode("HEALTH_STATUS_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -387,11 +387,12 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .criticalFailure: return try container.encode(0)
-        case .emergentMaintenance: return try container.encode(1)
-        case .plannedMaintenance: return try container.encode(2)
-        case .unspecified: return try container.encode(3)
-        case .userReportedFault: return try container.encode(4)
+        case .criticalFailure: return try container.encode("REPAIR_CATEGORY_CRITICAL_FAILURE")
+        case .emergentMaintenance:
+          return try container.encode("REPAIR_CATEGORY_EMERGENT_MAINTENANCE")
+        case .plannedMaintenance: return try container.encode("REPAIR_CATEGORY_PLANNED_MAINTENANCE")
+        case .unspecified: return try container.encode("REPAIR_CATEGORY_UNSPECIFIED")
+        case .userReportedFault: return try container.encode("REPAIR_CATEGORY_USER_REPORTED_FAULT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -504,10 +505,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .pendingUserApproval: return try container.encode(0)
-        case .repairing: return try container.encode(1)
-        case .unschedulable: return try container.encode(2)
-        case .unspecified: return try container.encode(3)
+        case .pendingUserApproval:
+          return try container.encode("UNHEALTHY_REASON_PENDING_USER_APPROVAL")
+        case .repairing: return try container.encode("UNHEALTHY_REASON_REPAIRING")
+        case .unschedulable: return try container.encode("UNHEALTHY_REASON_UNSCHEDULABLE")
+        case .unspecified: return try container.encode("UNHEALTHY_REASON_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

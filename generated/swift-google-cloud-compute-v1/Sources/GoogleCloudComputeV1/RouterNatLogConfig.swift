@@ -150,9 +150,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .all: return try container.encode(0)
-        case .errorsOnly: return try container.encode(1)
-        case .translationsOnly: return try container.encode(2)
+        case .all: return try container.encode("ALL")
+        case .errorsOnly: return try container.encode("ERRORS_ONLY")
+        case .translationsOnly: return try container.encode("TRANSLATIONS_ONLY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

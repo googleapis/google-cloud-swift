@@ -185,12 +185,12 @@ public struct Block: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unknown: return try container.encode(0)
-      case .text: return try container.encode(1)
-      case .table: return try container.encode(2)
-      case .picture: return try container.encode(3)
-      case .ruler: return try container.encode(4)
-      case .barcode: return try container.encode(5)
+      case .unknown: return try container.encode("UNKNOWN")
+      case .text: return try container.encode("TEXT")
+      case .table: return try container.encode("TABLE")
+      case .picture: return try container.encode("PICTURE")
+      case .ruler: return try container.encode("RULER")
+      case .barcode: return try container.encode("BARCODE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

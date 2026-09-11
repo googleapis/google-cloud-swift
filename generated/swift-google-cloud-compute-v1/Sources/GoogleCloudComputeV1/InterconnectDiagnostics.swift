@@ -151,8 +151,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .lacp: return try container.encode(0)
-        case .`static`: return try container.encode(1)
+        case .lacp: return try container.encode("BUNDLE_AGGREGATION_TYPE_LACP")
+        case .`static`: return try container.encode("BUNDLE_AGGREGATION_TYPE_STATIC")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -257,8 +257,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .down: return try container.encode(0)
-        case .up: return try container.encode(1)
+        case .down: return try container.encode("BUNDLE_OPERATIONAL_STATUS_DOWN")
+        case .up: return try container.encode("BUNDLE_OPERATIONAL_STATUS_UP")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

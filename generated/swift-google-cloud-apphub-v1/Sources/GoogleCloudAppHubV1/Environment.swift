@@ -148,11 +148,11 @@ public struct Environment: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .production: return try container.encode(1)
-      case .staging: return try container.encode(2)
-      case .test: return try container.encode(3)
-      case .development: return try container.encode(4)
+      case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .production: return try container.encode("PRODUCTION")
+      case .staging: return try container.encode("STAGING")
+      case .test: return try container.encode("TEST")
+      case .development: return try container.encode("DEVELOPMENT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

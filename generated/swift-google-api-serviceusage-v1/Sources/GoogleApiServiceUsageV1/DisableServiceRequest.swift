@@ -156,9 +156,9 @@ public struct DisableServiceRequest: Codable, Equatable, GoogleCloudWKT._AnyPack
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .skip: return try container.encode(1)
-      case .check: return try container.encode(2)
+      case .unspecified: return try container.encode("CHECK_IF_SERVICE_HAS_USAGE_UNSPECIFIED")
+      case .skip: return try container.encode("SKIP")
+      case .check: return try container.encode("CHECK")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -171,12 +171,13 @@ public struct AccessReason: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .customerInitiatedSupport: return try container.encode(1)
-      case .googleInitiatedService: return try container.encode(2)
-      case .googleInitiatedReview: return try container.encode(3)
-      case .thirdPartyDataRequest: return try container.encode(4)
-      case .googleResponseToProductionAlert: return try container.encode(5)
+      case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .customerInitiatedSupport: return try container.encode("CUSTOMER_INITIATED_SUPPORT")
+      case .googleInitiatedService: return try container.encode("GOOGLE_INITIATED_SERVICE")
+      case .googleInitiatedReview: return try container.encode("GOOGLE_INITIATED_REVIEW")
+      case .thirdPartyDataRequest: return try container.encode("THIRD_PARTY_DATA_REQUEST")
+      case .googleResponseToProductionAlert:
+        return try container.encode("GOOGLE_RESPONSE_TO_PRODUCTION_ALERT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

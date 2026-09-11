@@ -275,11 +275,11 @@ public struct CryptoReplaceFfxFpeConfig: Codable, Equatable, GoogleCloudWKT._Any
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .numeric: return try container.encode(1)
-      case .hexadecimal: return try container.encode(2)
-      case .upperCaseAlphaNumeric: return try container.encode(3)
-      case .alphaNumeric: return try container.encode(4)
+      case .unspecified: return try container.encode("FFX_COMMON_NATIVE_ALPHABET_UNSPECIFIED")
+      case .numeric: return try container.encode("NUMERIC")
+      case .hexadecimal: return try container.encode("HEXADECIMAL")
+      case .upperCaseAlphaNumeric: return try container.encode("UPPER_CASE_ALPHA_NUMERIC")
+      case .alphaNumeric: return try container.encode("ALPHA_NUMERIC")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

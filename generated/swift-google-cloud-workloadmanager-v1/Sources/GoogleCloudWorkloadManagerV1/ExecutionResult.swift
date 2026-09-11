@@ -157,9 +157,9 @@ public struct ExecutionResult: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .passed: return try container.encode(1)
-      case .violated: return try container.encode(2)
+      case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .passed: return try container.encode("TYPE_PASSED")
+      case .violated: return try container.encode("TYPE_VIOLATED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

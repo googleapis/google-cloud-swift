@@ -433,10 +433,10 @@ public struct Constraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .list: return try container.encode(1)
-          case .string: return try container.encode(2)
-          case .boolean: return try container.encode(3)
+          case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+          case .list: return try container.encode("LIST")
+          case .string: return try container.encode("STRING")
+          case .boolean: return try container.encode("BOOLEAN")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -577,12 +577,12 @@ public struct Constraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .create: return try container.encode(1)
-        case .update: return try container.encode(2)
-        case .delete: return try container.encode(3)
-        case .removeGrant: return try container.encode(4)
-        case .governTags: return try container.encode(5)
+        case .unspecified: return try container.encode("METHOD_TYPE_UNSPECIFIED")
+        case .create: return try container.encode("CREATE")
+        case .update: return try container.encode("UPDATE")
+        case .delete: return try container.encode("DELETE")
+        case .removeGrant: return try container.encode("REMOVE_GRANT")
+        case .governTags: return try container.encode("GOVERN_TAGS")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -686,9 +686,9 @@ public struct Constraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .allow: return try container.encode(1)
-        case .deny: return try container.encode(2)
+        case .unspecified: return try container.encode("ACTION_TYPE_UNSPECIFIED")
+        case .allow: return try container.encode("ALLOW")
+        case .deny: return try container.encode("DENY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -848,9 +848,9 @@ public struct Constraint: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .allow: return try container.encode(1)
-      case .deny: return try container.encode(2)
+      case .unspecified: return try container.encode("CONSTRAINT_DEFAULT_UNSPECIFIED")
+      case .allow: return try container.encode("ALLOW")
+      case .deny: return try container.encode("DENY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

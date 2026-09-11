@@ -147,10 +147,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .verified: return try container.encode(1)
-        case .unverified: return try container.encode(2)
-        case .exempted: return try container.encode(3)
+        case .unspecified: return try container.encode("SITE_VERIFICATION_STATE_UNSPECIFIED")
+        case .verified: return try container.encode("VERIFIED")
+        case .unverified: return try container.encode("UNVERIFIED")
+        case .exempted: return try container.encode("EXEMPTED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

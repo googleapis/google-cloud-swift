@@ -368,9 +368,9 @@ public struct Certificate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .authorizationIssue: return try container.encode(1)
-          case .rateLimited: return try container.encode(2)
+          case .unspecified: return try container.encode("REASON_UNSPECIFIED")
+          case .authorizationIssue: return try container.encode("AUTHORIZATION_ISSUE")
+          case .rateLimited: return try container.encode("RATE_LIMITED")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -533,10 +533,10 @@ public struct Certificate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .authorizing: return try container.encode(1)
-          case .authorized: return try container.encode(6)
-          case .failed: return try container.encode(7)
+          case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+          case .authorizing: return try container.encode("AUTHORIZING")
+          case .authorized: return try container.encode("AUTHORIZED")
+          case .failed: return try container.encode("FAILED")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -648,10 +648,10 @@ public struct Certificate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .config: return try container.encode(1)
-          case .caa: return try container.encode(2)
-          case .rateLimited: return try container.encode(3)
+          case .unspecified: return try container.encode("FAILURE_REASON_UNSPECIFIED")
+          case .config: return try container.encode("CONFIG")
+          case .caa: return try container.encode("CAA")
+          case .rateLimited: return try container.encode("RATE_LIMITED")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -778,10 +778,10 @@ public struct Certificate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .provisioning: return try container.encode(1)
-        case .failed: return try container.encode(2)
-        case .active: return try container.encode(3)
+        case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+        case .provisioning: return try container.encode("PROVISIONING")
+        case .failed: return try container.encode("FAILED")
+        case .active: return try container.encode("ACTIVE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -899,9 +899,9 @@ public struct Certificate: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .`default`: return try container.encode(0)
-      case .edgeCache: return try container.encode(1)
-      case .allRegions: return try container.encode(2)
+      case .`default`: return try container.encode("DEFAULT")
+      case .edgeCache: return try container.encode("EDGE_CACHE")
+      case .allRegions: return try container.encode("ALL_REGIONS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

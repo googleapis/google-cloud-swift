@@ -169,9 +169,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .grouped: return try container.encode(0)
-        case .groupMaintenanceTypeUnspecified: return try container.encode(1)
-        case .independent: return try container.encode(2)
+        case .grouped: return try container.encode("GROUPED")
+        case .groupMaintenanceTypeUnspecified:
+          return try container.encode("GROUP_MAINTENANCE_TYPE_UNSPECIFIED")
+        case .independent: return try container.encode("INDEPENDENT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

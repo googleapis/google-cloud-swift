@@ -166,10 +166,10 @@ public struct Permission: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .alpha: return try container.encode(0)
-      case .beta: return try container.encode(1)
-      case .ga: return try container.encode(2)
-      case .deprecated: return try container.encode(3)
+      case .alpha: return try container.encode("ALPHA")
+      case .beta: return try container.encode("BETA")
+      case .ga: return try container.encode("GA")
+      case .deprecated: return try container.encode("DEPRECATED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -272,9 +272,9 @@ public struct Permission: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .supported: return try container.encode(0)
-      case .testing: return try container.encode(1)
-      case .notSupported: return try container.encode(2)
+      case .supported: return try container.encode("SUPPORTED")
+      case .testing: return try container.encode("TESTING")
+      case .notSupported: return try container.encode("NOT_SUPPORTED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

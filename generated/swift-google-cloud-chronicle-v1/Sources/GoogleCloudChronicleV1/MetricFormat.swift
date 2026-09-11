@@ -112,9 +112,9 @@ public enum MetricFormat: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .number: return try container.encode(1)
-    case .plainText: return try container.encode(2)
+    case .unspecified: return try container.encode("METRIC_FORMAT_UNSPECIFIED")
+    case .number: return try container.encode("METRIC_FORMAT_NUMBER")
+    case .plainText: return try container.encode("METRIC_FORMAT_PLAIN_TEXT")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

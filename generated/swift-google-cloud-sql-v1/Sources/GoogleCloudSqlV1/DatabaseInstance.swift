@@ -475,9 +475,9 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .normal: return try container.encode(1)
-          case .softShutdown: return try container.encode(2)
+          case .unspecified: return try container.encode("SQL_OUT_OF_DISK_STATE_UNSPECIFIED")
+          case .normal: return try container.encode("NORMAL")
+          case .softShutdown: return try container.encode("SOFT_SHUTDOWN")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -690,15 +690,15 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .runnable: return try container.encode(1)
-        case .suspended: return try container.encode(2)
-        case .pendingDelete: return try container.encode(3)
-        case .pendingCreate: return try container.encode(4)
-        case .maintenance: return try container.encode(5)
-        case .failed: return try container.encode(6)
-        case .onlineMaintenance: return try container.encode(7)
-        case .repairing: return try container.encode(8)
+        case .unspecified: return try container.encode("SQL_INSTANCE_STATE_UNSPECIFIED")
+        case .runnable: return try container.encode("RUNNABLE")
+        case .suspended: return try container.encode("SUSPENDED")
+        case .pendingDelete: return try container.encode("PENDING_DELETE")
+        case .pendingCreate: return try container.encode("PENDING_CREATE")
+        case .maintenance: return try container.encode("MAINTENANCE")
+        case .failed: return try container.encode("FAILED")
+        case .onlineMaintenance: return try container.encode("ONLINE_MAINTENANCE")
+        case .repairing: return try container.encode("REPAIRING")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -800,9 +800,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .newNetworkArchitecture: return try container.encode(1)
-        case .oldNetworkArchitecture: return try container.encode(2)
+        case .unspecified: return try container.encode("SQL_NETWORK_ARCHITECTURE_UNSPECIFIED")
+        case .newNetworkArchitecture: return try container.encode("NEW_NETWORK_ARCHITECTURE")
+        case .oldNetworkArchitecture: return try container.encode("OLD_NETWORK_ARCHITECTURE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

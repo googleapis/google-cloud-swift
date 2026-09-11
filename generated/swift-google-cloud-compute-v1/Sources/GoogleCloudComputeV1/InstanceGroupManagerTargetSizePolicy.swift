@@ -145,9 +145,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .bulk: return try container.encode(0)
-        case .individual: return try container.encode(1)
-        case .unspecifiedMode: return try container.encode(2)
+        case .bulk: return try container.encode("BULK")
+        case .individual: return try container.encode("INDIVIDUAL")
+        case .unspecifiedMode: return try container.encode("UNSPECIFIED_MODE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

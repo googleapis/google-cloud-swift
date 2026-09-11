@@ -470,9 +470,9 @@ public struct Action: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .incompatible: return try container.encode(1)
-        case .modified: return try container.encode(2)
+        case .unspecified: return try container.encode("SCHEMA_CHANGE_UNSPECIFIED")
+        case .incompatible: return try container.encode("INCOMPATIBLE")
+        case .modified: return try container.encode("MODIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -610,9 +610,9 @@ public struct Action: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .consistentKeys: return try container.encode(1)
-        case .hiveStyleKeys: return try container.encode(2)
+        case .unspecified: return try container.encode("PARTITION_STRUCTURE_UNSPECIFIED")
+        case .consistentKeys: return try container.encode("CONSISTENT_KEYS")
+        case .hiveStyleKeys: return try container.encode("HIVE_STYLE_KEYS")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -794,10 +794,10 @@ public struct Action: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .resourceManagement: return try container.encode(1)
-      case .securityPolicy: return try container.encode(2)
-      case .dataDiscovery: return try container.encode(3)
+      case .unspecified: return try container.encode("CATEGORY_UNSPECIFIED")
+      case .resourceManagement: return try container.encode("RESOURCE_MANAGEMENT")
+      case .securityPolicy: return try container.encode("SECURITY_POLICY")
+      case .dataDiscovery: return try container.encode("DATA_DISCOVERY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

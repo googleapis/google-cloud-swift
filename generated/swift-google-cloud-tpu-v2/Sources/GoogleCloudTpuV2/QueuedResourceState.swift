@@ -558,16 +558,16 @@ public struct QueuedResourceState: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .creating: return try container.encode(1)
-      case .accepted: return try container.encode(2)
-      case .provisioning: return try container.encode(3)
-      case .failed: return try container.encode(4)
-      case .deleting: return try container.encode(5)
-      case .active: return try container.encode(6)
-      case .suspending: return try container.encode(7)
-      case .suspended: return try container.encode(8)
-      case .waitingForResources: return try container.encode(9)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .creating: return try container.encode("CREATING")
+      case .accepted: return try container.encode("ACCEPTED")
+      case .provisioning: return try container.encode("PROVISIONING")
+      case .failed: return try container.encode("FAILED")
+      case .deleting: return try container.encode("DELETING")
+      case .active: return try container.encode("ACTIVE")
+      case .suspending: return try container.encode("SUSPENDING")
+      case .suspended: return try container.encode("SUSPENDED")
+      case .waitingForResources: return try container.encode("WAITING_FOR_RESOURCES")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -670,9 +670,9 @@ public struct QueuedResourceState: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .user: return try container.encode(1)
-      case .service: return try container.encode(2)
+      case .unspecified: return try container.encode("STATE_INITIATOR_UNSPECIFIED")
+      case .user: return try container.encode("USER")
+      case .service: return try container.encode("SERVICE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

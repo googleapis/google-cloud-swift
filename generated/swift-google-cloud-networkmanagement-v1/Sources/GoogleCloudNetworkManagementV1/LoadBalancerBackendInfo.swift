@@ -194,11 +194,13 @@ public struct LoadBalancerBackendInfo: Codable, Equatable, GoogleCloudWKT._AnyPa
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .firewallsConfigured: return try container.encode(1)
-      case .firewallsPartiallyConfigured: return try container.encode(2)
-      case .firewallsNotConfigured: return try container.encode(3)
-      case .firewallsUnsupported: return try container.encode(4)
+      case .unspecified:
+        return try container.encode("HEALTH_CHECK_FIREWALLS_CONFIG_STATE_UNSPECIFIED")
+      case .firewallsConfigured: return try container.encode("FIREWALLS_CONFIGURED")
+      case .firewallsPartiallyConfigured:
+        return try container.encode("FIREWALLS_PARTIALLY_CONFIGURED")
+      case .firewallsNotConfigured: return try container.encode("FIREWALLS_NOT_CONFIGURED")
+      case .firewallsUnsupported: return try container.encode("FIREWALLS_UNSUPPORTED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

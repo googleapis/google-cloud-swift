@@ -160,11 +160,11 @@ public struct RuleConfigInfo: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .firstBackupPending: return try container.encode(1)
-      case .permissionDenied: return try container.encode(2)
-      case .succeeded: return try container.encode(3)
-      case .failed: return try container.encode(4)
+      case .unspecified: return try container.encode("LAST_BACKUP_STATE_UNSPECIFIED")
+      case .firstBackupPending: return try container.encode("FIRST_BACKUP_PENDING")
+      case .permissionDenied: return try container.encode("PERMISSION_DENIED")
+      case .succeeded: return try container.encode("SUCCEEDED")
+      case .failed: return try container.encode("FAILED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

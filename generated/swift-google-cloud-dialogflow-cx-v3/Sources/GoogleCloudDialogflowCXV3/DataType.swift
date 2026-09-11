@@ -128,11 +128,11 @@
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .string: return try container.encode(1)
-      case .number: return try container.encode(2)
-      case .boolean: return try container.encode(3)
-      case .array: return try container.encode(6)
+      case .unspecified: return try container.encode("DATA_TYPE_UNSPECIFIED")
+      case .string: return try container.encode("STRING")
+      case .number: return try container.encode("NUMBER")
+      case .boolean: return try container.encode("BOOLEAN")
+      case .array: return try container.encode("ARRAY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

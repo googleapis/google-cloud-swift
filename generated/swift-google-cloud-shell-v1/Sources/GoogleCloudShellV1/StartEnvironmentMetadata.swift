@@ -163,11 +163,11 @@ public struct StartEnvironmentMetadata: Codable, Equatable, GoogleCloudWKT._AnyP
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .starting: return try container.encode(1)
-      case .unarchivingDisk: return try container.encode(2)
-      case .finished: return try container.encode(3)
-      case .awaitingComputeResources: return try container.encode(4)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .starting: return try container.encode("STARTING")
+      case .unarchivingDisk: return try container.encode("UNARCHIVING_DISK")
+      case .finished: return try container.encode("FINISHED")
+      case .awaitingComputeResources: return try container.encode("AWAITING_COMPUTE_RESOURCES")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

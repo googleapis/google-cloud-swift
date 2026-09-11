@@ -183,9 +183,9 @@ public struct DeployPolicyEvaluationEvent: Codable, Equatable, GoogleCloudWKT._A
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .allowedByPolicy: return try container.encode(1)
-      case .deniedByPolicy: return try container.encode(2)
+      case .unspecified: return try container.encode("POLICY_VERDICT_UNSPECIFIED")
+      case .allowedByPolicy: return try container.encode("ALLOWED_BY_POLICY")
+      case .deniedByPolicy: return try container.encode("DENIED_BY_POLICY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -289,9 +289,9 @@ public struct DeployPolicyEvaluationEvent: Codable, Equatable, GoogleCloudWKT._A
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .policyOverridden: return try container.encode(1)
-      case .policySuspended: return try container.encode(2)
+      case .unspecified: return try container.encode("POLICY_VERDICT_OVERRIDE_UNSPECIFIED")
+      case .policyOverridden: return try container.encode("POLICY_OVERRIDDEN")
+      case .policySuspended: return try container.encode("POLICY_SUSPENDED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

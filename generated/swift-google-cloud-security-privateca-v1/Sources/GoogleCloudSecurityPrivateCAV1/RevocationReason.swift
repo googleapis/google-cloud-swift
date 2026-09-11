@@ -186,15 +186,17 @@ public enum RevocationReason: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .keyCompromise: return try container.encode(1)
-    case .certificateAuthorityCompromise: return try container.encode(2)
-    case .affiliationChanged: return try container.encode(3)
-    case .superseded: return try container.encode(4)
-    case .cessationOfOperation: return try container.encode(5)
-    case .certificateHold: return try container.encode(6)
-    case .privilegeWithdrawn: return try container.encode(7)
-    case .attributeAuthorityCompromise: return try container.encode(8)
+    case .unspecified: return try container.encode("REVOCATION_REASON_UNSPECIFIED")
+    case .keyCompromise: return try container.encode("KEY_COMPROMISE")
+    case .certificateAuthorityCompromise:
+      return try container.encode("CERTIFICATE_AUTHORITY_COMPROMISE")
+    case .affiliationChanged: return try container.encode("AFFILIATION_CHANGED")
+    case .superseded: return try container.encode("SUPERSEDED")
+    case .cessationOfOperation: return try container.encode("CESSATION_OF_OPERATION")
+    case .certificateHold: return try container.encode("CERTIFICATE_HOLD")
+    case .privilegeWithdrawn: return try container.encode("PRIVILEGE_WITHDRAWN")
+    case .attributeAuthorityCompromise:
+      return try container.encode("ATTRIBUTE_AUTHORITY_COMPROMISE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

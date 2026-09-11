@@ -436,9 +436,9 @@ public struct PipelineActivity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .willRetry: return try container.encode(1)
-        case .retryExhausted: return try container.encode(2)
+        case .unspecified: return try container.encode("RETRY_STATUS_UNSPECIFIED")
+        case .willRetry: return try container.encode("WILL_RETRY")
+        case .retryExhausted: return try container.encode("RETRY_EXHAUSTED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -559,10 +559,10 @@ public struct PipelineActivity: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .json: return try container.encode(1)
-      case .proto: return try container.encode(2)
-      case .avro: return try container.encode(3)
+      case .unspecified: return try container.encode("PAYLOAD_FORMAT_UNSPECIFIED")
+      case .json: return try container.encode("JSON")
+      case .proto: return try container.encode("PROTO")
+      case .avro: return try container.encode("AVRO")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -238,14 +238,14 @@ public struct Registration: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .registrationPending: return try container.encode(1)
-      case .registrationFailed: return try container.encode(2)
-      case .transferPending: return try container.encode(3)
-      case .transferFailed: return try container.encode(4)
-      case .active: return try container.encode(6)
-      case .suspended: return try container.encode(7)
-      case .exported: return try container.encode(8)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .registrationPending: return try container.encode("REGISTRATION_PENDING")
+      case .registrationFailed: return try container.encode("REGISTRATION_FAILED")
+      case .transferPending: return try container.encode("TRANSFER_PENDING")
+      case .transferFailed: return try container.encode("TRANSFER_FAILED")
+      case .active: return try container.encode("ACTIVE")
+      case .suspended: return try container.encode("SUSPENDED")
+      case .exported: return try container.encode("EXPORTED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -355,9 +355,9 @@ public struct Registration: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .contactSupport: return try container.encode(1)
-      case .unverifiedEmail: return try container.encode(2)
+      case .unspecified: return try container.encode("ISSUE_UNSPECIFIED")
+      case .contactSupport: return try container.encode("CONTACT_SUPPORT")
+      case .unverifiedEmail: return try container.encode("UNVERIFIED_EMAIL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

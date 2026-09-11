@@ -212,9 +212,10 @@ public struct PullRequestFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .commentsDisabled: return try container.encode(0)
-      case .commentsEnabled: return try container.encode(1)
-      case .commentsEnabledForExternalContributorsOnly: return try container.encode(2)
+      case .commentsDisabled: return try container.encode("COMMENTS_DISABLED")
+      case .commentsEnabled: return try container.encode("COMMENTS_ENABLED")
+      case .commentsEnabledForExternalContributorsOnly:
+        return try container.encode("COMMENTS_ENABLED_FOR_EXTERNAL_CONTRIBUTORS_ONLY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

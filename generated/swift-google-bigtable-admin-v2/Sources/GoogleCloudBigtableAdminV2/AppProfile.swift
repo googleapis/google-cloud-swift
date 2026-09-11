@@ -492,8 +492,8 @@ public struct AppProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .hostPays: return try container.encode(1)
+        case .unspecified: return try container.encode("COMPUTE_BILLING_OWNER_UNSPECIFIED")
+        case .hostPays: return try container.encode("HOST_PAYS")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -612,10 +612,10 @@ public struct AppProfile: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .low: return try container.encode(1)
-      case .medium: return try container.encode(2)
-      case .high: return try container.encode(3)
+      case .unspecified: return try container.encode("PRIORITY_UNSPECIFIED")
+      case .low: return try container.encode("PRIORITY_LOW")
+      case .medium: return try container.encode("PRIORITY_MEDIUM")
+      case .high: return try container.encode("PRIORITY_HIGH")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

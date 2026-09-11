@@ -164,12 +164,12 @@ public struct LogConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .off: return try container.encode(1)
-      case .debug: return try container.encode(100)
-      case .info: return try container.encode(200)
-      case .warning: return try container.encode(400)
-      case .error: return try container.encode(500)
+      case .unspecified: return try container.encode("LOG_SEVERITY_UNSPECIFIED")
+      case .off: return try container.encode("OFF")
+      case .debug: return try container.encode("DEBUG")
+      case .info: return try container.encode("INFO")
+      case .warning: return try container.encode("WARNING")
+      case .error: return try container.encode("ERROR")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -182,14 +182,14 @@ public struct NameMappingKey: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .database: return try container.encode(1)
-      case .schema: return try container.encode(2)
-      case .relation: return try container.encode(3)
-      case .attribute: return try container.encode(4)
-      case .relationAlias: return try container.encode(5)
-      case .attributeAlias: return try container.encode(6)
-      case .function: return try container.encode(7)
+      case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .database: return try container.encode("DATABASE")
+      case .schema: return try container.encode("SCHEMA")
+      case .relation: return try container.encode("RELATION")
+      case .attribute: return try container.encode("ATTRIBUTE")
+      case .relationAlias: return try container.encode("RELATION_ALIAS")
+      case .attributeAlias: return try container.encode("ATTRIBUTE_ALIAS")
+      case .function: return try container.encode("FUNCTION")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

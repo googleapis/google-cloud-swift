@@ -118,10 +118,10 @@ public enum MigrationState: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .running: return try container.encode(1)
-    case .paused: return try container.encode(2)
-    case .complete: return try container.encode(3)
+    case .unspecified: return try container.encode("MIGRATION_STATE_UNSPECIFIED")
+    case .running: return try container.encode("RUNNING")
+    case .paused: return try container.encode("PAUSED")
+    case .complete: return try container.encode("COMPLETE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

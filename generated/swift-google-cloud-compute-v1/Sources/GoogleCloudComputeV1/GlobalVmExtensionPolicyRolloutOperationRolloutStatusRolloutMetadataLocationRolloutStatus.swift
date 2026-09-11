@@ -154,11 +154,16 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .locationRolloutStateCompleted: return try container.encode(0)
-        case .locationRolloutStateFailed: return try container.encode(1)
-        case .locationRolloutStateNotStarted: return try container.encode(2)
-        case .locationRolloutStateSkipped: return try container.encode(3)
-        case .locationRolloutStateUnspecified: return try container.encode(4)
+        case .locationRolloutStateCompleted:
+          return try container.encode("LOCATION_ROLLOUT_STATE_COMPLETED")
+        case .locationRolloutStateFailed:
+          return try container.encode("LOCATION_ROLLOUT_STATE_FAILED")
+        case .locationRolloutStateNotStarted:
+          return try container.encode("LOCATION_ROLLOUT_STATE_NOT_STARTED")
+        case .locationRolloutStateSkipped:
+          return try container.encode("LOCATION_ROLLOUT_STATE_SKIPPED")
+        case .locationRolloutStateUnspecified:
+          return try container.encode("LOCATION_ROLLOUT_STATE_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

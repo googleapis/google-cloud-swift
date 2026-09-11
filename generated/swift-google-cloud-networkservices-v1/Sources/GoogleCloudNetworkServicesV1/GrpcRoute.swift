@@ -247,9 +247,9 @@ public struct GrpcRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .exact: return try container.encode(1)
-        case .regularExpression: return try container.encode(2)
+        case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+        case .exact: return try container.encode("EXACT")
+        case .regularExpression: return try container.encode("REGULAR_EXPRESSION")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -394,9 +394,9 @@ public struct GrpcRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .exact: return try container.encode(1)
-        case .regularExpression: return try container.encode(2)
+        case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+        case .exact: return try container.encode("EXACT")
+        case .regularExpression: return try container.encode("REGULAR_EXPRESSION")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

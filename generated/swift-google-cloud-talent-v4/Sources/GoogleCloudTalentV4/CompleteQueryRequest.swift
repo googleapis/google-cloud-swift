@@ -177,9 +177,9 @@ public struct CompleteQueryRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .tenant: return try container.encode(1)
-      case .`public`: return try container.encode(2)
+      case .unspecified: return try container.encode("COMPLETION_SCOPE_UNSPECIFIED")
+      case .tenant: return try container.encode("TENANT")
+      case .`public`: return try container.encode("PUBLIC")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -317,10 +317,10 @@ public struct CompleteQueryRequest: Codable, Equatable, GoogleCloudWKT._AnyPacka
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .jobTitle: return try container.encode(1)
-      case .companyName: return try container.encode(2)
-      case .combined: return try container.encode(3)
+      case .unspecified: return try container.encode("COMPLETION_TYPE_UNSPECIFIED")
+      case .jobTitle: return try container.encode("JOB_TITLE")
+      case .companyName: return try container.encode("COMPANY_NAME")
+      case .combined: return try container.encode("COMBINED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

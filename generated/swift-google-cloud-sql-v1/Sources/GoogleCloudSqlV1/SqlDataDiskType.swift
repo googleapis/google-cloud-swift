@@ -127,11 +127,11 @@
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .pdSsd: return try container.encode(1)
-      case .pdHdd: return try container.encode(2)
-      case .obsoleteLocalSsd: return try container.encode(3)
-      case .hyperdiskBalanced: return try container.encode(4)
+      case .unspecified: return try container.encode("SQL_DATA_DISK_TYPE_UNSPECIFIED")
+      case .pdSsd: return try container.encode("PD_SSD")
+      case .pdHdd: return try container.encode("PD_HDD")
+      case .obsoleteLocalSsd: return try container.encode("OBSOLETE_LOCAL_SSD")
+      case .hyperdiskBalanced: return try container.encode("HYPERDISK_BALANCED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

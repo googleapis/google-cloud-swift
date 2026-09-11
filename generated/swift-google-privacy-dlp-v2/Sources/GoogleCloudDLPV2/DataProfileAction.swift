@@ -329,10 +329,10 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWKT._AnyPackable
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .tableProfile: return try container.encode(1)
-        case .resourceName: return try container.encode(2)
-        case .fileStoreProfile: return try container.encode(3)
+        case .unspecified: return try container.encode("DETAIL_LEVEL_UNSPECIFIED")
+        case .tableProfile: return try container.encode("TABLE_PROFILE")
+        case .resourceName: return try container.encode("RESOURCE_NAME")
+        case .fileStoreProfile: return try container.encode("FILE_STORE_PROFILE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -788,11 +788,11 @@ public struct DataProfileAction: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .newProfile: return try container.encode(1)
-      case .changedProfile: return try container.encode(2)
-      case .scoreIncreased: return try container.encode(3)
-      case .errorChanged: return try container.encode(4)
+      case .unspecified: return try container.encode("EVENT_TYPE_UNSPECIFIED")
+      case .newProfile: return try container.encode("NEW_PROFILE")
+      case .changedProfile: return try container.encode("CHANGED_PROFILE")
+      case .scoreIncreased: return try container.encode("SCORE_INCREASED")
+      case .errorChanged: return try container.encode("ERROR_CHANGED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

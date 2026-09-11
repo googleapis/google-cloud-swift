@@ -166,9 +166,9 @@ public struct AddressGroup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .ipv4: return try container.encode(1)
-      case .ipv6: return try container.encode(2)
+      case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .ipv4: return try container.encode("IPV4")
+      case .ipv6: return try container.encode("IPV6")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -272,9 +272,9 @@ public struct AddressGroup: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .`default`: return try container.encode(1)
-      case .cloudArmor: return try container.encode(2)
+      case .unspecified: return try container.encode("PURPOSE_UNSPECIFIED")
+      case .`default`: return try container.encode("DEFAULT")
+      case .cloudArmor: return try container.encode("CLOUD_ARMOR")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

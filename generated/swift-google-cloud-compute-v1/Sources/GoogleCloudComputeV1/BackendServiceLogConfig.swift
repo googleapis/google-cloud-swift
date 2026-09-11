@@ -167,9 +167,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .custom: return try container.encode(0)
-        case .excludeAllOptional: return try container.encode(1)
-        case .includeAllOptional: return try container.encode(2)
+        case .custom: return try container.encode("CUSTOM")
+        case .excludeAllOptional: return try container.encode("EXCLUDE_ALL_OPTIONAL")
+        case .includeAllOptional: return try container.encode("INCLUDE_ALL_OPTIONAL")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

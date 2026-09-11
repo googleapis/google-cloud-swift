@@ -139,9 +139,9 @@ public struct SuggestionStep: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .queryCustomization: return try container.encode(1)
-      case .translationExplanation: return try container.encode(2)
+      case .unspecified: return try container.encode("SUGGESTION_TYPE_UNSPECIFIED")
+      case .queryCustomization: return try container.encode("QUERY_CUSTOMIZATION")
+      case .translationExplanation: return try container.encode("TRANSLATION_EXPLANATION")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -244,9 +244,9 @@ public struct SuggestionStep: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .sourceSql: return try container.encode(1)
-      case .targetSql: return try container.encode(2)
+      case .unspecified: return try container.encode("REWRITE_TARGET_UNSPECIFIED")
+      case .sourceSql: return try container.encode("SOURCE_SQL")
+      case .targetSql: return try container.encode("TARGET_SQL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

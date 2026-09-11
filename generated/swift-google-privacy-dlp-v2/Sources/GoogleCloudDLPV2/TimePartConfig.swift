@@ -161,13 +161,13 @@ public struct TimePartConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .year: return try container.encode(1)
-      case .month: return try container.encode(2)
-      case .dayOfMonth: return try container.encode(3)
-      case .dayOfWeek: return try container.encode(4)
-      case .weekOfYear: return try container.encode(5)
-      case .hourOfDay: return try container.encode(6)
+      case .unspecified: return try container.encode("TIME_PART_UNSPECIFIED")
+      case .year: return try container.encode("YEAR")
+      case .month: return try container.encode("MONTH")
+      case .dayOfMonth: return try container.encode("DAY_OF_MONTH")
+      case .dayOfWeek: return try container.encode("DAY_OF_WEEK")
+      case .weekOfYear: return try container.encode("WEEK_OF_YEAR")
+      case .hourOfDay: return try container.encode("HOUR_OF_DAY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

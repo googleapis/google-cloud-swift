@@ -532,9 +532,9 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unknown: return try container.encode(0)
-      case .textual: return try container.encode(1)
-      case .numerical: return try container.encode(2)
+      case .unknown: return try container.encode("UNKNOWN")
+      case .textual: return try container.encode("TEXTUAL")
+      case .numerical: return try container.encode("NUMERICAL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -637,9 +637,9 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .indexableEnabled: return try container.encode(1)
-      case .indexableDisabled: return try container.encode(2)
+      case .unspecified: return try container.encode("INDEXABLE_OPTION_UNSPECIFIED")
+      case .indexableEnabled: return try container.encode("INDEXABLE_ENABLED")
+      case .indexableDisabled: return try container.encode("INDEXABLE_DISABLED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -742,9 +742,9 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .dynamicFacetableEnabled: return try container.encode(1)
-      case .dynamicFacetableDisabled: return try container.encode(2)
+      case .unspecified: return try container.encode("DYNAMIC_FACETABLE_OPTION_UNSPECIFIED")
+      case .dynamicFacetableEnabled: return try container.encode("DYNAMIC_FACETABLE_ENABLED")
+      case .dynamicFacetableDisabled: return try container.encode("DYNAMIC_FACETABLE_DISABLED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -847,9 +847,9 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .searchableEnabled: return try container.encode(1)
-      case .searchableDisabled: return try container.encode(2)
+      case .unspecified: return try container.encode("SEARCHABLE_OPTION_UNSPECIFIED")
+      case .searchableEnabled: return try container.encode("SEARCHABLE_ENABLED")
+      case .searchableDisabled: return try container.encode("SEARCHABLE_DISABLED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -952,9 +952,9 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .exactSearchableEnabled: return try container.encode(1)
-      case .exactSearchableDisabled: return try container.encode(2)
+      case .unspecified: return try container.encode("EXACT_SEARCHABLE_OPTION_UNSPECIFIED")
+      case .exactSearchableEnabled: return try container.encode("EXACT_SEARCHABLE_ENABLED")
+      case .exactSearchableDisabled: return try container.encode("EXACT_SEARCHABLE_DISABLED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -1057,9 +1057,9 @@ public struct CatalogAttribute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .retrievableEnabled: return try container.encode(1)
-      case .retrievableDisabled: return try container.encode(2)
+      case .unspecified: return try container.encode("RETRIEVABLE_OPTION_UNSPECIFIED")
+      case .retrievableEnabled: return try container.encode("RETRIEVABLE_ENABLED")
+      case .retrievableDisabled: return try container.encode("RETRIEVABLE_DISABLED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

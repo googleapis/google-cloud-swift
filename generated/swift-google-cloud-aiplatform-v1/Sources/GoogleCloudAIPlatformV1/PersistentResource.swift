@@ -246,13 +246,13 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .provisioning: return try container.encode(1)
-        case .running: return try container.encode(3)
-        case .stopping: return try container.encode(4)
-        case .error: return try container.encode(5)
-        case .rebooting: return try container.encode(6)
-        case .updating: return try container.encode(7)
+        case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+        case .provisioning: return try container.encode("PROVISIONING")
+        case .running: return try container.encode("RUNNING")
+        case .stopping: return try container.encode("STOPPING")
+        case .error: return try container.encode("ERROR")
+        case .rebooting: return try container.encode("REBOOTING")
+        case .updating: return try container.encode("UPDATING")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

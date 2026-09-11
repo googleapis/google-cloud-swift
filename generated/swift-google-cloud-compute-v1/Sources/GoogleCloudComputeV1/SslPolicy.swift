@@ -544,35 +544,43 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .cleanupFailed: return try container.encode(0)
-          case .deprecatedResourceUsed: return try container.encode(1)
-          case .deprecatedTypeUsed: return try container.encode(2)
-          case .diskSizeLargerThanImageSize: return try container.encode(3)
-          case .experimentalTypeUsed: return try container.encode(4)
-          case .externalApiWarning: return try container.encode(5)
-          case .fieldValueOverriden: return try container.encode(6)
-          case .injectedKernelsDeprecated: return try container.encode(7)
-          case .invalidHealthCheckForDynamicWieghtedLb: return try container.encode(8)
-          case .largeDeploymentWarning: return try container.encode(9)
-          case .listOverheadQuotaExceed: return try container.encode(10)
-          case .missingTypeDependency: return try container.encode(11)
-          case .nextHopAddressNotAssigned: return try container.encode(12)
-          case .nextHopCannotIpForward: return try container.encode(13)
-          case .nextHopInstanceHasNoIpv6Interface: return try container.encode(14)
-          case .nextHopInstanceNotFound: return try container.encode(15)
-          case .nextHopInstanceNotOnNetwork: return try container.encode(16)
-          case .nextHopNotRunning: return try container.encode(17)
-          case .notCriticalError: return try container.encode(18)
-          case .noResultsOnPage: return try container.encode(19)
-          case .partialSuccess: return try container.encode(20)
-          case .quotaInfoUnavailable: return try container.encode(21)
-          case .requiredTosAgreement: return try container.encode(22)
-          case .resourceInUseByOtherResourceWarning: return try container.encode(23)
-          case .resourceNotDeleted: return try container.encode(24)
-          case .schemaValidationIgnored: return try container.encode(25)
-          case .singleInstancePropertyTemplate: return try container.encode(26)
-          case .undeclaredProperties: return try container.encode(27)
-          case .unreachable: return try container.encode(28)
+          case .cleanupFailed: return try container.encode("CLEANUP_FAILED")
+          case .deprecatedResourceUsed: return try container.encode("DEPRECATED_RESOURCE_USED")
+          case .deprecatedTypeUsed: return try container.encode("DEPRECATED_TYPE_USED")
+          case .diskSizeLargerThanImageSize:
+            return try container.encode("DISK_SIZE_LARGER_THAN_IMAGE_SIZE")
+          case .experimentalTypeUsed: return try container.encode("EXPERIMENTAL_TYPE_USED")
+          case .externalApiWarning: return try container.encode("EXTERNAL_API_WARNING")
+          case .fieldValueOverriden: return try container.encode("FIELD_VALUE_OVERRIDEN")
+          case .injectedKernelsDeprecated:
+            return try container.encode("INJECTED_KERNELS_DEPRECATED")
+          case .invalidHealthCheckForDynamicWieghtedLb:
+            return try container.encode("INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB")
+          case .largeDeploymentWarning: return try container.encode("LARGE_DEPLOYMENT_WARNING")
+          case .listOverheadQuotaExceed: return try container.encode("LIST_OVERHEAD_QUOTA_EXCEED")
+          case .missingTypeDependency: return try container.encode("MISSING_TYPE_DEPENDENCY")
+          case .nextHopAddressNotAssigned:
+            return try container.encode("NEXT_HOP_ADDRESS_NOT_ASSIGNED")
+          case .nextHopCannotIpForward: return try container.encode("NEXT_HOP_CANNOT_IP_FORWARD")
+          case .nextHopInstanceHasNoIpv6Interface:
+            return try container.encode("NEXT_HOP_INSTANCE_HAS_NO_IPV6_INTERFACE")
+          case .nextHopInstanceNotFound: return try container.encode("NEXT_HOP_INSTANCE_NOT_FOUND")
+          case .nextHopInstanceNotOnNetwork:
+            return try container.encode("NEXT_HOP_INSTANCE_NOT_ON_NETWORK")
+          case .nextHopNotRunning: return try container.encode("NEXT_HOP_NOT_RUNNING")
+          case .notCriticalError: return try container.encode("NOT_CRITICAL_ERROR")
+          case .noResultsOnPage: return try container.encode("NO_RESULTS_ON_PAGE")
+          case .partialSuccess: return try container.encode("PARTIAL_SUCCESS")
+          case .quotaInfoUnavailable: return try container.encode("QUOTA_INFO_UNAVAILABLE")
+          case .requiredTosAgreement: return try container.encode("REQUIRED_TOS_AGREEMENT")
+          case .resourceInUseByOtherResourceWarning:
+            return try container.encode("RESOURCE_IN_USE_BY_OTHER_RESOURCE_WARNING")
+          case .resourceNotDeleted: return try container.encode("RESOURCE_NOT_DELETED")
+          case .schemaValidationIgnored: return try container.encode("SCHEMA_VALIDATION_IGNORED")
+          case .singleInstancePropertyTemplate:
+            return try container.encode("SINGLE_INSTANCE_PROPERTY_TEMPLATE")
+          case .undeclaredProperties: return try container.encode("UNDECLARED_PROPERTIES")
+          case .unreachable: return try container.encode("UNREACHABLE")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -694,10 +702,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .tls10: return try container.encode(0)
-        case .tls11: return try container.encode(1)
-        case .tls12: return try container.encode(2)
-        case .tls13: return try container.encode(3)
+        case .tls10: return try container.encode("TLS_1_0")
+        case .tls11: return try container.encode("TLS_1_1")
+        case .tls12: return try container.encode("TLS_1_2")
+        case .tls13: return try container.encode("TLS_1_3")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -802,9 +810,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .`default`: return try container.encode(0)
-        case .deferred: return try container.encode(1)
-        case .enabled: return try container.encode(2)
+        case .`default`: return try container.encode("DEFAULT")
+        case .deferred: return try container.encode("DEFERRED")
+        case .enabled: return try container.encode("ENABLED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -927,11 +935,11 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .compatible: return try container.encode(0)
-        case .custom: return try container.encode(1)
-        case .fips202205: return try container.encode(2)
-        case .modern: return try container.encode(3)
-        case .restricted: return try container.encode(4)
+        case .compatible: return try container.encode("COMPATIBLE")
+        case .custom: return try container.encode("CUSTOM")
+        case .fips202205: return try container.encode("FIPS_202205")
+        case .modern: return try container.encode("MODERN")
+        case .restricted: return try container.encode("RESTRICTED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

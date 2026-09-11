@@ -189,12 +189,12 @@ public struct AutoMlImageObjectDetectionInputs: Codable, Equatable, GoogleCloudW
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .cloudHighAccuracy1: return try container.encode(1)
-      case .cloudLowLatency1: return try container.encode(2)
-      case .mobileTfLowLatency1: return try container.encode(3)
-      case .mobileTfVersatile1: return try container.encode(4)
-      case .mobileTfHighAccuracy1: return try container.encode(5)
+      case .unspecified: return try container.encode("MODEL_TYPE_UNSPECIFIED")
+      case .cloudHighAccuracy1: return try container.encode("CLOUD_HIGH_ACCURACY_1")
+      case .cloudLowLatency1: return try container.encode("CLOUD_LOW_LATENCY_1")
+      case .mobileTfLowLatency1: return try container.encode("MOBILE_TF_LOW_LATENCY_1")
+      case .mobileTfVersatile1: return try container.encode("MOBILE_TF_VERSATILE_1")
+      case .mobileTfHighAccuracy1: return try container.encode("MOBILE_TF_HIGH_ACCURACY_1")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

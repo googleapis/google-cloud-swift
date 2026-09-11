@@ -180,10 +180,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .disable: return try container.encode(1)
-        case .require: return try container.encode(2)
-        case .verifyCa: return try container.encode(3)
+        case .unspecified: return try container.encode("SSL_OPTION_UNSPECIFIED")
+        case .disable: return try container.encode("DISABLE")
+        case .require: return try container.encode("REQUIRE")
+        case .verifyCa: return try container.encode("VERIFY_CA")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

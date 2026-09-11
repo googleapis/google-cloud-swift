@@ -164,11 +164,11 @@ public struct Rule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unknown: return try container.encode(0)
-      case .onCreate: return try container.encode(1)
-      case .onUpdate: return try container.encode(4)
-      case .onCreateLink: return try container.encode(7)
-      case .onDeleteLink: return try container.encode(8)
+      case .unknown: return try container.encode("UNKNOWN")
+      case .onCreate: return try container.encode("ON_CREATE")
+      case .onUpdate: return try container.encode("ON_UPDATE")
+      case .onCreateLink: return try container.encode("ON_CREATE_LINK")
+      case .onDeleteLink: return try container.encode("ON_DELETE_LINK")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

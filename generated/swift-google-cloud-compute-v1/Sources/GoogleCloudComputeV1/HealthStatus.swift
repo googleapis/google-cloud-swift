@@ -161,8 +161,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .healthy: return try container.encode(0)
-        case .unhealthy: return try container.encode(1)
+        case .healthy: return try container.encode("HEALTHY")
+        case .unhealthy: return try container.encode("UNHEALTHY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -259,8 +259,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .healthy: return try container.encode(0)
-        case .unhealthy: return try container.encode(1)
+        case .healthy: return try container.encode("HEALTHY")
+        case .unhealthy: return try container.encode("UNHEALTHY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -383,10 +383,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .invalidWeight: return try container.encode(0)
-        case .missingWeight: return try container.encode(1)
-        case .unavailableWeight: return try container.encode(2)
-        case .weightNone: return try container.encode(3)
+        case .invalidWeight: return try container.encode("INVALID_WEIGHT")
+        case .missingWeight: return try container.encode("MISSING_WEIGHT")
+        case .unavailableWeight: return try container.encode("UNAVAILABLE_WEIGHT")
+        case .weightNone: return try container.encode("WEIGHT_NONE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -168,11 +168,11 @@ public struct InterconnectAttachmentInfo: Codable, Equatable, GoogleCloudWKT._An
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .dedicated: return try container.encode(1)
-      case .partner: return try container.encode(2)
-      case .partnerProvider: return try container.encode(3)
-      case .l2Dedicated: return try container.encode(4)
+      case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .dedicated: return try container.encode("DEDICATED")
+      case .partner: return try container.encode("PARTNER")
+      case .partnerProvider: return try container.encode("PARTNER_PROVIDER")
+      case .l2Dedicated: return try container.encode("L2_DEDICATED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

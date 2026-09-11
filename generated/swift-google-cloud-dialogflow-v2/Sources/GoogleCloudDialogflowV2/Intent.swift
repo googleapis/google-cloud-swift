@@ -369,9 +369,9 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .example: return try container.encode(1)
-          case .template: return try container.encode(2)
+          case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+          case .example: return try container.encode("EXAMPLE")
+          case .template: return try container.encode("TEMPLATE")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -1542,8 +1542,8 @@
           public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .unspecified: return try container.encode(0)
-            case .audio: return try container.encode(1)
+            case .unspecified: return try container.encode("RESPONSE_MEDIA_TYPE_UNSPECIFIED")
+            case .audio: return try container.encode("AUDIO")
             case .unknownIntValue(let v): return try container.encode(v)
             case .unknownStringValue(let v): return try container.encode(v)
             }
@@ -1758,9 +1758,9 @@
               public func encode(to encoder: Encoder) throws {
                 var container = encoder.singleValueContainer()
                 switch self {
-                case .unspecified: return try container.encode(0)
-                case .ampAction: return try container.encode(1)
-                case .ampContent: return try container.encode(2)
+                case .unspecified: return try container.encode("URL_TYPE_HINT_UNSPECIFIED")
+                case .ampAction: return try container.encode("AMP_ACTION")
+                case .ampContent: return try container.encode("AMP_CONTENT")
                 case .unknownIntValue(let v): return try container.encode(v)
                 case .unknownStringValue(let v): return try container.encode(v)
                 }
@@ -1910,11 +1910,11 @@
           public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .unspecified: return try container.encode(0)
-            case .gray: return try container.encode(1)
-            case .white: return try container.encode(2)
-            case .cropped: return try container.encode(3)
-            case .blurredBackground: return try container.encode(4)
+            case .unspecified: return try container.encode("IMAGE_DISPLAY_OPTIONS_UNSPECIFIED")
+            case .gray: return try container.encode("GRAY")
+            case .white: return try container.encode("WHITE")
+            case .cropped: return try container.encode("CROPPED")
+            case .blurredBackground: return try container.encode("BLURRED_BACKGROUND")
             case .unknownIntValue(let v): return try container.encode(v)
             case .unknownStringValue(let v): return try container.encode(v)
             }
@@ -2113,10 +2113,10 @@
           public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .unspecified: return try container.encode(0)
-            case .leading: return try container.encode(1)
-            case .center: return try container.encode(2)
-            case .trailing: return try container.encode(3)
+            case .unspecified: return try container.encode("HORIZONTAL_ALIGNMENT_UNSPECIFIED")
+            case .leading: return try container.encode("LEADING")
+            case .center: return try container.encode("CENTER")
+            case .trailing: return try container.encode("TRAILING")
             case .unknownIntValue(let v): return try container.encode(v)
             case .unknownStringValue(let v): return try container.encode(v)
             }
@@ -2351,16 +2351,16 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .facebook: return try container.encode(1)
-          case .slack: return try container.encode(2)
-          case .telegram: return try container.encode(3)
-          case .kik: return try container.encode(4)
-          case .skype: return try container.encode(5)
-          case .line: return try container.encode(6)
-          case .viber: return try container.encode(7)
-          case .actionsOnGoogle: return try container.encode(8)
-          case .googleHangouts: return try container.encode(11)
+          case .unspecified: return try container.encode("PLATFORM_UNSPECIFIED")
+          case .facebook: return try container.encode("FACEBOOK")
+          case .slack: return try container.encode("SLACK")
+          case .telegram: return try container.encode("TELEGRAM")
+          case .kik: return try container.encode("KIK")
+          case .skype: return try container.encode("SKYPE")
+          case .line: return try container.encode("LINE")
+          case .viber: return try container.encode("VIBER")
+          case .actionsOnGoogle: return try container.encode("ACTIONS_ON_GOOGLE")
+          case .googleHangouts: return try container.encode("GOOGLE_HANGOUTS")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -2546,9 +2546,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .enabled: return try container.encode(1)
-        case .enabledForSlotFilling: return try container.encode(2)
+        case .unspecified: return try container.encode("WEBHOOK_STATE_UNSPECIFIED")
+        case .enabled: return try container.encode("WEBHOOK_STATE_ENABLED")
+        case .enabledForSlotFilling:
+          return try container.encode("WEBHOOK_STATE_ENABLED_FOR_SLOT_FILLING")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

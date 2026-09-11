@@ -152,10 +152,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .off: return try container.encode(1)
-        case .on: return try container.encode(2)
-        case .onlyScaleOut: return try container.encode(3)
+        case .unspecified: return try container.encode("MODE_UNSPECIFIED")
+        case .off: return try container.encode("OFF")
+        case .on: return try container.encode("ON")
+        case .onlyScaleOut: return try container.encode("ONLY_SCALE_OUT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

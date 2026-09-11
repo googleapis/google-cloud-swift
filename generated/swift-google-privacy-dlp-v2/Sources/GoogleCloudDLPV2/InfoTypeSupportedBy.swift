@@ -112,9 +112,9 @@ public enum InfoTypeSupportedBy: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .enumTypeUnspecified: return try container.encode(0)
-    case .inspect: return try container.encode(1)
-    case .riskAnalysis: return try container.encode(2)
+    case .enumTypeUnspecified: return try container.encode("ENUM_TYPE_UNSPECIFIED")
+    case .inspect: return try container.encode("INSPECT")
+    case .riskAnalysis: return try container.encode("RISK_ANALYSIS")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

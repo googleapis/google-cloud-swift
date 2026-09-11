@@ -745,20 +745,20 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .bps100G: return try container.encode(0)
-        case .bps100M: return try container.encode(1)
-        case .bps10G: return try container.encode(2)
-        case .bps1G: return try container.encode(3)
-        case .bps200M: return try container.encode(4)
-        case .bps20G: return try container.encode(5)
-        case .bps2G: return try container.encode(6)
-        case .bps300M: return try container.encode(7)
-        case .bps400G: return try container.encode(8)
-        case .bps400M: return try container.encode(9)
-        case .bps500M: return try container.encode(10)
-        case .bps50G: return try container.encode(11)
-        case .bps50M: return try container.encode(12)
-        case .bps5G: return try container.encode(13)
+        case .bps100G: return try container.encode("BPS_100G")
+        case .bps100M: return try container.encode("BPS_100M")
+        case .bps10G: return try container.encode("BPS_10G")
+        case .bps1G: return try container.encode("BPS_1G")
+        case .bps200M: return try container.encode("BPS_200M")
+        case .bps20G: return try container.encode("BPS_20G")
+        case .bps2G: return try container.encode("BPS_2G")
+        case .bps300M: return try container.encode("BPS_300M")
+        case .bps400G: return try container.encode("BPS_400G")
+        case .bps400M: return try container.encode("BPS_400M")
+        case .bps500M: return try container.encode("BPS_500M")
+        case .bps50G: return try container.encode("BPS_50G")
+        case .bps50M: return try container.encode("BPS_50M")
+        case .bps5G: return try container.encode("BPS_5G")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -860,9 +860,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .availabilityDomain1: return try container.encode(0)
-        case .availabilityDomain2: return try container.encode(1)
-        case .availabilityDomainAny: return try container.encode(2)
+        case .availabilityDomain1: return try container.encode("AVAILABILITY_DOMAIN_1")
+        case .availabilityDomain2: return try container.encode("AVAILABILITY_DOMAIN_2")
+        case .availabilityDomainAny: return try container.encode("AVAILABILITY_DOMAIN_ANY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -967,8 +967,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .ipsec: return try container.encode(0)
-        case .`none`: return try container.encode(1)
+        case .ipsec: return try container.encode("IPSEC")
+        case .`none`: return try container.encode("NONE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1069,8 +1069,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .osActive: return try container.encode(0)
-        case .osUnprovisioned: return try container.encode(1)
+        case .osActive: return try container.encode("OS_ACTIVE")
+        case .osUnprovisioned: return try container.encode("OS_UNPROVISIONED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1169,8 +1169,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .ipv4Ipv6: return try container.encode(0)
-        case .ipv4Only: return try container.encode(1)
+        case .ipv4Ipv6: return try container.encode("IPV4_IPV6")
+        case .ipv4Only: return try container.encode("IPV4_ONLY")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1304,13 +1304,13 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .active: return try container.encode(0)
-        case .defunct: return try container.encode(1)
-        case .partnerRequestReceived: return try container.encode(2)
-        case .pendingCustomer: return try container.encode(3)
-        case .pendingPartner: return try container.encode(4)
-        case .unspecified: return try container.encode(5)
-        case .unprovisioned: return try container.encode(6)
+        case .active: return try container.encode("ACTIVE")
+        case .defunct: return try container.encode("DEFUNCT")
+        case .partnerRequestReceived: return try container.encode("PARTNER_REQUEST_RECEIVED")
+        case .pendingCustomer: return try container.encode("PENDING_CUSTOMER")
+        case .pendingPartner: return try container.encode("PENDING_PARTNER")
+        case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+        case .unprovisioned: return try container.encode("UNPROVISIONED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -1421,10 +1421,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .dedicated: return try container.encode(0)
-        case .l2Dedicated: return try container.encode(1)
-        case .partner: return try container.encode(2)
-        case .partnerProvider: return try container.encode(3)
+        case .dedicated: return try container.encode("DEDICATED")
+        case .l2Dedicated: return try container.encode("L2_DEDICATED")
+        case .partner: return try container.encode("PARTNER")
+        case .partnerProvider: return try container.encode("PARTNER_PROVIDER")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

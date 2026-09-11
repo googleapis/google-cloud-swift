@@ -157,11 +157,11 @@ public struct ReauthSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .login: return try container.encode(1)
-      case .password: return try container.encode(2)
-      case .secureKey: return try container.encode(3)
-      case .enrolledSecondFactors: return try container.encode(4)
+      case .unspecified: return try container.encode("METHOD_UNSPECIFIED")
+      case .login: return try container.encode("LOGIN")
+      case .password: return try container.encode("PASSWORD")
+      case .secureKey: return try container.encode("SECURE_KEY")
+      case .enrolledSecondFactors: return try container.encode("ENROLLED_SECOND_FACTORS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -265,9 +265,9 @@ public struct ReauthSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .minimum: return try container.encode(1)
-      case .`default`: return try container.encode(2)
+      case .unspecified: return try container.encode("POLICY_TYPE_UNSPECIFIED")
+      case .minimum: return try container.encode("MINIMUM")
+      case .`default`: return try container.encode("DEFAULT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -225,9 +225,9 @@ public struct InstanceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .networkconfigUnspecified: return try container.encode(0)
-      case .singleVlan: return try container.encode(1)
-      case .multiVlan: return try container.encode(2)
+      case .networkconfigUnspecified: return try container.encode("NETWORKCONFIG_UNSPECIFIED")
+      case .singleVlan: return try container.encode("SINGLE_VLAN")
+      case .multiVlan: return try container.encode("MULTI_VLAN")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

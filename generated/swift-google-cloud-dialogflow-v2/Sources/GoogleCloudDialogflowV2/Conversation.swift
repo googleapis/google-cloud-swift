@@ -390,9 +390,9 @@
           public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             switch self {
-            case .unspecified: return try container.encode(0)
-            case .json: return try container.encode(1)
-            case .plainText: return try container.encode(2)
+            case .unspecified: return try container.encode("CONTENT_FORMAT_UNSPECIFIED")
+            case .json: return try container.encode("JSON")
+            case .plainText: return try container.encode("PLAIN_TEXT")
             case .unknownIntValue(let v): return try container.encode(v)
             case .unknownStringValue(let v): return try container.encode(v)
             }
@@ -507,9 +507,9 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .append: return try container.encode(1)
-          case .overwrite: return try container.encode(2)
+          case .unspecified: return try container.encode("UPDATE_MODE_UNSPECIFIED")
+          case .append: return try container.encode("APPEND")
+          case .overwrite: return try container.encode("OVERWRITE")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -671,13 +671,14 @@
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .freeForm: return try container.encode(1)
-          case .agentCoaching: return try container.encode(2)
-          case .summarization: return try container.encode(3)
-          case .translation: return try container.encode(4)
-          case .agentFeedback: return try container.encode(5)
-          case .customerMessageGeneration: return try container.encode(6)
+          case .unspecified: return try container.encode("GENERATOR_TYPE_UNSPECIFIED")
+          case .freeForm: return try container.encode("FREE_FORM")
+          case .agentCoaching: return try container.encode("AGENT_COACHING")
+          case .summarization: return try container.encode("SUMMARIZATION")
+          case .translation: return try container.encode("TRANSLATION")
+          case .agentFeedback: return try container.encode("AGENT_FEEDBACK")
+          case .customerMessageGeneration:
+            return try container.encode("CUSTOMER_MESSAGE_GENERATION")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -791,9 +792,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .inProgress: return try container.encode(1)
-        case .completed: return try container.encode(2)
+        case .unspecified: return try container.encode("LIFECYCLE_STATE_UNSPECIFIED")
+        case .inProgress: return try container.encode("IN_PROGRESS")
+        case .completed: return try container.encode("COMPLETED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -901,9 +902,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .virtualAgentStage: return try container.encode(1)
-        case .humanAssistStage: return try container.encode(2)
+        case .unspecified: return try container.encode("CONVERSATION_STAGE_UNSPECIFIED")
+        case .virtualAgentStage: return try container.encode("VIRTUAL_AGENT_STAGE")
+        case .humanAssistStage: return try container.encode("HUMAN_ASSIST_STAGE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

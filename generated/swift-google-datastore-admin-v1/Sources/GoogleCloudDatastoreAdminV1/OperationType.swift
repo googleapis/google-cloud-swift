@@ -124,11 +124,11 @@ public enum OperationType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .exportEntities: return try container.encode(1)
-    case .importEntities: return try container.encode(2)
-    case .createIndex: return try container.encode(3)
-    case .deleteIndex: return try container.encode(4)
+    case .unspecified: return try container.encode("OPERATION_TYPE_UNSPECIFIED")
+    case .exportEntities: return try container.encode("EXPORT_ENTITIES")
+    case .importEntities: return try container.encode("IMPORT_ENTITIES")
+    case .createIndex: return try container.encode("CREATE_INDEX")
+    case .deleteIndex: return try container.encode("DELETE_INDEX")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

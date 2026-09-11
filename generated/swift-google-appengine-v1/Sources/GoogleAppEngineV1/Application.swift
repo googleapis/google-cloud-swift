@@ -313,10 +313,10 @@ public struct Application: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .serving: return try container.encode(1)
-      case .userDisabled: return try container.encode(2)
-      case .systemDisabled: return try container.encode(3)
+      case .unspecified: return try container.encode("UNSPECIFIED")
+      case .serving: return try container.encode("SERVING")
+      case .userDisabled: return try container.encode("USER_DISABLED")
+      case .systemDisabled: return try container.encode("SYSTEM_DISABLED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -424,10 +424,11 @@ public struct Application: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .cloudDatastore: return try container.encode(1)
-      case .cloudFirestore: return try container.encode(2)
-      case .cloudDatastoreCompatibility: return try container.encode(3)
+      case .unspecified: return try container.encode("DATABASE_TYPE_UNSPECIFIED")
+      case .cloudDatastore: return try container.encode("CLOUD_DATASTORE")
+      case .cloudFirestore: return try container.encode("CLOUD_FIRESTORE")
+      case .cloudDatastoreCompatibility:
+        return try container.encode("CLOUD_DATASTORE_COMPATIBILITY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

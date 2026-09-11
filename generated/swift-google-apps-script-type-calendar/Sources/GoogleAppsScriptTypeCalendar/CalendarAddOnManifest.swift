@@ -177,11 +177,11 @@ public struct CalendarAddOnManifest: Codable, Equatable, GoogleCloudWKT._AnyPack
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .metadata: return try container.encode(1)
-      case .read: return try container.encode(3)
-      case .write: return try container.encode(4)
-      case .readWrite: return try container.encode(5)
+      case .unspecified: return try container.encode("UNSPECIFIED")
+      case .metadata: return try container.encode("METADATA")
+      case .read: return try container.encode("READ")
+      case .write: return try container.encode("WRITE")
+      case .readWrite: return try container.encode("READ_WRITE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

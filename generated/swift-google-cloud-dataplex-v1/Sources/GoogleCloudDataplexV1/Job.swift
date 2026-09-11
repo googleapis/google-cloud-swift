@@ -165,8 +165,8 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .dataproc: return try container.encode(1)
+      case .unspecified: return try container.encode("SERVICE_UNSPECIFIED")
+      case .dataproc: return try container.encode("DATAPROC")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -292,13 +292,13 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .running: return try container.encode(1)
-      case .cancelling: return try container.encode(2)
-      case .cancelled: return try container.encode(3)
-      case .succeeded: return try container.encode(4)
-      case .failed: return try container.encode(5)
-      case .aborted: return try container.encode(6)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .running: return try container.encode("RUNNING")
+      case .cancelling: return try container.encode("CANCELLING")
+      case .cancelled: return try container.encode("CANCELLED")
+      case .succeeded: return try container.encode("SUCCEEDED")
+      case .failed: return try container.encode("FAILED")
+      case .aborted: return try container.encode("ABORTED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -402,9 +402,9 @@ public struct Job: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .taskConfig: return try container.encode(1)
-      case .runRequest: return try container.encode(2)
+      case .unspecified: return try container.encode("TRIGGER_UNSPECIFIED")
+      case .taskConfig: return try container.encode("TASK_CONFIG")
+      case .runRequest: return try container.encode("RUN_REQUEST")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

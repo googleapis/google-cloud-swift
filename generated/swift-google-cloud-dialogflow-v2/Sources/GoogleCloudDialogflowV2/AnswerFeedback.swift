@@ -217,10 +217,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .notCorrect: return try container.encode(1)
-        case .partiallyCorrect: return try container.encode(2)
-        case .fullyCorrect: return try container.encode(3)
+        case .unspecified: return try container.encode("CORRECTNESS_LEVEL_UNSPECIFIED")
+        case .notCorrect: return try container.encode("NOT_CORRECT")
+        case .partiallyCorrect: return try container.encode("PARTIALLY_CORRECT")
+        case .fullyCorrect: return try container.encode("FULLY_CORRECT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

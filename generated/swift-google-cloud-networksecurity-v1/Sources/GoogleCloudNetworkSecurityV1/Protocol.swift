@@ -142,14 +142,14 @@ public enum Protocol_: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .smtp: return try container.encode(1)
-    case .smb: return try container.encode(2)
-    case .pop3: return try container.encode(3)
-    case .imap: return try container.encode(4)
-    case .http2: return try container.encode(5)
-    case .http: return try container.encode(6)
-    case .ftp: return try container.encode(7)
+    case .unspecified: return try container.encode("PROTOCOL_UNSPECIFIED")
+    case .smtp: return try container.encode("SMTP")
+    case .smb: return try container.encode("SMB")
+    case .pop3: return try container.encode("POP3")
+    case .imap: return try container.encode("IMAP")
+    case .http2: return try container.encode("HTTP2")
+    case .http: return try container.encode("HTTP")
+    case .ftp: return try container.encode("FTP")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

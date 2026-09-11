@@ -1313,9 +1313,9 @@ public struct VideoStream: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .downsample: return try container.encode(1)
-      case .dropDuplicate: return try container.encode(2)
+      case .unspecified: return try container.encode("FRAME_RATE_CONVERSION_STRATEGY_UNSPECIFIED")
+      case .downsample: return try container.encode("DOWNSAMPLE")
+      case .dropDuplicate: return try container.encode("DROP_DUPLICATE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

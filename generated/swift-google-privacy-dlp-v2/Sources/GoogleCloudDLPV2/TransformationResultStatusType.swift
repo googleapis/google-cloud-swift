@@ -130,11 +130,11 @@ public enum TransformationResultStatusType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .stateTypeUnspecified: return try container.encode(0)
-    case .invalidTransform: return try container.encode(1)
-    case .bigqueryMaxRowSizeExceeded: return try container.encode(2)
-    case .metadataUnretrievable: return try container.encode(3)
-    case .success: return try container.encode(4)
+    case .stateTypeUnspecified: return try container.encode("STATE_TYPE_UNSPECIFIED")
+    case .invalidTransform: return try container.encode("INVALID_TRANSFORM")
+    case .bigqueryMaxRowSizeExceeded: return try container.encode("BIGQUERY_MAX_ROW_SIZE_EXCEEDED")
+    case .metadataUnretrievable: return try container.encode("METADATA_UNRETRIEVABLE")
+    case .success: return try container.encode("SUCCESS")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

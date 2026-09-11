@@ -148,14 +148,14 @@ public enum UptimeCheckRegion: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .regionUnspecified: return try container.encode(0)
-    case .usa: return try container.encode(1)
-    case .europe: return try container.encode(2)
-    case .southAmerica: return try container.encode(3)
-    case .asiaPacific: return try container.encode(4)
-    case .usaOregon: return try container.encode(5)
-    case .usaIowa: return try container.encode(6)
-    case .usaVirginia: return try container.encode(7)
+    case .regionUnspecified: return try container.encode("REGION_UNSPECIFIED")
+    case .usa: return try container.encode("USA")
+    case .europe: return try container.encode("EUROPE")
+    case .southAmerica: return try container.encode("SOUTH_AMERICA")
+    case .asiaPacific: return try container.encode("ASIA_PACIFIC")
+    case .usaOregon: return try container.encode("USA_OREGON")
+    case .usaIowa: return try container.encode("USA_IOWA")
+    case .usaVirginia: return try container.encode("USA_VIRGINIA")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

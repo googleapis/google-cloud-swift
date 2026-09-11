@@ -180,9 +180,9 @@ public struct SourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .automatic: return try container.encode(1)
-      case .manual: return try container.encode(2)
+      case .unspecified: return try container.encode("REFRESHABLE_MODE_UNSPECIFIED")
+      case .automatic: return try container.encode("AUTOMATIC")
+      case .manual: return try container.encode("MANUAL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -310,12 +310,13 @@ public struct SourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .cloneDatabase: return try container.encode(1)
-      case .crossRegionDisasterRecovery: return try container.encode(2)
-      case .cloneToRefreshable: return try container.encode(3)
-      case .backupFromId: return try container.encode(4)
-      case .backupFromTimestamp: return try container.encode(5)
+      case .unspecified: return try container.encode("SOURCE_TYPE_UNSPECIFIED")
+      case .cloneDatabase: return try container.encode("CLONE_DATABASE")
+      case .crossRegionDisasterRecovery:
+        return try container.encode("CROSS_REGION_DISASTER_RECOVERY")
+      case .cloneToRefreshable: return try container.encode("CLONE_TO_REFRESHABLE")
+      case .backupFromId: return try container.encode("BACKUP_FROM_ID")
+      case .backupFromTimestamp: return try container.encode("BACKUP_FROM_TIMESTAMP")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -419,9 +420,9 @@ public struct SourceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .full: return try container.encode(1)
-      case .metadata: return try container.encode(2)
+      case .unspecified: return try container.encode("CLONE_TYPE_UNSPECIFIED")
+      case .full: return try container.encode("FULL")
+      case .metadata: return try container.encode("METADATA")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

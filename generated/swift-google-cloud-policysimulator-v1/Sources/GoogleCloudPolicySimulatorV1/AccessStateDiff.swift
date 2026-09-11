@@ -199,13 +199,13 @@ public struct AccessStateDiff: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .noChange: return try container.encode(1)
-      case .unknownChange: return try container.encode(2)
-      case .accessRevoked: return try container.encode(3)
-      case .accessGained: return try container.encode(4)
-      case .accessMaybeRevoked: return try container.encode(5)
-      case .accessMaybeGained: return try container.encode(6)
+      case .unspecified: return try container.encode("ACCESS_CHANGE_TYPE_UNSPECIFIED")
+      case .noChange: return try container.encode("NO_CHANGE")
+      case .unknownChange: return try container.encode("UNKNOWN_CHANGE")
+      case .accessRevoked: return try container.encode("ACCESS_REVOKED")
+      case .accessGained: return try container.encode("ACCESS_GAINED")
+      case .accessMaybeRevoked: return try container.encode("ACCESS_MAYBE_REVOKED")
+      case .accessMaybeGained: return try container.encode("ACCESS_MAYBE_GAINED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

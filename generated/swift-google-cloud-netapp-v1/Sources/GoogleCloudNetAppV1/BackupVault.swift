@@ -261,12 +261,12 @@ public struct BackupVault: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .creating: return try container.encode(1)
-      case .ready: return try container.encode(2)
-      case .deleting: return try container.encode(3)
-      case .error: return try container.encode(4)
-      case .updating: return try container.encode(5)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .creating: return try container.encode("CREATING")
+      case .ready: return try container.encode("READY")
+      case .deleting: return try container.encode("DELETING")
+      case .error: return try container.encode("ERROR")
+      case .updating: return try container.encode("UPDATING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -369,9 +369,9 @@ public struct BackupVault: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .inRegion: return try container.encode(1)
-      case .crossRegion: return try container.encode(2)
+      case .unspecified: return try container.encode("BACKUP_VAULT_TYPE_UNSPECIFIED")
+      case .inRegion: return try container.encode("IN_REGION")
+      case .crossRegion: return try container.encode("CROSS_REGION")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -486,11 +486,11 @@ public struct BackupVault: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .pending: return try container.encode(1)
-      case .completed: return try container.encode(2)
-      case .inProgress: return try container.encode(3)
-      case .failed: return try container.encode(4)
+      case .unspecified: return try container.encode("ENCRYPTION_STATE_UNSPECIFIED")
+      case .pending: return try container.encode("ENCRYPTION_STATE_PENDING")
+      case .completed: return try container.encode("ENCRYPTION_STATE_COMPLETED")
+      case .inProgress: return try container.encode("ENCRYPTION_STATE_IN_PROGRESS")
+      case .failed: return try container.encode("ENCRYPTION_STATE_FAILED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

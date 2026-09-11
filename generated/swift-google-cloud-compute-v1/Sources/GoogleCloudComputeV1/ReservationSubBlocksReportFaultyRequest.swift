@@ -138,8 +138,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .immediate: return try container.encode(1)
+        case .unspecified: return try container.encode("DISRUPTION_SCHEDULE_UNSPECIFIED")
+        case .immediate: return try container.encode("IMMEDIATE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -243,9 +243,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .multipleFaultyHosts: return try container.encode(1)
-        case .nvlinkSwitch: return try container.encode(2)
+        case .unspecified: return try container.encode("FAILURE_COMPONENT_UNSPECIFIED")
+        case .multipleFaultyHosts: return try container.encode("MULTIPLE_FAULTY_HOSTS")
+        case .nvlinkSwitch: return try container.encode("NVLINK_SWITCH")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

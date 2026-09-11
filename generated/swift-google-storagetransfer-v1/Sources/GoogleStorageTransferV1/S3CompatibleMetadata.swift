@@ -179,9 +179,9 @@ public struct S3CompatibleMetadata: Codable, Equatable, GoogleCloudWKT._AnyPacka
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .awsSignatureV4: return try container.encode(1)
-      case .awsSignatureV2: return try container.encode(2)
+      case .unspecified: return try container.encode("AUTH_METHOD_UNSPECIFIED")
+      case .awsSignatureV4: return try container.encode("AUTH_METHOD_AWS_SIGNATURE_V4")
+      case .awsSignatureV2: return try container.encode("AUTH_METHOD_AWS_SIGNATURE_V2")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -286,9 +286,9 @@ public struct S3CompatibleMetadata: Codable, Equatable, GoogleCloudWKT._AnyPacka
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .virtualHostedStyle: return try container.encode(1)
-      case .pathStyle: return try container.encode(2)
+      case .unspecified: return try container.encode("REQUEST_MODEL_UNSPECIFIED")
+      case .virtualHostedStyle: return try container.encode("REQUEST_MODEL_VIRTUAL_HOSTED_STYLE")
+      case .pathStyle: return try container.encode("REQUEST_MODEL_PATH_STYLE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -393,9 +393,9 @@ public struct S3CompatibleMetadata: Codable, Equatable, GoogleCloudWKT._AnyPacka
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .https: return try container.encode(1)
-      case .http: return try container.encode(2)
+      case .unspecified: return try container.encode("NETWORK_PROTOCOL_UNSPECIFIED")
+      case .https: return try container.encode("NETWORK_PROTOCOL_HTTPS")
+      case .http: return try container.encode("NETWORK_PROTOCOL_HTTP")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -498,9 +498,9 @@ public struct S3CompatibleMetadata: Codable, Equatable, GoogleCloudWKT._AnyPacka
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .listObjectsV2: return try container.encode(1)
-      case .listObjects: return try container.encode(2)
+      case .unspecified: return try container.encode("LIST_API_UNSPECIFIED")
+      case .listObjectsV2: return try container.encode("LIST_OBJECTS_V2")
+      case .listObjects: return try container.encode("LIST_OBJECTS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

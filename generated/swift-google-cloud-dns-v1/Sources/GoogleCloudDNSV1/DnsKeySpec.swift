@@ -151,11 +151,11 @@ public struct DnsKeySpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .rsasha1: return try container.encode(0)
-      case .rsasha256: return try container.encode(1)
-      case .rsasha512: return try container.encode(2)
-      case .ecdsap256Sha256: return try container.encode(3)
-      case .ecdsap384Sha384: return try container.encode(4)
+      case .rsasha1: return try container.encode("rsasha1")
+      case .rsasha256: return try container.encode("rsasha256")
+      case .rsasha512: return try container.encode("rsasha512")
+      case .ecdsap256Sha256: return try container.encode("ecdsap256sha256")
+      case .ecdsap384Sha384: return try container.encode("ecdsap384sha384")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -250,8 +250,8 @@ public struct DnsKeySpec: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .keySigning: return try container.encode(0)
-      case .zoneSigning: return try container.encode(1)
+      case .keySigning: return try container.encode("keySigning")
+      case .zoneSigning: return try container.encode("zoneSigning")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

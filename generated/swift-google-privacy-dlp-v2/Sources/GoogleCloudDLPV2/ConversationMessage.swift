@@ -149,9 +149,9 @@ public struct ConversationMessage: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .content: return try container.encode(1)
-      case .context: return try container.encode(2)
+      case .unspecified: return try container.encode("MESSAGE_TYPE_UNSPECIFIED")
+      case .content: return try container.encode("CONTENT")
+      case .context: return try container.encode("CONTEXT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

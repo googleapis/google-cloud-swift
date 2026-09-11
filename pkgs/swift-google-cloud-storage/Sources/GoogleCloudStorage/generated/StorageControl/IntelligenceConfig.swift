@@ -410,9 +410,9 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .`none`: return try container.encode(1)
-        case .standard: return try container.encode(2)
+        case .unspecified: return try container.encode("EFFECTIVE_EDITION_UNSPECIFIED")
+        case .`none`: return try container.encode("NONE")
+        case .standard: return try container.encode("STANDARD")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -589,12 +589,12 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .inherit: return try container.encode(1)
-      case .disabled: return try container.encode(2)
-      case .standard: return try container.encode(3)
-      case .trial: return try container.encode(5)
-      case .essentials: return try container.encode(6)
+      case .unspecified: return try container.encode("EDITION_CONFIG_UNSPECIFIED")
+      case .inherit: return try container.encode("INHERIT")
+      case .disabled: return try container.encode("DISABLED")
+      case .standard: return try container.encode("STANDARD")
+      case .trial: return try container.encode("TRIAL")
+      case .essentials: return try container.encode("ESSENTIALS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

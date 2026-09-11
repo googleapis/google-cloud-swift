@@ -155,11 +155,11 @@ public struct DataRiskLevel: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .riskScoreUnspecified: return try container.encode(0)
-      case .riskLow: return try container.encode(10)
-      case .riskUnknown: return try container.encode(12)
-      case .riskModerate: return try container.encode(20)
-      case .riskHigh: return try container.encode(30)
+      case .riskScoreUnspecified: return try container.encode("RISK_SCORE_UNSPECIFIED")
+      case .riskLow: return try container.encode("RISK_LOW")
+      case .riskUnknown: return try container.encode("RISK_UNKNOWN")
+      case .riskModerate: return try container.encode("RISK_MODERATE")
+      case .riskHigh: return try container.encode("RISK_HIGH")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

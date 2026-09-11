@@ -113,9 +113,9 @@
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .database: return try container.encode(1)
-      case .connectionPool: return try container.encode(2)
+      case .unspecified: return try container.encode("SQL_FLAG_SCOPE_UNSPECIFIED")
+      case .database: return try container.encode("SQL_FLAG_SCOPE_DATABASE")
+      case .connectionPool: return try container.encode("SQL_FLAG_SCOPE_CONNECTION_POOL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

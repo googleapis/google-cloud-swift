@@ -235,11 +235,11 @@ public struct NfsShare: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .provisioned: return try container.encode(1)
-      case .creating: return try container.encode(2)
-      case .updating: return try container.encode(3)
-      case .deleting: return try container.encode(4)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .provisioned: return try container.encode("PROVISIONED")
+      case .creating: return try container.encode("CREATING")
+      case .updating: return try container.encode("UPDATING")
+      case .deleting: return try container.encode("DELETING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -342,9 +342,9 @@ public struct NfsShare: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .read: return try container.encode(1)
-      case .readWrite: return try container.encode(2)
+      case .unspecified: return try container.encode("MOUNT_PERMISSIONS_UNSPECIFIED")
+      case .read: return try container.encode("READ")
+      case .readWrite: return try container.encode("READ_WRITE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -447,9 +447,9 @@ public struct NfsShare: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .ssd: return try container.encode(1)
-      case .hdd: return try container.encode(2)
+      case .unspecified: return try container.encode("STORAGE_TYPE_UNSPECIFIED")
+      case .ssd: return try container.encode("SSD")
+      case .hdd: return try container.encode("HDD")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

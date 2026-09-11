@@ -113,9 +113,9 @@
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .snapshot: return try container.encode(1)
-      case .physical: return try container.encode(2)
+      case .unspecified: return try container.encode("SQL_BACKUP_KIND_UNSPECIFIED")
+      case .snapshot: return try container.encode("SNAPSHOT")
+      case .physical: return try container.encode("PHYSICAL")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

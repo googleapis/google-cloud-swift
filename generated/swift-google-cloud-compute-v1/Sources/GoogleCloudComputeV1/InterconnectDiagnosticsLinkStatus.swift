@@ -156,8 +156,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .linkOperationalStatusDown: return try container.encode(0)
-        case .linkOperationalStatusUp: return try container.encode(1)
+        case .linkOperationalStatusDown: return try container.encode("LINK_OPERATIONAL_STATUS_DOWN")
+        case .linkOperationalStatusUp: return try container.encode("LINK_OPERATIONAL_STATUS_UP")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

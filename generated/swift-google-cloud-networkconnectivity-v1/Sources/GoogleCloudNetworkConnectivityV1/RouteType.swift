@@ -122,10 +122,10 @@ public enum RouteType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .vpcPrimarySubnet: return try container.encode(1)
-    case .vpcSecondarySubnet: return try container.encode(2)
-    case .dynamicRoute: return try container.encode(3)
+    case .unspecified: return try container.encode("ROUTE_TYPE_UNSPECIFIED")
+    case .vpcPrimarySubnet: return try container.encode("VPC_PRIMARY_SUBNET")
+    case .vpcSecondarySubnet: return try container.encode("VPC_SECONDARY_SUBNET")
+    case .dynamicRoute: return try container.encode("DYNAMIC_ROUTE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

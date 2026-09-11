@@ -211,10 +211,11 @@ public struct DbSystemProperties: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .standardEdition: return try container.encode(1)
-      case .enterpriseEdition: return try container.encode(2)
-      case .enterpriseEditionHighPerformance: return try container.encode(3)
+      case .unspecified: return try container.encode("DB_SYSTEM_DATABASE_EDITION_UNSPECIFIED")
+      case .standardEdition: return try container.encode("STANDARD_EDITION")
+      case .enterpriseEdition: return try container.encode("ENTERPRISE_EDITION")
+      case .enterpriseEditionHighPerformance:
+        return try container.encode("ENTERPRISE_EDITION_HIGH_PERFORMANCE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -317,9 +318,9 @@ public struct DbSystemProperties: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .licenseIncluded: return try container.encode(1)
-      case .bringYourOwnLicense: return try container.encode(2)
+      case .unspecified: return try container.encode("LICENSE_MODEL_UNSPECIFIED")
+      case .licenseIncluded: return try container.encode("LICENSE_INCLUDED")
+      case .bringYourOwnLicense: return try container.encode("BRING_YOUR_OWN_LICENSE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -470,17 +471,17 @@ public struct DbSystemProperties: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .provisioning: return try container.encode(1)
-      case .available: return try container.encode(2)
-      case .updating: return try container.encode(3)
-      case .terminating: return try container.encode(4)
-      case .terminated: return try container.encode(5)
-      case .failed: return try container.encode(6)
-      case .migrated: return try container.encode(7)
-      case .maintenanceInProgress: return try container.encode(8)
-      case .needsAttention: return try container.encode(9)
-      case .upgrading: return try container.encode(10)
+      case .unspecified: return try container.encode("DB_SYSTEM_LIFECYCLE_STATE_UNSPECIFIED")
+      case .provisioning: return try container.encode("PROVISIONING")
+      case .available: return try container.encode("AVAILABLE")
+      case .updating: return try container.encode("UPDATING")
+      case .terminating: return try container.encode("TERMINATING")
+      case .terminated: return try container.encode("TERMINATED")
+      case .failed: return try container.encode("FAILED")
+      case .migrated: return try container.encode("MIGRATED")
+      case .maintenanceInProgress: return try container.encode("MAINTENANCE_IN_PROGRESS")
+      case .needsAttention: return try container.encode("NEEDS_ATTENTION")
+      case .upgrading: return try container.encode("UPGRADING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -585,9 +586,9 @@ public struct DbSystemProperties: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .ecpu: return try container.encode(1)
-      case .ocpu: return try container.encode(2)
+      case .unspecified: return try container.encode("COMPUTE_MODEL_UNSPECIFIED")
+      case .ecpu: return try container.encode("ECPU")
+      case .ocpu: return try container.encode("OCPU")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

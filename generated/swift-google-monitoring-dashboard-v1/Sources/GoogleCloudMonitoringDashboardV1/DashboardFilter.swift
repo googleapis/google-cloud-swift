@@ -208,12 +208,12 @@ public struct DashboardFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .resourceLabel: return try container.encode(1)
-      case .metricLabel: return try container.encode(2)
-      case .userMetadataLabel: return try container.encode(3)
-      case .systemMetadataLabel: return try container.encode(4)
-      case .group: return try container.encode(5)
+      case .unspecified: return try container.encode("FILTER_TYPE_UNSPECIFIED")
+      case .resourceLabel: return try container.encode("RESOURCE_LABEL")
+      case .metricLabel: return try container.encode("METRIC_LABEL")
+      case .userMetadataLabel: return try container.encode("USER_METADATA_LABEL")
+      case .systemMetadataLabel: return try container.encode("SYSTEM_METADATA_LABEL")
+      case .group: return try container.encode("GROUP")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

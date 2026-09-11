@@ -168,10 +168,10 @@ public struct AdmissionRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .alwaysAllow: return try container.encode(1)
-      case .requireAttestation: return try container.encode(2)
-      case .alwaysDeny: return try container.encode(3)
+      case .unspecified: return try container.encode("EVALUATION_MODE_UNSPECIFIED")
+      case .alwaysAllow: return try container.encode("ALWAYS_ALLOW")
+      case .requireAttestation: return try container.encode("REQUIRE_ATTESTATION")
+      case .alwaysDeny: return try container.encode("ALWAYS_DENY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -276,9 +276,9 @@ public struct AdmissionRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .enforcedBlockAndAuditLog: return try container.encode(1)
-      case .dryrunAuditLogOnly: return try container.encode(2)
+      case .unspecified: return try container.encode("ENFORCEMENT_MODE_UNSPECIFIED")
+      case .enforcedBlockAndAuditLog: return try container.encode("ENFORCED_BLOCK_AND_AUDIT_LOG")
+      case .dryrunAuditLogOnly: return try container.encode("DRYRUN_AUDIT_LOG_ONLY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

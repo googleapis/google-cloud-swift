@@ -193,14 +193,14 @@ public struct Instance: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .provisioning: return try container.encode(1)
-      case .staging: return try container.encode(2)
-      case .running: return try container.encode(3)
-      case .stopping: return try container.encode(4)
-      case .stopped: return try container.encode(5)
-      case .terminated: return try container.encode(6)
-      case .repairing: return try container.encode(7)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .provisioning: return try container.encode("PROVISIONING")
+      case .staging: return try container.encode("STAGING")
+      case .running: return try container.encode("RUNNING")
+      case .stopping: return try container.encode("STOPPING")
+      case .stopped: return try container.encode("STOPPED")
+      case .terminated: return try container.encode("TERMINATED")
+      case .repairing: return try container.encode("REPAIRING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

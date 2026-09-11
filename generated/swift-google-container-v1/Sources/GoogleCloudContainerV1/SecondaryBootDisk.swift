@@ -136,8 +136,8 @@ public struct SecondaryBootDisk: Codable, Equatable, GoogleCloudWKT._AnyPackable
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .containerImageCache: return try container.encode(1)
+      case .unspecified: return try container.encode("MODE_UNSPECIFIED")
+      case .containerImageCache: return try container.encode("CONTAINER_IMAGE_CACHE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

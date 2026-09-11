@@ -356,9 +356,9 @@ public struct VolumeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .readOnly: return try container.encode(1)
-        case .readWrite: return try container.encode(2)
+        case .unspecified: return try container.encode("PERMISSIONS_UNSPECIFIED")
+        case .readOnly: return try container.encode("READ_ONLY")
+        case .readWrite: return try container.encode("READ_WRITE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -481,9 +481,9 @@ public struct VolumeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .flash: return try container.encode(1)
-      case .disk: return try container.encode(2)
+      case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .flash: return try container.encode("FLASH")
+      case .disk: return try container.encode("DISK")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -586,9 +586,9 @@ public struct VolumeConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .fc: return try container.encode(1)
-      case .nfs: return try container.encode(2)
+      case .unspecified: return try container.encode("PROTOCOL_UNSPECIFIED")
+      case .fc: return try container.encode("PROTOCOL_FC")
+      case .nfs: return try container.encode("PROTOCOL_NFS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

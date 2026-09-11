@@ -574,10 +574,10 @@ public struct DataQualityRule: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .statisticUndefined: return try container.encode(0)
-        case .mean: return try container.encode(1)
-        case .min: return try container.encode(2)
-        case .max: return try container.encode(3)
+        case .statisticUndefined: return try container.encode("STATISTIC_UNDEFINED")
+        case .mean: return try container.encode("MEAN")
+        case .min: return try container.encode("MIN")
+        case .max: return try container.encode("MAX")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

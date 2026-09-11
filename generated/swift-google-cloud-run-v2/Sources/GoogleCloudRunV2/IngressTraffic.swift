@@ -124,11 +124,12 @@ public enum IngressTraffic: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .all: return try container.encode(1)
-    case .internalOnly: return try container.encode(2)
-    case .internalLoadBalancer: return try container.encode(3)
-    case .`none`: return try container.encode(4)
+    case .unspecified: return try container.encode("INGRESS_TRAFFIC_UNSPECIFIED")
+    case .all: return try container.encode("INGRESS_TRAFFIC_ALL")
+    case .internalOnly: return try container.encode("INGRESS_TRAFFIC_INTERNAL_ONLY")
+    case .internalLoadBalancer:
+      return try container.encode("INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER")
+    case .`none`: return try container.encode("INGRESS_TRAFFIC_NONE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

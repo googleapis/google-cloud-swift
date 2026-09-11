@@ -145,10 +145,10 @@ public struct Hash: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .sha256: return try container.encode(1)
-      case .md5: return try container.encode(2)
-      case .dirsumSha256: return try container.encode(3)
+      case .unspecified: return try container.encode("HASH_TYPE_UNSPECIFIED")
+      case .sha256: return try container.encode("SHA256")
+      case .md5: return try container.encode("MD5")
+      case .dirsumSha256: return try container.encode("DIRSUM_SHA256")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

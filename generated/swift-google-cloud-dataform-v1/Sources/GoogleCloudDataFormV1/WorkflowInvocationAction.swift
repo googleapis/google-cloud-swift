@@ -709,13 +709,13 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleCloudWKT._AnyP
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .pending: return try container.encode(0)
-      case .running: return try container.encode(1)
-      case .skipped: return try container.encode(2)
-      case .disabled: return try container.encode(3)
-      case .succeeded: return try container.encode(4)
-      case .cancelled: return try container.encode(5)
-      case .failed: return try container.encode(6)
+      case .pending: return try container.encode("PENDING")
+      case .running: return try container.encode("RUNNING")
+      case .skipped: return try container.encode("SKIPPED")
+      case .disabled: return try container.encode("DISABLED")
+      case .succeeded: return try container.encode("SUCCEEDED")
+      case .cancelled: return try container.encode("CANCELLED")
+      case .failed: return try container.encode("FAILED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

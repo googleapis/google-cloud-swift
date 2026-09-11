@@ -214,9 +214,9 @@ public struct Input: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .rtmpPush: return try container.encode(1)
-      case .srtPush: return try container.encode(2)
+      case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .rtmpPush: return try container.encode("RTMP_PUSH")
+      case .srtPush: return try container.encode("SRT_PUSH")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -343,13 +343,13 @@ public struct Input: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .sd: return try container.encode(1)
-      case .hd: return try container.encode(2)
-      case .uhd: return try container.encode(3)
-      case .sdH265: return try container.encode(4)
-      case .hdH265: return try container.encode(5)
-      case .uhdH265: return try container.encode(6)
+      case .unspecified: return try container.encode("TIER_UNSPECIFIED")
+      case .sd: return try container.encode("SD")
+      case .hd: return try container.encode("HD")
+      case .uhd: return try container.encode("UHD")
+      case .sdH265: return try container.encode("SD_H265")
+      case .hdH265: return try container.encode("HD_H265")
+      case .uhdH265: return try container.encode("UHD_H265")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -265,11 +265,11 @@ public struct Workload: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .consumerProject: return try container.encode(1)
-        case .encryptionKeysProject: return try container.encode(2)
-        case .keyring: return try container.encode(3)
-        case .consumerFolder: return try container.encode(4)
+        case .unspecified: return try container.encode("RESOURCE_TYPE_UNSPECIFIED")
+        case .consumerProject: return try container.encode("CONSUMER_PROJECT")
+        case .encryptionKeysProject: return try container.encode("ENCRYPTION_KEYS_PROJECT")
+        case .keyring: return try container.encode("KEYRING")
+        case .consumerFolder: return try container.encode("CONSUMER_FOLDER")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -502,9 +502,9 @@ public struct Workload: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .statusPending: return try container.encode(1)
-        case .statusComplete: return try container.encode(2)
+        case .unspecified: return try container.encode("SETUP_STATE_UNSPECIFIED")
+        case .statusPending: return try container.encode("STATUS_PENDING")
+        case .statusComplete: return try container.encode("STATUS_COMPLETE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -622,11 +622,13 @@ public struct Workload: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .errorInvalidBaseSetup: return try container.encode(1)
-        case .errorMissingExternalSigningKey: return try container.encode(2)
-        case .errorNotAllServicesEnrolled: return try container.encode(3)
-        case .errorSetupCheckFailed: return try container.encode(4)
+        case .unspecified: return try container.encode("SETUP_ERROR_UNSPECIFIED")
+        case .errorInvalidBaseSetup: return try container.encode("ERROR_INVALID_BASE_SETUP")
+        case .errorMissingExternalSigningKey:
+          return try container.encode("ERROR_MISSING_EXTERNAL_SIGNING_KEY")
+        case .errorNotAllServicesEnrolled:
+          return try container.encode("ERROR_NOT_ALL_SERVICES_ENROLLED")
+        case .errorSetupCheckFailed: return try container.encode("ERROR_SETUP_CHECK_FAILED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -802,19 +804,20 @@ public struct Workload: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .il4: return try container.encode(1)
-      case .cjis: return try container.encode(2)
-      case .fedrampHigh: return try container.encode(3)
-      case .fedrampModerate: return try container.encode(4)
-      case .usRegionalAccess: return try container.encode(5)
-      case .hipaa: return try container.encode(6)
-      case .hitrust: return try container.encode(7)
-      case .euRegionsAndSupport: return try container.encode(8)
-      case .caRegionsAndSupport: return try container.encode(9)
-      case .itar: return try container.encode(10)
-      case .auRegionsAndUsSupport: return try container.encode(11)
-      case .assuredWorkloadsForPartners: return try container.encode(12)
+      case .unspecified: return try container.encode("COMPLIANCE_REGIME_UNSPECIFIED")
+      case .il4: return try container.encode("IL4")
+      case .cjis: return try container.encode("CJIS")
+      case .fedrampHigh: return try container.encode("FEDRAMP_HIGH")
+      case .fedrampModerate: return try container.encode("FEDRAMP_MODERATE")
+      case .usRegionalAccess: return try container.encode("US_REGIONAL_ACCESS")
+      case .hipaa: return try container.encode("HIPAA")
+      case .hitrust: return try container.encode("HITRUST")
+      case .euRegionsAndSupport: return try container.encode("EU_REGIONS_AND_SUPPORT")
+      case .caRegionsAndSupport: return try container.encode("CA_REGIONS_AND_SUPPORT")
+      case .itar: return try container.encode("ITAR")
+      case .auRegionsAndUsSupport: return try container.encode("AU_REGIONS_AND_US_SUPPORT")
+      case .assuredWorkloadsForPartners:
+        return try container.encode("ASSURED_WORKLOADS_FOR_PARTNERS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -917,9 +920,9 @@ public struct Workload: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .pending: return try container.encode(1)
-      case .complete: return try container.encode(2)
+      case .unspecified: return try container.encode("KAJ_ENROLLMENT_STATE_UNSPECIFIED")
+      case .pending: return try container.encode("KAJ_ENROLLMENT_STATE_PENDING")
+      case .complete: return try container.encode("KAJ_ENROLLMENT_STATE_COMPLETE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -1016,8 +1019,8 @@ public struct Workload: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .localControlsByS3Ns: return try container.encode(1)
+      case .unspecified: return try container.encode("PARTNER_UNSPECIFIED")
+      case .localControlsByS3Ns: return try container.encode("LOCAL_CONTROLS_BY_S3NS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

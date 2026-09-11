@@ -142,14 +142,14 @@ public enum NodeType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .redisSharedCoreNano: return try container.encode(1)
-    case .redisHighmemMedium: return try container.encode(2)
-    case .redisHighmemXlarge: return try container.encode(3)
-    case .redisStandardSmall: return try container.encode(4)
-    case .redisHighcpuMedium: return try container.encode(7)
-    case .redisStandardLarge: return try container.encode(8)
-    case .redisHighmem2Xlarge: return try container.encode(9)
+    case .unspecified: return try container.encode("NODE_TYPE_UNSPECIFIED")
+    case .redisSharedCoreNano: return try container.encode("REDIS_SHARED_CORE_NANO")
+    case .redisHighmemMedium: return try container.encode("REDIS_HIGHMEM_MEDIUM")
+    case .redisHighmemXlarge: return try container.encode("REDIS_HIGHMEM_XLARGE")
+    case .redisStandardSmall: return try container.encode("REDIS_STANDARD_SMALL")
+    case .redisHighcpuMedium: return try container.encode("REDIS_HIGHCPU_MEDIUM")
+    case .redisStandardLarge: return try container.encode("REDIS_STANDARD_LARGE")
+    case .redisHighmem2Xlarge: return try container.encode("REDIS_HIGHMEM_2XLARGE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

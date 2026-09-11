@@ -533,9 +533,9 @@ public struct Listing: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .readyToUse: return try container.encode(1)
-          case .unavailable: return try container.encode(2)
+          case .unspecified: return try container.encode("REPLICA_STATE_UNSPECIFIED")
+          case .readyToUse: return try container.encode("READY_TO_USE")
+          case .unavailable: return try container.encode("UNAVAILABLE")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -632,8 +632,8 @@ public struct Listing: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .primaryReplica: return try container.encode(1)
+          case .unspecified: return try container.encode("PRIMARY_STATE_UNSPECIFIED")
+          case .primaryReplica: return try container.encode("PRIMARY_REPLICA")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -898,9 +898,9 @@ public struct Listing: Codable, Equatable, GoogleCloudWKT._AnyPackable,
         public func encode(to encoder: Encoder) throws {
           var container = encoder.singleValueContainer()
           switch self {
-          case .unspecified: return try container.encode(0)
-          case .onboarding: return try container.encode(1)
-          case .active: return try container.encode(2)
+          case .unspecified: return try container.encode("COMMERCIAL_STATE_UNSPECIFIED")
+          case .onboarding: return try container.encode("ONBOARDING")
+          case .active: return try container.encode("ACTIVE")
           case .unknownIntValue(let v): return try container.encode(v)
           case .unknownStringValue(let v): return try container.encode(v)
           }
@@ -1021,8 +1021,8 @@ public struct Listing: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .active: return try container.encode(1)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .active: return try container.encode("ACTIVE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -1212,27 +1212,30 @@ public struct Listing: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .others: return try container.encode(1)
-      case .advertisingAndMarketing: return try container.encode(2)
-      case .commerce: return try container.encode(3)
-      case .climateAndEnvironment: return try container.encode(4)
-      case .demographics: return try container.encode(5)
-      case .economics: return try container.encode(6)
-      case .education: return try container.encode(7)
-      case .energy: return try container.encode(8)
-      case .financial: return try container.encode(9)
-      case .gaming: return try container.encode(10)
-      case .geospatial: return try container.encode(11)
-      case .healthcareAndLifeScience: return try container.encode(12)
-      case .media: return try container.encode(13)
-      case .publicSector: return try container.encode(14)
-      case .retail: return try container.encode(15)
-      case .sports: return try container.encode(16)
-      case .scienceAndResearch: return try container.encode(17)
-      case .transportationAndLogistics: return try container.encode(18)
-      case .travelAndTourism: return try container.encode(19)
-      case .googleEarthEngine: return try container.encode(20)
+      case .unspecified: return try container.encode("CATEGORY_UNSPECIFIED")
+      case .others: return try container.encode("CATEGORY_OTHERS")
+      case .advertisingAndMarketing:
+        return try container.encode("CATEGORY_ADVERTISING_AND_MARKETING")
+      case .commerce: return try container.encode("CATEGORY_COMMERCE")
+      case .climateAndEnvironment: return try container.encode("CATEGORY_CLIMATE_AND_ENVIRONMENT")
+      case .demographics: return try container.encode("CATEGORY_DEMOGRAPHICS")
+      case .economics: return try container.encode("CATEGORY_ECONOMICS")
+      case .education: return try container.encode("CATEGORY_EDUCATION")
+      case .energy: return try container.encode("CATEGORY_ENERGY")
+      case .financial: return try container.encode("CATEGORY_FINANCIAL")
+      case .gaming: return try container.encode("CATEGORY_GAMING")
+      case .geospatial: return try container.encode("CATEGORY_GEOSPATIAL")
+      case .healthcareAndLifeScience:
+        return try container.encode("CATEGORY_HEALTHCARE_AND_LIFE_SCIENCE")
+      case .media: return try container.encode("CATEGORY_MEDIA")
+      case .publicSector: return try container.encode("CATEGORY_PUBLIC_SECTOR")
+      case .retail: return try container.encode("CATEGORY_RETAIL")
+      case .sports: return try container.encode("CATEGORY_SPORTS")
+      case .scienceAndResearch: return try container.encode("CATEGORY_SCIENCE_AND_RESEARCH")
+      case .transportationAndLogistics:
+        return try container.encode("CATEGORY_TRANSPORTATION_AND_LOGISTICS")
+      case .travelAndTourism: return try container.encode("CATEGORY_TRAVEL_AND_TOURISM")
+      case .googleEarthEngine: return try container.encode("CATEGORY_GOOGLE_EARTH_ENGINE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -196,10 +196,10 @@ public struct NotificationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .transferOperationSuccess: return try container.encode(1)
-      case .transferOperationFailed: return try container.encode(2)
-      case .transferOperationAborted: return try container.encode(3)
+      case .unspecified: return try container.encode("EVENT_TYPE_UNSPECIFIED")
+      case .transferOperationSuccess: return try container.encode("TRANSFER_OPERATION_SUCCESS")
+      case .transferOperationFailed: return try container.encode("TRANSFER_OPERATION_FAILED")
+      case .transferOperationAborted: return try container.encode("TRANSFER_OPERATION_ABORTED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -304,9 +304,9 @@ public struct NotificationConfig: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .`none`: return try container.encode(1)
-      case .json: return try container.encode(2)
+      case .unspecified: return try container.encode("PAYLOAD_FORMAT_UNSPECIFIED")
+      case .`none`: return try container.encode("NONE")
+      case .json: return try container.encode("JSON")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -185,12 +185,12 @@ public struct Role: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .alpha: return try container.encode(0)
-      case .beta: return try container.encode(1)
-      case .ga: return try container.encode(2)
-      case .deprecated: return try container.encode(4)
-      case .disabled: return try container.encode(5)
-      case .eap: return try container.encode(6)
+      case .alpha: return try container.encode("ALPHA")
+      case .beta: return try container.encode("BETA")
+      case .ga: return try container.encode("GA")
+      case .deprecated: return try container.encode("DEPRECATED")
+      case .disabled: return try container.encode("DISABLED")
+      case .eap: return try container.encode("EAP")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

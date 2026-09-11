@@ -191,9 +191,9 @@ public struct CleanupPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .delete: return try container.encode(1)
-      case .keep: return try container.encode(2)
+      case .unspecified: return try container.encode("ACTION_UNSPECIFIED")
+      case .delete: return try container.encode("DELETE")
+      case .keep: return try container.encode("KEEP")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

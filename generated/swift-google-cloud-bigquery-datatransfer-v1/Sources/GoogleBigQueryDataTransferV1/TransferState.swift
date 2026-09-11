@@ -131,12 +131,12 @@ public enum TransferState: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .pending: return try container.encode(2)
-    case .running: return try container.encode(3)
-    case .succeeded: return try container.encode(4)
-    case .failed: return try container.encode(5)
-    case .cancelled: return try container.encode(6)
+    case .unspecified: return try container.encode("TRANSFER_STATE_UNSPECIFIED")
+    case .pending: return try container.encode("PENDING")
+    case .running: return try container.encode("RUNNING")
+    case .succeeded: return try container.encode("SUCCEEDED")
+    case .failed: return try container.encode("FAILED")
+    case .cancelled: return try container.encode("CANCELLED")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

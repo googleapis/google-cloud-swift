@@ -164,10 +164,10 @@ public struct ClusterUpgradeInfo: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unknown: return try container.encode(0)
-      case .active: return try container.encode(1)
-      case .minorUpgradePaused: return try container.encode(4)
-      case .upgradePaused: return try container.encode(5)
+      case .unknown: return try container.encode("UNKNOWN")
+      case .active: return try container.encode("ACTIVE")
+      case .minorUpgradePaused: return try container.encode("MINOR_UPGRADE_PAUSED")
+      case .upgradePaused: return try container.encode("UPGRADE_PAUSED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -300,13 +300,16 @@ public struct ClusterUpgradeInfo: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .maintenanceWindow: return try container.encode(1)
-      case .clusterDisruptionBudget: return try container.encode(4)
-      case .maintenanceExclusionNoUpgrades: return try container.encode(5)
-      case .maintenanceExclusionNoMinorUpgrades: return try container.encode(6)
-      case .clusterDisruptionBudgetMinorUpgrade: return try container.encode(7)
-      case .systemConfig: return try container.encode(8)
+      case .unspecified: return try container.encode("AUTO_UPGRADE_PAUSED_REASON_UNSPECIFIED")
+      case .maintenanceWindow: return try container.encode("MAINTENANCE_WINDOW")
+      case .clusterDisruptionBudget: return try container.encode("CLUSTER_DISRUPTION_BUDGET")
+      case .maintenanceExclusionNoUpgrades:
+        return try container.encode("MAINTENANCE_EXCLUSION_NO_UPGRADES")
+      case .maintenanceExclusionNoMinorUpgrades:
+        return try container.encode("MAINTENANCE_EXCLUSION_NO_MINOR_UPGRADES")
+      case .clusterDisruptionBudgetMinorUpgrade:
+        return try container.encode("CLUSTER_DISRUPTION_BUDGET_MINOR_UPGRADE")
+      case .systemConfig: return try container.encode("SYSTEM_CONFIG")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

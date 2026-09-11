@@ -242,10 +242,10 @@ public struct BindingExplanation: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .included: return try container.encode(1)
-      case .notIncluded: return try container.encode(2)
-      case .unknownInfoDenied: return try container.encode(3)
+      case .unspecified: return try container.encode("ROLE_PERMISSION_UNSPECIFIED")
+      case .included: return try container.encode("ROLE_PERMISSION_INCLUDED")
+      case .notIncluded: return try container.encode("ROLE_PERMISSION_NOT_INCLUDED")
+      case .unknownInfoDenied: return try container.encode("ROLE_PERMISSION_UNKNOWN_INFO_DENIED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -371,11 +371,11 @@ public struct BindingExplanation: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .included: return try container.encode(1)
-      case .notIncluded: return try container.encode(2)
-      case .unknownInfoDenied: return try container.encode(3)
-      case .unknownUnsupported: return try container.encode(4)
+      case .unspecified: return try container.encode("MEMBERSHIP_UNSPECIFIED")
+      case .included: return try container.encode("MEMBERSHIP_INCLUDED")
+      case .notIncluded: return try container.encode("MEMBERSHIP_NOT_INCLUDED")
+      case .unknownInfoDenied: return try container.encode("MEMBERSHIP_UNKNOWN_INFO_DENIED")
+      case .unknownUnsupported: return try container.encode("MEMBERSHIP_UNKNOWN_UNSUPPORTED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

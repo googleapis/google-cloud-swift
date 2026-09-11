@@ -173,14 +173,21 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .cloudTpuDeviceCt3: return try container.encode(0)
-        case .cloudTpuLiteDeviceCt5L: return try container.encode(1)
-        case .cloudTpuLitePodSliceCt5Lp: return try container.encode(2)
-        case .cloudTpuLitePodSliceCt6E: return try container.encode(3)
-        case .cloudTpuPodSliceCt3P: return try container.encode(4)
-        case .cloudTpuPodSliceCt4P: return try container.encode(5)
-        case .cloudTpuPodSliceCt5P: return try container.encode(6)
-        case .cloudTpuPodSliceTpu7X: return try container.encode(7)
+        case .cloudTpuDeviceCt3: return try container.encode("VM_FAMILY_CLOUD_TPU_DEVICE_CT3")
+        case .cloudTpuLiteDeviceCt5L:
+          return try container.encode("VM_FAMILY_CLOUD_TPU_LITE_DEVICE_CT5L")
+        case .cloudTpuLitePodSliceCt5Lp:
+          return try container.encode("VM_FAMILY_CLOUD_TPU_LITE_POD_SLICE_CT5LP")
+        case .cloudTpuLitePodSliceCt6E:
+          return try container.encode("VM_FAMILY_CLOUD_TPU_LITE_POD_SLICE_CT6E")
+        case .cloudTpuPodSliceCt3P:
+          return try container.encode("VM_FAMILY_CLOUD_TPU_POD_SLICE_CT3P")
+        case .cloudTpuPodSliceCt4P:
+          return try container.encode("VM_FAMILY_CLOUD_TPU_POD_SLICE_CT4P")
+        case .cloudTpuPodSliceCt5P:
+          return try container.encode("VM_FAMILY_CLOUD_TPU_POD_SLICE_CT5P")
+        case .cloudTpuPodSliceTpu7X:
+          return try container.encode("VM_FAMILY_CLOUD_TPU_POD_SLICE_TPU7X")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -286,9 +293,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .batch: return try container.encode(0)
-        case .serving: return try container.encode(1)
-        case .unspecified: return try container.encode(2)
+        case .batch: return try container.encode("BATCH")
+        case .serving: return try container.encode("SERVING")
+        case .unspecified: return try container.encode("UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -724,16 +724,16 @@ public struct Cluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .ready: return try container.encode(1)
-      case .stopped: return try container.encode(2)
-      case .empty: return try container.encode(3)
-      case .creating: return try container.encode(4)
-      case .deleting: return try container.encode(5)
-      case .failed: return try container.encode(6)
-      case .bootstrapping: return try container.encode(7)
-      case .maintenance: return try container.encode(8)
-      case .promoting: return try container.encode(9)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .ready: return try container.encode("READY")
+      case .stopped: return try container.encode("STOPPED")
+      case .empty: return try container.encode("EMPTY")
+      case .creating: return try container.encode("CREATING")
+      case .deleting: return try container.encode("DELETING")
+      case .failed: return try container.encode("FAILED")
+      case .bootstrapping: return try container.encode("BOOTSTRAPPING")
+      case .maintenance: return try container.encode("MAINTENANCE")
+      case .promoting: return try container.encode("PROMOTING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -837,9 +837,9 @@ public struct Cluster: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .primary: return try container.encode(1)
-      case .secondary: return try container.encode(2)
+      case .unspecified: return try container.encode("CLUSTER_TYPE_UNSPECIFIED")
+      case .primary: return try container.encode("PRIMARY")
+      case .secondary: return try container.encode("SECONDARY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -180,14 +180,18 @@ public struct IpMasqueradingSkippedInfo: Codable, Equatable, GoogleCloudWKT._Any
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .destinationIpInConfiguredNonMasqueradeRange: return try container.encode(1)
-      case .destinationIpInDefaultNonMasqueradeRange: return try container.encode(2)
-      case .destinationOnSameNode: return try container.encode(3)
-      case .defaultSnatDisabled: return try container.encode(4)
-      case .noMasqueradingForIpv6: return try container.encode(5)
-      case .podUsesNodeNetworkNamespace: return try container.encode(6)
-      case .noMasqueradingForReturnPacket: return try container.encode(7)
+      case .unspecified: return try container.encode("REASON_UNSPECIFIED")
+      case .destinationIpInConfiguredNonMasqueradeRange:
+        return try container.encode("DESTINATION_IP_IN_CONFIGURED_NON_MASQUERADE_RANGE")
+      case .destinationIpInDefaultNonMasqueradeRange:
+        return try container.encode("DESTINATION_IP_IN_DEFAULT_NON_MASQUERADE_RANGE")
+      case .destinationOnSameNode: return try container.encode("DESTINATION_ON_SAME_NODE")
+      case .defaultSnatDisabled: return try container.encode("DEFAULT_SNAT_DISABLED")
+      case .noMasqueradingForIpv6: return try container.encode("NO_MASQUERADING_FOR_IPV6")
+      case .podUsesNodeNetworkNamespace:
+        return try container.encode("POD_USES_NODE_NETWORK_NAMESPACE")
+      case .noMasqueradingForReturnPacket:
+        return try container.encode("NO_MASQUERADING_FOR_RETURN_PACKET")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

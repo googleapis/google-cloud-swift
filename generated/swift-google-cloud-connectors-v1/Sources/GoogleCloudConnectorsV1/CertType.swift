@@ -106,8 +106,8 @@ public enum CertType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .pem: return try container.encode(1)
+    case .unspecified: return try container.encode("CERT_TYPE_UNSPECIFIED")
+    case .pem: return try container.encode("PEM")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

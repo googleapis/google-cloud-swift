@@ -742,12 +742,12 @@ public struct HttpRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .movedPermanentlyDefault: return try container.encode(1)
-        case .found: return try container.encode(2)
-        case .seeOther: return try container.encode(3)
-        case .temporaryRedirect: return try container.encode(4)
-        case .permanentRedirect: return try container.encode(5)
+        case .unspecified: return try container.encode("RESPONSE_CODE_UNSPECIFIED")
+        case .movedPermanentlyDefault: return try container.encode("MOVED_PERMANENTLY_DEFAULT")
+        case .found: return try container.encode("FOUND")
+        case .seeOther: return try container.encode("SEE_OTHER")
+        case .temporaryRedirect: return try container.encode("TEMPORARY_REDIRECT")
+        case .permanentRedirect: return try container.encode("PERMANENT_REDIRECT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

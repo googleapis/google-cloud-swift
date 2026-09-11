@@ -334,17 +334,17 @@ public struct Application: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .created: return try container.encode(1)
-      case .deploying: return try container.encode(2)
-      case .deployed: return try container.encode(3)
-      case .undeploying: return try container.encode(4)
-      case .deleted: return try container.encode(5)
-      case .error: return try container.encode(6)
-      case .creating: return try container.encode(7)
-      case .updating: return try container.encode(8)
-      case .deleting: return try container.encode(9)
-      case .fixing: return try container.encode(10)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .created: return try container.encode("CREATED")
+      case .deploying: return try container.encode("DEPLOYING")
+      case .deployed: return try container.encode("DEPLOYED")
+      case .undeploying: return try container.encode("UNDEPLOYING")
+      case .deleted: return try container.encode("DELETED")
+      case .error: return try container.encode("ERROR")
+      case .creating: return try container.encode("CREATING")
+      case .updating: return try container.encode("UPDATING")
+      case .deleting: return try container.encode("DELETING")
+      case .fixing: return try container.encode("FIXING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -447,9 +447,9 @@ public struct Application: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .payg: return try container.encode(1)
-      case .monthly: return try container.encode(2)
+      case .unspecified: return try container.encode("BILLING_MODE_UNSPECIFIED")
+      case .payg: return try container.encode("PAYG")
+      case .monthly: return try container.encode("MONTHLY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

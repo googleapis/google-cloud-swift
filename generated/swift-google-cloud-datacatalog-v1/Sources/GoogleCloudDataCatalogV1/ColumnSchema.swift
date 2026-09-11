@@ -296,12 +296,12 @@ public struct ColumnSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .dimension: return try container.encode(1)
-        case .dimensionGroup: return try container.encode(2)
-        case .filter: return try container.encode(3)
-        case .measure: return try container.encode(4)
-        case .parameter: return try container.encode(5)
+        case .unspecified: return try container.encode("LOOKER_COLUMN_TYPE_UNSPECIFIED")
+        case .dimension: return try container.encode("DIMENSION")
+        case .dimensionGroup: return try container.encode("DIMENSION_GROUP")
+        case .filter: return try container.encode("FILTER")
+        case .measure: return try container.encode("MEASURE")
+        case .parameter: return try container.encode("PARAMETER")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -464,11 +464,11 @@ public struct ColumnSchema: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .`none`: return try container.encode(1)
-      case .nonUnique: return try container.encode(2)
-      case .unique: return try container.encode(3)
-      case .primaryKey: return try container.encode(4)
+      case .unspecified: return try container.encode("INDEXING_TYPE_UNSPECIFIED")
+      case .`none`: return try container.encode("INDEXING_TYPE_NONE")
+      case .nonUnique: return try container.encode("INDEXING_TYPE_NON_UNIQUE")
+      case .unique: return try container.encode("INDEXING_TYPE_UNIQUE")
+      case .primaryKey: return try container.encode("INDEXING_TYPE_PRIMARY_KEY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

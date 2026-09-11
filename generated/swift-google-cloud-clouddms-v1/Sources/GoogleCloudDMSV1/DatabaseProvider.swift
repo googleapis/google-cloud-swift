@@ -124,11 +124,11 @@ public enum DatabaseProvider: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .cloudsql: return try container.encode(1)
-    case .rds: return try container.encode(2)
-    case .aurora: return try container.encode(3)
-    case .alloydb: return try container.encode(4)
+    case .unspecified: return try container.encode("DATABASE_PROVIDER_UNSPECIFIED")
+    case .cloudsql: return try container.encode("CLOUDSQL")
+    case .rds: return try container.encode("RDS")
+    case .aurora: return try container.encode("AURORA")
+    case .alloydb: return try container.encode("ALLOYDB")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

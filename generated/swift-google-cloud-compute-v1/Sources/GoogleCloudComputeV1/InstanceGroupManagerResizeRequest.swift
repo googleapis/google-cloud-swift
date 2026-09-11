@@ -216,12 +216,12 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .accepted: return try container.encode(0)
-        case .cancelled: return try container.encode(1)
-        case .creating: return try container.encode(2)
-        case .failed: return try container.encode(3)
-        case .unspecified: return try container.encode(4)
-        case .succeeded: return try container.encode(5)
+        case .accepted: return try container.encode("ACCEPTED")
+        case .cancelled: return try container.encode("CANCELLED")
+        case .creating: return try container.encode("CREATING")
+        case .failed: return try container.encode("FAILED")
+        case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+        case .succeeded: return try container.encode("SUCCEEDED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

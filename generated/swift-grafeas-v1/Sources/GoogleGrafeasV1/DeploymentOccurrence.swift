@@ -161,10 +161,10 @@ public struct DeploymentOccurrence: Codable, Equatable, GoogleCloudWKT._AnyPacka
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .gke: return try container.encode(1)
-      case .flex: return try container.encode(2)
-      case .custom: return try container.encode(3)
+      case .unspecified: return try container.encode("PLATFORM_UNSPECIFIED")
+      case .gke: return try container.encode("GKE")
+      case .flex: return try container.encode("FLEX")
+      case .custom: return try container.encode("CUSTOM")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

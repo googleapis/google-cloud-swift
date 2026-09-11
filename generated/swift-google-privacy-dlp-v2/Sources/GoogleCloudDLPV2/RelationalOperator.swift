@@ -142,14 +142,14 @@ public enum RelationalOperator: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .equalTo: return try container.encode(1)
-    case .notEqualTo: return try container.encode(2)
-    case .greaterThan: return try container.encode(3)
-    case .lessThan: return try container.encode(4)
-    case .greaterThanOrEquals: return try container.encode(5)
-    case .lessThanOrEquals: return try container.encode(6)
-    case .exists: return try container.encode(7)
+    case .unspecified: return try container.encode("RELATIONAL_OPERATOR_UNSPECIFIED")
+    case .equalTo: return try container.encode("EQUAL_TO")
+    case .notEqualTo: return try container.encode("NOT_EQUAL_TO")
+    case .greaterThan: return try container.encode("GREATER_THAN")
+    case .lessThan: return try container.encode("LESS_THAN")
+    case .greaterThanOrEquals: return try container.encode("GREATER_THAN_OR_EQUALS")
+    case .lessThanOrEquals: return try container.encode("LESS_THAN_OR_EQUALS")
+    case .exists: return try container.encode("EXISTS")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

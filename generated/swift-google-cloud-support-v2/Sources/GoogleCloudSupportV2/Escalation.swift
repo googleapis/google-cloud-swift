@@ -147,10 +147,10 @@ public struct Escalation: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .resolutionTime: return try container.encode(1)
-      case .technicalExpertise: return try container.encode(2)
-      case .businessImpact: return try container.encode(3)
+      case .unspecified: return try container.encode("REASON_UNSPECIFIED")
+      case .resolutionTime: return try container.encode("RESOLUTION_TIME")
+      case .technicalExpertise: return try container.encode("TECHNICAL_EXPERTISE")
+      case .businessImpact: return try container.encode("BUSINESS_IMPACT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

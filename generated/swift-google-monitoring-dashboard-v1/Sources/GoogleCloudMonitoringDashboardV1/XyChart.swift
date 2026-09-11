@@ -221,11 +221,11 @@ public struct XyChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .line: return try container.encode(1)
-        case .stackedArea: return try container.encode(2)
-        case .stackedBar: return try container.encode(3)
-        case .heatmap: return try container.encode(4)
+        case .unspecified: return try container.encode("PLOT_TYPE_UNSPECIFIED")
+        case .line: return try container.encode("LINE")
+        case .stackedArea: return try container.encode("STACKED_AREA")
+        case .stackedBar: return try container.encode("STACKED_BAR")
+        case .heatmap: return try container.encode("HEATMAP")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -328,9 +328,9 @@ public struct XyChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .y1: return try container.encode(1)
-        case .y2: return try container.encode(2)
+        case .unspecified: return try container.encode("TARGET_AXIS_UNSPECIFIED")
+        case .y1: return try container.encode("Y1")
+        case .y2: return try container.encode("Y2")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -470,9 +470,9 @@ public struct XyChart: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .linear: return try container.encode(1)
-        case .log10: return try container.encode(2)
+        case .unspecified: return try container.encode("SCALE_UNSPECIFIED")
+        case .linear: return try container.encode("LINEAR")
+        case .log10: return try container.encode("LOG10")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

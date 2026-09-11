@@ -148,9 +148,9 @@ public struct DbSystemInitialStorageSizeProperties: Codable, Equatable, GoogleCl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .asm: return try container.encode(1)
-      case .lvm: return try container.encode(2)
+      case .unspecified: return try container.encode("STORAGE_MANAGEMENT_UNSPECIFIED")
+      case .asm: return try container.encode("ASM")
+      case .lvm: return try container.encode("LVM")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -247,8 +247,8 @@ public struct DbSystemInitialStorageSizeProperties: Codable, Equatable, GoogleCl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .standardX86: return try container.encode(1)
+      case .unspecified: return try container.encode("SHAPE_TYPE_UNSPECIFIED")
+      case .standardX86: return try container.encode("STANDARD_X86")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

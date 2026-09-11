@@ -157,11 +157,11 @@ public struct WafSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .challengePage: return try container.encode(1)
-      case .sessionToken: return try container.encode(2)
-      case .actionToken: return try container.encode(3)
-      case .express: return try container.encode(5)
+      case .unspecified: return try container.encode("WAF_FEATURE_UNSPECIFIED")
+      case .challengePage: return try container.encode("CHALLENGE_PAGE")
+      case .sessionToken: return try container.encode("SESSION_TOKEN")
+      case .actionToken: return try container.encode("ACTION_TOKEN")
+      case .express: return try container.encode("EXPRESS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -277,11 +277,11 @@ public struct WafSettings: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .ca: return try container.encode(1)
-      case .fastly: return try container.encode(3)
-      case .cloudflare: return try container.encode(4)
-      case .akamai: return try container.encode(5)
+      case .unspecified: return try container.encode("WAF_SERVICE_UNSPECIFIED")
+      case .ca: return try container.encode("CA")
+      case .fastly: return try container.encode("FASTLY")
+      case .cloudflare: return try container.encode("CLOUDFLARE")
+      case .akamai: return try container.encode("AKAMAI")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

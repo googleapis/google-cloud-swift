@@ -161,12 +161,15 @@ public struct PartnerPermissions: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .accessTransparencyAndEmergencyAccessLogs: return try container.encode(1)
-      case .assuredWorkloadsMonitoring: return try container.encode(2)
-      case .accessApprovalRequests: return try container.encode(3)
-      case .assuredWorkloadsEkmConnectionStatus: return try container.encode(4)
-      case .accessTransparencyLogsSupportCaseViewer: return try container.encode(5)
+      case .unspecified: return try container.encode("PERMISSION_UNSPECIFIED")
+      case .accessTransparencyAndEmergencyAccessLogs:
+        return try container.encode("ACCESS_TRANSPARENCY_AND_EMERGENCY_ACCESS_LOGS")
+      case .assuredWorkloadsMonitoring: return try container.encode("ASSURED_WORKLOADS_MONITORING")
+      case .accessApprovalRequests: return try container.encode("ACCESS_APPROVAL_REQUESTS")
+      case .assuredWorkloadsEkmConnectionStatus:
+        return try container.encode("ASSURED_WORKLOADS_EKM_CONNECTION_STATUS")
+      case .accessTransparencyLogsSupportCaseViewer:
+        return try container.encode("ACCESS_TRANSPARENCY_LOGS_SUPPORT_CASE_VIEWER")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

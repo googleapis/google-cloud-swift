@@ -140,9 +140,9 @@ public struct GPUSharingConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .timeSharing: return try container.encode(1)
-      case .mps: return try container.encode(2)
+      case .unspecified: return try container.encode("GPU_SHARING_STRATEGY_UNSPECIFIED")
+      case .timeSharing: return try container.encode("TIME_SHARING")
+      case .mps: return try container.encode("MPS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -168,10 +168,10 @@ public struct PeeringRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .dynamicPeeringRoute: return try container.encode(1)
-      case .staticPeeringRoute: return try container.encode(2)
-      case .subnetPeeringRoute: return try container.encode(3)
+      case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .dynamicPeeringRoute: return try container.encode("DYNAMIC_PEERING_ROUTE")
+      case .staticPeeringRoute: return try container.encode("STATIC_PEERING_ROUTE")
+      case .subnetPeeringRoute: return try container.encode("SUBNET_PEERING_ROUTE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -274,9 +274,9 @@ public struct PeeringRoute: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .incoming: return try container.encode(1)
-      case .outgoing: return try container.encode(2)
+      case .unspecified: return try container.encode("DIRECTION_UNSPECIFIED")
+      case .incoming: return try container.encode("INCOMING")
+      case .outgoing: return try container.encode("OUTGOING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

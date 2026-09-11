@@ -181,13 +181,13 @@ public struct QaScorecardRevision: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .training: return try container.encode(2)
-      case .deleting: return try container.encode(7)
-      case .trainingFailed: return try container.encode(9)
-      case .ready: return try container.encode(11)
-      case .editable: return try container.encode(12)
-      case .trainingCancelled: return try container.encode(14)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .training: return try container.encode("TRAINING")
+      case .deleting: return try container.encode("DELETING")
+      case .trainingFailed: return try container.encode("TRAINING_FAILED")
+      case .ready: return try container.encode("READY")
+      case .editable: return try container.encode("EDITABLE")
+      case .trainingCancelled: return try container.encode("TRAINING_CANCELLED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

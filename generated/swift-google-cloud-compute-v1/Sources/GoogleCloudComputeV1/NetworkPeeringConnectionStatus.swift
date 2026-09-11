@@ -159,9 +159,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .consensus: return try container.encode(0)
-        case .independent: return try container.encode(1)
-        case .unspecified: return try container.encode(2)
+        case .consensus: return try container.encode("CONSENSUS")
+        case .independent: return try container.encode("INDEPENDENT")
+        case .unspecified: return try container.encode("UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

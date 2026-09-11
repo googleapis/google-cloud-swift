@@ -220,12 +220,12 @@ public struct IcebergCatalog: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .glue: return try container.encode(1)
-      case .hadoop: return try container.encode(2)
-      case .nessie: return try container.encode(3)
-      case .polaris: return try container.encode(4)
-      case .rest: return try container.encode(5)
+      case .unspecified: return try container.encode("CATALOG_TYPE_UNSPECIFIED")
+      case .glue: return try container.encode("GLUE")
+      case .hadoop: return try container.encode("HADOOP")
+      case .nessie: return try container.encode("NESSIE")
+      case .polaris: return try container.encode("POLARIS")
+      case .rest: return try container.encode("REST")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

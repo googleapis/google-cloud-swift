@@ -166,8 +166,8 @@ public struct NetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .modeIpv4: return try container.encode(1)
+      case .unspecified: return try container.encode("ADDRESS_MODE_UNSPECIFIED")
+      case .modeIpv4: return try container.encode("MODE_IPV4")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -272,9 +272,9 @@ public struct NetworkConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .directPeering: return try container.encode(1)
-      case .privateServiceAccess: return try container.encode(2)
+      case .unspecified: return try container.encode("CONNECT_MODE_UNSPECIFIED")
+      case .directPeering: return try container.encode("DIRECT_PEERING")
+      case .privateServiceAccess: return try container.encode("PRIVATE_SERVICE_ACCESS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

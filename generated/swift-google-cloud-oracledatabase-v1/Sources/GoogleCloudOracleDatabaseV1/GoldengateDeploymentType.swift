@@ -225,17 +225,17 @@ public struct GoldengateDeploymentType: Codable, Equatable, GoogleCloudWKT._AnyP
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .ogg: return try container.encode(1)
-      case .databaseOracle: return try container.encode(2)
-      case .bigdata: return try container.encode(3)
-      case .databaseMicrosoftSqlserver: return try container.encode(4)
-      case .databaseMysql: return try container.encode(5)
-      case .databasePostgresql: return try container.encode(6)
-      case .databaseDb2Zos: return try container.encode(7)
-      case .databaseDb2I: return try container.encode(8)
-      case .ggsa: return try container.encode(9)
-      case .dataTransforms: return try container.encode(10)
+      case .unspecified: return try container.encode("DEPLOYMENT_TYPE_UNSPECIFIED")
+      case .ogg: return try container.encode("OGG")
+      case .databaseOracle: return try container.encode("DATABASE_ORACLE")
+      case .bigdata: return try container.encode("BIGDATA")
+      case .databaseMicrosoftSqlserver: return try container.encode("DATABASE_MICROSOFT_SQLSERVER")
+      case .databaseMysql: return try container.encode("DATABASE_MYSQL")
+      case .databasePostgresql: return try container.encode("DATABASE_POSTGRESQL")
+      case .databaseDb2Zos: return try container.encode("DATABASE_DB2ZOS")
+      case .databaseDb2I: return try container.encode("DATABASE_DB2I")
+      case .ggsa: return try container.encode("GGSA")
+      case .dataTransforms: return try container.encode("DATA_TRANSFORMS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -338,9 +338,9 @@ public struct GoldengateDeploymentType: Codable, Equatable, GoogleCloudWKT._AnyP
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .dataReplicationCategory: return try container.encode(1)
-      case .dataTransformsCategory: return try container.encode(2)
+      case .unspecified: return try container.encode("DEPLOYMENT_CATEGORY_UNSPECIFIED")
+      case .dataReplicationCategory: return try container.encode("DATA_REPLICATION_CATEGORY")
+      case .dataTransformsCategory: return try container.encode("DATA_TRANSFORMS_CATEGORY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

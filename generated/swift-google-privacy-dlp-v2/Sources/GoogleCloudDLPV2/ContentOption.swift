@@ -112,9 +112,9 @@ public enum ContentOption: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .contentUnspecified: return try container.encode(0)
-    case .contentText: return try container.encode(1)
-    case .contentImage: return try container.encode(2)
+    case .contentUnspecified: return try container.encode("CONTENT_UNSPECIFIED")
+    case .contentText: return try container.encode("CONTENT_TEXT")
+    case .contentImage: return try container.encode("CONTENT_IMAGE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

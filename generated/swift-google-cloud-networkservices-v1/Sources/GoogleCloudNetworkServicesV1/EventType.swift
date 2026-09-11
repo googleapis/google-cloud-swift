@@ -142,13 +142,13 @@ public enum EventType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .requestHeaders: return try container.encode(1)
-    case .requestBody: return try container.encode(2)
-    case .responseHeaders: return try container.encode(3)
-    case .responseBody: return try container.encode(4)
-    case .requestTrailers: return try container.encode(5)
-    case .responseTrailers: return try container.encode(6)
+    case .unspecified: return try container.encode("EVENT_TYPE_UNSPECIFIED")
+    case .requestHeaders: return try container.encode("REQUEST_HEADERS")
+    case .requestBody: return try container.encode("REQUEST_BODY")
+    case .responseHeaders: return try container.encode("RESPONSE_HEADERS")
+    case .responseBody: return try container.encode("RESPONSE_BODY")
+    case .requestTrailers: return try container.encode("REQUEST_TRAILERS")
+    case .responseTrailers: return try container.encode("RESPONSE_TRAILERS")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

@@ -178,11 +178,11 @@ public struct ReachabilityDetails: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .reachable: return try container.encode(1)
-      case .unreachable: return try container.encode(2)
-      case .ambiguous: return try container.encode(4)
-      case .undetermined: return try container.encode(5)
+      case .unspecified: return try container.encode("RESULT_UNSPECIFIED")
+      case .reachable: return try container.encode("REACHABLE")
+      case .unreachable: return try container.encode("UNREACHABLE")
+      case .ambiguous: return try container.encode("AMBIGUOUS")
+      case .undetermined: return try container.encode("UNDETERMINED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

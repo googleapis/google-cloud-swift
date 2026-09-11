@@ -145,10 +145,10 @@
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .useBestAvailable: return try container.encode(1)
-      case .useStandard: return try container.encode(2)
-      case .useEnhanced: return try container.encode(3)
+      case .unspecified: return try container.encode("SPEECH_MODEL_VARIANT_UNSPECIFIED")
+      case .useBestAvailable: return try container.encode("USE_BEST_AVAILABLE")
+      case .useStandard: return try container.encode("USE_STANDARD")
+      case .useEnhanced: return try container.encode("USE_ENHANCED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

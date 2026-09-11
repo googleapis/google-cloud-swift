@@ -229,11 +229,14 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleCloudWKT._Any
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .clientHistoricalBotActivity: return try container.encode(1)
-        case .accountInLargeRelatedGroup: return try container.encode(2)
-        case .clientAccessedManyAccounts: return try container.encode(3)
-        case .disposableEmailDomain: return try container.encode(4)
+        case .unspecified: return try container.encode("RISK_REASON_UNSPECIFIED")
+        case .clientHistoricalBotActivity:
+          return try container.encode("CLIENT_HISTORICAL_BOT_ACTIVITY")
+        case .accountInLargeRelatedGroup:
+          return try container.encode("ACCOUNT_IN_LARGE_RELATED_GROUP")
+        case .clientAccessedManyAccounts:
+          return try container.encode("CLIENT_ACCESSED_MANY_ACCOUNTS")
+        case .disposableEmailDomain: return try container.encode("DISPOSABLE_EMAIL_DOMAIN")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -389,11 +392,12 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleCloudWKT._Any
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .profileMatch: return try container.encode(1)
-        case .accountHistoryReputable: return try container.encode(2)
-        case .identityGlobalActivityReputable: return try container.encode(3)
-        case .identityHistoryReputable: return try container.encode(4)
+        case .unspecified: return try container.encode("TRUST_REASON_UNSPECIFIED")
+        case .profileMatch: return try container.encode("PROFILE_MATCH")
+        case .accountHistoryReputable: return try container.encode("ACCOUNT_HISTORY_REPUTABLE")
+        case .identityGlobalActivityReputable:
+          return try container.encode("IDENTITY_GLOBAL_ACTIVITY_REPUTABLE")
+        case .identityHistoryReputable: return try container.encode("IDENTITY_HISTORY_REPUTABLE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -525,11 +529,11 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleCloudWKT._Any
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .profileMatch: return try container.encode(1)
-      case .suspiciousLoginActivity: return try container.encode(2)
-      case .suspiciousAccountCreation: return try container.encode(3)
-      case .relatedAccountsNumberHigh: return try container.encode(4)
+      case .unspecified: return try container.encode("ACCOUNT_DEFENDER_LABEL_UNSPECIFIED")
+      case .profileMatch: return try container.encode("PROFILE_MATCH")
+      case .suspiciousLoginActivity: return try container.encode("SUSPICIOUS_LOGIN_ACTIVITY")
+      case .suspiciousAccountCreation: return try container.encode("SUSPICIOUS_ACCOUNT_CREATION")
+      case .relatedAccountsNumberHigh: return try container.encode("RELATED_ACCOUNTS_NUMBER_HIGH")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

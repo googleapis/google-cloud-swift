@@ -196,11 +196,12 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .disk: return try container.encode(1)
-        case .switchingToCloudStorage: return try container.encode(2)
-        case .switchedToCloudStorage: return try container.encode(3)
-        case .cloudStorage: return try container.encode(4)
+        case .unspecified:
+          return try container.encode("TRANSACTIONAL_LOG_STORAGE_STATE_UNSPECIFIED")
+        case .disk: return try container.encode("DISK")
+        case .switchingToCloudStorage: return try container.encode("SWITCHING_TO_CLOUD_STORAGE")
+        case .switchedToCloudStorage: return try container.encode("SWITCHED_TO_CLOUD_STORAGE")
+        case .cloudStorage: return try container.encode("CLOUD_STORAGE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -310,10 +311,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .standard: return try container.encode(1)
-        case .advanced: return try container.encode(2)
-        case .enhanced: return try container.encode(3)
+        case .unspecified: return try container.encode("BACKUP_TIER_UNSPECIFIED")
+        case .standard: return try container.encode("STANDARD")
+        case .advanced: return try container.encode("ADVANCED")
+        case .enhanced: return try container.encode("ENHANCED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -210,18 +210,23 @@ public enum AccessReason: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .reasonUnspecified: return try container.encode(0)
-    case .customerInitiatedSupport: return try container.encode(1)
-    case .googleInitiatedService: return try container.encode(2)
-    case .thirdPartyDataRequest: return try container.encode(3)
-    case .googleInitiatedReview: return try container.encode(4)
-    case .customerInitiatedAccess: return try container.encode(5)
-    case .googleInitiatedSystemOperation: return try container.encode(6)
-    case .reasonNotExpected: return try container.encode(7)
-    case .modifiedCustomerInitiatedAccess: return try container.encode(8)
-    case .modifiedGoogleInitiatedSystemOperation: return try container.encode(9)
-    case .googleResponseToProductionAlert: return try container.encode(10)
-    case .customerAuthorizedWorkflowServicing: return try container.encode(11)
+    case .reasonUnspecified: return try container.encode("REASON_UNSPECIFIED")
+    case .customerInitiatedSupport: return try container.encode("CUSTOMER_INITIATED_SUPPORT")
+    case .googleInitiatedService: return try container.encode("GOOGLE_INITIATED_SERVICE")
+    case .thirdPartyDataRequest: return try container.encode("THIRD_PARTY_DATA_REQUEST")
+    case .googleInitiatedReview: return try container.encode("GOOGLE_INITIATED_REVIEW")
+    case .customerInitiatedAccess: return try container.encode("CUSTOMER_INITIATED_ACCESS")
+    case .googleInitiatedSystemOperation:
+      return try container.encode("GOOGLE_INITIATED_SYSTEM_OPERATION")
+    case .reasonNotExpected: return try container.encode("REASON_NOT_EXPECTED")
+    case .modifiedCustomerInitiatedAccess:
+      return try container.encode("MODIFIED_CUSTOMER_INITIATED_ACCESS")
+    case .modifiedGoogleInitiatedSystemOperation:
+      return try container.encode("MODIFIED_GOOGLE_INITIATED_SYSTEM_OPERATION")
+    case .googleResponseToProductionAlert:
+      return try container.encode("GOOGLE_RESPONSE_TO_PRODUCTION_ALERT")
+    case .customerAuthorizedWorkflowServicing:
+      return try container.encode("CUSTOMER_AUTHORIZED_WORKFLOW_SERVICING")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

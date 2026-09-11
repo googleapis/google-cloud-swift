@@ -148,11 +148,11 @@ public struct FileTypeFilter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .all: return try container.encode(1)
-      case .folder: return try container.encode(2)
-      case .document: return try container.encode(3)
-      case .rootFolder: return try container.encode(4)
+      case .unspecified: return try container.encode("FILE_TYPE_UNSPECIFIED")
+      case .all: return try container.encode("ALL")
+      case .folder: return try container.encode("FOLDER")
+      case .document: return try container.encode("DOCUMENT")
+      case .rootFolder: return try container.encode("ROOT_FOLDER")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

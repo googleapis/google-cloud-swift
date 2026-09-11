@@ -244,11 +244,11 @@ public struct Report: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .severityUnspecified: return try container.encode(0)
-      case .critical: return try container.encode(1)
-      case .high: return try container.encode(2)
-      case .medium: return try container.encode(3)
-      case .low: return try container.encode(4)
+      case .severityUnspecified: return try container.encode("SEVERITY_UNSPECIFIED")
+      case .critical: return try container.encode("CRITICAL")
+      case .high: return try container.encode("HIGH")
+      case .medium: return try container.encode("MEDIUM")
+      case .low: return try container.encode("LOW")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -353,10 +353,10 @@ public struct Report: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .reportTypeUnspecified: return try container.encode(0)
-      case .info: return try container.encode(1)
-      case .warning: return try container.encode(2)
-      case .error: return try container.encode(3)
+      case .reportTypeUnspecified: return try container.encode("REPORT_TYPE_UNSPECIFIED")
+      case .info: return try container.encode("INFO")
+      case .warning: return try container.encode("WARNING")
+      case .error: return try container.encode("ERROR")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -461,10 +461,10 @@ public struct Report: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .active: return try container.encode(1)
-      case .fixed: return try container.encode(2)
-      case .dismissed: return try container.encode(3)
+      case .unspecified: return try container.encode("REPORT_STATUS_UNSPECIFIED")
+      case .active: return try container.encode("ACTIVE")
+      case .fixed: return try container.encode("FIXED")
+      case .dismissed: return try container.encode("DISMISSED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -579,12 +579,12 @@ public struct Report: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .categoryUnspecified: return try container.encode(0)
-      case .vpcNetwork: return try container.encode(1)
-      case .networkServices: return try container.encode(2)
-      case .kubernetesEngine: return try container.encode(3)
-      case .hybridConnectivity: return try container.encode(4)
-      case .managedServices: return try container.encode(5)
+      case .categoryUnspecified: return try container.encode("CATEGORY_UNSPECIFIED")
+      case .vpcNetwork: return try container.encode("VPC_NETWORK")
+      case .networkServices: return try container.encode("NETWORK_SERVICES")
+      case .kubernetesEngine: return try container.encode("KUBERNETES_ENGINE")
+      case .hybridConnectivity: return try container.encode("HYBRID_CONNECTIVITY")
+      case .managedServices: return try container.encode("MANAGED_SERVICES")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

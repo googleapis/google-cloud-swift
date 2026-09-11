@@ -125,11 +125,12 @@ public enum ComputeEngineDiskType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .standard: return try container.encode(1)
-    case .ssd: return try container.encode(2)
-    case .balanced: return try container.encode(3)
-    case .hyperdiskBalanced: return try container.encode(4)
+    case .unspecified: return try container.encode("COMPUTE_ENGINE_DISK_TYPE_UNSPECIFIED")
+    case .standard: return try container.encode("COMPUTE_ENGINE_DISK_TYPE_STANDARD")
+    case .ssd: return try container.encode("COMPUTE_ENGINE_DISK_TYPE_SSD")
+    case .balanced: return try container.encode("COMPUTE_ENGINE_DISK_TYPE_BALANCED")
+    case .hyperdiskBalanced:
+      return try container.encode("COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

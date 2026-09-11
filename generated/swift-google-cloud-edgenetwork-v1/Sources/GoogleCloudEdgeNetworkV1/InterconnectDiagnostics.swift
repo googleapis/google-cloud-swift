@@ -285,9 +285,9 @@ public struct InterconnectDiagnostics: Codable, Equatable, GoogleCloudWKT._AnyPa
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unknown: return try container.encode(0)
-        case .active: return try container.encode(1)
-        case .detached: return try container.encode(2)
+        case .unknown: return try container.encode("UNKNOWN")
+        case .active: return try container.encode("ACTIVE")
+        case .detached: return try container.encode("DETACHED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

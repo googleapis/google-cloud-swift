@@ -186,9 +186,9 @@ public struct RouterStatus: Codable, Equatable, GoogleCloudWKT._AnyPackable,
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unknown: return try container.encode(0)
-        case .up: return try container.encode(1)
-        case .down: return try container.encode(2)
+        case .unknown: return try container.encode("UNKNOWN")
+        case .up: return try container.encode("UP")
+        case .down: return try container.encode("DOWN")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

@@ -339,14 +339,14 @@ public struct DataScanJob: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .running: return try container.encode(1)
-      case .canceling: return try container.encode(2)
-      case .cancelled: return try container.encode(3)
-      case .succeeded: return try container.encode(4)
-      case .failed: return try container.encode(5)
-      case .pending: return try container.encode(7)
-      case .succeededWithErrors: return try container.encode(8)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .running: return try container.encode("RUNNING")
+      case .canceling: return try container.encode("CANCELING")
+      case .cancelled: return try container.encode("CANCELLED")
+      case .succeeded: return try container.encode("SUCCEEDED")
+      case .failed: return try container.encode("FAILED")
+      case .pending: return try container.encode("PENDING")
+      case .succeededWithErrors: return try container.encode("SUCCEEDED_WITH_ERRORS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

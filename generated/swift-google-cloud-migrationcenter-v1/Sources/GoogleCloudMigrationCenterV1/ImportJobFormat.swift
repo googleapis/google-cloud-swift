@@ -136,12 +136,12 @@ public enum ImportJobFormat: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .rvtoolsXlsx: return try container.encode(1)
-    case .rvtoolsCsv: return try container.encode(2)
-    case .exportedAwsCsv: return try container.encode(4)
-    case .exportedAzureCsv: return try container.encode(5)
-    case .stratozoneCsv: return try container.encode(6)
+    case .unspecified: return try container.encode("IMPORT_JOB_FORMAT_UNSPECIFIED")
+    case .rvtoolsXlsx: return try container.encode("IMPORT_JOB_FORMAT_RVTOOLS_XLSX")
+    case .rvtoolsCsv: return try container.encode("IMPORT_JOB_FORMAT_RVTOOLS_CSV")
+    case .exportedAwsCsv: return try container.encode("IMPORT_JOB_FORMAT_EXPORTED_AWS_CSV")
+    case .exportedAzureCsv: return try container.encode("IMPORT_JOB_FORMAT_EXPORTED_AZURE_CSV")
+    case .stratozoneCsv: return try container.encode("IMPORT_JOB_FORMAT_STRATOZONE_CSV")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

@@ -197,13 +197,13 @@ public struct QueryMetricsRequest: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .`none`: return try container.encode(1)
-      case .daily: return try container.encode(2)
-      case .hourly: return try container.encode(3)
-      case .perMinute: return try container.encode(4)
-      case .per5Minutes: return try container.encode(5)
-      case .monthly: return try container.encode(6)
+      case .unspecified: return try container.encode("TIME_GRANULARITY_UNSPECIFIED")
+      case .`none`: return try container.encode("NONE")
+      case .daily: return try container.encode("DAILY")
+      case .hourly: return try container.encode("HOURLY")
+      case .perMinute: return try container.encode("PER_MINUTE")
+      case .per5Minutes: return try container.encode("PER_5_MINUTES")
+      case .monthly: return try container.encode("MONTHLY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

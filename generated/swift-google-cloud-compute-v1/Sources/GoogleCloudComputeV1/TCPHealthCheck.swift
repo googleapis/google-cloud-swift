@@ -186,9 +186,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .useFixedPort: return try container.encode(0)
-        case .useNamedPort: return try container.encode(1)
-        case .useServingPort: return try container.encode(2)
+        case .useFixedPort: return try container.encode("USE_FIXED_PORT")
+        case .useNamedPort: return try container.encode("USE_NAMED_PORT")
+        case .useServingPort: return try container.encode("USE_SERVING_PORT")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -285,8 +285,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .`none`: return try container.encode(0)
-        case .proxyV1: return try container.encode(1)
+        case .`none`: return try container.encode("NONE")
+        case .proxyV1: return try container.encode("PROXY_V1")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

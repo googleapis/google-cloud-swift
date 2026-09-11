@@ -443,9 +443,9 @@ public struct Overlay: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .fadeIn: return try container.encode(1)
-      case .fadeOut: return try container.encode(2)
+      case .unspecified: return try container.encode("FADE_TYPE_UNSPECIFIED")
+      case .fadeIn: return try container.encode("FADE_IN")
+      case .fadeOut: return try container.encode("FADE_OUT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

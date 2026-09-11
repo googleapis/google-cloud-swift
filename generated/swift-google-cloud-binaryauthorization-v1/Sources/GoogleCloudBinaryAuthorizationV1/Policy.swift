@@ -196,9 +196,9 @@ public struct Policy: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .enable: return try container.encode(1)
-      case .disable: return try container.encode(2)
+      case .unspecified: return try container.encode("GLOBAL_POLICY_EVALUATION_MODE_UNSPECIFIED")
+      case .enable: return try container.encode("ENABLE")
+      case .disable: return try container.encode("DISABLE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

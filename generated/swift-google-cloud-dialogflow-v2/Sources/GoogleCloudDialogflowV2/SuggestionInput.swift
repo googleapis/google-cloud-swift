@@ -161,10 +161,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .cancel: return try container.encode(1)
-        case .revise: return try container.encode(2)
-        case .confirm: return try container.encode(3)
+        case .unspecified: return try container.encode("ACTION_UNSPECIFIED")
+        case .cancel: return try container.encode("CANCEL")
+        case .revise: return try container.encode("REVISE")
+        case .confirm: return try container.encode("CONFIRM")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

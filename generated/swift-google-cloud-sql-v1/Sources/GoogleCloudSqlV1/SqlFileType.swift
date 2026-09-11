@@ -123,11 +123,11 @@
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .sql: return try container.encode(1)
-      case .csv: return try container.encode(2)
-      case .bak: return try container.encode(4)
-      case .tde: return try container.encode(8)
+      case .unspecified: return try container.encode("SQL_FILE_TYPE_UNSPECIFIED")
+      case .sql: return try container.encode("SQL")
+      case .csv: return try container.encode("CSV")
+      case .bak: return try container.encode("BAK")
+      case .tde: return try container.encode("TDE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

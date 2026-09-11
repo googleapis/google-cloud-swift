@@ -142,14 +142,14 @@ public enum CompanySize: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .mini: return try container.encode(1)
-    case .small: return try container.encode(2)
-    case .smedium: return try container.encode(3)
-    case .medium: return try container.encode(4)
-    case .big: return try container.encode(5)
-    case .bigger: return try container.encode(6)
-    case .giant: return try container.encode(7)
+    case .unspecified: return try container.encode("COMPANY_SIZE_UNSPECIFIED")
+    case .mini: return try container.encode("MINI")
+    case .small: return try container.encode("SMALL")
+    case .smedium: return try container.encode("SMEDIUM")
+    case .medium: return try container.encode("MEDIUM")
+    case .big: return try container.encode("BIG")
+    case .bigger: return try container.encode("BIGGER")
+    case .giant: return try container.encode("GIANT")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

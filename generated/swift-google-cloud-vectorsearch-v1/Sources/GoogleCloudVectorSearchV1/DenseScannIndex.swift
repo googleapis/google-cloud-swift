@@ -136,9 +136,9 @@ public struct DenseScannIndex: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .`none`: return try container.encode(1)
-      case .unitL2Norm: return try container.encode(2)
+      case .unspecified: return try container.encode("FEATURE_NORM_TYPE_UNSPECIFIED")
+      case .`none`: return try container.encode("NONE")
+      case .unitL2Norm: return try container.encode("UNIT_L2_NORM")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

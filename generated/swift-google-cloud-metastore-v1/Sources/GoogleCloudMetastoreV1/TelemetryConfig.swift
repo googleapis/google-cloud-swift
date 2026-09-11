@@ -135,9 +135,9 @@ public struct TelemetryConfig: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .legacy: return try container.encode(1)
-      case .json: return try container.encode(2)
+      case .unspecified: return try container.encode("LOG_FORMAT_UNSPECIFIED")
+      case .legacy: return try container.encode("LEGACY")
+      case .json: return try container.encode("JSON")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

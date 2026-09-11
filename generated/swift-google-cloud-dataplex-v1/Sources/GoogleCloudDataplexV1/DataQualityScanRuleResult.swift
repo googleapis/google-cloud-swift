@@ -255,17 +255,17 @@ public struct DataQualityScanRuleResult: Codable, Equatable, GoogleCloudWKT._Any
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .nonNullExpectation: return try container.encode(1)
-      case .rangeExpectation: return try container.encode(2)
-      case .regexExpectation: return try container.encode(3)
-      case .rowConditionExpectation: return try container.encode(4)
-      case .setExpectation: return try container.encode(5)
-      case .statisticRangeExpectation: return try container.encode(6)
-      case .tableConditionExpectation: return try container.encode(7)
-      case .uniquenessExpectation: return try container.encode(8)
-      case .sqlAssertion: return try container.encode(9)
-      case .templateReference: return try container.encode(10)
+      case .unspecified: return try container.encode("RULE_TYPE_UNSPECIFIED")
+      case .nonNullExpectation: return try container.encode("NON_NULL_EXPECTATION")
+      case .rangeExpectation: return try container.encode("RANGE_EXPECTATION")
+      case .regexExpectation: return try container.encode("REGEX_EXPECTATION")
+      case .rowConditionExpectation: return try container.encode("ROW_CONDITION_EXPECTATION")
+      case .setExpectation: return try container.encode("SET_EXPECTATION")
+      case .statisticRangeExpectation: return try container.encode("STATISTIC_RANGE_EXPECTATION")
+      case .tableConditionExpectation: return try container.encode("TABLE_CONDITION_EXPECTATION")
+      case .uniquenessExpectation: return try container.encode("UNIQUENESS_EXPECTATION")
+      case .sqlAssertion: return try container.encode("SQL_ASSERTION")
+      case .templateReference: return try container.encode("TEMPLATE_REFERENCE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -368,9 +368,9 @@ public struct DataQualityScanRuleResult: Codable, Equatable, GoogleCloudWKT._Any
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .perRow: return try container.encode(1)
-      case .aggregate: return try container.encode(2)
+      case .unspecified: return try container.encode("EVALUATION_TYPE_UNSPECIFIED")
+      case .perRow: return try container.encode("PER_ROW")
+      case .aggregate: return try container.encode("AGGREGATE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -473,9 +473,9 @@ public struct DataQualityScanRuleResult: Codable, Equatable, GoogleCloudWKT._Any
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .passed: return try container.encode(1)
-      case .failed: return try container.encode(2)
+      case .unspecified: return try container.encode("RESULT_UNSPECIFIED")
+      case .passed: return try container.encode("PASSED")
+      case .failed: return try container.encode("FAILED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

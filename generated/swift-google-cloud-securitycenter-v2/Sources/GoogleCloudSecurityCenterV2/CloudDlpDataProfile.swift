@@ -141,9 +141,9 @@ public struct CloudDlpDataProfile: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .organization: return try container.encode(1)
-      case .project: return try container.encode(2)
+      case .unspecified: return try container.encode("PARENT_TYPE_UNSPECIFIED")
+      case .organization: return try container.encode("ORGANIZATION")
+      case .project: return try container.encode("PROJECT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

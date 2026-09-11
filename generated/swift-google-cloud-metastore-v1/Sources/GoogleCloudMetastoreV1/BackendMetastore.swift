@@ -146,9 +146,9 @@ public struct BackendMetastore: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .bigquery: return try container.encode(2)
-      case .dataprocMetastore: return try container.encode(3)
+      case .unspecified: return try container.encode("METASTORE_TYPE_UNSPECIFIED")
+      case .bigquery: return try container.encode("BIGQUERY")
+      case .dataprocMetastore: return try container.encode("DATAPROC_METASTORE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

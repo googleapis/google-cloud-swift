@@ -338,20 +338,21 @@ public struct GoldengateDeploymentProperties: Codable, Equatable, GoogleCloudWKT
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .creating: return try container.encode(1)
-      case .updating: return try container.encode(2)
-      case .active: return try container.encode(3)
-      case .inactive: return try container.encode(4)
-      case .deleting: return try container.encode(5)
-      case .deleted: return try container.encode(6)
-      case .failed: return try container.encode(7)
-      case .needsAttention: return try container.encode(8)
-      case .inProgress: return try container.encode(9)
-      case .cancelling: return try container.encode(10)
-      case .cancelled: return try container.encode(11)
-      case .succeeded: return try container.encode(12)
-      case .waiting: return try container.encode(13)
+      case .unspecified:
+        return try container.encode("GOLDENGATE_DEPLOYMENT_LIFECYCLE_STATE_UNSPECIFIED")
+      case .creating: return try container.encode("CREATING")
+      case .updating: return try container.encode("UPDATING")
+      case .active: return try container.encode("ACTIVE")
+      case .inactive: return try container.encode("INACTIVE")
+      case .deleting: return try container.encode("DELETING")
+      case .deleted: return try container.encode("DELETED")
+      case .failed: return try container.encode("FAILED")
+      case .needsAttention: return try container.encode("NEEDS_ATTENTION")
+      case .inProgress: return try container.encode("IN_PROGRESS")
+      case .cancelling: return try container.encode("CANCELLING")
+      case .cancelled: return try container.encode("CANCELLED")
+      case .succeeded: return try container.encode("SUCCEEDED")
+      case .waiting: return try container.encode("WAITING")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -454,9 +455,9 @@ public struct GoldengateDeploymentProperties: Codable, Equatable, GoogleCloudWKT
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .licenseIncluded: return try container.encode(1)
-      case .bringYourOwnLicense: return try container.encode(2)
+      case .unspecified: return try container.encode("LICENSE_MODEL_UNSPECIFIED")
+      case .licenseIncluded: return try container.encode("LICENSE_INCLUDED")
+      case .bringYourOwnLicense: return try container.encode("BRING_YOUR_OWN_LICENSE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -595,15 +596,16 @@ public struct GoldengateDeploymentProperties: Codable, Equatable, GoogleCloudWKT
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .recovering: return try container.encode(1)
-      case .starting: return try container.encode(2)
-      case .stopping: return try container.encode(3)
-      case .moving: return try container.encode(4)
-      case .upgrading: return try container.encode(5)
-      case .restoring: return try container.encode(6)
-      case .backingUp: return try container.encode(7)
-      case .rollingBack: return try container.encode(8)
+      case .unspecified:
+        return try container.encode("GOLDENGATE_DEPLOYMENT_LIFECYCLE_SUB_STATE_UNSPECIFIED")
+      case .recovering: return try container.encode("RECOVERING")
+      case .starting: return try container.encode("STARTING")
+      case .stopping: return try container.encode("STOPPING")
+      case .moving: return try container.encode("MOVING")
+      case .upgrading: return try container.encode("UPGRADING")
+      case .restoring: return try container.encode("RESTORING")
+      case .backingUp: return try container.encode("BACKING_UP")
+      case .rollingBack: return try container.encode("ROLLING_BACK")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -706,9 +708,9 @@ public struct GoldengateDeploymentProperties: Codable, Equatable, GoogleCloudWKT
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .dataReplication: return try container.encode(1)
-      case .dataTransforms: return try container.encode(2)
+      case .unspecified: return try container.encode("GOLDENGATE_DEPLOYMENT_CATEGORY_UNSPECIFIED")
+      case .dataReplication: return try container.encode("DATA_REPLICATION")
+      case .dataTransforms: return try container.encode("DATA_TRANSFORMS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -805,8 +807,8 @@ public struct GoldengateDeploymentProperties: Codable, Equatable, GoogleCloudWKT
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .upgrade: return try container.encode(1)
+      case .unspecified: return try container.encode("NEXT_MAINTENANCE_ACTION_TYPE_UNSPECIFIED")
+      case .upgrade: return try container.encode("UPGRADE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -909,9 +911,9 @@ public struct GoldengateDeploymentProperties: Codable, Equatable, GoogleCloudWKT
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .primary: return try container.encode(1)
-      case .standby: return try container.encode(2)
+      case .unspecified: return try container.encode("GOLDENGATE_DEPLOYMENT_ROLE_TYPE_UNSPECIFIED")
+      case .primary: return try container.encode("PRIMARY")
+      case .standby: return try container.encode("STANDBY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

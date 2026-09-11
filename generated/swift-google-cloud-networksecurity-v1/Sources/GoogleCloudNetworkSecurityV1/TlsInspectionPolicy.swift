@@ -210,11 +210,11 @@ public struct TlsInspectionPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .tls10: return try container.encode(1)
-      case .tls11: return try container.encode(2)
-      case .tls12: return try container.encode(3)
-      case .tls13: return try container.encode(4)
+      case .unspecified: return try container.encode("TLS_VERSION_UNSPECIFIED")
+      case .tls10: return try container.encode("TLS_1_0")
+      case .tls11: return try container.encode("TLS_1_1")
+      case .tls12: return try container.encode("TLS_1_2")
+      case .tls13: return try container.encode("TLS_1_3")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -337,11 +337,11 @@ public struct TlsInspectionPolicy: Codable, Equatable, GoogleCloudWKT._AnyPackab
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .compatible: return try container.encode(1)
-      case .modern: return try container.encode(2)
-      case .restricted: return try container.encode(3)
-      case .custom: return try container.encode(4)
+      case .unspecified: return try container.encode("PROFILE_UNSPECIFIED")
+      case .compatible: return try container.encode("PROFILE_COMPATIBLE")
+      case .modern: return try container.encode("PROFILE_MODERN")
+      case .restricted: return try container.encode("PROFILE_RESTRICTED")
+      case .custom: return try container.encode("PROFILE_CUSTOM")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

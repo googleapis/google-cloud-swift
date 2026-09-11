@@ -276,10 +276,10 @@ public struct Filter: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .includeAllCredits: return try container.encode(1)
-      case .excludeAllCredits: return try container.encode(2)
-      case .includeSpecifiedCredits: return try container.encode(3)
+      case .unspecified: return try container.encode("CREDIT_TYPES_TREATMENT_UNSPECIFIED")
+      case .includeAllCredits: return try container.encode("INCLUDE_ALL_CREDITS")
+      case .excludeAllCredits: return try container.encode("EXCLUDE_ALL_CREDITS")
+      case .includeSpecifiedCredits: return try container.encode("INCLUDE_SPECIFIED_CREDITS")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

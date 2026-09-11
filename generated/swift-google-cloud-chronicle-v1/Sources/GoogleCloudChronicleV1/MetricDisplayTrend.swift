@@ -118,10 +118,11 @@ public enum MetricDisplayTrend: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .absoluteValue: return try container.encode(2)
-    case .percentage: return try container.encode(3)
-    case .absoluteValueAndPercentage: return try container.encode(4)
+    case .unspecified: return try container.encode("METRIC_DISPLAY_TREND_UNSPECIFIED")
+    case .absoluteValue: return try container.encode("METRIC_DISPLAY_TREND_ABSOLUTE_VALUE")
+    case .percentage: return try container.encode("METRIC_DISPLAY_TREND_PERCENTAGE")
+    case .absoluteValueAndPercentage:
+      return try container.encode("METRIC_DISPLAY_TREND_ABSOLUTE_VALUE_AND_PERCENTAGE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

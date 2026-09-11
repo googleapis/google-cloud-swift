@@ -835,10 +835,10 @@ public struct Product: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .primary: return try container.encode(1)
-      case .variant: return try container.encode(2)
-      case .collection: return try container.encode(3)
+      case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .primary: return try container.encode("PRIMARY")
+      case .variant: return try container.encode("VARIANT")
+      case .collection: return try container.encode("COLLECTION")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -958,11 +958,11 @@ public struct Product: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .inStock: return try container.encode(1)
-      case .outOfStock: return try container.encode(2)
-      case .preorder: return try container.encode(3)
-      case .backorder: return try container.encode(4)
+      case .unspecified: return try container.encode("AVAILABILITY_UNSPECIFIED")
+      case .inStock: return try container.encode("IN_STOCK")
+      case .outOfStock: return try container.encode("OUT_OF_STOCK")
+      case .preorder: return try container.encode("PREORDER")
+      case .backorder: return try container.encode("BACKORDER")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

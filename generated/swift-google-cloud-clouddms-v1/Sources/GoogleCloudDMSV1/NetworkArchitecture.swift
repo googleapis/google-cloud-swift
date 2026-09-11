@@ -110,9 +110,9 @@ public enum NetworkArchitecture: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .oldCsqlProducer: return try container.encode(1)
-    case .newCsqlProducer: return try container.encode(2)
+    case .unspecified: return try container.encode("NETWORK_ARCHITECTURE_UNSPECIFIED")
+    case .oldCsqlProducer: return try container.encode("NETWORK_ARCHITECTURE_OLD_CSQL_PRODUCER")
+    case .newCsqlProducer: return try container.encode("NETWORK_ARCHITECTURE_NEW_CSQL_PRODUCER")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

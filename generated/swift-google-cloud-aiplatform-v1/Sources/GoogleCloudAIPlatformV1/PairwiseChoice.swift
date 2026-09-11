@@ -119,10 +119,10 @@
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .baseline: return try container.encode(1)
-      case .candidate: return try container.encode(2)
-      case .tie: return try container.encode(3)
+      case .unspecified: return try container.encode("PAIRWISE_CHOICE_UNSPECIFIED")
+      case .baseline: return try container.encode("BASELINE")
+      case .candidate: return try container.encode("CANDIDATE")
+      case .tie: return try container.encode("TIE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

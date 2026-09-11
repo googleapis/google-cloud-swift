@@ -197,9 +197,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .alwaysPersist: return try container.encode(0)
-        case .defaultForProtocol: return try container.encode(1)
-        case .neverPersist: return try container.encode(2)
+        case .alwaysPersist: return try container.encode("ALWAYS_PERSIST")
+        case .defaultForProtocol: return try container.encode("DEFAULT_FOR_PROTOCOL")
+        case .neverPersist: return try container.encode("NEVER_PERSIST")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -301,9 +301,9 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .invalidTrackingMode: return try container.encode(0)
-        case .perConnection: return try container.encode(1)
-        case .perSession: return try container.encode(2)
+        case .invalidTrackingMode: return try container.encode("INVALID_TRACKING_MODE")
+        case .perConnection: return try container.encode("PER_CONNECTION")
+        case .perSession: return try container.encode("PER_SESSION")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

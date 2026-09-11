@@ -199,10 +199,10 @@ public struct RepositoryEventConfig: Codable, Equatable, GoogleCloudWKT._AnyPack
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .github: return try container.encode(1)
-      case .githubEnterprise: return try container.encode(2)
-      case .gitlabEnterprise: return try container.encode(3)
+      case .unspecified: return try container.encode("REPOSITORY_TYPE_UNSPECIFIED")
+      case .github: return try container.encode("GITHUB")
+      case .githubEnterprise: return try container.encode("GITHUB_ENTERPRISE")
+      case .gitlabEnterprise: return try container.encode("GITLAB_ENTERPRISE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -262,9 +262,9 @@ public struct ResourceDescriptor: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .originallySinglePattern: return try container.encode(1)
-      case .futureMultiPattern: return try container.encode(2)
+      case .unspecified: return try container.encode("HISTORY_UNSPECIFIED")
+      case .originallySinglePattern: return try container.encode("ORIGINALLY_SINGLE_PATTERN")
+      case .futureMultiPattern: return try container.encode("FUTURE_MULTI_PATTERN")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -368,8 +368,8 @@ public struct ResourceDescriptor: Codable, Equatable, GoogleCloudWKT._AnyPackabl
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .declarativeFriendly: return try container.encode(1)
+      case .unspecified: return try container.encode("STYLE_UNSPECIFIED")
+      case .declarativeFriendly: return try container.encode("DECLARATIVE_FRIENDLY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

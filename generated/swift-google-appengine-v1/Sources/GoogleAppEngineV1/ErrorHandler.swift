@@ -150,10 +150,10 @@ public struct ErrorHandler: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .`default`: return try container.encode(0)
-      case .overQuota: return try container.encode(1)
-      case .dosApiDenial: return try container.encode(2)
-      case .timeout: return try container.encode(3)
+      case .`default`: return try container.encode("ERROR_CODE_DEFAULT")
+      case .overQuota: return try container.encode("ERROR_CODE_OVER_QUOTA")
+      case .dosApiDenial: return try container.encode("ERROR_CODE_DOS_API_DENIAL")
+      case .timeout: return try container.encode("ERROR_CODE_TIMEOUT")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -213,9 +213,9 @@ public struct DnsAuthorization: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .fixedRecord: return try container.encode(1)
-      case .perProjectRecord: return try container.encode(2)
+      case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
+      case .fixedRecord: return try container.encode("FIXED_RECORD")
+      case .perProjectRecord: return try container.encode("PER_PROJECT_RECORD")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -161,12 +161,15 @@ public struct GkeNetworkPolicySkippedInfo: Codable, Equatable, GoogleCloudWKT._A
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .networkPolicyDisabled: return try container.encode(1)
-      case .ingressSourceOnSameNode: return try container.encode(2)
-      case .egressFromNodeNetworkNamespacePod: return try container.encode(3)
-      case .networkPolicyNotAppliedToResponseTraffic: return try container.encode(4)
-      case .networkPolicyAnalysisUnsupported: return try container.encode(100)
+      case .unspecified: return try container.encode("REASON_UNSPECIFIED")
+      case .networkPolicyDisabled: return try container.encode("NETWORK_POLICY_DISABLED")
+      case .ingressSourceOnSameNode: return try container.encode("INGRESS_SOURCE_ON_SAME_NODE")
+      case .egressFromNodeNetworkNamespacePod:
+        return try container.encode("EGRESS_FROM_NODE_NETWORK_NAMESPACE_POD")
+      case .networkPolicyNotAppliedToResponseTraffic:
+        return try container.encode("NETWORK_POLICY_NOT_APPLIED_TO_RESPONSE_TRAFFIC")
+      case .networkPolicyAnalysisUnsupported:
+        return try container.encode("NETWORK_POLICY_ANALYSIS_UNSUPPORTED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

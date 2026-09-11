@@ -266,8 +266,8 @@ public struct BuildOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .notVerified: return try container.encode(0)
-      case .verified: return try container.encode(1)
+      case .notVerified: return try container.encode("NOT_VERIFIED")
+      case .verified: return try container.encode("VERIFIED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -398,13 +398,13 @@ public struct BuildOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .n1Highcpu8: return try container.encode(1)
-      case .n1Highcpu32: return try container.encode(2)
-      case .e2Highcpu8: return try container.encode(5)
-      case .e2Highcpu32: return try container.encode(6)
-      case .e2Medium: return try container.encode(7)
-      case .e2Standard2: return try container.encode(11)
+      case .unspecified: return try container.encode("UNSPECIFIED")
+      case .n1Highcpu8: return try container.encode("N1_HIGHCPU_8")
+      case .n1Highcpu32: return try container.encode("N1_HIGHCPU_32")
+      case .e2Highcpu8: return try container.encode("E2_HIGHCPU_8")
+      case .e2Highcpu32: return try container.encode("E2_HIGHCPU_32")
+      case .e2Medium: return try container.encode("E2_MEDIUM")
+      case .e2Standard2: return try container.encode("E2_STANDARD_2")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -502,8 +502,8 @@ public struct BuildOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .mustMatch: return try container.encode(0)
-      case .allowLoose: return try container.encode(1)
+      case .mustMatch: return try container.encode("MUST_MATCH")
+      case .allowLoose: return try container.encode("ALLOW_LOOSE")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -607,9 +607,9 @@ public struct BuildOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .streamDefault: return try container.encode(0)
-      case .streamOn: return try container.encode(1)
-      case .streamOff: return try container.encode(2)
+      case .streamDefault: return try container.encode("STREAM_DEFAULT")
+      case .streamOn: return try container.encode("STREAM_ON")
+      case .streamOff: return try container.encode("STREAM_OFF")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -734,12 +734,12 @@ public struct BuildOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .loggingUnspecified: return try container.encode(0)
-      case .legacy: return try container.encode(1)
-      case .gcsOnly: return try container.encode(2)
-      case .stackdriverOnly: return try container.encode(3)
-      case .`none`: return try container.encode(4)
-      case .cloudLoggingOnly: return try container.encode(5)
+      case .loggingUnspecified: return try container.encode("LOGGING_UNSPECIFIED")
+      case .legacy: return try container.encode("LEGACY")
+      case .gcsOnly: return try container.encode("GCS_ONLY")
+      case .stackdriverOnly: return try container.encode("STACKDRIVER_ONLY")
+      case .`none`: return try container.encode("NONE")
+      case .cloudLoggingOnly: return try container.encode("CLOUD_LOGGING_ONLY")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -844,9 +844,9 @@ public struct BuildOptions: Codable, Equatable, GoogleCloudWKT._AnyPackable,
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .regionalUserOwnedBucket: return try container.encode(1)
-      case .legacyBucket: return try container.encode(2)
+      case .unspecified: return try container.encode("DEFAULT_LOGS_BUCKET_BEHAVIOR_UNSPECIFIED")
+      case .regionalUserOwnedBucket: return try container.encode("REGIONAL_USER_OWNED_BUCKET")
+      case .legacyBucket: return try container.encode("LEGACY_BUCKET")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

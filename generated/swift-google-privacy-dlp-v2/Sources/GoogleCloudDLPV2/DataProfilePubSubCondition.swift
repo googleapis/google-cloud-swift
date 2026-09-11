@@ -249,9 +249,10 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleCloudWKT._An
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .logicalOperatorUnspecified: return try container.encode(0)
-        case .or: return try container.encode(1)
-        case .and: return try container.encode(2)
+        case .logicalOperatorUnspecified:
+          return try container.encode("LOGICAL_OPERATOR_UNSPECIFIED")
+        case .or: return try container.encode("OR")
+        case .and: return try container.encode("AND")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -366,9 +367,9 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleCloudWKT._An
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .high: return try container.encode(1)
-      case .mediumOrHigh: return try container.encode(2)
+      case .unspecified: return try container.encode("PROFILE_SCORE_BUCKET_UNSPECIFIED")
+      case .high: return try container.encode("HIGH")
+      case .mediumOrHigh: return try container.encode("MEDIUM_OR_HIGH")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

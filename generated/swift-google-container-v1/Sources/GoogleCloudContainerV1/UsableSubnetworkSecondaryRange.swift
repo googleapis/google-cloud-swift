@@ -160,11 +160,11 @@ public struct UsableSubnetworkSecondaryRange: Codable, Equatable, GoogleCloudWKT
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unknown: return try container.encode(0)
-      case .unused: return try container.encode(1)
-      case .inUseService: return try container.encode(2)
-      case .inUseShareablePod: return try container.encode(3)
-      case .inUseManagedPod: return try container.encode(4)
+      case .unknown: return try container.encode("UNKNOWN")
+      case .unused: return try container.encode("UNUSED")
+      case .inUseService: return try container.encode("IN_USE_SERVICE")
+      case .inUseShareablePod: return try container.encode("IN_USE_SHAREABLE_POD")
+      case .inUseManagedPod: return try container.encode("IN_USE_MANAGED_POD")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

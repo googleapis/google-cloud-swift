@@ -112,9 +112,9 @@ public enum SharedResourceType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .bigqueryDataset: return try container.encode(1)
-    case .pubsubTopic: return try container.encode(2)
+    case .unspecified: return try container.encode("SHARED_RESOURCE_TYPE_UNSPECIFIED")
+    case .bigqueryDataset: return try container.encode("BIGQUERY_DATASET")
+    case .pubsubTopic: return try container.encode("PUBSUB_TOPIC")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

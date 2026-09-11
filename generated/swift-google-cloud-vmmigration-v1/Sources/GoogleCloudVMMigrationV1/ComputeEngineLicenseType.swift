@@ -112,9 +112,9 @@ public enum ComputeEngineLicenseType: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .`default`: return try container.encode(0)
-    case .payg: return try container.encode(1)
-    case .byol: return try container.encode(2)
+    case .`default`: return try container.encode("COMPUTE_ENGINE_LICENSE_TYPE_DEFAULT")
+    case .payg: return try container.encode("COMPUTE_ENGINE_LICENSE_TYPE_PAYG")
+    case .byol: return try container.encode("COMPUTE_ENGINE_LICENSE_TYPE_BYOL")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }

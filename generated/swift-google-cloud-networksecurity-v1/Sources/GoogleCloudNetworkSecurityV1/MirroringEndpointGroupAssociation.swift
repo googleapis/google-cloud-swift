@@ -219,9 +219,9 @@ public struct MirroringEndpointGroupAssociation: Codable, Equatable, GoogleCloud
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .active: return try container.encode(1)
-        case .outOfSync: return try container.encode(2)
+        case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+        case .active: return try container.encode("ACTIVE")
+        case .outOfSync: return try container.encode("OUT_OF_SYNC")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -366,13 +366,13 @@ public struct MirroringEndpointGroupAssociation: Codable, Equatable, GoogleCloud
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .active: return try container.encode(1)
-      case .creating: return try container.encode(3)
-      case .deleting: return try container.encode(4)
-      case .closed: return try container.encode(5)
-      case .outOfSync: return try container.encode(6)
-      case .deleteFailed: return try container.encode(7)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .active: return try container.encode("ACTIVE")
+      case .creating: return try container.encode("CREATING")
+      case .deleting: return try container.encode("DELETING")
+      case .closed: return try container.encode("CLOSED")
+      case .outOfSync: return try container.encode("OUT_OF_SYNC")
+      case .deleteFailed: return try container.encode("DELETE_FAILED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

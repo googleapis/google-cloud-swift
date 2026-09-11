@@ -157,10 +157,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .unspecified: return try container.encode(0)
-        case .hour: return try container.encode(1)
-        case .max: return try container.encode(2)
-        case .minute: return try container.encode(3)
+        case .unspecified: return try container.encode("DURATION_UNSPECIFIED")
+        case .hour: return try container.encode("HOUR")
+        case .max: return try container.encode("MAX")
+        case .minute: return try container.encode("MINUTE")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -271,10 +271,10 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .loopback: return try container.encode(0)
-        case .receive: return try container.encode(1)
-        case .transmit: return try container.encode(2)
-        case .unspecified: return try container.encode(3)
+        case .loopback: return try container.encode("LOOPBACK")
+        case .receive: return try container.encode("RECEIVE")
+        case .transmit: return try container.encode("TRANSMIT")
+        case .unspecified: return try container.encode("TYPE_UNSPECIFIED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

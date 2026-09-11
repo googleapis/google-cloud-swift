@@ -182,10 +182,10 @@ public struct SupportEventSubscription: Codable, Equatable, GoogleCloudWKT._AnyP
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .working: return try container.encode(1)
-      case .failing: return try container.encode(2)
-      case .deleted: return try container.encode(3)
+      case .unspecified: return try container.encode("STATE_UNSPECIFIED")
+      case .working: return try container.encode("WORKING")
+      case .failing: return try container.encode("FAILING")
+      case .deleted: return try container.encode("DELETED")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }
@@ -296,10 +296,10 @@ public struct SupportEventSubscription: Codable, Equatable, GoogleCloudWKT._AnyP
     public func encode(to encoder: Encoder) throws {
       var container = encoder.singleValueContainer()
       switch self {
-      case .unspecified: return try container.encode(0)
-      case .permissionDenied: return try container.encode(1)
-      case .topicNotFound: return try container.encode(2)
-      case .other: return try container.encode(3)
+      case .unspecified: return try container.encode("FAILURE_REASON_UNSPECIFIED")
+      case .permissionDenied: return try container.encode("PERMISSION_DENIED")
+      case .topicNotFound: return try container.encode("TOPIC_NOT_FOUND")
+      case .other: return try container.encode("OTHER")
       case .unknownIntValue(let v): return try container.encode(v)
       case .unknownStringValue(let v): return try container.encode(v)
       }

@@ -176,13 +176,13 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .active: return try container.encode(0)
-        case .unspecified: return try container.encode(1)
-        case .failedCaaChecking: return try container.encode(2)
-        case .failedCaaForbidden: return try container.encode(3)
-        case .failedNotVisible: return try container.encode(4)
-        case .failedRateLimited: return try container.encode(5)
-        case .provisioning: return try container.encode(6)
+        case .active: return try container.encode("ACTIVE")
+        case .unspecified: return try container.encode("DOMAIN_STATUS_UNSPECIFIED")
+        case .failedCaaChecking: return try container.encode("FAILED_CAA_CHECKING")
+        case .failedCaaForbidden: return try container.encode("FAILED_CAA_FORBIDDEN")
+        case .failedNotVisible: return try container.encode("FAILED_NOT_VISIBLE")
+        case .failedRateLimited: return try container.encode("FAILED_RATE_LIMITED")
+        case .provisioning: return try container.encode("PROVISIONING")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }
@@ -315,12 +315,14 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .active: return try container.encode(0)
-        case .managedCertificateStatusUnspecified: return try container.encode(1)
-        case .provisioning: return try container.encode(2)
-        case .provisioningFailed: return try container.encode(3)
-        case .provisioningFailedPermanently: return try container.encode(4)
-        case .renewalFailed: return try container.encode(5)
+        case .active: return try container.encode("ACTIVE")
+        case .managedCertificateStatusUnspecified:
+          return try container.encode("MANAGED_CERTIFICATE_STATUS_UNSPECIFIED")
+        case .provisioning: return try container.encode("PROVISIONING")
+        case .provisioningFailed: return try container.encode("PROVISIONING_FAILED")
+        case .provisioningFailedPermanently:
+          return try container.encode("PROVISIONING_FAILED_PERMANENTLY")
+        case .renewalFailed: return try container.encode("RENEWAL_FAILED")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

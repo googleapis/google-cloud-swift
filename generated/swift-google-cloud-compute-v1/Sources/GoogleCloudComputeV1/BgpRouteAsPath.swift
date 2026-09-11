@@ -139,8 +139,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .asPathTypeSequence: return try container.encode(0)
-        case .asPathTypeSet: return try container.encode(1)
+        case .asPathTypeSequence: return try container.encode("AS_PATH_TYPE_SEQUENCE")
+        case .asPathTypeSet: return try container.encode("AS_PATH_TYPE_SET")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

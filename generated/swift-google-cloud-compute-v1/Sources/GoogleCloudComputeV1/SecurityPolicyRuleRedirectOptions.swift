@@ -139,8 +139,8 @@
       public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .external302: return try container.encode(0)
-        case .googleRecaptcha: return try container.encode(1)
+        case .external302: return try container.encode("EXTERNAL_302")
+        case .googleRecaptcha: return try container.encode("GOOGLE_RECAPTCHA")
         case .unknownIntValue(let v): return try container.encode(v)
         case .unknownStringValue(let v): return try container.encode(v)
         }

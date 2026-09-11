@@ -121,9 +121,9 @@ public enum MaintenanceCategory: Codable, Equatable, Sendable {
   public func encode(to encoder: Encoder) throws {
     var container = encoder.singleValueContainer()
     switch self {
-    case .unspecified: return try container.encode(0)
-    case .infrastructure: return try container.encode(1)
-    case .serviceUpdate: return try container.encode(3)
+    case .unspecified: return try container.encode("MAINTENANCE_CATEGORY_UNSPECIFIED")
+    case .infrastructure: return try container.encode("INFRASTRUCTURE")
+    case .serviceUpdate: return try container.encode("SERVICE_UPDATE")
     case .unknownIntValue(let v): return try container.encode(v)
     case .unknownStringValue(let v): return try container.encode(v)
     }
