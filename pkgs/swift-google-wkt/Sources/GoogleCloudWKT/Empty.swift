@@ -51,6 +51,6 @@ extension Empty: _AnyPackable {
   }
 
   public func _pack() throws -> Struct {
-    return [`Any`.valueField: Value(object: [:])]
+    return [:]
   }
 }

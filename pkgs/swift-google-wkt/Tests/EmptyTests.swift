@@ -95,7 +95,44 @@ import Testing
     let got = String(data: data, encoding: .utf8)!
 
     let want =
-      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Empty","value":{}}}"#
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Empty"}}"#
     #expect(got == want)
+  }
+
+  @Test("Roundtrip Empty through Any directly")
+  func emptyAnyDirectRoundtrip() throws {
+    let input = Empty()
+    let any = try `Any`(fromMessage: input)
+    #expect(any.typeUrl == "type.googleapis.com/google.protobuf.Empty")
+    let got = try Empty(fromAny: any)
+    #expect(got == input)
+  }
+
+  @Test("Unpack Empty from Any with invalid non-empty value")
+  func emptyAnyUnpackInvalidNonEmptyValue() throws {
+    let jsonString =
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Empty","value":{"unexpected":"data"}}}"#
+    let data = Data(jsonString.utf8)
+    let decoder = JSONDecoder()
+    let wrapped = try decoder.decode(AnyTests.WrappedAny.self, from: data)
+    let any = wrapped.content
+    let error = #expect(throws: AnyError.self) {
+      let _ = try Empty(fromAny: any)
+    }
+    #expect(error == .invalidValueField)
+  }
+
+  @Test("Unpack Empty from Any with invalid non-object value")
+  func emptyAnyUnpackInvalidNonObjectValue() throws {
+    let jsonString =
+      #"{"content":{"@type":"type.googleapis.com/google.protobuf.Empty","value":"not-an-object"}}"#
+    let data = Data(jsonString.utf8)
+    let decoder = JSONDecoder()
+    let wrapped = try decoder.decode(AnyTests.WrappedAny.self, from: data)
+    let any = wrapped.content
+    let error = #expect(throws: AnyError.self) {
+      let _ = try Empty(fromAny: any)
+    }
+    #expect(error == .invalidValueField)
   }
 }
