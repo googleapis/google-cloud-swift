@@ -349,9 +349,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     #expect(attempts.getCount() == 1)
   }
 
-  @Test(
-    "Programmatic credentials retry on custom provider errors",
-    .disabled("TODO(https://github.com/googleapis/google-cloud-swift/issues/84) - the test flakes"))
+  @Test("Programmatic credentials retry on custom provider errors")
   func programmaticCredentialsRetriesOnProviderErrors() async throws {
     let provider = MockFailingSubjectTokenProvider()
     let targetURL = URL(string: "https://sts.googleapis.com/v1/token")!
@@ -370,8 +368,9 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       _ = try await creds.headers()
     }
 
+    // Depending on how the TokenCache background task is scheduled, this count may be 1 or 2.
     let count1 = await provider.callCount
-    #expect(count1 == 1)
+    #expect(count1 >= 1)
 
     // Since it's retryable, second attempt should call provider again
     await #expect(throws: Error.self) {
@@ -379,7 +378,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     }
 
     let count2 = await provider.callCount
-    #expect(count2 >= 2)
+    #expect(count2 > count1)
   }
 
   @Test(
