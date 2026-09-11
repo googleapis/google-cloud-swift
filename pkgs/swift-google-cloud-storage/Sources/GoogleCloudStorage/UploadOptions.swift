@@ -539,6 +539,20 @@ public struct UploadOptions: Sendable {
   /// [Service Usage Consumer]: https://cloud.google.com/service-usage/docs/access-control
   public var quotaProject: String? = nil
 
+  /// Overrides whether the upload operation is treated as idempotent.
+  ///
+  /// Resumable uploads are always idempotent (they can succeed at most once), and therefore
+  /// ignore this setting.
+  ///
+  /// Single-shot (multipart) uploads are idempotent by default only if preconditions are provided
+  /// (`ifGenerationMatch` or `ifMetagenerationMatch`). Without preconditions, single-shot
+  /// uploads are non-idempotent by default to prevent unintended overwrites or version
+  /// duplication on retried transient errors.
+  ///
+  /// Set this property to `true` to force single-shot uploads without preconditions to be
+  /// retried on transient errors, or `false` to suppress retries even when preconditions are present.
+  public var idempotency: Bool? = nil
+
   /// Legacy validation enum property for backward compatibility.
   public var validation: ChecksumValidation {
     get {
@@ -581,6 +595,7 @@ extension UploadOptions {
     copy.resumePolicy = self.resumePolicy ?? defaults.resumePolicy
     copy.backoffPolicy = self.backoffPolicy ?? defaults.backoffPolicy
     copy.quotaProject = self.quotaProject ?? defaults.quotaProject
+    copy.idempotency = self.idempotency ?? defaults.idempotency
     return copy
   }
 

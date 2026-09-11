@@ -184,8 +184,14 @@ extension StorageClient {
     var stream = prepared.stream
     let checksum = prepared.checksum
 
+    let isIdempotent =
+      options.idempotency
+      ?? (options.preconditions?.ifGenerationMatch != nil
+        || options.preconditions?.ifMetagenerationMatch != nil)
     let resumeState = ResumeState(
-      details: UploadDetails(bytesUploaded: 0, totalBytes: totalSize))
+      details: UploadDetails(bytesUploaded: 0, totalBytes: totalSize),
+      idempotent: isIdempotent
+    )
     return try await resumeLoop.run(state: resumeState) { _ in
       try await stream.rewind()
 

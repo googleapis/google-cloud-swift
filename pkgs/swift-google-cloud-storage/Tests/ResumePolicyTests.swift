@@ -165,6 +165,25 @@ import Testing
     #expect(isPermanent(policy.onError(state: state, error: rpcInvalidArgument)))
   }
 
+  @Test func storageResumePolicyNonIdempotent() {
+    let policy = StorageResumePolicy<Void>()
+    let state = ResumeState(idempotent: false)
+
+    let err503 = RequestError.http(HTTPDetails(http_status_code: 503, headers: [:]))
+    let err429 = RequestError.http(HTTPDetails(http_status_code: 429, headers: [:]))
+    let errIO = RequestError.io(NSError(domain: "test", code: -1))
+    let rpcUnavailable = RequestError.service(
+      ServiceError(code: Code.unavailable, message: "unavailable"))
+
+    #expect(isPermanent(policy.onError(state: state, error: err503)))
+    #expect(isPermanent(policy.onError(state: state, error: err429)))
+    #expect(isPermanent(policy.onError(state: state, error: errIO)))
+    #expect(isPermanent(policy.onError(state: state, error: rpcUnavailable)))
+
+    let decoratedPolicy = policy.stopOnConsecutiveErrors(3)
+    #expect(isPermanent(decoratedPolicy.onError(state: state, error: err503)))
+  }
+
   @Test func storageResumePolicyConsecutiveErrors() {
     let policy = StorageResumePolicy<Void>().stopOnConsecutiveErrors(2)
     var state = ResumeState()

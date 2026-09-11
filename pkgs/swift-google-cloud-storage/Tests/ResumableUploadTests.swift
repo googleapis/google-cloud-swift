@@ -2226,6 +2226,51 @@ import Testing
     #expect(requests.count == 2)
     #expect(requests.first?.url?.absoluteString == initUrl.absoluteString)
   }
+
+  /// Tests that resumable uploads are always idempotent and retry transient failures even if `options.idempotency = false`.
+  @Test func resumableUploadIgnoresIdempotencyFalseAndRetries() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-resumable-idempotency-false"
+    let data = Data(repeating: 1, count: 10 * 1024 * 1024)
+    let source = BytesSource(data: data)
+
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let chunkUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=test-upload-id-false")
+
+    // First attempt to start session fails with 503 Service Unavailable
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Service Unavailable".utf8),
+        headers: nil),
+      for: startUrl)
+
+    // Retry attempt to start session succeeds with 200 OK
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": chunkUrl.absoluteString]),
+      for: startUrl)
+
+    // Chunk upload succeeds with 200 OK
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data("{\"name\":\"\(objectName)\"}".utf8),
+        headers: ["Content-Type": "application/json"]),
+      for: chunkUrl)
+
+    let client = try makeClient(registry: registry)
+    let options = UploadOptions().with {
+      $0.idempotency = false
+    }
+    let object = try await client.upload(source, to: bucket, as: objectName, options: options)
+
+    #expect(object.name == objectName)
+    let requests = registry.recordedRequests()
+    // 2 start requests (1 failure + 1 retry) + 1 chunk attempt = 3 requests
+    #expect(requests.count == 3)
+  }
 }
 
 // MARK: - Test Helper Sources

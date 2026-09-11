@@ -247,7 +247,7 @@ import Testing
       uploadReq?.value(forHTTPHeaderField: "x-goog-encryption-key-sha256") == sample.keyHashBase64)
   }
 
-  /// Tests that a 503 (unavailable) response during simple upload is retryable and automatically handled by the retry loop.
+  /// Tests that a 503 (unavailable) response during simple upload is retryable when idempotency is enabled.
   @Test func simpleUploadTransientFailureRetriesAndSucceeds() async throws {
     let registry = MockRegistry.create()
     let bucket = "test-bucket"
@@ -272,11 +272,9 @@ import Testing
         headers: nil),
       for: simpleUploadUrl)
 
-    let client = try makeClient(
-      registry: registry,
-      retryPolicy: BaseRetryPolicy().withAttemptLimit(3)
-    )
-    let object = try await client.upload(source, to: bucket, as: objectName)
+    let client = try makeClient(registry: registry)
+    let options = UploadOptions().with { $0.idempotency = true }
+    let object = try await client.upload(source, to: bucket, as: objectName, options: options)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -319,11 +317,9 @@ import Testing
         headers: nil),
       for: simpleUploadUrl)
 
-    let client = try makeClient(
-      registry: registry,
-      retryPolicy: BaseRetryPolicy().withAttemptLimit(3)
-    )
-    let object = try await client.upload(source, to: bucket, as: objectName)
+    let client = try makeClient(registry: registry)
+    let options = UploadOptions().with { $0.idempotency = true }
+    let object = try await client.upload(source, to: bucket, as: objectName, options: options)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -386,11 +382,9 @@ import Testing
         headers: nil),
       for: simpleUploadUrl)
 
-    let client = try makeClient(
-      registry: registry,
-      retryPolicy: BaseRetryPolicy().withAttemptLimit(3)
-    )
-    let object = try await client.upload(source, to: bucket, as: objectName)
+    let client = try makeClient(registry: registry)
+    let options = UploadOptions().with { $0.idempotency = true }
+    let object = try await client.upload(source, to: bucket, as: objectName, options: options)
 
     #expect(object.name == objectName)
     #expect(object.bucket == "projects/_/buckets/\(bucket)")
@@ -401,6 +395,181 @@ import Testing
     #expect(requests[0].body != nil)
     #expect(requests[1].body != nil)
     #expect(requests[0].body == requests[1].body)
+  }
+
+  /// Tests that a single-shot upload without preconditions is non-idempotent by default and fails without retrying on transient 503.
+  @Test func simpleUploadDefaultNonIdempotentDoesNotRetryOnTransientFailure() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-non-idempotent-fail"
+    let data = Data(repeating: 0x42, count: 1024)
+    let source = BytesSource(data: data)
+
+    let simpleUploadUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=multipart&name=\(objectName)")
+
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Service Unavailable".utf8),
+        headers: nil),
+      for: simpleUploadUrl)
+
+    let client = try makeClient(registry: registry)
+
+    let error = await expectError(RequestError.self) {
+      try await client.upload(source, to: bucket, as: objectName)
+    }
+    if case .http(let details) = error {
+      #expect(details.http_status_code == 503)
+    } else {
+      Issue.record("Expected .http 503 RequestError, got \(String(describing: error))")
+    }
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 1)
+  }
+
+  /// Tests that a single-shot upload with `ifGenerationMatch` precondition is idempotent and retries transient 503 failures.
+  @Test func simpleUploadWithIfGenerationMatchPreconditionRetriesAndSucceeds() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-if-generation-match-retry"
+    let data = Data(repeating: 0x42, count: 1024)
+    let source = BytesSource(data: data)
+
+    let simpleUploadUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=multipart&name=\(objectName)&ifGenerationMatch=0"
+    )
+
+    // First attempt fails with 503 Service Unavailable
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Service Unavailable".utf8),
+        headers: nil),
+      for: simpleUploadUrl)
+
+    // Retry attempt succeeds with 200 OK
+    registry.register(
+      response: .success(
+        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: data.count),
+        headers: nil),
+      for: simpleUploadUrl)
+
+    let client = try makeClient(registry: registry)
+    let options = UploadOptions().with {
+      $0.preconditions = StoragePreconditions().with { $0.ifGenerationMatch = 0 }
+    }
+    let object = try await client.upload(source, to: bucket, as: objectName, options: options)
+
+    #expect(object.name == objectName)
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 2)
+  }
+
+  /// Tests that a single-shot upload with `ifMetagenerationMatch` precondition is idempotent and retries transient 503 failures.
+  @Test func simpleUploadWithIfMetagenerationMatchPreconditionRetriesAndSucceeds() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-if-metageneration-match-retry"
+    let data = Data(repeating: 0x42, count: 1024)
+    let source = BytesSource(data: data)
+
+    let simpleUploadUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=multipart&name=\(objectName)&ifMetagenerationMatch=1"
+    )
+
+    // First attempt fails with 503 Service Unavailable
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Service Unavailable".utf8),
+        headers: nil),
+      for: simpleUploadUrl)
+
+    // Retry attempt succeeds with 200 OK
+    registry.register(
+      response: .success(
+        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: data.count),
+        headers: nil),
+      for: simpleUploadUrl)
+
+    let client = try makeClient(registry: registry)
+    let options = UploadOptions().with {
+      $0.preconditions = StoragePreconditions().with { $0.ifMetagenerationMatch = 1 }
+    }
+    let object = try await client.upload(source, to: bucket, as: objectName, options: options)
+
+    #expect(object.name == objectName)
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 2)
+  }
+
+  /// Tests that a single-shot upload with `options.idempotency = true` retries without preconditions.
+  @Test func simpleUploadExplicitIdempotencyTrueRetriesWithoutPreconditions() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-override-idempotency-true"
+    let data = Data(repeating: 0x42, count: 1024)
+    let source = BytesSource(data: data)
+
+    let simpleUploadUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=multipart&name=\(objectName)")
+
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Service Unavailable".utf8),
+        headers: nil),
+      for: simpleUploadUrl)
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: makeObjectJSON(name: objectName, bucket: bucket, size: data.count),
+        headers: nil),
+      for: simpleUploadUrl)
+
+    let client = try makeClient(registry: registry)
+    let options = UploadOptions().with { $0.idempotency = true }
+    let object = try await client.upload(source, to: bucket, as: objectName, options: options)
+
+    #expect(object.name == objectName)
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 2)
+  }
+
+  /// Tests that a single-shot upload with preconditions but `options.idempotency = false` fails immediately without retry.
+  @Test func simpleUploadExplicitIdempotencyFalseSuppressesRetryWithPreconditions() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-override-idempotency-false"
+    let data = Data(repeating: 0x42, count: 1024)
+    let source = BytesSource(data: data)
+
+    let simpleUploadUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=multipart&name=\(objectName)&ifGenerationMatch=0"
+    )
+
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Service Unavailable".utf8),
+        headers: nil),
+      for: simpleUploadUrl)
+
+    let client = try makeClient(registry: registry)
+    let options = UploadOptions().with {
+      $0.preconditions = StoragePreconditions().with { $0.ifGenerationMatch = 0 }
+      $0.idempotency = false
+    }
+
+    let error = await expectError(RequestError.self) {
+      try await client.upload(source, to: bucket, as: objectName, options: options)
+    }
+    if case .http(let details) = error {
+      #expect(details.http_status_code == 503)
+    } else {
+      Issue.record("Expected .http 503 RequestError, got \(String(describing: error))")
+    }
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 1)
   }
 
   /// Tests that a 503 error with NeverResume policy throws immediately without retrying.
@@ -422,9 +591,10 @@ import Testing
 
     let client = try makeClient(
       registry: registry, uploadResumePolicy: NeverResume<UploadDetails>())
+    let options = UploadOptions().with { $0.idempotency = true }
 
     let error = await expectError(RequestError.self) {
-      try await client.upload(source, to: bucket, as: objectName)
+      try await client.upload(source, to: bucket, as: objectName, options: options)
     }
     #expect(error != nil)
     let requests = registry.recordedRequests()
@@ -450,6 +620,7 @@ import Testing
 
     let client = try makeClient(registry: registry)
     let uploadOptions = UploadOptions().with {
+      $0.idempotency = true
       $0.resumePolicy = NeverResume()
     }
 

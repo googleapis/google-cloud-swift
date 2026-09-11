@@ -18,9 +18,12 @@ import GoogleRpc
 
 /// Evaluates whether an error is considered resumable in Google Cloud Storage.
 ///
-/// In Google Cloud Storage, resumable data transfers (uploads and downloads) can be resumed
+/// In Google Cloud Storage, idempotent data transfers (most uploads and downloads) can be resumed
 /// on I/O errors, transient HTTP status codes (408, 429, and 5xx), and transient
 /// gRPC/service status codes (`unavailable`, `resourceExhausted`, `deadlineExceeded`, `internal`).
+///
+/// If the transfer operation is not idempotent (some single-shot uploads), errors are treated
+/// as permanent and will not be resumed or retried.
 ///
 /// This policy can be composed with decorators such as ``StopOnConsecutiveErrors`` or
 /// ``LimitedTotalResumes``:
@@ -31,6 +34,9 @@ public struct StorageResumePolicy<Details: Sendable>: ResumePolicy, Sendable, Eq
   public init() {}
 
   public func onError(state: ResumeState<Details>, error: RequestError) -> ResumeResult {
+    guard state.idempotent else {
+      return .permanent(error)
+    }
     if isResumable(error) {
       return .resume(error)
     }

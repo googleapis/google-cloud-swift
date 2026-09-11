@@ -31,19 +31,24 @@ public struct ResumeState<Details: Sendable>: Sendable {
   /// Additional domain-specific details (e.g. byte offset, total bytes).
   public var details: Details
 
+  /// Whether the operation being resumed or retried is idempotent. Defaults to `true`.
+  public var idempotent: Bool
+
   /// Creates a new `ResumeState` instance.
   public init(
     details: Details,
     consecutiveErrorCount: UInt32 = 0,
     totalResumeCount: UInt32 = 0,
     start: ContinuousClock.Instant = .now,
-    lastProgressTime: ContinuousClock.Instant? = nil
+    lastProgressTime: ContinuousClock.Instant? = nil,
+    idempotent: Bool = true
   ) {
     self.details = details
     self.consecutiveErrorCount = consecutiveErrorCount
     self.totalResumeCount = totalResumeCount
     self.start = start
     self.lastProgressTime = lastProgressTime ?? start
+    self.idempotent = idempotent
   }
 
   /// Mutates `self` using a builder closure and returns the modified state.
@@ -60,14 +65,16 @@ extension ResumeState where Details == Void {
     consecutiveErrorCount: UInt32 = 0,
     totalResumeCount: UInt32 = 0,
     start: ContinuousClock.Instant = .now,
-    lastProgressTime: ContinuousClock.Instant? = nil
+    lastProgressTime: ContinuousClock.Instant? = nil,
+    idempotent: Bool = true
   ) {
     self.init(
       details: (),
       consecutiveErrorCount: consecutiveErrorCount,
       totalResumeCount: totalResumeCount,
       start: start,
-      lastProgressTime: lastProgressTime
+      lastProgressTime: lastProgressTime,
+      idempotent: idempotent
     )
   }
 }
