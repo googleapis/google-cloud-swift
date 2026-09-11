@@ -13,9 +13,10 @@
 // limitations under the License.
 
 import Foundation
+import GoogleCloudGax
 import GoogleCloudSecretManagerV1
-import GoogleCloudWorkflowsV1
 import GoogleCloudTestHelpers
+import GoogleCloudWorkflowsV1
 
 func cleanupStaleSecrets() async {
   do {
@@ -26,10 +27,12 @@ func cleanupStaleSecrets() async {
 }
 
 func cleanupStaleSecretsImpl() async throws {
-  let projectId = try projectId();
+  let projectId = try projectId()
   let client = try SecretManagerServiceClient()
   let secrets = try client.listSecrets(
-    byItem: .init().with { $0.parent = "projects/\(projectId)" })
+    byItem: .init().with { $0.parent = "projects/\(projectId)" },
+    options: testRetryOptions
+  )
 
   // Wait at least 48 hours before deleting the resources.
   let slack = UInt64(48 * 3600)
@@ -41,11 +44,18 @@ func cleanupStaleSecretsImpl() async throws {
     guard let t = secret.createTime, t.seconds < deadline else {
       continue
     }
-    try await client.deleteSecret(
-      request: .init().with {
-        $0.name = secret.name
-        $0.etag = secret.etag
-      })
+    do {
+      try await client.deleteSecret(
+        request: .init().with {
+          $0.name = secret.name
+          $0.etag = secret.etag
+        },
+        options: testRetryOptions
+      )
+    } catch let error where error.isNotFound || error.isFailedPreconditionOrAborted {
+      // This error is acceptable because we retry a non-idempotent operation, the alternative is flakes in our CI.
+      continue
+    }
   }
 }
 
@@ -58,13 +68,15 @@ func cleanUpStaleWorkflows() async {
 }
 
 func cleanUpStaleWorkflowsImpl() async throws {
-  let projectId = try projectId();
-  let location = locationId();
+  let projectId = try projectId()
+  let location = locationId()
   let client = try WorkflowsClient()
   let workflows = try client.listWorkflows(
     byItem: .init().with {
       $0.parent = "projects/\(projectId)/locations/\(location)"
-    })
+    },
+    options: testRetryOptions
+  )
 
   // Wait at least 48 hours before deleting the resources.
   let slack = UInt64(48 * 3600)
@@ -76,8 +88,15 @@ func cleanUpStaleWorkflowsImpl() async throws {
     guard let t = workflow.createTime, t.seconds < deadline else {
       continue
     }
-    // Start deletion and don't wait for it to complete.
-    _ = try await client.deleteWorkflow(
-      request: .init().with { $0.name = workflow.name })
+    do {
+      // Start deletion and don't wait for it to complete.
+      _ = try await client.deleteWorkflow(
+        request: .init().with { $0.name = workflow.name },
+        options: testRetryOptions
+      )
+    } catch let error where error.isNotFound {
+      // This error is acceptable because we retry a non-idempotent operation, the alternative is flakes in our CI.
+      continue
+    }
   }
 }
