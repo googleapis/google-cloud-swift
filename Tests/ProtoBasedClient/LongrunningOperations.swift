@@ -13,11 +13,12 @@
 // limitations under the License.
 
 import Foundation
-import Testing
-import Logging
+import GoogleCloudGax
 import GoogleCloudTestHelpers
 import GoogleCloudWKT
 import GoogleCloudWorkflowsV1
+import Logging
+import Testing
 
 /// Run tests for LROs.
 public enum LongrunningOperations {
@@ -44,11 +45,11 @@ public enum LongrunningOperations {
     let create = CreateWorkflowRequest().with {
       $0.parent = parent
       $0.workflowId = workflowId
-      $0.workflow = Workflow().with {
-        $0.description = "Test workflow created by integration test"
-        $0.labels = ["integration-test": "true"]
-        $0.serviceAccount = runner
-        $0.sourceCode = .sourceContents(
+      $0.workflow = Workflow().with { workflow in
+        workflow.description = "Test workflow created by integration test"
+        workflow.labels = ["integration-test": "true"]
+        workflow.serviceAccount = runner
+        workflow.sourceCode = .sourceContents(
           """
           - init:
               assign:
@@ -62,15 +63,33 @@ public enum LongrunningOperations {
 
     logger.info("create = \(create)")
 
-    let createLro = try await client.createWorkflow(withPolling: create)
-    let workflow = try await createLro.wait()
+    let workflow: Workflow
+    do {
+      let createLro = try await client.createWorkflow(
+        withPolling: create, options: testRetryOptions)
+      workflow = try await createLro.wait()
+    } catch let error where error.isAlreadyExists {
+      // This error is acceptable because we retry a non-idempotent operation, the alternative is flakes in our CI.
+      logger.info("createWorkflow() returned alreadyExists; fetching existing workflow")
+      workflow = try await client.getWorkflow(
+        request: .init().with { $0.name = "\(parent)/workflows/\(workflowId)" },
+        options: testRetryOptions
+      )
+    }
     logger.info("createWorkflow() was successful")
     #expect(workflow.name == "\(parent)/workflows/\(workflowId)")
 
     logger.info("\nTesting deleteWorkflow() for \(workflow.name)")
-    let deleteLro = try await client.deleteWorkflow(
-      withPolling: .init().with { $0.name = workflow.name })
-    _ = try await deleteLro.wait()
-    logger.info("deleteWorkflow() was successful")
+    do {
+      let deleteLro = try await client.deleteWorkflow(
+        withPolling: .init().with { $0.name = workflow.name },
+        options: testRetryOptions
+      )
+      _ = try await deleteLro.wait()
+      logger.info("deleteWorkflow() was successful")
+    } catch let error where error.isNotFound {
+      // This error is acceptable because we retry a non-idempotent operation, the alternative is flakes in our CI.
+      logger.info("deleteWorkflow() returned notFound (already deleted)")
+    }
   }
 }
