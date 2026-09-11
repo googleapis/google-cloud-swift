@@ -93,7 +93,7 @@ public enum Value: Codable, Equatable, Sendable {
     } else if let v = try? container.decode(String.self) {
       // Try as a string first, because the decoder may treat some strings as numbers.
       self = .string(v)
-    } else if let v = try? container.decode(Double.self) {
+    } else if let v = try? container.decode(Double.self), v.isFinite {
       self = .number(v)
     } else if let v = try? container.decode(Struct.self) {
       self = .object(v)
@@ -118,6 +118,15 @@ public enum Value: Codable, Equatable, Sendable {
     case .null:
       try container.encodeNil()
     case .number(let v):
+      guard v.isFinite else {
+        throw EncodingError.invalidValue(
+          v,
+          EncodingError.Context(
+            codingPath: container.codingPath,
+            debugDescription: "Value.number cannot be NaN or Infinity."
+          )
+        )
+      }
       try container.encode(v)
     case .string(let v):
       try container.encode(v)

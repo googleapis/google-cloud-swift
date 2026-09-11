@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleCloudWKT
+@_spi(GoogleCloudInternal) import GoogleCloudWKT
 import Testing
 
 @Suite struct ValueTests {
@@ -322,5 +322,38 @@ import Testing
     let data = try encoder.encode(wrapped)
     let got = String(data: data, encoding: .utf8)!
     #expect(got == "{\"value\":null}")
+  }
+
+  @Test(
+    "Value encoding invalid numbers throws error",
+    arguments: [
+      Value.number(Double.infinity),
+      Value.number(-Double.infinity),
+      Value.number(Double.nan),
+    ])
+  func encodeValueInvalidNumbers(value: Value) throws {
+    let encoder = _ProtoJSONEncoder()
+    #expect(throws: EncodingError.self) {
+      _ = try encoder.encode(value)
+    }
+
+    let wrapped = WrappedValue(value: value)
+    #expect(throws: EncodingError.self) {
+      _ = try encoder.encode(wrapped)
+    }
+  }
+
+  @Test("Value nested invalid numbers throw error")
+  func encodeValueNestedInvalidNumbers() throws {
+    let encoder = _ProtoJSONEncoder()
+    let objectValue = Value.object(["test": .number(Double.infinity)])
+    #expect(throws: EncodingError.self) {
+      _ = try encoder.encode(objectValue)
+    }
+
+    let arrayValue = Value.array([.number(Double.nan)])
+    #expect(throws: EncodingError.self) {
+      _ = try encoder.encode(arrayValue)
+    }
   }
 }
