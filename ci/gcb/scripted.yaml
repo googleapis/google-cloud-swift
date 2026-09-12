@@ -25,6 +25,9 @@ options:
     - GOOGLE_CLOUD_SWIFT_TEST_RUNNING_ON_GCB=1
     - PROJECT_ID=${PROJECT_ID}
     - GCB_TRIGGER_NAME=${TRIGGER_NAME}
+    - TRIGGER_NAME=${_TRIGGER_NAME}
+    - SHARD_INDEX=${_SHARD_INDEX}
+    - SHARD_COUNT=${_SHARD_COUNT}
   workerPool: 'projects/${PROJECT_ID}/locations/${_POOL_REGION}/workerPools/${_POOL_ID}'
 serviceAccount: 'projects/${PROJECT_ID}/serviceAccounts/integration-test-runner@${PROJECT_ID}.iam.gserviceaccount.com'
 steps:
@@ -34,6 +37,9 @@ substitutions:
   _POOL_REGION: us-central1
   _POOL_ID: swift-sdk-pool
   _SWIFT_VERSION: '6.3'
+  _TRIGGER_NAME: ''
+  _SHARD_INDEX: '0'
+  _SHARD_COUNT: '1'
 # Increase the default timeout. Building all the packages
 # takes about 2h30m, go with 4h for a reasonable margin.
 timeout: 14400s

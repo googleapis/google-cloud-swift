@@ -34,11 +34,6 @@ locals {
       config = "scripted.yaml"
       script = "integration-tests"
     }
-    full = {
-      config  = "scripted.yaml"
-      script  = "full"
-      pool_id = "swift-sdk-pool-large"
-    }
     docs = {
       config  = "scripted.yaml"
       script  = "docs"
@@ -46,14 +41,62 @@ locals {
   }
 
   # These are builds that only run during Pull Requests.
-  pr_build_overrides = {}
+  # PR builds run as a single shard.
+  pr_build_overrides = {
+    full = {
+      config  = "scripted.yaml"
+      script  = "full"
+      pool_id = "swift-sdk-pool"
+    }
+  }
 
   # There are builds that only run Post Merge.
-  pm_build_overrides = {}
+  # The full build is sharded across 16 parallel jobs. To change shard count in the future,
+  # or to shard any other build, simply set `shards = <count>` on that build definition.
+  pm_build_overrides = {
+    full = {
+      config  = "scripted.yaml"
+      script  = "full"
+      pool_id = "swift-sdk-pool"
+      shards  = 16
+    }
+  }
 
-  # Compute the effective list of builds.
-  pr_builds = merge(local.common_builds, local.pr_build_overrides)
-  pm_builds = merge(local.common_builds, local.pm_build_overrides)
+  # Compute the effective list of builds before shard expansion.
+  raw_pr_builds = merge(local.common_builds, local.pr_build_overrides)
+  raw_pm_builds = merge(local.common_builds, local.pm_build_overrides)
+
+  # Expand any build where `shards > 1` into N individual builds named `${name}-${i}`.
+  # Builds without `shards` (or `shards = 1`) keep their original name and run as 1 shard.
+  pr_builds = {
+    for item in flatten([
+      for name, build in local.raw_pr_builds : [
+        for i in range(try(build.shards, 1)) : {
+          key = try(build.shards, 1) > 1 ? "${name}-${i}" : name
+          config = merge(build, {
+            script      = try(build.script, name)
+            shard_index = tostring(i)
+            shard_count = tostring(try(build.shards, 1))
+          })
+        }
+      ]
+    ]) : item.key => item.config
+  }
+
+  pm_builds = {
+    for item in flatten([
+      for name, build in local.raw_pm_builds : [
+        for i in range(try(build.shards, 1)) : {
+          key = try(build.shards, 1) > 1 ? "${name}-${i}" : name
+          config = merge(build, {
+            script      = try(build.script, name)
+            shard_index = tostring(i)
+            shard_count = tostring(try(build.shards, 1))
+          })
+        }
+      ]
+    ]) : item.key => item.config
+  }
 }
 
 # This is used to retrieve the project number. The project number is embedded in
@@ -88,7 +131,7 @@ resource "google_cloudbuildv2_repository" "main" {
 }
 
 resource "google_cloudbuild_trigger" "pull-request" {
-  for_each = tomap(local.pr_builds)
+  for_each = local.pr_builds
   location = var.region
   name     = "gcb-pr-${each.key}"
   filename = "ci/gcb/${each.value.config}"
@@ -105,28 +148,20 @@ resource "google_cloudbuild_trigger" "pull-request" {
   }
 
   substitutions = {
-    _SCRIPT  = lookup(each.value, "script", "")
-    _POOL_ID = lookup(each.value, "pool_id", null)
+    _SCRIPT      = lookup(each.value, "script", "")
+    _POOL_ID     = lookup(each.value, "pool_id", null)
+    _SHARD_INDEX = lookup(each.value, "shard_index", null)
+    _SHARD_COUNT = lookup(each.value, "shard_count", null)
   }
 }
 
 resource "google_cloudbuild_trigger" "post-merge" {
-  for_each = {
-    # `tomap` will not do because we need to normalize these as objects.
-    for k, v in local.pm_builds : k => {
-      config         = v.config,
-      script         = try(v.script, "")
-      pool_id        = try(v.pool_id, null)
-      flags          = try(v.flags, "")
-      swift_version  = try(v.swift_version, null)
-      included_files = try(v.included_files, [])
-    }
-  }
+  for_each       = local.pm_builds
   location       = var.region
   name           = "gcb-pm-${each.key}"
   filename       = "ci/gcb/${each.value.config}"
   tags           = ["post-merge", "push", "name:${each.key}"]
-  included_files = each.value.included_files
+  included_files = try(each.value.included_files, [])
 
   service_account = var.service_account
 
@@ -141,6 +176,8 @@ resource "google_cloudbuild_trigger" "post-merge" {
     _SCRIPT        = lookup(each.value, "script", "")
     _SWIFT_VERSION = lookup(each.value, "swift_version", null)
     _POOL_ID       = lookup(each.value, "pool_id", null)
+    _SHARD_INDEX   = lookup(each.value, "shard_index", null)
+    _SHARD_COUNT   = lookup(each.value, "shard_count", null)
   }
 }
 

@@ -25,26 +25,60 @@ source "${SCRIPT_DIR}/build-flags.sh"
 errors=0
 count=0
 
+shard_index="${1:-${SHARD_INDEX:-0}}"
+shard_count="${2:-${SHARD_COUNT:-1}}"
+trigger_name="${TRIGGER_NAME:-${GCB_TRIGGER_NAME:-}}"
+
+if ! [[ "${shard_index}" =~ ^[0-9]+$ ]] || ! [[ "${shard_count}" =~ ^[0-9]+$ ]]; then
+    echo "✗ Invalid shard parameters: shard_index='${shard_index}', shard_count='${shard_count}'"
+    exit 1
+fi
+
+if (( shard_count <= 0 )); then
+    echo "✗ shard_count must be greater than 0, got ${shard_count}"
+    exit 1
+fi
+
+if (( shard_index >= shard_count )); then
+    echo "✗ shard_index (${shard_index}) must be less than shard_count (${shard_count})"
+    exit 1
+fi
+
 flags=("${build_flags[@]}")
 source "${REPO_ROOT}/ci/package-dependencies.sh"
 # By default, build all the packages. We search for `Package.swift` files
 mapfile -t packages < <(find . \( -name Sources -o -name .build -o -name .build-cache \) -prune -o -type f -name Package.swift -exec dirname {} \; | sort -u)
 # On PRs, detect any new libraries and compile their documentation. Without this
 # step the post-merge build may break, and we prefer to avoid this problem.
-if [[ "${GCB_TRIGGER_NAME:-}" != gcb-pm-* ]]; then
-    echo "--- Building a subset because this is a PR"
+if [[ "${trigger_name}" != gcb-pm-* && "${shard_count}" -le 1 ]]; then
+    echo "--- Building a subset because this is a PR (trigger: ${trigger_name:-none})"
     # Add some standard packages.
     packages=('.')
     mapfile -t always < <(find pkgs -type f -name 'Package.swift' | xargs -I{} dirname {} | sort)
     packages+=("${always[@]}")
     if [[ -d .git ]]; then
-        git fetch --unshallow
-        mapfile -t new < <(git diff "origin/main...HEAD" --name-only --diff-filter=A | grep '/Package.swift' | grep -v /Sources/ | xargs -I{} dirname {})
+        git fetch --unshallow || true
+        mapfile -t new < <(git diff "origin/main...HEAD" --name-only --diff-filter=A 2>/dev/null | grep '/Package.swift' | grep -v /Sources/ | xargs -I{} dirname {})
         packages+=("${new[@]}")
-        echo "--- Discovered new directories in this PR: ${new[@]}"
+        echo "--- Discovered new directories in this PR: ${new[*]}"
     fi
 fi
-echo "--- Building ${#packages[@]} packages"
+
+if (( shard_count > 1 )); then
+    echo "--- Total packages before sharding: ${#packages[@]}"
+    shard_packages=()
+    for i in "${!packages[@]}"; do
+        if (( i % shard_count == shard_index )); then
+            shard_packages+=("${packages[i]}")
+        fi
+    done
+    packages=("${shard_packages[@]}")
+fi
+
+echo "--- Building shard ${shard_index} of ${shard_count} (${#packages[@]} packages)"
+for p in "${packages[@]}"; do
+    echo "  ${p}"
+done
 for dir in "${packages[@]}"; do
     [[ -f "${dir}/Package.swift" ]] || continue
     count=$((count + 1))

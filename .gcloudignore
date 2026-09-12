@@ -16,3 +16,12 @@
 
 # Ignore anything ignored by `git`:
 #!include:.gitignore
+
+# This is an attempt to ignore most worktrees. Those are big, and slow down the
+# upload for manual builds.
+worktree*/
+chore-*/
+fix-*/
+perf-*/
+pr[0-9]*/
+test-*/

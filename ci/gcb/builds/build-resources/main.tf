@@ -58,7 +58,7 @@ resource "google_cloudbuild_worker_pool" "pool" {
   name     = "swift-sdk-pool"
   location = "us-central1"
   worker_config {
-    disk_size_gb   = 256
+    disk_size_gb   = 1024
     machine_type   = "e2-standard-8"
     no_external_ip = false
   }
