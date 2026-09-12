@@ -27,6 +27,10 @@ struct ChecksummedSource<S: UploadSource> {
   private var nextChunk: ByteBuffer? = nil
   private var isInitialized = false
   private var isFinished = false
+  /// The high-water mark of sequentially processed bytes in `calculators`.
+  /// All bytes in `0 ..< bytesHashed` have already been fed into the checksum calculators.
+  /// When seeking backward (`offset < bytesHashed`), `bytesHashed` is not decremented,
+  /// ensuring that re-reading previously hashed bytes will not cause duplicate hashing.
   private var bytesHashed: UInt64 = 0
   private var nextChunkOffset: UInt64 = 0
 
@@ -49,13 +53,31 @@ struct ChecksummedSource<S: UploadSource> {
     self.calculators = self.options.makeUploadCalculators()
   }
 
+  /// Reseeds the CRC32C calculator with a running hash seed provided by GCS.
+  ///
+  /// Because the other hash algorithm used by Cloud Storage (MD5) does not support
+  /// intermediate running seeds from GCS, any dynamic non-seedable calculators are discarded
+  /// to prevent corruption when `bytesHashed` is rewound.
   mutating func seedCRC32C(seed: UInt32, bytesHashed: UInt64) {
-    if let idx = calculators.firstIndex(where: { $0 is CRC32CCalculator }) {
-      calculators[idx] = CRC32CCalculator(seed: seed)
-      self.bytesHashed = bytesHashed
+    self.bytesHashed = bytesHashed
+    self.calculators = self.calculators.compactMap { calc in
+      if calc is CRC32CCalculator {
+        return CRC32CCalculator(seed: seed)
+      }
+      if calc is ProvidedChecksumCalculator {
+        return calc
+      }
+      // Non-seedable dynamic calculators (e.g. MD5) are discarded because their state
+      // cannot be rolled back to `bytesHashed`.
+      return nil
     }
   }
 
+  /// Incrementally feeds new data into the checksum calculators.
+  ///
+  /// To support seeking backward and retrying chunk uploads without corrupting checksums,
+  /// this method skips any prefix of `data` that falls below `bytesHashed` (the high-water mark
+  /// of bytes already fed into `calculators`). Only bytes beyond `bytesHashed` are accumulated.
   private mutating func updateChecksums(data: ByteBuffer, startOffset: UInt64) {
     guard !calculators.isEmpty else { return }
 
@@ -112,6 +134,14 @@ struct ChecksummedSource<S: UploadSource> {
 }
 
 extension ChecksummedSource where S: SeekableUploadSource {
+  /// Repositions the stream offset for subsequent `readChunk` operations.
+  ///
+  /// - If `offset > bytesHashed`, catches up checksum computation by reading and hashing
+  ///   all bytes from `bytesHashed` up to `offset`.
+  /// - If `offset <= bytesHashed` (seeking backward), repositions the underlying source but
+  ///   leaves `bytesHashed` unchanged. When the stream is subsequently re-read,
+  ///   `updateChecksums` will skip the already-hashed bytes `offset ..< bytesHashed`, preventing
+  ///   duplicate accumulation into the hash calculators.
   mutating func seek(to offset: UInt64) async throws {
     nextChunk = nil
     isInitialized = false
