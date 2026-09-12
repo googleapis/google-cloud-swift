@@ -164,6 +164,8 @@ public func runObjectSamples(
   try await setClientEndpoint(bucketId: id)
   print("running configureRetries() sample")
   try await configureRetries(bucketId: id)
+  print("running quotaProject() sample")
+  try await quotaProject(bucketId: id, projectId: projectId)
 
   print("running generateEncryptionKey() sample")
   let encryptionKey = try generateEncryptionKey()
