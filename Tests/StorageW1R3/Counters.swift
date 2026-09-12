@@ -74,6 +74,8 @@ public actor BenchmarkCounters {
       ("DELETE_ERROR", deleteError),
       ("READ_COUNT", readCount),
       ("READ_ERROR", readError),
+      ("RESUME_COUNT", GlobalCounters.resumePolicy.value),
+      ("RETRY_COUNT", GlobalCounters.retryPolicy.value),
       ("SAMPLE_COUNT", sampleCount),
       ("WRITE_COUNT", writeCount),
       ("WRITE_ERROR", writeError),

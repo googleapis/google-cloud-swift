@@ -283,7 +283,26 @@ extension StorageW1R3 {
       clients.append(
         try StorageClient(
           .init().with {
-            $0.client = .init().with { clientOptions in clientOptions.credentials = credentials }
+            $0.client = .init().with { clientOptions in
+              clientOptions.credentials = credentials
+              clientOptions.retryPolicy = GoogleCloudGax.BaseRetryPolicy()
+                .countedAndLogged(
+                  counter: GlobalCounters.retryPolicy,
+                  methodName: "storageClient"
+                )
+            }
+            $0.upload.resumePolicy = StorageResumePolicy<UploadDetails>()
+              .stopOnConsecutiveErrors()
+              .countedAndLogged(
+                counter: GlobalCounters.resumePolicy,
+                operationName: "upload"
+              )
+            $0.download.resumePolicy = StorageResumePolicy<DownloadDetails>()
+              .stopOnConsecutiveErrors()
+              .countedAndLogged(
+                counter: GlobalCounters.resumePolicy,
+                operationName: "download"
+              )
           }))
     }
     return clients
@@ -292,7 +311,18 @@ extension StorageW1R3 {
   func makeControlClients(_ credentials: Credentials) throws -> [StorageControlClient] {
     var clients: [StorageControlClient] = []
     for _ in 0..<self.controlClientCount {
-      clients.append(try StorageControlClient(.init().with { $0.credentials = credentials }))
+      clients.append(
+        try StorageControlClient(
+          .init().with {
+            $0.credentials = credentials
+            $0.retryPolicy = StorageBaseRetryPolicy()
+              .withTimeLimit(.seconds(60))
+              .withAttemptLimit(10)
+              .countedAndLogged(
+                counter: GlobalCounters.retryPolicy,
+                methodName: "storageControl"
+              )
+          }))
     }
     return clients
   }
