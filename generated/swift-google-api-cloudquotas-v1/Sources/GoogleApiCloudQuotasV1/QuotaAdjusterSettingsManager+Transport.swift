@@ -35,23 +35,120 @@ extension Clients {
     public func updateQuotaAdjusterSettings(
       request: UpdateQuotaAdjusterSettingsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleApiCloudQuotasV1.QuotaAdjusterSettings {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.quotaAdjusterSettings.map({ $0.name }),
-          !pathVariable0.isEmpty
-        else {
-          throw GoogleCloudGax.RequestError.binding(
-            "'request.quota_adjuster_settings.name' is not set or is empty")
+      let (path, query, configure) = try {
+        () throws -> (
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+        ) in
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              request.quotaAdjusterSettings.map({ $0.name }),
+              matching: [
+                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                .literal("/quotaAdjusterSettings"),
+              ])
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0)"
+          var query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          let encoder = GoogleCloudGax._QueryParameterEncoder()
+          query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
+          query.append(contentsOf: try encoder.encode(request.validateOnly, prefix: "validateOnly"))
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.PATCH) })
         }
-        return "/v1/\(pathVariable0)"
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              request.quotaAdjusterSettings.map({ $0.name }),
+              matching: [
+                .literal("folders/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                .literal("/quotaAdjusterSettings"),
+              ])
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0)"
+          var query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          let encoder = GoogleCloudGax._QueryParameterEncoder()
+          query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
+          query.append(contentsOf: try encoder.encode(request.validateOnly, prefix: "validateOnly"))
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.PATCH) })
+        }
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              request.quotaAdjusterSettings.map({ $0.name }),
+              matching: [
+                .literal("organizations/"), .singleWildcard, .literal("/locations/"),
+                .singleWildcard, .literal("/quotaAdjusterSettings"),
+              ])
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0)"
+          var query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          let encoder = GoogleCloudGax._QueryParameterEncoder()
+          query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
+          query.append(contentsOf: try encoder.encode(request.validateOnly, prefix: "validateOnly"))
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.PATCH) })
+        }
+        var paths: [GoogleCloudGax.PathMismatch] = []
+        do {
+          var builder = GoogleCloudGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.quotaAdjusterSettings.map({ $0.name }),
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+              .literal("/quotaAdjusterSettings"),
+            ],
+            fieldName: "quota_adjuster_settings.name",
+            expecting: "projects/*/locations/*/quotaAdjusterSettings"
+          )
+          paths.append(builder.build())
+        }
+        do {
+          var builder = GoogleCloudGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.quotaAdjusterSettings.map({ $0.name }),
+            matching: [
+              .literal("folders/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+              .literal("/quotaAdjusterSettings"),
+            ],
+            fieldName: "quota_adjuster_settings.name",
+            expecting: "folders/*/locations/*/quotaAdjusterSettings"
+          )
+          paths.append(builder.build())
+        }
+        do {
+          var builder = GoogleCloudGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.quotaAdjusterSettings.map({ $0.name }),
+            matching: [
+              .literal("organizations/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+              .literal("/quotaAdjusterSettings"),
+            ],
+            fieldName: "quota_adjuster_settings.name",
+            expecting: "organizations/*/locations/*/quotaAdjusterSettings"
+          )
+          paths.append(builder.build())
+        }
+        throw GoogleCloudGax.RequestError.binding(GoogleCloudGax.BindingError(paths: paths))
       }()
-      var query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      let encoder = GoogleCloudGax._QueryParameterEncoder()
-      query.append(contentsOf: try encoder.encode(request.updateMask, prefix: "updateMask"))
-      query.append(contentsOf: try encoder.encode(request.validateOnly, prefix: "validateOnly"))
       var req = try await self.inner.newRequest(path: path, query: query, options: options)
-      req.setMethod(.PATCH)
+      configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       if let body = request.quotaAdjusterSettings {
         try req.setBody(json: body)
@@ -64,17 +161,111 @@ extension Clients {
     public func getQuotaAdjusterSettings(
       request: GetQuotaAdjusterSettingsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleApiCloudQuotasV1.QuotaAdjusterSettings {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
-          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
+      let (path, query, configure) = try {
+        () throws -> (
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+        ) in
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              request.name as Swift.String?,
+              matching: [
+                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                .literal("/quotaAdjusterSettings"),
+              ])
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0)"
+          let query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.GET) })
         }
-        return "/v1/\(pathVariable0)"
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              request.name as Swift.String?,
+              matching: [
+                .literal("folders/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                .literal("/quotaAdjusterSettings"),
+              ])
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0)"
+          let query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.GET) })
+        }
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              request.name as Swift.String?,
+              matching: [
+                .literal("organizations/"), .singleWildcard, .literal("/locations/"),
+                .singleWildcard, .literal("/quotaAdjusterSettings"),
+              ])
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0)"
+          let query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.GET) })
+        }
+        var paths: [GoogleCloudGax.PathMismatch] = []
+        do {
+          var builder = GoogleCloudGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.name as Swift.String?,
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+              .literal("/quotaAdjusterSettings"),
+            ],
+            fieldName: "name",
+            expecting: "projects/*/locations/*/quotaAdjusterSettings"
+          )
+          paths.append(builder.build())
+        }
+        do {
+          var builder = GoogleCloudGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.name as Swift.String?,
+            matching: [
+              .literal("folders/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+              .literal("/quotaAdjusterSettings"),
+            ],
+            fieldName: "name",
+            expecting: "folders/*/locations/*/quotaAdjusterSettings"
+          )
+          paths.append(builder.build())
+        }
+        do {
+          var builder = GoogleCloudGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.name as Swift.String?,
+            matching: [
+              .literal("organizations/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+              .literal("/quotaAdjusterSettings"),
+            ],
+            fieldName: "name",
+            expecting: "organizations/*/locations/*/quotaAdjusterSettings"
+          )
+          paths.append(builder.build())
+        }
+        throw GoogleCloudGax.RequestError.binding(GoogleCloudGax.BindingError(paths: paths))
       }()
-      let query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
       var req = try await self.inner.newRequest(path: path, query: query, options: options)
-      req.setMethod(.GET)
+      configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleApiCloudQuotasV1.QuotaAdjusterSettings.self, timeout: options.attemptTimeout

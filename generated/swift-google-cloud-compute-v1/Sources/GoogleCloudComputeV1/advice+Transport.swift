@@ -36,21 +36,53 @@
       public func calendarMode(
         request: AdviceClient.CalendarModeRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.CalendarModeAdviceResponse {
-        let path = try { () throws -> Swift.String in
-          guard let pathVariable0 = request.project as Swift.String?, !pathVariable0.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.project' is not set or is empty")
+        let (path, query, configure) = try {
+          () throws -> (
+            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          ) in
+          if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+            guard
+              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+                request.project as Swift.String?, matching: [.singleWildcard])
+            else {
+              return nil
+            }
+            guard
+              let pathVariable1 = GoogleCloudGax._RoutingMatcher.value(
+                request.region as Swift.String?, matching: [.singleWildcard])
+            else {
+              return nil
+            }
+            let path =
+              "/compute/v1/projects/\(pathVariable0)/regions/\(pathVariable1)/advice/calendarMode"
+            let query = [
+              URLQueryItem(name: "$alt", value: "json")
+            ]
+            return (path, query)
+          }() {
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
           }
-          guard let pathVariable1 = request.region as Swift.String?, !pathVariable1.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.region' is not set or is empty")
+          var paths: [GoogleCloudGax.PathMismatch] = []
+          do {
+            var builder = GoogleCloudGax._PathMismatchBuilder()
+            builder.maybeAdd(
+              request.project as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "project",
+              expecting: "*"
+            )
+            builder.maybeAdd(
+              request.region as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "region",
+              expecting: "*"
+            )
+            paths.append(builder.build())
           }
-          return
-            "/compute/v1/projects/\(pathVariable0)/regions/\(pathVariable1)/advice/calendarMode"
+          throw GoogleCloudGax.RequestError.binding(GoogleCloudGax.BindingError(paths: paths))
         }()
-        let query = [
-          URLQueryItem(name: "$alt", value: "json")
-        ]
         var req = try await self.inner.newRequest(path: path, query: query, options: options)
-        req.setMethod(.POST)
+        configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.body {
           try req.setBody(json: body)

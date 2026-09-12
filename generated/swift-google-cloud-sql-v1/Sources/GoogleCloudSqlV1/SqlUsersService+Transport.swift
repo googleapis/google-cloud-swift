@@ -36,23 +36,55 @@
       public func delete(
         request: SqlUsersDeleteRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
-        let path = try { () throws -> Swift.String in
-          guard let pathVariable0 = request.project as Swift.String?, !pathVariable0.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.project' is not set or is empty")
+        let (path, query, configure) = try {
+          () throws -> (
+            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          ) in
+          if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+            guard
+              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+                request.project as Swift.String?, matching: [.singleWildcard])
+            else {
+              return nil
+            }
+            guard
+              let pathVariable1 = GoogleCloudGax._RoutingMatcher.value(
+                request.instance as Swift.String?, matching: [.singleWildcard])
+            else {
+              return nil
+            }
+            let path = "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/users"
+            var query = [
+              URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+            ]
+            let encoder = GoogleCloudGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.host, prefix: "host"))
+            query.append(contentsOf: try encoder.encode(request.name, prefix: "name"))
+            return (path, query)
+          }() {
+            return (candidate.0, candidate.1, { $0.setMethod(.DELETE) })
           }
-          guard let pathVariable1 = request.instance as Swift.String?, !pathVariable1.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.instance' is not set or is empty")
+          var paths: [GoogleCloudGax.PathMismatch] = []
+          do {
+            var builder = GoogleCloudGax._PathMismatchBuilder()
+            builder.maybeAdd(
+              request.project as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "project",
+              expecting: "*"
+            )
+            builder.maybeAdd(
+              request.instance as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "instance",
+              expecting: "*"
+            )
+            paths.append(builder.build())
           }
-          return "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/users"
+          throw GoogleCloudGax.RequestError.binding(GoogleCloudGax.BindingError(paths: paths))
         }()
-        var query = [
-          URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-        ]
-        let encoder = GoogleCloudGax._QueryParameterEncoder()
-        query.append(contentsOf: try encoder.encode(request.host, prefix: "host"))
-        query.append(contentsOf: try encoder.encode(request.name, prefix: "name"))
         var req = try await self.inner.newRequest(path: path, query: query, options: options)
-        req.setMethod(.DELETE)
+        configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudSqlV1.Operation.self, timeout: options.attemptTimeout
@@ -62,25 +94,67 @@
       public func `get`(
         request: SqlUsersGetRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.User {
-        let path = try { () throws -> Swift.String in
-          guard let pathVariable0 = request.project as Swift.String?, !pathVariable0.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.project' is not set or is empty")
+        let (path, query, configure) = try {
+          () throws -> (
+            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          ) in
+          if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+            guard
+              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+                request.project as Swift.String?, matching: [.singleWildcard])
+            else {
+              return nil
+            }
+            guard
+              let pathVariable1 = GoogleCloudGax._RoutingMatcher.value(
+                request.instance as Swift.String?, matching: [.singleWildcard])
+            else {
+              return nil
+            }
+            guard
+              let pathVariable2 = GoogleCloudGax._RoutingMatcher.value(
+                request.name as Swift.String?, matching: [.singleWildcard])
+            else {
+              return nil
+            }
+            let path =
+              "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/users/\(pathVariable2)"
+            var query = [
+              URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+            ]
+            let encoder = GoogleCloudGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.host, prefix: "host"))
+            return (path, query)
+          }() {
+            return (candidate.0, candidate.1, { $0.setMethod(.GET) })
           }
-          guard let pathVariable1 = request.instance as Swift.String?, !pathVariable1.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.instance' is not set or is empty")
+          var paths: [GoogleCloudGax.PathMismatch] = []
+          do {
+            var builder = GoogleCloudGax._PathMismatchBuilder()
+            builder.maybeAdd(
+              request.project as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "project",
+              expecting: "*"
+            )
+            builder.maybeAdd(
+              request.instance as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "instance",
+              expecting: "*"
+            )
+            builder.maybeAdd(
+              request.name as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "name",
+              expecting: "*"
+            )
+            paths.append(builder.build())
           }
-          guard let pathVariable2 = request.name as Swift.String?, !pathVariable2.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
-          }
-          return "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/users/\(pathVariable2)"
+          throw GoogleCloudGax.RequestError.binding(GoogleCloudGax.BindingError(paths: paths))
         }()
-        var query = [
-          URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-        ]
-        let encoder = GoogleCloudGax._QueryParameterEncoder()
-        query.append(contentsOf: try encoder.encode(request.host, prefix: "host"))
         var req = try await self.inner.newRequest(path: path, query: query, options: options)
-        req.setMethod(.GET)
+        configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudSqlV1.User.self, timeout: options.attemptTimeout
@@ -90,20 +164,52 @@
       public func insert(
         request: SqlUsersInsertRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
-        let path = try { () throws -> Swift.String in
-          guard let pathVariable0 = request.project as Swift.String?, !pathVariable0.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.project' is not set or is empty")
+        let (path, query, configure) = try {
+          () throws -> (
+            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          ) in
+          if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+            guard
+              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+                request.project as Swift.String?, matching: [.singleWildcard])
+            else {
+              return nil
+            }
+            guard
+              let pathVariable1 = GoogleCloudGax._RoutingMatcher.value(
+                request.instance as Swift.String?, matching: [.singleWildcard])
+            else {
+              return nil
+            }
+            let path = "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/users"
+            let query = [
+              URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+            ]
+            return (path, query)
+          }() {
+            return (candidate.0, candidate.1, { $0.setMethod(.POST) })
           }
-          guard let pathVariable1 = request.instance as Swift.String?, !pathVariable1.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.instance' is not set or is empty")
+          var paths: [GoogleCloudGax.PathMismatch] = []
+          do {
+            var builder = GoogleCloudGax._PathMismatchBuilder()
+            builder.maybeAdd(
+              request.project as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "project",
+              expecting: "*"
+            )
+            builder.maybeAdd(
+              request.instance as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "instance",
+              expecting: "*"
+            )
+            paths.append(builder.build())
           }
-          return "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/users"
+          throw GoogleCloudGax.RequestError.binding(GoogleCloudGax.BindingError(paths: paths))
         }()
-        let query = [
-          URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-        ]
         var req = try await self.inner.newRequest(path: path, query: query, options: options)
-        req.setMethod(.POST)
+        configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.body {
           try req.setBody(json: body)
@@ -116,20 +222,52 @@
       public func list(
         request: SqlUsersListRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.UsersListResponse {
-        let path = try { () throws -> Swift.String in
-          guard let pathVariable0 = request.project as Swift.String?, !pathVariable0.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.project' is not set or is empty")
+        let (path, query, configure) = try {
+          () throws -> (
+            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          ) in
+          if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+            guard
+              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+                request.project as Swift.String?, matching: [.singleWildcard])
+            else {
+              return nil
+            }
+            guard
+              let pathVariable1 = GoogleCloudGax._RoutingMatcher.value(
+                request.instance as Swift.String?, matching: [.singleWildcard])
+            else {
+              return nil
+            }
+            let path = "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/users"
+            let query = [
+              URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+            ]
+            return (path, query)
+          }() {
+            return (candidate.0, candidate.1, { $0.setMethod(.GET) })
           }
-          guard let pathVariable1 = request.instance as Swift.String?, !pathVariable1.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.instance' is not set or is empty")
+          var paths: [GoogleCloudGax.PathMismatch] = []
+          do {
+            var builder = GoogleCloudGax._PathMismatchBuilder()
+            builder.maybeAdd(
+              request.project as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "project",
+              expecting: "*"
+            )
+            builder.maybeAdd(
+              request.instance as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "instance",
+              expecting: "*"
+            )
+            paths.append(builder.build())
           }
-          return "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/users"
+          throw GoogleCloudGax.RequestError.binding(GoogleCloudGax.BindingError(paths: paths))
         }()
-        let query = [
-          URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-        ]
         var req = try await self.inner.newRequest(path: path, query: query, options: options)
-        req.setMethod(.GET)
+        configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
           GoogleCloudSqlV1.UsersListResponse.self, timeout: options.attemptTimeout
@@ -139,31 +277,64 @@
       public func update(
         request: SqlUsersUpdateRequest, options: GoogleCloudGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
-        let path = try { () throws -> Swift.String in
-          guard let pathVariable0 = request.project as Swift.String?, !pathVariable0.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.project' is not set or is empty")
+        let (path, query, configure) = try {
+          () throws -> (
+            Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+          ) in
+          if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+            guard
+              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+                request.project as Swift.String?, matching: [.singleWildcard])
+            else {
+              return nil
+            }
+            guard
+              let pathVariable1 = GoogleCloudGax._RoutingMatcher.value(
+                request.instance as Swift.String?, matching: [.singleWildcard])
+            else {
+              return nil
+            }
+            let path = "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/users"
+            var query = [
+              URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+            ]
+            let encoder = GoogleCloudGax._QueryParameterEncoder()
+            query.append(contentsOf: try encoder.encode(request.host, prefix: "host"))
+            query.append(contentsOf: try encoder.encode(request.name, prefix: "name"))
+            query.append(
+              contentsOf: try encoder.encode(request.databaseRoles, prefix: "databaseRoles"))
+            query.append(
+              contentsOf: try encoder.encode(
+                request.revokeExistingRoles, prefix: "revokeExistingRoles"))
+            query.append(contentsOf: try encoder.encode(request.serverRoles, prefix: "serverRoles"))
+            query.append(
+              contentsOf: try encoder.encode(
+                request.revokeExistingServerRoles, prefix: "revokeExistingServerRoles"))
+            return (path, query)
+          }() {
+            return (candidate.0, candidate.1, { $0.setMethod(.PUT) })
           }
-          guard let pathVariable1 = request.instance as Swift.String?, !pathVariable1.isEmpty else {
-            throw GoogleCloudGax.RequestError.binding("'request.instance' is not set or is empty")
+          var paths: [GoogleCloudGax.PathMismatch] = []
+          do {
+            var builder = GoogleCloudGax._PathMismatchBuilder()
+            builder.maybeAdd(
+              request.project as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "project",
+              expecting: "*"
+            )
+            builder.maybeAdd(
+              request.instance as Swift.String?,
+              matching: [.singleWildcard],
+              fieldName: "instance",
+              expecting: "*"
+            )
+            paths.append(builder.build())
           }
-          return "/v1/projects/\(pathVariable0)/instances/\(pathVariable1)/users"
+          throw GoogleCloudGax.RequestError.binding(GoogleCloudGax.BindingError(paths: paths))
         }()
-        var query = [
-          URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-        ]
-        let encoder = GoogleCloudGax._QueryParameterEncoder()
-        query.append(contentsOf: try encoder.encode(request.host, prefix: "host"))
-        query.append(contentsOf: try encoder.encode(request.name, prefix: "name"))
-        query.append(contentsOf: try encoder.encode(request.databaseRoles, prefix: "databaseRoles"))
-        query.append(
-          contentsOf: try encoder.encode(request.revokeExistingRoles, prefix: "revokeExistingRoles")
-        )
-        query.append(contentsOf: try encoder.encode(request.serverRoles, prefix: "serverRoles"))
-        query.append(
-          contentsOf: try encoder.encode(
-            request.revokeExistingServerRoles, prefix: "revokeExistingServerRoles"))
         var req = try await self.inner.newRequest(path: path, query: query, options: options)
-        req.setMethod(.PUT)
+        configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.body {
           try req.setBody(json: body)

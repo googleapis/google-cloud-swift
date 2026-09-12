@@ -35,24 +35,56 @@ extension Clients {
     public func generateCredentials(
       request: GenerateCredentialsRequest, options: GoogleCloudGax.RequestOptions
     ) async throws -> GoogleCloudGKEConnectGatewayV1.GenerateCredentialsResponse {
-      let path = try { () throws -> Swift.String in
-        guard let pathVariable0 = request.name as Swift.String?, !pathVariable0.isEmpty else {
-          throw GoogleCloudGax.RequestError.binding("'request.name' is not set or is empty")
+      let (path, query, configure) = try {
+        () throws -> (
+          Swift.String, [URLQueryItem], (inout GoogleCloudGax._HTTPClientRequest) -> Void
+        ) in
+        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
+          guard
+            let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              request.name as Swift.String?,
+              matching: [
+                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+                .literal("/memberships/"), .singleWildcard,
+              ])
+          else {
+            return nil
+          }
+          let path = "/v1/\(pathVariable0):generateCredentials"
+          var query = [
+            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
+          ]
+          let encoder = GoogleCloudGax._QueryParameterEncoder()
+          query.append(
+            contentsOf: try encoder.encode(request.forceUseAgent, prefix: "forceUseAgent"))
+          query.append(contentsOf: try encoder.encode(request.version, prefix: "version"))
+          query.append(
+            contentsOf: try encoder.encode(
+              request.kubernetesNamespace, prefix: "kubernetesNamespace"))
+          query.append(
+            contentsOf: try encoder.encode(request.operatingSystem, prefix: "operatingSystem"))
+          return (path, query)
+        }() {
+          return (candidate.0, candidate.1, { $0.setMethod(.GET) })
         }
-        return "/v1/\(pathVariable0):generateCredentials"
+        var paths: [GoogleCloudGax.PathMismatch] = []
+        do {
+          var builder = GoogleCloudGax._PathMismatchBuilder()
+          builder.maybeAdd(
+            request.name as Swift.String?,
+            matching: [
+              .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+              .literal("/memberships/"), .singleWildcard,
+            ],
+            fieldName: "name",
+            expecting: "projects/*/locations/*/memberships/*"
+          )
+          paths.append(builder.build())
+        }
+        throw GoogleCloudGax.RequestError.binding(GoogleCloudGax.BindingError(paths: paths))
       }()
-      var query = [
-        URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-      ]
-      let encoder = GoogleCloudGax._QueryParameterEncoder()
-      query.append(contentsOf: try encoder.encode(request.forceUseAgent, prefix: "forceUseAgent"))
-      query.append(contentsOf: try encoder.encode(request.version, prefix: "version"))
-      query.append(
-        contentsOf: try encoder.encode(request.kubernetesNamespace, prefix: "kubernetesNamespace"))
-      query.append(
-        contentsOf: try encoder.encode(request.operatingSystem, prefix: "operatingSystem"))
       var req = try await self.inner.newRequest(path: path, query: query, options: options)
-      req.setMethod(.GET)
+      configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       return try await req.rpc(
         GoogleCloudGKEConnectGatewayV1.GenerateCredentialsResponse.self,
