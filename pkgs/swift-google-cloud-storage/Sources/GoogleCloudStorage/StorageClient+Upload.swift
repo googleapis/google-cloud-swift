@@ -334,11 +334,20 @@ extension StorageClient {
       let object = try await handleObjectResponse(response: uploadResponse)
       return (.done(object), nil)
     } else if statusCode == 308 {
+      let chunkEnd = offset + UInt64(data.count)
       let nextOffset: UInt64
       if let rangeHeader = uploadResponse.headers.first(name: "Range") {
         nextOffset = try HttpRange.parseNextRangeStart(rangeHeader)
       } else {
-        nextOffset = offset + UInt64(data.count)
+        nextOffset = chunkEnd
+      }
+      guard nextOffset >= offset && nextOffset <= chunkEnd else {
+        await uploadResponse.drain()
+        throw UploadError.unexpectedServerResponse(
+          statusCode: statusCode,
+          message:
+            "Server reported committed offset \(nextOffset) outside chunk range [\(offset), \(chunkEnd)]"
+        )
       }
       var crc32cSeed: UInt32? = nil
       if let runningHashHeader = uploadResponse.headers.first(name: "x-goog-running-hash") {
@@ -366,7 +375,8 @@ extension StorageClient {
     committedBytes: UInt64,
     chunkSize: Int,
     totalSize: UInt64?,
-    options: UploadOptions
+    options: UploadOptions,
+    maxBytesSent: inout UInt64
   ) async throws -> (status: ResumableUploadStatus, crc32cSeed: UInt32?) {
     let chunkInfo = try await checksummedSource.readChunk(maxBytes: chunkSize)
     let chunk: ByteBuffer
@@ -384,6 +394,8 @@ extension StorageClient {
       effectiveTotalSize = totalSize ?? committedBytes
       checksum = checksummedSource.finalizeChecksum()
     }
+    let chunkEnd = committedBytes + UInt64(chunk.count)
+    maxBytesSent = max(maxBytesSent, chunkEnd)
 
     return try await sendChunk(
       httpClient: httpClient,
@@ -424,11 +436,14 @@ extension StorageClient {
     var pendingChunk: PendingChunk? = nil
     var sourceBytesRead: UInt64 = 0
     let initialBytes: UInt64
+    var isResumedSession = false
     if case .inprogress(let b) = initialStatus {
       initialBytes = b
     } else {
       initialBytes = 0
+      isResumedSession = true
     }
+    var maxBytesSent = initialBytes
     var resumeState = ResumeState(
       details: UploadDetails(
         bytesUploaded: initialBytes,
@@ -463,6 +478,20 @@ extension StorageClient {
           let queryResult = try await queryUploadStatus(
             httpClient: httpClient, uploadId: activeUploadId, options: options)
           uploadStatus = queryResult.status
+          if case .inprogress(let committedBytes) = uploadStatus {
+            if isResumedSession {
+              maxBytesSent = committedBytes
+              isResumedSession = false
+            } else {
+              guard committedBytes <= maxBytesSent else {
+                throw UploadError.unexpectedServerResponse(
+                  statusCode: 308,
+                  message:
+                    "Server reported committed offset \(committedBytes) exceeding bytes sent (\(maxBytesSent))"
+                )
+              }
+            }
+          }
         } catch {
           try await resumeLoop.handleError(state: &resumeState, error: error)
           continue
@@ -561,6 +590,9 @@ extension StorageClient {
           fatalError("pendingChunk must not be nil")
         }
 
+        let chunkEnd = chunkToSend.chunkStartOffset + UInt64(chunkToSend.data.count)
+        maxBytesSent = max(maxBytesSent, chunkEnd)
+
         uploadStatus = .unknown
         let chunkResult: (status: ResumableUploadStatus, crc32cSeed: UInt32?)
         do {
@@ -627,11 +659,15 @@ extension StorageClient {
     var crc32cSeed = initialCrc32cSeed
     var checksummedSource: ChecksummedSource<S>? = nil
     let initialBytes: UInt64
+    var isResumedSession = false
     if case .inprogress(let b) = initialStatus {
       initialBytes = b
     } else {
       initialBytes = 0
+      isResumedSession = true
     }
+    var maxBytesSent = initialBytes
+    var lastCommittedBytes = initialBytes
     var resumeState = ResumeState(
       details: UploadDetails(
         bytesUploaded: initialBytes,
@@ -670,6 +706,27 @@ extension StorageClient {
             crc32cSeed = seed
           }
           if case .inprogress(let committedBytes) = uploadStatus {
+            if isResumedSession {
+              maxBytesSent = committedBytes
+              lastCommittedBytes = committedBytes
+              isResumedSession = false
+            } else {
+              guard committedBytes <= maxBytesSent else {
+                throw UploadError.unexpectedServerResponse(
+                  statusCode: 308,
+                  message:
+                    "Server reported committed offset \(committedBytes) exceeding bytes sent (\(maxBytesSent))"
+                )
+              }
+              guard committedBytes >= lastCommittedBytes else {
+                throw UploadError.unexpectedServerResponse(
+                  statusCode: 308,
+                  message:
+                    "Server reported committed offset \(committedBytes) prior to last committed offset (\(lastCommittedBytes))"
+                )
+              }
+              lastCommittedBytes = committedBytes
+            }
             if committedBytes > resumeState.details.bytesUploaded {
               resumeState.details.bytesUploaded = committedBytes
               resumeLoop.onProgress(state: &resumeState)
@@ -721,7 +778,8 @@ extension StorageClient {
             committedBytes: committedBytes,
             chunkSize: chunkSize,
             totalSize: totalSize,
-            options: options
+            options: options,
+            maxBytesSent: &maxBytesSent
           )
         } catch {
           try await resumeLoop.handleError(state: &resumeState, error: error)
@@ -733,6 +791,7 @@ extension StorageClient {
         }
         uploadStatus = chunkResult.status
         if case .inprogress(let nextBytes) = chunkResult.status {
+          lastCommittedBytes = nextBytes
           if nextBytes > resumeState.details.bytesUploaded {
             resumeState.details.bytesUploaded = nextBytes
             resumeLoop.onProgress(state: &resumeState)

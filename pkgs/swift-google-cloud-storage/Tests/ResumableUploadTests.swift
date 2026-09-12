@@ -2483,6 +2483,248 @@ import Testing
     #expect(requests[4].httpBody?.count == chunkSize)
     #expect(requests[4].httpBody?.first == 2)
   }
+
+  /// Tests that a seekable upload fails immediately when the server reports more bytes committed than sent in a chunk response.
+  @Test func resumableUploadSeekableChunkResponseExcessBytesFails() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-seekable-chunk-excess"
+    let data = Data(repeating: 1, count: 1024 * 1024)
+    let source = BytesSource(data: data)
+
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let chunkUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=chunk-excess-id")
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": chunkUrl.absoluteString]),
+      for: startUrl)
+
+    // Server reports 512 KiB committed (bytes 0-524287) when client only sent 256 KiB (bytes 0-262143).
+    registry.register(
+      response: .success(
+        statusCode: 308, data: Data(),
+        headers: ["Range": "bytes=0-524287"]),
+      for: chunkUrl)
+
+    let client = try makeClient(registry: registry)
+    let options = UploadOptions().with {
+      $0.chunkSize = 256 * 1024
+      $0.resumableUploadThreshold = 0
+    }
+
+    let error = await expectUploadError {
+      try await client.upload(source, to: bucket, as: objectName, options: options)
+    }
+
+    if case .unexpectedServerResponse(let statusCode, _) = error {
+      #expect(statusCode == 308)
+    } else {
+      Issue.record("Expected .unexpectedServerResponse, got \(String(describing: error))")
+    }
+  }
+
+  /// Tests that a seekable upload fails when a status query reports more bytes committed than the client has transmitted.
+  @Test func resumableUploadSeekableStatusQueryExcessBytesFails() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-seekable-query-excess"
+    let data = Data(repeating: 1, count: 1024 * 1024)
+    let source = BytesSource(data: data)
+
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let chunkUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=query-excess-id")
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": chunkUrl.absoluteString]),
+      for: startUrl)
+
+    // First chunk fails transiently with 503
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Service Unavailable".utf8),
+        headers: nil),
+      for: chunkUrl)
+
+    // Status query returns 308 claiming 512 KiB committed, but client only sent up to 256 KiB.
+    registry.register(
+      response: .success(
+        statusCode: 308, data: Data(),
+        headers: ["Range": "bytes=0-524287"]),
+      for: chunkUrl)
+
+    let client = try makeClient(registry: registry)
+    let options = UploadOptions().with {
+      $0.chunkSize = 256 * 1024
+      $0.resumableUploadThreshold = 0
+    }
+
+    let error = await expectUploadError {
+      try await client.upload(source, to: bucket, as: objectName, options: options)
+    }
+
+    if case .unexpectedServerResponse(let statusCode, _) = error {
+      #expect(statusCode == 308)
+    } else {
+      Issue.record("Expected .unexpectedServerResponse, got \(String(describing: error))")
+    }
+  }
+
+  /// Tests that a seekable upload fails when a status query reports an offset before the last committed offset.
+  @Test func resumableUploadSeekableStatusQueryRewindFails() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-seekable-query-rewind"
+    let data = Data(repeating: 1, count: 1024 * 1024)
+    let source = BytesSource(data: data)
+
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let chunkUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=query-rewind-id")
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": chunkUrl.absoluteString]),
+      for: startUrl)
+
+    // Chunk 1 (0..256 KiB) succeeds: Range 0-262143
+    registry.register(
+      response: .success(
+        statusCode: 308, data: Data(),
+        headers: ["Range": "bytes=0-262143"]),
+      for: chunkUrl)
+
+    // Chunk 2 (256..512 KiB) fails with 503
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Service Unavailable".utf8),
+        headers: [:]),
+      for: chunkUrl)
+
+    // Status query returns committed range 0-131071 (128 KiB < 256 KiB last committed)
+    registry.register(
+      response: .success(
+        statusCode: 308, data: Data(),
+        headers: ["Range": "bytes=0-131071"]),
+      for: chunkUrl)
+
+    let client = try makeClient(
+      registry: registry,
+      clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(3)
+    )
+    let options = UploadOptions().with {
+      $0.chunkSize = 256 * 1024
+      $0.resumableUploadThreshold = 0
+    }
+
+    let error = await expectUploadError {
+      try await client.upload(source, to: bucket, as: objectName, options: options)
+    }
+
+    if case .unexpectedServerResponse(let statusCode, _) = error {
+      #expect(statusCode == 308)
+    } else {
+      Issue.record("Expected .unexpectedServerResponse, got \(String(describing: error))")
+    }
+  }
+
+  /// Tests that a seekable upload fails when the server rewinds to an offset before the start of the chunk.
+  @Test func resumableUploadSeekableChunkResponseRewindFails() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-seekable-rewind"
+    let data = Data(repeating: 1, count: 1024 * 1024)
+    let source = BytesSource(data: data)
+
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let chunkUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=chunk-rewind-id")
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": chunkUrl.absoluteString]),
+      for: startUrl)
+
+    // Chunk 1 (0..256 KiB) succeeds normally: Range 0-262143
+    registry.register(
+      response: .success(
+        statusCode: 308, data: Data(),
+        headers: ["Range": "bytes=0-262143"]),
+      for: chunkUrl)
+
+    // Chunk 2 (256..512 KiB) response claims committed range rewound to 0-131071 (128 KiB < 256 KiB)
+    registry.register(
+      response: .success(
+        statusCode: 308, data: Data(),
+        headers: ["Range": "bytes=0-131071"]),
+      for: chunkUrl)
+
+    let client = try makeClient(registry: registry)
+    let options = UploadOptions().with {
+      $0.chunkSize = 256 * 1024
+      $0.resumableUploadThreshold = 0
+    }
+
+    let error = await expectUploadError {
+      try await client.upload(source, to: bucket, as: objectName, options: options)
+    }
+
+    if case .unexpectedServerResponse(let statusCode, _) = error {
+      #expect(statusCode == 308)
+    } else {
+      Issue.record("Expected .unexpectedServerResponse, got \(String(describing: error))")
+    }
+  }
+
+  /// Tests that a non-seekable streaming upload fails immediately when the server reports more bytes committed than sent in a chunk response.
+  @Test func resumableUploadNonSeekableChunkResponseExcessBytesFails() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "test-nonseekable-chunk-excess"
+    let source = DynamicComputationSource(
+      chunkSize: 256 * 1024, totalChunks: 4, totalSize: 1024 * 1024)
+
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let chunkUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?upload_id=nonseekable-chunk-excess-id")
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": chunkUrl.absoluteString]),
+      for: startUrl)
+
+    // Server reports 512 KiB committed (bytes 0-524287) when client only sent 256 KiB (bytes 0-262143).
+    registry.register(
+      response: .success(
+        statusCode: 308, data: Data(),
+        headers: ["Range": "bytes=0-524287"]),
+      for: chunkUrl)
+
+    let client = try makeClient(registry: registry)
+    let options = UploadOptions().with {
+      $0.chunkSize = 256 * 1024
+      $0.resumableUploadThreshold = 0
+    }
+
+    let error = await expectUploadError {
+      try await client.upload(source, to: bucket, as: objectName, options: options)
+    }
+
+    if case .unexpectedServerResponse(let statusCode, _) = error {
+      #expect(statusCode == 308)
+    } else {
+      Issue.record("Expected .unexpectedServerResponse, got \(String(describing: error))")
+    }
+  }
 }
 
 // MARK: - Test Helper Sources
