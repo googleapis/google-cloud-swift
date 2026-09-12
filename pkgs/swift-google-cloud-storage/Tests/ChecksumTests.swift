@@ -348,4 +348,151 @@ import Testing
     let header = calcs.map { "\($0.algorithmName)=\($0.finalize())" }.joined(separator: ", ")
     #expect(header == "crc32c=TVUQaA==, md5=user_md5==")
   }
+
+  /// Tests that rewinding ChecksummedSource during simulated chunk retry preserves correct CRC32C checksum.
+  @Test func testChecksummedSourceRewindAndReReadMatchesDirectHashCRC32C() async throws {
+    let data = Data("Hello, World!".utf8)  // CRC32C: TVUQaA==
+    let source = BytesSource(data: data)
+    var checksummedSource = ChecksummedSource(source: source, validation: .crc32c)
+
+    // 1. Read chunk 1: 5 bytes ("Hello")
+    let chunk1 = try await checksummedSource.readChunk(maxBytes: 5)
+    #expect(chunk1?.data == ByteBuffer(Data("Hello".utf8)))
+    #expect(chunk1?.isLast == false)
+
+    // 2. Read chunk 2: 5 bytes (", Wor") -> bytesHashed becomes 10
+    let chunk2 = try await checksummedSource.readChunk(maxBytes: 5)
+    #expect(chunk2?.data == ByteBuffer(Data(", Wor".utf8)))
+    #expect(chunk2?.isLast == false)
+
+    // 3. Simulate upload failure of chunk 2: rewind to offset 5
+    try await checksummedSource.seek(to: 5)
+
+    // 4. Re-read chunk 2 from offset 5: 5 bytes (", Wor") -> should be skipped by updateChecksums
+    let chunk2Retry = try await checksummedSource.readChunk(maxBytes: 5)
+    #expect(chunk2Retry?.data == ByteBuffer(Data(", Wor".utf8)))
+    #expect(chunk2Retry?.isLast == false)
+
+    // 5. Read final chunk 3: 3 bytes ("ld!") -> bytesHashed becomes 13
+    let chunk3 = try await checksummedSource.readChunk(maxBytes: 5)
+    #expect(chunk3?.data == ByteBuffer(Data("ld!".utf8)))
+    #expect(chunk3?.isLast == true)
+    #expect(chunk3?.checksum == "crc32c=TVUQaA==")
+  }
+
+  /// Tests that rewinding ChecksummedSource during simulated chunk retry preserves correct MD5 checksum.
+  @Test func testChecksummedSourceRewindAndReReadMatchesDirectHashMD5() async throws {
+    let data = Data("Hello, World!".utf8)  // MD5: ZajifYh5KDgxtmS9i38K1A==
+    let source = BytesSource(data: data)
+    var checksummedSource = ChecksummedSource(source: source, validation: .md5)
+
+    // 1. Read chunk 1: 5 bytes ("Hello")
+    let chunk1 = try await checksummedSource.readChunk(maxBytes: 5)
+    #expect(chunk1?.data == ByteBuffer(Data("Hello".utf8)))
+    #expect(chunk1?.isLast == false)
+
+    // 2. Read chunk 2: 5 bytes (", Wor") -> bytesHashed becomes 10
+    let chunk2 = try await checksummedSource.readChunk(maxBytes: 5)
+    #expect(chunk2?.data == ByteBuffer(Data(", Wor".utf8)))
+    #expect(chunk2?.isLast == false)
+
+    // 3. Simulate upload failure of chunk 2: rewind to offset 5
+    try await checksummedSource.seek(to: 5)
+
+    // 4. Re-read chunk 2 from offset 5: 5 bytes (", Wor")
+    let chunk2Retry = try await checksummedSource.readChunk(maxBytes: 5)
+    #expect(chunk2Retry?.data == ByteBuffer(Data(", Wor".utf8)))
+    #expect(chunk2Retry?.isLast == false)
+
+    // 5. Read final chunk 3: 3 bytes ("ld!") -> bytesHashed becomes 13
+    let chunk3 = try await checksummedSource.readChunk(maxBytes: 5)
+    #expect(chunk3?.data == ByteBuffer(Data("ld!".utf8)))
+    #expect(chunk3?.isLast == true)
+    #expect(chunk3?.checksum == "md5=ZajifYh5KDgxtmS9i38K1A==")
+  }
+
+  /// Tests that rewinding with unaligned chunk boundaries correctly slices unhashed data.
+  @Test func testChecksummedSourceRewindWithUnalignedChunkSizes() async throws {
+    let data = Data((0..<100).map { UInt8($0) })
+    let source = BytesSource(data: data)
+    var checksummedSource = ChecksummedSource(source: source, validation: .crc32c)
+
+    // 1. Read first 30 bytes: 0..<30 -> bytesHashed becomes 30
+    let chunk1 = try await checksummedSource.readChunk(maxBytes: 30)
+    #expect(chunk1?.data.count == 30)
+
+    // 2. Rewind to byte 15
+    try await checksummedSource.seek(to: 15)
+
+    // 3. Read 40 bytes: 15..<55 -> bytes 15..<30 skipped, bytes 30..<55 hashed -> bytesHashed becomes 55
+    let chunk2 = try await checksummedSource.readChunk(maxBytes: 40)
+    #expect(chunk2?.data.count == 40)
+
+    // 4. Read chunk 3: 40 bytes (55..<95)
+    let chunk3 = try await checksummedSource.readChunk(maxBytes: 40)
+    #expect(chunk3?.data.count == 40)
+    #expect(chunk3?.isLast == false)
+
+    // 5. Read final chunk 4: remaining 5 bytes (95..<100)
+    let chunk4 = try await checksummedSource.readChunk(maxBytes: 40)
+    #expect(chunk4?.data.count == 5)
+    #expect(chunk4?.isLast == true)
+
+    var calc = CRC32CCalculator()
+    calc.update(data)
+    let expectedCRC = calc.finalize()
+    #expect(chunk4?.checksum == "crc32c=\(expectedCRC)")
+  }
+
+  /// Tests that seedCRC32C discards non-seedable dynamic calculators (like MD5) when rolling back bytesHashed.
+  @Test func testChecksummedSourceSeedCRC32CDiscardsNonSeedableCalculators() async throws {
+    let part1 = Data("Hello, ".utf8)
+    let part2 = Data("World!".utf8)
+    let fullData = part1 + part2
+    let source = BytesSource(data: fullData)
+
+    let checksums = ChecksumOptions(crc32c: .auto, md5: .auto)
+    var checksummedSource = ChecksummedSource(source: source, options: checksums)
+
+    // Read first chunk (7 bytes: "Hello, ") -> both CRC32C and MD5 hash 0..<7
+    let chunk1 = try await checksummedSource.readChunk(maxBytes: 7)
+    #expect(chunk1?.data == ByteBuffer(part1))
+
+    // Server acknowledges commit at byte 7 with running CRC32C seed
+    let seed = _CRC32C.compute(part1)
+    checksummedSource.seedCRC32C(seed: seed, bytesHashed: 7)
+
+    // Read second chunk (6 bytes: "World!")
+    let chunk2 = try await checksummedSource.readChunk(maxBytes: 7)
+    #expect(chunk2?.data == ByteBuffer(part2))
+    #expect(chunk2?.isLast == true)
+
+    // MD5 was discarded because it cannot be safely reseeded; only CRC32C remains
+    #expect(chunk2?.checksum == "crc32c=TVUQaA==")
+  }
+
+  /// Tests that seedCRC32C discards MD5 even when no CRC32C calculator is present.
+  @Test func testChecksummedSourceSeedCRC32CDiscardsMD5WhenCRC32CNotPresent() async throws {
+    let part1 = Data("Hello, ".utf8)
+    let part2 = Data("World!".utf8)
+    let fullData = part1 + part2
+    let source = BytesSource(data: fullData)
+
+    var checksummedSource = ChecksummedSource(source: source, validation: .md5)
+
+    // Read first chunk (7 bytes: "Hello, ") -> MD5 hashes 0..<7
+    let chunk1 = try await checksummedSource.readChunk(maxBytes: 7)
+    #expect(chunk1?.data == ByteBuffer(part1))
+
+    // Calling seedCRC32C discards the MD5 calculator even though there is no CRC32C calculator
+    checksummedSource.seedCRC32C(seed: 12345, bytesHashed: 7)
+
+    // Read second chunk (6 bytes: "World!")
+    let chunk2 = try await checksummedSource.readChunk(maxBytes: 7)
+    #expect(chunk2?.data == ByteBuffer(part2))
+    #expect(chunk2?.isLast == true)
+
+    // All dynamic calculators were discarded, and no CRC32C was added; checksum is nil
+    #expect(chunk2?.checksum == nil)
+  }
 }
