@@ -33,7 +33,8 @@ import Testing
     let p = AlwaysRetry()
     let state = idempotent ? idempotentState() : nonIdempotentState()
 
-    #expect(p.onError(state: state, error: .binding("err")) == .retry(.binding("err")))
+    #expect(
+      p.onError(state: state, error: .binding(BindingError())) == .retry(.binding(BindingError())))
     #expect(p.onError(state: state, error: httpUnavailable()) == .retry(httpUnavailable()))
   }
 

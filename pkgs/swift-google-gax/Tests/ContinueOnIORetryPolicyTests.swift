@@ -26,7 +26,7 @@ import Testing
     #expect(p.onThrottle(state: idempotentState(), error: ioError) == .exhausted(ioError))
     #expect(p.onThrottle(state: nonIdempotentState(), error: ioError) == .exhausted(ioError))
 
-    let otherError = RequestError.binding("err")
+    let otherError = RequestError.binding(BindingError())
     #expect(p.onError(state: idempotentState(), error: otherError) == .exhausted(otherError))
     #expect(p.onError(state: nonIdempotentState(), error: otherError) == .exhausted(otherError))
     #expect(p.onThrottle(state: idempotentState(), error: ioError) == .exhausted(ioError))

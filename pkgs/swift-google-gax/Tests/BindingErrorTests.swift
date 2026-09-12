@@ -17,14 +17,13 @@ import Foundation
 import Testing
 
 @Suite struct BindingErrorTests {
-  @Test func stringLiteralCompatibility() {
-    let err: BindingError = "test message"
-    #expect(err.description == "test message")
-    #expect(err.message == "test message")
+  @Test func emptyBindingError() {
+    let err = BindingError()
+    #expect(err.description == "no matching URL path")
     #expect(err.paths.isEmpty)
 
-    let reqErr: RequestError = .binding("literal")
-    #expect(reqErr == .binding("literal"))
+    let reqErr: RequestError = .binding(BindingError())
+    #expect(reqErr == .binding(BindingError()))
   }
 
   @Test func substitutionMismatchDescription() {

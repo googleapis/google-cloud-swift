@@ -23,7 +23,7 @@ import Testing
     var state = ResumeState()
     let error503 = RequestError.http(HTTPDetails(httpStatusCode: 503, headers: [:]))
     let error400 = RequestError.http(HTTPDetails(httpStatusCode: 400, headers: [:]))
-    let errorBinding = RequestError.binding("test error")
+    let errorBinding = RequestError.binding(BindingError())
 
     #expect(policy.onError(state: state, error: error400) == .resume(error400))
     #expect(policy.onError(state: state, error: errorBinding) == .resume(errorBinding))

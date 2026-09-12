@@ -146,7 +146,7 @@ import struct Logging.Logger
     options: RequestOptions = .init()
   ) async throws -> _HTTPClientRequest {
     guard let components = URLComponents(string: uri) else {
-      throw RequestError.binding("bad URL for uri=\(uri)")
+      throw RequestError.badURL(uri)
     }
     return try await newRequest(urlComponents: components, options: options)
   }

@@ -25,7 +25,7 @@ import Testing
     let ioError = mockIOError()
     #expect(policy.onError(state: PollingState(), error: ioError) == .retry(ioError))
 
-    let otherError = RequestError.binding("err")
+    let otherError = RequestError.binding(BindingError())
     #expect(policy.onError(state: PollingState(), error: otherError) == .permanent(otherError))
   }
 

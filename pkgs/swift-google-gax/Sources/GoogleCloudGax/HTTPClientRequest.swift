@@ -133,7 +133,7 @@ enum _RequestBody: Sendable {
     -> _HTTPClientResponse
   {
     guard let url = self.components.url else {
-      throw RequestError.binding("bad URL for components=\(components)")
+      throw RequestError.badURL(self.components.debugDescription)
     }
     var request = AsyncHTTPClient.HTTPClientRequest(url: url.absoluteString)
     request.headers = self.headers

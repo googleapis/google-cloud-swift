@@ -47,7 +47,9 @@ import Testing
     let p = NeverRetry()
     let state = idempotent ? idempotentState() : nonIdempotentState()
 
-    #expect(p.onError(state: state, error: .binding("err")) == .exhausted(.binding("err")))
+    #expect(
+      p.onError(state: state, error: .binding(BindingError()))
+        == .exhausted(.binding(BindingError())))
     #expect(p.onError(state: state, error: httpUnavailable()) == .exhausted(httpUnavailable()))
   }
 

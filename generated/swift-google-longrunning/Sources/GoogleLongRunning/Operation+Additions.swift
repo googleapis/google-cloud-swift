@@ -32,7 +32,7 @@ extension Operation {
         return .init(
           done: true,
           result: .failure(
-            GoogleCloudGax.RequestError.binding(
+            GoogleCloudGax.RequestError.malformedResponse(
               "Operation completed but response value was missing")))
       }
       let response = try Response(fromAny: anyValueUnwrapped)
@@ -68,7 +68,7 @@ extension Operation {
       return .init(
         done: true,
         result: .failure(
-          GoogleCloudGax.RequestError.binding(
+          GoogleCloudGax.RequestError.malformedResponse(
             "Operation completed but error value was missing")))
     }
     let error = GoogleCloudGax.RequestError.service(
@@ -82,6 +82,6 @@ extension Operation {
     .init(
       done: true,
       result: .failure(
-        GoogleCloudGax.RequestError.binding("Operation completed but result was missing")))
+        GoogleCloudGax.RequestError.malformedResponse("Operation completed but result was missing")))
   }
 }

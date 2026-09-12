@@ -99,6 +99,14 @@ public enum RequestError: Error {
   ///
   /// Report this issue to the service team.
   case malformedResponse(String)
+
+  /// The client is configured with an invalid URL.
+  ///
+  /// ## Troubleshooting
+  ///
+  /// Typically, this indicates an invalid URL in the client's endpoint. The client library is
+  /// unable to form a valid HTTP request. Review how you configurated the client.
+  case badURL(String)
 }
 
 /// The details for ``RequestError/http(_:)``.

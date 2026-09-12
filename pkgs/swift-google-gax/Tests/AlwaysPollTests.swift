@@ -26,7 +26,9 @@ import Testing
   @Test func alwaysPollErrorKind() {
     let p = AlwaysPoll()
 
-    #expect(p.onError(state: PollingState(), error: .binding("err")) == .retry(.binding("err")))
+    #expect(
+      p.onError(state: PollingState(), error: .binding(BindingError()))
+        == .retry(.binding(BindingError())))
     #expect(p.onError(state: PollingState(), error: httpUnavailable()) == .retry(httpUnavailable()))
   }
 

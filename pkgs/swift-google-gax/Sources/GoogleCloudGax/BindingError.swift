@@ -15,35 +15,17 @@
 import Foundation
 
 /// A failure to bind a request to an HTTP URI path template.
-public struct BindingError: Sendable, Equatable, Error, CustomStringConvertible,
-  ExpressibleByStringInterpolation
-{
+public struct BindingError: Sendable, Equatable, Error, CustomStringConvertible {
   /// All candidate paths considered, and why the binding failed for each.
   public var paths: [PathMismatch]
-  /// An optional unstructured error message for non-template binding errors.
-  public var message: String?
 
-  public init(paths: [PathMismatch]) {
+  public init(paths: [PathMismatch] = []) {
     self.paths = paths
-    self.message = nil
-  }
-
-  public init(_ message: String) {
-    self.paths = []
-    self.message = message
-  }
-
-  public init(stringLiteral value: String) {
-    self.init(value)
-  }
-
-  public init(stringInterpolation: DefaultStringInterpolation) {
-    self.init(String(stringInterpolation: stringInterpolation))
   }
 
   public var description: String {
-    if let message {
-      return message
+    if paths.isEmpty {
+      return "no matching URL path"
     }
     if paths.count == 1 {
       return paths[0].description
