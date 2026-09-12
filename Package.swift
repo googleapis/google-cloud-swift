@@ -102,6 +102,8 @@ let package = Package(
         .product(
           name: "GoogleCloudSecretManagerV1", package: "swift-google-cloud-secretmanager-v1"),
         .product(name: "GoogleCloudWorkflowsV1", package: "swift-google-cloud-workflows-v1"),
+        .product(
+          name: "GoogleCloudBuildV1", package: "swift-google-devtools-cloudbuild-v1"),
         .product(name: "GoogleCloudLocation", package: "swift-google-cloud-location"),
         .product(name: "GoogleIAMV1", package: "swift-google-iam-v1"),
         .product(name: "GoogleCloudGax", package: "swift-google-gax"),
@@ -224,6 +226,7 @@ func generatedPackagesStatic() -> [Generated] {
     .init(name: "swift-google-cloud-secretmanager-v1", module: "GoogleCloudSecretManagerV1"),
     .init(name: "swift-google-cloud-security-publicca-v1", module: "GoogleCloudSecurityPublicCAV1"),
     .init(name: "swift-google-cloud-workflows-v1", module: "GoogleCloudWorkflowsV1"),
+    .init(name: "swift-google-devtools-cloudbuild-v1", module: "GoogleCloudBuildV1"),
     .init(
       name: "swift-google-cloud-compute-v1", module: "GoogleCloudComputeV1",
       traits: ["Instances", "Images", "ZoneOperations"]),

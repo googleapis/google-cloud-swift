@@ -36,6 +36,14 @@ import GoogleCloudTestHelpers
     await cleanUpStaleWorkflows()
     try await runLoggedTest(#function, { try await LongrunningOperations.run($0) })
   }
+
+  @Test func multipleBindings() async throws {
+    try await runLoggedTest(#function, { try await MultipleBindings.run($0) })
+  }
+
+  @Test func cloudBuild() async throws {
+    try await runLoggedTest(#function, { try await CloudBuild.run($0) })
+  }
 }
 
 func protoBasedClientEnabled() -> Bool {
