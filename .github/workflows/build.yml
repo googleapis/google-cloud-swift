@@ -25,7 +25,7 @@ jobs:
     if: github.repository == 'googleapis/google-cloud-swift'
     strategy:
       matrix:
-        os: ['macos-26', 'ubuntu-24.04'] # , 'macos-26', 'windows-2025']
+        os: ['macos-26', 'ubuntu-24.04', 'windows-2025']
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout Repository
@@ -52,6 +52,13 @@ jobs:
           # swift-package-edit needed.
           echo ==== wkt ====
           swift test "${flags[@]}" --package-path pkgs/swift-google-wkt
+          if [[ "${RUNNER_OS}" = "Windows" ]]; then
+            # The remaining targets won't compile on Windows because
+            # async-http-client and grpc-swift-2 depend on swift-nio-extras,
+            # which does not support Windows.
+            exit 0
+          fi
+
           echo ==== auth ====
           swift test "${flags[@]}" --package-path pkgs/swift-google-auth
 

@@ -24,6 +24,6 @@ runs:
         sudo apt -o Acquire::Retries=3 update -y
         sudo apt -o Acquire::Retries=3 install -y libncurses6
     - name: Set up Swift
-      uses: swift-actions/setup-swift@7ca6abe6b3b0e8b5421b88be48feee39cbf52c6a # ratchet:swift-actions/setup-swift@v2.4
+      uses: SwiftyLab/setup-swift@38f54a76b70d989321de9dc7c840618c08cf56e9 # ratchet:SwiftyLab/setup-swift@v2.4
       with:
         swift-version: "6.2"
