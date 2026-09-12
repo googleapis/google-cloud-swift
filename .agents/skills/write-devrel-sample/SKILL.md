@@ -30,28 +30,78 @@ Next identify the name of the target for the examples. Look at the top-level
 `Package.swift` file. By convention this is the same name as the directory
 containing the samples.
 
+### Local dependencies (`swift package edit`)
+
+Packages in this repository declare dependencies on published remote GitHub
+URLs by default. When building samples against local changes or unreleased
+features in `pkgs/*` or `generated/*` (such as `swift-google-gax`,
+`swift-google-auth`, or `swift-google-wkt`), you must put those dependencies
+into edit mode pointing to local checkouts:
+
+```shell
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+swift package edit --path "${REPO_ROOT}/pkgs/swift-google-gax" swift-google-gax
+swift package edit --path "${REPO_ROOT}/pkgs/swift-google-auth" swift-google-auth
+swift package edit --path "${REPO_ROOT}/pkgs/swift-google-wkt" swift-google-wkt
+```
+
+Alternatively, use the helper function from `ci/package-dependencies.sh`:
+
+```shell
+source ci/package-dependencies.sh
+edit_package_dependencies .
+```
+
+Always remember to restore dependencies with `swift package unedit` or
+`restore_package_dependencies .` before creating a pull request.
+
+### Build the samples target
+
 Validate the code compiles using:
 
 ```shell
 swift build --target <SamplesTarget>
 ```
 
+### Identify and run the sample test driver
+
 Identify the name of the test for the examples. Look at the top-level
 `Package.swift` and find tests that depend on this target. By convention the
 test is called `<SamplesTarget>Driver`.
 
-Run the test using:
+The sample drivers (such as `StorageSamplesDriver`) typically require specific
+environment variables to be enabled, including `GOOGLE_CLOUD_PROJECT` and
+`GOOGLE_CLOUD_SWIFT_TEST_ENABLE_FLAKES=true`. Without
+`GOOGLE_CLOUD_SWIFT_TEST_ENABLE_FLAKES=true`, the tests are silently skipped.
+Read `ci/gcb/scripts/integration-tests.sh` for other relevant environment
+variables:
 
 ```shell
-swift test --filter <SamplesTargetDriver>
+PROJECT_ID=$(gcloud config get project)
+export GOOGLE_CLOUD_PROJECT="${PROJECT_ID}"
+export GOOGLE_CLOUD_SWIFT_TEST_ENABLE_FLAKES=true
+export GOOGLE_CLOUD_SWIFT_TEST_SERVICE_ACCOUNT="swift-sdk-test@${PROJECT_ID}.iam.gserviceaccount.com"
+export GOOGLE_CLOUD_SWIFT_TEST_STORAGE_KMS_KEY_RING=us-central1
 ```
 
-The tests may be disabled unless some environment variables are set. Read the
-`integration-tests.sh` script to find good values for these environment
-variables.
+Run the test driver using:
 
-When the test are enabled and pass, you are done with this step. You can move on
+```shell
+GOOGLE_CLOUD_PROJECT=${PROJECT_ID} GOOGLE_CLOUD_SWIFT_TEST_ENABLE_FLAKES=true \
+    swift test --filter <SamplesTargetDriver>
+```
+
+You can also filter to a specific test method to save time (e.g.
+`--filter runObjectSamples`):
+
+```shell
+GOOGLE_CLOUD_PROJECT=${PROJECT_ID} GOOGLE_CLOUD_SWIFT_TEST_ENABLE_FLAKES=true \
+    swift test --filter <testMethod>
+```
+
+When the tests are enabled and pass, you are done with this step. You can move on
 to the next one.
+
 
 ## Research prior art
 
@@ -126,27 +176,14 @@ The sample should always include a copyright, and use a DevRel snippet region
 tag (the things that looks like `// [START <snippet_region>]` and
 `// [END <snippet_region>]`)
 
-### Verify the new sample is compiled.
-
-Add a `#error("TODO : making sure the test is built")`, and then build the
-samples target as before.
-
-```shell
-swift build --target <SamplesTarget>
-```
-
-We should see this fail. If it does not fail, then we are not building our
-sample. Make sure the new file is included somewhere.
-
-If it does fail, you can remove the `#error` and move on.
-
 ### Verify the new sample is run.
 
 Add a `fatalError("TODO : making sure the test is run")` inside the sample
 function, and then execute the samples as before.
 
 ```shell
-GOOGLE_CLOUD_PROJECT=${PROJECT_ID} swift test --filter <TargetSample>Driver
+GOOGLE_CLOUD_PROJECT=${PROJECT_ID} GOOGLE_CLOUD_SWIFT_TEST_ENABLE_FLAKES=true \
+    swift test --filter <TargetSample>Driver
 ```
 
 We should see this fail. If it does not fail, then we are not running our
@@ -204,7 +241,8 @@ $0.bucket = .init().with { bucket in
 When you are done, test the code:
 
 ```shell
-GOOGLE_CLOUD_PROJECT=${PROJECT_ID} swift test --filter <TargetSample>Driver
+GOOGLE_CLOUD_PROJECT=${PROJECT_ID} GOOGLE_CLOUD_SWIFT_TEST_ENABLE_FLAKES=true \
+    swift test --filter <TargetSample>Driver
 ```
 
 If this doesn't pass, keep making edits until it works. If you fail too many
@@ -213,7 +251,20 @@ times in a row, ask for help.
 When this passes, clean up the code.
 
 - Make it concise.
-- Run `ci/format.sh`.
+- Restore any edited dependencies back to remote Git URLs:
+  ```shell
+  source ci/package-dependencies.sh
+  restore_package_dependencies .
+  ```
+  Or individually:
+  ```shell
+  swift package unedit --force swift-google-gax
+  swift package unedit --force swift-google-auth
+  swift package unedit --force swift-google-wkt
+  git restore Package.resolved
+  ```
+- Run `ci/format.sh` (or `swift-format format -i -r ...`).
+- Verify linting passes with `swift-format lint -s ...` (or `./ci/lint.sh pr`).
 - Look over other things from `GEMINI.md`.
 
 If you make any changes, test the code again.
