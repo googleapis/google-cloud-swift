@@ -2271,6 +2271,218 @@ import Testing
     // 2 start requests (1 failure + 1 retry) + 1 chunk attempt = 3 requests
     #expect(requests.count == 3)
   }
+
+  /// Tests that a transient error on an uncommitted chunk from a non-seekable stream
+  /// is re-sent without dropping the uncommitted chunk or corrupting the payload.
+  @Test func resumableUploadNonSeekableTransientFailureChunkUncommittedRetriesAndRecovers()
+    async throws
+  {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "non-seekable-uncommitted-recovery"
+    let chunkSize = 4 * 1024 * 1024
+    let totalChunks = 2
+    let totalSize = UInt64(chunkSize * totalChunks)
+
+    let source = DynamicComputationSource(
+      chunkSize: chunkSize, totalChunks: totalChunks, totalSize: totalSize)
+
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let sessionUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=uncommitted-retry-id")
+
+    // 1. Session start succeeds
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": sessionUrl.absoluteString]),
+      for: startUrl)
+
+    // 2. First chunk (0..4MB) fails with 503 Service Unavailable
+    registry.register(
+      response: .success(statusCode: 503, data: Data("Unavailable".utf8), headers: [:]),
+      for: sessionUrl)
+
+    // 3. Status query -> 0 bytes committed (no Range header)
+    registry.register(
+      response: .success(statusCode: 308, data: Data(), headers: [:]),
+      for: sessionUrl)
+
+    // 4. First chunk re-attempt succeeds -> 308 Range 0-4194303
+    registry.register(
+      response: .success(
+        statusCode: 308, data: Data(),
+        headers: ["Range": "bytes=0-\(chunkSize - 1)"]),
+      for: sessionUrl)
+
+    // 5. Second chunk succeeds -> 200 OK
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: makeObjectJSON(name: objectName, bucket: bucket, size: Int(totalSize)),
+        headers: nil),
+      for: sessionUrl)
+
+    let client = try makeClient(
+      registry: registry,
+      clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(3)
+    )
+    let uploadOptions = UploadOptions().with { $0.chunkSize = chunkSize }
+    let object = try await client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+
+    #expect(object.name == objectName)
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 5)
+    // Request 3: chunk 1 re-attempt (must contain chunk 1 byteVal 1, not chunk 2 byteVal 2)
+    #expect(
+      requests[3].value(forHTTPHeaderField: "Content-Range")
+        == "bytes 0-\(chunkSize - 1)/\(totalSize)")
+    let chunk1RetryBody = requests[3].httpBody!
+    #expect(chunk1RetryBody.first == 1)
+  }
+
+  /// Tests that a transient connection drop after the server committed a chunk from a
+  /// non-seekable stream advances to the next chunk rather than erroneously aborting.
+  @Test func resumableUploadNonSeekableTransientFailureChunkCommittedAdvancesAndSucceeds()
+    async throws
+  {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "non-seekable-committed-advance"
+    let chunkSize = 4 * 1024 * 1024
+    let totalChunks = 2
+    let totalSize = UInt64(chunkSize * totalChunks)
+
+    let source = DynamicComputationSource(
+      chunkSize: chunkSize, totalChunks: totalChunks, totalSize: totalSize)
+
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let sessionUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=committed-advance-id")
+
+    // 1. Session start succeeds
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": sessionUrl.absoluteString]),
+      for: startUrl)
+
+    // 2. First chunk fails with network connection lost (after server committed it)
+    registry.register(
+      response: .failure(URLError(.networkConnectionLost)),
+      for: sessionUrl)
+
+    // 3. Status query -> server actually committed the first chunk (0..4MB)
+    registry.register(
+      response: .success(
+        statusCode: 308, data: Data(),
+        headers: ["Range": "bytes=0-\(chunkSize - 1)"]),
+      for: sessionUrl)
+
+    // 4. Second chunk succeeds -> 200 OK
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: makeObjectJSON(name: objectName, bucket: bucket, size: Int(totalSize)),
+        headers: nil),
+      for: sessionUrl)
+
+    let client = try makeClient(
+      registry: registry,
+      clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(3)
+    )
+    let uploadOptions = UploadOptions().with { $0.chunkSize = chunkSize }
+    let object = try await client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+
+    #expect(object.name == objectName)
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 4)
+    #expect(
+      requests[3].value(forHTTPHeaderField: "Content-Range")
+        == "bytes \(chunkSize)-\(totalSize - 1)/\(totalSize)")
+    let chunk2Body = requests[3].httpBody!
+    #expect(chunk2Body.first == 2)
+  }
+
+  /// Tests that when a chunk from a non-seekable stream is partially committed by the server,
+  /// the client trims the committed bytes and sends the uncommitted remainder.
+  @Test func resumableUploadNonSeekablePartialChunkCommitSucceeds() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "non-seekable-partial-commit"
+    let chunkSize = 1024 * 1024  // 1MiB
+    let totalChunks = 2
+    let totalSize = UInt64(chunkSize * totalChunks)  // 2MiB
+    let committedFirstChunk = 3 * 256 * 1024  // 768KiB
+
+    let source = DynamicComputationSource(
+      chunkSize: chunkSize, totalChunks: totalChunks, totalSize: totalSize)
+
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let sessionUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=partial-commit-id")
+
+    // 1. Session start succeeds
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": sessionUrl.absoluteString]),
+      for: startUrl)
+
+    // 2. First chunk fails with network connection lost (after server committed 768KiB)
+    registry.register(
+      response: .failure(URLError(.networkConnectionLost)),
+      for: sessionUrl)
+
+    // 3. Status query -> server committed first 768KiB (0..786431)
+    registry.register(
+      response: .success(
+        statusCode: 308, data: Data(),
+        headers: ["Range": "bytes=0-\(committedFirstChunk - 1)"]),
+      for: sessionUrl)
+
+    // 4. Client re-sends remaining 256KiB of chunk 1 (786432..1048575) -> 308 Range 0-1048575
+    registry.register(
+      response: .success(
+        statusCode: 308, data: Data(),
+        headers: ["Range": "bytes=0-\(chunkSize - 1)"]),
+      for: sessionUrl)
+
+    // 5. Second chunk (1048576..2097151) -> 200 OK
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: makeObjectJSON(name: objectName, bucket: bucket, size: Int(totalSize)),
+        headers: nil),
+      for: sessionUrl)
+
+    let client = try makeClient(
+      registry: registry,
+      clientRetryPolicy: BaseRetryPolicy().withAttemptLimit(3)
+    )
+    let uploadOptions = UploadOptions().with {
+      $0.chunkSize = chunkSize
+      $0.resumableUploadThreshold = 0
+    }
+    let object = try await client.upload(source, to: bucket, as: objectName, options: uploadOptions)
+
+    #expect(object.name == objectName)
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 5)
+    // Request 3: re-attempt of remaining 256KiB of chunk 1
+    #expect(
+      requests[3].value(forHTTPHeaderField: "Content-Range")
+        == "bytes \(committedFirstChunk)-\(chunkSize - 1)/\(totalSize)")
+    #expect(requests[3].httpBody?.count == chunkSize - committedFirstChunk)
+    #expect(requests[3].httpBody?.first == 1)
+
+    // Request 4: chunk 2
+    #expect(
+      requests[4].value(forHTTPHeaderField: "Content-Range")
+        == "bytes \(chunkSize)-\(totalSize - 1)/\(totalSize)")
+    #expect(requests[4].httpBody?.count == chunkSize)
+    #expect(requests[4].httpBody?.first == 2)
+  }
 }
 
 // MARK: - Test Helper Sources

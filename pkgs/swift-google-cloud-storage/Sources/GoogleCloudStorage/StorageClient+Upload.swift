@@ -300,6 +300,65 @@ extension StorageClient {
     }
   }
 
+  fileprivate static func sendChunk(
+    httpClient: GoogleCloudGax._HTTPClient,
+    uploadId: String,
+    data: ByteBuffer,
+    offset: UInt64,
+    totalSize: UInt64?,
+    options: UploadOptions,
+    checksum: String?
+  ) async throws -> (status: ResumableUploadStatus, crc32cSeed: UInt32?) {
+    let uploadRequest = try await buildUploadChunkRequest(
+      httpClient: httpClient,
+      uploadId: uploadId,
+      data: data,
+      offset: offset,
+      totalSize: totalSize,
+      options: options,
+      checksum: checksum
+    )
+
+    let uploadResponse: _HTTPClientResponse
+    do {
+      uploadResponse = try await uploadRequest.execute()
+    } catch {
+      if let reqError = error as? RequestError {
+        throw reqError
+      }
+      throw RequestError.io(error)
+    }
+
+    let statusCode = Int(uploadResponse.status.code)
+    if statusCode == 200 || statusCode == 201 {
+      let object = try await handleObjectResponse(response: uploadResponse)
+      return (.done(object), nil)
+    } else if statusCode == 308 {
+      let nextOffset: UInt64
+      if let rangeHeader = uploadResponse.headers.first(name: "Range") {
+        nextOffset = try HttpRange.parseNextRangeStart(rangeHeader)
+      } else {
+        nextOffset = offset + UInt64(data.count)
+      }
+      var crc32cSeed: UInt32? = nil
+      if let runningHashHeader = uploadResponse.headers.first(name: "x-goog-running-hash") {
+        crc32cSeed = parseCRC32CFromRunningHash(runningHashHeader)
+      }
+      // We need to drain the data in the response to release the underlying resources. We can ignore
+      // any errors because the the information we wanted is already captured.
+      await uploadResponse.drain()
+      return (.inprogress(nextOffset), crc32cSeed)
+    } else if uploadResponse.isError() {
+      throw await uploadResponse.decodeError()
+    } else {
+      let uploadData = try await uploadResponse.data()
+      throw UploadError.unexpectedServerResponse(
+        statusCode: statusCode,
+        message: String(data: uploadData, encoding: .utf8) ?? ""
+      )
+    }
+  }
+
   fileprivate static func sendNextChunk<S: UploadSource>(
     httpClient: GoogleCloudGax._HTTPClient,
     checksummedSource: inout ChecksummedSource<S>,
@@ -326,7 +385,7 @@ extension StorageClient {
       checksum = checksummedSource.finalizeChecksum()
     }
 
-    let uploadRequest = try await buildUploadChunkRequest(
+    return try await sendChunk(
       httpClient: httpClient,
       uploadId: uploadId,
       data: chunk,
@@ -335,45 +394,14 @@ extension StorageClient {
       options: options,
       checksum: checksum
     )
+  }
 
-    let uploadResponse: _HTTPClientResponse
-    do {
-      uploadResponse = try await uploadRequest.execute()
-    } catch {
-      if let reqError = error as? RequestError {
-        throw reqError
-      }
-      throw RequestError.io(error)
-    }
-
-    let statusCode = Int(uploadResponse.status.code)
-    if statusCode == 200 || statusCode == 201 {
-      let object = try await handleObjectResponse(response: uploadResponse)
-      return (.done(object), nil)
-    } else if statusCode == 308 {
-      let nextOffset: UInt64
-      if let rangeHeader = uploadResponse.headers.first(name: "Range") {
-        nextOffset = try HttpRange.parseNextRangeStart(rangeHeader)
-      } else {
-        nextOffset = committedBytes + UInt64(chunk.count)
-      }
-      var crc32cSeed: UInt32? = nil
-      if let runningHashHeader = uploadResponse.headers.first(name: "x-goog-running-hash") {
-        crc32cSeed = parseCRC32CFromRunningHash(runningHashHeader)
-      }
-      // We need to drain the data in the response to release the underlying resources. We can ignore
-      // any errors because the the information we wanted is already captured.
-      await uploadResponse.drain()
-      return (.inprogress(nextOffset), crc32cSeed)
-    } else if uploadResponse.isError() {
-      throw await uploadResponse.decodeError()
-    } else {
-      let uploadData = try await uploadResponse.data()
-      throw UploadError.unexpectedServerResponse(
-        statusCode: statusCode,
-        message: String(data: uploadData, encoding: .utf8) ?? ""
-      )
-    }
+  private struct PendingChunk {
+    var data: ByteBuffer
+    let isLast: Bool
+    let checksum: String?
+    var chunkStartOffset: UInt64
+    let effectiveTotalSize: UInt64?
   }
 
   fileprivate static func continueStreamingUpload<S: UploadSource>(
@@ -393,7 +421,8 @@ extension StorageClient {
     var uploadStatus = initialStatus
     var currentUploadId = uploadId
     var checksummedSource: ChecksummedSource<S>? = nil
-    var lastCommittedBytes: UInt64 = 0
+    var pendingChunk: PendingChunk? = nil
+    var sourceBytesRead: UInt64 = 0
     let initialBytes: UInt64
     if case .inprogress(let b) = initialStatus {
       initialBytes = b
@@ -434,12 +463,6 @@ extension StorageClient {
           let queryResult = try await queryUploadStatus(
             httpClient: httpClient, uploadId: activeUploadId, options: options)
           uploadStatus = queryResult.status
-          if case .inprogress(let committedBytes) = uploadStatus {
-            if committedBytes > resumeState.details.bytesUploaded {
-              resumeState.details.bytesUploaded = committedBytes
-              resumeLoop.onProgress(state: &resumeState)
-            }
-          }
         } catch {
           try await resumeLoop.handleError(state: &resumeState, error: error)
           continue
@@ -467,23 +490,88 @@ extension StorageClient {
             )
           }
           checksummedSource = ChecksummedSource(source: source, options: options.checksums)
-        } else if committedBytes != lastCommittedBytes {
+        }
+
+        if var pending = pendingChunk {
+          let chunkStart = pending.chunkStartOffset
+          let chunkEnd = chunkStart + UInt64(pending.data.count)
+
+          if committedBytes < chunkStart {
+            throw UploadError.internalError(
+              "Cannot resume non-seekable source at offset \(committedBytes); expected at least \(chunkStart)"
+            )
+          } else if committedBytes > chunkEnd {
+            throw UploadError.internalError(
+              "Cannot resume non-seekable source at offset \(committedBytes); expected at most \(chunkEnd)"
+            )
+          } else if pending.data.isEmpty {
+            // An empty chunk was sent to finalize the upload. Keep pendingChunk to retry if needed.
+          } else if committedBytes == chunkEnd {
+            pendingChunk = nil
+          } else {
+            let consumed = Int(committedBytes - chunkStart)
+            if consumed > 0 {
+              pending.data = pending.data.subdata(in: consumed..<pending.data.count)
+              pending.chunkStartOffset = committedBytes
+              pendingChunk = pending
+            }
+          }
+        } else if committedBytes != sourceBytesRead {
           throw UploadError.internalError(
-            "Cannot resume non-seekable source at offset \(committedBytes); expected \(lastCommittedBytes)"
+            "Cannot resume non-seekable source at offset \(committedBytes); expected \(sourceBytesRead)"
           )
+        }
+
+        if committedBytes > resumeState.details.bytesUploaded {
+          resumeState.details.bytesUploaded = committedBytes
+          resumeLoop.onProgress(state: &resumeState)
+        }
+
+        if pendingChunk == nil {
+          let chunkInfo = try await checksummedSource!.readChunk(maxBytes: chunkSize)
+          let chunk: ByteBuffer
+          let isLast: Bool
+          let checksum: String?
+          let effectiveTotalSize: UInt64?
+
+          if let chunkInfo = chunkInfo, !chunkInfo.data.isEmpty {
+            chunk = chunkInfo.data
+            isLast = chunkInfo.isLast
+            checksum = isLast ? chunkInfo.checksum : nil
+            effectiveTotalSize =
+              (isLast && totalSize == nil) ? (sourceBytesRead + UInt64(chunk.count)) : totalSize
+          } else {
+            chunk = ByteBuffer()
+            isLast = true
+            effectiveTotalSize = totalSize ?? sourceBytesRead
+            checksum = checksummedSource!.finalizeChecksum()
+          }
+
+          pendingChunk = PendingChunk(
+            data: chunk,
+            isLast: isLast,
+            checksum: checksum,
+            chunkStartOffset: sourceBytesRead,
+            effectiveTotalSize: effectiveTotalSize
+          )
+          sourceBytesRead += UInt64(chunk.count)
+        }
+
+        guard let chunkToSend = pendingChunk else {
+          fatalError("pendingChunk must not be nil")
         }
 
         uploadStatus = .unknown
         let chunkResult: (status: ResumableUploadStatus, crc32cSeed: UInt32?)
         do {
-          chunkResult = try await sendNextChunk(
+          chunkResult = try await sendChunk(
             httpClient: httpClient,
-            checksummedSource: &checksummedSource!,
             uploadId: activeUploadId,
-            committedBytes: committedBytes,
-            chunkSize: chunkSize,
-            totalSize: totalSize,
-            options: options
+            data: chunkToSend.data,
+            offset: chunkToSend.chunkStartOffset,
+            totalSize: chunkToSend.effectiveTotalSize,
+            options: options,
+            checksum: chunkToSend.checksum
           )
         } catch {
           try await resumeLoop.handleError(state: &resumeState, error: error)
@@ -495,11 +583,25 @@ extension StorageClient {
         }
         uploadStatus = chunkResult.status
         if case .inprogress(let nextBytes) = chunkResult.status {
+          let chunkStart = chunkToSend.chunkStartOffset
+          let chunkEnd = chunkStart + UInt64(chunkToSend.data.count)
+
+          if chunkToSend.data.isEmpty {
+            // Empty finalization chunk that didn't complete (308 response).
+          } else if nextBytes >= chunkEnd {
+            pendingChunk = nil
+          } else if nextBytes > chunkStart {
+            let consumed = Int(nextBytes - chunkStart)
+            var pending = chunkToSend
+            pending.data = pending.data.subdata(in: consumed..<pending.data.count)
+            pending.chunkStartOffset = nextBytes
+            pendingChunk = pending
+          }
+
           if nextBytes > resumeState.details.bytesUploaded {
             resumeState.details.bytesUploaded = nextBytes
             resumeLoop.onProgress(state: &resumeState)
           }
-          lastCommittedBytes = nextBytes
         }
       }
     }
