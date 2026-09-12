@@ -30,7 +30,7 @@ public enum RequestError: Error {
   ///
   /// Review the fields in your request object, which field is causing the problem varies by service
   /// and request, but the most common are `parent`, and `name`.
-  case binding(String)
+  case binding(BindingError)
 
   /// The request failed with some type of I/O error, before getting a status code.
   ///
