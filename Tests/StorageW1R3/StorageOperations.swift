@@ -46,20 +46,15 @@ enum StorageOperations {
     do {
       return try await client.upload(
         BytesSource(buffer: .init(buffer)), to: bucketName, as: objectName, options: options)
-    } catch {
-      // If precondition failed (412), check if object already exists
-      if let reqError = error as? RequestError,
-        case .http(let details) = reqError,
-        details.httpStatusCode == 412
-      {
-        logToStderr("Precondition failed for \(objectName), fetching object details")
-        let getReq = GetObjectRequest().with {
-          $0.bucket = "projects/_/buckets/\(bucketName)"
-          $0.object = objectName
-        }
-        let object = try await controlClient.getObject(request: getReq, options: .init())
-        return object
+    } catch let reqError as RequestError where reqError.isFailedPrecondition {
+      logToStderr("Precondition failed for \(objectName), fetching object details")
+      let getReq = GetObjectRequest().with {
+        $0.bucket = "projects/_/buckets/\(bucketName)"
+        $0.object = objectName
       }
+      let object = try await controlClient.getObject(request: getReq, options: .init())
+      return object
+    } catch {
       throw error
     }
   }
@@ -113,21 +108,33 @@ enum StorageOperations {
                   )
                 $0.attemptTimeout = .seconds(10)
               })
+          } catch let reqError as RequestError where reqError.isNotFound {
+            // TODO(https://github.com/googleapis/google-cloud-swift/issues/833)
+            // These are expected as the retry loop may try to delete the same thing twice, and
+            // the service returns an error the second time. Once #833 is implemented the server
+            // should return success the second time.
           } catch {
-            // Ignore 404 / NOT_FOUND as it may be due to retry
-            if let reqError = error as? RequestError {
-              if case .http(let details) = reqError, details.httpStatusCode == 404 {
-                return
-              }
-              if case .service(let details) = reqError, details.code == .notFound {
-                return
-              }
-            }
             throw error
           }
         }
       }
       try await group.waitForAll()
     }
+  }
+}
+
+extension RequestError {
+  var isNotFound: Bool {
+    if case .service(let details) = self, details.code == .notFound {
+      return true
+    }
+    return false
+  }
+
+  var isFailedPrecondition: Bool {
+    if case .service(let details) = self, details.code == .failedPrecondition {
+      return true
+    }
+    return false
   }
 }
