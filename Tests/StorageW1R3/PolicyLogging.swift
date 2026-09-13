@@ -35,6 +35,10 @@ func reportRetryPolicyError(
   result: RetryResult,
   task: String = "worker"
 ) {
+  if case .service(let details) = error, details.code == .notFound, method == "deleteObject" {
+    // We expect these on delete retries.
+    return
+  }
   let elapsed = ContinuousClock.now - state.start
   let verdict: String
   switch result {
