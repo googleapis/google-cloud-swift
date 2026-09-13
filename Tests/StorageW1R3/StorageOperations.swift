@@ -105,7 +105,7 @@ enum StorageOperations {
               request: deleteReq,
               options: .init().with {
                 $0.idempotency = true
-                $0.retryPolicy = GoogleCloudGax.BaseRetryPolicy()
+                $0.retryPolicy = StorageBaseRetryPolicy()
                   .withTimeLimit(.seconds(30))
                   .countedAndLogged(
                     counter: GlobalCounters.retryPolicy,

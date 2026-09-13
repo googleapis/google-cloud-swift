@@ -285,7 +285,7 @@ extension StorageW1R3 {
           .init().with {
             $0.client = .init().with { clientOptions in
               clientOptions.credentials = credentials
-              clientOptions.retryPolicy = GoogleCloudGax.BaseRetryPolicy()
+              clientOptions.retryPolicy = StorageBaseRetryPolicy()
                 .countedAndLogged(
                   counter: GlobalCounters.retryPolicy,
                   methodName: "storageClient"
