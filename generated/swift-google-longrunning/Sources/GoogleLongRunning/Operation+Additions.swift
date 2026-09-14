@@ -82,6 +82,7 @@ extension Operation {
     .init(
       done: true,
       result: .failure(
-        GoogleCloudGax.RequestError.malformedResponse("Operation completed but result was missing")))
+        GoogleCloudGax.RequestError.malformedResponse("Operation completed but result was missing"))
+    )
   }
 }
