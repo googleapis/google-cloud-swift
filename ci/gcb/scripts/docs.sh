@@ -42,7 +42,6 @@ swift package edit --path "${REPO_ROOT}/pkgs/swift-google-gax"  swift-google-gax
 swift package edit --path "${REPO_ROOT}/generated/swift-google-iam-v1"  swift-google-iam-v1
 swift package edit --path "${REPO_ROOT}/generated/swift-google-longrunning"  swift-google-longrunning
 swift package edit --path "${REPO_ROOT}/generated/swift-google-cloud-location"  swift-google-cloud-location
-swift package edit --path "${REPO_ROOT}/generated/swift-google-cloud-compute-v1"  swift-google-cloud-compute-v1
 swift package edit --path "${REPO_ROOT}/generated/swift-google-cloud-secretmanager-v1"  swift-google-cloud-secretmanager-v1
 swift package edit --path "${REPO_ROOT}/generated/swift-google-cloud-workflows-v1"  swift-google-cloud-workflows-v1
 swift package edit --path "${REPO_ROOT}/generated/swift-google-cloud-security-publicca-v1"  swift-google-cloud-security-publicca-v1
