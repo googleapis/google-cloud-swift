@@ -125,7 +125,9 @@ public final class _PollableOperationImpl<ResponseType>: PollableOperation {
       do {
         state = try await pollOp()
       } catch {
-        let requestError = (error as? RequestError) ?? .unimplemented
+        guard let requestError = error as? RequestError else {
+          throw error
+        }
         let flow = pollingPolicy.onError(state: pollingState, error: requestError)
         switch flow {
         case .permanent(let e), .exhausted(let e):

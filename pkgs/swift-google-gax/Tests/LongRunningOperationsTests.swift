@@ -255,4 +255,54 @@ import GoogleRpc
     #expect(inProgressCount.load(ordering: .sequentiallyConsistent) == 3)
     #expect(onErrorCount.load(ordering: .sequentiallyConsistent) == 2)
   }
+
+  @Test func nonRequestErrorThrownDirectly() async throws {
+    let sleepProvider = MockSleeper()
+    let onErrorCalled = Atomic<Bool>(false)
+    var pollingPolicy = MockPollingPolicy()
+    pollingPolicy.onError = { _, e in
+      onErrorCalled.store(true, ordering: .sequentiallyConsistent)
+      return .retry(e)
+    }
+
+    let op = _PollableOperationImpl<String>(
+      initialState: Self.pendingState(),
+      polling: pollingPolicy,
+      backoff: MockBackoff(),
+      poll: {
+        throw MockError(message: "decoding failure")
+      },
+      sleep: sleepProvider.sleep
+    )
+
+    await #expect(throws: MockError(message: "decoding failure")) {
+      try await op.wait()
+    }
+    #expect(onErrorCalled.load(ordering: .sequentiallyConsistent) == false)
+  }
+
+  @Test func cancellationErrorThrownDirectly() async throws {
+    let sleepProvider = MockSleeper()
+    let onErrorCalled = Atomic<Bool>(false)
+    var pollingPolicy = MockPollingPolicy()
+    pollingPolicy.onError = { _, e in
+      onErrorCalled.store(true, ordering: .sequentiallyConsistent)
+      return .retry(e)
+    }
+
+    let op = _PollableOperationImpl<String>(
+      initialState: Self.pendingState(),
+      polling: pollingPolicy,
+      backoff: MockBackoff(),
+      poll: {
+        throw CancellationError()
+      },
+      sleep: sleepProvider.sleep
+    )
+
+    await #expect(throws: CancellationError.self) {
+      try await op.wait()
+    }
+    #expect(onErrorCalled.load(ordering: .sequentiallyConsistent) == false)
+  }
 }
