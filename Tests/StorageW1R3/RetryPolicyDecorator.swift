@@ -17,7 +17,7 @@ import GoogleCloudGax
 
 /// A retry policy decorator that counts each policy consultation and logs details
 /// when the policy returns "exhausted" or "permanent".
-public struct RetryPolicyDecorator<P: RetryPolicy>: RetryPolicy {
+public struct CountingRetryPolicy<P: RetryPolicy>: RetryPolicy {
   public let inner: P
   public let counter: PolicyCounter
   public let methodName: String
@@ -62,7 +62,7 @@ extension RetryPolicy {
     counter: PolicyCounter = GlobalCounters.retryPolicy,
     methodName: String,
     task: String = "worker"
-  ) -> RetryPolicyDecorator<Self> {
-    RetryPolicyDecorator(inner: self, counter: counter, methodName: methodName, task: task)
+  ) -> CountingRetryPolicy<Self> {
+    CountingRetryPolicy(inner: self, counter: counter, methodName: methodName, task: task)
   }
 }

@@ -18,7 +18,7 @@ import GoogleCloudStorage
 
 /// A resume policy decorator that counts each policy consultation and logs details
 /// when the policy returns "exhausted" or "permanent".
-public struct ResumePolicyDecorator<P: ResumePolicy>: ResumePolicy {
+public struct CountingResumePolicy<P: ResumePolicy>: ResumePolicy {
   public typealias Details = P.Details
 
   public let inner: P
@@ -66,7 +66,7 @@ extension ResumePolicy {
     counter: PolicyCounter = GlobalCounters.resumePolicy,
     operationName: String,
     task: String = "worker"
-  ) -> ResumePolicyDecorator<Self> {
-    ResumePolicyDecorator(inner: self, counter: counter, operationName: operationName, task: task)
+  ) -> CountingResumePolicy<Self> {
+    CountingResumePolicy(inner: self, counter: counter, operationName: operationName, task: task)
   }
 }
