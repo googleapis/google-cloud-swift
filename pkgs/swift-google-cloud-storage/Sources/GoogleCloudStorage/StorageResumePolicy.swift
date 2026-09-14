@@ -54,7 +54,7 @@ public struct StorageResumePolicy<Details: Sendable>: ResumePolicy, Sendable, Eq
       let code = details.code
       return code == .unavailable || code == .resourceExhausted || code == .deadlineExceeded
         || code == .`internal`
-    case .binding, .exhausted, .unimplemented, .malformedResponse:
+    case .binding, .exhausted, .unimplemented, .malformedResponse, .badURL:
       return false
     @unknown default:
       return false
