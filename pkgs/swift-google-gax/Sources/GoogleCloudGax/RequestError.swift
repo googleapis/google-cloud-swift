@@ -105,7 +105,7 @@ public enum RequestError: Error {
   /// ## Troubleshooting
   ///
   /// Typically, this indicates an invalid URL in the client's endpoint. The client library is
-  /// unable to form a valid HTTP request. Review how you configurated the client.
+  /// unable to form a valid HTTP request. Review how you configured the client.
   case badURL(String)
 }
 
