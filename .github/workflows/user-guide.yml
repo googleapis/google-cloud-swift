@@ -54,10 +54,6 @@ jobs:
             swift-google-iam-v1
             swift-google-longrunning
             swift-google-cloud-location
-            swift-google-cloud-secretmanager-v1
-            swift-google-cloud-workflows-v1
-            swift-google-cloud-security-publicca-v1
-            swift-google-devtools-cloudbuild-v1
           )
           mkdir -p .render
           for pkg in "${pkgs_edit[@]}"; do
