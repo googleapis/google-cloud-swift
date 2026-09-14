@@ -16,10 +16,23 @@
 
 #include <string.h>
 
-#if defined(__x86_64__) || defined(_M_X64)
-#if defined(__GNUC__) || defined(__clang__)
-#include <cpuid.h>
+#if ((defined(__BYTE_ORDER__) && (__BYTE_ORDER__ == __ORDER_BIG_ENDIAN__)) || \
+     defined(__AARCH64EB__) || defined(__ARMEB__))
+// Big-endian targets produce reversed byte order with multi-byte CRC instructions.
+// Fall back to the endian-neutral software implementation.
+#define GOOGLE_CLOUD_GAX_CRC32C_ARCH_UNSUPPORTED 1
+#elif (defined(__GNUC__) || defined(__clang__)) && (defined(__x86_64__) || defined(_M_X64))
+#define GOOGLE_CLOUD_GAX_CRC32C_ARCH_X86_64 1
+#elif (defined(__GNUC__) || defined(__clang__)) && \
+    (defined(__aarch64__) || defined(_M_ARM64) || defined(__arm64__))
+#define GOOGLE_CLOUD_GAX_CRC32C_ARCH_ARM64 1
+#else
+// Unsupported architecture, MSVC without Clang, or other: fall back to software.
+#define GOOGLE_CLOUD_GAX_CRC32C_ARCH_UNSUPPORTED 1
 #endif
+
+#if defined(GOOGLE_CLOUD_GAX_CRC32C_ARCH_X86_64)
+#include <cpuid.h>
 
 bool googleCloudGax_crc32c_hw_available(void) {
 #if defined(__has_builtin)
@@ -27,33 +40,26 @@ bool googleCloudGax_crc32c_hw_available(void) {
   return __builtin_cpu_supports("sse4.2") != 0;
 #endif
 #endif
-#if defined(__GNUC__) || defined(__clang__)
   unsigned int eax = 0, ebx = 0, ecx = 0, edx = 0;
   if (__get_cpuid(1, &eax, &ebx, &ecx, &edx)) {
     return (ecx & (1 << 20)) != 0;
   }
   return false;
-#elif defined(_MSC_VER)
-  int info[4] = {0};
-  __cpuid(info, 1);
-  return (info[2] & (1 << 20)) != 0;
-#else
-  return false;
-#endif
 }
 
 #if defined(__clang__) || defined(__GNUC__)
 __attribute__((target("sse4.2")))
 #endif
-uint32_t googleCloudGax_crc32c_hw(uint32_t crc, const uint8_t* data,
+uint32_t googleCloudGax_crc32c_hw(uint32_t crc, const void* buffer,
                                   size_t len) {
-  if (data == NULL || len == 0) {
+  if (buffer == NULL || len == 0) {
     return crc;
   }
-  while (len > 0 && ((uintptr_t)data & 7) != 0) {
-    crc = (uint32_t)__builtin_ia32_crc32qi((int)crc, *data++);
-    len--;
-  }
+  const uint8_t* data = (const uint8_t*)buffer;
+  // Unaligned memory accesses are handled safely and natively by memcpy() and
+  // the underlying hardware on x86-64 and AArch64. Peeling initial bytes with
+  // serial 1-byte CRC instructions introduces a dependency latency chain
+  // without any throughput benefit.
   while (len >= 32) {
     uint64_t v0, v1, v2, v3;
     memcpy(&v0, data, 8);
@@ -95,7 +101,7 @@ uint32_t googleCloudGax_crc32c_hw(uint32_t crc, const uint8_t* data,
   return crc;
 }
 
-#elif defined(__aarch64__) || defined(_M_ARM64) || defined(__arm64__)
+#elif defined(GOOGLE_CLOUD_GAX_CRC32C_ARCH_ARM64)
 #if defined(__linux__)
 #include <sys/auxv.h>
 #ifndef HWCAP_CRC32
@@ -117,7 +123,7 @@ bool googleCloudGax_crc32c_hw_available(void) {
   if (sysctlbyname("hw.optional.armv8_crc32", &val, &size, NULL, 0) == 0) {
     return val != 0;
   }
-  return true;
+  return false;
 #elif defined(__linux__)
   return (getauxval(AT_HWCAP) & HWCAP_CRC32) != 0;
 #elif defined(_WIN32) && defined(PF_ARM_V8_CRC32_INSTRUCTIONS_AVAILABLE)
@@ -132,15 +138,16 @@ __attribute__((target("crc")))
 #elif defined(__GNUC__)
 __attribute__((target("+crc")))
 #endif
-uint32_t googleCloudGax_crc32c_hw(uint32_t crc, const uint8_t* data,
+uint32_t googleCloudGax_crc32c_hw(uint32_t crc, const void* buffer,
                                   size_t len) {
-  if (data == NULL || len == 0) {
+  if (buffer == NULL || len == 0) {
     return crc;
   }
-  while (len > 0 && ((uintptr_t)data & 7) != 0) {
-    crc = __builtin_arm_crc32cb(crc, *data++);
-    len--;
-  }
+  const uint8_t* data = (const uint8_t*)buffer;
+  // Unaligned memory accesses are handled safely and natively by memcpy() and
+  // the underlying hardware on x86-64 and AArch64. Peeling initial bytes with
+  // serial 1-byte CRC instructions introduces a dependency latency chain
+  // without any throughput benefit.
   while (len >= 32) {
     uint64_t v0, v1, v2, v3;
     memcpy(&v0, data, 8);
@@ -185,9 +192,9 @@ uint32_t googleCloudGax_crc32c_hw(uint32_t crc, const uint8_t* data,
 #else
 bool googleCloudGax_crc32c_hw_available(void) { return false; }
 
-uint32_t googleCloudGax_crc32c_hw(uint32_t crc, const uint8_t* data,
+uint32_t googleCloudGax_crc32c_hw(uint32_t crc, const void* buffer,
                                   size_t len) {
-  (void)data;
+  (void)buffer;
   (void)len;
   return crc;
 }

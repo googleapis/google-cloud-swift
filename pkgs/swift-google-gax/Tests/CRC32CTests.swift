@@ -51,6 +51,19 @@ import Testing
     #expect(helloCRC32C == swGot)
   }
 
+  @Test func finalizeIsNonDestructive() {
+    var checksum = _CRC32C()
+    checksum.update(Data("Hello".utf8))
+    let first = checksum.finalize()
+    let second = checksum.finalize()
+    #expect(first == second)
+
+    // Continue updating and ensure stream continues accurately
+    checksum.update(Data(" ".utf8))
+    checksum.update(Data("World".utf8))
+    #expect(checksum.finalize() == helloCRC32C)
+  }
+
   @Test func hardwareAccelerationDetected() {
     #if arch(x86_64) || arch(arm64)
       #expect(_CRC32C.isHardwareAccelerated)
@@ -119,6 +132,93 @@ import Testing
     }
 
     #expect(full.finalize() == chunked.finalize())
+  }
+
+  @Test(arguments: [
+    ([UInt8](repeating: 0x00, count: 32), UInt32(0x8A91_36AA)),
+    ([UInt8](repeating: 0xFF, count: 32), UInt32(0x62A8_AB43)),
+    (Array(0..<32).map { UInt8($0) }, UInt32(0x46DD_794E)),
+    (Array(0..<32).reversed().map { UInt8($0) }, UInt32(0x113F_DB5C)),
+  ])
+  func rfc3720(bytes: [UInt8], want: UInt32) {
+    bytes.withUnsafeBytes { buffer in
+      let got = _CRC32C.compute(buffer)
+      #expect(want == got)
+
+      let swGot = _CRC32C.computeSoftware(buffer)
+      #expect(want == swGot)
+    }
+  }
+
+  @Test func exhaustiveOffsetAndLengthEquivalence() {
+    var testData = [UInt8]()
+    for i in 0..<256 {
+      testData.append(UInt8((i * 31 + 17) & 0xFF))
+    }
+
+    testData.withUnsafeBytes { buffer in
+      for offset in 0..<8 {
+        for len in 0...128 {
+          let slice = UnsafeRawBufferPointer(
+            rebasing: buffer[offset..<(offset + len)]
+          )
+          let hw = _CRC32C.compute(slice)
+          let sw = _CRC32C.computeSoftware(slice)
+          #expect(hw == sw, "Mismatch at offset \(offset), length \(len)")
+        }
+      }
+    }
+  }
+
+  @Test func seed() {
+    let data1 = Data("Hello ".utf8)
+    let data2 = Data("World".utf8)
+    let fullCRC = _CRC32C.compute(Data("Hello World".utf8))
+
+    let crc1 = _CRC32C.compute(data1)
+
+    var checksum = _CRC32C(seed: crc1)
+    checksum.update(data2)
+    #expect(fullCRC == checksum.finalize())
+
+    var swChecksum = _CRC32C(seed: crc1)
+    data2.withUnsafeBytes { swChecksum.updateSoftware($0) }
+    #expect(fullCRC == swChecksum.finalize())
+  }
+
+  @Test func emptyUnalignedBuffer() {
+    let testData: [UInt8] = [1, 2, 3, 4, 5, 6, 7, 8]
+    testData.withUnsafeBytes { buffer in
+      for offset in 0..<8 {
+        let slice = UnsafeRawBufferPointer(rebasing: buffer[offset..<offset])
+        #expect(_CRC32C.compute(slice) == 0)
+        #expect(_CRC32C.computeSoftware(slice) == 0)
+      }
+    }
+  }
+
+  @Test func unalignedChunkedEquivalence() {
+    var testData = [UInt8]()
+    for i in 0..<512 {
+      testData.append(UInt8((i * 43 + 23) & 0xFF))
+    }
+
+    let full = _CRC32C.compute(Data(testData))
+
+    testData.withUnsafeBytes { buffer in
+      var chunked = _CRC32C()
+      var swChunked = _CRC32C()
+      let chunkSizes = [1, 3, 7, 15, 31, 33, 64, 5, 12, 128, 213]
+      var offset = 0
+      for size in chunkSizes {
+        let slice = UnsafeRawBufferPointer(rebasing: buffer[offset..<(offset + size)])
+        chunked.update(slice)
+        swChunked.updateSoftware(slice)
+        offset += size
+      }
+      #expect(full == chunked.finalize())
+      #expect(full == swChunked.finalize())
+    }
   }
 
   @Test func benchmarkFast() {

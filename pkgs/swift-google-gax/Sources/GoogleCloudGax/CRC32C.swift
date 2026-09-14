@@ -46,8 +46,7 @@ import Foundation
   public mutating func update(_ buffer: UnsafeRawBufferPointer) {
     guard let baseAddress = buffer.baseAddress, !buffer.isEmpty else { return }
     if Self.isHardwareAccelerated {
-      let ptr = baseAddress.assumingMemoryBound(to: UInt8.self)
-      value = googleCloudGax_crc32c_hw(value, ptr, buffer.count)
+      value = googleCloudGax_crc32c_hw(value, baseAddress, buffer.count)
     } else {
       updateSoftware(buffer)
     }
@@ -60,6 +59,11 @@ import Foundation
     }
   }
 
+  /// Returns the computed CRC32C checksum.
+  ///
+  /// This method is non-destructive: calling it does not alter the internal checksum state.
+  /// Subsequent calls to `finalize()` will return the same value, and subsequent `update`
+  /// operations can continue streaming data incrementally.
   public func finalize() -> UInt32 {
     return value ^ 0xFFFF_FFFF
   }

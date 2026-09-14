@@ -35,7 +35,7 @@ bool googleCloudGax_crc32c_hw_available(void);
 /// @param data Pointer to input buffer.
 /// @param len Number of bytes.
 /// @return The updated inverted CRC value.
-uint32_t googleCloudGax_crc32c_hw(uint32_t crc, const uint8_t* data,
+uint32_t googleCloudGax_crc32c_hw(uint32_t crc, const void* data,
                                   size_t len);
 
 #ifdef __cplusplus
