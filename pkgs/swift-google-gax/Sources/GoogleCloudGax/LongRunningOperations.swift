@@ -124,10 +124,7 @@ public final class _PollableOperationImpl<ResponseType>: PollableOperation {
       pollingState.attemptCount += 1
       do {
         state = try await pollOp()
-      } catch {
-        guard let requestError = error as? RequestError else {
-          throw error
-        }
+      } catch let requestError as RequestError {
         let flow = pollingPolicy.onError(state: pollingState, error: requestError)
         switch flow {
         case .permanent(let e), .exhausted(let e):
@@ -135,6 +132,8 @@ public final class _PollableOperationImpl<ResponseType>: PollableOperation {
         case .retry:
           continue
         }
+      } catch {
+        throw error
       }
     }
 
