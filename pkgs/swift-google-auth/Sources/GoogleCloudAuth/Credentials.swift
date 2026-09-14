@@ -125,6 +125,10 @@ public enum CredentialsConfiguration: Sendable {
   /// This is particularly useful when credentials are loaded dynamically from Google Cloud Secret Manager or a
   /// secure key vault.
   ///
+  /// > Warning: service account key files must be kept secure. Do not hardcode their value directly
+  /// > in source code or check them into version control. Treat service account key files with the
+  /// > same security precautions as passwords.
+  ///
   /// - Parameters:
   ///   - keyJSON: The raw Service Account JSON key file contents.
   ///   - quotaProjectID: A custom project ID used for billing and quota attribution.
@@ -150,6 +154,10 @@ public enum CredentialsConfiguration: Sendable {
   /// **Universe Domain Constraint**: User accounts are only supported in the default Google [universe](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones)
   /// (`googleapis.com`). Initializing user credentials with a custom universe domain will fail with
   /// `CredentialsError.notSupported`.
+  ///
+  /// > Warning: authorized user key files must be kept secure. Do not hardcode their value directly
+  /// > in source code or check them into version control. Treat authorized user key files with the
+  /// > same security precautions as passwords.
   ///
   /// - Parameters:
   ///   - keyJSON: The raw Authorized User JSON file contents.
@@ -215,9 +223,16 @@ public struct ExternalAccountConfig: Sendable {
   /// The audience parameter for the Security Token Service (STS) exchange.
   ///
   /// For Workforce Identity Federation, this typically takes the form:
-  /// `//iam.googleapis.com/locations/global/workforcePools/$POOL_ID/providers/$PROVIDER_ID`.
+  ///
+  /// ```
+  /// //iam.googleapis.com/locations/global/workforcePools/$POOL_ID/providers/$PROVIDER_ID
+  /// ```
+  ///
   /// For Workload Identity Federation, it typically takes the form:
-  /// `//iam.googleapis.com/projects/$PROJECT_NUMBER/locations/global/workloadIdentityPools/$POOL_ID/providers/$PROVIDER_ID`.
+  ///
+  /// ```
+  /// //iam.googleapis.com/projects/$PROJECT_NUMBER/locations/global/workloadIdentityPools/$POOL_ID/providers/$PROVIDER_ID
+  /// ```
   public let audience: String
 
   /// The type of the subject token being exchanged.
