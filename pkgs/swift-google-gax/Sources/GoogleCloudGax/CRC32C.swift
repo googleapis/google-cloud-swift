@@ -12,12 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import CGoogleCloudGaxCRC32C
 import Foundation
 
-/// A lookup-table based implementation of the CRC32C (Castagnoli) checksum algorithm.
-// TODO(https://github.com/googleapis/google-cloud-swift/issues/38) - Use hardware accelerated
-//   CRC32C on supported platforms.
+/// A hardware-accelerated and lookup-table based implementation of the CRC32C (Castagnoli) checksum algorithm.
 @_spi(GoogleCloudInternal) public struct _CRC32C: Sendable {
+  /// Whether hardware acceleration is supported and active on the current host CPU.
+  /// Dynamically detected once per process.
+  static let isHardwareAccelerated: Bool = googleCloudGax_crc32c_hw_available()
+
   private static let table: [UInt32] = {
     (0..<256).map { i in
       var crc = UInt32(i)
@@ -35,13 +38,22 @@ import Foundation
   }
 
   public mutating func update(_ data: Data) {
-    for byte in data {
-      let index = Int(UInt8(value & 0xFF) ^ byte)
-      value = (value >> 8) ^ Self.table[index]
+    data.withUnsafeBytes { buffer in
+      update(buffer)
     }
   }
 
   public mutating func update(_ buffer: UnsafeRawBufferPointer) {
+    guard let baseAddress = buffer.baseAddress, !buffer.isEmpty else { return }
+    if Self.isHardwareAccelerated {
+      let ptr = baseAddress.assumingMemoryBound(to: UInt8.self)
+      value = googleCloudGax_crc32c_hw(value, ptr, buffer.count)
+    } else {
+      updateSoftware(buffer)
+    }
+  }
+
+  mutating func updateSoftware(_ buffer: UnsafeRawBufferPointer) {
     for byte in buffer {
       let index = Int(UInt8(value & 0xFF) ^ byte)
       value = (value >> 8) ^ Self.table[index]
@@ -61,6 +73,18 @@ import Foundation
   public static func compute(_ buffer: UnsafeRawBufferPointer) -> UInt32 {
     var crc = Self()
     crc.update(buffer)
+    return crc.finalize()
+  }
+
+  static func computeSoftware(_ data: Data) -> UInt32 {
+    data.withUnsafeBytes { buffer in
+      computeSoftware(buffer)
+    }
+  }
+
+  static func computeSoftware(_ buffer: UnsafeRawBufferPointer) -> UInt32 {
+    var crc = Self()
+    crc.updateSoftware(buffer)
     return crc.finalize()
   }
 }

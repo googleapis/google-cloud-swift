@@ -40,8 +40,12 @@ let package = Package(
   ],
   targets: [
     .target(
+      name: "CGoogleCloudGaxCRC32C"
+    ),
+    .target(
       name: "GoogleCloudGax",
       dependencies: [
+        "CGoogleCloudGaxCRC32C",
         .product(name: "AsyncHTTPClient", package: "async-http-client"),
         .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
         .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),

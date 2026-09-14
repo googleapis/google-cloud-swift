@@ -14,6 +14,7 @@
 
 import Foundation
 @_spi(GoogleCloudInternal) import GoogleCloudGax
+@testable import GoogleCloudGax
 import Testing
 
 @Suite struct CRC32CTests {
@@ -26,8 +27,12 @@ import Testing
     (gettysburg, gettysburgCRC32C),
   ])
   func compute(input: String, want: UInt32) {
-    let got = _CRC32C.compute(Data(input.utf8))
+    let data = Data(input.utf8)
+    let got = _CRC32C.compute(data)
     #expect(want == got)
+
+    let swGot = _CRC32C.computeSoftware(data)
+    #expect(want == swGot)
   }
 
   @Test func update() {
@@ -37,6 +42,150 @@ import Testing
     checksum.update(Data("World".utf8))
     let got = checksum.finalize()
     #expect(helloCRC32C == got)
+
+    var swChecksum = _CRC32C()
+    Data("Hello".utf8).withUnsafeBytes { swChecksum.updateSoftware($0) }
+    Data(" ".utf8).withUnsafeBytes { swChecksum.updateSoftware($0) }
+    Data("World".utf8).withUnsafeBytes { swChecksum.updateSoftware($0) }
+    let swGot = swChecksum.finalize()
+    #expect(helloCRC32C == swGot)
+  }
+
+  @Test func hardwareAccelerationDetected() {
+    #if arch(x86_64) || arch(arm64)
+      #expect(_CRC32C.isHardwareAccelerated)
+    #endif
+  }
+
+  @Test func equivalenceAcrossLengths() {
+    // Deterministic pseudo-random byte pattern
+    var testData = [UInt8]()
+    for i in 0..<1024 {
+      testData.append(UInt8((i * 31 + 17) & 0xFF))
+    }
+
+    let lengths = [
+      0, 1, 2, 3, 4, 7, 8, 9, 15, 16, 31, 32, 33, 63, 64, 65, 127, 128, 255, 256, 512, 1024,
+    ]
+    for len in lengths {
+      let slice = Array(testData.prefix(len))
+      slice.withUnsafeBytes { buffer in
+        let hw = _CRC32C.compute(buffer)
+        let sw = _CRC32C.computeSoftware(buffer)
+        #expect(hw == sw, "Mismatch for length \(len)")
+      }
+    }
+  }
+
+  @Test func unalignedSlices() {
+    var testData = [UInt8]()
+    for i in 0..<256 {
+      testData.append(UInt8(i & 0xFF))
+    }
+
+    testData.withUnsafeBytes { buffer in
+      // Test slices starting at various unaligned offsets
+      for offset in 1..<8 {
+        for len in [1, 5, 8, 17, 33, 65, 100] {
+          if offset + len <= buffer.count {
+            let slice = UnsafeRawBufferPointer(
+              rebasing: buffer[offset..<(offset + len)]
+            )
+            let hw = _CRC32C.compute(slice)
+            let sw = _CRC32C.computeSoftware(slice)
+            #expect(hw == sw, "Mismatch at offset \(offset), length \(len)")
+          }
+        }
+      }
+    }
+  }
+
+  @Test func chunkedEquivalence() {
+    var testData = [UInt8]()
+    for i in 0..<300 {
+      testData.append(UInt8((i * 13 + 7) & 0xFF))
+    }
+
+    var full = _CRC32C()
+    testData.withUnsafeBytes { full.update($0) }
+
+    var chunked = _CRC32C()
+    let chunks = [3, 7, 16, 1, 32, 64, 11, 8, 4, 2, 152]
+    var start = 0
+    for chunkLen in chunks {
+      let sub = Array(testData[start..<(start + chunkLen)])
+      sub.withUnsafeBytes { chunked.update($0) }
+      start += chunkLen
+    }
+
+    #expect(full.finalize() == chunked.finalize())
+  }
+
+  @Test func benchmarkFast() {
+    runBenchmark(sizeMB: 1, iterations: 10)
+  }
+
+  @Test(
+    .enabled(
+      if: ProcessInfo.processInfo.environment["GOOGLE_CLOUD_SWIFT_CRC32C_BENCHMARK"] == "long"
+    )
+  )
+  func benchmarkLong() {
+    runBenchmark(sizeMB: 32, iterations: 20)
+  }
+
+  private func runBenchmark(sizeMB: Int, iterations: Int) {
+    let size = sizeMB * 1024 * 1024
+    let data = [UInt8](repeating: 0xAB, count: size)
+
+    let clock = ContinuousClock()
+
+    var swResult: UInt32 = 0
+    let swDuration = clock.measure {
+      data.withUnsafeBytes { buffer in
+        for _ in 0..<iterations {
+          swResult = _CRC32C.computeSoftware(buffer)
+        }
+      }
+    }
+
+    var hwResult: UInt32 = 0
+    let hwDuration = clock.measure {
+      data.withUnsafeBytes { buffer in
+        for _ in 0..<iterations {
+          hwResult = _CRC32C.compute(buffer)
+        }
+      }
+    }
+
+    let totalBytes = Double(size * iterations)
+    let totalGB = totalBytes / Double(1024 * 1024 * 1024)
+
+    let swSeconds =
+      Double(swDuration.components.seconds) + Double(swDuration.components.attoseconds) * 1e-18
+    let hwSeconds =
+      Double(hwDuration.components.seconds) + Double(hwDuration.components.attoseconds) * 1e-18
+
+    let swGBs = swSeconds > 0 ? totalGB / swSeconds : 0.0
+    let hwGBs = hwSeconds > 0 ? totalGB / hwSeconds : 0.0
+    let speedup = hwSeconds > 0 ? swSeconds / hwSeconds : 1.0
+
+    print(
+      """
+      --- CRC32C Throughput Benchmark ---
+      Buffer size: \(sizeMB) MiB, Iterations: \(iterations) (Total: \(String(format: "%.1f", totalGB * 1024)) MiB)
+      Software: \(String(format: "%.4f", swSeconds))s (\(String(format: "%.2f", swGBs)) GB/s) -> result: 0x\(String(swResult, radix: 16))
+      Hardware: \(String(format: "%.4f", hwSeconds))s (\(String(format: "%.2f", hwGBs)) GB/s) -> result: 0x\(String(hwResult, radix: 16))
+      Speedup:  \(String(format: "%.1f", speedup))x
+      -----------------------------------
+      """
+    )
+
+    if _CRC32C.isHardwareAccelerated {
+      #expect(hwResult == swResult)
+      #expect(
+        hwDuration < swDuration, "Hardware acceleration should be faster than software fallback")
+    }
   }
 }
 
