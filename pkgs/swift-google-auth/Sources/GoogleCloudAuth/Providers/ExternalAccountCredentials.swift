@@ -220,7 +220,7 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
     clientSecret: String? = nil,
     targetPrincipal: String? = nil,
     workforcePoolUserProject: String? = nil,
-    scopes: [String] = [],
+    scopes: [String] = [ExternalAccountConfig.defaultScope],
     universeDomain: String? = nil,
     retryConfiguration: RetryConfiguration? = nil,
     httpClient: AuthHTTPClient = AuthHTTPClient()
@@ -250,6 +250,8 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
       }
     }
 
+    let effectiveScopes = scopes.isEmpty ? [ExternalAccountConfig.defaultScope] : scopes
+
     self.subjectTokenProvider = subjectTokenProvider
     self.audience = audience
     self.subjectTokenType = subjectTokenType
@@ -258,7 +260,7 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
     self.clientSecret = clientSecret
     self.targetPrincipal = targetPrincipal
     self.workforcePoolUserProject = workforcePoolUserProject
-    self.scopes = scopes
+    self.scopes = effectiveScopes
     self.universeDomain = universeDomain
 
     let provider = ExternalAccountTokenProvider(
@@ -266,7 +268,7 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
       tokenURL: tokenURL,
       subjectTokenType: subjectTokenType,
       audience: audience,
-      scopes: scopes,
+      scopes: effectiveScopes,
       workforcePoolUserProject: workforcePoolUserProject,
       clientID: clientID,
       clientSecret: clientSecret,

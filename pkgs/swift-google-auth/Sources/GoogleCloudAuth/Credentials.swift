@@ -265,8 +265,11 @@ public struct ExternalAccountConfig: Sendable {
   /// for a non-workforce pool will result in a validation error.
   public var workforcePoolUserProject: String? = nil
 
+  /// The default scope requested for Google Cloud STS token exchange.
+  public static let defaultScope = "https://www.googleapis.com/auth/cloud-platform"
+
   /// Scopes requested for the exchanged token.
-  public var scopes: [String] = []
+  public var scopes: [String] = [defaultScope]
 
   /// Google Cloud universe domain override.
   public var universeDomain: String? = nil

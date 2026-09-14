@@ -34,6 +34,19 @@ export GOOGLE_CLOUD_SWIFT_TEST_BUCKET=${GOOGLE_CLOUD_PROJECT}-test-bucket
 export GOOGLE_CLOUD_SWIFT_TEST_STORAGE_KMS_KEY_RING=us-central1
 export GOOGLE_CLOUD_SWIFT_TEST_STORAGE_KMS_RING=us-central1
 
+# Workload Identity Federation (BYOID) integration test configuration
+export EXTERNAL_ACCOUNT_PROJECT="rust-external-account-joonix"
+export EXTERNAL_ACCOUNT_SERVICE_ACCOUNT_EMAIL="testsa@${EXTERNAL_ACCOUNT_PROJECT}.iam.gserviceaccount.com"
+# The STS audience URI is constructed as:
+#   //iam.googleapis.com/projects/${PROJECT_NUMBER}/locations/${LOCATION}/workloadIdentityPools/${POOL_ID}/providers/${PROVIDER_ID}
+# where:
+#   - PROJECT_NUMBER: 1092239828259 (numeric ID of rust-external-account-joonix, retrieved via:
+#       gcloud projects describe rust-external-account-joonix --format='value(projectNumber)')
+#   - LOCATION: global
+#   - POOL_ID: google-idp
+#   - PROVIDER_ID: google-idp
+export GOOGLE_WORKLOAD_IDENTITY_OIDC_AUDIENCE="//iam.googleapis.com/projects/1092239828259/locations/global/workloadIdentityPools/google-idp/providers/google-idp"
+
 errors=0
 count=1
 echo "--- Running top-level integration tests ---"
