@@ -18,19 +18,20 @@ import Foundation
 #endif
 
 /// Encapsulates the request parameters required for exchanging an external token
-/// with Google Cloud's Secure Token Service (STS).
+/// with Google Cloud's Secure Token Service (STS) according to [RFC 8693](https://datatracker.ietf.org/doc/html/rfc8693)
+/// and [AIP-4117](https://google.aip.dev/auth/4117).
 struct ExchangeTokenRequest: Sendable {
-  /// The raw subject token issued by the external identity provider.
+  /// The raw subject token issued by the external identity provider (e.g. an OIDC JWT).
   let subjectToken: String
-  /// The type of the subject token (e.g., `urn:ietf:params:oauth:token-type:id_token`).
+  /// The type of the subject token (e.g., `urn:ietf:params:oauth:token-type:id_token` or `urn:ietf:params:oauth:token-type:jwt`).
   let subjectTokenType: String
-  /// The target audience for the exchanged token.
+  /// The target audience URI for the exchanged token (e.g. workforce or workload pool provider URI).
   let audience: String?
   /// The OAuth scopes requested for the exchanged token.
   let scopes: [String]
-  /// The user project used for workforce pool billing/quota attribution.
+  /// The user project used for workforce pool billing and quota attribution (`x-goog-user-project`).
   let workforcePoolUserProject: String?
-  /// Optional basic authentication credentials when exchanging client-authenticated tokens.
+  /// Optional client authentication credentials when exchanging client-authenticated tokens via Basic Auth.
   let clientAuthentication: ClientAuthentication?
 
   init(
@@ -50,11 +51,11 @@ struct ExchangeTokenRequest: Sendable {
   }
 }
 
-/// Represents the client credentials used to authenticate token exchange requests.
+/// Represents OAuth client credentials used to authenticate token exchange requests via HTTP Basic Auth.
 struct ClientAuthentication: Sendable {
-  /// The client ID.
+  /// The OAuth client ID.
   let id: String
-  /// The client secret.
+  /// The OAuth client secret.
   let secret: String?
 
   init(id: String, secret: String? = nil) {
@@ -63,25 +64,25 @@ struct ClientAuthentication: Sendable {
   }
 }
 
-/// The response payload returned by Google Cloud's Secure Token Service.
+/// The response payload returned by Google Cloud's Secure Token Service (STS) following a token exchange.
 struct TokenResponse: Codable, Sendable {
-  /// The exchanged access token.
+  /// The exchanged Google Cloud access token.
   let accessToken: String
   /// The type of the access token (typically `Bearer`).
   let tokenType: String
-  /// The lifetime of the access token in seconds.
+  /// The lifetime of the access token in seconds (typically 3600 seconds).
   let expiresIn: Int
-  /// The type of the issued token.
+  /// The type of the issued token (e.g. `urn:ietf:params:oauth:token-type:access_token`).
   let issuedTokenType: String?
-  /// Recommended time to refresh the token, in seconds.
+  /// Recommended time to refresh the token before expiration, in seconds.
   let refreshBy: Int?
 }
 
-/// Specifies the format used to serialize the token exchange request body.
+/// Specifies the serialization format used for the Security Token Service token exchange request body.
 enum STSBodyEncoding: Sendable {
-  /// Form-urlencoded request body (standard STS).
+  /// Form-urlencoded request body (`application/x-www-form-urlencoded`), standard for RFC 8693 token exchange.
   case urlEncoded
-  /// JSON request body.
+  /// JSON request body (`application/json`).
   case json
 
   /// Encodes parameters into the request body data and corresponding content type header value.
@@ -108,7 +109,7 @@ enum STSBodyEncoding: Sendable {
   }
 }
 
-/// Performs token exchange requests against Google's Secure Token Service (STS).
+/// Performs token exchange requests against Google's Secure Token Service (STS) ([RFC 8693](https://datatracker.ietf.org/doc/html/rfc8693)).
 struct STSHandler: Sendable {
   private let httpClient: AuthHTTPClient
 
@@ -121,10 +122,13 @@ struct STSHandler: Sendable {
 
   /// Exchanges an external identity provider token for a Google Cloud access token.
   ///
+  /// Sends a token exchange request (`grant_type=urn:ietf:params:oauth:grant-type:token-exchange`)
+  /// to the STS endpoint, returning the exchanged access token and expiration.
+  ///
   /// - Parameters:
   ///   - request: The exchange request parameters.
-  ///   - url: The STS endpoint URL.
-  ///   - encoding: The request body serialization format.
+  ///   - url: The STS endpoint URL (typically `https://sts.googleapis.com/v1/token`).
+  ///   - encoding: The request body serialization format (default `.urlEncoded`).
   /// - Returns: A `TokenResponse` containing the exchanged access token.
   func exchangeToken(
     request: ExchangeTokenRequest,

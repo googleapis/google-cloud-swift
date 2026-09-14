@@ -37,7 +37,21 @@ internal struct ServiceAccountParser: CredentialSourceParser {
   }
 }
 
-/// Creates credentials backed by a local Service Account JSON key file.
+/// An authentication provider backed by a local Service Account JSON private key file.
+///
+/// A [Service Account](https://cloud.google.com/iam/docs/service-account-overview) is a Google Cloud identity
+/// intended for non-human workloads, microservices, and applications.
+///
+/// Service account JSON key files contain an unencrypted RSA private key (`private_key`) that allows the bearer
+/// to act as the service account. These files should be treated with the same security precautions as unencrypted
+/// passwords and stored securely (e.g. in Google Cloud Secret Manager).
+///
+/// This provider uses the private key to sign a local JSON Web Signature (JWS) assertion using RS256
+/// according to [AIP-4111](https://google.aip.dev/auth/4111). Tokens are cached and refreshed before expiration
+/// without requiring remote authorization server calls.
+///
+/// See [Best Practices for Managing Service Account Keys](https://cloud.google.com/iam/docs/best-practices-for-managing-service-account-keys)
+/// and [AIP-4111: Self-Signed JWTs](https://google.aip.dev/auth/4111).
 struct ServiceAccountCredentials: CredentialsProvider, Sendable {
   private let tokenProvider: TokenCache<ContinuousClock>
   private let quotaProjectID: String?

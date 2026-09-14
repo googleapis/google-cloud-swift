@@ -15,13 +15,19 @@
 import Foundation
 import JWTKit
 
-/// The JWT claims structure for generating a Google Cloud Service Account access token.
+/// The JWT claims structure for generating a Google Cloud Service Account access token per [AIP-4111](https://google.aip.dev/auth/4111).
 struct ServiceAccountClaims: JWTPayload, Equatable, Sendable {
+  /// The issuer claim, corresponding to the service account client email.
   let iss: IssuerClaim
+  /// The subject claim, corresponding to the service account client email.
   let sub: SubjectClaim
+  /// Space-separated OAuth 2.0 scopes requested for the token.
   let scope: String?
+  /// The target service audience claim.
   let aud: AudienceClaim?
+  /// The issued-at timestamp.
   let iat: IssuedAtClaim
+  /// The expiration timestamp.
   let exp: ExpirationClaim
 
   func verify(using algorithm: some JWTAlgorithm) async throws {
@@ -30,6 +36,10 @@ struct ServiceAccountClaims: JWTPayload, Equatable, Sendable {
   }
 }
 
+/// Generates signed JWT bearer tokens locally in memory using the service account RSA private key.
+///
+/// Implements [AIP-4111: Self-Signed JWTs](https://google.aip.dev/auth/4111), signing an assertion with RS256
+/// containing either requested scopes or a target service audience.
 struct ServiceAccountTokenProvider: TokenProvider, Sendable {
   let key: ServiceAccountData
   let scopes: [String]?

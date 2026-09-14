@@ -14,7 +14,7 @@
 
 import Foundation
 
-/// A utility that resolves Application Default Credentials (ADC) according to [AIP-4110](https://google.aip.dev/auth/4110) guidelines.
+/// An internal utility that resolves Application Default Credentials (ADC).
 enum ADC: Sendable {
   private static let isInitialized: Bool = {
     CredentialParserRegistry.shared.register(parser: ServiceAccountParser.self)
@@ -22,9 +22,24 @@ enum ADC: Sendable {
     return true
   }()
 
-  /// Resolves the configured credentials source shell.
+  /// Resolves and initializes a concrete `CredentialsProvider` matching the environment's ADC configuration.
   ///
-  /// - Returns: An empty credentials source skeleton.
+  /// Following [Application Default Credentials](https://cloud.google.com/docs/authentication/application-default-credentials), this method executes the following discovery steps:
+  /// 1. Inspects the `GOOGLE_APPLICATION_CREDENTIALS` environment variable. If defined, attempts to read and parse the referenced file.
+  /// 2. Inspects the well-known user credentials file (created via `gcloud auth application-default login`).
+  /// 3. Falls back to the link-local [Metadata Server](https://cloud.google.com/compute/docs/metadata/overview) (MDS)
+  ///    found in Google Cloud runtime environments (GCE, GKE, Cloud Run).
+  ///
+  /// **Quota Project Precedence**: If the `GOOGLE_CLOUD_QUOTA_PROJECT` environment variable is set in `environment`,
+  /// its value takes precedence over any passed `quotaProjectID`.
+  ///
+  /// - Parameters:
+  ///   - quotaProjectID: An optional project ID used for billing and quota attribution (`x-goog-user-project`).
+  ///   - universeDomain: An optional target universe domain (defaults to `googleapis.com`).
+  ///   - scopes: Scopes requested for the issued token.
+  ///   - environment: The environment variable dictionary used for discovery (defaults to `ProcessInfo.processInfo.environment`).
+  /// - Returns: A configured `CredentialsProvider` ready to furnish authentication headers.
+  /// - Throws: An `ADCResolverError` or `CredentialsError` if loading or parsing fails, or if an unsupported credential type is encountered.
   static func resolve(
     quotaProjectID: String? = nil,
     universeDomain: String? = nil,

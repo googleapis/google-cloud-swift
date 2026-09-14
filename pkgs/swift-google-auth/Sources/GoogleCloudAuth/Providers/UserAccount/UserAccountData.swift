@@ -19,14 +19,53 @@ import Foundation
 #endif
 
 /// Represents the raw `authorized_user` JSON credential file format.
+///
+/// An `authorized_user` credential represents a human developer or administrator who authenticated
+/// locally using the Google Cloud CLI:
+/// ```bash
+/// gcloud auth application-default login
+/// ```
+///
+/// User accounts are managed through [Google Accounts](https://myaccount.google.com/),
+/// [Google Workspace](https://workspace.google.com/), or [Cloud Identity](https://cloud.google.com/identity).
+/// Unlike service accounts, user accounts obtain short-lived access tokens by exchanging a long-lived
+/// OAuth 2.0 refresh token using the [OAuth 2.0 Refresh Token grant](https://datatracker.ietf.org/doc/html/rfc6749#section-6).
+///
+/// - SeeAlso: [Google Cloud Authentication: User Accounts](https://cloud.google.com/docs/authentication#user-accounts)
+/// - SeeAlso: [RFC 6749: OAuth 2.0 Authorization Framework](https://datatracker.ietf.org/doc/html/rfc6749)
 struct UserAccountData: Sendable, Codable {
+  /// The credential type identifier string, expected to be `"authorized_user"`.
   let type: String
+
+  /// The OAuth 2.0 client ID registered in Google Cloud Console.
   let clientId: String
+
+  /// The OAuth 2.0 client secret corresponding to `clientId`.
   let clientSecret: String
+
+  /// The long-lived OAuth 2.0 refresh token used to obtain short-lived access tokens.
   let refreshToken: String
+
+  /// The optional OAuth 2.0 token endpoint URL used to exchange the refresh token.
+  ///
+  /// Defaults to `https://oauth2.googleapis.com/token` when not specified in the credentials file.
   let tokenUri: String?
+
+  /// The optional Google Cloud project ID to which API requests using these credentials
+  /// are attributed for quota and billing purposes.
+  ///
+  /// - SeeAlso: [Google Cloud Quota Project](https://cloud.google.com/docs/quotas/quota-project)
   let quotaProjectId: String?
 
+  /// Initializes a new `UserAccountData` instance with the specified parameters.
+  ///
+  /// - Parameters:
+  ///   - type: Credential type string (typically `"authorized_user"`).
+  ///   - clientId: OAuth 2.0 client ID.
+  ///   - clientSecret: OAuth 2.0 client secret.
+  ///   - refreshToken: OAuth 2.0 refresh token.
+  ///   - tokenUri: Optional token endpoint URI.
+  ///   - quotaProjectId: Optional quota project ID.
   init(
     type: String,
     clientId: String,

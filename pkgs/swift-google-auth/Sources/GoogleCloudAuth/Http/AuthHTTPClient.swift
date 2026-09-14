@@ -19,7 +19,15 @@ import struct Logging.Logger
 import struct NIOCore.TimeAmount
 import struct NIOCore.ByteBufferAllocator
 
+/// Internal protocol abstracting an HTTP client to support testing and mocking.
 protocol HTTPClientProtocol: Sendable {
+  /// Executes an HTTP request with a specified timeout and logger.
+  ///
+  /// - Parameters:
+  ///   - request: The HTTP request to dispatch.
+  ///   - timeout: Execution timeout duration.
+  ///   - logger: Optional logger for diagnostic messages.
+  /// - Returns: The HTTP response.
   func execute(
     request: HTTPClientRequest,
     timeout: Duration,
@@ -27,10 +35,11 @@ protocol HTTPClientProtocol: Sendable {
   ) async throws -> HTTPClientResponse
 }
 
-/// Automatically call shutdown() on a HTTPClient.
+/// Automatically calls `shutdown()` on `AsyncHTTPClient.HTTPClient` during deinitialization.
 ///
-/// HTTPClient requires an (asynchronous) call to `shutdown()` or it leaks resources.
-/// This class automates the call.
+/// `HTTPClient` requires an asynchronous call to `shutdown()` to release NIO event loops and
+/// connection pools without leaking system resources. This wrapper ensures proper shutdown
+/// via a background task when the holder is deinited.
 ///
 /// SAFETY: calling `shutdown()` requires all requests to be finished. In the AuthHTTPClient struct
 /// each HTTP request is executed within a function, therefore the object is live while the HTTP
@@ -64,16 +73,29 @@ final class HTTPClientHolder: HTTPClientProtocol {
 }
 
 /// A lightweight, portable, and secure HTTP request client dedicated to authentication requests.
+///
+/// Used internally across authentication providers to communicate with:
+/// - Google Cloud OAuth 2.0 token endpoints (`https://oauth2.googleapis.com/token`)
+/// - Google Cloud Security Token Service (`https://sts.googleapis.com/v1/token`)
+/// - Google Compute Engine Metadata Service (`http://metadata.google.internal`)
+///
+/// Enforces a maximum response size limit to guard against memory exhaustion and provides
+/// standardized error handling and snake_case JSON decoding.
 struct AuthHTTPClient: Sendable {
+  /// Maximum permitted HTTP response body size in bytes (1 MB) to guard against memory exhaustion.
   static let maxResponseSize: Int = 1024 * 1024
 
+  /// The underlying HTTP execution engine conforming to `HTTPClientProtocol`.
   let inner: any HTTPClientProtocol
 
-  /// Initializes the client with the default configuration.
+  /// Initializes the client with the default asynchronous HTTP client configuration.
   public init() {
     self.inner = HTTPClientHolder()
   }
 
+  /// Initializes the client with a custom or mock `HTTPClientProtocol` implementation.
+  ///
+  /// - Parameter mock: The mock client implementation to use.
   init<T: HTTPClientProtocol>(mock: T) {
     self.inner = mock
   }
@@ -105,7 +127,15 @@ struct AuthHTTPClient: Sendable {
   }
 
   /// Asynchronously dispatches a GET request and returns the raw response body as a plain-text string.
-  /// Statically required to support local GCE Metadata Server OIDC token and email fetches.
+  ///
+  /// Used for endpoints that return plain-text payloads rather than JSON, such as the Compute Engine
+  /// Metadata Server token and identity endpoints.
+  ///
+  /// - Parameters:
+  ///   - url: The target URL of the request.
+  ///   - headers: Optional HTTP request headers.
+  /// - Returns: The plain-text UTF-8 string returned by the server.
+  /// - Throws: `AuthHTTPError.unsuccessfulResponse` on non-2xx status, or `AuthHTTPError.decodingError` if invalid UTF-8.
   func getString(
     url: URL,
     headers: [String: String] = [:]
@@ -130,13 +160,17 @@ struct AuthHTTPClient: Sendable {
     }
   }
 
-  /// Asynchronously dispatches a POST request sending generic JSON body and decodes the JSON response.
+  /// Asynchronously dispatches a POST request sending an encodable JSON body and decodes the JSON response.
+  ///
+  /// Encodable bodies are automatically converted using snake_case key encoding, and responses are
+  /// decoded using snake_case key decoding.
   ///
   /// - Parameters:
   ///   - url: The target URL of the request.
   ///   - body: The encodable JSON body structure.
-  ///   - headers: HTTP request headers.
+  ///   - headers: Optional HTTP request headers.
   /// - Returns: The parsed JSON response structure.
+  /// - Throws: `AuthHTTPError.unsuccessfulResponse` on non-2xx status, or `AuthHTTPError.decodingError` on parse failure.
   func post<Body: Encodable, Response: Decodable>(
     url: URL,
     body: Body,
@@ -163,14 +197,17 @@ struct AuthHTTPClient: Sendable {
     }
   }
 
-  /// Asynchronously dispatches a POST request sending raw data and decodes the JSON response.
+  /// Asynchronously dispatches a POST request sending raw byte data and decodes the JSON response.
+  ///
+  /// Typically used when posting `application/x-www-form-urlencoded` payloads during STS token exchange.
   ///
   /// - Parameters:
   ///   - url: The target URL of the request.
   ///   - bodyData: The raw data to send as the HTTP body.
-  ///   - contentType: The Content-Type header value.
-  ///   - headers: HTTP request headers.
+  ///   - contentType: The `Content-Type` header value (e.g. `application/x-www-form-urlencoded`).
+  ///   - headers: Optional HTTP request headers.
   /// - Returns: The parsed JSON response structure.
+  /// - Throws: `AuthHTTPError.unsuccessfulResponse` on non-2xx status, or `AuthHTTPError.decodingError` on parse failure.
   func postData<Response: Decodable>(
     url: URL,
     bodyData: Data,

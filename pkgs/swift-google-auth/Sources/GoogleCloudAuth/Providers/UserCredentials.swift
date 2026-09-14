@@ -40,9 +40,26 @@ internal struct UserCredentialsParser: CredentialSourceParser {
   }
 }
 
-/// Creates credentials backed by a local User OAuth2 credentials JSON key file.
+/// An authentication provider backed by an Authorized User OAuth 2.0 credentials file.
+///
+/// [User Accounts](https://cloud.google.com/docs/authentication#user-accounts) represent human developers
+/// or administrators managed as Google Accounts via Google Workspace or Cloud Identity. These credentials
+/// utilize an OAuth 2.0 refresh token obtained through the standard Authorization Code grant
+/// ([RFC 6749 Section 4.1](https://datatracker.ietf.org/doc/html/rfc6749#section-4.1)), typically created by running
+/// `gcloud auth application-default login`.
+///
+/// The credentials automatically exchange the refresh token for short-lived access tokens via Google's token
+/// endpoint (`https://oauth2.googleapis.com/token`) before expiry.
+///
+/// **Universe Domain Constraint**: User accounts are only supported in the default Google Cloud universe
+/// (`googleapis.com`). Initializing user credentials in a custom universe domain throws `CredentialsError.notSupported`.
+///
+/// **Quota Projects**: Because user credentials are not associated with a specific Google Cloud project,
+/// APIs typically require a quota project ID to attribute billing and rate limits. The project ID is sent
+/// via the `x-goog-user-project` HTTP header.
 typealias UserCredentials = UserCredentialsGeneric<ContinuousClock>
 
+/// Generic implementation of authorized user credentials parameterized by clock type.
 struct UserCredentialsGeneric<C: Clock>: CredentialsProvider, Sendable
 where C.Instant.Duration == Duration {
   private let cache: TokenCache<C>

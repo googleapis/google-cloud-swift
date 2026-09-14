@@ -18,7 +18,12 @@ import Foundation
   import FoundationNetworking
 #endif
 
-/// An empty credentials source for unauthenticated requests.
+/// An unauthenticated credentials source that provides no authentication headers.
+///
+/// Anonymous credentials do not supply any token or API key to the request. They are useful
+/// for accessing public Google Cloud resources that do not require authentication (such as
+/// public Cloud Storage buckets or public BigQuery datasets), or when connecting to local
+/// service emulators that do not enforce authentication.
 struct AnonymousCredentials: CredentialsProvider {
   func headers() async throws -> AuthHeaders {
     // Dummy empty implementation for skeleton phase

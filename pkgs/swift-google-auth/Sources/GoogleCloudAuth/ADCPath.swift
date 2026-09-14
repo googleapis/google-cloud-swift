@@ -15,11 +15,22 @@
 import Foundation
 import SystemPackage
 
+/// Represents the location of an Application Default Credentials (ADC) file.
 package enum ADCPath: Equatable, Sendable {
+  /// The path specified explicitly by the `GOOGLE_APPLICATION_CREDENTIALS` environment variable.
   case environmentVariable(FilePath)
+  /// The well-known file location managed by `gcloud auth application-default login`.
   case wellKnown(FilePath)
 }
 
+/// Resolves the candidate ADC file path based on environment variables and platform conventions.
+///
+/// Follows the discovery order defined for [Application Default Credentials](https://cloud.google.com/docs/authentication/application-default-credentials):
+/// 1. If `GOOGLE_APPLICATION_CREDENTIALS` is present in `environment`, returns `.environmentVariable`.
+/// 2. Otherwise, returns `.wellKnown` if the platform-specific well-known directory can be resolved.
+///
+/// - Parameter environment: The environment variable dictionary to inspect.
+/// - Returns: An `ADCPath` if a path is resolved, or `nil` if no candidate file path is available.
 package func resolveADCPath(
   environment: [String: String] = ProcessInfo.processInfo.environment
 ) -> ADCPath? {
@@ -40,6 +51,12 @@ package func resolveADCPath(
   return nil
 }
 
+/// Resolves the well-known ADC file path on Windows according to [AIP-4113](https://google.aip.dev/auth/4113).
+///
+/// Expected path: `%APPDATA%\gcloud\application_default_credentials.json`.
+///
+/// - Parameter environment: The environment variable dictionary containing `%APPDATA%`.
+/// - Returns: The resolved `FilePath`, or `nil` if `APPDATA` is not set.
 package func resolveWellKnownADCPathWindows(
   environment: [String: String] = ProcessInfo.processInfo.environment
 ) -> FilePath? {
@@ -52,6 +69,12 @@ package func resolveWellKnownADCPathWindows(
   return path
 }
 
+/// Resolves the well-known ADC file path on POSIX platforms according to [AIP-4110](https://google.aip.dev/auth/4110) and [AIP-4113](https://google.aip.dev/auth/4113).
+///
+/// Expected path: `$HOME/.config/gcloud/application_default_credentials.json`.
+///
+/// - Parameter environment: The environment variable dictionary containing `$HOME`.
+/// - Returns: The resolved `FilePath`, or `nil` if `HOME` is not set.
 package func resolveWellKnownADCPathPOSIX(
   environment: [String: String] = ProcessInfo.processInfo.environment
 ) -> FilePath? {

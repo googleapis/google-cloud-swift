@@ -17,9 +17,16 @@ import Foundation
 /// Represents any error occurring during credentials resolution or initialization.
 public enum CredentialsError: Error, Sendable {
   /// Indicates that the requested operation or credential type is not supported by the current backend.
+  ///
+  /// Examples include attempting to use Authorized User credentials in a custom universe domain
+  /// (user accounts are only supported in the default `googleapis.com` universe), requesting unsupported
+  /// external credential source types, or attempting to use service account impersonation before backend support is enabled.
   case notSupported(String)
 
-  /// Indicates a failure while parsing or decoding configuration data (e.g., malformed JSON key).
+  /// Indicates a failure while parsing, decoding, or validating configuration data.
+  ///
+  /// Examples include malformed Service Account or Authorized User JSON key files, missing required fields
+  /// (such as `client_email` or `private_key`), invalid RSA private key PEM formatting, or invalid STS response payloads.
   case parseError(String)
 
   /// Application Default Credentials (ADC) cannot retrieve an access token.

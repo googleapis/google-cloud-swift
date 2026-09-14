@@ -17,17 +17,50 @@ import Foundation
   import FoundationNetworking
 #endif
 
+/// A `TokenProvider` that fetches short-lived OAuth 2.0 access tokens from the Google Cloud Metadata Service.
+///
+/// The metadata service is available on Compute Engine VMs, GKE pods, Cloud Run instances, and other
+/// GCP compute environments. It exposes an HTTP endpoint at `/computeMetadata/v1/instance/service-accounts/default/token`
+/// that issues access tokens for the instance's attached default service account.
+///
+/// All requests must include the `Metadata-Flavor: Google` HTTP header to prevent SSRF vulnerabilities.
+///
+/// - SeeAlso: [AIP-4115: Metadata Server](https://google.aip.dev/auth/4115)
 struct MDSAccessTokenProvider: TokenProvider, Sendable {
+  /// The base URL of the metadata server endpoint, or `nil` to resolve via environment/default.
   let endpoint: URL?
+
+  /// An optional Google Cloud project ID for quota and billing attribution.
   let quotaProjectID: String?
+
+  /// An optional list of OAuth 2.0 scopes requested for the token.
   let scopes: [String]?
+
+  /// The HTTP client used to execute requests against the metadata server.
   let client: AuthHTTPClient
+
+  /// A boolean indicating whether this provider was instantiated as part of ADC discovery.
   let fromADC: Bool
+
+  /// The retry configuration controlling backoff and retry behavior for transient errors.
   let retryConfiguration: RetryConfiguration?
+
+  /// The system environment variables dictionary, inspected for `GCE_METADATA_HOST`.
   let environment: [String: String]
 
+  /// The canonical base endpoint URL for the Google Cloud Compute Engine metadata server.
   static let defaultEndpoint = "http://metadata.google.internal"
 
+  /// Initializes a new instance of `MDSAccessTokenProvider`.
+  ///
+  /// - Parameters:
+  ///   - endpoint: Custom base URL override for the metadata server.
+  ///   - quotaProjectID: Optional quota project ID to include in headers.
+  ///   - scopes: Optional OAuth 2.0 scopes requested for the token.
+  ///   - retryConfiguration: Retry policy configuration for network requests.
+  ///   - client: HTTP client instance.
+  ///   - fromADC: Set to `true` if instantiated during ADC resolution.
+  ///   - environment: Process environment dictionary.
   init(
     endpoint: URL? = nil,
     quotaProjectID: String? = nil,
@@ -46,6 +79,10 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
     self.environment = environment
   }
 
+  /// Determines whether an HTTP or network error encountered while contacting the metadata server is retryable.
+  ///
+  /// - Parameter error: The error to evaluate.
+  /// - Returns: `true` for HTTP 5xx, 429, 408, or network-level errors; `false` for 4xx client errors.
   static func isRetryable(_ error: Error) -> Bool {
     if let authError = error as? AuthHTTPError, let status = authError.statusCode {
       return status >= 500 || status == 429 || status == 408
@@ -53,6 +90,13 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
     return true
   }
 
+  /// Fetches a fresh OAuth 2.0 access token from the metadata server.
+  ///
+  /// Resolves the base URL using `endpoint`, `GCE_METADATA_HOST`, or `defaultEndpoint`, Appends the token path
+  /// `/computeMetadata/v1/instance/service-accounts/default/token`, and includes the required `Metadata-Flavor: Google` header.
+  ///
+  /// - Returns: A valid `Token` containing the access token string and expiration date.
+  /// - Throws: `CredentialsError.cannotFetchToken` if the metadata server is unreachable or returns an error.
   func fetchToken() async throws -> Token {
     let hostEnv = self.environment["GCE_METADATA_HOST"]
 

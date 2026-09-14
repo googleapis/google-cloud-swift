@@ -15,17 +15,34 @@
 import Foundation
 import SystemPackage
 
+/// The outcome of loading Application Default Credentials (ADC) from the local filesystem.
 package enum ADCContents: Equatable, Sendable {
+  /// The raw file content data loaded from disk.
   case contents(Data)
+  /// No credential file was found in standard locations, signaling fallback to the Metadata Server (MDS).
   case fallbackToMds
 }
 
+/// Errors occurring during the resolution or loading of Application Default Credentials.
 package enum ADCResolverError: Error, Equatable {
+  /// The credential file was not found. If `isEnvironmentOverride` is `true`, the path came from `GOOGLE_APPLICATION_CREDENTIALS`.
   case fileNotFound(path: String, isEnvironmentOverride: Bool)
+  /// The credential file contents could not be parsed as valid JSON.
   case invalidFormat
+  /// The credential JSON contains an unsupported `type` field value.
   case unsupportedType(String)
 }
 
+/// Loads the Application Default Credentials file content if available, or signals fallback to the Metadata Server.
+///
+/// Follows the error semantics defined for [Application Default Credentials](https://cloud.google.com/docs/authentication/application-default-credentials):
+/// - If `GOOGLE_APPLICATION_CREDENTIALS` is set but points to a non-existent or unreadable file,
+///   throws `ADCResolverError.fileNotFound(..., isEnvironmentOverride: true)` immediately rather than falling back.
+/// - If the well-known file location does not exist, returns `.fallbackToMds`.
+///
+/// - Parameter environment: The environment dictionary to inspect.
+/// - Returns: An `ADCContents` value containing either raw file data or a fallback signal.
+/// - Throws: An `ADCResolverError` if an environment-specified file cannot be found or read.
 package func loadADC(
   environment: [String: String] = ProcessInfo.processInfo.environment
 ) throws -> ADCContents {

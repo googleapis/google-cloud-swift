@@ -14,14 +14,18 @@
 
 import Foundation
 
-/// Creates credentials backed by an API key.
+/// An authentication provider backed by a Google Cloud API key.
 ///
-/// An API key is a simple encrypted string that you can use when calling Google Cloud APIs. When you use API keys in
-/// your applications, ensure that they are kept secure during both storage and transmission.
+/// An [API Key](https://cloud.google.com/docs/authentication/api-keys-use) is an encrypted string used
+/// to authenticate calls into Google Cloud APIs. Unlike user or service account credentials, API keys do
+/// not identify a [principal](https://cloud.google.com/iam/docs/overview#principals); instead, they attribute
+/// requests to a specific Google Cloud project for billing and quota purposes.
 ///
-/// API keys associate the request with a Google Cloud project for billing and quota purposes. Note that only some
-/// Cloud APIs support API keys. Consult the documentation of the API you intend to use before attempting to use
-/// API keys with it.
+/// When using API keys in your application:
+/// - Keep API keys secure during storage and transmission.
+/// - The key is sent to the service using the `x-goog-api-key` HTTP request header.
+/// - Note that only select Google Cloud APIs support API keys; many require full OAuth 2.0 credentials.
+///   Consult the documentation for the specific API before using API keys.
 struct ApiKeyCredentials: CredentialsProvider, Sendable, CustomDebugStringConvertible {
   private let apiKey: String
 

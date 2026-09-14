@@ -15,22 +15,29 @@
 import Foundation
 import struct AsyncHTTPClient.HTTPClientResponse
 
-/// Represents any error occurring during an authentication HTTP request.
+/// Represents errors occurring during an HTTP request to an authentication or token endpoint.
+///
+/// Captures HTTP status failures, transport and network errors, payload decoding errors, and invalid UTF-8 data
+/// encountered when communicating with Google Cloud token servers, STS, or the Compute Engine metadata server.
 enum AuthHTTPError: Error, Sendable {
-  /// The server returned a non-2xx status code.
+  /// The server returned an HTTP status code outside the 200–299 range (e.g. 400, 401, 403, 429, 500, 503).
   case unsuccessfulResponse(response: HTTPClientResponse)
-  /// A transport-level error occurred (e.g., timeout, connection lost).
+
+  /// A transport-level or network I/O error occurred (e.g., DNS resolution failure, connection timeout, connection reset).
   case transportError(URLError)
-  /// A decoding error occurred while parsing the response.
+
+  /// A decoding error occurred while parsing the response payload into the expected data model.
   case decodingError(error: any Error & Sendable)
-  /// An unexpected or unknown error occurred.
+
+  /// An unexpected or uncategorized error occurred during request execution.
   case unknown(any Error & Sendable)
-  /// Failed to decode the response body as a UTF-8 string.
+
+  /// Failed to decode the response body as a valid UTF-8 plain-text string.
   case invalidUTF8Response
 }
 
 extension AuthHTTPError {
-  /// The underlying URLError if this is a transport-level error.
+  /// The underlying `URLError` if this is a transport-level error (`.transportError`), or `nil` otherwise.
   var urlError: URLError? {
     switch self {
     case .transportError(let error):
@@ -40,7 +47,7 @@ extension AuthHTTPError {
     }
   }
 
-  /// The HTTP status code if this is an unsuccessful response.
+  /// The HTTP status code integer if this is an unsuccessful response (`.unsuccessfulResponse`), or `nil` otherwise.
   var statusCode: UInt? {
     switch self {
     case .unsuccessfulResponse(let response):
@@ -76,7 +83,7 @@ extension AuthHTTPError {
     }
   }
 
-  /// The HTTP response headers as a string map if this is an unsuccessful response.
+  /// The HTTP response headers as a string map if this is an unsuccessful response (`.unsuccessfulResponse`), or `nil` otherwise.
   var headers: [String: String]? {
     switch self {
     case .unsuccessfulResponse(let response):

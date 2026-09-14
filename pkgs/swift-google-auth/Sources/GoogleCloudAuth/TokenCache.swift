@@ -44,17 +44,28 @@ protocol TokenProvider: Sendable {
   func fetchToken() async throws -> Token
 }
 
+/// An abstraction over time measurement used by `TokenCache`.
+///
+/// Decouples cache scheduling from the wall clock, enabling deterministic unit testing of
+/// token caching, proactive refresh, and expiration semantics without sleeping.
 protocol TimeSource: Sendable {
+  /// The current wall-clock date and time.
   var now: Date { get }
 }
 
+/// The standard production implementation of `TimeSource`, returning the current system date via `Date()`.
 struct SystemTimeSource: TimeSource {
+  /// The current system date and time.
   var now: Date { Date() }
 }
 
+/// Conversion factor between attoseconds and seconds (1e18).
 package let attosecondsPerSecond: Double = 1e18
 
+/// Default proactive refresh slack (4 minutes). Proactive refresh begins when a token has less than this duration remaining.
 private let defaultNormalRefreshSlack: Duration = .seconds(240)
+
+/// Default transient retry slack (10 seconds). The cache waits this duration (with jitter) after a transient error before retrying.
 private let defaultShortRefreshSlack: Duration = .seconds(10)
 
 /// A thread-safe generic actor that caches and refreshes tokens on-demand.
@@ -77,8 +88,10 @@ private let defaultShortRefreshSlack: Duration = .seconds(10)
 /// ### Memory Safety
 /// The background task captures `self` weakly. It only holds a strong reference during state evaluation and releases it before sleeping on the `Clock`. This guarantees `TokenCache` can `deinit` cleanly when out of scope, which automatically cancels the background task.
 actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
+  /// A closure that generates a randomized sleep duration within a given range to prevent synchronized requests.
   typealias JitterGenerator = @Sendable (ClosedRange<Duration>) -> Duration
 
+  /// The default full-jitter generator, uniformly distributing delays across the provided range.
   static var defaultJitter: JitterGenerator {
     return { range in
       let lower = range.lowerBound
@@ -113,6 +126,15 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
 
   /// Initializes the token cache with a provider, a scheduler clock, and refresh configurations.
   /// Immediately spawns the proactive background refresh loop.
+  ///
+  /// - Parameters:
+  ///   - provider: The underlying `TokenProvider` that fetches fresh tokens.
+  ///   - clock: The scheduler clock conforming to `Clock` with `Duration` intervals.
+  ///   - timeSource: The time source used to evaluate token expiration (defaults to `SystemTimeSource`).
+  ///   - normalRefreshSlack: Lead time before expiration at which proactive refresh starts (defaults to 4 minutes).
+  ///   - shortRefreshSlack: Backoff delay after a transient refresh error before retrying (defaults to 10 seconds).
+  ///   - jitter: Optional jitter generator applied to refresh and retry sleep durations.
+  ///   - isRetryable: A closure determining whether an error from the provider is transient and retryable.
   init(
     provider: any TokenProvider,
     clock: C,

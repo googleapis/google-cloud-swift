@@ -17,19 +17,61 @@ import Foundation
   import FoundationNetworking
 #endif
 
-/// Coordinates the asynchronous resolution of the raw subject token and its subsequent STS token exchange.
+/// Coordinates the asynchronous resolution of a raw subject token and its subsequent STS token exchange.
+///
+/// Executes a two-step token acquisition workflow:
+/// 1. Calls `SubjectTokenProvider.subjectToken()` to obtain a raw third-party identity token
+///    (e.g., OIDC JWT, SAML assertion, or Apple Account identity token).
+/// 2. Posts the subject token to Google's Security Token Service (STS) endpoint using
+///    an [RFC 8693](https://datatracker.ietf.org/doc/html/rfc8693) token exchange grant,
+///    receiving a short-lived Google Cloud access token.
+///
+/// - SeeAlso: [RFC 8693: OAuth 2.0 Token Exchange](https://datatracker.ietf.org/doc/html/rfc8693)
+/// - SeeAlso: [AIP-4117: Workforce and Workload Identity Federation](https://google.aip.dev/auth/4117)
 struct ExternalAccountTokenProvider: TokenProvider, Sendable {
+  /// The underlying supplier providing raw third-party subject tokens.
   private let subjectTokenProvider: any SubjectTokenProvider
+
+  /// The STS client executing the RFC 8693 token exchange HTTP request.
   private let stsHandler: STSHandler
+
+  /// The Security Token Service endpoint URL (typically `https://sts.googleapis.com/v1/token`).
   private let tokenURL: URL
+
+  /// The URI identifier specifying the format of the subject token (e.g. `urn:ietf:params:oauth:token-type:jwt`).
   private let subjectTokenType: String
+
+  /// The STS audience resource name identifying the target workload or workforce identity pool provider.
   private let audience: String
+
+  /// The optional list of OAuth 2.0 scopes requested for the federated access token.
   private let scopes: [String]
+
+  /// The client project ID required for billing and quota attribution when using workforce pools.
   private let workforcePoolUserProject: String?
+
+  /// An optional client ID for authenticating with confidential workforce identity pools.
   private let clientID: String?
+
+  /// An optional client secret for authenticating with confidential workforce identity pools.
   private let clientSecret: String?
+
+  /// The retry configuration controlling backoff and attempt limits for token exchange requests.
   private let retryConfiguration: RetryConfiguration?
 
+  /// Initializes a new instance of `ExternalAccountTokenProvider`.
+  ///
+  /// - Parameters:
+  ///   - subjectTokenProvider: Supplier providing third-party subject tokens.
+  ///   - tokenURL: Security Token Service endpoint URL.
+  ///   - subjectTokenType: STS token type identifier URI.
+  ///   - audience: STS audience resource name.
+  ///   - scopes: Requested OAuth 2.0 scopes.
+  ///   - workforcePoolUserProject: Quota/billing project ID for workforce pools.
+  ///   - clientID: Optional client ID for workforce pool authentication.
+  ///   - clientSecret: Optional client secret for workforce pool authentication.
+  ///   - retryConfiguration: Optional retry configuration.
+  ///   - httpClient: HTTP client instance.
   init(
     subjectTokenProvider: any SubjectTokenProvider,
     tokenURL: URL,
@@ -54,6 +96,10 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
     self.stsHandler = STSHandler(httpClient: httpClient)
   }
 
+  /// Fetches a fresh Google Cloud access token by retrieving a subject token and exchanging it via STS.
+  ///
+  /// - Returns: A valid `Token` containing the exchanged access token string and expiration date.
+  /// - Throws: An error if subject token acquisition fails or STS rejects the exchange request.
   func fetchToken() async throws -> Token {
     let subjectToken = try await subjectTokenProvider.subjectToken()
 
@@ -85,6 +131,10 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
     )
   }
 
+  /// Evaluates whether an error encountered during STS token exchange is eligible for retry.
+  ///
+  /// - Parameter error: The error encountered.
+  /// - Returns: `true` for transient HTTP status codes (5xx, 429, 408) or network errors; `false` otherwise.
   static func isRetryable(_ error: Error) -> Bool {
     if let authError = error as? AuthHTTPError, let status = authError.statusCode {
       return status >= 500 || status == 429 || status == 408
@@ -93,21 +143,74 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
   }
 }
 
-/// Credentials backing Workforce Identity Federation (OIDC / Apple WIF) external accounts.
+/// Credentials backing [Workload Identity Federation](https://cloud.google.com/iam/docs/workload-identity-federation)
+/// and [Workforce Identity Federation](https://cloud.google.com/iam/docs/workforce-identity-federation).
+///
+/// External account credentials allow applications to access Google Cloud resources using credentials
+/// from external identity providers (such as AWS, Azure Active Directory, Okta, Ping, or Apple Account)
+/// without downloading or managing long-lived Google Cloud service account keys.
+///
+/// ### Architecture
+/// 1. A third-party credential supplier (`SubjectTokenProvider`) supplies a raw identity token.
+/// 2. The token is sent to the Google Cloud Security Token Service (STS) endpoint via
+///    [RFC 8693 Token Exchange](https://datatracker.ietf.org/doc/html/rfc8693) to obtain a short-lived
+///    Google Cloud federated access token.
+/// 3. If accessing workforce pools, `workforcePoolUserProject` specifies the Google Cloud project used
+///    for quota and billing attribution.
+///
+/// - SeeAlso: [Workforce Identity Federation Documentation](https://cloud.google.com/iam/docs/workforce-identity-federation)
+/// - SeeAlso: [AIP-4117: Workforce and Workload Identity Federation](https://google.aip.dev/auth/4117)
 struct ExternalAccountCredentials: CredentialsProvider, Sendable {
+  /// The token cache handling proactive refresh and jittered expiration management.
   private let cache: TokenCache<ContinuousClock>
 
+  /// The supplier providing third-party subject tokens.
   let subjectTokenProvider: any SubjectTokenProvider
+
+  /// The Security Token Service audience identifying the workforce or workload pool provider.
   let audience: String
+
+  /// The URI specifying the format of the subject token.
   let subjectTokenType: String
+
+  /// The Security Token Service endpoint URL.
   let tokenURL: URL
+
+  /// An optional client ID for workforce identity pool authentication.
   let clientID: String?
+
+  /// An optional client secret for workforce identity pool authentication.
   let clientSecret: String?
+
+  /// An optional service account email to impersonate after initial STS exchange.
   let targetPrincipal: String?
+
+  /// The project ID to attribute quota and billing to when accessing workforce pools.
   let workforcePoolUserProject: String?
+
+  /// The requested OAuth 2.0 scopes.
   let scopes: [String]
+
+  /// The target Google Cloud universe domain.
   let universeDomain: String?
 
+  /// Initializes a new instance of `ExternalAccountCredentials`.
+  ///
+  /// - Parameters:
+  ///   - credentialSource: The source supplier for subject tokens (e.g. `.programmatic(provider)`).
+  ///   - audience: The STS audience resource name.
+  ///   - subjectTokenType: The STS token type URI.
+  ///   - tokenURL: The STS token endpoint URL.
+  ///   - clientID: Optional client ID for workforce pool authentication.
+  ///   - clientSecret: Optional client secret for workforce pool authentication.
+  ///   - targetPrincipal: Optional service account to impersonate (currently unsupported).
+  ///   - workforcePoolUserProject: Optional quota project for workforce identity pools.
+  ///   - scopes: Array of requested OAuth 2.0 scopes.
+  ///   - universeDomain: Target universe domain.
+  ///   - retryConfiguration: Optional retry policy configuration.
+  ///   - httpClient: HTTP client instance.
+  /// - Throws: `CredentialsError.parseError` if parameters are invalid or `CredentialsError.notSupported`
+  ///   if unsupported features (such as `targetPrincipal` impersonation) are specified.
   init(
     credentialSource: ExternalAccountConfig.CredentialSource,
     audience: String,
@@ -178,6 +281,13 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
     )
   }
 
+  /// Returns authorization headers containing the federated access token.
+  ///
+  /// Includes `Authorization: <token_type> <access_token>` and, if configured,
+  /// `x-goog-user-project: <workforcePoolUserProject>`.
+  ///
+  /// - Returns: An array of key-value header pairs.
+  /// - Throws: An error if token resolution fails.
   func headers() async throws -> AuthHeaders {
     let token = try await cache.token()
     var headers: AuthHeaders = [("Authorization", "\(token.tokenType) \(token.accessToken)")]
@@ -187,12 +297,21 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
     return headers
   }
 
+  /// Retrieves the configured Google Cloud universe domain.
+  ///
+  /// - Returns: The universe domain string, or `nil` if using the default `googleapis.com`.
   func universeDomain() async -> String? {
     return self.universeDomain
   }
 }
 
 /// Helper function to validate if the audience refers to a global workforce pool.
+///
+/// Workforce pool audience strings follow the pattern:
+/// `//iam.googleapis.com/locations/{location}/workforcePools/{pool}/providers/{provider}`
+///
+/// - Parameter audience: The audience string to validate.
+/// - Returns: `true` if the audience represents a valid workforce pool format, `false` otherwise.
 private func isValidWorkforcePoolAudience(_ audience: String) -> Bool {
   var path = audience
   if path.hasPrefix("//iam.googleapis.com/") {
