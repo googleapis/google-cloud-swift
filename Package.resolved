@@ -1,5 +1,5 @@
 {
-  "originHash" : "dc065746b6b462751bdaa6ad1c0e07b735065de60977bc421b6f4806d8650de5",
+  "originHash" : "e94b5dc982b85e1ab8899d3a00f5b2fc95a42af2b51420bf07d8bbc34a0a75f1",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -161,87 +161,6 @@
       "state" : {
         "revision" : "dc8121fdd2b444c97d6b0534e8ad4ddecbe0d5f4",
         "version" : "1.0.0"
-      }
-    },
-    {
-      "identity" : "swift-google-api",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/googleapis/swift-google-api",
-      "state" : {
-        "revision" : "fd01e5b09f4adb9818b493aa10e52d90fc8ec34d",
-        "version" : "0.1.0-preview"
-      }
-    },
-    {
-      "identity" : "swift-google-auth",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/googleapis/swift-google-auth",
-      "state" : {
-        "revision" : "2b34a4234e34b9512085ba39e58a4e4c501670af",
-        "version" : "0.0.0-preview"
-      }
-    },
-    {
-      "identity" : "swift-google-cloud-location",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/googleapis/swift-google-cloud-location",
-      "state" : {
-        "revision" : "5a0e6481c0a13234bf29206f738092fddade2694",
-        "version" : "0.1.0-preview"
-      }
-    },
-    {
-      "identity" : "swift-google-gax",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/googleapis/swift-google-gax",
-      "state" : {
-        "revision" : "ee592dea2019dd79d571b3383b0719e22f14bc10",
-        "version" : "0.0.0-preview"
-      }
-    },
-    {
-      "identity" : "swift-google-iam-v1",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/googleapis/swift-google-iam-v1",
-      "state" : {
-        "revision" : "7e03299c4d77428674cf4ddec2ed50a2fed440d5",
-        "version" : "0.1.0-preview"
-      }
-    },
-    {
-      "identity" : "swift-google-longrunning",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/googleapis/swift-google-longrunning",
-      "state" : {
-        "revision" : "d1c65496431b2cfa2a03f29c77f8019351a79a4c",
-        "version" : "0.1.0-preview"
-      }
-    },
-    {
-      "identity" : "swift-google-rpc",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/googleapis/swift-google-rpc",
-      "state" : {
-        "revision" : "b3a2eda26b23b2538cd7046bf11b30721e1a27e3",
-        "version" : "0.1.0-preview"
-      }
-    },
-    {
-      "identity" : "swift-google-type",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/googleapis/swift-google-type",
-      "state" : {
-        "revision" : "b7f9b4b5c86d588e6d23cc1de1247e44daaeda5a",
-        "version" : "0.1.0-preview"
-      }
-    },
-    {
-      "identity" : "swift-google-wkt",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/googleapis/swift-google-wkt",
-      "state" : {
-        "revision" : "61ba2ccb1c86beeb014a247536c5946c28ddb141",
-        "version" : "0.1.0-preview"
       }
     },
     {
