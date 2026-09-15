@@ -38,6 +38,8 @@ flags=(
     -Xswiftc DeprecatedDeclaration
     --scratch-path "${REPO_ROOT}/.build-cache"
 )
+source "${SCRIPT_DIR}/glinux-flags.sh"
+add_glinux_flags
 source "${SCRIPT_DIR}/package-dependencies.sh"
 
 for dir in "${generated[@]}"; do

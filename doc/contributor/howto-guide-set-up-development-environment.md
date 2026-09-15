@@ -382,7 +382,7 @@ Target: arm64-apple-macosx15.0
 A correct installation should look something like this:
 
 ```
-Apple Swift version 6.3.1 (swift-6.3.1-RELEASE)
+Apple Swift version 6.4 (swift-6.4-RELEASE)
 Target: arm64-apple-macosx15.0
 ```
 

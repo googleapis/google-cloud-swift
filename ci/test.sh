@@ -39,6 +39,8 @@ flags=(
     # Use the versions from `Package.resolved`.
     --disable-automatic-resolution
 )
+source "${SCRIPT_DIR}/glinux-flags.sh"
+add_glinux_flags
 source "${SCRIPT_DIR}/package-dependencies.sh"
 
 for dir in "${packages[@]}"; do

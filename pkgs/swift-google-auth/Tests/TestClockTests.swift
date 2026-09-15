@@ -32,7 +32,7 @@ private actor Counter {
     let start = clock.now
     let completed = Counter()
 
-    Task {
+    let task = Task {
       try await clock.sleep(until: start.advanced(by: .seconds(3)))
       await completed.increment()
     }
@@ -48,9 +48,7 @@ private actor Counter {
     clock.advance(by: .seconds(1))
 
     // Wait for background task to complete
-    while await completed.count < 1 {
-      try await Task.sleep(for: .seconds(0.05))
-    }
+    try await task.value
 
     #expect(await completed.count == 1)
   }

@@ -8,13 +8,13 @@
 
 <!-- reference links at the top for Swift DocC -->
 
-The Swift client libraries support Swift 6.3 and higher. This document provides
+The Swift client libraries support Swift 6.2 and higher. This document provides
 additional information and best practices to keep your toolchain and libraries
 up-to-date.
 
 ## Minimum supported Swift version
 
-The Swift client libraries support Swift 6.3 and higher. For more information on
+The Swift client libraries support Swift 6.2 and higher. For more information on
 Cloud client libraries, see [Client libraries explained].
 
 Our Swift client libraries increment the major version when dropping
