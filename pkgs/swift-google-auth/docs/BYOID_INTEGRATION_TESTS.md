@@ -115,23 +115,42 @@ The integration tests check for the presence of the following environment variab
 
 ### 4.2 Execute the Test
 
-Run the targeted integration test suite with the environment variables exported:
+Before running root tests, link local package dependencies using `ci/package-dependencies.sh`:
 
+```bash
+source ci/package-dependencies.sh
+edit_package_dependencies .
+```
+
+#### Run Google OIDC Test:
 ```bash
 GOOGLE_CLOUD_PROJECT="rust-external-account-joonix" \
 GOOGLE_WORKLOAD_IDENTITY_OIDC_AUDIENCE="//iam.googleapis.com/projects/1092239828259/locations/global/workloadIdentityPools/google-idp/providers/google-idp" \
 EXTERNAL_ACCOUNT_SERVICE_ACCOUNT_EMAIL="testsa@rust-external-account-joonix.iam.gserviceaccount.com" \
-swift test --filter ExternalAccountIntegrationTests
+swift test -q --filter ExternalAccountIntegrationTests/testGoogleOIDCWorkloadIdentityFederation
+```
+
+#### Run Apple ID Test:
+```bash
+GOOGLE_CLOUD_PROJECT="rust-external-account-joonix" \
+APPLE_WORKLOAD_IDENTITY_OIDC_AUDIENCE="//iam.googleapis.com/projects/1092239828259/locations/global/workloadIdentityPools/google-idp/providers/apple-idp" \
+APPLE_ID_TOKEN="<PASTE_FRESH_APPLE_ID_TOKEN>" \
+swift test -q --filter ExternalAccountIntegrationTests/testAppleIDWorkloadIdentityFederation
+```
+
+When finished, restore the root package manifest:
+```bash
+restore_package_dependencies .
 ```
 
 ### 4.3 Expected Output
 
 ```text
 ◇ Suite "External Account (BYOID) Integration Tests" started.
-◇ Test "Exchanges Google OIDC token via STS and verifies downstream client access" started.
-✔ Test "Exchanges Google OIDC token via STS and verifies downstream client access" passed after 1.842 seconds.
-✔ Suite "External Account (BYOID) Integration Tests" passed after 1.843 seconds.
-✔ Test run with 1 test in 1 suite passed after 1.843 seconds.
+◇ Test "Exchanges Google OIDC token via STS and verifies access token" started.
+✔ Test "Exchanges Google OIDC token via STS and verifies access token" passed after 0.558 seconds.
+✔ Suite "External Account (BYOID) Integration Tests" passed after 0.560 seconds.
+✔ Test run with 1 test in 1 suite passed after 0.560 seconds.
 ```
 
 ______________________________________________________________________
