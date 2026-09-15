@@ -39,6 +39,9 @@ public enum MultipleBindings {
 
     logger.info("Testing single-binding method structured error")
     await testSingleBindingThrowsStructuredError(client: client, logger: logger)
+
+    logger.info("Testing dot validation error")
+    await testDotValidationThrowsBindingError(client: client, logger: logger)
   }
 
   static func testEmptyFieldThrowsBindingError(
@@ -189,6 +192,44 @@ public enum MultipleBindings {
       #expect(
         bindingError.description
           == "field 'name' needs to be set and match the template: 'projects/*'")
+    } catch {
+      Issue.record("Expected RequestError.binding, but got: \(error)")
+    }
+  }
+
+  static func testDotValidationThrowsBindingError(
+    client: SecretManagerServiceClient, logger: Logger
+  ) async {
+    // 1. Single wildcard '.' throws BindingError
+    do {
+      _ = try await client.getSecret(
+        request: .init().with {
+          $0.name = "projects/p/secrets/."
+        })
+      Issue.record("Expected getSecret with '.' to throw RequestError.binding, but it succeeded")
+    } catch let RequestError.binding(bindingError) {
+      logger.info("Caught expected BindingError for dot validation: \(bindingError)")
+      #expect(bindingError.description == "Invalid value . for name")
+      #expect(bindingError.paths.count == 1)
+      #expect(bindingError.paths[0].substitutions[0].fieldName == "name")
+      #expect(bindingError.paths[0].substitutions[0].problem == .invalidValue(actual: "."))
+    } catch {
+      Issue.record("Expected RequestError.binding, but got: \(error)")
+    }
+
+    // 2. Single wildcard '..' throws BindingError
+    do {
+      _ = try await client.getSecret(
+        request: .init().with {
+          $0.name = "projects/p/secrets/.."
+        })
+      Issue.record("Expected getSecret with '..' to throw RequestError.binding, but it succeeded")
+    } catch let RequestError.binding(bindingError) {
+      logger.info("Caught expected BindingError for double-dot validation: \(bindingError)")
+      #expect(bindingError.description == "Invalid value .. for name")
+      #expect(bindingError.paths.count == 1)
+      #expect(bindingError.paths[0].substitutions[0].fieldName == "name")
+      #expect(bindingError.paths[0].substitutions[0].problem == .invalidValue(actual: ".."))
     } catch {
       Issue.record("Expected RequestError.binding, but got: \(error)")
     }
