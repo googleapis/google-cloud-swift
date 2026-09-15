@@ -2,8 +2,8 @@
 
 The Official Google Cloud Server-Side Swift SDK allows you to build and manage
 backend services on Google Cloud using the Swift programming language. This SDK
-is designed for developers building enterprise server infrastructure in Linux or
-Windows environments.
+is designed for developers building enterprise server infrastructure on Linux
+environments.
 
 ## Full-stack Swift development
 
@@ -32,7 +32,7 @@ Google provides two distinct Swift SDKs to serve different development needs.
 | Feature | Firebase Apple SDKs | Google Cloud Server-Side Swift SDK |
 | :---- | :---- | :---- |
 | **Primary Use** | Client-side mobile and web development. | Backend server-side infrastructure. |
-| **Environment** | Apple client ecosystem (iOS, watchOS, etc.). | Deploy on Server environments (Linux, Windows). Develop on Linux, macOS or Windows. |
+| **Environment** | Apple client ecosystem (iOS, watchOS, etc.). | Deploy on Server environments (Linux). Develop on Linux, or macOS. |
 | **Authentication** | User-based authentication and security rules. | Service Accounts, ADC, and Workload Identity Federation. |
 | **Service Scope** | Mobile-centric tools (Analytics, Firestore, etc.). | 140+ GCP APIs (Storage, GKE, Compute, etc.). |
 
