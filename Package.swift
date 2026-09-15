@@ -174,6 +174,10 @@ let package = Package(
       dependencies: [
         .product(name: "GoogleCloudGax", package: "swift-google-gax"),
         .product(name: "InMemoryLogging", package: "swift-log"),
+        .product(name: "NIOConcurrencyHelpers", package: "swift-nio"),
+        .product(name: "NIOCore", package: "swift-nio"),
+        .product(name: "NIOHTTP1", package: "swift-nio"),
+        .product(name: "NIOPosix", package: "swift-nio"),
       ],
     ),
     .target(
@@ -196,6 +200,21 @@ let package = Package(
         .product(name: "Logging", package: "swift-log"),
       ],
       path: "Tests/StorageSamplesDriver",
+    ),
+    .testTarget(
+      name: "RequestBody",
+      dependencies: [
+        .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
+        .product(name: "GoogleCloudGax", package: "swift-google-gax"),
+        .product(name: "GoogleCloudWKT", package: "swift-google-wkt"),
+        .product(name: "GoogleIAMV1", package: "swift-google-iam-v1"),
+        .product(
+          name: "GoogleCloudSecretManagerV1", package: "swift-google-cloud-secretmanager-v1"),
+        .product(name: "GoogleCloudBuildV1", package: "swift-google-devtools-cloudbuild-v1"),
+        .product(name: "NIOHTTP1", package: "swift-nio"),
+        "GoogleCloudTestHelpers",
+      ],
+      exclude: ["README.md"],
     ),
   ]
 )
