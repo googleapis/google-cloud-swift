@@ -14,10 +14,18 @@
 
 # Swift creates many files:
 .build/
-Packages/*/.build/
 pkgs/*/.build/
 .swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
 .swiftpm/configuration/
+
+# `swift package edit` checks the edited dependencies out here. macOS is
+# case-insensitive and treats `packages/` and `Packages/` as the same
+# directory, so match both spellings to get the same result on Linux.
+[Pp]ackages/
+
+# Some of the CI scripts redirect the build and test output to these files.
+.build.log
+.test.log
 
 */**/Package.resolved
 
