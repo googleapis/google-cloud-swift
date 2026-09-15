@@ -54,7 +54,8 @@ extension Clients {
         }
         throw GoogleCloudGax.RequestError.binding(GoogleCloudGax.BindingError(paths: paths))
       }()
-      var req = try await self.inner.newRequest(path: path, query: query, options: options)
+      var req = try await self.inner.newRequest(
+        percentEncodedPath: path, query: query, options: options)
       configure(&req)
       req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
       try req.setBody(json: request)

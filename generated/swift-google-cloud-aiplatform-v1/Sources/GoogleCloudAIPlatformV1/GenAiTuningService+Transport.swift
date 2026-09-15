@@ -46,11 +46,12 @@
           ) in
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.parent as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "parent")
             else {
               return nil
             }
@@ -77,7 +78,8 @@
           }
           throw GoogleCloudGax.RequestError.binding(GoogleCloudGax.BindingError(paths: paths))
         }()
-        var req = try await self.inner.newRequest(path: path, query: query, options: options)
+        var req = try await self.inner.newRequest(
+          percentEncodedPath: path, query: query, options: options)
         configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         if let body = request.tuningJob {
@@ -97,12 +99,13 @@
           ) in
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tuningJobs/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -130,7 +133,8 @@
           }
           throw GoogleCloudGax.RequestError.binding(GoogleCloudGax.BindingError(paths: paths))
         }()
-        var req = try await self.inner.newRequest(path: path, query: query, options: options)
+        var req = try await self.inner.newRequest(
+          percentEncodedPath: path, query: query, options: options)
         configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
@@ -147,11 +151,12 @@
           ) in
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.parent as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "parent")
             else {
               return nil
             }
@@ -182,7 +187,8 @@
           }
           throw GoogleCloudGax.RequestError.binding(GoogleCloudGax.BindingError(paths: paths))
         }()
-        var req = try await self.inner.newRequest(path: path, query: query, options: options)
+        var req = try await self.inner.newRequest(
+          percentEncodedPath: path, query: query, options: options)
         configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
@@ -199,12 +205,13 @@
           ) in
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tuningJobs/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -232,7 +239,8 @@
           }
           throw GoogleCloudGax.RequestError.binding(GoogleCloudGax.BindingError(paths: paths))
         }()
-        var req = try await self.inner.newRequest(path: path, query: query, options: options)
+        var req = try await self.inner.newRequest(
+          percentEncodedPath: path, query: query, options: options)
         configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         try req.setBody(json: request)
@@ -250,11 +258,12 @@
           ) in
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.parent as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "parent")
             else {
               return nil
             }
@@ -281,7 +290,8 @@
           }
           throw GoogleCloudGax.RequestError.binding(GoogleCloudGax.BindingError(paths: paths))
         }()
-        var req = try await self.inner.newRequest(path: path, query: query, options: options)
+        var req = try await self.inner.newRequest(
+          percentEncodedPath: path, query: query, options: options)
         configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         try req.setBody(json: request)
@@ -299,8 +309,10 @@
           ) in
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
-                request.name as Swift.String?, matching: [.literal("projects/"), .singleWildcard])
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
+                request.name as Swift.String?,
+                matching: [.literal("projects/"), .singleWildcard],
+                fieldName: "name")
             else {
               return nil
             }
@@ -318,8 +330,10 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
-                request.name as Swift.String?, matching: [.literal("projects/"), .singleWildcard])
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
+                request.name as Swift.String?,
+                matching: [.literal("projects/"), .singleWildcard],
+                fieldName: "name")
             else {
               return nil
             }
@@ -358,7 +372,8 @@
           }
           throw GoogleCloudGax.RequestError.binding(GoogleCloudGax.BindingError(paths: paths))
         }()
-        var req = try await self.inner.newRequest(path: path, query: query, options: options)
+        var req = try await self.inner.newRequest(
+          percentEncodedPath: path, query: query, options: options)
         configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
@@ -375,11 +390,12 @@
           ) in
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -393,11 +409,12 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -436,7 +453,8 @@
           }
           throw GoogleCloudGax.RequestError.binding(GoogleCloudGax.BindingError(paths: paths))
         }()
-        var req = try await self.inner.newRequest(path: path, query: query, options: options)
+        var req = try await self.inner.newRequest(
+          percentEncodedPath: path, query: query, options: options)
         configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
@@ -453,12 +471,13 @@
           ) in
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -472,13 +491,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/entityTypes/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -492,12 +512,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/models/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -511,12 +532,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookRuntimeTemplates/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -530,12 +552,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureOnlineStores/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -549,13 +572,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureOnlineStores/"), .singleWildcard, .literal("/featureViews/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -569,12 +593,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -588,13 +613,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/entityTypes/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -608,12 +634,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/models/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -627,12 +654,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/endpoints/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -646,12 +674,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookRuntimeTemplates/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -665,12 +694,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureOnlineStores/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -684,13 +714,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureOnlineStores/"), .singleWildcard, .literal("/featureViews/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -704,12 +735,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureGroups/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -910,7 +942,8 @@
           }
           throw GoogleCloudGax.RequestError.binding(GoogleCloudGax.BindingError(paths: paths))
         }()
-        var req = try await self.inner.newRequest(path: path, query: query, options: options)
+        var req = try await self.inner.newRequest(
+          percentEncodedPath: path, query: query, options: options)
         configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         try req.setBody(json: request)
@@ -928,12 +961,13 @@
           ) in
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -949,13 +983,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/entityTypes/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -971,12 +1006,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/models/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -992,12 +1028,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookRuntimeTemplates/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -1013,12 +1050,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureOnlineStores/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -1034,13 +1072,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureOnlineStores/"), .singleWildcard, .literal("/featureViews/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -1056,12 +1095,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -1077,13 +1117,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/entityTypes/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -1099,12 +1140,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/models/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -1120,12 +1162,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/endpoints/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -1141,12 +1184,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookRuntimeTemplates/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -1162,12 +1206,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/publishers/"), .singleWildcard, .literal("/models/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -1183,12 +1228,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureOnlineStores/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -1204,13 +1250,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureOnlineStores/"), .singleWildcard, .literal("/featureViews/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -1226,12 +1273,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureGroups/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -1447,7 +1495,8 @@
           }
           throw GoogleCloudGax.RequestError.binding(GoogleCloudGax.BindingError(paths: paths))
         }()
-        var req = try await self.inner.newRequest(path: path, query: query, options: options)
+        var req = try await self.inner.newRequest(
+          percentEncodedPath: path, query: query, options: options)
         configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
@@ -1464,12 +1513,13 @@
           ) in
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -1485,13 +1535,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/entityTypes/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -1507,12 +1558,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/models/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -1528,12 +1580,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookRuntimeTemplates/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -1549,12 +1602,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureOnlineStores/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -1570,13 +1624,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureOnlineStores/"), .singleWildcard, .literal("/featureViews/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -1592,12 +1647,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -1613,13 +1669,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/entityTypes/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -1635,12 +1692,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/models/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -1656,12 +1714,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/endpoints/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -1677,12 +1736,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookRuntimeTemplates/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -1698,12 +1758,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureOnlineStores/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -1719,13 +1780,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureOnlineStores/"), .singleWildcard, .literal("/featureViews/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -1741,12 +1803,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.resource as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureGroups/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "resource")
             else {
               return nil
             }
@@ -1949,7 +2012,8 @@
           }
           throw GoogleCloudGax.RequestError.binding(GoogleCloudGax.BindingError(paths: paths))
         }()
-        var req = try await self.inner.newRequest(path: path, query: query, options: options)
+        var req = try await self.inner.newRequest(
+          percentEncodedPath: path, query: query, options: options)
         configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
@@ -1966,11 +2030,12 @@
           ) in
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -1991,12 +2056,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/agents/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2017,12 +2083,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/apps/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2043,12 +2110,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2069,12 +2137,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/dataItems/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2095,13 +2164,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/savedQueries/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2122,13 +2192,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/annotationSpecs/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2149,13 +2220,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/dataItems/"), .singleWildcard,
                   .literal("/annotations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2176,12 +2248,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/deploymentResourcePools/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2202,12 +2275,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/edgeDevices/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2228,12 +2302,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/endpoints/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2254,12 +2329,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/extensionControllers/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2280,12 +2356,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/extensions/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2306,12 +2383,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2332,13 +2410,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/entityTypes/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2359,13 +2438,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/entityTypes/"),
                   .singleWildcard, .literal("/features/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2386,12 +2466,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/customJobs/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2412,12 +2493,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/dataLabelingJobs/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2438,12 +2520,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/hyperparameterTuningJobs/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2464,12 +2547,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tuningJobs/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2490,12 +2574,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/indexes/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2516,12 +2601,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/indexEndpoints/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2542,12 +2628,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2568,13 +2655,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/artifacts/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2595,13 +2683,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/contexts/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2622,13 +2711,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/executions/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2649,12 +2739,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/modelDeploymentMonitoringJobs/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2675,12 +2766,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/modelMonitors/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2701,12 +2793,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/migratableResources/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2727,12 +2820,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/models/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2753,12 +2847,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/models/"), .singleWildcard, .literal("/evaluations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2779,12 +2874,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookExecutionJobs/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2805,12 +2901,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookRuntimes/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2831,12 +2928,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookRuntimeTemplates/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2857,12 +2955,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/studies/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2883,12 +2982,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/studies/"), .singleWildcard, .literal("/trials/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2909,12 +3009,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/trainingPipelines/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2935,12 +3036,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/persistentResources/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2961,12 +3063,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/pipelineJobs/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -2987,12 +3090,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/ragEngineConfig"),
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3013,12 +3117,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/schedules/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3039,12 +3144,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/specialistPools/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3065,12 +3171,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3091,13 +3198,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3118,13 +3226,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
                   .singleWildcard, .literal("/runs/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3145,14 +3254,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
                   .singleWildcard, .literal("/runs/"), .singleWildcard, .literal("/timeSeries/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3173,13 +3283,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureOnlineStores/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3200,13 +3311,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureOnlineStores/"), .singleWildcard, .literal("/featureViews/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3227,13 +3339,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureGroups/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3254,13 +3367,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureGroups/"), .singleWildcard, .literal("/features/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3281,13 +3395,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureGroups/"), .singleWildcard, .literal("/featureMonitors/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3308,11 +3423,12 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3333,12 +3449,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3359,12 +3476,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/dataItems/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3385,13 +3503,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/savedQueries/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3412,13 +3531,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/annotationSpecs/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3439,13 +3559,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/dataItems/"), .singleWildcard,
                   .literal("/annotations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3466,12 +3587,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/deploymentResourcePools/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3492,12 +3614,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/endpoints/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3518,12 +3641,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3544,13 +3668,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/entityTypes/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3571,13 +3696,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/entityTypes/"),
                   .singleWildcard, .literal("/features/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3598,12 +3724,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/customJobs/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3624,12 +3751,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/dataLabelingJobs/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3650,12 +3778,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/hyperparameterTuningJobs/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3676,12 +3805,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tuningJobs/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3702,12 +3832,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/indexes/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3728,12 +3859,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/indexEndpoints/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3754,12 +3886,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3780,13 +3913,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/artifacts/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3807,13 +3941,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/contexts/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3834,13 +3969,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/executions/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3861,12 +3997,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/modelDeploymentMonitoringJobs/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3887,12 +4024,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/migratableResources/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3913,12 +4051,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/models/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3939,12 +4078,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/models/"), .singleWildcard, .literal("/evaluations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3965,12 +4105,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookExecutionJobs/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -3991,12 +4132,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookRuntimes/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -4017,12 +4159,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookRuntimeTemplates/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -4043,12 +4186,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/reasoningEngines/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -4069,13 +4213,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/reasoningEngines/"), .singleWildcard, .literal("/sessions/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -4096,12 +4241,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/studies/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -4122,12 +4268,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/studies/"), .singleWildcard, .literal("/trials/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -4148,12 +4295,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/trainingPipelines/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -4174,12 +4322,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/persistentResources/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -4200,12 +4349,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/pipelineJobs/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -4226,12 +4376,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/ragEngineConfig"),
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -4252,12 +4403,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/ragCorpora/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -4278,13 +4430,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/ragCorpora/"), .singleWildcard, .literal("/ragFiles/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -4305,12 +4458,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/schedules/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -4331,12 +4485,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/specialistPools/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -4357,12 +4512,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -4383,13 +4539,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -4410,13 +4567,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
                   .singleWildcard, .literal("/runs/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -4437,14 +4595,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
                   .singleWildcard, .literal("/runs/"), .singleWildcard, .literal("/timeSeries/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -4465,13 +4624,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureOnlineStores/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -4492,13 +4652,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureOnlineStores/"), .singleWildcard, .literal("/featureViews/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -4519,13 +4680,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureGroups/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -4546,13 +4708,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureGroups/"), .singleWildcard, .literal("/features/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -4573,12 +4736,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("reasoningEngines/"), .singleWildcard, .literal("/sessions/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -5932,7 +6096,8 @@
           }
           throw GoogleCloudGax.RequestError.binding(GoogleCloudGax.BindingError(paths: paths))
         }()
-        var req = try await self.inner.newRequest(path: path, query: query, options: options)
+        var req = try await self.inner.newRequest(
+          percentEncodedPath: path, query: query, options: options)
         configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
@@ -5949,12 +6114,13 @@
           ) in
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -5968,12 +6134,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/agents/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -5987,12 +6154,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/apps/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6006,13 +6174,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6026,13 +6195,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/dataItems/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6046,13 +6216,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/savedQueries/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6066,13 +6237,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/annotationSpecs/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6086,14 +6258,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/dataItems/"), .singleWildcard,
                   .literal("/annotations/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6107,13 +6280,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/deploymentResourcePools/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6127,13 +6301,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/edgeDeploymentJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6147,13 +6322,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/edgeDevices/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6167,13 +6343,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/endpoints/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6187,13 +6364,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/extensionControllers/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6207,13 +6385,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/extensions/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6227,13 +6406,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6247,13 +6427,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/entityTypes/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6267,14 +6448,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/entityTypes/"),
                   .singleWildcard, .literal("/features/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6288,13 +6470,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/customJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6308,13 +6491,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/dataLabelingJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6328,13 +6512,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/hyperparameterTuningJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6348,13 +6533,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tuningJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6368,12 +6554,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/indexes/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6387,13 +6574,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/indexEndpoints/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6407,13 +6595,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6427,13 +6616,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/artifacts/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6447,13 +6637,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/contexts/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6467,13 +6658,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/executions/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6487,13 +6679,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/modelDeploymentMonitoringJobs/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6507,13 +6700,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/modelMonitors/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6527,13 +6721,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/migratableResources/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6547,12 +6742,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/models/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6566,13 +6762,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/models/"), .singleWildcard, .literal("/evaluations/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6586,13 +6783,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookExecutionJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6606,13 +6804,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookRuntimes/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6626,13 +6825,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookRuntimeTemplates/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6646,13 +6846,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/persistentResources/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6666,12 +6867,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/studies/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6685,13 +6887,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/studies/"), .singleWildcard, .literal("/trials/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6705,13 +6908,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/trainingPipelines/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6725,13 +6929,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/pipelineJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6745,12 +6950,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/ragEngineConfig/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6764,13 +6970,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/schedules/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6784,13 +6991,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/specialistPools/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6804,13 +7012,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6824,13 +7033,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6844,14 +7054,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
                   .singleWildcard, .literal("/runs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6865,14 +7076,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
                   .singleWildcard, .literal("/runs/"), .singleWildcard, .literal("/timeSeries/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6886,13 +7098,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureOnlineStores/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6906,13 +7119,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureOnlineStores/"), .singleWildcard, .literal("/featureViews/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6926,13 +7140,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureGroups/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6946,13 +7161,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureGroups/"), .singleWildcard, .literal("/features/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6966,13 +7182,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureGroups/"), .singleWildcard, .literal("/featureMonitors/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -6986,12 +7203,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7005,13 +7223,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7025,13 +7244,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/dataItems/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7045,13 +7265,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/savedQueries/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7065,13 +7286,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/annotationSpecs/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7085,14 +7307,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/dataItems/"), .singleWildcard,
                   .literal("/annotations/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7106,13 +7329,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/deploymentResourcePools/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7126,13 +7350,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/endpoints/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7146,13 +7371,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7166,13 +7392,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/entityTypes/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7186,14 +7413,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/entityTypes/"),
                   .singleWildcard, .literal("/features/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7207,13 +7435,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/customJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7227,13 +7456,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/dataLabelingJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7247,13 +7477,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/hyperparameterTuningJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7267,13 +7498,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tuningJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7287,12 +7519,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/indexes/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7306,13 +7539,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/indexEndpoints/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7326,13 +7560,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7346,13 +7581,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/artifacts/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7366,13 +7602,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/contexts/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7386,13 +7623,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/executions/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7406,13 +7644,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/modelDeploymentMonitoringJobs/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7426,13 +7665,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/migratableResources/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7446,12 +7686,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/models/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7465,13 +7706,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/models/"), .singleWildcard, .literal("/evaluations/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7485,13 +7727,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookExecutionJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7505,13 +7748,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookRuntimes/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7525,13 +7769,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookRuntimeTemplates/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7545,12 +7790,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/ragEngineConfig/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7564,13 +7810,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/ragCorpora/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7584,13 +7831,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/ragCorpora/"), .singleWildcard, .literal("/ragFiles/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7604,13 +7852,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/reasoningEngines/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7624,13 +7873,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/reasoningEngines/"), .singleWildcard, .literal("/sessions/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7644,12 +7894,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/studies/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7663,13 +7914,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/studies/"), .singleWildcard, .literal("/trials/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7683,13 +7935,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/trainingPipelines/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7703,13 +7956,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/persistentResources/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7723,13 +7977,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/pipelineJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7743,13 +7998,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/schedules/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7763,13 +8019,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/specialistPools/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7783,13 +8040,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7803,13 +8061,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7823,14 +8082,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
                   .singleWildcard, .literal("/runs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7844,14 +8104,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
                   .singleWildcard, .literal("/runs/"), .singleWildcard, .literal("/timeSeries/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7865,13 +8126,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureOnlineStores/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7885,13 +8147,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureOnlineStores/"), .singleWildcard, .literal("/featureViews/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7905,13 +8168,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureGroups/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7925,13 +8189,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureGroups/"), .singleWildcard, .literal("/features/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -7945,12 +8210,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("reasoningEngines/"), .singleWildcard, .literal("/sessions/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -9372,7 +9638,8 @@
           }
           throw GoogleCloudGax.RequestError.binding(GoogleCloudGax.BindingError(paths: paths))
         }()
-        var req = try await self.inner.newRequest(path: path, query: query, options: options)
+        var req = try await self.inner.newRequest(
+          percentEncodedPath: path, query: query, options: options)
         configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
@@ -9389,12 +9656,13 @@
           ) in
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -9408,12 +9676,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/agents/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -9427,12 +9696,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/apps/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -9446,13 +9716,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -9466,13 +9737,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/dataItems/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -9486,13 +9758,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/savedQueries/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -9506,13 +9779,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/annotationSpecs/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -9526,14 +9800,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/dataItems/"), .singleWildcard,
                   .literal("/annotations/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -9547,13 +9822,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/deploymentResourcePools/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -9567,13 +9843,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/edgeDevices/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -9587,13 +9864,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/endpoints/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -9607,12 +9885,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/extensionControllers/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -9626,12 +9905,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/extensions/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -9645,13 +9925,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -9665,13 +9946,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/entityTypes/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -9685,14 +9967,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/entityTypes/"),
                   .singleWildcard, .literal("/features/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -9706,13 +9989,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/customJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -9726,13 +10010,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/dataLabelingJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -9746,13 +10031,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/hyperparameterTuningJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -9766,12 +10052,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/indexes/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -9785,13 +10072,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/indexEndpoints/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -9805,13 +10093,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -9825,13 +10114,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/artifacts/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -9845,13 +10135,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/contexts/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -9865,13 +10156,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/executions/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -9885,13 +10177,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/modelDeploymentMonitoringJobs/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -9905,13 +10198,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/modelMonitors/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -9925,13 +10219,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/migratableResources/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -9945,12 +10240,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/models/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -9964,13 +10260,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/models/"), .singleWildcard, .literal("/evaluations/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -9984,13 +10281,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookExecutionJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10004,13 +10302,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookRuntimes/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10024,13 +10323,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookRuntimeTemplates/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10044,13 +10344,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/persistentResources/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10064,12 +10365,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/studies/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10083,13 +10385,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/studies/"), .singleWildcard, .literal("/trials/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10103,13 +10406,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/trainingPipelines/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10123,13 +10427,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/pipelineJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10143,13 +10448,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/schedules/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10163,13 +10469,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/specialistPools/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10183,12 +10490,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/ragEngineConfig/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10202,13 +10510,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10222,13 +10531,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10242,14 +10552,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
                   .singleWildcard, .literal("/runs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10263,14 +10574,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
                   .singleWildcard, .literal("/runs/"), .singleWildcard, .literal("/timeSeries/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10284,13 +10596,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureOnlineStores/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10304,13 +10617,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureGroups/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10324,13 +10638,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureGroups/"), .singleWildcard, .literal("/features/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10344,13 +10659,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureGroups/"), .singleWildcard, .literal("/featureMonitors/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10364,13 +10680,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureOnlineStores/"), .singleWildcard, .literal("/featureViews/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10384,12 +10701,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10403,13 +10721,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10423,13 +10742,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/dataItems/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10443,13 +10763,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/savedQueries/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10463,13 +10784,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/annotationSpecs/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10483,14 +10805,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/dataItems/"), .singleWildcard,
                   .literal("/annotations/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10504,13 +10827,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/deploymentResourcePools/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10524,13 +10848,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/endpoints/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10544,13 +10869,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10564,13 +10890,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/entityTypes/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10584,14 +10911,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/entityTypes/"),
                   .singleWildcard, .literal("/features/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10605,13 +10933,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/customJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10625,13 +10954,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/dataLabelingJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10645,13 +10975,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/hyperparameterTuningJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10665,12 +10996,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/indexes/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10684,13 +11016,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/indexEndpoints/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10704,13 +11037,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10724,13 +11058,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/artifacts/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10744,13 +11079,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/contexts/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10764,13 +11100,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/executions/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10784,13 +11121,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/modelDeploymentMonitoringJobs/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10804,13 +11142,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/migratableResources/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10824,12 +11163,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/models/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10843,13 +11183,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/models/"), .singleWildcard, .literal("/evaluations/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10863,13 +11204,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookExecutionJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10883,13 +11225,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookRuntimes/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10903,13 +11246,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookRuntimeTemplates/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10923,12 +11267,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/ragEngineConfig/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10942,13 +11287,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/ragCorpora/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10962,13 +11308,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/ragCorpora/"), .singleWildcard, .literal("/ragFiles/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -10982,13 +11329,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/reasoningEngines/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -11002,13 +11350,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/reasoningEngines/"), .singleWildcard, .literal("/sessions/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -11022,12 +11371,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/studies/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -11041,13 +11391,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/studies/"), .singleWildcard, .literal("/trials/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -11061,13 +11412,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/trainingPipelines/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -11081,13 +11433,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/persistentResources/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -11101,13 +11454,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/pipelineJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -11121,13 +11475,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/schedules/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -11141,13 +11496,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/specialistPools/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -11161,13 +11517,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -11181,13 +11538,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -11201,14 +11559,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
                   .singleWildcard, .literal("/runs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -11222,14 +11581,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
                   .singleWildcard, .literal("/runs/"), .singleWildcard, .literal("/timeSeries/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -11243,13 +11603,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureOnlineStores/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -11263,13 +11624,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureGroups/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -11283,13 +11645,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureGroups/"), .singleWildcard, .literal("/features/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -11303,13 +11666,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureOnlineStores/"), .singleWildcard, .literal("/featureViews/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -11323,12 +11687,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("reasoningEngines/"), .singleWildcard, .literal("/sessions/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -12706,7 +13071,8 @@
           }
           throw GoogleCloudGax.RequestError.binding(GoogleCloudGax.BindingError(paths: paths))
         }()
-        var req = try await self.inner.newRequest(path: path, query: query, options: options)
+        var req = try await self.inner.newRequest(
+          percentEncodedPath: path, query: query, options: options)
         configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         _ = try await req.rpc(
@@ -12723,12 +13089,13 @@
           ) in
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -12742,12 +13109,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/agents/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -12761,12 +13129,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/apps/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -12780,13 +13149,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -12800,13 +13170,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/dataItems/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -12820,13 +13191,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/savedQueries/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -12840,13 +13212,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/annotationSpecs/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -12860,14 +13233,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/dataItems/"), .singleWildcard,
                   .literal("/annotations/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -12881,13 +13255,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/deploymentResourcePools/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -12901,13 +13276,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/edgeDevices/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -12921,13 +13297,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/endpoints/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -12941,13 +13318,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/extensionControllers/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -12961,13 +13339,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/extensions/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -12981,13 +13360,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13001,13 +13381,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/entityTypes/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13021,14 +13402,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/entityTypes/"),
                   .singleWildcard, .literal("/features/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13042,13 +13424,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/customJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13062,13 +13445,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/dataLabelingJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13082,13 +13466,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/hyperparameterTuningJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13102,13 +13487,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tuningJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13122,12 +13508,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/indexes/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13141,13 +13528,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/indexEndpoints/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13161,13 +13549,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13181,13 +13570,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/artifacts/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13201,13 +13591,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/contexts/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13221,13 +13612,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/executions/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13241,13 +13633,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/modelDeploymentMonitoringJobs/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13261,13 +13654,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/modelMonitors/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13281,13 +13675,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/migratableResources/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13301,12 +13696,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/models/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13320,13 +13716,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/models/"), .singleWildcard, .literal("/evaluations/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13340,13 +13737,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookExecutionJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13360,13 +13758,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookRuntimes/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13380,13 +13779,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookRuntimeTemplates/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13400,13 +13800,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/persistentResources/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13420,12 +13821,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/studies/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13439,13 +13841,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/studies/"), .singleWildcard, .literal("/trials/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13459,13 +13862,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/trainingPipelines/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13479,13 +13883,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/pipelineJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13499,13 +13904,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/schedules/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13519,12 +13925,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/ragEngineConfig/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13538,13 +13945,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/specialistPools/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13558,13 +13966,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13578,13 +13987,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13598,14 +14008,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
                   .singleWildcard, .literal("/runs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13619,14 +14030,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
                   .singleWildcard, .literal("/runs/"), .singleWildcard, .literal("/timeSeries/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13640,12 +14052,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13659,13 +14072,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13679,13 +14093,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/dataItems/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13699,13 +14114,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/savedQueries/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13719,13 +14135,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/annotationSpecs/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13739,14 +14156,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/dataItems/"), .singleWildcard,
                   .literal("/annotations/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13760,13 +14178,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/deploymentResourcePools/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13780,13 +14199,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/endpoints/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13800,13 +14220,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13820,13 +14241,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/entityTypes/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13840,14 +14262,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/entityTypes/"),
                   .singleWildcard, .literal("/features/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13861,13 +14284,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/customJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13881,13 +14305,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/dataLabelingJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13901,13 +14326,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/hyperparameterTuningJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13921,13 +14347,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tuningJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13941,12 +14368,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/indexes/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13960,13 +14388,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/indexEndpoints/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -13980,13 +14409,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -14000,13 +14430,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/artifacts/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -14020,13 +14451,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/contexts/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -14040,13 +14472,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/executions/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -14060,13 +14493,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/modelDeploymentMonitoringJobs/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -14080,13 +14514,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/migratableResources/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -14100,12 +14535,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/models/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -14119,13 +14555,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/models/"), .singleWildcard, .literal("/evaluations/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -14139,13 +14576,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookExecutionJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -14159,13 +14597,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookRuntimes/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -14179,13 +14618,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookRuntimeTemplates/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -14199,13 +14639,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/persistentResources/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -14219,12 +14660,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/ragEngineConfig/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -14238,13 +14680,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/ragCorpora/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -14258,13 +14701,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/ragCorpora/"), .singleWildcard, .literal("/ragFiles/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -14278,13 +14722,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/reasoningEngines/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -14298,13 +14743,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/reasoningEngines/"), .singleWildcard, .literal("/sessions/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -14318,12 +14764,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/studies/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -14337,13 +14784,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/studies/"), .singleWildcard, .literal("/trials/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -14357,13 +14805,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/trainingPipelines/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -14377,13 +14826,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/pipelineJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -14397,13 +14847,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/schedules/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -14417,13 +14868,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/specialistPools/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -14437,13 +14889,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -14457,13 +14910,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -14477,14 +14931,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
                   .singleWildcard, .literal("/runs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -14498,14 +14953,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
                   .singleWildcard, .literal("/runs/"), .singleWildcard, .literal("/timeSeries/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -14519,12 +14975,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("reasoningEngines/"), .singleWildcard, .literal("/sessions/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -15806,7 +16263,8 @@
           }
           throw GoogleCloudGax.RequestError.binding(GoogleCloudGax.BindingError(paths: paths))
         }()
-        var req = try await self.inner.newRequest(path: path, query: query, options: options)
+        var req = try await self.inner.newRequest(
+          percentEncodedPath: path, query: query, options: options)
         configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         _ = try await req.rpc(
@@ -15823,12 +16281,13 @@
           ) in
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -15844,12 +16303,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/agents/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -15865,12 +16325,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/apps/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -15886,13 +16347,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -15908,13 +16370,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/dataItems/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -15930,13 +16393,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/savedQueries/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -15952,13 +16416,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/annotationSpecs/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -15974,14 +16439,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/dataItems/"), .singleWildcard,
                   .literal("/annotations/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -15997,13 +16463,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/deploymentResourcePools/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16019,13 +16486,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/edgeDevices/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16041,13 +16509,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/endpoints/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16063,13 +16532,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/extensionControllers/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16085,13 +16555,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/extensions/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16107,13 +16578,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16129,13 +16601,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/entityTypes/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16151,14 +16624,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/entityTypes/"),
                   .singleWildcard, .literal("/features/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16174,13 +16648,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/customJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16196,13 +16671,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/dataLabelingJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16218,13 +16694,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/hyperparameterTuningJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16240,13 +16717,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tuningJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16262,12 +16740,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/indexes/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16283,13 +16762,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/indexEndpoints/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16305,13 +16785,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16327,13 +16808,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/artifacts/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16349,13 +16831,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/contexts/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16371,13 +16854,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/executions/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16393,13 +16877,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/modelDeploymentMonitoringJobs/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16415,13 +16900,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/modelMonitors/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16437,13 +16923,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/migratableResources/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16459,12 +16946,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/models/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16480,13 +16968,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/models/"), .singleWildcard, .literal("/evaluations/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16502,13 +16991,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookExecutionJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16524,13 +17014,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookRuntimes/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16546,13 +17037,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookRuntimeTemplates/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16568,12 +17060,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/studies/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16589,13 +17082,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/studies/"), .singleWildcard, .literal("/trials/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16611,13 +17105,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/trainingPipelines/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16633,13 +17128,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/persistentResources/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16655,13 +17151,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/pipelineJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16677,13 +17174,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/schedules/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16699,13 +17197,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/specialistPools/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16721,12 +17220,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/ragEngineConfig/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16742,13 +17242,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16764,13 +17265,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16786,14 +17288,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
                   .singleWildcard, .literal("/runs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16809,14 +17312,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
                   .singleWildcard, .literal("/runs/"), .singleWildcard, .literal("/timeSeries/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16832,13 +17336,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureOnlineStores/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16854,13 +17359,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureOnlineStores/"), .singleWildcard, .literal("/featureViews/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16876,13 +17382,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureGroups/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16898,13 +17405,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureGroups/"), .singleWildcard, .literal("/features/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16920,13 +17428,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureGroups/"), .singleWildcard, .literal("/featureMonitors/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16942,12 +17451,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16963,13 +17473,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -16985,13 +17496,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/dataItems/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17007,13 +17519,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/savedQueries/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17029,13 +17542,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/annotationSpecs/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17051,14 +17565,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/datasets/"), .singleWildcard, .literal("/dataItems/"), .singleWildcard,
                   .literal("/annotations/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17074,13 +17589,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/deploymentResourcePools/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17096,13 +17612,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/endpoints/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17118,13 +17635,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17140,13 +17658,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/entityTypes/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17162,14 +17681,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featurestores/"), .singleWildcard, .literal("/entityTypes/"),
                   .singleWildcard, .literal("/features/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17185,13 +17705,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/customJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17207,13 +17728,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/dataLabelingJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17229,13 +17751,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/hyperparameterTuningJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17251,12 +17774,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/indexes/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17272,13 +17796,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/indexEndpoints/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17294,13 +17819,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17316,13 +17842,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/artifacts/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17338,13 +17865,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/contexts/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17360,13 +17888,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/metadataStores/"), .singleWildcard, .literal("/executions/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17382,13 +17911,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/modelDeploymentMonitoringJobs/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17404,13 +17934,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/migratableResources/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17426,12 +17957,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/models/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17447,13 +17979,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/models/"), .singleWildcard, .literal("/evaluations/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17469,13 +18002,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookExecutionJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17491,13 +18025,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookRuntimes/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17513,13 +18048,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/notebookRuntimeTemplates/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17535,12 +18071,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/ragEngineConfig/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17556,13 +18093,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/ragCorpora/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17578,13 +18116,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/ragCorpora/"), .singleWildcard, .literal("/ragFiles/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17600,13 +18139,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/reasoningEngines/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17622,13 +18162,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/reasoningEngines/"), .singleWildcard, .literal("/sessions/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17644,12 +18185,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/studies/"), .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17665,13 +18207,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/studies/"), .singleWildcard, .literal("/trials/"), .singleWildcard,
                   .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17687,13 +18230,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/trainingPipelines/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17709,13 +18253,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/persistentResources/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17731,13 +18276,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/pipelineJobs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17753,13 +18299,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/schedules/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17775,13 +18322,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/specialistPools/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17797,13 +18345,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17819,13 +18368,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17841,14 +18391,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
                   .singleWildcard, .literal("/runs/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17864,14 +18415,15 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
                   .singleWildcard, .literal("/runs/"), .singleWildcard, .literal("/timeSeries/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17887,13 +18439,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureOnlineStores/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17909,13 +18462,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureOnlineStores/"), .singleWildcard, .literal("/featureViews/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17931,13 +18485,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureGroups/"), .singleWildcard, .literal("/operations/"),
                   .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17953,13 +18508,14 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
                   .literal("/featureGroups/"), .singleWildcard, .literal("/features/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -17975,12 +18531,13 @@
           }
           if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
             guard
-              let pathVariable0 = GoogleCloudGax._RoutingMatcher.value(
+              let pathVariable0 = try GoogleCloudGax._RoutingMatcher.pathValue(
                 request.name as Swift.String?,
                 matching: [
                   .literal("reasoningEngines/"), .singleWildcard, .literal("/sessions/"),
                   .singleWildcard, .literal("/operations/"), .singleWildcard,
-                ])
+                ],
+                fieldName: "name")
             else {
               return nil
             }
@@ -19376,7 +19933,8 @@
           }
           throw GoogleCloudGax.RequestError.binding(GoogleCloudGax.BindingError(paths: paths))
         }()
-        var req = try await self.inner.newRequest(path: path, query: query, options: options)
+        var req = try await self.inner.newRequest(
+          percentEncodedPath: path, query: query, options: options)
         configure(&req)
         req.addHeader(name: GoogleCloudGax._HeaderNames.apiClient, value: Clients.clientHeader)
         return try await req.rpc(
