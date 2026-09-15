@@ -220,7 +220,7 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
     clientSecret: String? = nil,
     targetPrincipal: String? = nil,
     workforcePoolUserProject: String? = nil,
-    scopes: [String] = [ExternalAccountConfig.defaultScope],
+    scopes: [String] = [],
     universeDomain: String? = nil,
     retryConfiguration: RetryConfiguration? = nil,
     httpClient: AuthHTTPClient = AuthHTTPClient()

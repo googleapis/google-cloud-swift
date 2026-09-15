@@ -47,6 +47,7 @@ _LOCAL_DEPENDENCIES=(
     "generated/swift-google-cloud-recommender-v1:swift-google-cloud-recommender-v1"
     "generated/swift-google-iam-v1:swift-google-iam-v1"
     "generated/swift-google-iam-v2:swift-google-iam-v2"
+    "generated/swift-google-iam-credentials-v1:swift-google-iam-credentials-v1"
     "generated/swift-google-identity-accesscontextmanager-type:swift-google-identity-accesscontextmanager-type"
     "generated/swift-google-identity-accesscontextmanager-v1:swift-google-identity-accesscontextmanager-v1"
     "generated/swift-google-logging-type:swift-google-logging-type"

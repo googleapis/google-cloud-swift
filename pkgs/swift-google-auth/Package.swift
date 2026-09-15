@@ -53,15 +53,6 @@ let package = Package(
         .product(name: "JWTKit", package: "jwt-kit"),
       ],
       path: "Tests",
-      exclude: ["IntegrationTests"]
-    ),
-    .testTarget(
-      name: "GoogleCloudAuthIntegrationTests",
-      dependencies: [
-        "GoogleCloudAuth",
-        .product(name: "JWTKit", package: "jwt-kit"),
-      ],
-      path: "Tests/IntegrationTests"
     ),
   ]
 )

@@ -121,16 +121,16 @@ Run the targeted integration test suite with the environment variables exported:
 GOOGLE_CLOUD_PROJECT="rust-external-account-joonix" \
 GOOGLE_WORKLOAD_IDENTITY_OIDC_AUDIENCE="//iam.googleapis.com/projects/1092239828259/locations/global/workloadIdentityPools/google-idp/providers/google-idp" \
 EXTERNAL_ACCOUNT_SERVICE_ACCOUNT_EMAIL="testsa@rust-external-account-joonix.iam.gserviceaccount.com" \
-swift test --package-path pkgs/swift-google-auth --filter ExternalAccountGoogleCloudIntegrationTests
+swift test --filter ExternalAccountIntegrationTests
 ```
 
 ### 4.3 Expected Output
 
 ```text
-◇ Suite "External Account Google Cloud Live OIDC Integration Tests" started.
-◇ Test "Generates IAM OIDC ID token, exchanges via STS, and verifies access token" started.
-✔ Test "Generates IAM OIDC ID token, exchanges via STS, and verifies access token" passed after 1.842 seconds.
-✔ Suite "External Account Google Cloud Live OIDC Integration Tests" passed after 1.843 seconds.
+◇ Suite "External Account (BYOID) Integration Tests" started.
+◇ Test "Exchanges Google OIDC token via STS and verifies downstream client access" started.
+✔ Test "Exchanges Google OIDC token via STS and verifies downstream client access" passed after 1.842 seconds.
+✔ Suite "External Account (BYOID) Integration Tests" passed after 1.843 seconds.
 ✔ Test run with 1 test in 1 suite passed after 1.843 seconds.
 ```
 
@@ -138,9 +138,9 @@ ______________________________________________________________________
 
 ## 5. What the Integration Test Validates
 
-The test (`Tests/IntegrationTests/ExternalAccountGoogleCloudIntegrationTests.swift`):
+The test (`Tests/Auth/ExternalAccountIntegrationTests.swift`):
 
-1. Dynamically invokes the Google IAM Credentials REST API (`generateIdToken`) via ambient ADC (or uses `EXTERNAL_ACCOUNT_SUBJECT_TOKEN`) to obtain a fresh OIDC ID token (JWT).
+1. Invokes the IAM Credentials client (`GoogleIAMCredentialsV1.IAMCredentialsClient().generateIdToken(...)`) via ambient ADC (or uses `EXTERNAL_ACCOUNT_SUBJECT_TOKEN`) to obtain a fresh OIDC ID token (JWT).
 1. Instantiates `ExternalAccountCredentials` using the programmatic credential source and the returned subject token.
 1. Invokes `creds.headers()` to trigger a live HTTP POST exchange with Google STS (`https://sts.googleapis.com/v1/token`).
 1. Asserts that the response headers contain an `Authorization` header with a valid Google Cloud access token starting with `Bearer ya29.`.

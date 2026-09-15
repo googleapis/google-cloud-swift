@@ -134,6 +134,18 @@ let package = Package(
           name: "GoogleCloudSecurityPublicCAV1", package: "swift-google-cloud-security-publicca-v1"),
       ],
     ),
+    .testTarget(
+      name: "Auth",
+      dependencies: [
+        .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
+        .product(name: "GoogleCloudGax", package: "swift-google-gax"),
+        .product(name: "GoogleIAMCredentialsV1", package: "swift-google-iam-credentials-v1"),
+        .product(
+          name: "GoogleCloudSecretManagerV1", package: "swift-google-cloud-secretmanager-v1"),
+        "GoogleCloudTestHelpers",
+      ],
+      path: "Tests/Auth"
+    ),
     .executableTarget(
       name: "Endurance",
       dependencies: [
@@ -230,6 +242,7 @@ func generatedPackagesStatic() -> [Generated] {
     .init(name: "swift-google-cloud-security-publicca-v1", module: "GoogleCloudSecurityPublicCAV1"),
     .init(name: "swift-google-cloud-workflows-v1", module: "GoogleCloudWorkflowsV1"),
     .init(name: "swift-google-devtools-cloudbuild-v1", module: "GoogleCloudBuildV1"),
+    .init(name: "swift-google-iam-credentials-v1", module: "GoogleIAMCredentialsV1"),
     .init(
       name: "swift-google-cloud-compute-v1", module: "GoogleCloudComputeV1",
       traits: ["Instances", "Images", "ZoneOperations"]),
