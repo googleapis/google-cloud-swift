@@ -46,7 +46,7 @@ jobs:
           )
           swift package "${cache_flags[@]}" resolve --disable-sandbox || \
             (sleep 5 ; swift package "${cache_flags[@]}" resolve --disable-sandbox) || \
-            (sleet 10 ; swift package "${cache_flags[@]}" resolve --disable-sandbox)
+            (sleep 10 ; swift package "${cache_flags[@]}" resolve --disable-sandbox)
 
           # swift-google-wkt and -auth do not have local dependencies so no
           # swift-package-edit needed.
