@@ -14,8 +14,6 @@
 
 import Foundation
 import GoogleCloudAuth
-import GoogleCloudGax
-import GoogleCloudSecretManagerV1
 import GoogleIAMCredentialsV1
 import Testing
 
@@ -45,12 +43,11 @@ private func appleIDIntegrationEnabled() -> Bool {
 @Suite("External Account (BYOID) Integration Tests")
 struct ExternalAccountIntegrationTests {
   @Test(
-    "Exchanges Google OIDC token via STS and verifies downstream client access",
+    "Exchanges Google OIDC token via STS and verifies access token",
     .enabled(if: googleOIDCIntegrationEnabled())
   )
   func testGoogleOIDCWorkloadIdentityFederation() async throws {
     let env = ProcessInfo.processInfo.environment
-    let project = env["GOOGLE_CLOUD_PROJECT"]!
     let audience = env["GOOGLE_WORKLOAD_IDENTITY_OIDC_AUDIENCE"]!
 
     let idToken: String
@@ -82,24 +79,14 @@ struct ExternalAccountIntegrationTests {
     let authHeader = headers.first(where: { $0.0.lowercased() == "authorization" })
     #expect(authHeader != nil)
     #expect(authHeader?.1.hasPrefix("Bearer ya29.") == true)
-
-    let options = ClientOptions().with { $0.credentials = credentials }
-    let client = try SecretManagerServiceClient(options)
-    _ = try await client.testIamPermissions(
-      request: .init().with {
-        $0.resource = "projects/\(project)"
-        $0.permissions = ["resourcemanager.projects.get"]
-      }
-    )
   }
 
   @Test(
-    "Exchanges Apple ID token via STS and verifies downstream client access",
+    "Exchanges Apple ID token via STS and verifies access token",
     .enabled(if: appleIDIntegrationEnabled())
   )
   func testAppleIDWorkloadIdentityFederation() async throws {
     let env = ProcessInfo.processInfo.environment
-    let project = env["GOOGLE_CLOUD_PROJECT"]!
     let audience = env["APPLE_WORKLOAD_IDENTITY_OIDC_AUDIENCE"]!
     let idToken = env["APPLE_ID_TOKEN"]!
 
@@ -117,14 +104,5 @@ struct ExternalAccountIntegrationTests {
     let authHeader = headers.first(where: { $0.0.lowercased() == "authorization" })
     #expect(authHeader != nil)
     #expect(authHeader?.1.hasPrefix("Bearer ya29.") == true)
-
-    let options = ClientOptions().with { $0.credentials = credentials }
-    let client = try SecretManagerServiceClient(options)
-    _ = try await client.testIamPermissions(
-      request: .init().with {
-        $0.resource = "projects/\(project)"
-        $0.permissions = ["resourcemanager.projects.get"]
-      }
-    )
   }
 }

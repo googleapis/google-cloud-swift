@@ -138,10 +138,7 @@ let package = Package(
       name: "Auth",
       dependencies: [
         .product(name: "GoogleCloudAuth", package: "swift-google-auth"),
-        .product(name: "GoogleCloudGax", package: "swift-google-gax"),
         .product(name: "GoogleIAMCredentialsV1", package: "swift-google-iam-credentials-v1"),
-        .product(
-          name: "GoogleCloudSecretManagerV1", package: "swift-google-cloud-secretmanager-v1"),
         "GoogleCloudTestHelpers",
       ],
       path: "Tests/Auth"
