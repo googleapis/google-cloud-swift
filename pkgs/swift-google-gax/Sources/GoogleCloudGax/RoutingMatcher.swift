@@ -124,7 +124,7 @@ public enum _RoutingMatcher {
   }
 
   /// The character set allowed in REST URI path templates per go/client-libraries:rest-special-uri-chars: `[-_.~/0-9a-zA-Z]`.
-  public static let restUriAllowedCharacterSet = CharacterSet(
+  static let restUriAllowedCharacterSet = CharacterSet(
     charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~/"
   )
 
