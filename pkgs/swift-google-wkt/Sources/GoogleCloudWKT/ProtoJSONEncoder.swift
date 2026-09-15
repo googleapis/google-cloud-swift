@@ -28,6 +28,17 @@ import Foundation
   public init() {}
 
   public func encode<T>(_ value: T) throws -> Data where T: Encodable {
+    return try self.encode(value, omitting: [])
+  }
+
+  /// Encodes `value`, skipping the fields named in `omitting`.
+  ///
+  /// Each element of `omitting` is a `.`-separated path of ProtoJSON field names, for example
+  /// `secret.name`. Paths that do not match any field are ignored.
+  ///
+  /// The generated code uses this to skip the request fields bound by the URL path template. Such
+  /// fields do not belong in the request body when the method is annotated with `body: "*"`.
+  public func encode<T>(_ value: T, omitting: [String]) throws -> Data where T: Encodable {
     let encoder = JSONEncoder()
     encoder.outputFormatting = self.outputFormatting
     encoder.nonConformingFloatEncodingStrategy = .convertToString(
@@ -35,7 +46,46 @@ import Foundation
       negativeInfinity: "-Infinity",
       nan: "NaN"
     )
-    return try encoder.encode(Interceptor(inner: value))
+    let omit = omitting.isEmpty ? nil : OmitNode(paths: omitting)
+    return try encoder.encode(Interceptor(inner: value, omit: omit))
+  }
+}
+
+/// The field paths skipped by `_ProtoJSONEncoder`, organized as a trie.
+///
+/// Each level of the trie maps a ProtoJSON field name to the paths skipped below it. Leaf nodes
+/// (`terminal`) represent the fields that must not be encoded.
+fileprivate struct OmitNode {
+  private var terminal = false
+  private var children: [String: OmitNode] = [:]
+
+  init() {}
+
+  init(paths: [String]) {
+    for path in paths {
+      self.insert(path.split(separator: ".").map(String.init)[...])
+    }
+  }
+
+  /// Returns true if `key` must not be encoded.
+  func omits(_ key: String) -> Bool {
+    return self.children[key]?.terminal ?? false
+  }
+
+  /// Returns the paths skipped below `key`, or `nil` if nothing below `key` is skipped.
+  func child(_ key: String) -> OmitNode? {
+    guard let node = self.children[key], !node.children.isEmpty else { return nil }
+    return node
+  }
+
+  private mutating func insert(_ path: ArraySlice<String>) {
+    guard let head = path.first else {
+      self.terminal = true
+      return
+    }
+    var node = self.children[head] ?? OmitNode()
+    node.insert(path.dropFirst())
+    self.children[head] = node
   }
 }
 
@@ -56,16 +106,21 @@ extension Optional: _OptionalProtocol {
 
 fileprivate struct Interceptor<T: Encodable>: Encodable {
   let inner: T
+  var omit: OmitNode? = nil
 
   func encode(to encoder: any Encoder) throws {
-    try self.inner.encode(to: InternalEncoder(impl: encoder))
+    try self.inner.encode(to: InternalEncoder(impl: encoder, omit: self.omit))
   }
 }
 
 fileprivate struct InternalEncoder {
   let impl: any Encoder
+  let omit: OmitNode?
 
-  init(impl: any Encoder) { self.impl = impl }
+  init(impl: any Encoder, omit: OmitNode? = nil) {
+    self.impl = impl
+    self.omit = omit
+  }
 }
 
 extension InternalEncoder: Encoder {
@@ -74,7 +129,7 @@ extension InternalEncoder: Encoder {
 
   func container<Key>(keyedBy type: Key.Type) -> KeyedEncodingContainer<Key> where Key: CodingKey {
     let impl = self.impl.container(keyedBy: type)
-    return KeyedEncodingContainer(InternalKeyedContainer(impl))
+    return KeyedEncodingContainer(InternalKeyedContainer(impl, omit: self.omit))
   }
 
   func unkeyedContainer() -> any UnkeyedEncodingContainer {
@@ -91,72 +146,102 @@ extension InternalEncoder: Encoder {
 fileprivate struct InternalKeyedContainer<K: CodingKey>: KeyedEncodingContainerProtocol {
   typealias Key = K
   var impl: KeyedEncodingContainer<K>
+  var omit: OmitNode?
 
-  init(_ impl: KeyedEncodingContainer<K>) { self.impl = impl }
+  init(_ impl: KeyedEncodingContainer<K>, omit: OmitNode? = nil) {
+    self.impl = impl
+    self.omit = omit
+  }
 
   var codingPath: [any CodingKey] { self.impl.codingPath }
 
+  /// Returns true if `key` must not be encoded.
+  private func omits(_ key: K) -> Bool {
+    return self.omit?.omits(key.stringValue) ?? false
+  }
+
+  /// Returns the paths skipped below `key`, or `nil` if nothing below `key` is skipped.
+  private func omitted(below key: K) -> OmitNode? {
+    return self.omit?.child(key.stringValue)
+  }
+
   mutating func encodeNil(forKey key: K) throws {
+    guard !self.omits(key) else { return }
     try self.impl.encodeNil(forKey: key)
   }
 
   mutating func encode(_ value: Bool, forKey key: K) throws {
+    guard !self.omits(key) else { return }
     try self.impl.encode(value, forKey: key)
   }
 
   mutating func encode(_ value: String, forKey key: K) throws {
+    guard !self.omits(key) else { return }
     try self.impl.encode(value, forKey: key)
   }
 
   mutating func encode(_ value: Double, forKey key: K) throws {
+    guard !self.omits(key) else { return }
     try self.impl.encode(value, forKey: key)
   }
 
   mutating func encode(_ value: Float, forKey key: K) throws {
+    guard !self.omits(key) else { return }
     try self.impl.encode(value, forKey: key)
   }
 
   mutating func encode(_ value: Int, forKey key: K) throws {
+    guard !self.omits(key) else { return }
     try self.impl.encode(value, forKey: key)
   }
 
   mutating func encode(_ value: Int8, forKey key: K) throws {
+    guard !self.omits(key) else { return }
     try self.impl.encode(value, forKey: key)
   }
 
   mutating func encode(_ value: Int16, forKey key: K) throws {
+    guard !self.omits(key) else { return }
     try self.impl.encode(value, forKey: key)
   }
 
   mutating func encode(_ value: Int32, forKey key: K) throws {
+    guard !self.omits(key) else { return }
     try self.impl.encode(value, forKey: key)
   }
 
   mutating func encode(_ value: Int64, forKey key: K) throws {
+    guard !self.omits(key) else { return }
     try self.impl.encode(String(value), forKey: key)
   }
 
   mutating func encode(_ value: UInt, forKey key: K) throws {
+    guard !self.omits(key) else { return }
     try self.impl.encode(value, forKey: key)
   }
 
   mutating func encode(_ value: UInt8, forKey key: K) throws {
+    guard !self.omits(key) else { return }
     try self.impl.encode(value, forKey: key)
   }
 
   mutating func encode(_ value: UInt16, forKey key: K) throws {
+    guard !self.omits(key) else { return }
     try self.impl.encode(value, forKey: key)
   }
 
   mutating func encode(_ value: UInt32, forKey key: K) throws {
+    guard !self.omits(key) else { return }
     try self.impl.encode(value, forKey: key)
   }
 
   mutating func encode(_ value: UInt64, forKey key: K) throws {
+    guard !self.omits(key) else { return }
     try self.impl.encode(String(value), forKey: key)
   }
 
   mutating func encode<T>(_ value: T, forKey key: K) throws where T: Encodable {
+    guard !self.omits(key) else { return }
     if let opt = value as? _OptionalProtocol, opt._isNil {
       try self.impl.encodeNil(forKey: key)
     } else if let opt = value as? _OptionalProtocol, let unwrapped = opt._unwrappedValue {
@@ -165,7 +250,8 @@ fileprivate struct InternalKeyedContainer<K: CodingKey>: KeyedEncodingContainerP
       } else if let v = unwrapped as? UInt64 {
         try self.impl.encode(String(v), forKey: key)
       } else {
-        try self.impl.encode(Interceptor(inner: value), forKey: key)
+        try self.impl.encode(
+          Interceptor(inner: value, omit: self.omitted(below: key)), forKey: key)
       }
     } else if let v = value as? Int64 {
       try self.impl.encode(String(v), forKey: key)
@@ -198,12 +284,14 @@ fileprivate struct InternalKeyedContainer<K: CodingKey>: KeyedEncodingContainerP
     } else if let v = value as? Data {
       try self.impl.encode(v, forKey: key)
     } else {
-      try self.impl.encode(Interceptor(inner: value), forKey: key)
+      try self.impl.encode(
+        Interceptor(inner: value, omit: self.omitted(below: key)), forKey: key)
     }
   }
 
   mutating func encodeConditional<T>(_ object: T, forKey key: K) throws
   where T: AnyObject, T: Encodable {
+    guard !self.omits(key) else { return }
     try self.impl.encodeConditional(object, forKey: key)
   }
 
@@ -211,7 +299,8 @@ fileprivate struct InternalKeyedContainer<K: CodingKey>: KeyedEncodingContainerP
     -> KeyedEncodingContainer<NestedKey> where NestedKey: CodingKey
   {
     let nested = self.impl.nestedContainer(keyedBy: keyType, forKey: key)
-    return KeyedEncodingContainer(InternalKeyedContainer<NestedKey>(nested))
+    return KeyedEncodingContainer(
+      InternalKeyedContainer<NestedKey>(nested, omit: self.omitted(below: key)))
   }
 
   mutating func nestedUnkeyedContainer(forKey key: K) -> any UnkeyedEncodingContainer {
@@ -224,7 +313,8 @@ fileprivate struct InternalKeyedContainer<K: CodingKey>: KeyedEncodingContainerP
   }
 
   mutating func superEncoder(forKey key: K) -> any Encoder {
-    return InternalEncoder(impl: self.impl.superEncoder(forKey: key))
+    return InternalEncoder(
+      impl: self.impl.superEncoder(forKey: key), omit: self.omitted(below: key))
   }
 }
 

@@ -246,6 +246,43 @@ import NIOHTTP1
     #expect(response.status == .ok)
   }
 
+  @Test func postRequestBodyJSONOmittingPathFields() async throws {
+    struct Child: Encodable {
+      var name: String
+    }
+    struct TestPayload: Encodable {
+      var parent: String
+      var name: String
+      var child: Child
+    }
+
+    let mock = MockHTTPClient { (request, _) in
+      let body = try #require(request.body)
+      let collected = try await body.collect(upTo: 1024)
+      let bodyString = String(buffer: collected)
+      #expect(!bodyString.contains(#""parent""#))
+      #expect(!bodyString.contains(#""child":{"name""#))
+      #expect(bodyString.contains(#""name":"keep-me""#))
+
+      return HTTPClientResponse(
+        version: .http1_1,
+        status: .ok,
+        body: .bytes(.init(string: "{}"))
+      )
+    }
+
+    let client = try _HTTPClient(mock, endpoint: "http://localhost:8080")
+    var request = try await client.newRequest(path: "/v1/test", query: [])
+    request.setMethod(.POST)
+    try request.setBody(
+      json: TestPayload(
+        parent: "projects/p", name: "keep-me", child: Child(name: "also-omitted")),
+      omitting: ["parent", "child.name"]
+    )
+    let response = try await request.execute(timeout: .seconds(1))
+    #expect(response.status == .ok)
+  }
+
   @Test func rpcNoTimeout() async throws {
     let mock = MockHTTPClient { (request, timeout) in
       #expect(timeout == _HTTPClientRequest.defaultTimeout)

@@ -80,6 +80,23 @@ enum _RequestBody: Sendable {
     self.setBody(data: data, ofContentType: contentType)
   }
 
+  /// Sets the request body to the JSON encoding of `json`, skipping the fields in `omitting`.
+  ///
+  /// Each element of `omitting` is a `.`-separated path of ProtoJSON field names, for example
+  /// `secret.name`. Paths that do not match any field are ignored.
+  ///
+  /// The generated code uses this for methods annotated with `body: "*"`: the fields bound by the
+  /// URL path template are not part of the request body.
+  public mutating func setBody<T: Encodable>(
+    json: T,
+    omitting: [String],
+    ofContentType contentType: String = "application/json"
+  ) throws {
+    let encoder = _ProtoJSONEncoder()
+    let data = try encoder.encode(json, omitting: omitting)
+    self.setBody(data: data, ofContentType: contentType)
+  }
+
   public mutating func setBody(buffer: NIOCore.ByteBuffer) {
     self.body = .byteBuffer(buffer)
   }

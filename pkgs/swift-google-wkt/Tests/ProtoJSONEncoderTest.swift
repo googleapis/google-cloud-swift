@@ -129,4 +129,79 @@ import Testing
     let decoded = try decoder.decode(Int64Model.self, from: data)
     #expect(decoded == model)
   }
+
+  struct OmitChild: Codable, Equatable {
+    var name: String
+    var value: Int32
+  }
+
+  struct OmitModel: Codable, Equatable {
+    var name: String
+    var count: Int32
+    var flag: Bool
+    var child: OmitChild?
+    var children: [OmitChild]
+  }
+
+  static let omitModel = OmitModel(
+    name: "top-level",
+    count: 7,
+    flag: true,
+    child: OmitChild(name: "nested", value: 3),
+    children: [OmitChild(name: "repeated", value: 5)]
+  )
+
+  static func omittingEncoder() -> _ProtoJSONEncoder {
+    let encoder = _ProtoJSONEncoder()
+    encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
+    return encoder
+  }
+
+  @Test func encodeOmittingNothing() throws {
+    let encoder = Self.omittingEncoder()
+    let data = try encoder.encode(Self.omitModel, omitting: [])
+    let jsonString = try #require(String(data: data, encoding: .utf8))
+    #expect(
+      jsonString
+        == #"{"child":{"name":"nested","value":3},"children":[{"name":"repeated","value":5}],"count":7,"flag":true,"name":"top-level"}"#
+    )
+    // The output is unchanged from the overload without `omitting`.
+    let expected = try encoder.encode(Self.omitModel)
+    #expect(data == expected)
+  }
+
+  @Test func encodeOmittingTopLevelFields() throws {
+    let encoder = Self.omittingEncoder()
+    let data = try encoder.encode(Self.omitModel, omitting: ["name", "count", "flag"])
+    let jsonString = try #require(String(data: data, encoding: .utf8))
+    #expect(
+      jsonString
+        == #"{"child":{"name":"nested","value":3},"children":[{"name":"repeated","value":5}]}"#
+    )
+  }
+
+  @Test func encodeOmittingNestedField() throws {
+    let encoder = Self.omittingEncoder()
+    let data = try encoder.encode(Self.omitModel, omitting: ["child.name"])
+    let jsonString = try #require(String(data: data, encoding: .utf8))
+    #expect(
+      jsonString
+        == #"{"child":{"value":3},"children":[{"name":"repeated","value":5}],"count":7,"flag":true,"name":"top-level"}"#
+    )
+  }
+
+  @Test func encodeOmittingUnknownPath() throws {
+    let encoder = Self.omittingEncoder()
+    let data = try encoder.encode(Self.omitModel, omitting: ["unknown", "child.unknown"])
+    let expected = try encoder.encode(Self.omitModel)
+    #expect(data == expected)
+  }
+
+  @Test func encodeOmittingDoesNotApplyToRepeatedFields() throws {
+    // Path template variables never point into a repeated field, the elements are untouched.
+    let encoder = Self.omittingEncoder()
+    let data = try encoder.encode(Self.omitModel, omitting: ["children.name"])
+    let expected = try encoder.encode(Self.omitModel)
+    #expect(data == expected)
+  }
 }
