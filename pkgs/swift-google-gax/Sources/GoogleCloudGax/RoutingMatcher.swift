@@ -122,4 +122,105 @@ public enum _RoutingMatcher {
     let end = haystack.index(haystack.startIndex, offsetBy: endOffset)
     return String(haystack[start..<end])
   }
+
+  /// The character set allowed in REST URI path templates per go/client-libraries:rest-special-uri-chars: `[-_.~/0-9a-zA-Z]`.
+  public static let restUriAllowedCharacterSet = CharacterSet(
+    charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~/"
+  )
+
+  /// Percent-encodes a REST URI path component according to security guidelines.
+  public static func encodePath(_ value: String) -> String {
+    value.addingPercentEncoding(withAllowedCharacters: restUriAllowedCharacterSet) ?? value
+  }
+
+  /// Validates that a single-segment variable value does not equal `.` or `..`.
+  public static func validateSingleSegment(value: String, fieldName: String) throws {
+    if value == "." || value == ".." {
+      throw RequestError.binding(BindingError(fieldName: fieldName, invalidValue: value))
+    }
+  }
+
+  /// Validates that a multi-segment variable value does not contain path segments that are `.` or `..`.
+  public static func validateMultiSegment(value: String, fieldName: String) throws {
+    if value.split(separator: "/").contains(where: { $0 == "." || $0 == ".." }) {
+      throw RequestError.binding(BindingError(fieldName: fieldName, invalidSegments: value))
+    }
+  }
+
+  /// Extracts, validates, and percent-encodes a REST URI path parameter from `haystack`
+  /// using decomposed template segments per security guidelines (go/client-libraries:rest-special-uri-chars).
+  ///
+  /// - Parameters:
+  ///   - haystack: The field value from the request.
+  ///   - matching: Template segments that must match the field value.
+  ///   - fieldName: The name of the field being bound.
+  /// - Returns: The percent-encoded path string if matched and valid, or `nil` if `haystack` does not match the template structure.
+  /// - Throws: `RequestError.binding` if any `*` segment is `.` or `..`, or if any `**` segment contains `.` or `..`.
+  public static func pathValue(
+    _ haystack: String?,
+    matching: [_RoutingSegment],
+    fieldName: String
+  ) throws -> String? {
+    guard let haystack, !haystack.isEmpty else { return nil }
+
+    var remains = Substring(haystack)
+
+    for (index, needle) in matching.enumerated() {
+      switch needle {
+      case .literal(let lit):
+        guard remains.hasPrefix(lit) else { return nil }
+        remains = remains.dropFirst(lit.count)
+
+      case .singleWildcard:
+        if remains.isEmpty || remains.hasPrefix("/") {
+          return nil
+        }
+        let matchLength: Int
+        if let slashIndex = remains.firstIndex(of: "/") {
+          matchLength = remains.distance(from: remains.startIndex, to: slashIndex)
+        } else {
+          matchLength = remains.count
+        }
+        let segment = String(remains.prefix(matchLength))
+        try validateSingleSegment(value: segment, fieldName: fieldName)
+        remains = remains.dropFirst(matchLength)
+
+      case .multiWildcard, .trailingMultiWildcard:
+        if index == matching.count - 1 {
+          if remains.isEmpty && needle == .multiWildcard {
+            return nil
+          }
+          try validateMultiSegment(value: String(remains), fieldName: fieldName)
+          remains = remains.dropFirst(remains.count)
+        } else {
+          let followingSegments = Array(matching[(index + 1)...])
+          var foundLength: Int?
+          for len in stride(from: remains.count, through: 0, by: -1) {
+            let candidateSuffix = remains.dropFirst(len)
+            var testRemains = candidateSuffix
+            var allMatched = true
+            for suffixNeedle in followingSegments {
+              guard let count = suffixNeedle.matchLength(in: testRemains) else {
+                allMatched = false
+                break
+              }
+              testRemains = testRemains.dropFirst(count)
+            }
+            if allMatched && testRemains.isEmpty {
+              foundLength = len
+              break
+            }
+          }
+          guard let matchLen = foundLength else { return nil }
+          if matchLen == 0 && needle == .multiWildcard { return nil }
+          let segment = String(remains.prefix(matchLen))
+          try validateMultiSegment(value: segment, fieldName: fieldName)
+          remains = remains.dropFirst(matchLen)
+        }
+      }
+    }
+
+    guard remains.isEmpty else { return nil }
+    return encodePath(haystack)
+  }
 }

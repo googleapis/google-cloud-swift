@@ -187,4 +187,168 @@ import Testing
     #expect(segment == GoogleCloudGax._RoutingSegment.literal("test"))
     #expect(GoogleCloudGaxGRPC._RoutingMatcher.encode("foo/bar") == "foo%2Fbar")
   }
+
+  @Test func restUriPercentEncoding() {
+    // Unreserved set per go/client-libraries:rest-special-uri-chars: [-_.~/0-9a-zA-Z]
+    #expect(
+      _RoutingMatcher.encodePath("abcdefghijklmnopqrstuvwxyz") == "abcdefghijklmnopqrstuvwxyz"
+    )
+    #expect(
+      _RoutingMatcher.encodePath("ABCDEFGHIJKLMNOPQRSTUVWXYZ") == "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    )
+    #expect(_RoutingMatcher.encodePath("0123456789") == "0123456789")
+    #expect(_RoutingMatcher.encodePath("-._~") == "-._~")
+    // Slashes are preserved
+    #expect(_RoutingMatcher.encodePath("a/b/c/d") == "a/b/c/d")
+
+    // Reserved and query injection characters are percent-encoded
+    #expect(_RoutingMatcher.encodePath("hello world") == "hello%20world")
+    #expect(_RoutingMatcher.encodePath("foo?bar=1&baz=2") == "foo%3Fbar%3D1%26baz%3D2")
+    #expect(_RoutingMatcher.encodePath("projects/p:start") == "projects/p%3Astart")
+    #expect(_RoutingMatcher.encodePath("topics/t#fragment") == "topics/t%23fragment")
+    #expect(_RoutingMatcher.encodePath("bucket+name") == "bucket%2Bname")
+    #expect(_RoutingMatcher.encodePath("user@host") == "user%40host")
+    #expect(_RoutingMatcher.encodePath("item;matrix") == "item%3Bmatrix")
+  }
+
+  @Test func validateSingleSegmentRules() throws {
+    // Valid single segments pass
+    try _RoutingMatcher.validateSingleSegment(value: "us-central1", fieldName: "location")
+    try _RoutingMatcher.validateSingleSegment(value: ".hidden", fieldName: "location")
+    try _RoutingMatcher.validateSingleSegment(value: "..hidden", fieldName: "location")
+    try _RoutingMatcher.validateSingleSegment(value: "my.segment", fieldName: "location")
+
+    // "." and ".." throw structured RequestError.binding
+    #expect(throws: RequestError.self) {
+      try _RoutingMatcher.validateSingleSegment(value: ".", fieldName: "location")
+    }
+    #expect(throws: RequestError.self) {
+      try _RoutingMatcher.validateSingleSegment(value: "..", fieldName: "location")
+    }
+
+    do {
+      try _RoutingMatcher.validateSingleSegment(value: ".", fieldName: "location")
+    } catch let RequestError.binding(err) {
+      #expect(err.description == "Invalid value . for location")
+    }
+
+    do {
+      try _RoutingMatcher.validateSingleSegment(value: "..", fieldName: "parent")
+    } catch let RequestError.binding(err) {
+      #expect(err.description == "Invalid value .. for parent")
+    }
+  }
+
+  @Test func validateMultiSegmentRules() throws {
+    // Valid multi-segments pass
+    try _RoutingMatcher.validateMultiSegment(value: "projects/p/topics/t", fieldName: "name")
+    try _RoutingMatcher.validateMultiSegment(value: ".hidden/sub..dir", fieldName: "name")
+    try _RoutingMatcher.validateMultiSegment(value: "domain.com/path", fieldName: "name")
+
+    // Segments that are exactly "." or ".." throw RequestError.binding
+    let badPaths = [
+      ".",
+      "..",
+      "./foo",
+      "../foo",
+      "foo/.",
+      "foo/..",
+      "foo/./bar",
+      "foo/../bar",
+      "foo///../bar",
+    ]
+
+    for badPath in badPaths {
+      #expect(throws: RequestError.self) {
+        try _RoutingMatcher.validateMultiSegment(value: badPath, fieldName: "name")
+      }
+    }
+
+    do {
+      try _RoutingMatcher.validateMultiSegment(value: "projects/p/topics/a/../b", fieldName: "name")
+    } catch let RequestError.binding(err) {
+      #expect(
+        err.description == "Value for name must not contain segments that are exactly . or ..")
+    }
+  }
+
+  @Test func pathValueSingleWildcard() throws {
+    // Structural match and encoding
+    let matched = try _RoutingMatcher.pathValue(
+      "projects/p1/locations/us-central1",
+      matching: [.literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard],
+      fieldName: "name"
+    )
+    #expect(matched == "projects/p1/locations/us-central1")
+
+    // Special characters are percent-encoded
+    let withSpaces = try _RoutingMatcher.pathValue(
+      "projects/my project/locations/us central1",
+      matching: [.literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard],
+      fieldName: "name"
+    )
+    #expect(withSpaces == "projects/my%20project/locations/us%20central1")
+
+    // Structural mismatch returns nil
+    let mismatch = try _RoutingMatcher.pathValue(
+      "organizations/123/locations/us",
+      matching: [.literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard],
+      fieldName: "name"
+    )
+    #expect(mismatch == nil)
+
+    // Empty or nil returns nil
+    #expect(
+      try _RoutingMatcher.pathValue(nil, matching: [.singleWildcard], fieldName: "name") == nil)
+    #expect(
+      try _RoutingMatcher.pathValue("", matching: [.singleWildcard], fieldName: "name") == nil)
+
+    // Dot violations throw
+    #expect(throws: RequestError.self) {
+      try _RoutingMatcher.pathValue(
+        "projects/./locations/us",
+        matching: [
+          .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+        ],
+        fieldName: "name"
+      )
+    }
+
+    #expect(throws: RequestError.self) {
+      try _RoutingMatcher.pathValue(
+        "projects/p/locations/..",
+        matching: [
+          .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
+        ],
+        fieldName: "name"
+      )
+    }
+  }
+
+  @Test func pathValueMultiWildcard() throws {
+    // Valid multi-segment wildcard
+    let matched = try _RoutingMatcher.pathValue(
+      "projects/p/topics/a/b/c",
+      matching: [.literal("projects/"), .singleWildcard, .literal("/topics/"), .multiWildcard],
+      fieldName: "name"
+    )
+    #expect(matched == "projects/p/topics/a/b/c")
+
+    // Multi-segment with special characters
+    let encoded = try _RoutingMatcher.pathValue(
+      "projects/p/topics/a/b?param=1/c",
+      matching: [.literal("projects/"), .singleWildcard, .literal("/topics/"), .multiWildcard],
+      fieldName: "name"
+    )
+    #expect(encoded == "projects/p/topics/a/b%3Fparam%3D1/c")
+
+    // Multi-segment dot violation throws
+    #expect(throws: RequestError.self) {
+      try _RoutingMatcher.pathValue(
+        "projects/p/topics/a/../c",
+        matching: [.literal("projects/"), .singleWildcard, .literal("/topics/"), .multiWildcard],
+        fieldName: "name"
+      )
+    }
+  }
 }

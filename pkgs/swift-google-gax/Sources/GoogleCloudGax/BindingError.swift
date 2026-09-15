@@ -23,6 +23,23 @@ public struct BindingError: Sendable, Equatable, Error, CustomStringConvertible 
     self.paths = paths
   }
 
+  public init(fieldName: String, invalidValue: String) {
+    self.init(paths: [
+      PathMismatch(substitutions: [
+        SubstitutionMismatch(fieldName: fieldName, problem: .invalidValue(actual: invalidValue))
+      ])
+    ])
+  }
+
+  public init(fieldName: String, invalidSegments: String) {
+    self.init(paths: [
+      PathMismatch(substitutions: [
+        SubstitutionMismatch(
+          fieldName: fieldName, problem: .invalidSegments(actual: invalidSegments))
+      ])
+    ])
+  }
+
   public var description: String {
     if paths.isEmpty {
       return "no matching URL path"
@@ -73,6 +90,10 @@ public struct SubstitutionMismatch: Sendable, Equatable, CustomStringConvertible
       return "field '\(fieldName)' needs to be set and match the template: '\(expected)'"
     case .mismatchExpecting(let actual, let expected):
       return "field '\(fieldName)' should match the template: '\(expected)'; found: '\(actual)'"
+    case .invalidValue(let actual):
+      return "Invalid value \(actual) for \(fieldName)"
+    case .invalidSegments:
+      return "Value for \(fieldName) must not contain segments that are exactly . or .."
     }
   }
 }
@@ -82,6 +103,8 @@ public enum SubstitutionFail: Sendable, Equatable {
   case unset
   case unsetExpecting(String)
   case mismatchExpecting(actual: String, expected: String)
+  case invalidValue(actual: String)
+  case invalidSegments(actual: String)
 }
 
 /// Helper builder for accumulating path substitution errors in generated transport code.

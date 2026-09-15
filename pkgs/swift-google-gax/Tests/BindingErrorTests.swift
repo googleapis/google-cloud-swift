@@ -47,6 +47,26 @@ import Testing
       mismatch.description
         == "field 'name' should match the template: 'projects/*/secrets/*'; found: 'bad-name'"
     )
+
+    let invalidVal = SubstitutionMismatch(fieldName: "region", problem: .invalidValue(actual: ".."))
+    #expect(invalidVal.description == "Invalid value .. for region")
+
+    let invalidSeg = SubstitutionMismatch(
+      fieldName: "name", problem: .invalidSegments(actual: "projects/p/topics/a/../b")
+    )
+    #expect(
+      invalidSeg.description
+        == "Value for name must not contain segments that are exactly . or .."
+    )
+  }
+
+  @Test func convenienceInitializersForInvalidPathValues() {
+    let errVal = BindingError(fieldName: "region", invalidValue: "..")
+    #expect(errVal.description == "Invalid value .. for region")
+
+    let errSeg = BindingError(fieldName: "name", invalidSegments: "projects/p/topics/a/../b")
+    #expect(
+      errSeg.description == "Value for name must not contain segments that are exactly . or ..")
   }
 
   @Test func singlePathMismatchDescription() {
