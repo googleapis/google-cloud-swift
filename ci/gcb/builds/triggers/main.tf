@@ -46,7 +46,7 @@ locals {
     full = {
       config  = "scripted.yaml"
       script  = "full"
-      pool_id = "swift-sdk-pool"
+      pool_id = "swift-sdk-pool-large"
     }
   }
 
@@ -58,7 +58,7 @@ locals {
       config  = "scripted.yaml"
       script  = "full"
       pool_id = "swift-sdk-pool"
-      shards  = 16
+      shards  = 8
     }
   }
 
