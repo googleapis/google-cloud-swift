@@ -26,6 +26,10 @@ locals {
       config = "scripted.yaml"
       script = "unit-tests"
     }
+    intermediate-swift = {
+      config = "intermediate-swift.yaml"
+      script = "unit-tests"
+    }
     minimum-swift = {
       config = "minimum-swift.yaml"
       script = "unit-tests"
@@ -35,8 +39,8 @@ locals {
       script = "integration-tests"
     }
     docs = {
-      config  = "scripted.yaml"
-      script  = "docs"
+      config = "scripted.yaml"
+      script = "docs"
     }
   }
 
@@ -65,6 +69,10 @@ locals {
       script  = "docs"
       pool_id = "swift-sdk-pool"
       shards  = 8
+    }
+    nightly-swift = {
+      config = "nightly.yaml"
+      script = "unit-tests"
     }
   }
 

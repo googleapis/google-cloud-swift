@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# Google Cloud Build configuration for complex builds.
+# Google Cloud Build configuration for post-merge tests with Swift nightly.
 #
 # This configuration delegates most of the steps in the build to a shell script.
 # The name of the script is configurable via a substitution. Likewise, the
@@ -25,9 +25,6 @@ options:
     - GOOGLE_CLOUD_SWIFT_TEST_RUNNING_ON_GCB=1
     - PROJECT_ID=${PROJECT_ID}
     - GCB_TRIGGER_NAME=${TRIGGER_NAME}
-    - TRIGGER_NAME=${_TRIGGER_NAME}
-    - SHARD_INDEX=${_SHARD_INDEX}
-    - SHARD_COUNT=${_SHARD_COUNT}
   workerPool: 'projects/${PROJECT_ID}/locations/${_POOL_REGION}/workerPools/${_POOL_ID}'
 serviceAccount: 'projects/${PROJECT_ID}/serviceAccounts/integration-test-runner@${PROJECT_ID}.iam.gserviceaccount.com'
 steps:
@@ -36,13 +33,4 @@ steps:
 substitutions:
   _POOL_REGION: us-central1
   _POOL_ID: swift-sdk-pool
-  _SWIFT_VERSION: '6.4'
-  # While waiting for official swift:6.4-bookworm on Docker Hub, use the verified 6.4 nightly image.
-  # Once docker-library/official-images#22267 is merged, this can be changed to 'swift:${_SWIFT_VERSION}-bookworm'.
-  _SWIFT_IMAGE: 'swiftlang/swift:nightly-6.4.x-bookworm'
-  _TRIGGER_NAME: ''
-  _SHARD_INDEX: '0'
-  _SHARD_COUNT: '1'
-# Increase the default timeout. Building all the packages
-# takes about 2h30m, go with 4h for a reasonable margin.
-timeout: 14400s
+  _SWIFT_IMAGE: 'swiftlang/swift:nightly-bookworm'

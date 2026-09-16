@@ -28,3 +28,42 @@ builds themselves.
 We have chosen Terraform to manage these resources. That makes it easy to audit
 them, recreate the resources when needed, and we can always change to a
 different IaaC platform if needed.
+
+## Build Triggers and Swift Versions
+
+We run CI builds in Cloud Build for pull requests and post-merge events.
+Our policy is to support and test against the last 3 minor releases of Swift, plus
+a post-merge build against Swift nightly.
+
+### Trigger Architecture
+
+Trigger definitions are managed via Terraform in `ci/gcb/builds/triggers/main.tf`.
+The triggers use semantic names decoupled from specific Swift version numbers:
+- `gcb-pr-minimum-swift` / `gcb-pm-minimum-swift`: runs `ci/gcb/minimum-swift.yaml`
+  (unit tests against minimum supported version, currently 6.2).
+- `gcb-pr-intermediate-swift` / `gcb-pm-intermediate-swift`: runs
+  `ci/gcb/intermediate-swift.yaml` (unit tests against intermediate supported version,
+  currently 6.3).
+- `gcb-pr-unit-tests` / `gcb-pm-unit-tests`: runs `ci/gcb/scripted.yaml` (unit tests
+  against latest supported version, currently 6.4).
+- `gcb-pm-nightly-swift`: runs `ci/gcb/nightly.yaml` (post-merge unit tests against
+  `swiftlang/swift:nightly-bookworm`).
+- Other builds (`gcb-pr-integration-tests`, `gcb-pr-docs`, `gcb-pr-full`, etc.): run
+  `ci/gcb/scripted.yaml` against the latest supported version (6.4).
+
+### Bumping Swift Versions
+
+Because Cloud Build triggers read the YAML build configuration directly from the
+repository at the checked-out PR commit, changing the supported Swift versions
+does not require re-creating or modifying Terraform triggers:
+1. Update `_SWIFT_VERSION` in `ci/gcb/minimum-swift.yaml` to the new minimum
+   version.
+2. Update `_SWIFT_VERSION` in `ci/gcb/intermediate-swift.yaml` to the new
+   intermediate version.
+3. Update `_SWIFT_VERSION` (and `_SWIFT_IMAGE` if applicable) in
+   `ci/gcb/scripted.yaml` to the new latest version.
+4. Update documentation in `README.md`, `supported-versions.md`, and
+   `doc/contributor/howto-guide-set-up-development-environment.md`.
+
+All of these changes can be tested and merged in a single GitHub pull request
+without requiring any `terraform apply` step.
