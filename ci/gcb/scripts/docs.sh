@@ -20,6 +20,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"
 
 source "${SCRIPT_DIR}/fetch.sh"
+source "${REPO_ROOT}/ci/package-dependencies.sh"
 
 errors=0
 count=0
@@ -36,12 +37,10 @@ clean_targets=(
     GoogleCloudWorkflowsV1
 )
 echo "--- Building ${#clean_targets[@]} targets with warnings as errors"
-swift package edit --path "${REPO_ROOT}/pkgs/swift-google-wkt"  swift-google-wkt
-swift package edit --path "${REPO_ROOT}/pkgs/swift-google-auth" swift-google-auth
-swift package edit --path "${REPO_ROOT}/pkgs/swift-google-gax"  swift-google-gax
-swift package edit --path "${REPO_ROOT}/generated/swift-google-iam-v1"  swift-google-iam-v1
-swift package edit --path "${REPO_ROOT}/generated/swift-google-longrunning"  swift-google-longrunning
-swift package edit --path "${REPO_ROOT}/generated/swift-google-cloud-location"  swift-google-cloud-location
+# Build the documentation against the packages in this repository, not against
+# the last published version of each package. `restore_all_package_dependencies`
+# runs on exit, via the trap installed by `package-dependencies.sh`.
+edit_package_dependencies "."
 for target in "${clean_targets[@]}"; do
     count=$((count + 1))
 

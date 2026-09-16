@@ -20,43 +20,27 @@ REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 _EDITED_PACKAGES=()
 _REMOVED_DISABLE_RESOLUTION=()
 
-_LOCAL_DEPENDENCIES=(
-    "pkgs/swift-google-auth:swift-google-auth"
-    "pkgs/swift-google-gax:swift-google-gax"
-    "pkgs/swift-google-wkt:swift-google-wkt"
-    "generated/swift-google-api:swift-google-api"
-    "generated/swift-google-apps-script-type:swift-google-apps-script-type"
-    "generated/swift-google-apps-script-type-calendar:swift-google-apps-script-type-calendar"
-    "generated/swift-google-apps-script-type-docs:swift-google-apps-script-type-docs"
-    "generated/swift-google-apps-script-type-drive:swift-google-apps-script-type-drive"
-    "generated/swift-google-apps-script-type-gmail:swift-google-apps-script-type-gmail"
-    "generated/swift-google-apps-script-type-sheets:swift-google-apps-script-type-sheets"
-    "generated/swift-google-apps-script-type-slides:swift-google-apps-script-type-slides"
-    "generated/swift-google-cloud-common:swift-google-cloud-common"
-    "generated/swift-google-cloud-datastream-v1:swift-google-cloud-datastream-v1"
-    "generated/swift-google-cloud-documentai-v1:swift-google-cloud-documentai-v1"
-    "generated/swift-google-cloud-gkehub-configmanagement-v1:swift-google-cloud-gkehub-configmanagement-v1"
-    "generated/swift-google-cloud-gkehub-multiclusteringress-v1:swift-google-cloud-gkehub-multiclusteringress-v1"
-    "generated/swift-google-cloud-gkehub-rbacrolebindingactuation-v1:swift-google-cloud-gkehub-rbacrolebindingactuation-v1"
-    "generated/swift-google-cloud-kms-v1:swift-google-cloud-kms-v1"
-    "generated/swift-google-cloud-location:swift-google-cloud-location"
-    "generated/swift-google-cloud-orgpolicy-v1:swift-google-cloud-orgpolicy-v1"
-    "generated/swift-google-cloud-orgpolicy-v2:swift-google-cloud-orgpolicy-v2"
-    "generated/swift-google-cloud-osconfig-v1:swift-google-cloud-osconfig-v1"
-    "generated/swift-google-cloud-oslogin-common:swift-google-cloud-oslogin-common"
-    "generated/swift-google-cloud-recommender-v1:swift-google-cloud-recommender-v1"
-    "generated/swift-google-iam-v1:swift-google-iam-v1"
-    "generated/swift-google-iam-v2:swift-google-iam-v2"
-    "generated/swift-google-iam-credentials-v1:swift-google-iam-credentials-v1"
-    "generated/swift-google-identity-accesscontextmanager-type:swift-google-identity-accesscontextmanager-type"
-    "generated/swift-google-identity-accesscontextmanager-v1:swift-google-identity-accesscontextmanager-v1"
-    "generated/swift-google-logging-type:swift-google-logging-type"
-    "generated/swift-google-longrunning:swift-google-longrunning"
-    "generated/swift-google-rpc:swift-google-rpc"
-    "generated/swift-google-rpc-context:swift-google-rpc-context"
-    "generated/swift-google-type:swift-google-type"
-    "generated/swift-grafeas-v1:swift-grafeas-v1"
-)
+# The packages in this repository that other packages depend on via their
+# published GitHub URL. Dependent packages build against the last published
+# version unless SwiftPM is told to use the local copy.
+#
+# The list is derived from the manifests, so it does not go stale as packages
+# are added or start (or stop) depending on each other.
+_LOCAL_DEPENDENCIES=()
+_find_local_dependencies() {
+    local name dir
+    for name in $(find "${REPO_ROOT}" \
+        \( -name .build -o -name .build-cache -o -name .git -o -name Sources -o -name Tests \) -prune \
+        -o -type f -name Package.swift -print |
+        xargs grep -ho 'github\.com/googleapis/[a-z0-9-]*' | sed -e 's;.*/;;' | sort -u); do
+        for dir in pkgs generated; do
+            if [[ -f "${REPO_ROOT}/${dir}/${name}/Package.swift" ]]; then
+                _LOCAL_DEPENDENCIES+=("${dir}/${name}:${name}")
+            fi
+        done
+    done
+}
+_find_local_dependencies
 
 edit_package_dependencies() {
     local dir="$1"

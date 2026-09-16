@@ -45,23 +45,11 @@ jobs:
             [GoogleCloudStorage]=storage
             [GoogleCloudSecretManagerV1]=google-cloud-secretmanager-v1
           )
-          pkgs_edit=(
-            swift-google-wkt
-            swift-google-auth
-            swift-google-gax
-          )
-          generated_edit=(
-            swift-google-iam-v1
-            swift-google-longrunning
-            swift-google-cloud-location
-          )
+          # Build the documentation against the packages in this repository,
+          # not against the last published version of each package.
+          source ci/package-dependencies.sh
           mkdir -p .render
-          for pkg in "${pkgs_edit[@]}"; do
-            swift package edit --path "${PWD}/pkgs/${pkg}" "${pkg}"
-          done
-          for pkg in "${generated_edit[@]}"; do
-            swift package edit --path "${PWD}/generated/${pkg}" "${pkg}"
-          done
+          edit_package_dependencies "."
           for target in "${!targets[@]}"; do
             dir="${target[${target}]}"
             swift package \
